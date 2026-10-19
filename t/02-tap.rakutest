@@ -1,0 +1,22 @@
+use lib $?FILE.IO.parent.parent.add('lib').Str;
+use Test;
+use FastRoast::Tap;
+use FastRoast::Campaign;
+
+plan 9;
+my %a = status => 'exit', exit => 0, stdout => "1..3\nok 1 - a\nnot ok 2 - b\n    ok 1 - # SKIP x\nok 3 - c # TODO y\n";
+my %b = status => 'exit', exit => 0, stdout => "1..3\nok 1 - a\nok 2 - b\n    ok 1 - # SKIP x\nok 3 - c # TODO y\n";
+is-deeply tap-keys(%a<stdout>), ('0:1:ok', '0:2:not ok', '4:1:ok:SKIP', '0:3:ok:TODO'), 'TAP keys carry depth, number, verdict and directive';
+ok tap-agrees(%a, %a), 'a run agrees with itself';
+is tap-diff(%a, %b).elems, 1, 'one test differs';
+is tap-signature(%a, %b), 'test 0:2: not ok / ok', 'the signature names the first differing test';
+my %c = |%a, exit => 1;
+is tap-signature(%a, %c), 'status exit0 / exit1', 'an exit status alone is a signature too';
+is tap-signature(%a, %a), 'none', 'agreement has no signature';
+
+# --- ddmin ----------------------------------------------------------------
+my %m = ddmin((^16).List, -> @s { 3 ∈ @s && 11 ∈ @s }, 64);
+is-deeply %m<items>.sort.List, (3, 11), 'delta debugging finds the two items that matter';
+ok %m<calls> <= 48, "within a modest number of calls ({%m<calls>})";
+%m = ddmin((^16).List, -> @s { 5 ∈ @s }, 64);
+is-deeply %m<items>.List, (5,), 'and a single one';

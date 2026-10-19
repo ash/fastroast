@@ -1,0 +1,38 @@
+use lib $?FILE.IO.parent.parent.add('lib').Str;
+use Test;
+use FastRoast::Campaign;
+use FastRoast::Transform;
+
+plan 11;
+my $root = $?FILE.IO.parent.parent;
+%*ENV<FASTROAST_ENGINE> = $*EXECUTABLE.absolute.Str;
+my $roast = $root.add('fixtures/roast-mini');
+my $engine = $*EXECUTABLE.absolute.Str;
+my $out = $*TMPDIR.add("fastroast-t3-$*PID");
+
+my @r = campaign(:transforms(["strings-v1:cyrillic"]), :files(["S32-str/fat.t"]), :$roast, :out($out.add('fat')),
+    :oracle($engine), :candidate($root.add('fixtures/engines/cyrillic-flip.sh').absolute.Str), :jobs(1), :timeout(30));
+is @r[0]<verdict>, 'fat', 'a candidate that fails only on the fattened file is a fat finding';
+is @r[0]<signature>, 'test 0:1: ok / not ok', '…on the test it fails';
+# both strings: with "ABC" alone fattened, `"abc".uc` no longer equals it and the
+# oracle fails that test too, so the engines would agree again
+is-deeply @r[0]<needed>.List, ('string at line 3: "abc"', 'string at line 3: "ABC"'), 'the minimum keeps exactly the strings the divergence needs';
+my $dir = @r[0]<dossier>.IO;
+ok $dir.add('min.t').slurp.contains('"АБВ"') && $dir.add('min.t').slurp.contains("'uc'"), 'min.t fattens those strings and no other';
+ok $dir.add('finding.md').slurp.contains('| 0:1 | ok | not ok |'), 'finding.md tabulates the differing test';
+ok $out.add('fat/report.md').slurp.contains('| S32-str | 1 | 0 | 1 |'), 'the report counts it per chapter';
+
+@r = campaign(:transforms(["strings-v1:cyrillic"]), :files(["S32-str/fat.t"]), :$roast, :out($out.add('base')),
+    :oracle($engine), :candidate($root.add('fixtures/engines/always-flip.sh').absolute.Str), :jobs(1), :timeout(30));
+is @r[0]<verdict>, 'base', 'a candidate that fails the seed as well is a base divergence';
+
+@r = campaign(:transforms(["strings-v1:cyrillic"]), :files(["S32-str/fat.t"]), :$roast, :out($out.add('same')),
+    :oracle($engine), :candidate($engine), :jobs(1), :timeout(30));
+is @r[0]<verdict>, 'agree', 'the same engine on both sides agrees';
+
+# an incomplete rename shows in the oracle's errors, and only there
+my $g = Group.new(id => 'name:@all-false', label => '@all-false', edits => [Edit.new(:from(0), :to(1), :text('@алл-еалтд'))]);
+ok names-in("No such symbol '\@all-false'\n  in block <unit>", $g), 'an unresolved old spelling is an incomplete rename';
+nok names-in("# Failed test 'all-false works'", $g), 'a test description naming it is not';
+my $h = Group.new(id => 'name:foo', label => 'foo', edits => [Edit.new(:from(0), :to(1), :text('еоо'))]);
+ok names-in("===SORRY!===\nUndeclared routine:\n    еоо used at line 3\n", $h), 'nor is the new spelling, listed under Undeclared routine';

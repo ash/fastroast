@@ -1,0 +1,99 @@
+use lib $?FILE.IO.parent.parent.add('lib').Str;
+use Test;
+use FastRoast::Tokens;
+use FastRoast::Transform;
+
+plan 39;
+my $tmp = $*TMPDIR.add("fastroast-t1-$*PID"); $tmp.mkdir;
+sub fat(Str $name, Str $src, :$palette = 'cyrillic') { render($src, transform($name, $src, tokens($src, $tmp), :$palette)) }
+
+# --- tokens ---------------------------------------------------------------
+my $src = q:to/END/;
+use Test;
+use isms 'Perl5';
+my $name = "world";
+my @list = <b a c>;
+sub greet($who) { "hello $who\n" }
+class Box { has $.v }
+is greet($name), "hello\tworld\x[41]", 'greet';  # a comment 3 * 4
+is 3 * 4, 12, 'mult'; is 8 / 2, 4, 'div'; is 5 - 3, 2, 'minus'; is * * 2, 1, 'w';
+ok 1 (elem) (1, 2), 'elem'; ok 1 <= 2, 'le'; ok 2 != 3, 'ne'; ok Any // 1, 'dor';
+my @x = 1 ... 3; ok pi > 3 && Inf > 1, 'consts'; my &c = -> $q { $q };
+f(:$name) if 0;
+END
+my @t = tokens($src, $tmp);
+ok @t, 'the highlighter tokenizes the source';
+is @t.map(*.text).join, $src, 'and its tokens reassemble it exactly';
+is @t[1].from, @t[0].text.chars, 'every token knows its offset';
+
+# --- strings-v1 -----------------------------------------------------------
+my $s = fat('strings-v1', $src);
+ok $s.contains('"цослг"'), 'a string literal is fattened';
+ok $s.contains("use isms 'Perl5'"), 'a string in a use statement is left alone';
+ok $s.contains('"здлло $who\n"'), 'an interpolation and an escape keep their spelling';
+ok $s.contains('\x[41]"'), 'a \x[…] escape keeps its letters';
+ok $s.contains('<б а в>'), 'a word list is fattened';
+ok $s.contains('# a comment 3 * 4'), 'a comment is not a string';
+is fat('strings-v1', q[say infix:<before>(1), :k<v>;]), q[say infix:<before>(1), :k<х>;], 'the brackets that name an operator are not a string';
+is fat-letters('Hello', 'cyrillic'), 'Здлло', 'the map keeps case';
+
+# --- names-v1 -------------------------------------------------------------
+my $n = fat('names-v1', $src);
+ok $n.contains('my @литу') && $n.contains('@литу') , 'a declared variable is renamed';
+ok $n.contains('sub жсдду') && $n.contains('is жсдду('), 'a sub is renamed where it is called';
+ok $n.contains('class Боч'), 'a class is renamed';
+ok $n.contains('my $name') && $n.contains(':$name'), 'a variable also used as a named argument keeps its name';
+ok $n.contains('sub жсдду($who)'), 'a parameter keeps its name';
+
+# --- ops-v1 ---------------------------------------------------------------
+my $o = fat('ops-v1', $src);
+ok $o.contains('is 3 × 4') && $o.contains('8 ÷ 2') && $o.contains('5 − 3'), 'infix arithmetic gets its Unicode spelling';
+ok $o.contains('is * * 2'), 'a Whatever star is not multiplication';
+ok $o.contains('1 ∈ (1, 2)') && $o.contains('1 ≤ 2') && $o.contains('2 ≠ 3'), 'set and comparison operators too';
+ok $o.contains('Any // 1') && $o.contains('-> $q'), 'defined-or and a pointy arrow are left alone';
+ok $o.contains('1 … 3') && $o.contains('π > 3') && $o.contains('∞ > 1'), 'the sequence operator and the constants';
+ok $o.contains('# a comment 3 * 4'), 'comments are protected';
+
+# --- render applies a subset ----------------------------------------------
+my @g = transform('strings-v1', $src, @t, :palette<cyrillic>);
+is render($src, @g[0,]).lines.grep(*.contains('цослг')).elems, 1, 'render applies only the groups it is given';
+
+# --- palettes -------------------------------------------------------------
+my @AZ = |('A' .. 'Z'), |('a' .. 'z');
+my %width = cyrillic => 2, latin1 => 2, cjk => 3, hangul => 3, astral => 4;
+for palette-names() -> $p {
+    subtest "palette $p", {
+        my @l = @AZ.map({ fat-letters($_, $p) });
+        is @l.unique.elems, 52, 'every letter maps to its own value';
+        ok !@l.grep(* (elem) @AZ), 'and none of them to an ASCII letter';
+        ok @l.all.chars == 1, 'each is one grapheme';
+        if %width{$p} -> $w {
+            ok @l.all.encode.bytes == $w, "of $w bytes in UTF-8";
+            ok [<](@l.map(*.ord)), 'in the order of the ASCII letters';
+        }
+        if $p eq 'cyrillic' | 'latin1' | 'marks' {
+            is fat-letters('Hello, world', $p).uc, fat-letters('HELLO, WORLD', $p), 'keeping case';
+        }
+        if $p eq 'marks' {
+            ok @l.all.codes == 2 && @l.all.NFC.elems == 2, 'two codepoints that NFC keeps apart';
+            ok [<](@l.map(*.ord)), 'in the order of the ASCII letters';
+        }
+        if $p eq 'hangul' {
+            ok @l.all.NFD.elems > 1, 'each a syllable that NFD splits';
+        }
+        if $p eq 'mixed' {
+            is-deeply @l.map(*.encode.bytes).Set, (2, 3, 4).Set, 'every UTF-8 width';
+            ok @l.grep(*.codes == 2), 'and a two-codepoint grapheme';
+        }
+    }
+}
+ok fat('strings-v1', $src, :palette<cjk>).contains('"' ~ fat-letters('world', 'cjk') ~ '"'), 'strings-v1 takes the palette it is given';
+ok fat('names-v1', $src, :palette<astral>).contains('class ' ~ fat-letters('Box', 'astral')), 'and so does names-v1';
+is-deeply parse-spec('strings-v1:hangul'), ('strings-v1', 'hangul'), 'a spec names a transform and a palette';
+is-deeply parse-spec('names-v1'), ('names-v1', 'mixed'), 'the palette defaults to mixed';
+ok !parse-spec('ops-v1')[1].defined, 'a transform without letters has none';
+dies-ok { parse-spec('ops-v1:cjk') }, 'and refuses one';
+dies-ok { parse-spec('strings-v1:klingon') }, 'an unknown palette dies';
+is-deeply expand-specs(<strings-v1 ops-v1 names-v1:marks>, <cjk astral>),
+    <strings-v1:cjk strings-v1:astral ops-v1 names-v1:marks>, 'expand-specs gives every palette to the transforms that take one';
+is-deeply expand-specs(<names-v1 ops-v1>, ()), <names-v1:mixed ops-v1>, 'and mixed when none is named';

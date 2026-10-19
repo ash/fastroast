@@ -1,0 +1,114 @@
+#!/usr/bin/env rakupp
+# FastRoast: Roast with the fat added. See README.md.
+use lib $?FILE.IO.parent.parent.add('lib').Str;
+use FastRoast;
+use FastRoast::Roast;
+use FastRoast::Tokens;
+use FastRoast::Transform;
+use FastRoast::Campaign;
+
+sub usage() {
+    say qq:to/USAGE/;
+    FastRoast {VERSION} — Roast with the fat added
+
+    Usage:
+      fastroast run --roast=DIR [--transform=NAME[:PALETTE][,…]|all] [--palette=NAME[,NAME…]|all]
+                    [--chapters=S02,S32-str,…] [--files=REL,…] [--per=N] [--seed=N]
+                    [--oracle=rakudo] [--candidate=rakupp] [--jobs=N] [--timeout=SEC]
+                    [--out=DIR] [--shrink-budget=N] [--no-shrink]
+      fastroast fatten FILE [--transform=NAME[:PALETTE]] [--roast=DIR]
+      fastroast coverage --roast=DIR [--transform=…] [--palette=…] [--chapters=…] [--jobs=N] [--out=DIR]
+      fastroast transforms
+      fastroast palettes
+      fastroast version
+
+    run writes report.md, results.tsv and findings/TRANSFORM/FILE/ under --out
+    (default out/latest). --per=N takes N files per chapter, chosen by --seed.
+    A transform that maps letters runs once per palette (default mixed);
+    strings-v1:cjk names one directly.
+    coverage runs no engine: per Roast file, whether it seeds and how many
+    edit groups each transform makes of it.
+    USAGE
+}
+
+sub MAIN(*@args) {
+    my $command = @args.shift // 'help';
+    my %o; my @pos;
+    for @args {
+        if .starts-with('--') && .contains('=') { my ($k, $v) = .substr(2).split('=', 2); %o{$k} = $v }
+        elsif .starts-with('--') { %o{.substr(2)} = True }
+        else { @pos.push: $_ }
+    }
+    my sub int(Str $k, Int $d) { %o{$k}:exists ?? +%o{$k} !! $d }
+    my sub list(Str $k) { (%o{$k} // '').split(',').grep(*.chars).List }
+    given $command {
+        when 'help' | '--help' | '-h' { usage }
+        when 'version' | '--version' { say VERSION }
+        when 'transforms' {
+            say sprintf('%-11s %-14s %s', $_, transform-info($_)<relation>, transform-info($_)<about>) for transform-names;
+        }
+        when 'palettes' {
+            say sprintf('%-9s %s  %s', $_, fat-letters('abcdefghijklmnopqrstuvwxyz', $_), fat-letters('ABCDEFGHIJKLMNOPQRSTUVWXYZ', $_)) for palette-names;
+        }
+        when 'fatten' {
+            my $file = (@pos[0] // die 'usage: fastroast fatten FILE [--transform=NAME]').IO;
+            my ($name, $palette) = parse-spec(%o<transform> // 'strings-v1');
+            my $source = do if %o<roast> && $file.relative(%o<roast>.IO.absolute) -> $rel {
+                roast-seed(%o<roast>.IO, $file.absolute.IO.relative(%o<roast>.IO.absolute), $*TMPDIR) // die "$file is fudged away for rakudo"
+            } else { $file.slurp };
+            my @t = tokens($source, $*TMPDIR) // die "the tokens of $file do not reassemble it";
+            print render($source, transform($name, $source, @t, :palette($palette // 'mixed')));
+        }
+        when 'coverage' {
+            # Which Roast files each transform fattens, without running an
+            # engine: the seed, its tokens, and the edit groups per spec.
+            my $roast = (%o<roast> // die '--roast=DIR (a Roast checkout) is required').IO;
+            my @palettes = (%o<palette> // 'mixed') eq 'all' ?? palette-names() !! list('palette');
+            my @specs = expand-specs((%o<transform> // 'all') eq 'all' ?? transform-names() !! list('transform'), @palettes);
+            my @files = list('files') || roast-files($roast, :chapters(list('chapters')));
+            my $tmp = $*TMPDIR.add("fastroast-coverage-$*PID"); $tmp.mkdir;
+            my @rows = @files.race(:batch(1), :degree(int('jobs', 2))).map(-> $rel {
+                my $seed = roast-seed($roast, $rel, $tmp);
+                my @t = $seed.defined ?? (tokens($seed, $tmp) // ()) !! ();
+                my $state = !$seed.defined ?? 'fudged away' !! !@t ?? 'tokens do not reassemble' !! 'seeded';
+                ($rel, $state, |@specs.map(-> $s {
+                    my ($n, $p) = parse-spec($s);
+                    $state eq 'seeded' ?? transform($n, $seed, @t, :palette($p // 'mixed')).elems !! ''
+                })).List
+            }).List;
+            my $out = (%o<out> // 'out/coverage').IO; $out.mkdir;
+            $out.add('coverage.tsv').spurt((("file\tstate", |@specs).join("\t"), |@rows.sort(*[0]).map(*.join("\t"))).join("\n") ~ "\n");
+            say "{@files.elems} files";
+            say sprintf('  %-26s %d', .key, .value) for @rows.map(*[1]).Bag.sort(-*.value);
+            for @specs.kv -> $i, $s {
+                my @g = @rows.grep(*[1] eq 'seeded').map(*[2 + $i]);
+                say sprintf('%-18s fattens %d of the %d seeded files (%d edit groups)', $s, @g.grep(* > 0).elems, @g.elems, @g.sum);
+            }
+            say "per file: {$out.add('coverage.tsv')}";
+            .unlink for $tmp.dir; $tmp.rmdir;
+        }
+        when 'run' {
+            my $roast = (%o<roast> // die '--roast=DIR (a Roast checkout) is required').IO;
+            my @palettes = (%o<palette> // 'mixed') eq 'all' ?? palette-names() !! list('palette');
+            my @transforms = expand-specs((%o<transform> // 'strings-v1') eq 'all' ?? transform-names() !! list('transform'), @palettes);
+            my @files = list('files');
+            unless @files {
+                @files = roast-files($roast, :chapters(list('chapters')));
+                if %o<per> {
+                    srand(int('seed', 1));
+                    @files = @files.classify(&chapter-of).sort(*.key).map({ .value.pick(int('per', 8)).sort.Slip }).List;
+                }
+            }
+            my @r = campaign(:@transforms, :@files, :$roast,
+                out => (%o<out> // 'out/latest').IO,
+                oracle => %o<oracle> // 'rakudo', candidate => %o<candidate> // 'rakupp',
+                jobs => int('jobs', 4), timeout => int('timeout', 90),
+                shrink => !%o<no-shrink>, shrink-budget => int('shrink-budget', 24));
+            my %n = @r.map(*<verdict>).Bag;
+            say "\n{@r.elems} runs: " ~ <agree fat base skip error>.map({ "$_ {%n{$_} // 0}" }).join(', ')
+              ~ "; report in {(%o<out> // 'out/latest').IO.add('report.md')}";
+            exit(%n<error> ?? 2 !! 0);
+        }
+        default { note "unknown command '$command'"; usage; exit 2 }
+    }
+}

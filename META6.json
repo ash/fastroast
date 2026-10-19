@@ -1,0 +1,21 @@
+{
+  "name": "FastRoast",
+  "version": "0.1.0",
+  "description": "Roast with the fat added: metamorphic and differential runs of Roast under named transforms",
+  "auth": "zef:ash",
+  "source-url": "https://github.com/ash/fastroast.git",
+  "provides": {
+    "FastRoast": "lib/FastRoast.rakumod",
+    "FastRoast::Campaign": "lib/FastRoast/Campaign.rakumod",
+    "FastRoast::Roast": "lib/FastRoast/Roast.rakumod",
+    "FastRoast::Runner": "lib/FastRoast/Runner.rakumod",
+    "FastRoast::Tap": "lib/FastRoast/Tap.rakumod",
+    "FastRoast::Tokens": "lib/FastRoast/Tokens.rakumod",
+    "FastRoast::Transform": "lib/FastRoast/Transform.rakumod"
+  },
+  "depends": [],
+  "test-depends": ["Test"],
+  "bin": { "fastroast": "bin/fastroast" },
+  "tags": ["raku", "testing", "roast", "differential", "metamorphic"],
+  "license": "Artistic-2.0"
+}
