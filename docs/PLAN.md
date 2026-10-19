@@ -2,15 +2,15 @@
 
 ## Why
 
-Raku++ passes all of Roast and still had twenty divergences on a single
-to-do list in October 2026, each found by writing new code: `.minmax` over
-Rats, `.indices` inside a CR LF, `~~ Map` for a Set, `&infix:<->(10)` beside
-a user multi. Every one was a feature crossed with an input its tests never
-used. Roast samples each feature once, at its first-thought input, and asserts
-mostly by truth or string (95,408 `ok` and 29,025 `is` against 7,544
-`is-deeply`). Rakumap's matrix domains enumerate such products from scratch;
-FastRoast gets them from the tests that already exist, which carry the
-expectations someone checked.
+Raku++ passes nearly all of Roast and still had twenty divergences on a
+single to-do list in October 2026, each found by writing new code: `.minmax`
+over Rats, `.indices` inside a CR LF, `~~ Map` for a Set, `&infix:<->(10)`
+beside a user multi. Every one was a feature crossed with an input its tests
+had no reason to use. A specification test pins a feature down with one
+clear example, and asserts mostly by truth or string (95,408 `ok` and 29,025
+`is` against 7,544 `is-deeply`). Rakumap's matrix domains enumerate such
+products from scratch; FastRoast gets them from the tests that already exist,
+keeping the expectations Roast's authors worked out.
 
 ## Invariants
 

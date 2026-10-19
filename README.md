@@ -2,14 +2,16 @@
 
 Roast with the fat added.
 
-[Roast](https://github.com/Raku/roast) tests each feature at the input its
-authors thought of first, and that is mostly ASCII text, Latin names and the
-Texas spelling of every operator. An implementation can pass all of it and
-still be wrong for the next input over: a string with a combining mark, an
-identifier in another script, `≤` instead of `<=`. FastRoast takes the Roast
-files as they are and **adds fat**: named, versioned transforms rewrite each
-file, both engines run the rewritten file, and their results are compared
-test by test.
+[Roast](https://github.com/Raku/roast) specifies each feature with clear,
+focused examples, and most of them are written in ASCII text, with Latin
+names and the Texas spelling of operators. That keeps every test about the
+one thing it checks, and Unicode has chapters of its own. Still, an
+implementation can pass a test and go wrong when the same feature meets
+other input: a string with a combining mark, an identifier in another
+script, `≤` instead of `<=`. FastRoast takes the Roast files as they are and
+**adds fat**: named, versioned transforms rewrite each file, both engines
+run the rewritten file, and their results are compared test by test. Every
+expectation it checks is one Roast's authors wrote.
 
 It is a sibling of [Rakumap](https://github.com/ash/rakumap) (differential
 exploration from generated programs), [Rakugrid](https://github.com/ash/rakugrid)
