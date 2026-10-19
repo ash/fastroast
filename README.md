@@ -121,9 +121,10 @@ findings/TRANSFORM.PALETTE/S32-str/uc.t/
   candidate.stdout/.stderr
 ```
 
-A campaign keeps the files of its findings only. To see every fattened file,
-chapter by chapter, `fatten` without a file writes them all, laid out as
-Roast is. It runs no engine:
+A campaign keeps the files of its findings only. The full trees for Roast
+`da425eb92` are in this repository, under [fat/](fat/), browsable chapter by
+chapter. `fatten` without a file writes them (it runs no engine), laid out as
+Roast is:
 
 ```sh
 rakupp bin/fastroast fatten --roast=/path/to/roast --out=out/fat

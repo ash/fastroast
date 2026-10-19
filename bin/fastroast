@@ -97,7 +97,8 @@ sub MAIN(*@args) {
                 say sprintf('%-18s fattens %d of the %d seeded files (%d edit groups)', $s, @g.grep(* > 0).elems, @g.elems, @g.sum);
             }
             say "per file: {$out.add('coverage.tsv')}";
-            .unlink for $tmp.dir; $tmp.rmdir;
+            my sub rm-tree(IO::Path $d) { .d && !.l ?? rm-tree($_) !! .unlink for $d.dir; $d.rmdir }
+            rm-tree($tmp);
         }
         when 'run' {
             my $roast = (%o<roast> // die '--roast=DIR (a Roast checkout) is required').IO;
