@@ -1,0 +1,19 @@
+use Test;
+
+plan 2;
+
+
+=begin pod
+
+A class can only derive already declared classes.
+
+=end pod
+
+# L<S12/Classes/"bare class names must be predeclared">
+
+# need eval-lives-ok here because class declarations happen at compile time
+eval-lives-ok ' 개лàòò À {}; 개лàòò 丁 갢ò À {}; ', "丛àòe̲ 丛e̲е갨сe̲ 𝐝e̲с갢𝐯e̲𝐝: л갢𝐯e̲ò";
+throws-like ' 개лàòò 𝐃 갢ò 갂 {}; 개лàòò 갂 {}; ', X::Inheritance::UnknownParent,
+    "𝐝e̲с갢𝐯e̲𝐝 丛e̲е갨сe̲ 丛àòe̲: 𝐝갢e̲ò";
+
+# vim: expandtab shiftwidth=4

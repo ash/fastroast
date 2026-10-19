@@ -1,0 +1,76 @@
+use Test;
+
+plan 3;
+
+=begin pod
+
+=head1 DESCRIPTION
+
+Miscellaneous metaop tests that don't fit into other files in this directory.
+
+=end pod
+
+# Covers opts in https://github.com/rakudo/rakudo/commit/b9b0838dd8
+subtest 'cover metaop call simplification optimization' => {
+    plan 7;
+    subtest '(//=) +=' => {
+        plan 2;
+        my $à;
+        ($à //= 42) += 10;
+        is-deeply $à, 52, '(1)';
+        ($à //= 42) += 10;
+        is-deeply $à, 62, '(2)';
+    }
+    subtest 'R+= (||=)' => {
+        plan 2;
+        my $à;
+        10 R+= ($à ||= 42);
+        is-deeply $à, 52, '(1)';
+        10 R+= ($à ||= 42);
+        is-deeply $à, 62, '(2)';
+    }
+    subtest '(((R+= ([R-]=)) //=) +=)' => {
+        plan 1;
+        my $à = 12;
+        ((10 R+= ($à [R-]= 42)) //= 100) += 1000;
+        is-deeply $à, 1040, '(1)';
+    }
+    subtest '(((R+= ([R-]=)) //=) +=)' => {
+        plan 1;
+        my $à = 12;
+        ((10 R+= ($à [R-]= 42)) //= 100) += 1000;
+        is-deeply $à, 1040, '(1)';
+    }
+    subtest 'array var with ((||=) += )' => {
+        plan 1;
+        my @à = 20; (@à ||= 42) += 10;
+        is-deeply @à, [11], '(1)';
+    }
+
+    # https://github.com/rakudo/rakudo/issues/1989
+    subtest 'metassign to array/hash returned from a method' => {
+        plan 2;
+        my class Е갨갨 { has @.a is rw; has %.h is rw };
+        my $갨 := Е갨갨.new: :h{:42foo};
+        is-deeply ($갨.a += <a b c>), [3], '+= to array';
+        is-deeply ($갨.h ,= :100bar), {:42foo, :100bar}, ',= to hash';
+    }
+    subtest 'failure modes' => {
+        plan 5;
+        throws-like ｢my $à := 42; ($à //= 42)  += 10｣, X::Assignment::RO, '(1)';
+        throws-like ｢my $à := 42; ($à ||= 42) R+= 10｣, X::Assignment::RO, '(2)';
+        throws-like ｢my $à  = 42; ($à ||= 42) R+= 10｣, X::Assignment::RO, '(3)';
+        throws-like ｢my $à  = 42; 1000 += ((10 R+= ($à [R-]= 42)) //= 100)｣, X::Assignment::RO,
+            '(4)';
+        # https://github.com/rakudo/rakudo/issues/1987
+        throws-like '42.abs += 42', X::Assignment::RO, '(5)';
+    }
+}
+
+# https://github.com/rakudo/rakudo/issues/1890
+{
+    lives-ok { [] ,= 42 }, ',= metaop works properly with []';
+    lives-ok { my @à; my @丛; @à [R,]= @丛 }, '[R,]= metaop properly works with two empty lists';
+}
+
+# vim: expandtab shiftwidth=4

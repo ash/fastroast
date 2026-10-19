@@ -1,0 +1,188 @@
+use Test;
+
+# Tests of IO::Path.extension
+
+my @tests = gather {
+    constant $joiner = "\c[BLACK HEART SUIT]\c[ROMAN NUMERAL TEN]";
+    sub prefix:<pIO> ($p) is looser(&[~]) { $p.IO }
+    for ['е갨갨', 'е갨갨.中ч中.中àс.æ丳'.IO], ['', '.中ч中.中àс.æ丳'.IO] -> ($pre, $path) {
+        %( :$path, :args(.key), :expected(.value) ).take for
+            \(                               ) => 'æ丳',
+            \(       :1parts                 ) => 'æ丳',
+            \(       :parts(1..1)            ) => 'æ丳',
+            \(       :parts(0..1)            ) => 'æ丳',
+            \(       :2parts                 ) => '中àс.æ丳',
+            \(       :parts(2..2)            ) => '中àс.æ丳',
+            \(       :parts(0..2)            ) => '中àс.æ丳',
+            \(       :3parts                 ) => '中ч中.中àс.æ丳',
+            \(       :parts(3..3)            ) => '中ч中.中àс.æ丳',
+            \(       :parts(0..3)            ) => '中ч中.中àс.æ丳',
+            \(       :parts(0..9)            ) => '中ч中.中àс.æ丳',
+            \(       :parts(0..∞)            ) => '中ч中.中àс.æ丳',
+            \(       :parts(  ^∞)            ) => '中ч中.中àс.æ丳',
+            \(       :parts(1^..^3)          ) => '中àс.æ丳',
+            \(       :parts(1^..*)           ) => '中ч中.中àс.æ丳',
+            \(       :parts(0..*)            ) => '中ч中.中àс.æ丳',
+            \(       :4parts                 ) => '',
+            \(       :parts(4..4)            ) => '',
+            \(       :parts(3^..4)           ) => '',
+            \(       :parts(2^..4)           ) => '中ч中.中àс.æ丳',
+            \(       :parts(0..4)            ) => '中ч中.中àс.æ丳',
+            \(       :0parts                 ) => '',
+            \(       :parts(0..0)            ) => '',
+
+            \(''                             ) => pIO "$pre.中ч中.中àс",
+            \('',    :1parts                 ) => pIO "$pre.中ч中.中àс",
+            \('',    :parts(1..1)            ) => pIO "$pre.中ч中.中àс",
+            \('',    :parts(0..1)            ) => pIO "$pre.中ч中.中àс",
+            \('',    :2parts                 ) => pIO "$pre.中ч中",
+            \('',    :parts(2..2)            ) => pIO "$pre.中ч中",
+            \('',    :parts(0..2)            ) => pIO "$pre.中ч中",
+            \('',    :3parts                 ) => pIO ($pre||'.'),
+            \('',    :parts(3..3)            ) => pIO ($pre||'.'),
+            \('',    :parts(0..3)            ) => pIO ($pre||'.'),
+            \('',    :parts(0..9)            ) => pIO ($pre||'.'),
+            \('',    :parts(0..∞)            ) => pIO ($pre||'.'),
+            \('',    :parts(0..*)            ) => pIO ($pre||'.'),
+            \('',    :4parts                 ) => pIO "$pre.中ч中.中àс.æ丳",
+            \('',    :parts(4..4)            ) => pIO "$pre.中ч中.中àс.æ丳",
+            \('',    :parts(0..4)            ) => pIO ($pre||'.'),
+            \('',    :0parts                 ) => pIO "$pre.中ч中.中àс.æ丳",
+            \('',    :parts(0..0)            ) => pIO "$pre.中ч中.中àс.æ丳",
+
+            \('丁ÀС'                          ) => pIO "$pre.中ч中.中àс.丁ÀС",
+            \('丁ÀС', :1parts                 ) => pIO "$pre.中ч中.中àс.丁ÀС",
+            \('丁ÀС', :parts(1..1)            ) => pIO "$pre.中ч中.中àс.丁ÀС",
+            \('丁ÀС', :parts(0..1)            ) => pIO "$pre.中ч中.中àс.丁ÀС",
+            \('丁ÀС', :2parts                 ) => pIO "$pre.中ч中.丁ÀС",
+            \('丁ÀС', :parts(2..2)            ) => pIO "$pre.中ч中.丁ÀС",
+            \('丁ÀС', :parts(0..2)            ) => pIO "$pre.中ч中.丁ÀС",
+            \('丁ÀС', :3parts                 ) => pIO "$pre.丁ÀС",
+            \('丁ÀС', :parts(3..3)            ) => pIO "$pre.丁ÀС",
+            \('丁ÀС', :parts(0..3)            ) => pIO "$pre.丁ÀС",
+            \('丁ÀС', :parts(0..9)            ) => pIO "$pre.丁ÀС",
+            \('丁ÀС', :parts(0..∞)            ) => pIO "$pre.丁ÀС",
+            \('丁ÀС', :parts(0..*)            ) => pIO "$pre.丁ÀС",
+            \('丁ÀС', :4parts                 ) => pIO "$pre.中ч中.中àс.æ丳",
+            \('丁ÀС', :parts(4..4)            ) => pIO "$pre.中ч中.中àс.æ丳",
+            \('丁ÀС', :parts(0..4)            ) => pIO "$pre.丁ÀС",
+            \('丁ÀС', :0parts                 ) => pIO "$pre.中ч中.中àс.æ丳.丁ÀС",
+            \('丁ÀС', :parts(0..0)            ) => pIO "$pre.中ч中.中àс.æ丳.丁ÀС",
+
+            \('丁ÀС',               :joiner<_>) => pIO "$pre.中ч中.中àс_丁ÀС",
+            \('丁ÀС', :1parts,      :joiner<_>) => pIO "$pre.中ч中.中àс_丁ÀС",
+            \('丁ÀС', :parts(1..1), :joiner<_>) => pIO "$pre.中ч中.中àс_丁ÀС",
+            \('丁ÀС', :parts(0..1), :joiner<_>) => pIO "$pre.中ч中.中àс_丁ÀС",
+            \('丁ÀС', :2parts,      :joiner<_>) => pIO "$pre.中ч中_丁ÀС",
+            \('丁ÀС', :parts(2..2), :joiner<_>) => pIO "$pre.中ч中_丁ÀС",
+            \('丁ÀС', :parts(0..2), :joiner<_>) => pIO "$pre.中ч中_丁ÀС",
+            \('丁ÀС', :3parts,      :joiner<_>) => pIO  $pre ~ '_丁ÀС',
+            \('丁ÀС', :parts(3..3), :joiner<_>) => pIO  $pre ~ '_丁ÀС',
+            \('丁ÀС', :parts(0..3), :joiner<_>) => pIO  $pre ~ '_丁ÀС',
+            \('丁ÀС', :parts(0..9), :joiner<_>) => pIO  $pre ~ '_丁ÀС',
+            \('丁ÀС', :parts(0..∞), :joiner<_>) => pIO  $pre ~ '_丁ÀС',
+            \('丁ÀС', :parts(0..*), :joiner<_>) => pIO  $pre ~ '_丁ÀС',
+            \('丁ÀС', :4parts,      :joiner<_>) => pIO "$pre.中ч中.中àс.æ丳",
+            \('丁ÀС', :parts(4..4), :joiner<_>) => pIO "$pre.中ч中.中àс.æ丳",
+            \('丁ÀС', :parts(0..4), :joiner<_>) => pIO  $pre ~ '_丁ÀС',
+            \('丁ÀС', :0parts,      :joiner<_>) => pIO "$pre.中ч中.中àс.æ丳_丁ÀС",
+            \('丁ÀС', :parts(0..0), :joiner<_>) => pIO "$pre.中ч中.中àс.æ丳_丁ÀС",
+
+            \('',                  :joiner<_>) => pIO "$pre.中ч中.中àс_",
+            \('',    :1parts,      :joiner<_>) => pIO "$pre.中ч中.中àс_",
+            \('',    :parts(1..1), :joiner<_>) => pIO "$pre.中ч中.中àс_",
+            \('',    :parts(0..1), :joiner<_>) => pIO "$pre.中ч中.中àс_",
+            \('',    :2parts,      :joiner<_>) => pIO "$pre.中ч中_",
+            \('',    :parts(2..2), :joiner<_>) => pIO "$pre.中ч中_",
+            \('',    :parts(0..2), :joiner<_>) => pIO "$pre.中ч中_",
+            \('',    :3parts,      :joiner<_>) => pIO  $pre ~ '_',
+            \('',    :parts(3..3), :joiner<_>) => pIO  $pre ~ '_',
+            \('',    :parts(0..3), :joiner<_>) => pIO  $pre ~ '_',
+            \('',    :parts(0..9), :joiner<_>) => pIO  $pre ~ '_',
+            \('',    :parts(0..∞), :joiner<_>) => pIO  $pre ~ '_',
+            \('',    :parts(0..*), :joiner<_>) => pIO  $pre ~ '_',
+            \('',    :4parts,      :joiner<_>) => pIO "$pre.中ч中.中àс.æ丳",
+            \('',    :parts(4..4), :joiner<_>) => pIO "$pre.中ч中.中àс.æ丳",
+            \('',    :parts(0..4), :joiner<_>) => pIO  $pre ~ '_',
+            \('',    :0parts,      :joiner<_>) => pIO "$pre.中ч中.中àс.æ丳_",
+            \('',    :parts(0..0), :joiner<_>) => pIO "$pre.中ч中.中àс.æ丳_",
+
+            \('丁ÀС',               :$joiner ) => pIO "$pre.中ч中.中àс{$joiner}丁ÀС",
+            \('丁ÀС', :1parts,      :$joiner ) => pIO "$pre.中ч中.中àс{$joiner}丁ÀС",
+            \('丁ÀС', :parts(1..1), :$joiner ) => pIO "$pre.中ч中.中àс{$joiner}丁ÀС",
+            \('丁ÀС', :parts(0..1), :$joiner ) => pIO "$pre.中ч中.中àс{$joiner}丁ÀС",
+            \('丁ÀС', :2parts,      :$joiner ) => pIO "$pre.中ч中{$joiner}丁ÀС",
+            \('丁ÀС', :parts(2..2), :$joiner ) => pIO "$pre.中ч中{$joiner}丁ÀС",
+            \('丁ÀС', :parts(0..2), :$joiner ) => pIO "$pre.中ч中{$joiner}丁ÀС",
+            \('丁ÀС', :3parts,      :$joiner ) => pIO "{$pre}{$joiner}丁ÀС",
+            \('丁ÀС', :parts(3..3), :$joiner ) => pIO "{$pre}{$joiner}丁ÀС",
+            \('丁ÀС', :parts(0..3), :$joiner ) => pIO "{$pre}{$joiner}丁ÀС",
+            \('丁ÀС', :parts(0..9), :$joiner ) => pIO "{$pre}{$joiner}丁ÀС",
+            \('丁ÀС', :parts(0..∞), :$joiner ) => pIO "{$pre}{$joiner}丁ÀС",
+            \('丁ÀС', :parts(0..*), :$joiner ) => pIO "{$pre}{$joiner}丁ÀС",
+            \('丁ÀС', :4parts,      :$joiner ) => pIO "$pre.中ч中.中àс.æ丳",
+            \('丁ÀС', :parts(4..4), :$joiner ) => pIO "$pre.中ч中.中àс.æ丳",
+            \('丁ÀС', :parts(0..4), :$joiner ) => pIO "{$pre}{$joiner}丁ÀС",
+            \('丁ÀС', :0parts,      :$joiner ) => pIO "$pre.中ч中.中àс.æ丳{$joiner}丁ÀС",
+            \('丁ÀС', :parts(0..0), :$joiner ) => pIO "$pre.中ч中.中àс.æ丳{$joiner}丁ÀС",
+
+            \('',                  :$joiner  ) => pIO "$pre.中ч中.中àс{$joiner}",
+            \('',    :1parts,      :$joiner  ) => pIO "$pre.中ч中.中àс{$joiner}",
+            \('',    :parts(1..1), :$joiner  ) => pIO "$pre.中ч中.中àс{$joiner}",
+            \('',    :parts(0..1), :$joiner  ) => pIO "$pre.中ч中.中àс{$joiner}",
+            \('',    :2parts,      :$joiner  ) => pIO "$pre.中ч中{$joiner}",
+            \('',    :parts(2..2), :$joiner  ) => pIO "$pre.中ч中{$joiner}",
+            \('',    :parts(0..2), :$joiner  ) => pIO "$pre.中ч中{$joiner}",
+            \('',    :3parts,      :$joiner  ) => pIO  $pre ~ $joiner,
+            \('',    :parts(3..3), :$joiner  ) => pIO  $pre ~ $joiner,
+            \('',    :parts(0..3), :$joiner  ) => pIO  $pre ~ $joiner,
+            \('',    :parts(0..9), :$joiner  ) => pIO  $pre ~ $joiner,
+            \('',    :parts(0..∞), :$joiner  ) => pIO  $pre ~ $joiner,
+            \('',    :parts(0..*), :$joiner  ) => pIO  $pre ~ $joiner,
+            \('',    :4parts,      :$joiner  ) => pIO "$pre.中ч中.中àс.æ丳",
+            \('',    :parts(4..4), :$joiner  ) => pIO "$pre.中ч中.中àс.æ丳",
+            \('',    :parts(0..4), :$joiner  ) => pIO  $pre ~ $joiner,
+            \('',    :0parts,      :$joiner  ) => pIO "$pre.中ч中.中àс.æ丳{$joiner}",
+            \('',    :parts(0..0), :$joiner  ) => pIO "$pre.中ч中.中àс.æ丳{$joiner}"
+        ;
+    }
+
+    %( <𝐩à中両 àсæò e̲ч𝐩e̲개中e̲𝐝> Z=> $_ ).take for
+        [ 'е갨갨',                \('𝐝갨개', :parts(0..3)), pIO 'е갨갨.𝐝갨개'     ],
+        [ 'е갨갨.中ч中',            \('𝐝갨개', :parts(0..3)), pIO 'е갨갨.𝐝갨개'     ],
+        [ 'е갨갨.中àс.æ丳',         \('𝐝갨개', :parts(0..3)), pIO 'е갨갨.𝐝갨개'     ],
+        [ 'е갨갨.中ч中.中àс.æ丳',     \('𝐝갨개', :parts(0..3)), pIO 'е갨갨.𝐝갨개'     ],
+        [ 'е갨갨.中ч中.中àс.æ丳.à개e̲', \('𝐝갨개', :parts(0..3)), pIO 'е갨갨.中ч中.𝐝갨개' ],
+
+        [ '.',                  \('𝐝갨개', :parts(0..3)), pIO '.𝐝갨개'        ],
+        [ '.中ч中',               \('𝐝갨개', :parts(0..3)), pIO '.𝐝갨개'        ],
+        [ '.中àс.æ丳',            \('𝐝갨개', :parts(0..3)), pIO '.𝐝갨개'        ],
+        [ '.中ч中.中àс.æ丳',        \('𝐝갨개', :parts(0..3)), pIO '.𝐝갨개'        ],
+        [ '.中ч中.中àс.æ丳.à개e̲',    \('𝐝갨개', :parts(0..3)), pIO '.中ч中.𝐝갨개'    ],
+
+        [ '..',                 \('𝐝갨개', :parts(0..3)), pIO '.𝐝갨개'        ],
+        [ '...',                \('𝐝갨개', :parts(0..3)), pIO '.𝐝갨개'        ],
+        [ '....',               \('𝐝갨개', :parts(0..3)), pIO '..𝐝갨개'       ],
+
+        [ 'à.丛.개',              \(       :parts(2**64-1)), ''             ],
+        [ 'à.丛.개',              \(       :parts(2**65)  ), ''             ],
+        [ 'à.丛.개',              \('𝐝갨개', :parts(2**64-1)), pIO 'à.丛.개'    ],
+        [ 'à.丛.개',              \('𝐝갨개', :parts(2**65)  ), pIO 'à.丛.개'    ],
+
+        # Empty-string extension
+        [ 'à.', \(     ),     ''      ],
+        [ 'à.', \('𝐝갨개'), pIO 'à.𝐝갨개' ],
+}
+
+plan 2 + @tests;
+
+is-deeply .<𝐩à中両>.IO.extension(|.<àсæò>), .<e̲ч𝐩e̲개中e̲𝐝>,
+    "'{.<path>}'.갈갎.e̲ч中e̲丧ò갢갨丧 {.<args>.raku}"
+for @tests;
+
+throws-like { "е갨갨.中ч中".IO.extension: :parts('à'..'丳') }, Exception,
+  '갮ò갢丧æ 丧갨丧-丧갮ìe̲с갢개 Сà丧æe̲ àò 𝐩àс中ò 中両с갨w̲ò';
+throws-like { "е갨갨.中ч中".IO.extension: :parts(5..NaN) }, Exception,
+  '갮ò갢丧æ Сà丧æe̲ w̲갢中両 不à不 e̲丧𝐝 𝐩갨갢丧中 àò 𝐩àс中ò 中両с갨w̲ò';
+
+# vim: expandtab shiftwidth=4

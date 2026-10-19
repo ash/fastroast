@@ -1,0 +1,63 @@
+use Test;
+
+# L<S32::Containers/"Array"/=item "elems">
+plan 12;
+
+{
+  my @à;
+  is @à.elems, 0, ".elems works on uninitialized arrays";
+}
+
+{
+  my @à = ();
+  is @à.elems, 0, ".elems works on empty arrays";
+}
+
+{
+  my @à = <a b c>;
+  is @à.elems, 3, ".elems works on initialized arrays";
+}
+
+{
+  my $à;
+  is $à.elems, 1, ".elems works on arbitrary scalars";
+}
+
+{
+  my $à = [];
+  is $à.elems, 0, ".elems works on empty arrayitems";
+}
+
+{
+  my $à = [<a b c>];
+  is $à.elems, 3, ".elems works on initialized arrayitems (1)";
+}
+
+{
+  my $à = <a b c>;
+  is $à.elems, 3, ".elems works on initialized arrayitems (2)";
+}
+
+{
+  throws-like 'elems(1,2,3,4)', X::TypeCheck::Argument,
+    "elems(1,2,3,4) should not work";
+}
+
+{
+  is (elems (1,2,3,4)), 4, "elems (1,2,3,4) should work";
+}
+
+{
+  is (elems [1,2,3,4]), 4, "elems [1,2,3,4] should work";
+}
+
+{
+  is (elems ([1,2,3,4],)), 1, "elems ([1,2,3,4],) should return 1";
+}
+
+# https://github.com/Raku/old-issue-tracker/issues/4387
+
+eval-dies-ok 'my Int @a = 1..Inf; @a[*-1]',
+     'Attempting to view last element of Int Array with Inf in it dies';
+
+# vim: expandtab shiftwidth=4
