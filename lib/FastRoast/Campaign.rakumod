@@ -84,8 +84,11 @@ sub judge(Str:D $rel, Str:D $name, %c --> Hash:D) is export {
     my @tokens = tokens($seed, $tmp) // return %(|%r, verdict => 'skip', note => 'tokens do not reassemble the file');
     my @groups = transform($tname, $seed, @tokens, :palette($palette // 'mixed'));
     return %(|%r, verdict => 'skip', note => 'nothing to fatten') unless @groups;
-    my $base = $rel.subst('/', '__', :g);
-    my $fat-file = $tmp.add("$base.fat.t");
+    # scratch files and the dossier keep the file's place in Roast:
+    # tmp/SPEC/S32-str/uc.fat.t, findings/SPEC/S32-str/uc.t/
+    my $at = $tmp.add($rel.IO.dirname); $at.mkdir;
+    my $base = $rel.IO.basename.subst(/ '.t' $ /, '');
+    my $fat-file = $at.add("$base.fat.t");
     my (%of, %cf);
     for ^4 {
         $fat-file.spurt(render($seed, @groups));
@@ -101,7 +104,7 @@ sub judge(Str:D $rel, Str:D $name, %c --> Hash:D) is export {
     }
     %r<groups> = @groups.elems;
     return %(|%r, verdict => 'agree', tests => tap-keys(%of<stdout>).elems) if tap-agrees(%of, %cf);
-    my $seed-file = $tmp.add("$base.seed.t"); $seed-file.spurt($seed);
+    my $seed-file = $at.add("$base.seed.t"); $seed-file.spurt($seed);
     my %os = on(%c<oracle>, $seed-file); my %cs = on(%c<candidate>, $seed-file);
     my $signature = tap-signature(%of, %cf);
     return %(|%r, verdict => 'base', :$signature, note => 'the engines disagree without the fat: ' ~ tap-signature(%os, %cs))
@@ -112,7 +115,7 @@ sub judge(Str:D $rel, Str:D $name, %c --> Hash:D) is export {
     # the minimum: the fewest groups that still part the engines the same way
     my @need = @groups;
     if %c<shrink> && @groups.elems > 1 {
-        my $probe = $tmp.add("$base.probe.t");
+        my $probe = $at.add("$base.probe.t");
         my %m = ddmin(@groups, -> @g {
             $probe.spurt(render($seed, @g));
             my %o = on(%c<oracle>, $probe); my %d = on(%c<candidate>, $probe);
@@ -124,11 +127,11 @@ sub judge(Str:D $rel, Str:D $name, %c --> Hash:D) is export {
     my $min = render($seed, @need);
     if transform-info($tname)<renames> {
         # the minimum can expose an incomplete rename the full file hid
-        my $probe = $tmp.add("$base.min.t"); $probe.spurt($min);
+        my $probe = $at.add("$base.min.t"); $probe.spurt($min);
         return %(|%r, verdict => 'skip', note => 'the oracle reports a renamed name as unresolved (an incomplete rename)')
             if @need.first({ names-in(on(%c<oracle>, $probe)<stderr>, $_) });
     }
-    my $dir =write-dir(write-dir(write-dir(%c<out>.add('findings')).add(spec-dir($name))).add($base));
+    my $dir = %c<out>.add('findings').add(spec-dir($name)).add($rel); $dir.mkdir;
     $dir.add('seed.t').spurt($seed); $dir.add('fat.t').spurt(render($seed, @groups)); $dir.add('min.t').spurt($min);
     my $min-file = $dir.add('min.t');
     my %om = on(%c<oracle>, $min-file); my %cm = on(%c<candidate>, $min-file);

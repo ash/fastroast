@@ -17,6 +17,7 @@ sub usage() {
                     [--oracle=rakudo] [--candidate=rakupp] [--jobs=N] [--timeout=SEC]
                     [--out=DIR] [--shrink-budget=N] [--no-shrink]
       fastroast fatten FILE [--transform=NAME[:PALETTE]] [--roast=DIR]
+      fastroast fatten --roast=DIR [--transform=…] [--palette=…] [--chapters=…] [--jobs=N] [--out=DIR]
       fastroast coverage --roast=DIR [--transform=…] [--palette=…] [--chapters=…] [--jobs=N] [--out=DIR]
       fastroast transforms
       fastroast palettes
@@ -27,7 +28,9 @@ sub usage() {
     A transform that maps letters runs once per palette (default mixed);
     strings-v1:cjk names one directly.
     coverage runs no engine: per Roast file, whether it seeds and how many
-    edit groups each transform makes of it.
+    edit groups each transform makes of it. fatten without a FILE does the same
+    and writes the trees laid out as Roast is (default out/fat): seed/ and one
+    directory per spec, such as strings-v1.mixed/S32-str/uc.t.
     USAGE
 }
 
@@ -50,8 +53,8 @@ sub MAIN(*@args) {
         when 'palettes' {
             say sprintf('%-9s %s  %s', $_, fat-letters('abcdefghijklmnopqrstuvwxyz', $_), fat-letters('ABCDEFGHIJKLMNOPQRSTUVWXYZ', $_)) for palette-names;
         }
-        when 'fatten' {
-            my $file = (@pos[0] // die 'usage: fastroast fatten FILE [--transform=NAME]').IO;
+        when $_ eq 'fatten' && @pos.Bool {
+            my $file = @pos[0].IO;
             my ($name, $palette) = parse-spec(%o<transform> // 'strings-v1');
             my $source = do if %o<roast> && $file.relative(%o<roast>.IO.absolute) -> $rel {
                 roast-seed(%o<roast>.IO, $file.absolute.IO.relative(%o<roast>.IO.absolute), $*TMPDIR) // die "$file is fudged away for rakudo"
@@ -59,24 +62,33 @@ sub MAIN(*@args) {
             my @t = tokens($source, $*TMPDIR) // die "the tokens of $file do not reassemble it";
             print render($source, transform($name, $source, @t, :palette($palette // 'mixed')));
         }
-        when 'coverage' {
-            # Which Roast files each transform fattens, without running an
-            # engine: the seed, its tokens, and the edit groups per spec.
+        when 'coverage' | 'fatten' {
+            # Every Roast file at once, without running an engine: whether it
+            # seeds and how many edit groups each spec makes of it. `fatten`
+            # also writes the trees, laid out as Roast is: seed/S32-str/uc.t
+            # and, where a spec changed it, strings-v1.mixed/S32-str/uc.t.
+            my $write = $command eq 'fatten';
             my $roast = (%o<roast> // die '--roast=DIR (a Roast checkout) is required').IO;
             my @palettes = (%o<palette> // 'mixed') eq 'all' ?? palette-names() !! list('palette');
             my @specs = expand-specs((%o<transform> // 'all') eq 'all' ?? transform-names() !! list('transform'), @palettes);
             my @files = list('files') || roast-files($roast, :chapters(list('chapters')));
+            my $out = (%o<out> // ($write ?? 'out/fat' !! 'out/coverage')).IO; $out.mkdir;
+            my sub put(Str $dir, Str $rel, Str $text) {
+                my $f = $out.add($dir).add($rel); $f.parent.mkdir; $f.spurt($text)
+            }
             my $tmp = $*TMPDIR.add("fastroast-coverage-$*PID"); $tmp.mkdir;
             my @rows = @files.race(:batch(1), :degree(int('jobs', 2))).map(-> $rel {
                 my $seed = roast-seed($roast, $rel, $tmp);
                 my @t = $seed.defined ?? (tokens($seed, $tmp) // ()) !! ();
                 my $state = !$seed.defined ?? 'fudged away' !! !@t ?? 'tokens do not reassemble' !! 'seeded';
+                put('seed', $rel, $seed) if $write && $state eq 'seeded';
                 ($rel, $state, |@specs.map(-> $s {
                     my ($n, $p) = parse-spec($s);
-                    $state eq 'seeded' ?? transform($n, $seed, @t, :palette($p // 'mixed')).elems !! ''
+                    my @g = $state eq 'seeded' ?? transform($n, $seed, @t, :palette($p // 'mixed')) !! ();
+                    put(spec-dir($s), $rel, render($seed, @g)) if $write && @g;
+                    $state eq 'seeded' ?? @g.elems !! ''
                 })).List
             }).List;
-            my $out = (%o<out> // 'out/coverage').IO; $out.mkdir;
             $out.add('coverage.tsv').spurt((("file\tstate", |@specs).join("\t"), |@rows.sort(*[0]).map(*.join("\t"))).join("\n") ~ "\n");
             say "{@files.elems} files";
             say sprintf('  %-26s %d', .key, .value) for @rows.map(*[1]).Bag.sort(-*.value);

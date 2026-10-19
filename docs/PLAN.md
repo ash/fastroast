@@ -2,7 +2,9 @@
 
 ## Why
 
-Raku++ passes nearly all of Roast and still had twenty divergences on a
+Raku++ passes all 220,845 tests declared in the 1,425 files of Roast's
+`spectest.data`, and 11 of the 30 files the list leaves out as well (1,436 of
+the checkout's 1,455). It still had twenty divergences on a
 single to-do list in October 2026, each found by writing new code: `.minmax`
 over Rats, `.indices` inside a CR LF, `~~ Map` for a Set, `&infix:<->(10)`
 beside a user multi. Every one was a feature crossed with an input its tests

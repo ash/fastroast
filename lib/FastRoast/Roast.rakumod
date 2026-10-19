@@ -1,9 +1,9 @@
 unit module FastRoast::Roast;
 
-# Roast files as seeds. The list is Roast's own `spectest.data`, the files
-# Rakudo's spectest runs; a seed is one file fudged FOR RAKUDO (Roast's
-# `fudge rakudo`), since Rakudo is the oracle and the fattened program must be
-# one it can run. The fudged file still carries its `#?` directive lines; they
+# Roast files as seeds. The list is Roast's own `spectest.data`, every file it
+# names (Rakudo's `make spectest` leaves out the 60 marked `stress`). A seed
+# is one file fudged FOR RAKUDO (Roast's `fudge rakudo`), since Rakudo is the
+# oracle and the fattened program must be one it can run. The fudged file still carries its `#?` directive lines; they
 # are dropped, because an engine that honours them natively (Raku++ does)
 # would apply them a second time and skip tests the oracle runs.
 
@@ -23,7 +23,7 @@ sub roast-seed(IO::Path:D $root, Str:D $rel, IO::Path:D $tmp --> Str) is export 
     my $text;
     my $fudge = $root.add('fudge');
     if $fudge.f {
-        my $out = $tmp.add($rel.subst('/', '__', :g) ~ '.fudged.t');
+        my $out = $tmp.add($rel ~ '.fudged.t'); $out.parent.mkdir;
         my $p = run('perl', $fudge.Str, 'rakudo', $rel, $out.absolute, :out, :err, :cwd($root.Str));
         my $to = $p.out.slurp(:close).trim; $p.err.slurp(:close);
         return Str unless $to;

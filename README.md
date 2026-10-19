@@ -17,9 +17,9 @@ It is a sibling of [Rakumap](https://github.com/ash/rakumap) (differential
 exploration from generated programs), [Rakugrid](https://github.com/ash/rakugrid)
 and [Rakuglaze](https://github.com/ash/rakuglaze). Rakumap starts from nothing
 and generates; FastRoast starts from the 1,425 files Roast's `spectest.data`
-lists (the set `make spectest` runs) and mutates them. It keeps no copy of
-Roast: each file is fattened when it runs, and every result is keyed by the
-file's path in Roast.
+lists, the tests Roast expects an implementation to pass, and mutates them. It
+keeps no copy of Roast: each file is fattened when it runs, and everything it
+writes keeps the file's path in Roast (`S32-str/uc.t`).
 
 ## How it decides
 
@@ -114,12 +114,36 @@ file of the chosen chapters runs. Results land under `--out` (default
 ```text
 report.md                  per transform: a chapter table and the findings
 results.tsv                one line per file and transform
-findings/TRANSFORM.PALETTE/FILE/
+findings/TRANSFORM.PALETTE/S32-str/uc.t/
   finding.md               signature, the groups needed, the names kept, the differing tests
   seed.t  fat.t  min.t     the seed, the fully fattened file, the minimum
   oracle.stdout/.stderr    both engines on min.t
   candidate.stdout/.stderr
 ```
+
+A campaign keeps the files of its findings only. To see every fattened file,
+chapter by chapter, `fatten` without a file writes them all, laid out as
+Roast is. It runs no engine:
+
+```sh
+rakupp bin/fastroast fatten --roast=/path/to/roast --out=out/fat
+rakupp bin/fastroast fatten --roast=/path/to/roast --chapters=S05,S32-str \
+    --transform=strings-v1 --palette=all --out=out/fat
+```
+
+```text
+out/fat/
+  coverage.tsv                 one line per Roast file: seeded or not, edit groups per spec
+  seed/S32-str/uc.t            the file fudged for Rakudo, its #? lines dropped
+  strings-v1.mixed/S32-str/uc.t
+  names-v1.mixed/S32-str/uc.t
+  ops-v1/S32-str/uc.t          (a spec's tree holds the files it changed)
+```
+
+`diff -r out/fat/seed out/fat/strings-v1.mixed` shows the fat and nothing
+else. A fattened file runs from the Roast checkout, as a campaign runs it:
+`cd /path/to/roast && RAKULIB=packages/Test-Helpers rakudo
+/path/to/out/fat/strings-v1.mixed/S32-str/uc.t`.
 
 Run the tests with `for t in t/*.rakutest; do rakupp $t; done`.
 `fixtures/engines/` holds two engine doubles with planted defects (one fails
@@ -128,4 +152,5 @@ only on fattened files, one always), which is how the campaign test knows a
 
 ## Status
 
-See [docs/PLAN.md](docs/PLAN.md) for what is next.
+Results so far are in [docs/RESULTS.md](docs/RESULTS.md); [docs/PLAN.md](docs/PLAN.md)
+says what is next.
