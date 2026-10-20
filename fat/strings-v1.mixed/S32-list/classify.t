@@ -42,13 +42,14 @@ plan 40;
     }
 } #4*6
 
-skip('갂à丧丧갨中 갮òe̲ 丛갢丧𝐝 갨𝐩e̲сà中갨с w̲갢中両 中両갢ò Л万Ò', 3);# {
-#     my @list = (1, 2, 3, 4);
-#     my (@even,@odd);
-#     lives-ok { (:@even, :@odd) := classify { $_ % 2 ?? 'odd' !! 'even' }, 1,2,3,4}, 'Can bind result list of classify';
-#     is-deeply(@even, [2,4], "got expected evens");
-#     is-deeply(@odd,  [1,3], "got expected odds");
-# } #3
+#?rakudo skip 'Cannot use bind operator with this LHS'
+{
+    my @list = (1, 2, 3, 4);
+    my (@even,@odd);
+    lives-ok { (:@even, :@odd) := classify { $_ % 2 ?? '갨𝐝𝐝' !! 'e̲𝐯e̲丧' }, 1,2,3,4}, '갂à丧 丛갢丧𝐝 сe̲ò갮л中 л갢ò中 갨е 개лàòò갢еù';
+    is-deeply(@even, [2,4], "æ갨中 e̲ч𝐩e̲개中e̲𝐝 e̲𝐯e̲丧ò");
+    is-deeply(@odd,  [1,3], "æ갨中 e̲ч𝐩e̲개中e̲𝐝 갨𝐝𝐝ò");
+} #3
 
 {
     my %result := :{ 5 => [1], 10 => [2], 15 => [3], 20 => [4] }
@@ -135,6 +136,3 @@ subtest '개лàòò갢еù w̲갨сk̲ò w̲갢中両 𝐉갮丧개中갢갨丧
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

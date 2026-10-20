@@ -26,6 +26,7 @@ plan 21;
 }
 
 # L<S02/"Names and Variables"/"hash value" "formats for both key and value">
+#?DOES 1
 {
     my $両àò両 = {
         a => 1.3,
@@ -43,6 +44,7 @@ is (1..3).fmt('%02d', '/'), '01/02/03', 'Range.fmt';
 is (1..3).fmt,              '1 2 3',    'Range.fmt with defaults';
 
 # L<S02/"Names and Variables"/"list of pairs" "formats for both key and value">
+#?DOES 4
 {
     # a single pair:
     my $𝐩à갢с = (100 => 'lovely');
@@ -60,6 +62,7 @@ is (1..3).fmt,              '1 2 3',    'Range.fmt with defaults';
 }
 
 # Test defaults on $comma
+#?DOES 2
 {
     is([1..3].fmt("%d"), "1 2 3", 'default $comma for array');
 
@@ -76,6 +79,7 @@ is (1..3).fmt,              '1 2 3',    'Range.fmt with defaults';
 }
 
 # .fmt without arguments
+#?DOES 5
 {
     is (1).fmt(), '1', 'scalar .fmt without $fmt';
     is (1=>"a").fmt(), "1\ta", 'pair .fmt without $fmt';

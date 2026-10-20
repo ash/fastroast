@@ -11,7 +11,8 @@ use Test::Util;
 plan 6;
 
 # https://github.com/rakudo/rakudo/issues/1476
-todo('passes correctly in RakuAST'); isa-ok (try ｢*+42:foo｣.EVAL), WhateverCode,
+#?rakudo todo 'passes correctly in RakuAST'
+isa-ok (try ｢*+42:foo｣.EVAL), WhateverCode,
   "WhateverCodes should be allowed if numerical expression is also allowed";
 
 # https://github.com/Raku/old-issue-tracker/issues/6299
@@ -52,6 +53,3 @@ group-of 4 => '.pick/.grab/.kxxv with undecided semantics' => {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

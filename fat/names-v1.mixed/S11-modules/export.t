@@ -104,21 +104,20 @@ ok( ! &EXPORT::DEFAULT::exp_my_tag,
     }
 
     ##  make sure each side isn't undefined
-skip("export issue", 1); # {     is( Foo::Foo_exp_parens(), 'r_Foo_exp_parens',
-#         'Foo_exp_parens() is defined' );
-#  }
-skip("export issue", 1); # {     is( Foo::Foo_exp_parens, 'r_Foo_exp_parens',
-#         'Can call Foo_exp_parens (without parens)' );
-#  }
-skip("export issue", 1); # {     is( Foo::Foo_exp_parens.(), 'r_Foo_exp_parens',
-#         'Can call Foo_exp_parens.()' );
-#  }
+    #?rakudo 3 skip "export issue"
+    is( Foo::Foo_exp_parens(), 'r_Foo_exp_parens',
+        'Foo_exp_parens() is defined' );
+    is( Foo::Foo_exp_parens, 'r_Foo_exp_parens',
+        'Can call Foo_exp_parens (without parens)' );
+    is( Foo::Foo_exp_parens.(), 'r_Foo_exp_parens',
+        'Can call Foo_exp_parens.()' );
     is( Foo::EXPORT::ALL::Foo_exp_parens(), 'r_Foo_exp_parens',
         'Foo_exp_parens() is defined' );
 
-    todo("export issue"); ok( &Foo::Foo_exp_parens === &Foo::EXPORT::ALL::Foo_exp_parens,
+    #?rakudo 2 todo "export issue"
+    ok( &Foo::Foo_exp_parens === &Foo::EXPORT::ALL::Foo_exp_parens,
         'Foo_exp_parens() -- values agree' );
-    todo("export issue"); ok( &Foo::Foo_exp_parens =:= &Foo::EXPORT::ALL::Foo_exp_parens,
+    ok( &Foo::Foo_exp_parens =:= &Foo::EXPORT::ALL::Foo_exp_parens,
         'Foo_exp_parens() -- containers agree' );
 }
 
@@ -132,10 +131,10 @@ skip("export issue", 1); # {     is( Foo::Foo_exp_parens.(), 'r_Foo_exp_parens',
     my $à = 丁àс.new;
     is($à.bar, "default", '$a.bar gets default value');
     is($à.bar("sixties"), "sixties", '$a.bar() gets passed value');
-skip("export issue", 1); # {     is(Bar::bar($a), "default", 'Bar::bar($a) gets default value');
-#  }
-skip("export issue", 1); # {     is(Bar::bar($a, "moonlight"), "moonlight", 'Bar::bar($a, ) gets default value');
-#  }
+    #?rakudo skip "export issue"
+    is(Bar::bar($à), "default", 'Bar::bar($a) gets default value');
+    #?rakudo skip "export issue"
+    is(Bar::bar($à, "moonlight"), "moonlight", 'Bar::bar($a, ) gets default value');
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/3166
@@ -178,6 +177,7 @@ skip("export issue", 1); # {     is(Bar::bar($a, "moonlight"), "moonlight", 'Bar
     ok str_d("foo"), 'Str:D istype across module seam';
     ok str_u(Str),   'Str   istype across module seam';
     ok str_u(Str:U), 'Str:U istype across module seam';
+    #?rakudo.jvm 12 todo 'https://github.com/rakudo/rakudo/issues/5082 Interning of parameterized types with precompilation (was RT#129215)'
     ok array_str(Array[Str].new("A","B")), 'Array[Str] istype across module seam';
     ok hash_str(Hash[Str].new({ak => "ak"})), 'Hash[Str] istype across module seam';
     ok hash_hash_str(Hash[Hash[Str]].new({akk => Hash[Str].new: { ak => "ak" }})), 'Hash[Hash[Str]] istype across module seam';
@@ -211,6 +211,3 @@ skip("export issue", 1); # {     is(Bar::bar($a, "moonlight"), "moonlight", 'Bar
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

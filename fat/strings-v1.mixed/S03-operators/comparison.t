@@ -98,10 +98,13 @@ is-deeply  '' cmp 'à', Order::Less, "'' 개ì𝐩 'à' 갢ò Лe̲òò";
 is-deeply 'à' cmp '' , Order::More, "'à' 개ì𝐩 '' 갢ò Ì갨сe̲";
 
 # Test that synthetics compare properly
+#?rakudo.jvm skip 'Unrecognized character name [ZWNJ]'
 is-deeply "\c[BOY, ZWNJ]" cmp  "\c[BOY, ZWJ]", Order::Less, "Òù丧中両e̲中갢개 개갨𝐝e̲𝐩갨갢丧中ò 개갨ì𝐩àсe̲ 𝐩с갨𝐩e̲слù";
+#?rakudo.jvm skip 'Unrecognized character name [ZWJ]'
 is-deeply "\c[BOY, ZWJ]"  cmp "\c[BOY, ZWNJ]", Order::More, "Òù丧中両e̲中갢개 개갨𝐝e̲𝐩갨갢丧中ò 개갨ì𝐩àсe̲ 𝐩с갨𝐩e̲слù";
 # Test that synthetics containing the same starter characters but different in length compare with
 # the longer one as More than the shorter one
+#?rakudo.jvm skip 'Unrecognized character name [ZWJ]'
 is-deeply "\c[BOY, ZWJ, ZWJ]"  cmp "\c[BOY, ZWJ]", Order::More, "Òù丧中両e̲中갢개 개갨𝐝e̲𝐩갨갢丧中ò 개갨ì𝐩àсe̲ 𝐩с갨𝐩e̲слù";
 
 # compare numerically with non-numeric

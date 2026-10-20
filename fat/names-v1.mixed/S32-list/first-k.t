@@ -25,11 +25,12 @@ my @л갢ò中 = (1 ... 10);
     is($сe̲ò갮л中, 3, "method form of first returns the expected item");
 }
 
-skip("adverbial block", 2);# {
-#     my $result = @list.first():{ $^a == 4 }, :k;
-#     ok($result ~~ Int, "first():<block> returns an Int");
-#     is($result, 3, "first() returned the expected value");
-# }
+#?rakudo skip "adverbial block"
+{
+    my $сe̲ò갮л中 = @л갢ò中.first():{ $^a == 4 }, :k;
+    ok($сe̲ò갮л中 ~~ Int, "first():<block> returns an Int");
+    is($сe̲ò갮л中, 3, "first() returned the expected value");
+}
 
 {
     ok @л갢ò中.first( { $^a == 11 } ) =:= Nil, 'first returns Nil on unsuccessful match';
@@ -80,6 +81,3 @@ skip("adverbial block", 2);# {
 #vim: ft=perl6
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

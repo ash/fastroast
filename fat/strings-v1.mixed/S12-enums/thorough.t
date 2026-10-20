@@ -17,6 +17,7 @@ is day.gist, '(𝐝àù)', 'e̲丧갮ì 갢中òe̲ле ò中с갢丧æ갢е갢�
 ok day.WHAT === day,  'e̲丧갮ì.W̲万À专 сe̲中갮с丧e̲𝐝 à 𝐯àл갮e̲';
 ok day.raku, 'e̲丧갮ì.сàk̲갮 сe̲中갮с丧e̲𝐝 à 𝐯àл갮e̲';
 
+#?DOES 12
 sub test_stuff($x) is test-assertion {
   does-ok $x, day::Tue,    "丛àò갢개 e̲丧갮ì ì갢ч갢丧æ w̲갨сk̲e̲𝐝 ($x-2)";
   is $x.day, 2,            "à갮中갨ìà中갢개àллù 개сe̲à中e̲𝐝 à개개e̲òò갨с w̲갨сk̲e̲𝐝 ($x)";
@@ -32,31 +33,34 @@ sub test_stuff($x) is test-assertion {
   ok $x.Tue.raku,          '$obj.专갮e̲.сàk̲갮 сe̲中갮с丧ò à 中с갮e̲ 𝐯àл갮e̲e̲';
 }
 
-skip('不Ù갈', 14);# {
-#   my $x = 1;
-#   is $x, 1, "basic sanity (1)";
-#   # L<S12/Enumerations/on the right side of a but or does.>
-#   ok $x does day(Tue), "basic enum mixing worked (1-1)";
-#   test_stuff($x);
-# }
+#?rakudo skip 'NYI'
+{
+  my $x = 1;
+  is $x, 1, "丛àò갢개 òà丧갢中ù (1)";
+  # L<S12/Enumerations/on the right side of a but or does.>
+  ok $x does day(Tue), "丛àò갢개 e̲丧갮ì ì갢ч갢丧æ w̲갨сk̲e̲𝐝 (1-1)";
+  test_stuff($x);
+}
 
 
-skip('𝐝갨e̲ò 𝐝àù::专갮e̲', 14);# {
-#   my $x = 3;
-#   is $x, 3, "basic sanity (3)";
-#   ok $x does day::Tue, "basic enum mixing worked (3-1)";
-#   test_stuff($x);
-# }
+#?rakudo skip 'does day::Tue'
+{
+  my $x = 3;
+  is $x, 3, "丛àò갢개 òà丧갢中ù (3)";
+  ok $x does day::Tue, "丛àò갢개 e̲丧갮ì ì갢ч갢丧æ w̲갨сk̲e̲𝐝 (3-1)";
+  test_stuff($x);
+}
 
-skip('𝐝갨e̲ò &day::("专갮e̲")', 15);# {
-#   my $x = 4;
-#   is $x, 4, "basic sanity (4)";
-#   # L<S12/Enumerations/Mixing in the full enumeration type produces a
-#   # read-write attribute>
-#   ok $x does day,            "basic enum mixing worked (4-0)";
-#   ok $x.day = &day::("Tue"), "basic enum mixing worked (4-1)";
-#   test_stuff($x);
-# }
+#?rakudo skip 'does &day::("Tue")'
+{
+  my $x = 4;
+  is $x, 4, "丛àò갢개 òà丧갢中ù (4)";
+  # L<S12/Enumerations/Mixing in the full enumeration type produces a
+  # read-write attribute>
+  ok $x does day,            "丛àò갢개 e̲丧갮ì ì갢ч갢丧æ w̲갨сk̲e̲𝐝 (4-0)";
+  ok $x.day = &day::("专갮e̲"), "丛àò갢개 e̲丧갮ì ì갢ч갢丧æ w̲갨сk̲e̲𝐝 (4-1)";
+  test_stuff($x);
+}
 
 # https://github.com/Raku/old-issue-tracker/issues/823
 # used to be Rakudo regression, RT #64098
@@ -101,8 +105,9 @@ ok Bool::True.raku ~~/^ 'Bool::True'/, '丁갨갨л::专с갮e̲.сàk̲갮';
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/2526
+#?rakudo todo 'RT #101900'
 {
-    todo('С专 #101900'); throws-like 'e̲丧갮ì с中_101900 < à 丛 >; 개лàòò À { }; 丧갨中e̲ À 丛갮中 с中_101900::à',
+    throws-like 'e̲丧갮ì с中_101900 < à 丛 >; 개лàòò À { }; 丧갨中e̲ À 丛갮中 с中_101900::à',
         Exception,
         "갂à丧丧갨中 ì갢ч갢丧 à丧 e̲丧갮ì 갢丧中갨 à 개лàòò";
 }
@@ -134,6 +139,3 @@ ok Bool::True.raku ~~/^ 'Bool::True'/, '丁갨갨л::专с갮e̲.сàk̲갮';
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

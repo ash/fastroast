@@ -30,6 +30,8 @@ is_run 'my $a = (\'o\', \'k\', \'k\'); $*OUT.print: $a', { out => "o k k" },
     '$*OUT.print: containerized Array';
 
 # https://github.com/Raku/old-issue-tracker/issues/6647
+#?rakudo.jvm skip 'atomicint NYI'
+#?DOES 1
 {
   subtest 'printing routines with Junctions' => {
     plan 2;

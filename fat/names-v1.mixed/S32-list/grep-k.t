@@ -22,36 +22,39 @@ is @л갢ò中.grep( { ($_ % 2) }, :k ), (0,2,4,6,8).list.item,
     is(@сe̲ò갮л中[4], 8, 'got the value we expected');
 }
 
-skip("adverbial block", 6);# {
-#     my @result = @list.grep():{ ($_ % 2) }, :k;
-#     is(+@result, 5, 'we got a list back');
-#     is(@result[0], 0, 'got the value we expected');
-#     is(@result[1], 2, 'got the value we expected');
-#     is(@result[2], 4, 'got the value we expected');
-#     is(@result[3], 6, 'got the value we expected');
-#     is(@result[4], 8, 'got the value we expected');
-# }
+#?rakudo skip "adverbial block"
+{
+    my @сe̲ò갮л中 = @л갢ò中.grep():{ ($_ % 2) }, :k;
+    is(+@сe̲ò갮л中, 5, 'we got a list back');
+    is(@сe̲ò갮л中[0], 0, 'got the value we expected');
+    is(@сe̲ò갮л中[1], 2, 'got the value we expected');
+    is(@сe̲ò갮л中[2], 4, 'got the value we expected');
+    is(@сe̲ò갮л中[3], 6, 'got the value we expected');
+    is(@сe̲ò갮л中[4], 8, 'got the value we expected');
+}
 
-skip("adverbial block", 6);# {
-#     my @result = @list.grep :{ ($_ % 2) }, :k;
-#     is(+@result, 5, 'we got a list back');
-#     is(@result[0], 0, 'got the value we expected');
-#     is(@result[1], 2, 'got the value we expected');
-#     is(@result[2], 4, 'got the value we expected');
-#     is(@result[3], 6, 'got the value we expected');
-#     is(@result[4], 8, 'got the value we expected');
-# }
+#?rakudo skip "adverbial block"
+{
+    my @сe̲ò갮л中 = @л갢ò中.grep :{ ($_ % 2) }, :k;
+    is(+@сe̲ò갮л中, 5, 'we got a list back');
+    is(@сe̲ò갮л中[0], 0, 'got the value we expected');
+    is(@сe̲ò갮л中[1], 2, 'got the value we expected');
+    is(@сe̲ò갮л中[2], 4, 'got the value we expected');
+    is(@сe̲ò갮л中[3], 6, 'got the value we expected');
+    is(@сe̲ò갮л中[4], 8, 'got the value we expected');
+}
 
 # https://github.com/Raku/old-issue-tracker/issues/3984
-skip("closure as non-final argument", 6);# {
-#     my @result = grep { ($_ % 2) }: @list, :k;
-#     is(+@result, 5, 'we got a list back');
-#     is(@result[0], 0, 'got the value we expected');
-#     is(@result[1], 2, 'got the value we expected');
-#     is(@result[2], 4, 'got the value we expected');
-#     is(@result[3], 6, 'got the value we expected');
-#     is(@result[4], 8, 'got the value we expected');
-# }
+#?rakudo skip "closure as non-final argument"
+{
+    my @сe̲ò갮л中 = grep { ($_ % 2) }: @л갢ò中, :k;
+    is(+@сe̲ò갮л中, 5, 'we got a list back');
+    is(@сe̲ò갮л中[0], 0, 'got the value we expected');
+    is(@сe̲ò갮л中[1], 2, 'got the value we expected');
+    is(@сe̲ò갮л中[2], 4, 'got the value we expected');
+    is(@сe̲ò갮л中[3], 6, 'got the value we expected');
+    is(@сe̲ò갮л中[4], 8, 'got the value we expected');
+}
 
 {
   is(   42.grep({ 1 }, :k), 0, "method form of grep works on numbers");
@@ -104,6 +107,3 @@ skip("closure as non-final argument", 6);# {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

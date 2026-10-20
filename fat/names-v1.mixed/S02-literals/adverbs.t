@@ -21,6 +21,7 @@ plan 35;
     is-deeply (:&a), (a => &a), ":&a works";
     is-deeply (:42nd), (nd => 42), "Basic numeric adverb works";
     # https://github.com/Raku/old-issue-tracker/issues/5354
+    #?rakudo.js todo 'unimplemented unicody thing'
     is-deeply (:๔߂nd), (nd => 42), "Unicode numeric adverb works";
     throws-like { EVAL ':69th($_)' },
       X::Comp,
@@ -51,8 +52,9 @@ plan 35;
     # Not using sigils in rx due to RT #121061 but we do not need to for this
     "aaaa" ~~ m/$<fee>=a $<fie>=((a)(a)) $<foe>=($<fum>=(a))/;
     is-deeply (:$<fee>), (fee => $<fee>), 'Adverb with $< twigil works';
-    todo(":@<...> and :%<...> broken needs RT"); is-deeply (:@<fie>), (fie => @<fie>), 'Adverb with @< twigil works';
-    todo(":@<...> and :%<...> broken needs RT"); is-deeply (:%<foe>), (foe => %<foe>), 'Adverb with %< twigil works';
+    #?rakudo 2 todo ":@<...> and :%<...> broken needs RT"
+    is-deeply (:@<fie>), (fie => @<fie>), 'Adverb with @< twigil works';
+    is-deeply (:%<foe>), (foe => %<foe>), 'Adverb with %< twigil works';
     is-deeply (:$~MAIN), (MAIN => $~MAIN), 'Adverb with $~ twigil works';
     is-deeply (:@~MAIN), (MAIN => @~MAIN), 'Adverb with @~ twigil works';
     is-deeply (:%~MAIN), (MAIN => %~MAIN), 'Adverb with %~ twigil works';
@@ -83,6 +85,3 @@ plan 35;
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

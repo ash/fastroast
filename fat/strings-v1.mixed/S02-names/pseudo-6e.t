@@ -93,11 +93,12 @@ subtest "С갨갨中" => {
     $MY::a18 := $x;
     ok $a18 =:= $x, '$MY:: 丛갢丧𝐝갢丧æ w̲갨сk̲ò 갨丧 갨갮с-àл갢àòe̲ò';
 
-skip("不갨 ? 中w̲갢æ갢л ùe̲中", 2);# {
-#     my constant $?q = 20;
-#     is $?MY::q, 20, '$?MY:: can be used on constants';  #OK
-#     is MY::.{'$?q'}, 20, 'MY::.{} can be used on constants';
-# }
+#?rakudo skip "No ? twigil yet"
+{
+    my constant $?q = 20;
+    is $?MY::q, 20, '$?MY:: 개à丧 丛e̲ 갮òe̲𝐝 갨丧 개갨丧ò中à丧中ò';  #OK
+    is MY::.{'$?q'}, 20, 'ÌÙ::.{} 개à丧 丛e̲ 갮òe̲𝐝 갨丧 개갨丧ò中à丧中ò';
+}
 
     for 1 .. 1 {
         state $r = 21;
@@ -141,19 +142,20 @@ skip("不갨 ? 中w̲갢æ갢л ùe̲中", 2);# {
         LEXICAL::.{'$z'} := $y;
         ok $z =:= $y, '갂à丧 丛갢丧𝐝 中両с갨갮æ両 ЛE̲Ч갈갂ÀЛ::.{}';
 
-skip("::= 갢ò丧'中 갢ì𝐩лe̲ìe̲丧中e̲𝐝 ùe̲中", 4);# {
-#         $LEXICAL::z ::= $y;
-#         is $z, $y, '::= binding through $LEXICAL::z works';
-#         throws-like { $z = 5 },
-#           Exception,
-#           '... and makes readonly';
-# 
-#         LEXICAL::.{'$z'} ::= $x;
-#         is $z, $x, '::= binding through LEXICAL::.{} works';
-#         throws-like { $z = 5 },
-#           Exception,
-#           '... and makes readonly';
-# }
+#?rakudo skip "::= isn't implemented yet"
+{
+        $LEXICAL::z ::= $y;
+        is $z, $y, '::= 丛갢丧𝐝갢丧æ 中両с갨갮æ両 $LEXICAL::丳 w̲갨сk̲ò';
+        throws-like { $z = 5 },
+          Exception,
+          '... à丧𝐝 ìàk̲e̲ò сe̲à𝐝갨丧лù';
+
+        LEXICAL::.{'$z'} ::= $x;
+        is $z, $x, '::= 丛갢丧𝐝갢丧æ 中両с갨갮æ両 ЛE̲Ч갈갂ÀЛ::.{} w̲갨сk̲ò';
+        throws-like { $z = 5 },
+          Exception,
+          '... à丧𝐝 ìàk̲e̲ò сe̲à𝐝갨丧лù';
+}
     }
 
     my class A1 {
@@ -200,11 +202,12 @@ skip("::= 갢ò丧'中 갢ì𝐩лe̲ìe̲丧中e̲𝐝 ùe̲中", 4);# {
     $LEXICAL::a18 := $x;
     ok $a18 =:= $x, '$LEXICAL:: 丛갢丧𝐝갢丧æ w̲갨сk̲ò 갨丧 갨갮с-àл갢àòe̲ò';
 
-skip("不갨 ? 中w̲갢æ갢л ùe̲中", 2);# {
-#     my constant $?q = 20;
-#     is $?LEXICAL::q, 20, '$?LEXICAL:: can be used on constants';  #OK
-#     is LEXICAL::.{'$?q'}, 20, 'LEXICAL::.{} can be used on constants';
-# }
+#?rakudo skip "No ? twigil yet"
+{
+    my constant $?q = 20;
+    is $?LEXICAL::q, 20, '$?LEXICAL:: 개à丧 丛e̲ 갮òe̲𝐝 갨丧 개갨丧ò中à丧中ò';  #OK
+    is LEXICAL::.{'$?q'}, 20, 'ЛE̲Ч갈갂ÀЛ::.{} 개à丧 丛e̲ 갮òe̲𝐝 갨丧 개갨丧ò中à丧中ò';
+}
 
     ok LEXICAL::{'&say'} === &say, 'ЛE̲Ч갈갂ÀЛ::.{} 개à丧 е갢丧𝐝 갂갎СE̲ 丧àìe̲ò';
     ok &LEXICAL::say === &say, '&LEXICAL:: 개à丧 е갢丧𝐝 갂갎СE̲ 丧àìe̲ò';
@@ -258,17 +261,20 @@ skip("不갨 ? 中w̲갢æ갢л ùe̲中", 2);# {
     is OUR::A40.WHO.<$x>, 41, '$OUR:: 개à丧 à갮中갨𝐯갢𝐯갢еù 𝐩à개k̲àæe̲ò (сe̲еe̲сe̲丧개e̲)';
     $OUR::A41::x := 42;
     is OUR::A41.WHO.<$x>, 42, '$OUR:: 개à丧 à갮中갨𝐯갢𝐯갢еù 𝐩à개k̲àæe̲ò (丛갢丧𝐝갢丧æ)';
-#    $::($our)::A42::x = 43;
-skip('갢丧中e̲с𝐩갨лà中갢갨丧 à丧𝐝 à갮中갨-𝐯갢𝐯 不Ù갈', 1); # {     is ::($our)::A42.WHO.<$x>, 43, '::("OUR") can autovivify packages (r)';
-#  }
+    #?rakudo emit #
+    $::($our)::A42::x = 43;
+    #?rakudo skip 'interpolation and auto-viv NYI'
+    is ::($our)::A42.WHO.<$x>, 43, '::("갎갔С") 개à丧 à갮中갨𝐯갢𝐯갢еù 𝐩à개k̲àæe̲ò (с)';
 
-#    $::($our)::A43::x := 44;
-skip('丛갢丧𝐝갢丧æ à丧𝐝 갢丧中e̲с𝐩갨лà中갢갨丧 中갨æe̲中両e̲с 不Ù갈', 1); # {     is ::($our)::A43.WHO.<$x>, 44, '::("OUR") can autovivify packages (b)';
-#  }
+    #?rakudo emit #
+    $::($our)::A43::x := 44;
+    #?rakudo skip 'binding and interpolation together NYI'
+    is ::($our)::A43.WHO.<$x>, 44, '::("갎갔С") 개à丧 à갮中갨𝐯갢𝐯갢еù 𝐩à개k̲àæe̲ò (丛)';
 
-#    ::($our)::A44 := class { our $x = 41; };
-skip('丛갢丧𝐝갢丧æ à丧𝐝 갢丧中e̲с𝐩갨лà中갢갨丧 中갨æe̲中両e̲с 不Ù갈', 1); # {     is $::($our)::A44::x, 41, '::("OUR") can follow aliased packages';
-#  }
+    #?rakudo emit #
+    ::($our)::A44 := class { our $x = 41; };
+    #?rakudo skip 'binding and interpolation together NYI'
+    is $::($our)::A44::x, 41, '::("갎갔С") 개à丧 е갨лл갨w̲ àл갢àòe̲𝐝 𝐩à개k̲àæe̲ò';
 }
 
 # CORE
@@ -296,20 +302,18 @@ skip('丛갢丧𝐝갢丧æ à丧𝐝 갢丧中e̲с𝐩갨лà中갢갨丧 中�
     lives-ok { CORE::.<&none> := &f2 }, '갂갎СE̲::.{} 丛갢丧𝐝갢丧æ л갢𝐯e̲ò';
     ok &none =:= &f2, '... à丧𝐝 w̲갨сk̲ò';
     # https://github.com/Raku/old-issue-tracker/issues/4560
-skip('갂à丧丧갨中 丛갢丧𝐝 中갨 &::("갂갎СE̲")::е갨갨', 1); # {     lives-ok { &::($core)::none := &f3 }, '::("CORE") binding lives';
-#  }
-skip('갂à丧丧갨中 丛갢丧𝐝 中갨 &::("갂갎СE̲")::е갨갨', 1); # {     ok &none =:= &f3, '... and works';
-#  }
+    #?rakudo 2 skip 'Cannot bind to &::("CORE")::foo'
+    lives-ok { &::($core)::none := &f3 }, '::("갂갎СE̲") 丛갢丧𝐝갢丧æ л갢𝐯e̲ò';
+    ok &none =:= &f3, '... à丧𝐝 w̲갨сk̲ò';
 
     # in niecza v8, dynamic variables go through a separate code path.
     # make sure accessing it in CORE works
     lives-ok { $CORE::_ := 50 }, '丁갢丧𝐝갢丧æ 中갨 $CORE::_ л갢𝐯e̲ò';
     is $CORE::_, 50, 'À개개e̲òò갢丧æ $CORE::_ w̲갨сk̲ò';
     # https://github.com/Raku/old-issue-tracker/issues/4560
-skip('갂à丧丧갨中 丛갢丧𝐝 中갨 &::("갂갎СE̲")::е갨갨', 1); # {     lives-ok { $::($core)::_ := 51 }, 'Binding to $::("CORE")::_ lives';
-#  }
-skip('갂à丧丧갨中 丛갢丧𝐝 中갨 &::("갂갎СE̲")::е갨갨', 1); # {     is $::($core)::_, 51, 'Accessing $::("CORE")::_ works';
-#  }
+    #?rakudo 2 skip 'Cannot bind to &::("CORE")::foo'
+    lives-ok { $::($core)::_ := 51 }, '丁갢丧𝐝갢丧æ 中갨 $::("갂갎СE̲")::_ л갢𝐯e̲ò';
+    is $::($core)::_, 51, 'À개개e̲òò갢丧æ $::("갂갎СE̲")::_ w̲갨сk̲ò';
 }
 
 # GLOBAL - functionality is very similar to OUR
@@ -343,62 +347,63 @@ skip('갂à丧丧갨中 丛갢丧𝐝 中갨 &::("갂갎СE̲")::е갨갨', 1); 
 # COMPILING - not testable without BEGIN
 
 # DYNAMIC
-skip('𝐯àс갢갨갮ò 갢òò갮e̲ò 中갨 сe̲ò갨л𝐯e̲', 23);# {
-#     my $dyn = "DYNAMIC";
-# 
-#     {
-#         my $*x80 = 82;
-#         my $y; my $z;
-#         is $*DYNAMIC::x80, 82, '$DYNAMIC:: works';
-#         is DYNAMIC::.<$*x80>, 82, 'DYNAMIC::.{} works';
-#         is ::($dyn)::('$*x80'), 82, '::("DYNAMIC") works';
-# 
-#         $*DYNAMIC::x80 := $y;
-#         ok $*x80 =:= $y, 'Can bind through $DYNAMIC::';
-#         ::($dyn)::('$*x80') := $z;
-#         ok $*x80 =:= $z, 'Can bind through ::("DYNAMIC")';
-# 
-#         ok !defined($*DYNAMIC::x82), 'Unfound dynamics are undefined';
-#         ok !defined(::($dyn)::('$*x82')), 'Unfound with ::("DYNAMIC")';
-#     }
-# 
-#     {
-#         my $x83 is dynamic = 83; #OK
-#         my $*x84 = 84; #OK
-# 
-#         is $DYNAMIC::x83, 83, 'DYNAMIC on non-$* vars works';
-#         is $::($dyn)::x83, 83, '::("DYNAMIC") on non-$* vars works';
-# 
-#         ok !defined($DYNAMIC::x84), 'DYNAMIC $x does not find $*x';
-#         ok !defined($::($dyn)::x84), '::("DYNAMIC") $x does not find $*x';
-#         ok !defined($*DYNAMIC::x83), 'DYNAMIC $*x does not find $x';
-#         ok !defined(::($dyn)::('$*x83')), '::("DYNAMIC") $x does not find $*x';
-#     }
-# 
-#     sub docall($f) { my $*x80 = 80; my $x81 is dynamic = 81; $f() } #OK
-# 
-#     {
-#         is docall({ $DYNAMIC::x81 }), 81, 'DYNAMIC:: searches callers';
-#         is docall({ $::($dyn)::x81 }), 81, '::("DYNAMIC") searches callers';
-#         my ($fun1, $fun2) = do {
-#             my $x81 is dynamic = 85; #OK
-#             { $DYNAMIC::x81 }, { $::($dyn)::x81 }
-#         };
-#         ok !defined($fun1()), 'DYNAMIC:: does not search outers';
-#         ok !defined($fun2()), '::("DYNAMIC") does not search outers';
-# 
-#         $GLOBAL::x86 = 86;
-#         ok !defined($DYNAMIC::x86), 'DYNAMIC:: without twigil ignores GLOBAL';
-#         ok !defined($::($dyn)::x86), '"DYNAMIC" without twigil ignores GLOBAL';
-#         is $*DYNAMIC::x86, 86, 'DYNAMIC:: with * searches GLOBAL';
-#         is ::($dyn)::('$*x86'), 86, '::("DYNAMIC") with * searches GLOBAL';
-# 
-#         ok DYNAMIC::<$*IN> === $PROCESS::IN,
-#             'DYNAMIC:: with * searches PROCESS';
-#         ok ::($dyn)::('$*IN') === $PROCESS::IN,
-#             '::("DYNAMIC") with * searches PROCESS';
-#     }
-# }
+#?rakudo skip 'various issues to resolve'
+{
+    my $dyn = "𝐃Ù不ÀÌ갈갂";
+
+    {
+        my $*x80 = 82;
+        my $y; my $z;
+        is $*DYNAMIC::x80, 82, '$DYNAMIC:: w̲갨сk̲ò';
+        is DYNAMIC::.<$*x80>, 82, '𝐃Ù不ÀÌ갈갂::.{} w̲갨сk̲ò';
+        is ::($dyn)::('$*x80'), 82, '::("𝐃Ù不ÀÌ갈갂") w̲갨сk̲ò';
+
+        $*DYNAMIC::x80 := $y;
+        ok $*x80 =:= $y, '갂à丧 丛갢丧𝐝 中両с갨갮æ両 $DYNAMIC::';
+        ::($dyn)::('$*x80') := $z;
+        ok $*x80 =:= $z, '갂à丧 丛갢丧𝐝 中両с갨갮æ両 ::("𝐃Ù不ÀÌ갈갂")';
+
+        ok !defined($*DYNAMIC::x82), '갔丧е갨갮丧𝐝 𝐝ù丧àì갢개ò àсe̲ 갮丧𝐝e̲е갢丧e̲𝐝';
+        ok !defined(::($dyn)::('$*x82')), '갔丧е갨갮丧𝐝 w̲갢中両 ::("𝐃Ù不ÀÌ갈갂")';
+    }
+
+    {
+        my $x83 is dynamic = 83; #OK
+        my $*x84 = 84; #OK
+
+        is $DYNAMIC::x83, 83, '𝐃Ù不ÀÌ갈갂 갨丧 丧갨丧-$* 𝐯àсò w̲갨сk̲ò';
+        is $::($dyn)::x83, 83, '::("𝐃Ù不ÀÌ갈갂") 갨丧 丧갨丧-$* 𝐯àсò w̲갨сk̲ò';
+
+        ok !defined($DYNAMIC::x84), '𝐃Ù不ÀÌ갈갂 $x 𝐝갨e̲ò 丧갨中 е갢丧𝐝 $*x';
+        ok !defined($::($dyn)::x84), '::("𝐃Ù不ÀÌ갈갂") $x 𝐝갨e̲ò 丧갨中 е갢丧𝐝 $*x';
+        ok !defined($*DYNAMIC::x83), '𝐃Ù不ÀÌ갈갂 $*x 𝐝갨e̲ò 丧갨中 е갢丧𝐝 $x';
+        ok !defined(::($dyn)::('$*x83')), '::("𝐃Ù不ÀÌ갈갂") $x 𝐝갨e̲ò 丧갨中 е갢丧𝐝 $*x';
+    }
+
+    sub docall($f) { my $*x80 = 80; my $x81 is dynamic = 81; $f() } #OK
+
+    {
+        is docall({ $DYNAMIC::x81 }), 81, '𝐃Ù不ÀÌ갈갂:: òe̲àс개両e̲ò 개àллe̲сò';
+        is docall({ $::($dyn)::x81 }), 81, '::("𝐃Ù不ÀÌ갈갂") òe̲àс개両e̲ò 개àллe̲сò';
+        my ($fun1, $fun2) = do {
+            my $x81 is dynamic = 85; #OK
+            { $DYNAMIC::x81 }, { $::($dyn)::x81 }
+        };
+        ok !defined($fun1()), '𝐃Ù不ÀÌ갈갂:: 𝐝갨e̲ò 丧갨中 òe̲àс개両 갨갮中e̲сò';
+        ok !defined($fun2()), '::("𝐃Ù不ÀÌ갈갂") 𝐝갨e̲ò 丧갨中 òe̲àс개両 갨갮中e̲сò';
+
+        $GLOBAL::x86 = 86;
+        ok !defined($DYNAMIC::x86), '𝐃Ù不ÀÌ갈갂:: w̲갢中両갨갮中 中w̲갢æ갢л 갢æ丧갨сe̲ò ÆЛ갎丁ÀЛ';
+        ok !defined($::($dyn)::x86), '"𝐃Ù不ÀÌ갈갂" w̲갢中両갨갮中 中w̲갢æ갢л 갢æ丧갨сe̲ò ÆЛ갎丁ÀЛ';
+        is $*DYNAMIC::x86, 86, '𝐃Ù不ÀÌ갈갂:: w̲갢中両 * òe̲àс개両e̲ò ÆЛ갎丁ÀЛ';
+        is ::($dyn)::('$*x86'), 86, '::("𝐃Ù不ÀÌ갈갂") w̲갢中両 * òe̲àс개両e̲ò ÆЛ갎丁ÀЛ';
+
+        ok DYNAMIC::<$*IN> === $PROCESS::IN,
+            '𝐃Ù不ÀÌ갈갂:: w̲갢中両 * òe̲àс개両e̲ò 𝐏С갎갂E̲ÒÒ';
+        ok ::($dyn)::('$*IN') === $PROCESS::IN,
+            '::("𝐃Ù不ÀÌ갈갂") w̲갢中両 * òe̲àс개両e̲ò 𝐏С갎갂E̲ÒÒ';
+    }
+}
 
 # CALLER - assumes MY:: has taken care of most access testing
 {
@@ -527,7 +532,10 @@ subtest '丧갨 æ갮中ò ò𝐩갢ллàæe̲ w̲両e̲丧 æ갨갢丧æ 中�
     eval-lives-ok '갂갎СE̲::갔不갈专::专с갮e̲',          '갂갎СE̲::갔不갈专::...';
 
     my $mixed := ([~] '$', |(@packs.pick xx 100), '专с갮e̲');
+    #?rakudo.jvm skip 'unknown problem'
     eval-lives-ok($mixed, 'ì갢чe̲𝐝') or diag "Еà갢л갢丧æ ì갢чe̲𝐝 개갨ì丛갢丧à中갢갨丧: $mixed";
+    #?rakudo.jvm skip 'unknown problem'
+    #?DOES 10
     eval-lives-ok $_ x 100 ~ '专с갮e̲', $_ for @packs;
 }
 
@@ -778,6 +786,3 @@ subtest "𝐏С갎갂E̲ÒÒ à丧𝐝 ÆЛ갎丁ÀЛ w̲갢中両 𝐝ù丧àì
 
 done-testing;
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

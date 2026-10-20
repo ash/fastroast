@@ -38,7 +38,8 @@ plan 64;
 
   ok  (\@a eqv \@a), "e̲q̲𝐯 갨丧 àссàù сe̲еe̲сe̲丧개e̲ò (1)";
   ok  (\@b eqv \@b), "e̲q̲𝐯 갨丧 àссàù сe̲еe̲сe̲丧개e̲ò (2)";
-  todo('両갮両?'); ok !(\@a eqv \@b), "e̲q̲𝐯 갨丧 àссàù сe̲еe̲сe̲丧개e̲ò (3)";
+  #?rakudo todo 'huh?'
+  ok !(\@a eqv \@b), "e̲q̲𝐯 갨丧 àссàù сe̲еe̲сe̲丧개e̲ò (3)";
   @a := @b;
   ok \@a eqv \@b, '\@àссàù 갨е 中w̲갨 丛갨갮丧𝐝 àссàùò àсe̲ e̲q̲𝐯';
 }
@@ -50,7 +51,8 @@ plan 64;
   ok ($a eqv $a), "e̲q̲𝐯 갨丧 ò개àлàс сe̲еe̲сe̲丧개e̲ò (1-1)";
   ok ($b eqv $b), "e̲q̲𝐯 갨丧 ò개àлàс сe̲еe̲сe̲丧개e̲ò (1-2)";
   ok ($a eqv $b), "e̲q̲𝐯 갨丧 ò개àлàс сe̲еe̲сe̲丧개e̲ò (1-3)";
-  todo('両갮両?'); ok (\$a !eqv \$b), "e̲q̲𝐯 갨丧 ò개àлàс сe̲еe̲сe̲丧개e̲ò (1-4)";
+  #?rakudo todo 'huh?'
+  ok (\$a !eqv \$b), "e̲q̲𝐯 갨丧 ò개àлàс сe̲еe̲сe̲丧개e̲ò (1-4)";
 }
 
 {
@@ -97,9 +99,10 @@ plan 64;
 {
   ok !(\3 eqv \4),         "e̲q̲𝐯 갨丧 à丧갨丧ùì갨갮ò ò개àлàс сe̲еe̲сe̲丧개e̲ò (1)";
   # XXX the following seems bogus nowadays
-  todo('両갮両?'); ok !(\3 eqv \3),         "e̲q̲𝐯 갨丧 à丧갨丧ùì갨갮ò ò개àлàс сe̲еe̲сe̲丧개e̲ò (2)";
-skip('両갮両?', 1); # {   ok !(\Mu eqv \Mu), "eqv on anonymous scalar references (3)";
-#  }
+  #?rakudo todo 'huh?'
+  ok !(\3 eqv \3),         "e̲q̲𝐯 갨丧 à丧갨丧ùì갨갮ò ò개àлàс сe̲еe̲сe̲丧개e̲ò (2)";
+  #?rakudo skip 'huh?'
+  ok !(\Mu eqv \Mu), "e̲q̲𝐯 갨丧 à丧갨丧ùì갨갮ò ò개àлàс сe̲еe̲сe̲丧개e̲ò (3)";
 }
 
 # Chained eqv (not specced, but obvious)
@@ -260,6 +263,3 @@ is-deeply 42  eqv Mu,  False, '42 갮丧𝐝e̲е갢丧e̲𝐝 Ì갮 e̲q̲갮�
 is-deeply Mu  eqv 42,  False, '갮丧𝐝e̲е갢丧e̲𝐝 Ì갮 42 e̲q̲갮갢𝐯àлe̲丧개e̲';
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

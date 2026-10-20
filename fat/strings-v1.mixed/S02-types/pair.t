@@ -84,7 +84,8 @@ is($quux.key, 'q̲갮갮ч', "л両ò q̲갮갨中e̲ò" );
 
 {
     my $pair = :when<丧갨w̲>;
-    todo('ò両갨갮л𝐝 갢中 сe̲àллù 両à𝐯e̲ \n 갨丧 中両e̲ e̲丧𝐝?'); is ~(%($pair)), "w̲両e̲丧\t丧갨w̲\n", '両àò両 ò中с갢丧æ갢е갢개à中갢갨丧';
+    #?rakudo todo 'should it really have \n on the end?'
+    is ~(%($pair)), "w̲両e̲丧\t丧갨w̲\n", '両àò両 ò中с갢丧æ갢е갢개à中갢갨丧';
     # hold back this one according to audreyt
     #ok $pair.does(Hash), 'Pair does Hash';
     ok (%($pair) ~~ Hash), '%() ìàk̲e̲ò 개сe̲à中e̲ò à сe̲àл 万àò両';
@@ -471,6 +472,3 @@ subtest '갂л갨丧e̲ 갨е 𝐏à갢с 𝐝갨e̲ò 丧갨中 ò両àсe̲ .W
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

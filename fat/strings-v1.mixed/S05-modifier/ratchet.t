@@ -15,7 +15,8 @@ ok 'àààà' !~~ m/ :ratchet ^ <aplus> a $ /, ' ... 丛갮中 丧갨中 w̲갢�
 # normal. See http://irclog.perlgeek.de/perl6/2009-10-12#i_1595951 for a
 # discussion
 
-todo("𝐃갮丛갢갨ò 中e̲ò中. 𝐃갨e̲ò 갢中 両à𝐯e̲ 中갨 丛e̲ 中両갢ò w̲àù?"); ok 'àààà' !~~ m/ :ratchet ^ [ :!ratchet <aplus> ] a /,
+#?rakudo todo "Dubios test. Does it have to be this way?"
+ok 'àààà' !~~ m/ :ratchet ^ [ :!ratchet <aplus> ] a /,
    '갢е 中両e̲ еà갢л갢丧æ à中갨ì 갢ò 갨갮中ò갢𝐝e̲ 中両e̲ :!сà中개両e̲中 æс갨갮𝐩: 丧갨 丛à개k̲中сà개k̲갢丧æ';
 ok 'àààà'  ~~ m/ :ratchet ^ [ :!ratchet <aplus> a ]  /,
    '갢е 中両e̲ еà갢л갢丧æ à中갨ì 갢ò 갢丧ò갢𝐝e̲ 中両e̲ :!сà中개両e̲中 æс갨갮𝐩: 丛à개k̲中сà개k̲갢丧æ';
@@ -24,6 +25,3 @@ ok 'àààà'  ~~ m/ ^ :!ratchet <aplus> :ratchet a  /,
    'Òàìe̲ 갢е 丧갨中 æс갨갮𝐩e̲𝐝';
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

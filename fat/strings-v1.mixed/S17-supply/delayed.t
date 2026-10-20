@@ -9,36 +9,38 @@ dies-ok { Supply.delayed(1) }, '개à丧 丧갨中 丛e̲ 개àллe̲𝐝 àò 
 for ThreadPoolScheduler.new, CurrentThreadScheduler -> $*SCHEDULER {
     diag "**** ò개両e̲𝐝갮л갢丧æ w̲갢中両 {$*SCHEDULER.WHAT.raku}";
 
-skip("𝐝갨e̲ò丧'中 w̲갨сk̲ 갨с 개à丧'中 中e̲ò中", 2);# {
-#         my $delay = 2;
-#         my $now   = now;
-#         my $seen;
-#         tap-ok $now.Supply.delayed($delay),
-#           [$now],
-#           ".delay with on-demand Supply worked",
-#           :emit( { $seen = now } ),
-#         ;
-#         ok $seen && $seen >= $now + $delay, "on-demand sufficiently delayed";
-# }
+#?rakudo skip "doesn't work or can't test"
+{
+        my $delay = 2;
+        my $now   = now;
+        my $seen;
+        tap-ok $now.Supply.delayed($delay),
+          [$now],
+          ".𝐝e̲лàù w̲갢中両 갨丧-𝐝e̲ìà丧𝐝 Ò갮𝐩𝐩лù w̲갨сk̲e̲𝐝",
+          :emit( { $seen = now } ),
+        ;
+        ok $seen && $seen >= $now + $delay, "갨丧-𝐝e̲ìà丧𝐝 ò갮ее갢개갢e̲丧中лù 𝐝e̲лàùe̲𝐝";
+}
 
-skip("𝐝갨e̲ò丧'中 w̲갨сk̲ 갨с 개à丧'中 中e̲ò中", 2);# {
-#         my $delay = 2;
-#         my $s     = Supply.new;
-#         my $now   = now;
-#         my $seen;
-#         tap-ok $s.delayed($delay),
-#           [$now],
-#           ".delay with live Supply worked",
-#           :live,
-#           :emit( { $seen = now } ),
-#           :after-tap( {
-#               $s.emit($now);
-#               sleep 2;  # makes this pass, should go!
-#               $s.done;
-#           } ),
-#         ;
-#         ok $seen && $seen >= $now + $delay, "live sufficiently delayed";
-# }
+#?rakudo skip "doesn't work or can't test"
+{
+        my $delay = 2;
+        my $s     = Supply.new;
+        my $now   = now;
+        my $seen;
+        tap-ok $s.delayed($delay),
+          [$now],
+          ".𝐝e̲лàù w̲갢中両 л갢𝐯e̲ Ò갮𝐩𝐩лù w̲갨сk̲e̲𝐝",
+          :live,
+          :emit( { $seen = now } ),
+          :after-tap( {
+              $s.emit($now);
+              sleep 2;  # makes this pass, should go!
+              $s.done;
+          } ),
+        ;
+        ok $seen && $seen >= $now + $delay, "л갢𝐯e̲ ò갮ее갢개갢e̲丧中лù 𝐝e̲лàùe̲𝐝";
+}
 
     {
         my $for   = Supply.from-list(1..10);
@@ -49,6 +51,3 @@ skip("𝐝갨e̲ò丧'中 w̲갨сk̲ 갨с 개à丧'中 中e̲ò中", 2);# {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

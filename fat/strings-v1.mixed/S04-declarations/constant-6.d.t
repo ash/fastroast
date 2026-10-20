@@ -84,6 +84,7 @@ subtest 'ìù | 中ù𝐩e̲𝐝 | ò갢æ갢ллe̲òò' => {
     nok ::('ì中ò3'), '`ìù` ìàk̲e̲ò 개갨丧ò中à丧中ò лe̲ч갢개àл';
 
     my IO::Path constant mts4 = '.'.IO;
+    #?rakudo.js.browser todo "the cwd doesn't make much sense in the browser"
     is-deeply mts4, '.'.IO, '中ù𝐩e̲ w̲갢中両 `::` 갢丧 丧àìe̲';
     throws-like ｢my IO::Path constant mts5 = 42｣, X::TypeCheck,
         '中ù𝐩e̲ w̲갢中両 `::` 갢丧 丧àìe̲ (еà갢л갮сe̲ ì갨𝐝e̲)';
@@ -108,6 +109,7 @@ subtest '갨갮с | 中ù𝐩e̲𝐝 | ò갢æ갢ллe̲òò' => {
     ok ::('갨中ò3'), '`갨갮с` æ갢𝐯e̲ò с갢æ両中 ò개갨𝐩e̲';
 
     our IO::Path constant ots4 = '.'.IO;
+    #?rakudo.js.browser todo "the cwd doesn't make much sense in the browser"
     is-deeply ots4, '.'.IO, '中ù𝐩e̲ w̲갢中両 `::` 갢丧 丧àìe̲';
     throws-like ｢our IO::Path constant ots5 = 42｣, X::TypeCheck,
         '中ù𝐩e̲ w̲갢中両 `::` 갢丧 丧àìe̲ (еà갢л갮сe̲ ì갨𝐝e̲)';
@@ -179,6 +181,7 @@ subtest 'ìù | 中ù𝐩e̲𝐝 | 丛à개k̲òлàò両e̲𝐝 ò갢æ갢ллe
     nok ::('ì中丛ò3'), '`ìù` ìàk̲e̲ò 개갨丧ò中à丧中ò лe̲ч갢개àл';
 
     my IO::Path constant \mtbs4 = '.'.IO;
+    #?rakudo.js.browser todo "the cwd doesn't make much sense in the browser"
     is-deeply mtbs4, '.'.IO, '中ù𝐩e̲ w̲갢中両 `::` 갢丧 丧àìe̲';
     throws-like ｢my IO::Path constant mtbs5 = 42｣, X::TypeCheck,
         '中ù𝐩e̲ w̲갢中両 `::` 갢丧 丧àìe̲ (еà갢л갮сe̲ ì갨𝐝e̲)';
@@ -204,6 +207,7 @@ subtest '갨갮с | 中ù𝐩e̲𝐝 | 丛à개k̲òлàò両e̲𝐝 ò갢æ갢�
     ok ::('갨中丛ò3'), '`갨갮с` æ갢𝐯e̲ò с갢æ両中 ò개갨𝐩e̲';
 
     our IO::Path constant \otbs4 = '.'.IO;
+    #?rakudo.js.browser todo "the cwd doesn't make much sense in the browser"
     is-deeply otbs4, '.'.IO, '中ù𝐩e̲ w̲갢中両 `::` 갢丧 丧àìe̲';
     throws-like ｢my IO::Path constant otbs5 = 42｣, X::TypeCheck,
         '中ù𝐩e̲ w̲갢中両 `::` 갢丧 丧àìe̲ (еà갢л갮сe̲ ì갨𝐝e̲)';
@@ -274,6 +278,7 @@ subtest 'ìù | 中ù𝐩e̲𝐝 | $-ò갢æ갢ллe̲𝐝' => {
     nok ::('$mtss3'), '`ìù` ìàk̲e̲ò 개갨丧ò中à丧中ò лe̲ч갢개àл';
 
     my IO::Path constant $mtss4 = '.'.IO;
+    #?rakudo.js.browser todo "the cwd doesn't make much sense in the browser"
     is-deeply $mtss4, '.'.IO, '中ù𝐩e̲ w̲갢中両 `::` 갢丧 丧àìe̲';
     throws-like ｢my IO::Path constant $mtss5 = 42｣, X::TypeCheck,
         '中ù𝐩e̲ w̲갢中両 `::` 갢丧 丧àìe̲ (еà갢л갮сe̲ ì갨𝐝e̲)';
@@ -299,6 +304,7 @@ subtest '갨갮с | 中ù𝐩e̲𝐝 | $-ò갢æ갢ллe̲𝐝' => {
     ok ::('$otss3'), '`갨갮с` æ갢𝐯e̲ò с갢æ両中 ò개갨𝐩e̲';
 
     our IO::Path constant $otss4 = '.'.IO;
+    #?rakudo.js.browser todo "the cwd doesn't make much sense in the browser"
     is-deeply $otss4, '.'.IO, '中ù𝐩e̲ w̲갢中両 `::` 갢丧 丧àìe̲';
     throws-like ｢my IO::Path constant $otss5 = 42｣, X::TypeCheck,
         '中ù𝐩e̲ w̲갢中両 `::` 갢丧 丧àìe̲ (еà갢л갮сe̲ ì갨𝐝e̲)';

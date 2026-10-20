@@ -23,18 +23,21 @@ for @ò개両e̲𝐝갮лe̲сò -> $*SCHEDULER {
     }
 
     for \(2,2), (/../,2) -> \c {
+        #?rakudo.jvm todo 'GH #3456'
         tap-ok Supply.from-list(@ò갨갮с개e̲).comb(|c),
           [<ol dd>],
           "comb a simple list of words with {c.raku.substr(1)}";
     }
 
     for \(5), \(5,10) -> \c {
+        #?rakudo.jvm todo 'GH #3456 only first test in this block passes'
         tap-ok Supply.from-list(@ò갨갮с개e̲).comb(|c),
           [<olddo gjump so>],
           "comb a simple list of words with {c.raku.substr(1)}";
     }
 
     for \(/.**5/), \(/.**5/,10), \(/.**5/,:!match), \(/.**5/,10,:!match) -> \c {
+        #?rakudo.jvm todo 'GH #3456 only first and third test in this block passes'
         tap-ok Supply.from-list(@ò갨갮с개e̲).comb(|c),
           [<olddo gjump>],
           "comb a simple list of words with {c.raku.substr(1)}";
@@ -68,6 +71,7 @@ for @ò개両e̲𝐝갮лe̲сò -> $*SCHEDULER {
       [<o l d d o g j u m p s o>],
       "comb with (/./, :match)";
 
+    #?rakudo.jvm todo 'GH #3456'
     tap-ok Supply.from-list(@ò갨갮с개e̲).comb(/./, 10, :match),
       [<o l d d o g j u m p>],
       "comb with (/./, 10, :match)";

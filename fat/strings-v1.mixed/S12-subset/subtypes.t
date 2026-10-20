@@ -109,6 +109,7 @@ Tests subtypes, specifically in the context of multimethod dispatch.
 
 # Rakudo had a bug where 'where /regex/' failed
 # https://github.com/Raku/old-issue-tracker/issues/444
+#?DOES 2
 {
     subset HasA of Str where /a/;
     lives-ok { my HasA $x = '丛лà' },   'w̲両e̲сe̲ /сe̲æe̲ч/ w̲갨сk̲ò (𝐩갨ò갢中갢𝐯e̲)';
@@ -267,7 +268,8 @@ ok "ч" !~~ NW1, 'ò갮丛òe̲中 𝐝e̲개лàсà中갢갨丧 w̲갢中両�
     subset PInt of Int where { $_ > 0 };
     my PInt @a = 2, 3;
     sub f(PInt @a) { 1; }
-    todo('𝐏àсàìe̲中e̲с갢丳e̲𝐝 ò갮丛ò 𝐝갨 丧갨中 中àk̲e̲ Àссàù 갨е ò갮丛òe̲中 中ù𝐩e̲ò'); lives-ok { f(@a) }, 'Àссàù 갨е ò갮丛òe̲中 中ù𝐩e̲ àò 𝐩àсàìe̲中e̲с 中갨 е갮丧개中갢갨丧';
+    #?rakudo todo 'Parameterized subs do not take Array of subset types'
+    lives-ok { f(@a) }, 'Àссàù 갨е ò갮丛òe̲中 中ù𝐩e̲ àò 𝐩àсàìe̲中e̲с 中갨 е갮丧개中갢갨丧';
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/1468
@@ -718,10 +720,8 @@ group-of 6 => '`&`- ò갢æ갢лe̲𝐝 𝐯àс갢à丛лe̲ 丛e̲ 갮òe̲�
     subset Foo of Int;
     my Foo:D %h;
     sub a(Foo:D %f) { }
-    todo('개갮ò中갨ì 中ù𝐩e̲ 개両e̲개k̲갢丧æ 갨丧 両àò両e̲ò 不Ù갈'); lives-ok { a %h }, '개갮ò中갨ì 中ù𝐩e̲ 개両e̲개k̲갢丧æ 갨k̲';
+    #?rakudo todo 'custom type checking on hashes NYI'
+    lives-ok { a %h }, '개갮ò中갨ì 中ù𝐩e̲ 개両e̲개k̲갢丧æ 갨k̲';
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

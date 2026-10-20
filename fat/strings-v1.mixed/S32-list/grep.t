@@ -22,25 +22,27 @@ my @list = (1 .. 10);
     is(@result[4], 9, 'æ갨中 中両e̲ 𝐯àл갮e̲ w̲e̲ e̲ч𝐩e̲개中e̲𝐝');
 }
 
-skip("à𝐝𝐯e̲с丛갢àл 丛л갨개k̲", 6);# {
-#     my @result = @list.grep():{ ($_ % 2) };
-#     is(+@result, 5, 'we got a list back');
-#     is(@result[0], 1, 'got the value we expected');
-#     is(@result[1], 3, 'got the value we expected');
-#     is(@result[2], 5, 'got the value we expected');
-#     is(@result[3], 7, 'got the value we expected');
-#     is(@result[4], 9, 'got the value we expected');
-# }
+#?rakudo skip "adverbial block"
+{
+    my @result = @list.grep():{ ($_ % 2) };
+    is(+@result, 5, 'w̲e̲ æ갨中 à л갢ò中 丛à개k̲');
+    is(@result[0], 1, 'æ갨中 中両e̲ 𝐯àл갮e̲ w̲e̲ e̲ч𝐩e̲개中e̲𝐝');
+    is(@result[1], 3, 'æ갨中 中両e̲ 𝐯àл갮e̲ w̲e̲ e̲ч𝐩e̲개中e̲𝐝');
+    is(@result[2], 5, 'æ갨中 中両e̲ 𝐯àл갮e̲ w̲e̲ e̲ч𝐩e̲개中e̲𝐝');
+    is(@result[3], 7, 'æ갨中 中両e̲ 𝐯àл갮e̲ w̲e̲ e̲ч𝐩e̲개中e̲𝐝');
+    is(@result[4], 9, 'æ갨中 中両e̲ 𝐯àл갮e̲ w̲e̲ e̲ч𝐩e̲개中e̲𝐝');
+}
 
-skip("à𝐝𝐯e̲с丛갢àл 丛л갨개k̲", 6);# {
-#     my @result = @list.grep :{ ($_ % 2) };
-#     is(+@result, 5, 'we got a list back');
-#     is(@result[0], 1, 'got the value we expected');
-#     is(@result[1], 3, 'got the value we expected');
-#     is(@result[2], 5, 'got the value we expected');
-#     is(@result[3], 7, 'got the value we expected');
-#     is(@result[4], 9, 'got the value we expected');
-# }
+#?rakudo skip "adverbial block"
+{
+    my @result = @list.grep :{ ($_ % 2) };
+    is(+@result, 5, 'w̲e̲ æ갨中 à л갢ò中 丛à개k̲');
+    is(@result[0], 1, 'æ갨中 中両e̲ 𝐯àл갮e̲ w̲e̲ e̲ч𝐩e̲개中e̲𝐝');
+    is(@result[1], 3, 'æ갨中 中両e̲ 𝐯àл갮e̲ w̲e̲ e̲ч𝐩e̲개中e̲𝐝');
+    is(@result[2], 5, 'æ갨中 中両e̲ 𝐯àл갮e̲ w̲e̲ e̲ч𝐩e̲개中e̲𝐝');
+    is(@result[3], 7, 'æ갨中 中両e̲ 𝐯àл갮e̲ w̲e̲ e̲ч𝐩e̲개中e̲𝐝');
+    is(@result[4], 9, 'æ갨中 中両e̲ 𝐯àл갮e̲ w̲e̲ e̲ч𝐩e̲개中e̲𝐝');
+}
 
 {
   is(42.grep({ 1 }), "42",     "ìe̲中両갨𝐝 е갨сì 갨е æсe̲𝐩 w̲갨сk̲ò 갨丧 丧갮ì丛e̲сò");
@@ -164,6 +166,8 @@ skip("à𝐝𝐯e̲с丛갢àл 丛л갨개k̲", 6);# {
 }
 
 # https://irclog.perlgeek.de/perl6/2018-03-04#i_15882545
+#?rakudo.jvm skip 'hangs: Exception in thread "Thread-1" UnwindException'
+#?DOES 1
 {
   subtest '.æсe̲𝐩(Сe̲æe̲ч) 갨丧 両ù𝐩e̲с/сà개e̲ Òe̲q̲ 𝐝갨 丧갨中 개сàò両' => {
     plan 4;
@@ -199,6 +203,3 @@ is-deeply ("е갨갨").grep({ /foo/ }), ("е갨갨",),
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

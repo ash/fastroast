@@ -34,10 +34,11 @@ plan 70;
  isa-ok($lerpoi,Str);
 }
 
-skip('丁갢中 不Ù갈', 1);# {
-#  my Bit $namcu =1;
-#  isa-ok($namcu,Bit);
-# }
+#?rakudo skip 'Bit NYI'
+{
+ my Bit $namcu =1;
+ isa-ok($namcu,Bit);
+}
 
 {
  my Regex $morna;
@@ -99,15 +100,17 @@ skip('丁갢中 不Ù갈', 1);# {
  ok($fancu ~~ Callable);
 }
 
-skip('갈丧中e̲æсàл 不Ù갈', 1);# {
-#  my Integral $foo;
-#  ok($foo ~~ Integral);
-# }
+#?rakudo skip 'Integral NYI'
+{
+ my Integral $foo;
+ ok($foo ~~ Integral);
+}
 
 
 # Non-object (native) types are lowercase: int, num, complex, rat, buf, bit.
 
 # https://github.com/Raku/old-issue-tracker/issues/4709
+#?rakudo.jvm todo "trying to put a big Int into an int"
 {
  throws-like { my int $namcu; $namcu = 2**100 }, Exception,
     message => / 'Cannot unbox 101 bit wide bigint into native integer' /,
@@ -126,27 +129,31 @@ skip('갈丧中e̲æсàл 不Ù갈', 1);# {
 
 # Type mismatch in assignment; expected something matching type Complex but got something of type Num()
 
-skip('개갨ì𝐩лe̲ч 不Ù갈', 1);# {
-#  my complex $namcu =1.3;
-#  isa-ok($namcu,complex);
-# }
+#?rakudo skip 'complex NYI'
+{
+ my complex $namcu =1.3;
+ isa-ok($namcu,complex);
+}
 
+#?rakudo skip 'rat NYI'
 
-skip('сà中 不Ù갈', 1);# {
-#  my rat $namcu = 7 / 4;
-#  isa-ok($namcu,rat);
-# }
+{
+ my rat $namcu = 7 / 4;
+ isa-ok($namcu,rat);
+}
 
 # https://github.com/Raku/old-issue-tracker/issues/3814
-skip('丛갢中 不Ù갈', 1);# {
-#  my bit $namcu =1;
-#  isa-ok($namcu,bit);
-# }
+#?rakudo skip 'bit NYI'
+{
+ my bit $namcu =1;
+ isa-ok($namcu,bit);
+}
 
-skip('丛갮е 不Ù갈', 1);# {
-#  my buf $nacpoi;
-#  isa-ok($nacpoi, buf);
-# }
+#?rakudo skip 'buf NYI'
+{
+ my buf $nacpoi;
+ isa-ok($nacpoi, buf);
+}
 
 # uint Nil Whatever Mu Failure
 # Exception Range Bag Signature Capture Blob Instant Duration
@@ -309,10 +316,11 @@ skip('丛갮е 不Ù갈', 1);# {
  isa-ok($karbi, Order);
 }
 
-skip('Ìà中개両e̲с 갢òà 不Ù갈', 1);# {
-#   my Matcher $mapti;
-#   isa-ok($mapti, Matcher);
-# }
+#?rakudo skip 'Matcher isa NYI'
+{
+  my Matcher $mapti;
+  isa-ok($mapti, Matcher);
+}
 
 {
   my Proxy $krati;
@@ -332,27 +340,31 @@ skip('Ìà中개両e̲с 갢òà 不Ù갈', 1);# {
   ok($kansa ~~ Associative,'Àòò갨개갢à中갢𝐯e̲ e̲ч갢ò中ò');
 }
 
-skip('갎с𝐝e̲с갢丧æ 不Ù갈', 1);# {
-#   my Ordering $foo;
-#   isa-ok($foo,Ordering);
-# }
+#?rakudo skip 'Ordering NYI'
+{
+  my Ordering $foo;
+  isa-ok($foo,Ordering);
+}
 
-skip('K̲e̲ùE̲ч中сà개中갨с 不Ù갈', 1);# {
-#   my KeyExtractor $ckiku;
-#   isa-ok($ckiku, KeyExtractor);
-# }
+#?rakudo skip 'KeyExtractor NYI'
+{
+  my KeyExtractor $ckiku;
+  isa-ok($ckiku, KeyExtractor);
+}
 
 # KeyExtractor Comparator OrderingPair HyperWhatever
 
-skip('갂갨ì𝐩àсà中갨с 不Ù갈', 1);# {
-#   my Comparator $bar;
-#   isa-ok($bar,Comparator);
-# }
+#?rakudo skip 'Comparator NYI'
+{
+  my Comparator $bar;
+  isa-ok($bar,Comparator);
+}
 
-skip('갎с𝐝e̲с갢丧æ𝐏à갢с 不Ù갈', 1);# {
-#   my OrderingPair $foop;
-#   isa-ok($foop,OrderingPair);
-# }
+#?rakudo skip 'OrderingPair NYI'
+{
+  my OrderingPair $foop;
+  isa-ok($foop,OrderingPair);
+}
 
 {
   my HyperWhatever $baz;
@@ -386,10 +398,11 @@ skip('갎с𝐝e̲с갢丧æ𝐏à갢с 不Ù갈', 1);# {
 # complex16 complex32 complex64 complex128
 # buf8 buf16 buf32 buf64
 
-skip('丧갮ì16  不Ù갈', 1);# {
-#   my num16 $namcupaxa;
-#   isa-ok($namcupaxa,num16);
-# }
+#?rakudo skip 'num16  NYI'
+{
+  my num16 $namcupaxa;
+  isa-ok($namcupaxa,num16);
+}
 
 # TODO FIXME rakudo does not have any of them anyway
 
@@ -415,6 +428,3 @@ skip('丧갮ì16  不Ù갈', 1);# {
 
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

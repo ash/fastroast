@@ -104,6 +104,7 @@ subtest 'àлл Сe̲àлò 개à丧 à개개e̲𝐩中 W̲両à中e̲𝐯e̲с 
     fails-like { 255.base: 16, -100 }, X::OutOfRange,
         '丧e̲æà中갢𝐯e̲ $digits àсæ 中両с갨w̲ò';
     # https://github.com/Raku/old-issue-tracker/issues/4479
+    #?rakudo.jvm todo 'code does not die, RT#125819'
     throws-like {
         255.base(16, 9999999999999999999999999999999999999999999999999);
     }, Exception, :message{ .contains('сe̲𝐩e̲à中 개갨갮丧中').not },

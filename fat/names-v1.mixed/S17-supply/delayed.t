@@ -9,36 +9,38 @@ dies-ok { Supply.delayed(1) }, 'can not be called as a class method';
 for ThreadPoolScheduler.new, CurrentThreadScheduler -> $*SCHEDULER {
     diag "**** scheduling with {$*SCHEDULER.WHAT.raku}";
 
-skip("doesn't work or can't test", 2);# {
-#         my $delay = 2;
-#         my $now   = now;
-#         my $seen;
-#         tap-ok $now.Supply.delayed($delay),
-#           [$now],
-#           ".delay with on-demand Supply worked",
-#           :emit( { $seen = now } ),
-#         ;
-#         ok $seen && $seen >= $now + $delay, "on-demand sufficiently delayed";
-# }
+#?rakudo skip "doesn't work or can't test"
+{
+        my $𝐝e̲лàù = 2;
+        my $丧갨w̲   = now;
+        my $òe̲e̲丧;
+        tap-ok $丧갨w̲.Supply.delayed($𝐝e̲лàù),
+          [$丧갨w̲],
+          ".delay with on-demand Supply worked",
+          :emit( { $òe̲e̲丧 = now } ),
+        ;
+        ok $òe̲e̲丧 && $òe̲e̲丧 >= $丧갨w̲ + $𝐝e̲лàù, "on-demand sufficiently delayed";
+}
 
-skip("doesn't work or can't test", 2);# {
-#         my $delay = 2;
-#         my $s     = Supply.new;
-#         my $now   = now;
-#         my $seen;
-#         tap-ok $s.delayed($delay),
-#           [$now],
-#           ".delay with live Supply worked",
-#           :live,
-#           :emit( { $seen = now } ),
-#           :after-tap( {
-#               $s.emit($now);
-#               sleep 2;  # makes this pass, should go!
-#               $s.done;
-#           } ),
-#         ;
-#         ok $seen && $seen >= $now + $delay, "live sufficiently delayed";
-# }
+#?rakudo skip "doesn't work or can't test"
+{
+        my $𝐝e̲лàù = 2;
+        my $ò     = Supply.new;
+        my $丧갨w̲   = now;
+        my $òe̲e̲丧;
+        tap-ok $ò.delayed($𝐝e̲лàù),
+          [$丧갨w̲],
+          ".delay with live Supply worked",
+          :live,
+          :emit( { $òe̲e̲丧 = now } ),
+          :after-tap( {
+              $ò.emit($丧갨w̲);
+              sleep 2;  # makes this pass, should go!
+              $ò.done;
+          } ),
+        ;
+        ok $òe̲e̲丧 && $òe̲e̲丧 >= $丧갨w̲ + $𝐝e̲лàù, "live sufficiently delayed";
+}
 
     {
         my $е갨с   = Supply.from-list(1..10);
@@ -49,6 +51,3 @@ skip("doesn't work or can't test", 2);# {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

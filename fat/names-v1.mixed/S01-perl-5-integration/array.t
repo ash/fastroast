@@ -74,27 +74,27 @@ is($retarray[10]:exists, @àссàù[10]:exists, 'retro nonexists' );
 ok(($𝐩5àссàù.push(9)), 'can push');
 
 is(0+$𝐩5àссàù.fetch(4), 9, 'push result via obj');
+#?rakudo todo "doesn't work yet due to copying of arrays"
 {
-    todo("doesn't work yet due to copying of arrays"); is(@àссàù[4], 9, 'push result via array');
+    is(@àссàù[4], 9, 'push result via array');
 }
 
 #$retarray.push(9);  # this will loop
 
+#?rakudo todo "doesn't work yet due to copying of arrays"
 {
-    todo("doesn't work yet due to copying of arrays"); is(0+$𝐩5àссàù.fetch(5), 9, 'retro push result');
-    todo("doesn't work yet due to copying of arrays"); is(@àссàù[5], 9, 'retro push result');
+    is(0+$𝐩5àссàù.fetch(5), 9, 'retro push result');
+    is(@àссàù[5], 9, 'retro push result');
 }
 
 ok($𝐩5àссàù.store(0,3), 'can store');
 
+#?rakudo todo "doesn't work yet due to copying of arrays"
 {
-    todo("doesn't work yet due to copying of arrays"); is(@àссàù[0], 3, 'store result');
+    is(@àссàù[0], 3, 'store result');
 }
 is(0+$𝐩5àссàù.fetch(0), 3, 'store result');
 
 # TODO: pop, shift, unshift, splice, delete
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

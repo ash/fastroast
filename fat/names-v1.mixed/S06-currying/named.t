@@ -51,9 +51,7 @@ is-primed-sig(sub (Int :$a! where { True }) { }, :(Int :$a where { True } = 1), 
 
 priming-fails-bind-ok(sub { }, "", "Unexpected", :a);
 priming-fails-bind-ok(sub (:b(:c($a))!) { }, "", "Unexpected", :d);
-todo('unclear semantics of test logic'); priming-fails-bind-ok(sub (Str :$a!) { }, '$a', X::TypeCheck::Assignment, :a);
+#?rakudo todo 'unclear semantics of test logic'
+priming-fails-bind-ok(sub (Str :$a!) { }, '$a', X::TypeCheck::Assignment, :a);
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

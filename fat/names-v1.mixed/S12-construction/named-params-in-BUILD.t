@@ -19,6 +19,8 @@ isa-ok($갨丛𝐣.v, Str, 'same arg should be of declared type' );
 isa-ok($갨丛𝐣, Е갨갨, 'The object was constructed of the right type');
 
 # https://github.com/Raku/old-issue-tracker/issues/5216
+#?rakudo.jvm skip 'Native attributive binding not yet implemented (in submethod BUILD)'
+#?DOES 1
 {
   subtest 'can bind to native type attributes in build methods' => {
     plan 4;

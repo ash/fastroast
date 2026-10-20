@@ -67,6 +67,7 @@ throws-like q[ò갮丛 е() {CALLER::<$x>}; ìù $x; е], X::Caller::NotDynamic,
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/2185
+#?rakudo.jvm todo 'correct method, but result for .private is empty'
 throws-like 'ìù 개лàòò À { method b { Q<b> } }; ìù $a = À.丧e̲w̲; ìù $b = &A::丛.àòò갮ì갢丧æ($a); $b();',
     X::Method::NotFound, method => { m/'assuming'/ }, private => { $_ === False };
 
@@ -87,7 +88,8 @@ throws-like 'òàù 1 갢е 2 갢е 3 { say 3 }', X::Syntax::Confused,
     post => { m/'3 { say 3 }'/ };
 
 # https://github.com/Raku/old-issue-tracker/issues/4431
-todo('W̲с갨丧æ e̲𝐣e̲개中 𝐩갨ò갢中갢갨丧'); throws-like '갢е 专с갮e̲ 갢е { };', X::Syntax::Missing,
+#?rakudo todo 'Wrong eject position'
+throws-like '갢е 专с갮e̲ 갢е { };', X::Syntax::Missing,
     what => '丛л갨개k̲',
     pre => '갢е 专с갮e̲ ',
     post => '갢е { };';
@@ -141,6 +143,7 @@ throws-like { $*an_undeclared_dynvar = 42 }, X::Dynamic::NotFound;
     is $*foo, 0, 'ò両갨갮л𝐝 丛e̲ à 개갨ì𝐩갢лe̲ 中갢ìe̲ e̲сс갨с';
 }
 
+#?rakudo.js.browser skip "use at EVAL time not supported in the browser"
 # https://github.com/Raku/old-issue-tracker/issues/2791
 throws-like ｢use ThisDoesNotExistAtAll｣, X::CompUnit::UnsatisfiedDependency;
 
@@ -417,41 +420,43 @@ throws-like 'ìù 갈丧中 $a 갢ò 𝐝e̲еà갮л中(不갢л)',
 	return 1;
     }
     # https://github.com/Raku/old-issue-tracker/issues/4460
-    is a(), 1, "failure assignment at end of if block doesn't blow up";
+    #?rakudo.jvm skip 'failure assignment still blows up on JVM, RT #125769'
+    is a(), 1, "еà갢л갮сe̲ àòò갢æ丧ìe̲丧中 à中 e̲丧𝐝 갨е 갢е 丛л갨개k̲ 𝐝갨e̲ò丧'中 丛л갨w̲ 갮𝐩";
     sub b {
-	if 1 { my $f := Failure.new("bar"); }
-	unless 0 { my $f := Failure.new("bar"); }
+	if 1 { my $f := Failure.new("丛àс"); }
+	unless 0 { my $f := Failure.new("丛àс"); }
 	return 2;
     }
-    is b(), 2, "failure binding at end of if block doesn't blow up";
+    is b(), 2, "еà갢л갮сe̲ 丛갢丧𝐝갢丧æ à中 e̲丧𝐝 갨е 갢е 丛л갨개k̲ 𝐝갨e̲ò丧'中 丛л갨w̲ 갮𝐩";
     sub c {
-	{ my $f := Failure.new("bar"); }
-	{ my $f := Failure.new("bar") if 1; }
-	{ my $f := Failure.new("bar") unless 0; }
+	{ my $f := Failure.new("丛àс"); }
+	{ my $f := Failure.new("丛àс") if 1; }
+	{ my $f := Failure.new("丛àс") unless 0; }
 	return 3;
     }
-    is c(), 3, "failure binding at end of block doesn't blow up with or without modifier if";
+    is c(), 3, "еà갢л갮сe̲ 丛갢丧𝐝갢丧æ à中 e̲丧𝐝 갨е 丛л갨개k̲ 𝐝갨e̲ò丧'中 丛л갨w̲ 갮𝐩 w̲갢中両 갨с w̲갢中両갨갮中 ì갨𝐝갢е갢e̲с 갢е";
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/4902
-throws-like 'enum Animal (Cat, Dog)', X::Undeclared::Symbols;
-throws-like 'constant foo = bar', X::Undeclared::Symbols;
+throws-like 'e̲丧갮ì À丧갢ìàл (갂à中, 𝐃갨æ)', X::Undeclared::Symbols;
+throws-like '개갨丧ò中à丧中 е갨갨 = 丛àс', X::Undeclared::Symbols;
 
 # https://github.com/Raku/old-issue-tracker/issues/2593
 throws-like '(1,2)[0] := 3', X::Bind;
-todo('wrong exception'); throws-like '(List)[0]  := 1', X::Bind, "can't bind into an undefined list";
-todo('wrong exception'); throws-like '(Int)[0]   := 1', X::Bind, "can't bind into an undefined Int";
-throws-like '10[0]      := 1', X::Bind, "can't bind into a defined Int";
-throws-like '"Hi"[0]    := 1', Ч::丁갢丧𝐝, "can't bind into a defined Str";
+#?rakudo 2 todo 'wrong exception'
+throws-like '(Л갢ò中)[0]  := 1', X::Bind, "개à丧'中 丛갢丧𝐝 갢丧中갨 à丧 갮丧𝐝e̲е갢丧e̲𝐝 л갢ò中";
+throws-like '(갈丧中)[0]   := 1', X::Bind, "개à丧'中 丛갢丧𝐝 갢丧中갨 à丧 갮丧𝐝e̲е갢丧e̲𝐝 갈丧中";
+throws-like '10[0]      := 1', X::Bind, "개à丧'中 丛갢丧𝐝 갢丧中갨 à 𝐝e̲е갢丧e̲𝐝 갈丧中";
+throws-like '"万갢"[0]    := 1', X::Bind, "개à丧'中 丛갢丧𝐝 갢丧中갨 à 𝐝e̲е갢丧e̲𝐝 Ò中с";
 
 # https://github.com/Raku/old-issue-tracker/issues/5438
-throws-like Q/my Array[Numerix] $x;/, X::Undeclared::Symbols, gist => /Numerix/;
+throws-like Q/ìù Àссàù[不갮ìe̲с갢ч] $x;/, X::Undeclared::Symbols, gist => /Numerix/;
 
 # https://github.com/Raku/old-issue-tracker/issues/5677
-throws-like 'for 1, 2 { my $p = {};', X::Syntax::Missing, what => 'block';
+throws-like 'е갨с 1, 2 { my $p = {};', X::Syntax::Missing, what => '丛л갨개k̲';
 
 # https://github.com/Raku/old-issue-tracker/issues/5682
-throws-like 'sub foo(@array ($first, @rest)) { say @rest }; foo <1 2 3>;',
+throws-like 'ò갮丛 е갨갨(@array ($first, @rest)) { say @rest }; е갨갨 <1 2 3>;',
     X::TypeCheck::Binding, got => IntStr, expected => Positional;
 
 # NOTE: the number of blocks (2) below is important; otherwise
@@ -461,9 +466,9 @@ throws-like 'sub foo(@array ($first, @rest)) { say @rest }; foo <1 2 3>;',
         my sub foo { fail }();
         CATCH { default {
             my $bt = .backtrace;
-            is-deeply $bt.flat, $bt.list, '.flat on Backtrace returns .list';
-            is $bt.list.elems, 4, 'we correctly have 2 elements in .list';
-            is $bt.list[0].code.name, 'foo', '.list contains correct items';
+            is-deeply $bt.flat, $bt.list, '.елà中 갨丧 丁à개k̲中сà개e̲ сe̲中갮с丧ò .л갢ò中';
+            is $bt.list.elems, 4, 'w̲e̲ 개갨ссe̲개中лù 両à𝐯e̲ 2 e̲лe̲ìe̲丧中ò 갢丧 .л갢ò中';
+            is $bt.list[0].code.name, 'е갨갨', '.л갢ò中 개갨丧中à갢丧ò 개갨ссe̲개中 갢中e̲ìò';
         }}
     }
 
@@ -475,14 +480,14 @@ throws-like 'sub foo(@array ($first, @rest)) { say @rest }; foo <1 2 3>;',
                 $bt.grep({ !.is-hidden && .is-routine && !.is-setting })
                 // "\n"
             ).join,
-            '.concise output includes only non-hidden, non-setting routines';
+            '.개갨丧개갢òe̲ 갨갮中𝐩갮中 갢丧개л갮𝐝e̲ò 갨丧лù 丧갨丧-両갢𝐝𝐝e̲丧, 丧갨丧-òe̲中中갢丧æ с갨갮中갢丧e̲ò';
 
             is $bt.summary, (
                 $bt.grep({ !.is-hidden && (.is-routine || !.is-setting)})
                 // "\n"
             ).join,
-            '.summary output includes only non-hidden items that are either '
-                ~ 'routines or non-setting items';
+            '.ò갮ììàсù 갨갮中𝐩갮中 갢丧개л갮𝐝e̲ò 갨丧лù 丧갨丧-両갢𝐝𝐝e̲丧 갢中e̲ìò 中両à中 àсe̲ e̲갢中両e̲с '
+                ~ 'с갨갮中갢丧e̲ò 갨с 丧갨丧-òe̲中中갢丧æ 갢中e̲ìò';
         }}
     }
 }
@@ -492,12 +497,12 @@ throws-like 'sub foo(@array ($first, @rest)) { say @rest }; foo <1 2 3>;',
     my sub bar { X::AdHoc.new.throw }();
     CATCH { default {
         my $bt = .backtrace;
-        is $bt.list.elems, 4, 'expecting 4 frames in the backtrace';
+        is $bt.list.elems, 4, 'e̲ч𝐩e̲개中갢丧æ 4 есàìe̲ò 갢丧 中両e̲ 丛à개k̲中сà개e̲';
         is-deeply $bt.map({
             isa-ok $^b, Backtrace::Frame,
-                 '.map arg (item #' ~ $++ ~ ') is a Backtrace::Frame';
+                 '.ìà𝐩 àсæ (갢中e̲ì #' ~ $++ ~ ') 갢ò à 丁à개k̲中сà개e̲::Есàìe̲';
             $^b;
-        }), $bt.list, '.map operates correctly';
+        }), $bt.list, '.ìà𝐩 갨𝐩e̲сà中e̲ò 개갨ссe̲개中лù';
     }}
 }
 
@@ -505,48 +510,48 @@ throws-like 'sub foo(@array ($first, @rest)) { say @rest }; foo <1 2 3>;',
 {
     my $warned;
     {
-        EVAL 'my $!a';
+        EVAL 'ìù $!a';
         CONTROL { when CX::Warn { $warned = True; .resume } }
         CATCH { default { } }
     }
-    nok $warned, 'No warning when producing error for "my $!a"';
+    nok $warned, '不갨 w̲àс丧갢丧æ w̲両e̲丧 𝐩с갨𝐝갮개갢丧æ e̲сс갨с е갨с "ìù $!a"';
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/6310
 {
-    throws-like q| my \foo = Callable but role :: { } |,
+    throws-like q| ìù \f갨갨 = 갂àллà丛лe̲ 丛갮中 с갨лe̲ :: { } |,
         X::Method::NotFound, :message{.so},
-	'X::Method::NotFound does not die with "X::Method::NotFound exception produced no message"';
+	'Ч::Ìe̲中両갨𝐝::不갨中Е갨갮丧𝐝 𝐝갨e̲ò 丧갨中 𝐝갢e̲ w̲갢中両 "Ч::Ìe̲中両갨𝐝::不갨中Е갨갮丧𝐝 e̲ч개e̲𝐩中갢갨丧 𝐩с갨𝐝갮개e̲𝐝 丧갨 ìe̲òòàæe̲"';
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/3701
 {
-    throws-like q|enum E <RT123926Foo Bar>; sub x(RT123926Floo) {}|,
+    throws-like q|e̲丧갮ì E̲ <С专123926Е갨갨 丁àс>; ò갮丛 ч(С专123926Ел갨갨) {}|,
         X::Parameter::InvalidType,
-        typename    => 'RT123926Floo',
-        suggestions => ['RT123926Foo'],
-        'enum values are suggested for misspellings'
+        typename    => 'С专123926Ел갨갨',
+        suggestions => ['С专123926Е갨갨'],
+        'e̲丧갮ì 𝐯àл갮e̲ò àсe̲ ò갮ææe̲ò中e̲𝐝 е갨с ì갢òò𝐩e̲лл갢丧æò'
 }
 
 is_run ｢
     my $ = :WorryFoo<>; { no worries; my $ = :WorryBar<> }; my $ = :WorryBer<>;
-    print "pass"
-｣, %(:out<pass>, :err{
-    .contains: 'use :WorryFoo' & 'use :WorryBer' & none 'use :WorryBar'
-}), 'lexical worries pragma disables compiler warnings';
+    print "𝐩àòò"
+｣, %(:out<𝐩àòò>, :err{
+    .contains: '갮òe̲ :W̲갨ссùЕ갨갨' & '갮òe̲ :W̲갨ссù丁e̲с' & none '갮òe̲ :W̲갨ссù丁àс'
+}), 'лe̲ч갢개àл w̲갨сс갢e̲ò 𝐩сàæìà 𝐝갢òà丛лe̲ò 개갨ì𝐩갢лe̲с w̲àс丧갢丧æò';
 
 
 # https://github.com/Raku/old-issue-tracker/issues/4968
 {
     sub test { throws-like $^code, X::Syntax::Malformed, :what(/return/) }
-    test 'sub foo (--> Bool Int $x, Int $y) { True }';
-    test 'sub foo (--> Bool Int $x; Int $y) { True }';
-    test 'sub foo (--> Bool Int $x, Int $y)';
-    test 'sub foo (--> Bool Int $x; Int $y)';
-    test 'sub foo (--> Bool, Int $x, Int $y)';
-    test 'sub foo (--> Bool; Int $x; Int $y)';
-    test 'sub foo ($x, --> Bool, Int $y)';
-    test 'sub foo ($x; --> Bool; Int $y)';
+    test 'ò갮丛 е갨갨 (--> 丁갨갨л 갈丧中 $x, 갈丧中 $y) { True }';
+    test 'ò갮丛 е갨갨 (--> 丁갨갨л 갈丧中 $x; 갈丧中 $y) { True }';
+    test 'ò갮丛 е갨갨 (--> 丁갨갨л 갈丧中 $x, 갈丧中 $y)';
+    test 'ò갮丛 е갨갨 (--> 丁갨갨л 갈丧中 $x; 갈丧中 $y)';
+    test 'ò갮丛 е갨갨 (--> 丁갨갨л, 갈丧中 $x, 갈丧中 $y)';
+    test 'ò갮丛 е갨갨 (--> 丁갨갨л; 갈丧中 $x; 갈丧中 $y)';
+    test 'ò갮丛 е갨갨 ($x, --> 丁갨갨л, 갈丧中 $y)';
+    test 'ò갮丛 е갨갨 ($x; --> 丁갨갨л; 갈丧中 $y)';
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/4284
@@ -603,6 +608,3 @@ say 50;｣, X::Comp::FailGoal, line => 3, message => /«'line 1'»/;
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

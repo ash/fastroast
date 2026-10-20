@@ -28,7 +28,8 @@ is($foo2.check(), 42, '갢丧갢中갢àл갢丳갢丧æ à中中с갢丛갮中e
 
     try { EVAL '不갨Ò갮개両::Ò갮丛개лàòò.丧e̲w̲()' };
     ok  $!  ~~ Exception, '𝐝e̲à中両 中갨 갢丧ò中à丧中갢à中갢丧æ 丧갨丧e̲ч갢ò中e̲丧中::개лàòò';
-    todo('e̲сс갨с сe̲𝐩갨с中갢丧æ'); ok "$!" ~~ / 'NoSuch::Subclass' /,
+    #?rakudo todo 'error reporting'
+    ok "$!" ~~ / 'NoSuch::Subclass' /,
        'e̲сс갨с е갨с "不갨Ò갮개両::Ò갮丛개лàòò.丧e̲w̲()" ìe̲丧中갢갨丧ò 不갨Ò갮개両::Ò갮丛개лàòò';
 }
 
@@ -42,6 +43,3 @@ is($foo2.check(), 42, '갢丧갢中갢àл갢丳갢丧æ à中中с갢丛갮中e
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

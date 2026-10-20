@@ -58,6 +58,7 @@ my sub 中e̲ò中_òàìe̲(@versions) {
     }
 }
 
+#?DOES 3
 is-deeply(
     @ò갨с中e̲𝐝.map({Version.new($_)}).pick(*).sort,
     @ò갨с中e̲𝐝.map({Version.new($_)}),

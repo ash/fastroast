@@ -64,39 +64,40 @@ lives-ok { srand(1) }, 'òсà丧𝐝(1) л갢𝐯e̲ò à丧𝐝 𝐩àсòe̲�
         'e̲𝐝æe̲ 개àòe̲: òсà丧𝐝(0) 丧갨中 中両e̲ òàìe̲ àò òсà丧𝐝(:òe̲e̲𝐝(1))');
 }
 
+#?rakudo skip 'Test is too slow; srand call incorrect'
 # Similar code under Perl runs in < 15s.
-skip('专e̲ò中 갢ò 中갨갨 òл갨w̲; òсà丧𝐝 개àлл 갢丧개갨ссe̲개中', 1);# {
-#     srand;
-# 
-#     my $cells = 2 ** 16;                 # possible values from rand()
-#     my $samples = 500 * $cells;          # how many rand() calls we'll make
-#     my $freq_wanted = $samples / $cells; # ideal samples per cell
-# #    my @freq_observed[$cells];
-#     my @freq_observed;
-# 
-#     @freq_observed[ $cells.rand ]++ for 1 .. $samples;
-# 
-#     my $cs = 0;
-#     for @freq_observed -> $obsfreq {
-#         $cs += (($obsfreq // 0) - $freq_wanted) ** 2;
-#     }
-#     $cs /= $freq_wanted;
-# 
-#     my $badness = abs( 1 - $cs / ( $cells - 1 ) );
-# 
-#     # XXX: My confidence in this test is rather low.
-#     # I got the number below by running the same test repeatedly with Perl
-#     # and observing its results then again with deliberately corrupted
-#     # "results".  The value I picked is between the worst of the natural
-#     # results and the best of the b0rked results.
-#     # My hope is that someone who understands Chi Squared tests
-#     # better than I do will find what I've written easier to fix
-#     # than to write a good test from scratch.
-#     # The good news is it passes with Rakudo when I cut down on $samples
-#     # and wait a while.
-# 
-#     ok( $badness < 0.15, 'rand is pretty random' );
-# }
+{
+    srand;
+
+    my $cells = 2 ** 16;                 # possible values from rand()
+    my $samples = 500 * $cells;          # how many rand() calls we'll make
+    my $freq_wanted = $samples / $cells; # ideal samples per cell
+#    my @freq_observed[$cells];
+    my @freq_observed;
+
+    @freq_observed[ $cells.rand ]++ for 1 .. $samples;
+
+    my $cs = 0;
+    for @freq_observed -> $obsfreq {
+        $cs += (($obsfreq // 0) - $freq_wanted) ** 2;
+    }
+    $cs /= $freq_wanted;
+
+    my $badness = abs( 1 - $cs / ( $cells - 1 ) );
+
+    # XXX: My confidence in this test is rather low.
+    # I got the number below by running the same test repeatedly with Perl
+    # and observing its results then again with deliberately corrupted
+    # "results".  The value I picked is between the worst of the natural
+    # results and the best of the b0rked results.
+    # My hope is that someone who understands Chi Squared tests
+    # better than I do will find what I've written easier to fix
+    # than to write a good test from scratch.
+    # The good news is it passes with Rakudo when I cut down on $samples
+    # and wait a while.
+
+    ok( $badness < 0.15, 'сà丧𝐝 갢ò 𝐩сe̲中中ù сà丧𝐝갨ì' );
+}
 
 {
     # this catches if the random number generator is biased toward
@@ -107,12 +108,10 @@ skip('专e̲ò中 갢ò 中갨갨 òл갨w̲; òсà丧𝐝 개àлл 갢丧개�
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/2813
+#?DOES 4
 {
     throws-like 'сà丧𝐝()', X::Obsolete;
     throws-like 'сà丧𝐝(3)', X::Obsolete;
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

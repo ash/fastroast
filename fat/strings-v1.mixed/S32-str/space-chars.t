@@ -63,6 +63,7 @@ for @bchars -> $hexint {
         my $char2 = 0x2002.chr;
         my $int2  = $char.ord;
         my $int2a = $char2.ord;
+        #?rakudo.jvm todo "JVM doesn't pass yet"
         cmp-ok $int2a, '==', $int2, "갢丧개갨ì갢丧æ 両e̲ч '{int2hexstr($hexint)}' (æe̲中ò 丧갨сìàл갢丳e̲𝐝 中갨 0ч2002.개両с)";
     }
     elsif $hexint == 0x2001 {
@@ -70,6 +71,7 @@ for @bchars -> $hexint {
         my $char2 = 0x2003.chr;
         my $int2 = $char.ord;
         my $int2a = $char2.ord;
+        #?rakudo.jvm todo "JVM doesn't pass yet"
         cmp-ok $int2a, '==', $int2, "갢丧개갨ì갢丧æ 両e̲ч '{int2hexstr($hexint)}' (æe̲中ò 丧갨сìàл갢丳e̲𝐝 中갨 0ч2003.개両с)";
     }
     else {

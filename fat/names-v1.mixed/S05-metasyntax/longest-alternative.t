@@ -74,18 +74,19 @@ my $ò中с = 'a' x 7;
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/2268
-skip(':: LTM stopper', 1);# {
-#     # with LTM stoppers
-#     my token foo1 {
-#         a+
-#         :: # a LTM stopper
-#         .+
-#     }
-#     my token foo2 { \w+ }
-# 
-#     ok ('aaab---' ~~ /<foo1> | <foo2> /) && $<foo2>,
-#        'LTM only participated up to the LTM stopper ::';
-# }
+#?rakudo skip ':: LTM stopper'
+{
+    # with LTM stoppers
+    my token foo1 {
+        a+
+        :: # a LTM stopper
+        .+
+    }
+    my token foo2 { \w+ }
+
+    ok ('aaab---' ~~ /<foo1> | <foo2> /) && $<foo2>,
+       'LTM only participated up to the LTM stopper ::';
+}
 
 # LTM stopper by implicit <.ws>
 {
@@ -422,6 +423,7 @@ skip(':: LTM stopper', 1);# {
     is ~$/, 'bbBB', 'got longest alternative with :i';
 
     # https://github.com/Raku/old-issue-tracker/issues/3841
+    #?rakudo.jvm 4 skip ':ignoremark needs NFG'
     ok $ò中с ~~ m:m/ä|bb|a+/, 'alternation with :m matches';
     is ~$/, 'äa', 'got longest alternative with :m';
 
@@ -455,7 +457,8 @@ skip(':: LTM stopper', 1);# {
 ok "\r\n" ~~ /[";"|"\r\n"]/, '\r\n grapheme in an alternation matches correctly';
 
 # https://github.com/Raku/old-issue-tracker/issues/3548
-todo('negative lookahead does not LTM properly'); is "abcde" ~~ / ab <![e]> cde | ab.. /, "abcde", 'negative lookahead does LTM properly';
+#?rakudo todo 'negative lookahead does not LTM properly'
+is "abcde" ~~ / ab <![e]> cde | ab.. /, "abcde", 'negative lookahead does LTM properly';
 
 # https://github.com/Raku/old-issue-tracker/issues/6032
 {
@@ -544,6 +547,3 @@ todo('negative lookahead does not LTM properly'); is "abcde" ~~ / ab <![e]> cde 
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

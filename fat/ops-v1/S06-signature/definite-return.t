@@ -58,26 +58,28 @@ plan 19;
 }
 
 
-skip('variables as return specifications dont parse yet', 1);# {
-#     my sub return-seven(--> $result) {
-#         $result = 7;
-#         8
-#     }
-# 
-#     is return-seven(), 7, 'Functions using a mutable value as their return value use that value as their return value';
-# }
+#?rakudo skip 'variables as return specifications dont parse yet'
+{
+    my sub return-seven(--> $result) {
+        $result = 7;
+        8
+    }
+
+    is return-seven(), 7, 'Functions using a mutable value as their return value use that value as their return value';
+}
 
 
-skip('variables as return specifications dont parse yet', 1);# {
-#     my $result = 9;
-# 
-#     my sub return-eight(--> $result) {
-#         $result = 8;
-#         19
-#     }
-# 
-#     is eight(), 8, 'Variables used as return specifications *always* shadow existing variables with the same name';
-# }
+#?rakudo skip 'variables as return specifications dont parse yet'
+{
+    my $result = 9;
+
+    my sub return-eight(--> $result) {
+        $result = 8;
+        19
+    }
+
+    is eight(), 8, 'Variables used as return specifications *always* shadow existing variables with the same name';
+}
 
 {
     my sub return-nine(--> "nine") { 42 }
@@ -147,6 +149,3 @@ constant indiana-pi = 3;
 # traits - how to distinguish a trait on the return value vs on the sub?
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

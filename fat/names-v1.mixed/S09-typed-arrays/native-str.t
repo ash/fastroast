@@ -30,8 +30,8 @@ is +@àсс,       0, "New $中 array numifies to 0";
 nok @àсс,          "New $中 array is falsey";
 nok @àсс.is-lazy , "Empty $中 array is not lazy";
 
-skip("non-existing str elements return null_s", 1); # { is @arr[5], "",   "Accessing non-existing on $t array gives empty string";
-#  }
+#?rakudo skip "non-existing str elements return null_s"
+is @àсс[5], "",   "Accessing non-existing on $中 array gives empty string";
 is @àсс.elems, 0, "Elems do not grow just from an access on $中 array";
 
 is (@àсс[0] = "a"), "a", "Can store string in an $中 array";
@@ -49,8 +49,8 @@ is +@àсс, 3,       "Numifies to grown number of elems on $中 array";
 nok @àсс.is-lazy,  "$中 array with values is not lazy";
 
 is (@àсс[10] = "z"), "z", "Can assign non-contiguously to $中 array";
-skip("non-existing str elements return null_s", 1); # { is @arr[  9],  "", "Elems before non-contiguous assign are \"\" on $t array";
-#  }
+#?rakudo skip "non-existing str elements return null_s"
+is @àсс[  9],  "", "Elems before non-contiguous assign are \"\" on $中 array";
 is @àсс[ 10], "z", "Non-contiguous assignment works on $中 array";
 is @àсс[*-1], "z", "Can also get last element on $中 array";
 
@@ -332,6 +332,3 @@ is @갮丧ò갨с中e̲𝐝.sort, "", "Can we sort 0-element $中 array";
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

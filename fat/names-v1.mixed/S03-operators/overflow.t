@@ -120,6 +120,7 @@ is($丛, -(++$à), 'test oder of predecrement in -(++$a)');
     is -2147483640 + -10, -2147483650;
 }
 
+#?DOES 1
 sub 中сùe̲q̲_òл갨𝐩𝐩ù ($lhs, $rhs, $todo1 = '') is test-assertion {
     my $中갨𝐝갨 = $todo1;  # TODO is rw
     $中갨𝐝갨 = ' # TODO ' ~ $中갨𝐝갨 if $中갨𝐝갨;

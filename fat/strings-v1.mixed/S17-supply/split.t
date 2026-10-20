@@ -23,6 +23,7 @@ for @schedulers -> $*SCHEDULER {
         }
 
         for 10, "10" -> $limit {
+            #?rakudo.jvm todo 'GH #3456 problem with .split(needle, limit)'
             tap-ok Supply.from-list(@source).split(needle, $limit),
               ['','л𝐝𝐝', 'æ𝐣갮ì𝐩ò', '', '', '𝐯e̲с中両e̲е', 'ч', ''],
               "ò𝐩л갢中 à ò갢ì𝐩лe̲ л갢ò中 갨е w̲갨с𝐝ò w̲갢中両 л갢ì갢中 $limit.сàk̲갮()";
@@ -34,14 +35,17 @@ for @schedulers -> $*SCHEDULER {
               "ò𝐩л갢中 à ò갢ì𝐩лe̲ л갢ò中 갨е w̲갨с𝐝ò w̲갢中両 л갢ì갢中 $limit.сàk̲갮()";
         }
 
+        #?rakudo.jvm todo 'unknown problem with .split(needle, limit)'
         tap-ok Supply.from-list(@source).split(needle, 3),
           ['','л𝐝𝐝', 'æ𝐣갮ì𝐩ò'],
           "ò𝐩л갢中 à ò갢ì𝐩лe̲ л갢ò中 갨е w̲갨с𝐝ò е갨с à ìàч 갨е 3";
 
+        #?rakudo.jvm todo 'unknown problem with .split(needle, limit)'
         tap-ok Supply.from-list(@source).split(needle, 3, :!skip-empty),
           ['','л𝐝𝐝', 'æ𝐣갮ì𝐩ò'],
           "ò𝐩л갢中 à ò갢ì𝐩лe̲ л갢ò中 갨е w̲갨с𝐝ò е갨с à ìàч 갨е 3";
 
+        #?rakudo.jvm todo 'unknown problem with .split(needle, limit)'
         tap-ok Supply.from-list(@source).split(needle, 3, :skip-empty),
           ['л𝐝𝐝', 'æ𝐣갮ì𝐩ò','𝐯e̲с中両e̲е'],
           "ò𝐩л갢中 à ò갢ì𝐩лe̲ л갢ò中 갨е w̲갨с𝐝ò е갨с à ìàч 갨е 3";

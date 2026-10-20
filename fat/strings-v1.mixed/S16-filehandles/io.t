@@ -268,6 +268,7 @@ nok $filename.IO ~~ :e, '... à丧𝐝 中両e̲ 中e̲ì𝐩е갢лe̲ 갢ò æ
     $fh = open($filename, :bin);
     my $b = $fh.read(32);
     $fh.close;
+#?rakudo.jvm todo 'will fail due to above failures'
     is $b.values,
        (0x61,0xa2,0x80,0x82..0x8c,0x8e,0x81,0x8d,0x8f,0x61,0xa2,0xff,0x80),
        "е갢лe̲ w̲갢中両 e̲丧개갨𝐝갢丧æ w̲с갨中e̲ 개갨ссe̲개中 개갨丧中e̲丧中";
@@ -279,6 +280,7 @@ nok $filename.IO ~~ :e, '... à丧𝐝 中両e̲ 中e̲ì𝐩е갢лe̲ 갢ò æ
     $s = '';
     lives-ok { $s ~= $fh.getc for 1..3; },
       "w̲갢丧𝐝갨w̲ò-1252 갮丧ìà𝐩𝐩e̲𝐝 개両àсò ес갨ì е両";
+#?rakudo.jvm todo 'builtin JVM charset folds these'
     is $s, '', "개갨ссe̲개中 w̲갢丧𝐝갨w̲ò-1252 갮丧ìà𝐩𝐩e̲𝐝 개両àсò ес갨ì е両";
 
     lives-ok { $fh.encoding('갈Ò갎-8859-1') }, "сe̲òe̲中 갢丧𝐩갮中 е両 e̲丧개갨𝐝갢丧æ";

@@ -40,18 +40,19 @@ plan 16;
 }
 
 # Public class attributes
-skip('class attributes', 3);# {
-#     my $var = 42;
-#     my class Klass3 { our $.x; method bind { $!x := $var } }
-# 
-#     try { Klass3.bind() };
-# 
-#     is try { Klass3.x }, 42, "binding public class attribute (1)";
-#     $var = 23;
-#     is try { Klass3.x }, 23, "binding public class attribute (2)";
-#     try { Klass3.x = 19 };
-#     is $var,    19,  "binding public class attribute (3)";
-# }
+#?rakudo skip 'class attributes'
+{
+    my $𝐯àс = 42;
+    my class K̲лàòò3 { our $.x; method bind { $!x := $𝐯àс } }
+
+    try { K̲лàòò3.bind() };
+
+    is try { K̲лàòò3.x }, 42, "binding public class attribute (1)";
+    $𝐯àс = 23;
+    is try { K̲лàòò3.x }, 23, "binding public class attribute (2)";
+    try { K̲лàòò3.x = 19 };
+    is $𝐯àс,    19,  "binding public class attribute (3)";
+}
 
 # Private class attributes
 {
@@ -90,6 +91,3 @@ skip('class attributes', 3);# {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

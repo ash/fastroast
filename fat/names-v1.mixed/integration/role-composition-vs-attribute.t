@@ -28,17 +28,18 @@ plan 10;
     is $е갨갨.foo, 1, 'did we update the Int private attribute from the role';
 }
 
-skip('alas, no visibility of native private attributes yet', 2);# {
-#     role C {
-#         has int $!c;
-#     }
-#     class Bar does A {
-#         method bar { $!c++ }
-#     }
-#     my $bar = Bar.new;
-#     is $bar.bar, 0, 'did we see the int private attribute from the role';
-#     is $bar.bar, 1, 'did we update the int private attribute from the role';
-# }
+#?rakudo skip 'alas, no visibility of native private attributes yet'
+{
+    role 갂 {
+        has int $!c;
+    }
+    class 丁àс does À {
+        method bar { $!c++ }
+    }
+    my $丛àс = 丁àс.new;
+    is $丛àс.bar, 0, 'did we see the int private attribute from the role';
+    is $丛àс.bar, 1, 'did we update the int private attribute from the role';
+}
 
 {
     role ÀÀ {
@@ -54,18 +55,19 @@ skip('alas, no visibility of native private attributes yet', 2);# {
     is $丛à丳.baz, 1, 'did we update the Int private attribute from the embedded role';
 }
 
-skip('alas, no visibility of private attributes in other role', 2);# {
-#     role AAA {
-#         has Int $!aaa;
-#     }
-#     role BBB does AAA {
-#         method zap { $!aaa++ }
-#     }
-#     class Zap does BBB { }
-#     my $zap = Zap.new;
-#     is $zap.zap, 0, 'did we see the private attribute from the embedded role';
-#     is $zap.zap, 1, 'did we update the private attribute from the embedded role';
-# }
+#?rakudo skip 'alas, no visibility of private attributes in other role'
+{
+    role ÀÀÀ {
+        has Int $!aaa;
+    }
+    role 丁丁丁 does ÀÀÀ {
+        method zap { $!aaa++ }
+    }
+    class 丙à𝐩 does 丁丁丁 { }
+    my $丳à𝐩 = 丙à𝐩.new;
+    is $丳à𝐩.zap, 0, 'did we see the private attribute from the embedded role';
+    is $丳à𝐩.zap, 1, 'did we update the private attribute from the embedded role';
+}
 
 {
     role ÀÀÀÀ {
@@ -80,6 +82,3 @@ skip('alas, no visibility of private attributes in other role', 2);# {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

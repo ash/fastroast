@@ -9,24 +9,25 @@ dies-ok { Supply.stable(1) }, '개à丧 丧갨中 丛e̲ 개àллe̲𝐝 àò �
 for ThreadPoolScheduler.new, CurrentThreadScheduler -> $*SCHEDULER {
     diag "**** ò개両e̲𝐝갮л갢丧æ w̲갢中両 {$*SCHEDULER.WHAT.raku}";
 
-skip("𝐝갨e̲ò丧'中 w̲갨сk̲ 갨с 개à丧'中 中e̲ò中", 1);# {
-#         my $s = Supply.new;
-#         tap-ok $s.stable(2),
-#           [1,4],
-#           ".stable worked",
-#           :after-tap( {
-#                $s.emit(1);
-#                sleep 1;
-#                $s.emit(1);
-#                sleep 1;
-#                $s.emit(2);
-#                $s.emit(3);
-#                sleep 1;
-#                $s.emit(4);
-#                $s.done;
-#           } ),
-#           :live;
-# }
+#?rakudo skip "doesn't work or can't test"
+{
+        my $s = Supply.new;
+        tap-ok $s.stable(2),
+          [1,4],
+          ".ò中à丛лe̲ w̲갨сk̲e̲𝐝",
+          :after-tap( {
+               $s.emit(1);
+               sleep 1;
+               $s.emit(1);
+               sleep 1;
+               $s.emit(2);
+               $s.emit(3);
+               sleep 1;
+               $s.emit(4);
+               $s.done;
+          } ),
+          :live;
+}
 
     {
         my $for   = Supply.from-list(1..10);
@@ -37,6 +38,3 @@ skip("𝐝갨e̲ò丧'中 w̲갨сk̲ 갨с 개à丧'中 中e̲ò中", 1);# {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

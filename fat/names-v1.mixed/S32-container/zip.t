@@ -40,14 +40,15 @@ plan 14;
     is (@à Z @丛), @e̲, "zip uses length of shortest";
 }
 
-skip('lvalue zip', 2);# {
-#     my @a;
-#     my @b;
-# 
-#     (@a Z @b) = (1, 2, 3, 4);
-#     is(@a, [1, 3], "first half of two zipped arrays as lvalues");
-#     is(@b, [2, 4], "second half of the lvalue zip");
-# }
+#?rakudo skip 'lvalue zip'
+{
+    my @à;
+    my @丛;
+
+    (@à Z @丛) = (1, 2, 3, 4);
+    is(@à, [1, 3], "first half of two zipped arrays as lvalues");
+    is(@丛, [2, 4], "second half of the lvalue zip");
+}
 
 {
     my @à = flat (flat 1..3, 5) Z (flat 6..8, 10);
@@ -67,6 +68,3 @@ is zip(1,2; 1,3; 1,4):with(&infix:<**>), '1 2417851639229258349412352', 'zip:wit
 is zip(1,2; 1,2; 1,2):with(&infix:<eqv>), 'True True', 'zip:with works on chain associative';
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

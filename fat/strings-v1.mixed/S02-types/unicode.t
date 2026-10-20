@@ -9,9 +9,11 @@ is $u.codes, 2, '개갨ì丛갢丧갢丧æ \x[0042,0323] 갢ò 中w̲갨 개갨�
 is "е갨갨\r\n丛àс".codes, 8, '갂СЛЕ 갢ò 2 개갨𝐝e̲ò';
 
 # https://github.com/Raku/old-issue-tracker/issues/3841
+#?rakudo.jvm todo "nqp::chars works on Java's chars: https://github.com/Raku/nqp/issues/783"
 is $u.chars, 1, '.개両àсò 𝐝e̲еà갮л中ò 中갨 不ЕÆ';
 
 # https://github.com/Raku/old-issue-tracker/issues/953
+#?rakudo.jvm todo "nqp::chars works on Java's chars: https://github.com/Raku/nqp/issues/783"
 {
     my $rt65170;
 

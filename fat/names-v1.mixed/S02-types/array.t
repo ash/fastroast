@@ -146,16 +146,17 @@ my @àссàù2 = ("test", 1, Mu);
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/3830
-skip("multi-dim arrays NYI", 2);# {
-# # declare a multidimension array
-#     throws-like { EVAL 'my @multidim[0..3; 0..1]' },
-#       Exception, # XXX fix when block no longer skipped
-#       "multidimension array";
-#     my @array11 is shape(2,4);
-# 
-#     # XXX what should that test actually do?
-#     ok EVAL('@array11[2;0] = 12'), "push the value to a multidimension array";
-# }
+#?rakudo skip "multi-dim arrays NYI"
+{
+# declare a multidimension array
+    throws-like { EVAL 'my @multidim[0..3; 0..1]' },
+      Exception, # XXX fix when block no longer skipped
+      "multidimension array";
+    my @array11 is shape(2,4);
+
+    # XXX what should that test actually do?
+    ok EVAL('@array11[2;0] = 12'), "push the value to a multidimension array";
+}
 
 {
     # declare the array with data type
@@ -260,7 +261,8 @@ skip("multi-dim arrays NYI", 2);# {
   throws-like { @àсс[$ì갢丧갮ò_갨丧e̲] = 42 },
     X::OutOfRange,
     "assigning to [-1] of a normal array throws X::OutOfRange";
-  todo('bind_pos NYI'); throws-like { @àсс[$ì갢丧갮ò_갨丧e̲] := 42 },
+  #?rakudo todo 'bind_pos NYI'
+  throws-like { @àсс[$ì갢丧갮ò_갨丧e̲] := 42 },
     X::Subscript::Negative,
     "binding [-1] of a normal array throws X::Subscript::Negative";
 }
@@ -340,11 +342,12 @@ skip("multi-dim arrays NYI", 2);# {
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/520
+#?rakudo todo "regression to AdHoc exception"
 {
-    todo("regression to AdHoc exception"); throws-like { EVAL 'my @a = 1..*; @a[Inf] = "dog"' },
+    throws-like { EVAL 'my @a = 1..*; @a[Inf] = "dog"' },
       X::Item,
       index => Inf, aggregate => Array;
-    todo("regression to AdHoc exception"); throws-like { EVAL 'my @a = 1..*; @a[NaN] = "cat"' },
+    throws-like { EVAL 'my @a = 1..*; @a[NaN] = "cat"' },
       X::Item,
       index => NaN, aggregate => Array;
 }
@@ -401,6 +404,7 @@ subtest '.gist shows only first 100 els' => {
 # https://github.com/rakudo/rakudo/pull/1053
 subtest 'reification of zen and whatever slices' => {
     plan 2;
+    #?rakudo.jvm skip 'code works as expected (does not die) if run standalone; R#1571'
     lives-ok { my $ò = (gather die)[]  }, 'zen slice does not reify';
     my $ò = (gather pass 'whatever slice does reify')[*];
 }
@@ -450,6 +454,3 @@ subtest 'no funny business in assignment' => {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

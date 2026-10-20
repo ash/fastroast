@@ -51,12 +51,9 @@ subtest 'Multi-level nextcallee' => {
     multi def_unpack([$x, $y, $z]) { my &nc = nextcallee; "nc1:" ~ nc([$x + 1, $y + 2, $z + 3]) }
     multi def_unpack([$x, $y, $z]) { my &nc = nextcallee; "nc2:" ~ nc([$x × 1, $y × 2, $z × 3]) }
     multi def_unpack([$n, $o, $p, $e]) { 'oops' }
-skip('fixed in new-disp', 1); # {     is def_unpack([1,2,3]), 'nc1:nc2:2,8,18',
-#         'nextcallee works through multiple candidates that unpack';
-#  }
+    #?rakudo skip 'fixed in new-disp'
+    is def_unpack([1,2,3]), 'nc1:nc2:2,8,18',
+        'nextcallee works through multiple candidates that unpack';
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

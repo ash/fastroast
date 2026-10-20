@@ -86,8 +86,10 @@ plan 84;
 {
     my Array of Int @ч;
     ok @ч.VAR.of === Array[Int], 'my Array of Int @x declares a nested array';
-    todo("nested typechecks are borked"); lives-ok { @ч = [2, 3], [5, 6] }, 'assignment works';
-    todo("nested typechecks are borked"); lives-ok { @ч.push: [8, 9] }, 'pushing works';
+    #?rakudo todo "nested typechecks are borked"
+    lives-ok { @ч = [2, 3], [5, 6] }, 'assignment works';
+    #?rakudo todo "nested typechecks are borked"
+    lives-ok { @ч.push: [8, 9] }, 'pushing works';
     dies-ok  { @ч.push: 8 }, 'type constraint is enforced';
     lives-ok { @ч[0].push: 3 }, 'pushing to the inner array is OK';
     dies-ok  { @ч[0].push: 'foo' }, 'inner array enforces the type constraint';
@@ -98,15 +100,16 @@ plan 84;
     my Int @à = 1, 2, 3;
     my Int @丛;
     lives-ok { @丛 = @à }, 'can assign typed array to typed array';
-skip('need parameterized Lists', 1); # {     ok @a.values.VAR.of.WHICH eqv Int.WHICH, '@a.values is typed (1)';
-#  }
+    #?rakudo skip 'need parameterized Lists'
+    ok @à.values.VAR.of.WHICH eqv Int.WHICH, '@a.values is typed (1)';
     lives-ok { @丛 = @à.values }, '@a.values is typed (2)';
 } #3
 
-skip('initialization', 1);# {
-#     my Str @c = <foo bar baz>;
-#     ok @c.keys.VAR.of.WHICH eqv Str.WHICH, '@array.keys is typed with Str';
-# } #1
+#?rakudo skip 'initialization'
+{
+    my Str @c = <foo bar baz>;
+    ok @c.keys.VAR.of.WHICH eqv Str.WHICH, '@array.keys is typed with Str';
+} #1
 
 # test that we can have parametric array return types
 {
@@ -137,12 +140,13 @@ skip('initialization', 1);# {
 } #8
 
 # https://github.com/Raku/old-issue-tracker/issues/1332
-skip('type on our-variables', 1);# {
-#     our Int @a1;
-#     our @a2;
-#     lives-ok { @a2[0] = 'string' },
-#         'Can assign to untyped package array in presence of typed array';
-# } #1
+#?rakudo skip 'type on our-variables'
+{
+    our Int @a1;
+    our @à2;
+    lives-ok { @à2[0] = 'string' },
+        'Can assign to untyped package array in presence of typed array';
+} #1
 
 # https://github.com/Raku/old-issue-tracker/issues/1471
 {
@@ -281,6 +285,3 @@ skip('type on our-variables', 1);# {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

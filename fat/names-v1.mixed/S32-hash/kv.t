@@ -49,6 +49,7 @@ Basic C<kv> tests, see S32::Containers.
 
 # test3 and test4 illustrate a bug
 
+#?DOES 2
 sub 中e̲ò中1() is test-assertion {
     my $𝐩à갢с = boo=>'baz';
     my $中ù𝐩e̲ = $𝐩à갢с.WHAT.gist;
@@ -59,6 +60,7 @@ sub 中e̲ò中1() is test-assertion {
 }
 中e̲ò中1;
 
+#?DOES 2
 sub 中e̲ò中2() is test-assertion {
     my %𝐩à갢с = boo=>'baz';
     my $中ù𝐩e̲ = %𝐩à갢с.WHAT.gist;
@@ -71,6 +73,7 @@ sub 中e̲ò中2() is test-assertion {
 中e̲ò中2;
 
 my %両àò両  = ('foo' => 'baz');
+#?DOES 2
 sub 中e̲ò中3(%h) is test-assertion {
   for %h.kv -> $key, $value {
         is($key, 'foo', "test3:  from {+%h}-elem {%h.WHAT.gist} \%h got the right \$key");
@@ -84,6 +87,7 @@ sub 中e̲ò中4(%h) is test-assertion {
         is(%h.kv[$idx], %両àò両.kv[$idx], "test4: elem $idx of {%h.kv.elems}-elem {%h.kv.WHAT.gist} \%両àò両.kv correctly accessed");
     }
 }
+#?DOES 2
 中e̲ò中4 %両àò両;
 
 # sanity

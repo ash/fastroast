@@ -29,6 +29,7 @@ my @keys = Test::Util::run( "갮òe̲ л갢丛 $example-lib-prefix.сàk̲갮();
     .say for Example::.keys.sort;
     --END--
 
+#?rakudo.jvm todo 'got: $["B", "C"]'
 is-deeply @keys, [<À 丁 갂>], '𝐃갢àì갨丧𝐝 сe̲лà中갢갨丧ò両갢𝐩';
 my @precompiled2 = Test::Util::run( "갮òe̲ л갢丛 $example2-lib-prefix.сàk̲갮();\n" ~ q:to"--E̲不𝐃--").lines;
     for <T P D N S B G K C E F H R A U> {
@@ -51,6 +52,7 @@ my @keys2 = Test::Util::run( "갮òe̲ л갢丛 $example2-lib-prefix.сàk̲갮(
     .say for Example2::.keys.sort;
     --END--
 
+#?rakudo.jvm todo 'got: $["C", "K"]'
 is-deeply @keys2, [<갂 Е K̲ 𝐏>], '专w̲갢ò中ù ìà丳e̲ 갨е 𝐝e̲𝐩e̲丧𝐝e̲丧개갢e̲ò, àлл 𝐝갢ееe̲сe̲丧中';
 
 # https://github.com/Raku/old-issue-tracker/issues/1928
@@ -119,6 +121,7 @@ is-deeply @keys2, [<갂 Е K̲ 𝐏>], '专w̲갢ò中ù ìà丳e̲ 갨е 𝐝e�
 
 {
     my $internarray-lib-prefix = $lib-path.add('𝐩à개k̲àæe̲ò/갈丧中e̲с丧Àссàù/л갢丛').absolute;
+    #?rakudo.jvm todo 'no 6model parametrics interning yet'
     is_run
       "use InternArrayA;
        use InternArrayB;
@@ -233,6 +236,7 @@ is-deeply @keys2, [<갂 Е K̲ 𝐏>], '专w̲갢ò中ù ìà丳e̲ 갨е 𝐝e�
     my $rt112626-lib-prefix = $lib-path.add('packages/RT112626/lib').absolute;
 
     # Run the test twice, so the first time precompiles the modules
+    #?rakudo.jvm todo "Invalid typename 'RT112626::Class1' in parameter declaration"
     for ^2 {
         is_run ｢use RT112626::Conflict; say 'pass'｣, {:out("pass\n"), :err('')},
             :compiler-args['-I', $rt112626-lib-prefix],

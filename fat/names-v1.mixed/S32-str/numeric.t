@@ -1,6 +1,7 @@
 use Test;
 plan 190;
 
+#?DOES 2
 sub 개両e̲개k̲($str, $expected_type, $expected_number, $desc?) is test-assertion {
     my $сe̲ò갮л中 = +$str;
     my $𝐝e̲ò개с갢𝐩中갢갨丧 = $desc // $str;
@@ -8,6 +9,7 @@ sub 개両e̲개k̲($str, $expected_type, $expected_number, $desc?) is test-asse
     is $сe̲ò갮л中, $expected_number, "$𝐝e̲ò개с갢𝐩中갢갨丧 (value)";
 }
 
+#?DOES 1
 sub е($str) is test-assertion {
     my $丧갮ì = +$str;
     ok !$丧갮ì.defined, "+{$str.raku} fails";
@@ -76,11 +78,12 @@ sub е($str) is test-assertion {
 개両e̲개k̲ '3/2',        Rat,    1.5;
 개両e̲개k̲ '+3/2',       Rat,    1.5;
 개両e̲개k̲ '-3/2',       Rat,    -1.5;
-todo('Unsure of what val() should accept'); е     '-3/-2';
-todo('Unsure of what val() should accept'); е     '3/-2';
-todo('Unsure of what val() should accept'); е     '+3/-2';
-todo('Unsure of what val() should accept'); е     '3.0/2';
-todo('Unsure of what val() should accept'); е     '3/2.0';
+#?rakudo 5 todo 'Unsure of what val() should accept'
+е     '-3/-2';
+е     '3/-2';
+е     '+3/-2';
+е     '3.0/2';
+е     '3/2.0';
 
 {
     개両e̲개k̲ '-:10<4_2.3_5>', Rat, -42.35;
@@ -185,20 +188,17 @@ subtest 'can handle − (U+2212) minus as regular minus' => {
     subtest 'Complex' => {
         plan 4;
 
-skip('cannot handle lone i yet', 1); # {         is-deeply +'−i',     -i, 'lone i';
-#  }
-skip('cannot handle lone i yet', 1); # {         is-deeply +'−10i', -10i, 'number with i';
-#  }
+        #?rakudo 2 skip 'cannot handle lone i yet'
+        is-deeply +'−i',     -i, 'lone i';
+        is-deeply +'−10i', -10i, 'number with i';
 
         subtest 'numberless i (minus in ...)' => {
             plan 3;
 
-skip('cannot handle lone i yet', 1); # {             is-deeply +'−10-i', -10-i, 'real';
-#  }
-skip('cannot handle lone i yet', 1); # {             is-deeply +'10−i',   10-i, 'imaginary';
-#  }
-skip('cannot handle lone i yet', 1); # {             is-deeply +'−10−i', -10-i, 'both real and imaginary';
-#  }
+            #?rakudo 3 skip 'cannot handle lone i yet'
+            is-deeply +'−10-i', -10-i, 'real';
+            is-deeply +'10−i',   10-i, 'imaginary';
+            is-deeply +'−10−i', -10-i, 'both real and imaginary';
         }
 
         subtest 'i with number (minus in ...)' => {
@@ -211,6 +211,3 @@ skip('cannot handle lone i yet', 1); # {             is-deeply +'−10−i', -10
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

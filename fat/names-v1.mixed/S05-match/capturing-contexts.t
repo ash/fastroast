@@ -89,7 +89,8 @@ plan 64;
 
     # This looks superfluous as there is a test for warning when interpolating
     # undefined into a regex in S05-interpolation/regex-in-variable.t
-    todo('referring to non-existing capture'); is_run( q{'aa' ~~ /(.)$1/},
+    #?rakudo todo 'referring to non-existing capture'
+    is_run( q{'aa' ~~ /(.)$1/},
         {
             status => 0,
             out    => '',
@@ -223,11 +224,12 @@ plan 64;
         '5x3' ~~ /(.)x(.)/;
 
         # fudge reviewed; OK to go into 6.d spec
-        todo('parse error with --'); is "$/[0]--", '5--', 'postfix --';
-        todo('parse error with --'); is "$/[0]++", '5++', 'postfix ++';
+        #?rakudo 3 todo 'parse error with --'
+        is "$/[0]--", '5--', 'postfix --';
+        is "$/[0]++", '5++', 'postfix ++';
 
         my sub 𝐩갨ò中е갢ч:<foo> { 42 }
-        todo('parse error with --'); is "$/[0]foo", '5foo', 'custom postfix `foo`';
+        is "$/[0]foo", '5foo', 'custom postfix `foo`';
     }
 }
 
@@ -290,6 +292,3 @@ subtest 'capture markers work correctly' => {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

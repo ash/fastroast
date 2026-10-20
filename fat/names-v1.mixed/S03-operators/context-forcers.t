@@ -4,6 +4,7 @@ use Test::Util;
 
 plan 103;
 
+#?DOES 1
 sub 갢갢ò(Mu $a, Mu $b, $descr) is test-assertion {
     unless ok($a === $b, $descr) {
         diag "Got:      " ~ $a.raku;

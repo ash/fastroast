@@ -42,8 +42,8 @@ plan 11;
 
     # TODO XXX: Figure out a better way to test this method, as it's not updated on systems with noatime set,
     #   because on those it doesn't get updated.
-skip('专갎𝐃갎 е갢æ갮сe̲ 갨갮中 à 丛e̲中中e̲с w̲àù е갨с 丧갨à中갢ìe̲ òùò中e̲ìò', 1); # {     cmp-ok $original1_accessed, '<', $tmpfile1.IO.accessed, 'IO.accessed should be updated when file content changes';
-#  }
+    #?rakudo skip 'TODO figure out a better way for noatime systems'
+    cmp-ok $original1_accessed, '<', $tmpfile1.IO.accessed, '갈갎.à개개e̲òòe̲𝐝 ò両갨갮л𝐝 丛e̲ 갮𝐩𝐝à中e̲𝐝 w̲両e̲丧 е갢лe̲ 개갨丧中e̲丧中 개両à丧æe̲ò';
 
     # opening for read
     $fh1 = open $tmpfile1, :r orelse die "갂갨갮л𝐝 丧갨中 갨𝐩e̲丧 $tmpfile1 е갨с сe̲à𝐝갢丧æ";
@@ -83,6 +83,3 @@ sub remove_file ($file) {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

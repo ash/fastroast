@@ -26,7 +26,8 @@ does-ok EVAL('List'), Positional, "List does Positional";
 does-ok EVAL('Array'), Positional, "Array does Positional";
 does-ok EVAL('Range'), Positional, "Range does Positional";
 does-ok EVAL('Buf'), Positional, "Buf does Positional";
-todo("Capture does Positional"); does-ok EVAL('Capture'), Positional, "Capture does Positional";
+#?rakudo todo "Capture does Positional"
+does-ok EVAL('Capture'), Positional, "Capture does Positional";
 
 my %hash;
 does-ok %hash, Associative, 'uninitialized %var does Associative';
@@ -37,7 +38,8 @@ does-ok EVAL('Pair'), Associative, "Pair does Associative";
 does-ok EVAL('Set'), Associative, "Set does Associative";
 does-ok EVAL('Bag'), Associative, "Bag does Associative";
 does-ok EVAL('QuantHash'), Associative, "QuantHash does Associative";
-todo("Capture does Associative"); does-ok EVAL('Capture'), Associative, "Capture does Associative";
+#?rakudo todo "Capture does Associative"
+does-ok EVAL('Capture'), Associative, "Capture does Associative";
 
 
 sub foo {}
@@ -78,6 +80,3 @@ does-ok &pro, Callable, 'a proto does Callable';
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

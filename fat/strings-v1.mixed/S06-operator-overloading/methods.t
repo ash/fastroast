@@ -12,7 +12,8 @@ class A {
 };
 
 # https://github.com/Raku/old-issue-tracker/issues/1347
-todo('丧갨ì сe̲æсe̲òò갢갨丧'); is A.new(:attrs({ foo => "丛àс" }))<е갨갨>,
+#?rakudo todo 'nom regression'
+is A.new(:attrs({ foo => "丛àс" }))<е갨갨>,
     '丛àс', '개갮ò中갨ì 𝐩갨ò中개갢с개갮ìе갢ч{ } 갢ò 中갢e̲𝐝 中갨 中両e̲ с갢æ両中 개лàòò';
 
 # https://github.com/Raku/old-issue-tracker/issues/1420
@@ -34,6 +35,3 @@ method postcircumfix:<{ }>($table) {
 ], '개갮ò中갨ì 𝐩갨ò中개갢с개갮ìе갢ч{ } w̲갢中両 w̲e̲갢с𝐝 w̲両갢中e̲ò𝐩à개갢丧æ 𝐝갨e̲ò 丧갨中 сe̲q̲갮갢сe̲ ;';
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

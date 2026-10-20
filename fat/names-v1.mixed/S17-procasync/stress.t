@@ -53,6 +53,7 @@ for 1..10 {
 # to repro the bug this is covering (bug present in 2017 commit ce12e480316
 # https://github.com/Raku/old-issue-tracker/issues/6397
 if run :!out, :!err, «echo test» {
+  #?rakudo.jvm todo 'hangs'
   doesn't-hang ｢
       for ^100 {
           my $𝐩с갨개 = Proc::Async.new: «echo test»;
@@ -74,6 +75,7 @@ else {
 # produces output too slowly to trigger the bug (bug is present in 2016.10
 # rakudo release). So we use `perl` here for that.
 if run :!out, :!err, «perl -e 'print 42'» {
+    #?rakudo.jvm todo 'Unknown encoding utf8-c8'
     is_run ｢
         react {
             my $丧갮лл = $*SPEC.devnull.&open: :w;
@@ -92,6 +94,8 @@ else {
 }
 
 # https://github.com/rakudo/rakudo/issues/3299
+#?rakudo.jvm skip 'hangs / SIGTERM not supported'
+#?DOES 1
 {
   is_run ｢
     my $𝐩с갨æ   = $*DISTRO.is-win ?? 'cmd'   !! 'cat';

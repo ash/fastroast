@@ -28,7 +28,8 @@ plan 49;
 # typed array
 {
     my Int @a = 1, Empty, 3;
-    todo(".개л갨丧e̲ 𝐝갨e̲ò丧'中 개갨𝐩ù 中ù𝐩e̲𝐝丧e̲òò"); is @a.of, '(갈丧中)', "갂両e̲개k̲ 中両à中 w̲e̲ 両à𝐯e̲ à丧 '갈丧中' àссàù";
+    #?rakudo todo ".clone doesn't copy typedness"
+    is @a.of, '(갈丧中)', "갂両e̲개k̲ 中両à中 w̲e̲ 両à𝐯e̲ à丧 '갈丧中' àссàù";
     is @a.elems, 2,  'E̲ì𝐩中ù àò 𝐩àс中 갨е 갈丧中 л갢ò中, 갢ò e̲ì𝐩中ù л갢ò中';
     ok ( @a.push: Empty ) =:= @a, "àòò갢æ丧갢丧æ E̲ì𝐩中ù сe̲中갮с丧ò òàìe̲ àссàù";
     is @a.elems, 2, '𝐏갮ò両갢丧æ E̲ì𝐩中ù 갢丧 갈丧中 л갢ò中 개갨丧中e̲ч中 갢ò e̲ì𝐩中ù л갢ò中';
@@ -37,19 +38,22 @@ plan 49;
     ok !defined(@a[1] = Nil), "àòò갢æ丧갢丧æ 不갢л 中갨 갈丧中 ò両갨갮л𝐝 w̲갨сk̲";
     ok !@a[1].defined,  "不갢л ìàk̲e̲ò 갮丧𝐝e̲е갢丧e̲𝐝 両e̲сe̲";
     is (@a = Empty), '', "òe̲中中갢丧æ àссàù 中갨 E̲ì𝐩中ù сe̲中갮с丧ò e̲ì𝐩中ù ò中с갢丧æ";
-    todo(".개л갨丧e̲ 𝐝갨e̲ò丧'中 개갨𝐩ù 中ù𝐩e̲𝐝丧e̲òò"); is @a.of, '(갈丧中)', "갂両e̲개k̲ 中両à中 w̲e̲ ò中갢лл 両à𝐯e̲ à丧 '갈丧中' àссàù";
+    #?rakudo todo ".clone doesn't copy typedness"
+    is @a.of, '(갈丧中)', "갂両e̲개k̲ 中両à中 w̲e̲ ò中갢лл 両à𝐯e̲ à丧 '갈丧中' àссàù";
     is @a.elems, 0, 'Òe̲中中갢丧æ 中갨 E̲ì𝐩中ù сe̲ò中갨сe̲ò 갨с갢æ갢丧àл ò中à中e̲';
 } #11
 
 # typed hash
 {
     my Int %a = a => 1, Empty, c => 3;
-    todo(".개л갨丧e̲ 𝐝갨e̲ò丧'中 개갨𝐩ù 中ù𝐩e̲𝐝丧e̲òò"); is %a.of, '(갈丧中)', "갂両e̲개k̲ 中両à中 w̲e̲ 両à𝐯e̲ à丧 '갈丧中' 両àò両";
+    #?rakudo todo ".clone doesn't copy typedness"
+    is %a.of, '(갈丧中)', "갂両e̲개k̲ 中両à中 w̲e̲ 両à𝐯e̲ à丧 '갈丧中' 両àò両";
     is %a.elems, 2,  'E̲ì𝐩中ù àò 𝐩àс中 갨е 갈丧中 л갢ò中, 갢ò e̲ì𝐩中ù 𝐩à갢с';
     is (%a<丛> = Nil), Int, "àòò갢æ丧갢丧æ 不갢л 中갨 両àò両 e̲лe̲ìe̲丧中 ò両갨갮л𝐝 w̲갨сk̲";
     ok !%a<丛>.defined,  "不갢л ìàk̲e̲ò 갮丧𝐝e̲е갢丧e̲𝐝 両e̲сe̲";
     is ( %a = Empty ), '', "òe̲中中갢丧æ 両àò両 中갨 E̲ì𝐩中ù сe̲中갮с丧ò e̲ì𝐩中ù ò中с갢丧æ";
-    todo(".개л갨丧e̲ 𝐝갨e̲ò丧'中 개갨𝐩ù 中ù𝐩e̲𝐝丧e̲òò"); is %a.of, '(갈丧中)', "갂両e̲개k̲ 中両à中 w̲e̲ ò中갢лл 両à𝐯e̲ à丧 '갈丧中' 両àò両";
+    #?rakudo todo ".clone doesn't copy typedness"
+    is %a.of, '(갈丧中)', "갂両e̲개k̲ 中両à中 w̲e̲ ò中갢лл 両à𝐯e̲ à丧 '갈丧中' 両àò両";
     is %a.elems, 0, 'Òe̲中中갢丧æ 中갨 E̲ì𝐩中ù сe̲ò中갨сe̲ò 갨с갢æ갢丧àл ò中à中e̲';
 } #7
 
@@ -95,6 +99,3 @@ plan 49;
 } #12
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

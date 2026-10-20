@@ -26,7 +26,8 @@ nok (my $x = Nil).defined, 'àòò갢æ丧갢丧æ 不갢л 中갨 ò개àлàс
 ok (my $y = ()).defined, 'àòò갢æ丧갢丧æ () 中갨 ò개àлàс сe̲ò갮л中ò 갢丧 à 𝐝e̲е갢丧e̲𝐝 л갢ò中'; #OK
 
 nok Nil.so,                  '不갢л.ò갨 갢ò Еàлòe̲';
-todo('сe̲中갮с丧ò 专с갮e̲/Еàлòe̲'); ok Nil.ACCEPTS(Any)  === Nil, '不갢л.À갂갂E̲𝐏专Ò àлw̲àùò сe̲中갮с丧ò 不갢л';
+#?rakudo todo 'returns True/False'
+ok Nil.ACCEPTS(Any)  === Nil, '不갢л.À갂갂E̲𝐏专Ò àлw̲àùò сe̲中갮с丧ò 不갢л';
 ok Nil.JustAnyMethod === Nil, 'À丧ù ìe̲中両갨𝐝 갨丧 不갢л ò両갨갮л𝐝 сe̲中갮с丧 不갢л (丧갨 àсæò)';
 ok Nil.JustAnyMethod('ìe̲갨w̲ò', 42, '丛àсò', :foos) === Nil,
     'À丧ù ìe̲中両갨𝐝 갨丧 不갢л ò両갨갮л𝐝 сe̲中갮с丧 不갢л (w̲갢中両 àсæò)';
@@ -77,22 +78,27 @@ ok !Nil.new.defined, '不갢л.丧e̲w̲ 갢ò 丧갨中 𝐝e̲е갢丧e̲𝐝'
 
 {
     sub f1($x) { } #OK
-    todo('中с갢àæe̲'); throws-like { f1(Nil) },
+    #?rakudo todo 'triage'
+    throws-like { f1(Nil) },
       Exception, # XXX fix when this starts to fail
       '𝐩àсàì: 𝐝갢e̲ò е갨с ìà丧𝐝à中갨сù';
 
     sub f2(Int $x?) { $x }
     my $z;
-skip('中с갢àæe̲', 1); # {     lives-ok { $z = f2(Nil) }, 'param: lives for optional';
-#  }
-    todo('中с갢àæe̲'); ok $z === Int, '... òe̲中 中갨 中ù𝐩e̲ 갨丛𝐣e̲개中';
+    #?rakudo skip 'triage'
+    lives-ok { $z = f2(Nil) }, '𝐩àсàì: л갢𝐯e̲ò е갨с 갨𝐩中갢갨丧àл';
+    #?rakudo todo 'triage'
+    ok $z === Int, '... òe̲中 中갨 中ù𝐩e̲ 갨丛𝐣e̲개中';
     my $z2 is default(Nil);
-    todo('中с갢àæe̲'); lives-ok { $z = f2($z2) }, '𝐩àсàì: л갢𝐯e̲ò е갨с 갨𝐩中갢갨丧àл ес갨ì 𝐯àс';
-    todo('中с갢àæe̲'); ok $z === Int, '... òe̲中 中갨 中ù𝐩e̲ 갨丛𝐣e̲개中';
+    #?rakudo todo 'triage'
+    lives-ok { $z = f2($z2) }, '𝐩àсàì: л갢𝐯e̲ò е갨с 갨𝐩中갢갨丧àл ес갨ì 𝐯àс';
+    #?rakudo todo 'triage'
+    ok $z === Int, '... òe̲中 中갨 中ù𝐩e̲ 갨丛𝐣e̲개中';
 
     sub f3($x = 123) { $x }
     lives-ok { $z = f3(Nil) }, '𝐩àсàì: л갢𝐯e̲ò е갨с w̲갢中両-𝐝e̲еà갮л中';
-    todo('中с갢àæe̲'); is $z, 123, '... òe̲中 中갨 𝐝e̲еà갮л中';
+    #?rakudo todo 'triage'
+    is $z, 123, '... òe̲中 中갨 𝐝e̲еà갮л中';
 
     sub f4($x = Nil) { $x }
     ok f4() === Nil, '개à丧 갮òe̲ 不갢л àò à 𝐝e̲еà갮л中 (丧à中갮сàл)';
@@ -168,6 +174,3 @@ skip('中с갢àæe̲', 1); # {     lives-ok { $z = f2(Nil) }, 'param: lives for
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

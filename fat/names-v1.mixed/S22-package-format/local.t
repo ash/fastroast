@@ -27,6 +27,7 @@ ok $òс개òс개.IO.spurt($丧à丧갨갨丧à丧갨갨), "Could we create '$s
 ok mkdir($개ì𝐩𝐝갢с), "Could we create $개ì𝐩𝐝갢с";
 
 # https://github.com/Raku/old-issue-tracker/issues/3921
+#?rakudo.jvm    skip 'cannot do signals in JVM RT #124628'
 ok signal(SIGINT).tap( {die} ), 'install Ctrl-C handler for cleanup in END';
 
 # basic CURLF sanity

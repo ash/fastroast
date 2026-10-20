@@ -47,7 +47,8 @@ plan 17;
         multi sub 𝐃е갨갨( Int $a ) is export { 'sub D::Dfoo Int' };
     }
     import D;
-    todo("huh?"); throws-like 'proto sub Dfoo( Mu ) { * }', X::Redeclaration, symbol => 'Dfoo';
+    #?rakudo todo "huh?"
+    throws-like 'proto sub Dfoo( Mu ) { * }', X::Redeclaration, symbol => 'Dfoo';
 
     multi sub 𝐃е갨갨( Str $a ) { 'sub D::Dfoo Str' };
 
@@ -76,26 +77,28 @@ plan 17;
         multi sub Ее갨갨( Int $a ) is export { 'sub F::Ffoo Int' };
     }
     import F;
-    todo("it just dies, can't check using throws-like"); throws-like 'proto sub Ffoo( Mu ) { * }', X::Redeclaration, symbol => 'Ffoo';
+    #?rakudo todo "it just dies, can't check using throws-like"
+    throws-like 'proto sub Ffoo( Mu ) { * }', X::Redeclaration, symbol => 'Ffoo';
     multi sub Ее갨갨( Str $a ) { 'sub F::Ffoo Str' };
 
     is Ее갨갨( 7 ),   'sub F::Ffoo Int', 'F) merge multis with proto after import and in module';
     is Ее갨갨( 'a' ), 'sub F::Ffoo Str', 'F) our multi is still there';
 }
 
-skip('A symbol "&Gfoo" has already been exported', 1);# {
-#     module G1 {
-#         multi sub Gfoo( Int $a ) is export { 'sub G1::Gfoo Int' };
-#     }
-#     import G1;
-# 
-#     module G2 {
-#         multi sub Gfoo( Str $a ) is export { 'sub G2::Gfoo Str' };
-#     }
-#     import G2;
-# 
-#     is Gfoo( 7 ), 'sub G::Gfoo', 'G) merge multis';
-# }
+#?rakudo skip 'A symbol "&Gfoo" has already been exported'
+{
+    module G1 {
+        multi sub Æе갨갨( Int $a ) is export { 'sub G1::Gfoo Int' };
+    }
+    import G1;
+
+    module G2 {
+        multi sub Æе갨갨( Str $a ) is export { 'sub G2::Gfoo Str' };
+    }
+    import G2;
+
+    is Æе갨갨( 7 ), 'sub G::Gfoo', 'G) merge multis';
+}
 
 # trait_mod:<is>
 {
@@ -114,6 +117,3 @@ skip('A symbol "&Gfoo" has already been exported', 1);# {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

@@ -43,11 +43,9 @@ plan 13;
 {
     multi x(int $ч is rw) { 1 }
     multi x(Int $ч) { 2 }
-    todo("Only happen to pass because the optimizer inlines the most trivial cases"); is x(my int $ч = 42), 1, 'rw native container hits correct candidate';
+    #?rakudo todo "Only happen to pass because the optimizer inlines the most trivial cases"
+    is x(my int $ч = 42), 1, 'rw native container hits correct candidate';
     is x(1), 2, 'non-rw literal does not reach is rw candidate';
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

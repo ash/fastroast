@@ -51,12 +51,9 @@ subtest 'Ì갮л中갢-лe̲𝐯e̲л 丧e̲ч中개àллe̲e̲' => {
     multi def_unpack([$x, $y, $z]) { my &nc = nextcallee; "丧개1:" ~ nc([$x + 1, $y + 2, $z + 3]) }
     multi def_unpack([$x, $y, $z]) { my &nc = nextcallee; "丧개2:" ~ nc([$x * 1, $y * 2, $z * 3]) }
     multi def_unpack([$n, $o, $p, $e]) { '갨갨𝐩ò' }
-skip('е갢чe̲𝐝 갢丧 丧e̲w̲-𝐝갢ò𝐩', 1); # {     is def_unpack([1,2,3]), 'nc1:nc2:2,8,18',
-#         'nextcallee works through multiple candidates that unpack';
-#  }
+    #?rakudo skip 'fixed in new-disp'
+    is def_unpack([1,2,3]), '丧개1:丧개2:2,8,18',
+        '丧e̲ч中개àллe̲e̲ w̲갨сk̲ò 中両с갨갮æ両 ì갮л中갢𝐩лe̲ 개à丧𝐝갢𝐝à中e̲ò 中両à中 갮丧𝐩à개k̲';
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

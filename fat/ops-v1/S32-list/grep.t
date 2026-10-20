@@ -22,25 +22,27 @@ my @list = (1 .. 10);
     is(@result[4], 9, 'got the value we expected');
 }
 
-skip("adverbial block", 6);# {
-#     my @result = @list.grep():{ ($_ % 2) };
-#     is(+@result, 5, 'we got a list back');
-#     is(@result[0], 1, 'got the value we expected');
-#     is(@result[1], 3, 'got the value we expected');
-#     is(@result[2], 5, 'got the value we expected');
-#     is(@result[3], 7, 'got the value we expected');
-#     is(@result[4], 9, 'got the value we expected');
-# }
+#?rakudo skip "adverbial block"
+{
+    my @result = @list.grep():{ ($_ % 2) };
+    is(+@result, 5, 'we got a list back');
+    is(@result[0], 1, 'got the value we expected');
+    is(@result[1], 3, 'got the value we expected');
+    is(@result[2], 5, 'got the value we expected');
+    is(@result[3], 7, 'got the value we expected');
+    is(@result[4], 9, 'got the value we expected');
+}
 
-skip("adverbial block", 6);# {
-#     my @result = @list.grep :{ ($_ % 2) };
-#     is(+@result, 5, 'we got a list back');
-#     is(@result[0], 1, 'got the value we expected');
-#     is(@result[1], 3, 'got the value we expected');
-#     is(@result[2], 5, 'got the value we expected');
-#     is(@result[3], 7, 'got the value we expected');
-#     is(@result[4], 9, 'got the value we expected');
-# }
+#?rakudo skip "adverbial block"
+{
+    my @result = @list.grep :{ ($_ % 2) };
+    is(+@result, 5, 'we got a list back');
+    is(@result[0], 1, 'got the value we expected');
+    is(@result[1], 3, 'got the value we expected');
+    is(@result[2], 5, 'got the value we expected');
+    is(@result[3], 7, 'got the value we expected');
+    is(@result[4], 9, 'got the value we expected');
+}
 
 {
   is(42.grep({ 1 }), "42",     "method form of grep works on numbers");
@@ -164,6 +166,8 @@ skip("adverbial block", 6);# {
 }
 
 # https://irclog.perlgeek.de/perl6/2018-03-04#i_15882545
+#?rakudo.jvm skip 'hangs: Exception in thread "Thread-1" UnwindException'
+#?DOES 1
 {
   subtest '.grep(Regex) on hyper/race Seq do not crash' => {
     plan 4;
@@ -199,6 +203,3 @@ is-deeply ("foo").grep({ /foo/ }), ("foo",),
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

@@ -55,33 +55,35 @@ throws-like '0 := 1', X::Bind, '개à丧丧갨中 丛갢丧𝐝 中갨 à л갢�
 
 # Binding to swap
 # https://github.com/Raku/old-issue-tracker/issues/3459
-skip('л갢ò中 丛갢丧𝐝갢丧æ: С专 #122369', 3);# {
-#   my $a = "a";
-#   my $b = "b";
-# 
-#   ($a, $b) := ($b, $a);
-#   is($a, 'b', '$a has been changed to "b"');
-#   is($b, 'a', '$b has been changed to "a"');
-# 
-#   $a = "c";
-#   is($a, 'c', 'binding to swap didn\'t make the vars readonly');
-# }
+#?rakudo skip 'list binding: RT #122369'
+{
+  my $a = "à";
+  my $b = "丛";
+
+  ($a, $b) := ($b, $a);
+  is($a, '丛', '$a 両àò 丛e̲e̲丧 개両à丧æe̲𝐝 中갨 "丛"');
+  is($b, 'à', '$b 両àò 丛e̲e̲丧 개両à丧æe̲𝐝 中갨 "à"');
+
+  $a = "개";
+  is($a, '개', '丛갢丧𝐝갢丧æ 中갨 òw̲à𝐩 𝐝갢𝐝丧\'中 ìàk̲e̲ 中両e̲ 𝐯àсò сe̲à𝐝갨丧лù');
+}
 
 # More tests for binding a list
 # https://github.com/Raku/old-issue-tracker/issues/3459
-skip('л갢ò中 丛갢丧𝐝갢丧æ: С专 #122369', 4);# {
-#   my $a = "a";
-#   my $b = "b";
-#   my $c = "c";
-# 
-#   ($a, $b) := ($c, $c);
-#   is($a, 'c', 'binding a list literal worked (1)');
-#   is($b, 'c', 'binding a list literal worked (2)');
-# 
-#   $c = "d";
-#   is($a, 'd', 'binding a list literal really worked (1)');
-#   is($b, 'd', 'binding a list literal really worked (2)');
-# }
+#?rakudo skip 'list binding: RT #122369'
+{
+  my $a = "à";
+  my $b = "丛";
+  my $c = "개";
+
+  ($a, $b) := ($c, $c);
+  is($a, '개', '丛갢丧𝐝갢丧æ à л갢ò中 л갢中e̲сàл w̲갨сk̲e̲𝐝 (1)');
+  is($b, '개', '丛갢丧𝐝갢丧æ à л갢ò中 л갢中e̲сàл w̲갨сk̲e̲𝐝 (2)');
+
+  $c = "𝐝";
+  is($a, '𝐝', '丛갢丧𝐝갢丧æ à л갢ò中 л갢中e̲сàл сe̲àллù w̲갨сk̲e̲𝐝 (1)');
+  is($b, '𝐝', '丛갢丧𝐝갢丧æ à л갢ò中 л갢中e̲сàл сe̲àллù w̲갨сk̲e̲𝐝 (2)');
+}
 
 
 # Binding subroutine parameters
@@ -120,14 +122,15 @@ skip('л갢ò中 丛갢丧𝐝갢丧æ: С专 #122369', 4);# {
 
 # := actually takes subroutine parameter list
 # https://github.com/Raku/old-issue-tracker/issues/3459
-skip('л갢ò中 丛갢丧𝐝갢丧æ: С专 #122369', 2);# {
-#   my $a;
-#   :(:$a) := (:a<foo>);
-#   is($a, "foo", "bound keyword");
-#   my @tail;
-#   :($a, *@tail) := (1, 2, 3);
-#   ok($a == 1 && ~@tail eq '2 3', 'bound slurpy');
-# }
+#?rakudo skip 'list binding: RT #122369'
+{
+  my $a;
+  :(:$a) := (:a<е갨갨>);
+  is($a, "е갨갨", "丛갨갮丧𝐝 k̲e̲ùw̲갨с𝐝");
+  my @tail;
+  :($a, *@tail) := (1, 2, 3);
+  ok($a == 1 && ~@tail eq '2 3', '丛갨갮丧𝐝 òл갮с𝐩ù');
+}
 
 # https://github.com/Raku/old-issue-tracker/issues/2102
 # binding how has the same precedence as list assignment
@@ -160,6 +163,3 @@ skip('л갢ò中 丛갢丧𝐝갢丧æ: С专 #122369', 2);# {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

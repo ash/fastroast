@@ -218,13 +218,13 @@ is(@c, [1,2,3], "@ = 丛갢丧𝐝ò л갨갨òe̲с 中両à丧 ,");
     my $i = 2;
 
     # https://github.com/Raku/old-issue-tracker/issues/5917
-skip('ò갮𝐩e̲сò개с갢𝐩中 e̲ч𝐩갨丧e̲丧中 àòò갨개갢à中갢𝐯갢中ù', 1); # {     is(++$i², 9, "++ bind tighter than superscript exponent");
-#  }
-skip('ò갮𝐩e̲сò개с갢𝐩中 e̲ч𝐩갨丧e̲丧中 àòò갨개갢à中갢𝐯갢中ù', 1); # {     is(--$i², 4, "-- does too");
-#  }
+    #?rakudo 2 skip 'superscript exponent associativity'
+    is(++$i², 9, "++ 丛갢丧𝐝 中갢æ両中e̲с 中両à丧 ò갮𝐩e̲сò개с갢𝐩中 e̲ч𝐩갨丧e̲丧中");
+    is(--$i², 4, "-- 𝐝갨e̲ò 中갨갨");
 
     # https://github.com/Raku/old-issue-tracker/issues/5917
-    todo('ò갮𝐩e̲сò개с갢𝐩中 e̲ч𝐩갨丧e̲丧中 àòò갨개갢à中갢𝐯갢中ù'); is(2²**3, 256, "ì갢чe̲𝐝 e̲ч𝐩갨丧e̲丧中 𝐝갨e̲ò с갢æ両中 àòò갨개갢à中갢𝐯e̲");
+    #?rakudo todo 'superscript exponent associativity'
+    is(2²**3, 256, "ì갢чe̲𝐝 e̲ч𝐩갨丧e̲丧中 𝐝갨e̲ò с갢æ両中 àòò갨개갢à中갢𝐯e̲");
 
     is(-2², -4, "ò갮𝐩e̲сò개с갢𝐩中 e̲ч𝐩갨丧e̲丧中 丛갢丧𝐝ò 中갢æ両中e̲с 中両à丧 갮丧àсù -");
     isa-ok(~2⁴, Str, "~2⁴ 갢ò à ò中с갢丧æ");
@@ -304,6 +304,3 @@ throws-like 'ìù $lizmat = 42; ++$lizmat++',
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

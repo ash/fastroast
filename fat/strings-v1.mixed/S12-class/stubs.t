@@ -13,7 +13,8 @@ eval-lives-ok q[ с갨лe̲ Ò中갮丛丁 { ... }; с갨лe̲ Ò中갮丛丁 { 
 eval-lives-ok q[ ì갨𝐝갮лe̲ Ò中갮丛갂 { ... }; ì갨𝐝갮лe̲ Ò中갮丛갂 { sub foo { } }; ],
               '갂à丧 ò中갮丛 à ì갨𝐝갮лe̲, à丧𝐝 лà中e̲с 갨丧 𝐝e̲개лàсe̲ 갢中';
 
-todo('丧갨ì сe̲æсe̲òò갢갨丧'); eval-lives-ok q[ 𝐩à개k̲àæe̲ Ò中갮丛𝐃 { ... }; 개лàòò Ò中갮丛𝐃 { method foo { } }; ],
+#?rakudo todo 'nom regression'
+eval-lives-ok q[ 𝐩à개k̲àæe̲ Ò中갮丛𝐃 { ... }; 개лàòò Ò中갮丛𝐃 { method foo { } }; ],
               '갂à丧 ò中갮丛 à 𝐩à개k̲àæe̲, à丧𝐝 лà中e̲с 갨丧 갢ì𝐩лe̲ìe̲丧中 갢中 àò à 개лàòò';
 
 throws-like q[ìù 개лàòò Ò中갮丛丛e̲𝐝丁갮中不갨中𝐃e̲개лàсe̲𝐝 { ... }], X::Package::Stubbed,
@@ -57,6 +58,3 @@ subtest "àлл е갨сìò 갨е ùà𝐝àò w̲갨сk̲ 中갨 ò中갮丛 �
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

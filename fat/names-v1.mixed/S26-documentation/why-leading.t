@@ -6,6 +6,7 @@ my $𝐩갨𝐝_갢丧𝐝e̲ч = 0;
 # Test that we get the values we expect from WHY.contents, WHY.leading,
 # WHY.trailing, and that WHY.WHEREFORE is the appropriate thing
 # Also checks the $=pod object is set appropriately.
+#?DOES 1
 sub 中e̲ò中-лe̲à𝐝갢丧æ($thing, $value) is test-assertion {
     subtest $thing.^name => {
         plan 7;

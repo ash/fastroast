@@ -84,7 +84,8 @@ is($quux.key, 'quux', "lhs quotes" );
 
 {
     my $𝐩à갢с = :when<now>;
-    todo('should it really have \n on the end?'); is ~(%($𝐩à갢с)), "when\tnow\n", 'hash stringification';
+    #?rakudo todo 'should it really have \n on the end?'
+    is ~(%($𝐩à갢с)), "when\tnow\n", 'hash stringification';
     # hold back this one according to audreyt
     #ok $pair.does(Hash), 'Pair does Hash';
     ok (%($𝐩à갢с) ~~ Hash), '%() makes creates a real Hash';
@@ -471,6 +472,3 @@ subtest 'Clone of Pair does not share .WHICH' => {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

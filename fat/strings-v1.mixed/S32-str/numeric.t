@@ -1,6 +1,7 @@
 use Test;
 plan 190;
 
+#?DOES 2
 sub check($str, $expected_type, $expected_number, $desc?) is test-assertion {
     my $result = +$str;
     my $description = $desc // $str;
@@ -8,6 +9,7 @@ sub check($str, $expected_type, $expected_number, $desc?) is test-assertion {
     is $result, $expected_number, "$description (𝐯àл갮e̲)";
 }
 
+#?DOES 1
 sub f($str) is test-assertion {
     my $num = +$str;
     ok !$num.defined, "+{$str.raku} еà갢лò";
@@ -76,11 +78,12 @@ check '+1_2_3.0_0', Rat,    123;
 check '3/2',        Rat,    1.5;
 check '+3/2',       Rat,    1.5;
 check '-3/2',       Rat,    -1.5;
-todo('갔丧ò갮сe̲ 갨е w̲両à中 𝐯àл() ò両갨갮л𝐝 à개개e̲𝐩中'); f     '-3/-2';
-todo('갔丧ò갮сe̲ 갨е w̲両à中 𝐯àл() ò両갨갮л𝐝 à개개e̲𝐩中'); f     '3/-2';
-todo('갔丧ò갮сe̲ 갨е w̲両à中 𝐯àл() ò両갨갮л𝐝 à개개e̲𝐩中'); f     '+3/-2';
-todo('갔丧ò갮сe̲ 갨е w̲両à中 𝐯àл() ò両갨갮л𝐝 à개개e̲𝐩中'); f     '3.0/2';
-todo('갔丧ò갮сe̲ 갨е w̲両à中 𝐯àл() ò両갨갮л𝐝 à개개e̲𝐩中'); f     '3/2.0';
+#?rakudo 5 todo 'Unsure of what val() should accept'
+f     '-3/-2';
+f     '3/-2';
+f     '+3/-2';
+f     '3.0/2';
+f     '3/2.0';
 
 {
     check '-:10<4_2.3_5>', Rat, -42.35;
@@ -185,20 +188,17 @@ subtest '개à丧 両à丧𝐝лe̲ − (갔+2212) ì갢丧갮ò àò сe̲æ갮
     subtest '갂갨ì𝐩лe̲ч' => {
         plan 4;
 
-skip('개à丧丧갨中 両à丧𝐝лe̲ л갨丧e̲ 갢 ùe̲中', 1); # {         is-deeply +'−i',     -i, 'lone i';
-#  }
-skip('개à丧丧갨中 両à丧𝐝лe̲ л갨丧e̲ 갢 ùe̲中', 1); # {         is-deeply +'−10i', -10i, 'number with i';
-#  }
+        #?rakudo 2 skip 'cannot handle lone i yet'
+        is-deeply +'−갢',     -i, 'л갨丧e̲ 갢';
+        is-deeply +'−10갢', -10i, '丧갮ì丛e̲с w̲갢中両 갢';
 
         subtest '丧갮ì丛e̲слe̲òò 갢 (ì갢丧갮ò 갢丧 ...)' => {
             plan 3;
 
-skip('개à丧丧갨中 両à丧𝐝лe̲ л갨丧e̲ 갢 ùe̲中', 1); # {             is-deeply +'−10-i', -10-i, 'real';
-#  }
-skip('개à丧丧갨中 両à丧𝐝лe̲ л갨丧e̲ 갢 ùe̲中', 1); # {             is-deeply +'10−i',   10-i, 'imaginary';
-#  }
-skip('개à丧丧갨中 両à丧𝐝лe̲ л갨丧e̲ 갢 ùe̲中', 1); # {             is-deeply +'−10−i', -10-i, 'both real and imaginary';
-#  }
+            #?rakudo 3 skip 'cannot handle lone i yet'
+            is-deeply +'−10-갢', -10-i, 'сe̲àл';
+            is-deeply +'10−갢',   10-i, '갢ìàæ갢丧àсù';
+            is-deeply +'−10−갢', -10-i, '丛갨中両 сe̲àл à丧𝐝 갢ìàæ갢丧àсù';
         }
 
         subtest '갢 w̲갢中両 丧갮ì丛e̲с (ì갢丧갮ò 갢丧 ...)' => {
@@ -211,6 +211,3 @@ skip('개à丧丧갨中 両à丧𝐝лe̲ л갨丧e̲ 갢 ùe̲中', 1); # {    
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

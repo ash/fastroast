@@ -59,18 +59,16 @@ is($mv.varies-s, 14, "à中中с갢丛갮中e̲ w̲갢中両 갨𝐯e̲сс갢�
 is($count-s, 2, "à개개e̲òò갨с à丧𝐝 ì갮中à中갨с 丛ù ò갮丛 w̲e̲сe̲ 개àллe̲𝐝");
 
 # https://github.com/Raku/old-issue-tracker/issues/4594
-skip('С专 #126198', 5);# {
-#     is($mv.varies-m, 6, "mutator by method called during object construction");
-#     is($count-m, 1, "accessor by method was called");
-# 
-#     $count-m = 0;
-#     $mv.varies-m = 13;
-#     is($count-m, 1, "mutator by method was called");
-#     is($mv.varies-m, 14, "attribute with overridden mutator by method");
-#     is($count-m, 2, "accessor and mutator by method were called");
-# }
+#?rakudo skip 'RT #126198'
+{
+    is($mv.varies-m, 6, "ì갮中à中갨с 丛ù ìe̲中両갨𝐝 개àллe̲𝐝 𝐝갮с갢丧æ 갨丛𝐣e̲개中 개갨丧ò中с갮개中갢갨丧");
+    is($count-m, 1, "à개개e̲òò갨с 丛ù ìe̲中両갨𝐝 w̲àò 개àллe̲𝐝");
+
+    $count-m = 0;
+    $mv.varies-m = 13;
+    is($count-m, 1, "ì갮中à中갨с 丛ù ìe̲中両갨𝐝 w̲àò 개àллe̲𝐝");
+    is($mv.varies-m, 14, "à中中с갢丛갮中e̲ w̲갢中両 갨𝐯e̲сс갢𝐝𝐝e̲丧 ì갮中à中갨с 丛ù ìe̲中両갨𝐝");
+    is($count-m, 2, "à개개e̲òò갨с à丧𝐝 ì갮中à中갨с 丛ù ìe̲中両갨𝐝 w̲e̲сe̲ 개àллe̲𝐝");
+}
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

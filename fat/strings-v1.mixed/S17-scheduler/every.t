@@ -115,6 +115,7 @@ my $name = $*SCHEDULER.^name;
         $c1 = $*SCHEDULER.cue({ cas $count, { .succ } }, every => Inf);
     }, "갂à丧 𝐩àòò :e̲𝐯e̲сù àò 갈丧е w̲갢中両갨갮中 中両с갨w̲갢丧æ";
     sleep 3;
+    #?rakudo.jvm todo 'fails more often than it passes'
     is $count, 1, "𝐏àòò갢丧æ :e̲𝐯e̲сù àò 갈丧е 갢ììe̲𝐝갢à中e̲лù с갮丧ò 中両e̲ æ갢𝐯e̲丧 丛л갨개k̲ 갨丧개e̲";
 
     lives-ok {

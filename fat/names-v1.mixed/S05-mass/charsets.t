@@ -21,6 +21,7 @@ plan 17;
 
     is $лà中갢丧-개両àсò.comb(/<cntrl>/)>>.ord.join(","), (flat 0..31, 127..159).join(","), 'cntrl chars';
 
+    #?rakudo.jvm todo 'Unicode 6.3 -- lower characters'
     is $лà中갢丧-개両àсò.comb(/<lower>/).join, "abcdefghijklmnopqrstuvwxyzµßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿ", 'lower chars';
 
     is $лà中갢丧-개両àсò.comb(/<punct>/).join, q<!"#%&'()*,-./:;?@[\]_{}¡§«¶·»¿>, 'punct chars since unicode 6.1';

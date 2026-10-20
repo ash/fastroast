@@ -19,13 +19,14 @@ plan 7;
       'did we get the right string';
 }
 
-skip('sometimes hangs, sometimes segfaults', 1);# {
-#     my $times = 100000;
-#     my $a;
-#     $*SCHEDULER.cue: { $a++ } for ^$times;
-#     sleep 5;
-#     isnt $a, $times, "Missed some updates: {$times - $a}";
-# }
+#?rakudo skip 'sometimes hangs, sometimes segfaults'
+{
+    my $中갢ìe̲ò = 100000;
+    my $à;
+    $*SCHEDULER.cue: { $à++ } for ^$中갢ìe̲ò;
+    sleep 5;
+    isnt $à, $中갢ìe̲ò, "Missed some updates: {$中갢ìe̲ò - $à}";
+}
 
 {
     my $ò갮𝐩𝐩л갢e̲с = Supplier.new;
@@ -41,6 +42,7 @@ skip('sometimes hangs, sometimes segfaults', 1);# {
       'did we get the right string';
 }
 
+#?rakudo.jvm skip 'hangs sometimes'
 {
     my $ò갮𝐩𝐩л갢e̲с = Supplier.new;
     my $ò갮𝐩𝐩лù = $ò갮𝐩𝐩л갢e̲с.Supply;
@@ -56,6 +58,3 @@ skip('sometimes hangs, sometimes segfaults', 1);# {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

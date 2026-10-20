@@ -16,13 +16,14 @@ throws-like { EVAL 'use InvalidDirective;' },
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/4797
-skip('RT #126759', 1);# {
-#     use Supersede1;
-#     EVAL q|
-#        class ActEval { }
-#        is ActEval.^tryit,'pony','supersede works in EVAL';
-#     |;
-# }
+#?rakudo skip 'RT #126759'
+{
+    use Supersede1;
+    EVAL q|
+       class ActEval { }
+       is ActEval.^tryit,'pony','supersede works in EVAL';
+    |;
+}
 
 class 万갨𝐩e̲е갮ллù갔ò갮àл { }
 dies-ok { 万갨𝐩e̲е갮ллù갔ò갮àл.^tryit() }, 'EXPORTHOW::SUPERSEDE is lexical';
@@ -41,13 +42,14 @@ throws-like { EVAL 'use Supersede1;
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/4797
-skip('RT #126759', 1);# {
-#     use Declare;
-#     EVAL q|
-#        controller TestEval { }
-#        ok TestEval ~~ Controller,'declarator works inside EVAL';
-#     |;
-# }
+#?rakudo skip 'RT #126759'
+{
+    use Declare;
+    EVAL q|
+       controller TestEval { }
+       ok TestEval ~~ Controller,'declarator works inside EVAL';
+    |;
+}
 
 dies-ok { EVAL 'controller Fat { }' }, 'Imported declarators do not leak out of lexical scope';
 
@@ -80,6 +82,3 @@ subtest 'export of SUPERSEDE::class' => {
 
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

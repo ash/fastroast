@@ -34,21 +34,21 @@ ok 'verify' ~~ /[ if    not | ify ]/, 'control';
 
 #### [ if :: not | ify ]	verify		n	inside a group
 # https://github.com/Raku/old-issue-tracker/issues/2593
-skip(':: NYI RT #124889', 1); # { ok 'verify' !~~ /[ if :: not | ify ]/, 'inside a group';
-#  }
+#?rakudo skip ':: NYI RT #124889'
+ok 'verify' !~~ /[ if :: not | ify ]/, 'inside a group';
 
 ####   if :: not | ify	verify		n	the default all group
 # https://github.com/Raku/old-issue-tracker/issues/2593
-skip(':: NYI RT #124890', 1); # { ok 'verify' !~~ /  if :: not | ify/, 'the default all group';
-#  }
+#?rakudo skip ':: NYI RT #124890'
+ok 'verify' !~~ /  if :: not | ify/, 'the default all group';
 
 #### [ if :  not | ify ]	verify		y	simple backtrack still works
 ok 'verify' ~~ /[ if :  not | ify ]/, 'simple backtrack still works';
 
 #### [ if :: not | ify ] | verify	verify	y	rule continues
 # https://github.com/Raku/old-issue-tracker/issues/2593
-skip(':: NYI RT #124891', 1); # { ok 'verify' ~~ /[ if :: not | ify ] | verify/, 'rule continues';
-#  }
+#?rakudo skip ':: NYI RT #124891'
+ok 'verify' ~~ /[ if :: not | ify ] | verify/, 'rule continues';
 
 # L<S05/Backtracking control/"Evaluating a triple colon">
 #### [ when     ever ] | whence	whence	y	full backtrack failure
@@ -56,39 +56,41 @@ ok 'whence' ~~ /[ when     ever ] | whence/, 'full backtrack failure';
 
 #### [ when ::: ever ] | whence	whence	n	full backtrack failure
 # https://github.com/Raku/old-issue-tracker/issues/4054
-skip('::: NYI RT #124892', 1); # { ok 'whence' !~~ /[ when ::: ever ] | whence/, 'full backtrack failure';
-#  }
+#?rakudo skip '::: NYI RT #124892'
+ok 'whence' !~~ /[ when ::: ever ] | whence/, 'full backtrack failure';
 
 #### ab::cd | gh::ij		xyabghij	y	group cut at top
 # https://github.com/Raku/old-issue-tracker/issues/2593
-skip(':: NYI RT #124893', 1); # { ok 'xyabghij' ~~ /ab::cd | gh::ij/, 'group cut at top';
-#  }
+#?rakudo skip ':: NYI RT #124893'
+ok 'xyabghij' ~~ /ab::cd | gh::ij/, 'group cut at top';
 
 #### ab:::cd | gh:::ij	xyabghij	n	rule cut at top
 # https://github.com/Raku/old-issue-tracker/issues/2593
-skip(':: NYI RT #124894', 1); # { ok 'xyabghij' !~~ /ab:::cd | gh:::ij/, 'rule cut at top';
-#  }
+#?rakudo skip ':: NYI RT #124894'
+ok 'xyabghij' !~~ /ab:::cd | gh:::ij/, 'rule cut at top';
 
 #### [ab::cd | gh::ij]	xyabghij	y	group cut in group
 # https://github.com/Raku/old-issue-tracker/issues/2593
-skip(':: NYI RT #124895', 1); # { ok 'xyabghij' ~~ /[ab::cd | gh::ij]/, 'group cut in group';
-#  }
+#?rakudo skip ':: NYI RT #124895'
+ok 'xyabghij' ~~ /[ab::cd | gh::ij]/, 'group cut in group';
 
 #### [ab:::cd | gh:::ij]	xyabghij	n	rule cut in group
 # https://github.com/Raku/old-issue-tracker/issues/2593
-skip('::: NYI RT #124896', 1); # { ok 'xyabghij' !~~ /[ab:::cd | gh:::ij]/, 'rule cut in group';
-#  }
+#?rakudo skip '::: NYI RT #124896'
+ok 'xyabghij' !~~ /[ab:::cd | gh:::ij]/, 'rule cut in group';
 
 #### [ ab | abc ]: de	xyzabcde	n	no backtrack into group
 # https://github.com/Raku/old-issue-tracker/issues/3343
-todo('RT #121307'); ok 'xyzabcde' !~~ /[ ab | abc ]: de/, 'no backtrack into group';
+#?rakudo todo 'RT #121307'
+ok 'xyzabcde' !~~ /[ ab | abc ]: de/, 'no backtrack into group';
 
 #### ( ab | abc ): de	xyzabcde	n	no backtrack into subpattern
 ok 'xyzabcde' !~~ /( ab || abc ): de/, 'no backtrack into subpattern';
 
 #### [ when <commit> ever ] | whence	whence	n	full backtrack failure
 # https://github.com/Raku/old-issue-tracker/issues/4074
-todo('<commit> NYI RT #124897'); ok 'whence' !~~ /[ when <commit> ever ] | whence/, 'full backtrack failure';
+#?rakudo todo '<commit> NYI RT #124897'
+ok 'whence' !~~ /[ when <commit> ever ] | whence/, 'full backtrack failure';
 
 #L<S05/Modifiers/"The new :r or :ratchet modifier">
 
@@ -1455,8 +1457,8 @@ ok 'foo-bar' ~~ /:s foo '-'? bar/, 'basic ws match \s* \s*';
 ok 'foobar' !~~ /:s foo '-'? bar/, 'basic ws non-match';
 
 #### :s()foo '-'? bar		foo - bar	n	basic ws match
-skip(':s()', 1); # { ok 'foo - bar' !~~ /:s()foo '-'? bar/, 'basic ws match';
-#  }
+#?rakudo skip ':s()'
+ok 'foo - bar' !~~ /:s()foo '-'? bar/, 'basic ws match';
 
 #### :s[]foo '-'? bar		foo - bar	y	basic ws match
 ok 'foo - bar' ~~ /:s foo '-'? bar/, 'basic ws match';
@@ -1466,18 +1468,18 @@ ok 'foo - bar' ~~ /:s<?wb>foo '-'? bar/, 'basic ws match with boundary modifier 
 
 #### :s::foo '-'? bar			foo - bar	y	basic ws match with backtrack no-op modifier separation
 # https://github.com/Raku/old-issue-tracker/issues/2593
-skip(':: NYI RT #124900', 1); # { ok 'foo - bar' ~~ /:s::foo '-'? bar/, 'basic ws match with backtrack no-op modifier separation';
-#  }
+#?rakudo skip ':: NYI RT #124900'
+ok 'foo - bar' ~~ /:s::foo '-'? bar/, 'basic ws match with backtrack no-op modifier separation';
 
 #### :s::(\w+) ':=' (\S+)		dog := spot	/mob 0: <dog @ 0>/	sigspace and capture together
 # https://github.com/Raku/old-issue-tracker/issues/2593
-skip(':: NYI RT #124901', 1); # { ok ('dog := spot' ~~ /:s::(\w+) ':=' (\S+)/) && matchcheck($/, q/mob 0: <dog @ 0>/), 'sigspace and capture together';
-#  }
+#?rakudo skip ':: NYI RT #124901'
+ok ('dog := spot' ~~ /:s::(\w+) ':=' (\S+)/) && ìà中개両개両e̲개k̲($/, q/mob 0: <dog @ 0>/), 'sigspace and capture together';
 
 #### :s::(\w+) ':=' (\S+)		dog := spot	/mob 1: <spot @ 7>/	sigspace and capture together
 # https://github.com/Raku/old-issue-tracker/issues/2593
-skip(':: NYI RT #124902', 1); # { ok ('dog := spot' ~~ /:s::(\w+) ':=' (\S+)/) && matchcheck($/, q/mob 1: <spot @ 7>/), 'sigspace and capture together';
-#  }
+#?rakudo skip ':: NYI RT #124902'
+ok ('dog := spot' ~~ /:s::(\w+) ':=' (\S+)/) && ìà中개両개両e̲개k̲($/, q/mob 1: <spot @ 7>/), 'sigspace and capture together';
 
 #### :s^[\d+ ]* abc			11 12 13 abc	y	<?ws> before closing bracket
 ok '11 12 13 abc' ~~ /:s^[\d+ ]* abc/, '<?ws> before closing bracket';
@@ -2091,16 +2093,16 @@ is $/, 'foobar', '... will match correctly';
 ok ('2+3 ab2' ~~ /<ident>/) && ìà中개両개両e̲개k̲($/, q/mob<ident>: <ab2 @ 4>/), 'capturing builtin <ident>';
 
 #### <name>			ab::cd::x3::42	/mob<name>: <ab::cd::x3 @ 0>/	capturing builtin <name>
-skip('regex <name>', 1); # { ok ('ab::cd::x3::42' ~~ /<name>/) && matchcheck($/, q/mob<name>: <ab::cd::x3 @ 0>/), 'capturing builtin <name>';
-#  }
+#?rakudo skip 'regex <name>'
+ok ('ab::cd::x3::42' ~~ /<name>/) && ìà中개両개両e̲개k̲($/, q/mob<name>: <ab::cd::x3 @ 0>/), 'capturing builtin <name>';
 
 
 #### <.ident>			2+3 ab2		y		non-capturing builtin <.ident>
 ok '2+3 ab2' ~~ /<.ident>/, 'non-capturing builtin <.ident>';
 
 #### <.name>			ab::cd::x3::42	y	non-capturing builtin <.name>
-skip('regex <name>', 1); # { ok 'ab::cd::x3::42' ~~ /<.name>/, 'non-capturing builtin <.name>';
-#  }
+#?rakudo skip 'regex <name>'
+ok 'ab::cd::x3::42' ~~ /<.name>/, 'non-capturing builtin <.name>';
 
 
 #### <?wb>def		abc\ndef\n-==\nghi	y	word boundary \W\w
@@ -2414,6 +2416,3 @@ lives-ok { $/ := 42; dd /./.ACCEPTS("a") },
   'Regex.ACCEPTS survives immutable $/';
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

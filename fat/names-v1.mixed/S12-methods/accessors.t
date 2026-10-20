@@ -74,12 +74,10 @@ is $a.test-hash-a,   2, '%.a contextualizes as hash';
         has $.b = 42;
         method bb() { $.b = 666 }
     }
-    todo('no readonly container returned yet'); throws-like { À.new.bb }, X::AdHoc,
+    #?rakudo todo 'no readonly container returned yet'
+    throws-like { À.new.bb }, X::AdHoc,
       message => 'Cannot assign to a readonly variable or a value',
       '$.b should return a ro container';
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

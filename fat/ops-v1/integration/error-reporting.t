@@ -84,6 +84,7 @@ is_run 'my $ = 2; my $ = 3; say q[alive]',
     }, 'multiple anonymous variables do not warn or err out';
 
 # https://github.com/Raku/old-issue-tracker/issues/2744
+#?rakudo.jvm todo 'Use of uninitialized value of type Any in numeric context'
 is_run 'sub mysub {
         + Any # trigger an uninitialized warning
     };
@@ -115,6 +116,7 @@ is_run 'die "foo"; END { say "end run" }',
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/2550
+#?DOES 3
 {
     use lib $*PROGRAM.parent(2).add("packages/FooBarBaz/lib");
     use Foo;
@@ -162,6 +164,7 @@ is_run q:b/sub s1 {\nsub s2 {\nfail("foo")\n}\ns2() }\nmy $a = s1();\nsay $a/, {
         }, "Thrown Failure outputs dual backtraces";
 
 # see http://irclog.perlgeek.de/perl6/2015-07-24#i_10947364 and commit c683fe9
+#?rakudo.jvm todo 'UnwindException'
 is_run 'sub foo { ({a=>1,b=>2}, {c=>3,d=>4}).map({ if (.<a>) {return $_} else { return } }) }; say foo', {
             err => rx:i/Attempt\sto\sreturn\soutside\N+Routine.*in\sblock/
         }, "Correct error and a backtrace for return in mainline code";
@@ -224,10 +227,12 @@ group-of 4 => 'X::Multi::NoMatch correct shows named arguments' => {
 subtest 'composition errors do not crash when printing' => {
     plan 2;
 
+    #?rakudo.jvm todo 'StackOverflowError'
     throws-like '-> ::RT129906 { class :: is RT129906 {} }',
         X::Inheritance::Unsupported,  message => /RT129906/,
     'Accessing X::Inheritance::Unsupported.message does not crash';
 
+    #?rakudo.jvm todo 'StackOverflowError'
     throws-like 'class A129906 { ... }; class B129906 '
             ~ 'does A129906 { };',
         X::Composition::NotComposable,  message => /129906/,

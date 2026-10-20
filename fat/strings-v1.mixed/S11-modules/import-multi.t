@@ -47,7 +47,8 @@ plan 17;
         multi sub Dfoo( Int $a ) is export { 'ò갮丛 𝐃::𝐃е갨갨 갈丧中' };
     }
     import D;
-    todo("両갮両?"); throws-like '𝐩с갨中갨 ò갮丛 𝐃е갨갨( Ì갮 ) { * }', X::Redeclaration, symbol => '𝐃е갨갨';
+    #?rakudo todo "huh?"
+    throws-like '𝐩с갨中갨 ò갮丛 𝐃е갨갨( Ì갮 ) { * }', X::Redeclaration, symbol => '𝐃е갨갨';
 
     multi sub Dfoo( Str $a ) { 'ò갮丛 𝐃::𝐃е갨갨 Ò中с' };
 
@@ -76,26 +77,28 @@ plan 17;
         multi sub Ffoo( Int $a ) is export { 'ò갮丛 Е::Ее갨갨 갈丧中' };
     }
     import F;
-    todo("갢中 𝐣갮ò中 𝐝갢e̲ò, 개à丧'中 개両e̲개k̲ 갮ò갢丧æ 中両с갨w̲ò-л갢k̲e̲"); throws-like '𝐩с갨中갨 ò갮丛 Ее갨갨( Ì갮 ) { * }', X::Redeclaration, symbol => 'Ее갨갨';
+    #?rakudo todo "it just dies, can't check using throws-like"
+    throws-like '𝐩с갨中갨 ò갮丛 Ее갨갨( Ì갮 ) { * }', X::Redeclaration, symbol => 'Ее갨갨';
     multi sub Ffoo( Str $a ) { 'ò갮丛 Е::Ее갨갨 Ò中с' };
 
     is Ffoo( 7 ),   'ò갮丛 Е::Ее갨갨 갈丧中', 'Е) ìe̲сæe̲ ì갮л中갢ò w̲갢中両 𝐩с갨中갨 àе中e̲с 갢ì𝐩갨с中 à丧𝐝 갢丧 ì갨𝐝갮лe̲';
     is Ffoo( 'à' ), 'ò갮丛 Е::Ее갨갨 Ò中с', 'Е) 갨갮с ì갮л中갢 갢ò ò中갢лл 中両e̲сe̲';
 }
 
-skip('À òùì丛갨л "&Gfoo" 両àò àлсe̲à𝐝ù 丛e̲e̲丧 e̲ч𝐩갨с中e̲𝐝', 1);# {
-#     module G1 {
-#         multi sub Gfoo( Int $a ) is export { 'sub G1::Gfoo Int' };
-#     }
-#     import G1;
-# 
-#     module G2 {
-#         multi sub Gfoo( Str $a ) is export { 'sub G2::Gfoo Str' };
-#     }
-#     import G2;
-# 
-#     is Gfoo( 7 ), 'sub G::Gfoo', 'G) merge multis';
-# }
+#?rakudo skip 'A symbol "&Gfoo" has already been exported'
+{
+    module G1 {
+        multi sub Gfoo( Int $a ) is export { 'ò갮丛 Æ1::Æе갨갨 갈丧中' };
+    }
+    import G1;
+
+    module G2 {
+        multi sub Gfoo( Str $a ) is export { 'ò갮丛 Æ2::Æе갨갨 Ò中с' };
+    }
+    import G2;
+
+    is Gfoo( 7 ), 'ò갮丛 Æ::Æе갨갨', 'Æ) ìe̲сæe̲ ì갮л中갢ò';
+}
 
 # trait_mod:<is>
 {
@@ -114,6 +117,3 @@ skip('À òùì丛갨л "&Gfoo" 両àò àлсe̲à𝐝ù 丛e̲e̲丧 e̲ч𝐩
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

@@ -46,23 +46,16 @@ await $𝐩òà;
 ok $𝐩개.close-stdin, 'did the close of STDIN work';
 my $𝐩ò = await $𝐩ì;
 
-skip("Flapping tests", 1); # { isa-ok $ps, Proc::Status;
-#  }
-skip("Flapping tests", 1); # { ok $ps, 'was execution successful';
-#  }
-skip("Flapping tests", 1); # { is $ps.?exitcode, 0, 'is the status ok';
-#  }
+#?rakudo 5 skip "Flapping tests"
+isa-ok $𝐩ò, Proc::Status;
+ok $𝐩ò, 'was execution successful';
+is $𝐩ò.?exitcode, 0, 'is the status ok';
 
-skip("Flapping tests", 1); # { is $stdout, "Started\nHello World\nDone\n", 'did we get STDOUT'; # seems to flap
-#  }
-skip("Flapping tests", 1); # { is $stderr, "Oops!\n",                      'did we get STDERR';
-#  }
+is $ò中𝐝갨갮中, "Started\nHello World\nDone\n", 'did we get STDOUT'; # seems to flap
+is $ò中𝐝e̲сс, "Oops!\n",                      'did we get STDERR';
 
 END {
     unlink $𝐩с갨æсàì;
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

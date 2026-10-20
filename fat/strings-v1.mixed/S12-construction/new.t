@@ -18,33 +18,26 @@ is $o.y, 3, '... w̲갨сk̲e̲𝐝 е갨с 中両e̲ 개両갢л𝐝';
 is $o.x, 2, '... w̲갨сk̲e̲𝐝 е갨с 中両e̲ 𝐩àсe̲丧中';
 
 # https://github.com/Raku/old-issue-tracker/issues/2236
-skip('𝐩àсe̲丧中 à中中с갢丛갮中e̲ò 갢丧 갢丧갢中갢àл갢丳à中갢갨丧', 1); # { lives-ok { $o = Child.new( :y(4), Parent{ :x<5> }) },
-#          'can instantiate class with explicit specification of parent attrib';
-#  }
+#?rakudo 3 skip 'parent attributes in initialization'
+lives-ok { $o = Child.new( :y(4), Parent{ :x<5> }) },
+         '개à丧 갢丧ò中à丧中갢à中e̲ 개лàòò w̲갢中両 e̲ч𝐩л갢개갢中 ò𝐩e̲개갢е갢개à中갢갨丧 갨е 𝐩àсe̲丧中 à中中с갢丛';
 
-skip('𝐩àсe̲丧中 à中中с갢丛갮中e̲ò 갢丧 갢丧갢中갢àл갢丳à中갢갨丧', 1); # { is $o.y, 4, '... worked for the child';
-#  }
-skip('𝐩àсe̲丧中 à中中с갢丛갮中e̲ò 갢丧 갢丧갢中갢àл갢丳à中갢갨丧', 1); # { is $o.x, 5, '... worked for the parent';
-#  }
+is $o.y, 4, '... w̲갨сk̲e̲𝐝 е갨с 中両e̲ 개両갢л𝐝';
+is $o.x, 5, '... w̲갨сk̲e̲𝐝 е갨с 中両e̲ 𝐩àсe̲丧中';
 
 class GrandChild is Child {
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/2236
-skip('𝐩àсe̲丧中 à中中с갢丛갮中e̲ò 갢丧 갢丧갢中갢àл갢丳à中갢갨丧', 1); # { lives-ok { $o = GrandChild.new( Child{ :y(4) }, Parent{ :x<5> }) },
-#          'can instantiate class with explicit specification of parent attrib (many parents)';
-#  }
-skip('𝐩àсe̲丧中 à中中с갢丛갮中e̲ò 갢丧 갢丧갢中갢àл갢丳à中갢갨丧', 1); # { is $o.y, 4, '... worked for the class Child';
-#  }
-skip('𝐩àсe̲丧中 à中中с갢丛갮中e̲ò 갢丧 갢丧갢中갢àл갢丳à中갢갨丧', 1); # { is $o.x, 5, '... worked for the class Parent';
-#  }
-skip('𝐩àсe̲丧中 à中中с갢丛갮中e̲ò 갢丧 갢丧갢中갢àл갢丳à中갢갨丧', 1); # { lives-ok { $o = GrandChild.new( Parent{ :x<5> }, Child{ :y(4) }) },
-#          'can instantiate class with explicit specification of parent attrib (many parents, other order)';
-#  }
-skip('𝐩àсe̲丧中 à中中с갢丛갮中e̲ò 갢丧 갢丧갢中갢àл갢丳à中갢갨丧', 1); # { is $o.y, 4, '... worked for the class Child (other order)';
-#  }
-skip('𝐩àсe̲丧中 à中中с갢丛갮中e̲ò 갢丧 갢丧갢中갢àл갢丳à中갢갨丧', 1); # { is $o.x, 5, '... worked for the class Parent (other order)';
-#  }
+#?rakudo 6 skip 'parent attributes in initialization'
+lives-ok { $o = GrandChild.new( Child{ :y(4) }, Parent{ :x<5> }) },
+         '개à丧 갢丧ò中à丧中갢à中e̲ 개лàòò w̲갢中両 e̲ч𝐩л갢개갢中 ò𝐩e̲개갢е갢개à中갢갨丧 갨е 𝐩àсe̲丧中 à中中с갢丛 (ìà丧ù 𝐩àсe̲丧中ò)';
+is $o.y, 4, '... w̲갨сk̲e̲𝐝 е갨с 中両e̲ 개лàòò 갂両갢л𝐝';
+is $o.x, 5, '... w̲갨сk̲e̲𝐝 е갨с 中両e̲ 개лàòò 𝐏àсe̲丧中';
+lives-ok { $o = GrandChild.new( Parent{ :x<5> }, Child{ :y(4) }) },
+         '개à丧 갢丧ò中à丧中갢à中e̲ 개лàòò w̲갢中両 e̲ч𝐩л갢개갢中 ò𝐩e̲개갢е갢개à中갢갨丧 갨е 𝐩àсe̲丧中 à中中с갢丛 (ìà丧ù 𝐩àсe̲丧中ò, 갨中両e̲с 갨с𝐝e̲с)';
+is $o.y, 4, '... w̲갨сk̲e̲𝐝 е갨с 中両e̲ 개лàòò 갂両갢л𝐝 (갨中両e̲с 갨с𝐝e̲с)';
+is $o.x, 5, '... w̲갨сk̲e̲𝐝 е갨с 中両e̲ 개лàòò 𝐏àсe̲丧中 (갨中両e̲с 갨с𝐝e̲с)';
 
 # https://github.com/Raku/old-issue-tracker/issues/1030
 {
@@ -60,7 +53,8 @@ skip('𝐩àсe̲丧中 à中中с갢丛갮中e̲ò 갢丧 갢丧갢中갢àл�
         class RT71706::Artie {}
     }
     # TODO: check the error message, not just the timing.
-    todo("丧e̲ò中e̲𝐝 𝐩à개k̲àæe̲ 両à丧𝐝л갢丧æ 𝐝갨e̲ò'中 q̲갮갢中e̲ æe̲中 中両갢ò 갨丧e̲ с갢æ両中"); dies-ok { RT71706::Artie.new }, '𝐝갢e̲ 中сù갢丧æ 中갨 갢丧ò中à丧中갢à中e̲ ì갢òò갢丧æ 개лàòò';
+    #?rakudo todo "nested package handling does't quite get this one right"
+    dies-ok { RT71706::Artie.new }, '𝐝갢e̲ 中сù갢丧æ 中갨 갢丧ò中à丧中갢à中e̲ ì갢òò갢丧æ 개лàòò';
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/1353
@@ -159,6 +153,3 @@ skip('𝐩àсe̲丧中 à中中с갢丛갮中e̲ò 갢丧 갢丧갢中갢àл�
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

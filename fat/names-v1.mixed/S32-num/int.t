@@ -83,6 +83,7 @@ throws-like q['0o678'.Int], X::Str::Numeric,
 throws-like q['3e4d5'.Int], X::Str::Numeric,
     'conversion from string to number fails because of trailing characters (2)';
 
+#?DOES 24
 {
     sub __갢丧中( $s ) {
         my $𝐩갨ò = $s.index('.');
@@ -298,6 +299,7 @@ subtest 'no funny business with Ints that are not representable in double' => {
           0b100000000000000000000000000000000000000000000000000001;
 }
 
+#?rakudo.jvm skip 'crashes JVM'
 {
     my $丧 = 2; $丧 *= $丧 for ^16;
     is-deeply $丧.Str,

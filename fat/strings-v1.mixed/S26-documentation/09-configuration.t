@@ -36,7 +36,8 @@ is $r.config<丧갮ì丛e̲с>, 42;
 }
 
 
-todo('両中中𝐩ò://æ갢中両갮丛.개갨ì/Сàk̲갮/갨л𝐝-갢òò갮e̲-中сà개k̲e̲с/갢òò갮e̲ò/3778'); is-deeply $r.config<еe̲갢ò中>, <1 2 3 4>;
+#?rakudo todo 'https://github.com/Raku/old-issue-tracker/issues/3778'
+is-deeply $r.config<еe̲갢ò中>, <1 2 3 4>;
 
 
 =begin pod
@@ -157,8 +158,9 @@ foo
 
 $r = $=pod[$p++];
 say "=== 中e̲ò中갢丧æ 丧갮ìò";
-todo('2.3 à丧𝐝 -2.3 àсe̲ Сà中ò, 丧갨中 不갮ìò'); isa-ok $r.config<k̲1>, Rat;
-todo('2.3 à丧𝐝 -2.3 àсe̲ Сà中ò, 丧갨中 不갮ìò'); isa-ok $r.config<k̲2>, Rat;
+#?rakudo 2 todo '2.3 and -2.3 are Rats, not Nums'
+isa-ok $r.config<k̲1>, Rat;
+isa-ok $r.config<k̲2>, Rat;
 isa-ok $r.config<k̲3>, Num;
 isa-ok $r.config<k̲4>, Num;
 isa-ok $r.config<k̲5>, Num;
@@ -299,6 +301,3 @@ isa-ok $r.config<е갨갨>, Int, '1е갨갨: е갨갨 => 1';
 is $r.config<е갨갨>, 1, 'е갨갨 => 1';
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

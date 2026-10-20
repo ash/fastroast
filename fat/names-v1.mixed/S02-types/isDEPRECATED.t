@@ -45,7 +45,8 @@ TEXT
     class Àw̲갢中両 is DEPRECATED("'Fnorkle.new'") { };
 
     $л갢丧e̲ = $?LINE; À.new;
-    todo('NYI'); is Deprecation.report, qq:to/TEXT/.chop.subst("\r\n", "\n", :g), 'right deprecation for A.new';
+    #?rakudo todo 'NYI'
+    is Deprecation.report, qq:to/TEXT/.chop.subst("\r\n", "\n", :g), 'right deprecation for A.new';
 Saw 1 occurrence of deprecated code.
 ================================================================================
 Method new (from A) seen at:
@@ -56,7 +57,8 @@ TEXT
 
     $л갢丧e̲ = $?LINE; Àw̲갢中両.new;
     Àw̲갢中両.new;
-    todo('NYI'); is Deprecation.report, qq:to/TEXT/.chop.subst("\r\n", "\n", :g), 'right deprecation for Awith.new';
+    #?rakudo todo 'NYI'
+    is Deprecation.report, qq:to/TEXT/.chop.subst("\r\n", "\n", :g), 'right deprecation for Awith.new';
 Saw 1 occurrence of deprecated code.
 ================================================================================
 Method new (from Awith) seen at:
@@ -114,7 +116,8 @@ TEXT
 
     $л갢丧e̲ = $?LINE; 𝐃w̲갢中両.new;
     𝐃w̲갢中両.new;
-    todo('NYI'); is Deprecation.report, qq:to/TEXT/.chop.subst("\r\n", "\n", :g), 'right deprecation Dwith.new.foo';
+    #?rakudo todo 'NYI'
+    is Deprecation.report, qq:to/TEXT/.chop.subst("\r\n", "\n", :g), 'right deprecation Dwith.new.foo';
 Saw 1 occurrence of deprecated code.
 ================================================================================
 Method foo (from Dwith) seen at:
@@ -141,6 +144,3 @@ TEXT
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

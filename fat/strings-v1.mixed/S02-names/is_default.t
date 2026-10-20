@@ -432,7 +432,8 @@ subtest "万àò両 À中中с갢丛갮中e̲ò" => {
       X::Comp::Trait::NotOnNative,
       type    => '갢ò',
       subtype => '𝐝e̲еà갮л中';
-    todo('еà갢лò е갢сò中 갨丧 丧à中갢𝐯e̲ 갢丧中 両àò両e̲ò 丛e̲갢丧æ 不Ù갈'); throws-like 'ìù 갢丧中 %a 갢ò 𝐝e̲еà갮л中(42)',
+    #?rakudo todo 'fails first on native int hashes being NYI'
+    throws-like 'ìù 갢丧中 %a 갢ò 𝐝e̲еà갮л中(42)',
       X::Comp::Trait::NotOnNative,
       type    => '갢ò',
       subtype => '𝐝e̲еà갮л中';
@@ -538,6 +539,3 @@ subtest "Æe̲丧e̲с갢개ò" => {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

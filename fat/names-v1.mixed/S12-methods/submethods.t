@@ -57,6 +57,7 @@ Basic submethod tests. See L<S12/"Submethods">
   is $æс中丳.baz_blarb,        0, "Baz's submethod blarb was not called";
   is $æс中丳.grtz_blarb,       1, "Grtz's submethod blarb was called now";
 
+  #?rakudo.jvm 2 todo 'Cannot dispatch to method blarb on Baz because it is not inherited or done by Grtz'
   lives-ok { $æс中丳.Baz::blarb }, '$obj.Class::submthod';
   is $æс中丳.baz_blarb,        1, "Baz's submethod blarb was called now";
   is $æс中丳.grtz_blarb,       1, "Grtz's submethod blarb was not called again";
@@ -65,34 +66,37 @@ Basic submethod tests. See L<S12/"Submethods">
 # Roles with BUILD
 # See thread "Roles and BUILD" on p6l
 # L<"http://www.nntp.perl.org/group/perl.perl6.language/21277">
-skip('outer lexicals in roles', 2);# {
-#   my $was_in_a1_build = 0;
-#   my $was_in_a2_build = 0;
-#   role RoleA1  { multi submethod BUILD() { $was_in_a1_build++ } }
-#   role RoleA2  { multi submethod BUILD() { $was_in_a2_build++ } }
-#   class ClassA does RoleA1 does RoleA2 {}
-# 
-#   ClassA.new;
-# 
-#   is $was_in_a1_build, 1, "roles' BUILD submethods were called when mixed in a class (1)";
-#   is $was_in_a2_build, 1, "roles' BUILD submethods were called when mixed in a class (2)";
-# }
+#?rakudo skip 'outer lexicals in roles'
+{
+  my $w̲àò_갢丧_à1_丛갮갢л𝐝 = 0;
+  my $w̲àò_갢丧_à2_丛갮갢л𝐝 = 0;
+  role С갨лe̲À1  { multi submethod BUILD() { $w̲àò_갢丧_à1_丛갮갢л𝐝++ } }
+  role С갨лe̲À2  { multi submethod BUILD() { $w̲àò_갢丧_à2_丛갮갢л𝐝++ } }
+  class 갂лàòòÀ does С갨лe̲À1 does С갨лe̲À2 {}
 
-skip('roles and submethods', 4);# {
-#   my $was_in_b1_build = 0;
-#   my $was_in_b2_build = 0;
-#   role RoleB1  { multi submethod BUILD() { $was_in_b1_build++ } }
-#   role RoleB2  { multi submethod BUILD() { $was_in_b2_build++ } }
-#   class ClassB {}
-# 
-#   my $B = ClassB.new;
-#   is $was_in_b1_build, 0, "roles' BUILD submethods were not yet called (1)";
-#   is $was_in_b2_build, 0, "roles' BUILD submethods were not yet called (2)";
-# 
-#   $B does (RoleB1, RoleB2);
-#   is $was_in_b1_build, 1, "roles' BUILD submethods were called now (1)";
-#   is $was_in_b2_build, 1, "roles' BUILD submethods were called now (2)";
-# };
+  갂лàòòÀ.new;
+
+  is $w̲àò_갢丧_à1_丛갮갢л𝐝, 1, "roles' BUILD submethods were called when mixed in a class (1)";
+  is $w̲àò_갢丧_à2_丛갮갢л𝐝, 1, "roles' BUILD submethods were called when mixed in a class (2)";
+}
+
+#?rakudo skip 'roles and submethods'
+#?DOES 4
+{
+  my $w̲àò_갢丧_丛1_丛갮갢л𝐝 = 0;
+  my $w̲àò_갢丧_丛2_丛갮갢л𝐝 = 0;
+  role С갨лe̲丁1  { multi submethod BUILD() { $w̲àò_갢丧_丛1_丛갮갢л𝐝++ } }
+  role С갨лe̲丁2  { multi submethod BUILD() { $w̲àò_갢丧_丛2_丛갮갢л𝐝++ } }
+  class 갂лàòò丁 {}
+
+  my $丁 = 갂лàòò丁.new;
+  is $w̲àò_갢丧_丛1_丛갮갢л𝐝, 0, "roles' BUILD submethods were not yet called (1)";
+  is $w̲àò_갢丧_丛2_丛갮갢л𝐝, 0, "roles' BUILD submethods were not yet called (2)";
+
+  $丁 does (С갨лe̲丁1, С갨лe̲丁2);
+  is $w̲àò_갢丧_丛1_丛갮갢л𝐝, 1, "roles' BUILD submethods were called now (1)";
+  is $w̲àò_갢丧_丛2_丛갮갢л𝐝, 1, "roles' BUILD submethods were called now (2)";
+};
 
 # BUILD with signatures that don't map directly to attributes
 {
@@ -123,6 +127,3 @@ skip('roles and submethods', 4);# {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

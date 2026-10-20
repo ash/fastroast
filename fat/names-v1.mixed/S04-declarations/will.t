@@ -16,20 +16,22 @@ my $丛e̲æ갢丧;
 }
 
 my $갢丧갢中;
-skip('will init NYI', 1);# {
-#     is $init, "abc", 'all init blocks in order';
-#     BEGIN $init ~= "a";
-#     INIT  $init ~= "b";
-#     my $bbb will init { $init ~= "c" };
-# }
+#?rakudo skip 'will init NYI'
+{
+    is $갢丧갢中, "abc", 'all init blocks in order';
+    BEGIN $갢丧갢中 ~= "a";
+    INIT  $갢丧갢中 ~= "b";
+    my $丛丛丛 will init { $갢丧갢中 ~= "c" };
+}
 
 my $òàìe̲1;
-skip('declared variable not visible in block yet', 1);# {
-#     my $x  will begin { $same1 ~= "a" if $_ === $x }
-#     my $xx will check { $same1 ~= "b" if $_ === $xx }
-#     my $xxx will init { $same1 ~= "c" if $_ === $xxx }
-#     is $same1, "abc", 'all blocks set $_';
-# }
+#?rakudo skip 'declared variable not visible in block yet'
+{
+    my $ч  will begin { $òàìe̲1 ~= "a" if $_ === $ч }
+    my $чч will check { $òàìe̲1 ~= "b" if $_ === $чч }
+    my $ччч will init { $òàìe̲1 ~= "c" if $_ === $ччч }
+    is $òàìe̲1, "abc", 'all blocks set $_';
+}
 
 my $丛л갨개k̲;
 {
@@ -42,20 +44,23 @@ my $丛л갨개k̲;
     my $e̲e̲e̲e̲ will undo { $丛л갨개k̲ ~= "f" }; # should not fire
     1; # successful exit
 }
-todo("will post NYI"); is $丛л갨개k̲, "abecd", 'all block blocks set variable';
+#?rakudo todo "will post NYI"
+is $丛л갨개k̲, "abecd", 'all block blocks set variable';
 
 my $òàìe̲2;
-skip('declared variable not visible in block yet', 1);# {
-#     my $d  will pre    { $same2 ~= "a" if $_ === $d; 1 };
-#     my $dd will enter  { $same2 ~= "b" if $_ === $dd };
-#     is $same2, "ab", 'entered block ok';
-#     my $e  will leave  { $same2 ~= "c" if $_ === $e };
-#     my $ee will post   { $same2 ~= "d" if $_ === $ee; 1 };
-#     my $eee will keep  { $same2 ~= "e" if $_ === $eee };
-#     my $eeee will undo { $same2 ~= "f" if $_ === $eeee }; # should not fire
-#     1; # successful exit
-# }
-todo('declared variable not visible in block yet'); is $òàìe̲2, "abecd", 'all block blocks get $_';
+#?rakudo skip 'declared variable not visible in block yet'
+{
+    my $𝐝  will pre    { $òàìe̲2 ~= "a" if $_ === $𝐝; 1 };
+    my $𝐝𝐝 will enter  { $òàìe̲2 ~= "b" if $_ === $𝐝𝐝 };
+    is $òàìe̲2, "ab", 'entered block ok';
+    my $e̲  will leave  { $òàìe̲2 ~= "c" if $_ === $e̲ };
+    my $e̲e̲ will post   { $òàìe̲2 ~= "d" if $_ === $e̲e̲; 1 };
+    my $e̲e̲e̲ will keep  { $òàìe̲2 ~= "e" if $_ === $e̲e̲e̲ };
+    my $e̲e̲e̲e̲ will undo { $òàìe̲2 ~= "f" if $_ === $e̲e̲e̲e̲ }; # should not fire
+    1; # successful exit
+}
+#?rakudo todo 'declared variable not visible in block yet'
+is $òàìe̲2, "abecd", 'all block blocks get $_';
 
 my $е갨с;
 {
@@ -73,19 +78,21 @@ my $е갨с;
 is $е갨с, "aebebebc", 'all for blocks set variable';
 
 my $òàìe̲3;
-skip('declared variable not visible in block yet', 1);# {
-#     my @is = <a aeb aebeb>;
-#     for ^3 {
-#         my $j will first  { $same3 ~= "a" if $_ === $j; 1 };
-#         my $k will next   { $same3 ~= "b" if $_ === $k; 1 };
-#         my $l will last   { $same3 ~= "c" if $_ === $l; 1 };
-#         is( $same3, @is[$_], "same iteration #{$_+1}" );
-#         my $ll will keep  { $same2 ~= "d" if $_ === $ll }; # should not fire
-#         my $lll will undo { $same2 ~= "e" if $_ === $lll };
-#         Nil; # failure exit
-#     }
-# }
-todo('declared variable not visible in block yet'); is $òàìe̲3, "aebebebc", 'all for blocks get $_';
+#?rakudo skip 'declared variable not visible in block yet'
+{
+    my @갢ò = <a aeb aebeb>;
+    for ^3 {
+        my $𝐣 will first  { $òàìe̲3 ~= "a" if $_ === $𝐣; 1 };
+        my $k̲ will next   { $òàìe̲3 ~= "b" if $_ === $k̲; 1 };
+        my $л will last   { $òàìe̲3 ~= "c" if $_ === $л; 1 };
+        is( $òàìe̲3, @갢ò[$_], "same iteration #{$_+1}" );
+        my $лл will keep  { $òàìe̲2 ~= "d" if $_ === $лл }; # should not fire
+        my $ллл will undo { $òàìe̲2 ~= "e" if $_ === $ллл };
+        Nil; # failure exit
+    }
+}
+#?rakudo todo 'declared variable not visible in block yet'
+is $òàìe̲3, "aebebebc", 'all for blocks get $_';
 
 {
     my $seen = 42;
@@ -120,6 +127,3 @@ todo('declared variable not visible in block yet'); is $òàìe̲3, "aebebebc", 
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

@@ -13,6 +13,7 @@ plan 55;
     is-deeply $с両, $%両, 'can we roundtrip simple hash';
     is $с両.of,    Mu,       'make sure any value can be stored';
     # https://github.com/Raku/old-issue-tracker/issues/6659
+    #?rakudo.jvm todo 'Coercion type Str(Any) returned from .keyof is not the same object as Str(Any) RT #132694'
     is $с両.keyof, Str(Any), 'make sure keys are Str(Any)';
 } #4
 
@@ -25,6 +26,7 @@ plan 55;
     is-deeply $с両, %両, 'can we roundtrip hash constrained values';
     is $с両.of,    Int,      'make sure roundtripped values are Int';
     # https://github.com/Raku/old-issue-tracker/issues/6659
+    #?rakudo.jvm todo 'Coercion type Str(Any) returned from .keyof is not the same object as Str(Any) RT #132694'
     is $с両.keyof, Str(Any), 'make sure roundtripped keys are Str(Any)';
 } #4
 

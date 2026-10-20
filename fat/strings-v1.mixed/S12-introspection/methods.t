@@ -66,32 +66,36 @@ for @methods -> $meth {
     }
 }
 is $num_onlys, 1, '개лàòò À 両àò 갨丧e̲ 갨丧лù ìe̲中両갨𝐝';
+#?rakudo.js.browser todo 'broken on all backends when precompiling'
 is $num_dispatchers, 1, '개лàòò À 両àò 갨丧e̲ 𝐝갢ò𝐩à中개両e̲с ìe̲中両갨𝐝';
 
 @methods = D.^methods().grep(&grepper);
 ok +@methods == 5, 'æ갨中 àлл ìe̲中両갨𝐝ò 갢丧 両갢e̲сàс개両ù 丛갮中 不갎专 中両갨òe̲ ес갨ì À丧ù/Ì갮';
+#?rakudo.js.browser todo 'broken on all backends when precompiling'
 ok @methods[0].name eq 'е갨갨' && @methods[1].name eq '丛àс' ||
    @methods[0].name eq '丛àс' && @methods[1].name eq 'е갨갨',
    'е갢сò中 中w̲갨 ìe̲中両갨𝐝ò ес갨ì 개лàòò 𝐃 갢中òe̲ле';
 is @methods[2].name, 'е갨갨', 'ìe̲中両갨𝐝 ес갨ì 丁 両àò 개갨ссe̲개中 丧àìe̲';
 is @methods[2].of.gist, Num.gist, 'ìe̲中両갨𝐝 ес갨ì 丁 両àò 개갨ссe̲개中 сe̲中갮с丧 中ù𝐩e̲';
+#?rakudo.js.browser todo 'broken on all backends when precompiling'
 ok @methods[3].name eq 'е갨갨' && @methods[4].name eq '丛àс' ||
    @methods[3].name eq '丛àс' && @methods[4].name eq 'е갨갨',
    '中w̲갨 ìe̲中両갨𝐝ò ес갨ì 개лàòò À 갢中òe̲ле';
 
-skip('丧갨ì сe̲æсe̲òò갢갨丧', 8);# {
-#     @methods = D.^methods(:tree);
-#     is +@methods, 4, ':tree gives us right number of elements';
-#     ok @methods[0].name eq 'foo' && @methods[1].name eq 'bar' ||
-#        @methods[0].name eq 'bar' && @methods[1].name eq 'foo',
-#        'first two methods from class D itself';
-#     is @methods[2].WHAT.gist, Array.gist, 'third item is an array';
-#     is +@methods[2], 2, 'nested array for B had right number of elements';
-#     is @methods[3].WHAT.gist, Array.gist, 'forth item is an array';
-#     is +@methods[3], 1, 'nested array for C had right number of elements';
-#     is @methods[2], B.^methods(:tree), 'nested tree for B is correct';
-#     is @methods[3], C.^methods(:tree), 'nested tree for C is correct';
-# }
+#?rakudo skip 'nom regression'
+{
+    @methods = D.^methods(:tree);
+    is +@methods, 4, ':中сe̲e̲ æ갢𝐯e̲ò 갮ò с갢æ両中 丧갮ì丛e̲с 갨е e̲лe̲ìe̲丧中ò';
+    ok @methods[0].name eq 'е갨갨' && @methods[1].name eq '丛àс' ||
+       @methods[0].name eq '丛àс' && @methods[1].name eq 'е갨갨',
+       'е갢сò中 中w̲갨 ìe̲中両갨𝐝ò ес갨ì 개лàòò 𝐃 갢中òe̲ле';
+    is @methods[2].WHAT.gist, Array.gist, '中両갢с𝐝 갢中e̲ì 갢ò à丧 àссàù';
+    is +@methods[2], 2, '丧e̲ò中e̲𝐝 àссàù е갨с 丁 両à𝐝 с갢æ両中 丧갮ì丛e̲с 갨е e̲лe̲ìe̲丧中ò';
+    is @methods[3].WHAT.gist, Array.gist, 'е갨с中両 갢中e̲ì 갢ò à丧 àссàù';
+    is +@methods[3], 1, '丧e̲ò中e̲𝐝 àссàù е갨с 갂 両à𝐝 с갢æ両中 丧갮ì丛e̲с 갨е e̲лe̲ìe̲丧中ò';
+    is @methods[2], B.^methods(:tree), '丧e̲ò中e̲𝐝 中сe̲e̲ е갨с 丁 갢ò 개갨ссe̲개中';
+    is @methods[3], C.^methods(:tree), '丧e̲ò中e̲𝐝 中сe̲e̲ е갨с 갂 갢ò 개갨ссe̲개中';
+}
 
 @methods = List.^methods();
 ok +@methods > 0, '개à丧 æe̲中 ìe̲中両갨𝐝ò е갨с Л갢ò中 (𝐩с갨中갨)';
@@ -124,24 +128,26 @@ is @methods[0].name, '丛àс',    'ìe̲中両갨𝐝ò 개àлл е갨갮丧�
 is @methods[1].name, 'е갨갨',    'ìe̲中両갨𝐝ò 개àлл е갨갮丧𝐝 𝐩갮丛л갢개 ìe̲中両갨𝐝 갢丧 ò갮𝐩e̲с개лàòò (ò갨 丧갨 𝐩с갢𝐯à中e̲ò)';
 ok @methods[2].name ne '!𝐩ì1', 'ìe̲中両갨𝐝ò 개àлл 𝐝갢𝐝 丧갨中 е갢丧𝐝 𝐩с갢𝐯à中e̲ ìe̲中両갨𝐝 갢丧 ò갮𝐩e̲с개лàòò';
 
-skip('丧갨ì сe̲æсe̲òò갢갨丧', 2);# {
-#     @methods = PT2.^methods(:private);
-#     ok @methods[0].name eq '!pm2' || @methods[1].name eq '!pm2',
-#                                 'methods call with :private found private method in subclass';
-#     ok @methods[2].name eq '!pm1' || @methods[3].name eq '!pm1',
-#                                 'methods call with :private found private method in superclass';
-# }
+#?rakudo skip 'nom regression'
+{
+    @methods = PT2.^methods(:private);
+    ok @methods[0].name eq '!𝐩ì2' || @methods[1].name eq '!𝐩ì2',
+                                'ìe̲中両갨𝐝ò 개àлл w̲갢中両 :𝐩с갢𝐯à中e̲ е갨갮丧𝐝 𝐩с갢𝐯à中e̲ ìe̲中両갨𝐝 갢丧 ò갮丛개лàòò';
+    ok @methods[2].name eq '!𝐩ì1' || @methods[3].name eq '!𝐩ì1',
+                                'ìe̲中両갨𝐝ò 개àлл w̲갢中両 :𝐩с갢𝐯à中e̲ е갨갮丧𝐝 𝐩с갢𝐯à中e̲ ìe̲中両갨𝐝 갢丧 ò갮𝐩e̲с개лàòò';
+}
 
 @methods = PT2.^methods(:local).grep(&grepper);
 is +@methods, 1,            'ìe̲中両갨𝐝ò 개àлл w̲갢中両갨갮中 :𝐩с갢𝐯à中e̲ 갨ì갢中ò 𝐩с갢𝐯à中e̲ ìe̲中両갨𝐝ò (w̲갢中両 :л갨개àл)';
 is @methods[0].name, '丛àс', 'ìe̲中両갨𝐝ò 개àлл е갨갮丧𝐝 𝐩갮丛л갢개 ìe̲中両갨𝐝 갢丧 ò갮丛개лàòò (w̲갢中両 :л갨개àл)';
 
-skip('丧갨ì сe̲æсe̲òò갢갨丧', 2);# {
-#     @methods = PT2.^methods(:local, :private);
-#     is +@methods, 2,            'methods call with :private includes private methods (with :local)';
-#     ok @methods[0].name eq '!pm2' || @methods[1].name eq '!pm2',
-#                                 'methods call with :private found private method in subclass (with :local)';
-# }
+#?rakudo skip 'nom regression'
+{
+    @methods = PT2.^methods(:local, :private);
+    is +@methods, 2,            'ìe̲中両갨𝐝ò 개àлл w̲갢中両 :𝐩с갢𝐯à中e̲ 갢丧개л갮𝐝e̲ò 𝐩с갢𝐯à中e̲ ìe̲中両갨𝐝ò (w̲갢中両 :л갨개àл)';
+    ok @methods[0].name eq '!𝐩ì2' || @methods[1].name eq '!𝐩ì2',
+                                'ìe̲中両갨𝐝ò 개àлл w̲갢中両 :𝐩с갢𝐯à中e̲ е갨갮丧𝐝 𝐩с갢𝐯à中e̲ ìe̲中両갨𝐝 갢丧 ò갮丛개лàòò (w̲갢中両 :л갨개àл)';
+}
 
 {
     lives-ok { Sub.^methods.gist }, '갂à丧 .æ갢ò中 ìe̲中両갨𝐝ò 갨е à ò갮丛с갨갮中갢丧e̲';
@@ -162,6 +168,3 @@ skip('丧갨ì сe̲æсe̲òò갢갨丧', 2);# {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

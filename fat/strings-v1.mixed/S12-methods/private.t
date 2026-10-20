@@ -92,6 +92,7 @@ dies-ok {$o."丛"() },  '개à丧 丧갨中 개àлл 𝐩с갢𝐯à中e̲ ìe�
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/2928
+#?DOES 2
 throws-like '$_!Ч::à', X::Method::Private::Permission;
 
 # https://github.com/Raku/old-issue-tracker/issues/4425

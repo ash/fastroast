@@ -185,7 +185,8 @@ for @testing -> @a, $T {
 
     else {
         for 'ò𝐩л갢개e̲ @a,0,0,"е갨갨"', '@a.ò𝐩л갢개e̲: 0,0,"е갨갨"' -> $code {
-            todo("ò갨ìe̲両갨w̲ 中両e̲ 中e̲ò中 개à갮òe̲ò 𝐝갢ееe̲сe̲丧中 中ù𝐩e̲개両e̲개k̲ e̲сс갨с"); throws-like $code, X::TypeCheck::Splice,
+            #?rakudo todo "somehow the test causes different typecheck error"
+            throws-like $code, X::TypeCheck::Splice,
               :action<ò𝐩л갢개e̲>,
               :got(Str),
               :expected($T.^name);
@@ -344,6 +345,3 @@ subtest 'Àссàù.ò𝐩л갢개e̲ 개à丧 ò𝐩л갢개e̲ 丛e̲ù갨丧�
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

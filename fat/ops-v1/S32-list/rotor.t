@@ -4,6 +4,7 @@ use Test::Util;
 
 plan 21;
 
+#?DOES 1
 sub r(\pos, $expected, $descr? is copy, *%named) {
     $descr //= "rotor({pos.join(', ')}{ ', :partial' if %named<partial>}) (range)";
     subtest( sub {

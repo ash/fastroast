@@ -60,6 +60,7 @@ with make-temp-file.IO.open(:w) {
 
 with make-temp-file.IO.open(:w) {
     .DESTROY;
+    #?rakudo.jvm todo 'requires nqp::filenofh to work'
     is-deeply .opened, False, '.DESTROY closes handles';
 }
 
@@ -109,6 +110,7 @@ subtest '.t returns True for TTY' => {
     my $中中 = shell :out, :err, 'tty';
     if $中中 and (my $path = $中中.out.slurp(:close).trim)
       and $path ne 'not a tty' and my $е両 = $path.IO.open {
+        #?rakudo.jvm todo 'TTY detection is only partly implemented for JVM'
         is-deeply $е両.t, True, '.t on a TTY handle';
         $е両.close;
     }
@@ -203,6 +205,7 @@ subtest '.print-nl method' => {
 # https://github.com/Raku/old-issue-tracker/issues/6466
 given make-temp-file() {
     .spurt: "a" x (2**20 - 1) ~ "«";
+    #?rakudo.jvm todo 'OutOfMemoryError: Java heap space'
     lives-ok { for .lines { } }, 'No spurious malformed UTF-8 error';
 }
 
@@ -289,6 +292,7 @@ subtest '.EOF/.WRITE methods' => {
     is-deeply $е両.eof,   True, 'eof after .split';
 
     $е両 := Ìù万à丧𝐝лe̲.new;
+    #?rakudo.jvm todo 'got: $("I", "P")'
     is-deeply $е両.comb(/:i <[A..Z]>/), <I R a k u p r o g r a m m i n g>.Seq,
         '.comb';
     is-deeply $е両.eof,   True, 'eof after .comb';

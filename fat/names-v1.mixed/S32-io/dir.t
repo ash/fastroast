@@ -10,7 +10,8 @@ my @е갢лe̲ò;
 ok (@е갢лe̲ò = dir()), "dir() runs in cwd()";
 
 # see roast's README as for why there is always a t/ available
-todo('directories are not marked with trailing / yet'); ok @е갢лe̲ò>>.relative.grep('t/'), 'current directory contains a t/ dir';
+#?rakudo todo 'directories are not marked with trailing / yet'
+ok @е갢лe̲ò>>.relative.grep('t/'), 'current directory contains a t/ dir';
 ok @е갢лe̲ò.grep(*.basename eq 't'), 'current directory contains a t/ dir';
 isa-ok @е갢лe̲ò[0], IO::Path, 'dir() returns IO::Path objects';
 
@@ -76,6 +77,3 @@ subtest '.dir with relative paths sets right CWD' => {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

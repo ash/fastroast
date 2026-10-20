@@ -33,14 +33,15 @@ plan 50;
 
 # Overloading by setting the appropriate code variable
 # https://github.com/Raku/old-issue-tracker/issues/4128
-skip("cannot bind with this LHS", 1);# {
-#   my &infix:<plus>;
-#   BEGIN {
-#     &infix:<plus> := { $^a + $^b };
-#   }
-# 
-#   is 3 plus 5, 8, 'overloading an operator using "my &infix:<...>" worked';
-# }
+#?rakudo skip "cannot bind with this LHS"
+{
+  my &infix:<plus>;
+  BEGIN {
+    &infix:<plus> := { $^a + $^b };
+  }
+
+  is 3 plus 5, 8, 'overloading an operator using "my &infix:<...>" worked';
+}
 
 # Overloading by setting the appropriate code variable using symbolic
 # dereferentiation
@@ -64,9 +65,10 @@ skip("cannot bind with this LHS", 1);# {
 }
 
 # Overriding infix:<;>
+#?rakudo todo 'infix:<;>'
 {
     my proto infix:<;> ($a, $b) { $a + $b }
-    todo('infix:<;>'); is $(3 ; 2), 5  # XXX correct?
+    is $(3 ; 2), 5  # XXX correct?
 }
 
 # here is one that co-erces a MyClass into a Str and a Num.
@@ -94,41 +96,45 @@ skip("cannot bind with this LHS", 1);# {
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/4131
-skip('infix Z will never work; no lexical Z RT #124983', 1);# {
-#   my sub infix:<Z> ($a, $b) {
-#       $a ** $b;
-#   }
-#   is (2 Z 1 Z 2), 4, "default Left-associative works.";
-# }
+#?rakudo skip 'infix Z will never work; no lexical Z RT #124983'
+{
+  my sub infix:<Z> ($a, $b) {
+      $a ** $b;
+  }
+  is (2 Z 1 Z 2), 4, "default Left-associative works.";
+}
 
 # https://github.com/Raku/old-issue-tracker/issues/4131
-skip('no lexical Z RT #124983', 1);# {
-#   my sub infix:<Z> ($a, $b) is assoc('left') {
-#       $a ** $b;
-#   }
-# 
-#   is (2 Z 1 Z 2), 4, "Left-associative works.";
-# }
+#?rakudo skip 'no lexical Z RT #124983'
+{
+  my sub infix:<Z> ($a, $b) is assoc('left') {
+      $a ** $b;
+  }
+
+  is (2 Z 1 Z 2), 4, "Left-associative works.";
+}
 
 # https://github.com/Raku/old-issue-tracker/issues/4131
-skip('no lexical Z RT #124983', 1);# {
-#   my sub infix:<Z> ($a, $b) is assoc('right') {
-#       $a ** $b;
-#   }
-# 
-#   is (2 Z 1 Z 2), 2, "Right-associative works.";
-# }
+#?rakudo skip 'no lexical Z RT #124983'
+{
+  my sub infix:<Z> ($a, $b) is assoc('right') {
+      $a ** $b;
+  }
+
+  is (2 Z 1 Z 2), 2, "Right-associative works.";
+}
 
 # https://github.com/Raku/old-issue-tracker/issues/4131
-skip('no lexical Z RT #124983', 2);# {
-#   my sub infix:<Z> ($a, $b) is assoc('chain') {
-#       $a eq $b;
-#   }
-# 
-# 
-#   is (1 Z 1 Z 1), Bool::True, "Chain-associative works.";
-#   is (1 Z 1 Z 2), Bool::False, "Chain-associative works.";
-# }
+#?rakudo skip 'no lexical Z RT #124983'
+{
+  my sub infix:<Z> ($a, $b) is assoc('chain') {
+      $a eq $b;
+  }
+
+
+  is (1 Z 1 Z 1), Bool::True, "Chain-associative works.";
+  is (1 Z 1 Z 2), Bool::False, "Chain-associative works.";
+}
 
 {
   sub infix:<our_non_assoc_infix> ($a, $b) is assoc('non') {
@@ -184,7 +190,8 @@ skip('no lexical Z RT #124983', 2);# {
     is EVAL('sub infix:<,>($a, $b) { 42 }; 5, 5'), 42, 'infix:<,>($a, $b)';
     is EVAL('sub infix:<,>(Int $x where 1, Int $y where 1) { 42 }; 1, 1'), 42,
        'very specific infix:<,>';
-    todo('RT #65638'); is EVAL('sub infix:<#>($a, $b) { 42 }; 5 # 5'), 42, 'infix:<comment char>($a, $b)';
+    #?rakudo todo 'RT #65638'
+    is EVAL('sub infix:<#>($a, $b) { 42 }; 5 # 5'), 42, 'infix:<comment char>($a, $b)';
     is EVAL('multi sub infix:<+>() { 42 }; 5 + 5'), 10, 'infix:<+>()';
     is EVAL('sub infix:<+>($a, $b) { 42 }; 5 + 5'), 42, 'infix:<+>($a, $b)';
 }
@@ -274,6 +281,3 @@ is infix:['Z~'](<a b>, <c d>), 'ac bd', 'can call autogen infix via compile-time
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

@@ -50,9 +50,7 @@ is(sign(NaN),NaN, 'ò갢æ丧 갨е 不à不 갢ò 不à不');
 
 throws-like { sign(Int) }, Exception;
 
-todo('丛e̲中中e̲с 丛e̲両à𝐯갢갨갮с 갢丧 6.e̲+'); is-deeply (try sign(3+4i)), 0.6+0.8i, '𝐃갨e̲ò ò갢æ丧(갂갨ì𝐩лe̲ч) сe̲中갮с丧 à 갂갨ì𝐩лe̲ч';
+#?rakudo todo 'better behaviour in 6.e+'
+is-deeply (try sign(3+4i)), 0.6+0.8i, '𝐃갨e̲ò ò갢æ丧(갂갨ì𝐩лe̲ч) сe̲中갮с丧 à 갂갨ì𝐩лe̲ч';
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

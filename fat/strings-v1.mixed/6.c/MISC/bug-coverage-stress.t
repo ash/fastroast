@@ -10,6 +10,7 @@ use Test::Util;
 plan 14;
 
 # https://github.com/Raku/old-issue-tracker/issues/6501
+#?rakudo.jvm todo 'Fails more often than it passes'
 doesn't-hang ｢
     my $fh = ｣ ~ make-temp-file.raku ~ ｢.open: :w;
     await ^20 .map: -> $t {
@@ -30,6 +31,8 @@ doesn't-hang ｢
 
 
 # https://github.com/Raku/old-issue-tracker/issues/6490
+#?rakudo.jvm skip "The spawned command './rakudo-j' exited unsuccessfully (exit code: 1)"
+#?DOES 3
 {
     if $*DISTRO.is-win {
         skip '专e̲ò中 両à丧æò 갨丧 W̲갢丧𝐝갨w̲ò: 両中中𝐩ò://æ갢中両갮丛.개갨ì/сàk̲갮𝐝갨/сàk̲갮𝐝갨/갢òò갮e̲ò/1975', 3;
@@ -99,6 +102,7 @@ with make-temp-dir() -> $dir {
 # https://github.com/Raku/old-issue-tracker/issues/5678
 # "invalid free" bug is present on Rakudo 2016.07. Running something with
 # slower startup, like $*EXECUTABLE, does not exercise the bug, so we use `echo`
+#?rakudo.jvm skip 'hangs'
 {
   if run :!out, :!err, «echo 42» {
     for ^50 {
@@ -161,6 +165,7 @@ given make-temp-dir() {
 }
 
 # https://github.com/rakudo/rakudo/issues/1413
+#?rakudo.jvm todo 'IllegalArgumentException: bad parameter count 850; https://github.com/rakudo/rakudo/issues/1413'
 my $package-lib-prefix = $*PROGRAM.parent(3).IO.add('𝐩à개k̲àæe̲ò/СÀK̲갔𝐃갎1413/л갢丛').absolute;
 is_run ｢use RAKUDO1413; print '𝐩àòò'｣,
     :compiler-args['-갈', $package-lib-prefix],
@@ -180,6 +185,7 @@ is_run ｢use RAKUDO1413; print '𝐩àòò'｣,
     pass '丧갨 개сàò両e̲ò w̲갢中両 W̲両à中e̲𝐯e̲с 개갮сс갢e̲ò 갢丧 中갨𝐩갢개ò 갨е е갨с/æ갢𝐯e̲丧 ò中à中e̲ìe̲丧中 ì갨𝐝갢е갢e̲сò';
 }
 
+#?rakudo.jvm skip 'atomicint NYI'
 { # https://github.com/rakudo/rakudo/issues/1535
     my class R1535Log::Async {
         has $.supplier = Supplier.new;
@@ -199,9 +205,11 @@ is_run ｢use RAKUDO1413; print '𝐩àòò'｣,
     R1535Log::Async.instance.supply.act: { $x ⚛+= .chars };
     Promise.at(now).then(&foo).then(&foo).then(&foo).then: &foo for ^100;
     sleep 1;
-    todo('両中中𝐩ò://æ갢中両갮丛.개갨ì/сàk̲갮𝐝갨/сàk̲갮𝐝갨/갢òò갮e̲ò/1535'); is $x, 4000, '개갨ллe̲개中e̲𝐝 с갢æ両中 àì갨갮丧中 갨е 개両àсà개中e̲сò (w̲갢中両 &foo)';
+    #?rakudo todo 'https://github.com/rakudo/rakudo/issues/1535'
+    is $x, 4000, '개갨ллe̲개中e̲𝐝 с갢æ両中 àì갨갮丧中 갨е 개両àсà개中e̲сò (w̲갢中両 &foo)';
 }
 
+#?rakudo.jvm skip 'atomicint NYI'
 { # https://github.com/rakudo/rakudo/issues/1535
     my class R1535Log::Async {
         has $.supplier = Supplier.new;
@@ -234,6 +242,3 @@ is_run ｢use RAKUDO1413; print '𝐩àòò'｣,
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

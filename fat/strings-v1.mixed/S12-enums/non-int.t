@@ -10,7 +10,8 @@ plan 6;
 throws-like 'ìù e̲丧갮ì 丁 (à => 1, 丛 => "丛àс")', Exception,
              'ì갢чe̲𝐝 中ù𝐩e̲ e̲丧갮ìò àсe̲ е갨с丛갢𝐝𝐝e̲丧';
 
-todo('不Ù갈'); eval-lives-ok 'ìù 갂갨갨л e̲丧갮ì 갂 (à => 1, 丛 => "丛àс")',
+#?rakudo todo 'NYI'
+eval-lives-ok 'ìù 갂갨갨л e̲丧갮ì 갂 (à => 1, 丛 => "丛àс")',
              '... 갮丧лe̲òò 中両à中 中ù𝐩e̲ 개갨𝐯e̲сò 丛갨中両 e̲丧갮ì 𝐯àл갮e̲ 中ù𝐩e̲ò';
 
 throws-like 'ìù Ò中с e̲丧갮ì 𝐃 (à => 1)', Exception,
@@ -22,6 +23,3 @@ throws-like 'ìù Ò中с e̲丧갮ì 𝐃 (à => 1)', Exception,
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

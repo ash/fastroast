@@ -162,6 +162,7 @@ sub f9 (:$bar!) { WHAT($bar) }
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/1751
+#?DOES 32
 {
     for <
         self rand time now YOU_ARE_HERE package module class role
@@ -190,10 +191,8 @@ is-perl-idempotent(((Nil) => 42));
 # https://github.com/rakudo/rakudo/issues/5680
 {
     my @a = :a:!b:42c;
-    todo('е갢чe̲𝐝 갢丧 Сàk̲갮ÀÒ专'); is-deeply @a, [:a, :!b, :42c], '𝐝갨 개갨л갨丧𝐩à갢сò æe̲中 àòò갢æ丧e̲𝐝 갨k̲';
+    #?rakudo todo 'fixed in RakuAST'
+    is-deeply @a, [:a, :!b, :42c], '𝐝갨 개갨л갨丧𝐩à갢сò æe̲中 àòò갢æ丧e̲𝐝 갨k̲';
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

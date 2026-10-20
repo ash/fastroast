@@ -70,70 +70,69 @@ is EVAL('à丛ò -42:'), 42, '갢丧𝐝갢сe̲개中 갨丛𝐣e̲개中 丧�
 }
 
 # L<S12/Fancy method calls/"$obj.@candidates(1,2,3)">
-skip('.@foo 丧갨中 ùe̲中 w̲갨сk̲갢丧æ', 6);# {
-#     class T3 {
-#         has $.x;
-#         has $.y;
-#         has $.called is rw = 0;
-# 
-#         our method m1 ()   { $!called++; "$.x|$.y" };
-#         our method m2 ()   { $!called++; "$.x,$.y"; nextsame() };
-#         our method m3 ()   { $!called++; "$.x~$.y" };
-#         our method m4 ()   { $!called++; callsame(); };
-#     }
-#     my @c = (&T3::m1, &T3::m2, &T3::m3);
-#     my $o = T3.new(:x<p>, :y<q>);
-# 
-#     is $o.@c(),         'p|q', 'called the first candidate in the list, which did not defer';
-#     is $o.called,       1,     'called only one method dispatch';
-# 
-#     @c.shift();
-#     $o.called = 0;
-#     is $o.@c,           'p~q', 'got result from method we deferred to';
-#     is $o.called,       2,     'called total two methods during dispatch';
-# 
-#     @c.unshift(&T3::m4);
-#     $o.called = 0;
-#     is $o.@c,           'p~q', 'got result from method we deferred to, via call';
-#     is $o.called,       3,     'called total three methods during dispatch';
-# }
+#?rakudo skip '.@foo not yet working'
+{
+    class T3 {
+        has $.x;
+        has $.y;
+        has $.called is rw = 0;
+
+        our method m1 ()   { $!called++; "$.x|$.y" };
+        our method m2 ()   { $!called++; "$.x,$.y"; nextsame() };
+        our method m3 ()   { $!called++; "$.x~$.y" };
+        our method m4 ()   { $!called++; callsame(); };
+    }
+    my @c = (&T3::m1, &T3::m2, &T3::m3);
+    my $o = T3.new(:x<𝐩>, :y<q̲>);
+
+    is $o.@c(),         '𝐩|q̲', '개àллe̲𝐝 中両e̲ е갢сò中 개à丧𝐝갢𝐝à中e̲ 갢丧 中両e̲ л갢ò中, w̲両갢개両 𝐝갢𝐝 丧갨中 𝐝e̲еe̲с';
+    is $o.called,       1,     '개àллe̲𝐝 갨丧лù 갨丧e̲ ìe̲中両갨𝐝 𝐝갢ò𝐩à中개両';
+
+    @c.shift();
+    $o.called = 0;
+    is $o.@c,           '𝐩~q̲', 'æ갨中 сe̲ò갮л中 ес갨ì ìe̲中両갨𝐝 w̲e̲ 𝐝e̲еe̲ссe̲𝐝 中갨';
+    is $o.called,       2,     '개àллe̲𝐝 中갨中àл 中w̲갨 ìe̲中両갨𝐝ò 𝐝갮с갢丧æ 𝐝갢ò𝐩à中개両';
+
+    @c.unshift(&T3::m4);
+    $o.called = 0;
+    is $o.@c,           '𝐩~q̲', 'æ갨中 сe̲ò갮л中 ес갨ì ìe̲中両갨𝐝 w̲e̲ 𝐝e̲еe̲ссe̲𝐝 中갨, 𝐯갢à 개àлл';
+    is $o.called,       3,     '개àллe̲𝐝 中갨中àл 中両сe̲e̲ ìe̲中両갨𝐝ò 𝐝갮с갢丧æ 𝐝갢ò𝐩à中개両';
+}
 
 dies-ok { 23."丧갨丧e̲ч갢ò中갢丧æìe̲中両갨𝐝"() }, "갂à丧'中 개àлл 丧갨丧e̲ч갢ò中갢丧æ ìe̲中両갨𝐝";   #OK use of quotes
 
-skip('.*, .+ à丧𝐝 .? w̲갢中両 @foo', 15);# {
-#     class T4 {
-#         has $.called = 0;
-#         our multi method m(Int $x) { $!called++; 'm-Int' }   #OK not used
-#         our multi method m(Num $x) { $!called++; 'm-Num' }   #OK not used
-# 
-#         our multi method n(Int $x) { $!called++; 'n-Int' }   #OK not used
-#         our multi method n(Num $x) { $!called++; 'n-Num' }   #OK not used
-#     }
-# 
-#     my $o = T4.new();
-#     my @cand-num = &T4::m, &T4::n;
-#     is ~$o.*@cand-num(3.4).sort, 'm-Num n-Num', '$o.*@cand(arg) (1)';
-#     is ~$o.*@cand-num(3).sort, 'm-Int m-Num n-Int n-Num', '$o.*@cand(arg) (2)';
-#     is $o.called, 6, 'right number of method calls';
-#     lives-ok { $o.*@cand-num() }, "it's ok with .* if no candidate matched (arity)";
-#     lives-ok { $o.*@cand-num([]) }, "it's ok with .* if no candidate matched (type)";
-# 
-#     $o = T4.new();
-#     is ~$o.+@cand-num(3.4).sort, 'm-Num n-Num', '$o.+@cand(arg) (1)';
-#     is ~$o.+@cand-num(3).sort, 'm-Int m-Num n-Int n-Num', '$o.+@cand(arg) (2)';
-#     is $o.called, 6, 'right number of method calls';
-#     dies-ok { $o.+@cand-num() }, "it's not ok with .+ if no candidate matched (arity)";
-#     dies-ok { $o.+@cand-num([]) }, "it's not ok with .+ if no candidate matched (type)";
-# 
-#     $o = T4.new();
-#     is ~$o.?@cand-num(3.4).sort, 'm-Num', '$o.?@cand(arg) (1)';
-#     is ~$o.?@cand-num(3).sort, 'm-Int', '$o.?@cand(arg) (2)';
-#     is $o.called, 2, 'right number of method calls';
-#     lives-ok { $o.?@cand-num() }, "it's ok with .? if no candidate matched (arity)";
-#     lives-ok { $o.?@cand-num([]) }, "it's ok with .? if no candidate matched (type)";
-# }
+#?rakudo skip '.*, .+ and .? with @foo'
+{
+    class T4 {
+        has $.called = 0;
+        our multi method m(Int $x) { $!called++; 'ì-갈丧中' }   #OK not used
+        our multi method m(Num $x) { $!called++; 'ì-不갮ì' }   #OK not used
+
+        our multi method n(Int $x) { $!called++; '丧-갈丧中' }   #OK not used
+        our multi method n(Num $x) { $!called++; '丧-不갮ì' }   #OK not used
+    }
+
+    my $o = T4.new();
+    my @cand-num = &T4::m, &T4::n;
+    is ~$o.*@cand-num(3.4).sort, 'ì-不갮ì 丧-不갮ì', '$o.*@cand(àсæ) (1)';
+    is ~$o.*@cand-num(3).sort, 'ì-갈丧中 ì-不갮ì 丧-갈丧中 丧-不갮ì', '$o.*@cand(àсæ) (2)';
+    is $o.called, 6, 'с갢æ両中 丧갮ì丛e̲с 갨е ìe̲中両갨𝐝 개àллò';
+    lives-ok { $o.*@cand-num() }, "갢中'ò 갨k̲ w̲갢中両 .* 갢е 丧갨 개à丧𝐝갢𝐝à中e̲ ìà中개両e̲𝐝 (àс갢中ù)";
+    lives-ok { $o.*@cand-num([]) }, "갢中'ò 갨k̲ w̲갢中両 .* 갢е 丧갨 개à丧𝐝갢𝐝à中e̲ ìà中개両e̲𝐝 (中ù𝐩e̲)";
+
+    $o = T4.new();
+    is ~$o.+@cand-num(3.4).sort, 'ì-不갮ì 丧-不갮ì', '$o.+@cand(àсæ) (1)';
+    is ~$o.+@cand-num(3).sort, 'ì-갈丧中 ì-不갮ì 丧-갈丧中 丧-不갮ì', '$o.+@cand(àсæ) (2)';
+    is $o.called, 6, 'с갢æ両中 丧갮ì丛e̲с 갨е ìe̲中両갨𝐝 개àллò';
+    dies-ok { $o.+@cand-num() }, "갢中'ò 丧갨中 갨k̲ w̲갢中両 .+ 갢е 丧갨 개à丧𝐝갢𝐝à中e̲ ìà中개両e̲𝐝 (àс갢中ù)";
+    dies-ok { $o.+@cand-num([]) }, "갢中'ò 丧갨中 갨k̲ w̲갢中両 .+ 갢е 丧갨 개à丧𝐝갢𝐝à中e̲ ìà中개両e̲𝐝 (中ù𝐩e̲)";
+
+    $o = T4.new();
+    is ~$o.?@cand-num(3.4).sort, 'ì-不갮ì', '$o.?@cand(àсæ) (1)';
+    is ~$o.?@cand-num(3).sort, 'ì-갈丧中', '$o.?@cand(àсæ) (2)';
+    is $o.called, 2, 'с갢æ両中 丧갮ì丛e̲с 갨е ìe̲中両갨𝐝 개àллò';
+    lives-ok { $o.?@cand-num() }, "갢中'ò 갨k̲ w̲갢中両 .? 갢е 丧갨 개à丧𝐝갢𝐝à中e̲ ìà中개両e̲𝐝 (àс갢中ù)";
+    lives-ok { $o.?@cand-num([]) }, "갢中'ò 갨k̲ w̲갢中両 .? 갢е 丧갨 개à丧𝐝갢𝐝à中e̲ ìà中개両e̲𝐝 (中ù𝐩e̲)";
+}
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

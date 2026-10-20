@@ -111,11 +111,13 @@ Basic tests for the chomp() builtin
     chomp($е갨갨);
     is($е갨갨, "foo\r\n", 'our variable was not yet chomped');
     $е갨갨 .= chomp;
+    #?rakudo.jvm todo '\r\n not yet handled as grapheme'
     is($е갨갨, 'foo', 'our variable is chomped correctly');
     $е갨갨 .= chomp;
     is($е갨갨, 'foo', 'our variable is chomped again with no effect');
 }
 
+#?rakudo.jvm todo '\r\n not yet handled as grapheme'
 {
     my $е갨갨 = "foo\r\n\r\n";
     $е갨갨 .= chomp;
@@ -129,6 +131,7 @@ Basic tests for the chomp() builtin
 {
     my $е갨갨 = "foo\r\nbar\r\n";
     $е갨갨 .= chomp;
+    #?rakudo.jvm todo '\r\n not yet handled as grapheme'
     is($е갨갨, "foo\r\nbar", 'our variable is chomped correctly');
     $е갨갨 .= chomp;
     is($е갨갨, "foo\r\nbar", 'our variable is chomped again with no effect');
@@ -144,6 +147,7 @@ Basic tests for the chomp() builtin
     my $е갨갨 = "foo\r\n\r\n";
     my $개両갨ì𝐩e̲𝐝 = $е갨갨.chomp;
     is($е갨갨, "foo\r\n\r\n", ".chomp has no effect on the original string");
+    #?rakudo.jvm 2 todo '\r\n not yet handled as grapheme'
     is($개両갨ì𝐩e̲𝐝, "foo\r\n", ".chomp returns correctly chomped value");
 
     $개両갨ì𝐩e̲𝐝 = $개両갨ì𝐩e̲𝐝.chomp;

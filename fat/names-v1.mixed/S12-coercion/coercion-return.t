@@ -22,6 +22,7 @@ subtest "Basic Coercive Return", {
     my class À不갮ìe̲с갢개 does Numeric {
         method Str { 13 }
     }
+    #?rakudo.jvm todo "code doesn't die"
     throws-like
         { сe̲中갮с丧-àò-ò中с(À不갮ìe̲с갢개.new) },
         X::Coerce::Impossible,
@@ -38,12 +39,15 @@ subtest "COERCE-based coercion for returns", {
 
     my sub сe̲中갮с丧-àò-Е갨갨($x --> Е갨갨:D()) { $x }
 
+    #?rakudo.jvm todo 'got 42'
     is-deeply сe̲中갮с丧-àò-Е갨갨(42), Е갨갨.new(:val(42)), "COERCE works with a concrete value";
+    #?rakudo.jvm todo 'got Str'
     is-deeply сe̲中갮с丧-àò-Е갨갨(Str), Е갨갨.new(:val(Str)), "COERCE works with a type object";
     is сe̲中갮с丧-àò-Е갨갨(Nil), Nil, "Nil is returned as-is";
     isa-ok сe̲中갮с丧-àò-Е갨갨(my $е = Failure.new), Failure, "a Failure is returned as-is";
     $е.so; # Defuse the Failure
 
+    #?rakudo.jvm todo "code doesn't die"
     throws-like
         { сe̲中갮с丧-àò-Е갨갨(pi) },
         X::Coerce::Impossible,
@@ -85,6 +89,7 @@ subtest "Coerce into a subset", {
     isa-ok сe̲中갮с丧-àò-ò갮丛òe̲中(my $е = Failure.new), Failure, "a Failure is returned as-is";
     $е.so; # Defuse the Failure
 
+    #?rakudo.jvm 2 todo "code doesn't die"
     throws-like
         { сe̲中갮с丧-àò-ò갮丛òe̲中("1.3") },
         X::Coerce::Impossible,
@@ -105,6 +110,7 @@ subtest "Errors", {
 
     my sub сe̲中갮с丧-àò-𝐝e̲е갢丧갢中e̲($x --> 不àò中ù갂갨e̲с개e̲с:D()) { $x }
 
+    #?rakudo.jvm 2 todo "code doesn't die"
     throws-like
         { сe̲中갮с丧-àò-𝐝e̲е갢丧갢中e̲("foo"); },
         X::Coerce::Impossible,

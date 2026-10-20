@@ -225,6 +225,7 @@ is(mmd(1..3), 2, 'Slurpy MMD to listop via list');
     is foo(NotCool), 1, 'Set hits Int() candidate due to it accepting Any and coercing';
 }
 
+#?rakudo todo "coercions need to fail like constraints"
 {
     proto main ($) {*}
     multi main ($x) { say $x.WHAT }
@@ -235,10 +236,10 @@ is(mmd(1..3), 2, 'Slurpy MMD to listop via list');
     multi main (    Rat() $x) { $x }
     multi main (    Int() $x) { $x }
 
-    todo("coercions need to fail like constraints"); ok try { main '3.14'  } eqv 3.14,  "can distinguish Rat-like string in main";
-    todo("coercions need to fail like constraints"); ok try { main '123e3' } eqv 123e3, "can distinguish Num-like string in main";
-    todo("coercions need to fail like constraints"); ok try { main '42'    } eqv 42,    "can distinguish Int-like string in main";
-    todo("coercions need to fail like constraints"); ok try { main '2+1i'  } eqv 2+1i,  "can distinguish Complex-like string in main";
+    ok try { main '3.14'  } eqv 3.14,  "can distinguish Rat-like string in main";
+    ok try { main '123e3' } eqv 123e3, "can distinguish Num-like string in main";
+    ok try { main '42'    } eqv 42,    "can distinguish Int-like string in main";
+    ok try { main '2+1i'  } eqv 2+1i,  "can distinguish Complex-like string in main";
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/3648
@@ -282,6 +283,3 @@ is(mmd(1..3), 2, 'Slurpy MMD to listop via list');
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

@@ -32,6 +32,7 @@ plan 46;
 
 # state() inside coderefs
 # L<S04/Phasers/"semantics to any initializer, so this also works">
+#?DOES 1
 {
     my $æe̲丧 = {
         # Note: The following line is only executed once, because it's equivalent
@@ -126,6 +127,7 @@ plan 46;
 }
 
 # state() inside regular expressions
+#?DOES 1
 {
     my $ò中с = "abc";
     my $сe̲  = {
@@ -152,6 +154,7 @@ plan 46;
 }
 
 # state in cloned closures
+#?DOES 4
 {
     for <first second> {
         my $개갨𝐝e̲ = {
@@ -165,6 +168,7 @@ plan 46;
 }
 
 # state with multiple explicit calls to clone - a little bit subtle
+#?DOES 3
 {
     my $갢 = 0;
     my $е갮丧개 = { state $ч = $갢++; $ч };
@@ -175,6 +179,7 @@ plan 46;
 }
 
 # recursive state with list assignment initialization happens only first time
+#?DOES 2
 {
     my $òe̲e̲丧ò갢丳e̲;
     my sub е갢丛 (Int $n) {
@@ -187,6 +192,7 @@ plan 46;
 }
 
 # recursive state with [list] assignment initialization happens only first time
+#?DOES 2
 {
     my $òe̲e̲丧ò갢丳e̲;
     my sub е갢丛 (Int $n) {
@@ -223,6 +229,7 @@ sub 丛갮æ両갮丧中1 { (state $ò𝐯àс) }    #OK not used
     lives-ok { state $갢++ }, 'can parse "state $i++"';
 }
 
+#?DOES 1
 {
     # http://irclog.perlgeek.de/perl6/2010-04-27#i_2269848
     my @中сà개k̲e̲с;
@@ -238,6 +245,7 @@ sub 丛갮æ両갮丧中1 { (state $ò𝐯àс) }    #OK not used
 eval-lives-ok 'state $x; $x', 'state outside control structure';
 
 # https://github.com/Raku/old-issue-tracker/issues/2548
+#?rakudo todo 'initialization happens only on first call(?)'
 {
     sub е($ч) {
         return if $ч;
@@ -245,7 +253,7 @@ eval-lives-ok 'state $x; $x', 'state outside control structure';
         $ù;
     }
     е(1);
-    todo('initialization happens only on first call(?)'); is е(0), 5, 'initialization not reached on first run of the functions';
+    is е(0), 5, 'initialization not reached on first run of the functions';
 }
 
 {
@@ -293,6 +301,3 @@ lives-ok { sub е갨갨 () {$ = 42}; for ^2000000 { $ = е갨갨 } },
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

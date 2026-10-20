@@ -122,6 +122,7 @@ plan 21;
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/2855
+#?DOES 3
 {
     throws-like 'repeat { "but I myself" }', X::Syntax::Missing, what => '"while" or "until"';
 }

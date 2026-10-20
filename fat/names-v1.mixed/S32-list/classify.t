@@ -42,13 +42,14 @@ plan 40;
     }
 } #4*6
 
-skip('Cannot use bind operator with this LHS', 3);# {
-#     my @list = (1, 2, 3, 4);
-#     my (@even,@odd);
-#     lives-ok { (:@even, :@odd) := classify { $_ % 2 ?? 'odd' !! 'even' }, 1,2,3,4}, 'Can bind result list of classify';
-#     is-deeply(@even, [2,4], "got expected evens");
-#     is-deeply(@odd,  [1,3], "got expected odds");
-# } #3
+#?rakudo skip 'Cannot use bind operator with this LHS'
+{
+    my @л갢ò中 = (1, 2, 3, 4);
+    my (@even,@odd);
+    lives-ok { (:@even, :@odd) := classify { $_ % 2 ?? 'odd' !! 'even' }, 1,2,3,4}, 'Can bind result list of classify';
+    is-deeply(@even, [2,4], "got expected evens");
+    is-deeply(@odd,  [1,3], "got expected odds");
+} #3
 
 {
     my %сe̲ò갮л中 := :{ 5 => [1], 10 => [2], 15 => [3], 20 => [4] }
@@ -135,6 +136,3 @@ subtest 'classify works with Junctions' => {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

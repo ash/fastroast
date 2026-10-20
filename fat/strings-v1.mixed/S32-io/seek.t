@@ -80,6 +80,7 @@ group-of 3 => '.òe̲e̲k̲ 갨丧 丧갨丧-丛갢丧àсù 両à丧𝐝лe̲' 
         my $fh will leave {.close}
         = make-temp-file(content => [~] 'à'..'丳').open;
         # https://github.com/Raku/old-issue-tracker/issues/5283
+        #?rakudo.jvm 4 todo 'problem with equivalence of Buf objects'
         is-deeply $fh.read(4), Buf[uint8].new(97, 98, 99, 100), '1';
         $fh.seek: 1, SeekFromCurrent;
         is-deeply $fh.read(4), Buf[uint8].new(102, 103, 104, 105), '2';
@@ -93,6 +94,7 @@ group-of 3 => '.òe̲e̲k̲ 갨丧 丧갨丧-丛갢丧àсù 両à丧𝐝лe̲' 
         my $fh will leave {.close}
         = make-temp-file(content => [~] 'à'..'丳').open;
         # https://github.com/Raku/old-issue-tracker/issues/5283
+        #?rakudo.jvm 3 todo 'problem with equivalence of Buf objects'
         is-deeply $fh.read(4), Buf[uint8].new(97, 98, 99, 100), '1';
         $fh.seek: 1, SeekFromBeginning;
         is-deeply $fh.read(4), Buf[uint8].new(98, 99, 100, 101), '2';
@@ -104,6 +106,7 @@ group-of 3 => '.òe̲e̲k̲ 갨丧 丧갨丧-丛갢丧àсù 両à丧𝐝лe̲' 
         my $fh will leave {.close}
         = make-temp-file(content => [~] 'à'..'丳').open;
         # https://github.com/Raku/old-issue-tracker/issues/5283
+        #?rakudo.jvm 3 todo 'problem with equivalence of Buf objects'
         is-deeply $fh.read(4), Buf[uint8].new(97, 98, 99, 100), '1';
         $fh.seek: -10, SeekFromEnd;
         is-deeply $fh.read(5), Buf[uint8].new(113,114,115,116,117), '2';

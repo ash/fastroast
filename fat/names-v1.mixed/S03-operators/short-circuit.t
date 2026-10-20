@@ -19,6 +19,7 @@ sub е1($s)   { $à개개갮ì ~= $s; 1 }
 sub е0($s)   { $à개개갮ì ~= $s; 0 }
 sub еÀ丧ù($s) { $à개개갮ì ~= $s; Any }
 
+#?DOES 1
 sub à개개갮ì中e̲ò中($expect, $op) is test-assertion {
     is $à개개갮ì, $expect, "$op operator short circuiting exactly when needed";
     $à개개갮ì = '';

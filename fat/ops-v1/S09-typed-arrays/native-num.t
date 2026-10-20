@@ -92,11 +92,12 @@ for @num -> $T {
     ok @arr.flat ~~ Seq, "$t array .flat returns a Seq";
     ok @arr.eager === @arr, "$t array .eager returns identity";
 
-skip("borkedness with num and iteration", 1);# {
-#     diag qq:!a:!c/my $t \$s = 0e0; for @arr { \$s += \$_ }; \$s/ if !
-#       is EVAL( qq:!a:!c/my $t \$s = 0e0; for @arr { \$s += \$_ }; \$s/ ), 5.3e0,
-#         "Can iterate over $t array";
-# }
+#?rakudo skip "borkedness with num and iteration"
+{
+    diag qq:!a:!c/my $t \$s = 0e0; for @arr { \$s += \$_ }; \$s/ if !
+      is EVAL( qq:!a:!c/my $t \$s = 0e0; for @arr { \$s += \$_ }; \$s/ ), 5.3e0,
+        "Can iterate over $t array";
+}
 
     $_++ for @arr;
     is-approx @arr[0], 2.0e0, "Mutating for loop on $t array works (1)";
@@ -131,22 +132,16 @@ skip("borkedness with num and iteration", 1);# {
 
     is-approx ([+] @arr), 18.6e0, "Can use reduce meta-op on a $t array";
 
-skip('cannot approx test Parcels', 1); # {     is @arr.values,    (4.0e0,5.0e0,4.4e0,5.2e0), ".values from a $t array";
-#  }
-skip('cannot approx test Parcels', 1); # {     is @arr.pairup,  (4.0e0=>5.0e0,4.4e0=>5.2e0), ".pairup from a $t array";
-#  }
-skip('nativeint.list loops on itself', 1); # {     is @arr.keys,                  ( 0, 1, 2, 3), ".keys from a $t array";
-#  }
-skip('nativeint.list loops on itself', 1); # {     is @arr.pairs,     (0=>4.0e0,1=>5.0e0,2=>4.4e0,3=>5.2e0), "[$t].pairs";
-#  }
-skip('nativeint.list loops on itself', 1); # {     is @arr.antipairs, (4.0e0=>0,5.0e0=>1,4.4e0=>2,5.2e0=>3), "[$t].antipairs";
-#  }
-skip('nativeint.list loops on itself', 1); # {     is @arr.kv, (0,4.0e0,1,5.0e0,2,4.4e0,3,5.2e0), ".kv from a $t array";
-#  }
-skip('nativeint.list loops on itself', 1); # {     is @arr.pick,         4.0e0|5.0e0|4.4e0|5.2e0, ".pick from a $t array";
-#  }
-skip('nativeint.list loops on itself', 1); # {     is @arr.roll,         4.0e0|5.0e0|4.4e0|5.2e0, ".roll from a $t array";
-#  }
+    #?rakudo 2 skip 'cannot approx test Parcels'
+    is @arr.values,    (4.0e0,5.0e0,4.4e0,5.2e0), ".values from a $t array";
+    is @arr.pairup,  (4.0e0=>5.0e0,4.4e0=>5.2e0), ".pairup from a $t array";
+    #?rakudo 6 skip 'nativeint.list loops on itself'
+    is @arr.keys,                  ( 0, 1, 2, 3), ".keys from a $t array";
+    is @arr.pairs,     (0=>4.0e0,1=>5.0e0,2=>4.4e0,3=>5.2e0), "[$t].pairs";
+    is @arr.antipairs, (4.0e0=>0,5.0e0=>1,4.4e0=>2,5.2e0=>3), "[$t].antipairs";
+    is @arr.kv, (0,4.0e0,1,5.0e0,2,4.4e0,3,5.2e0), ".kv from a $t array";
+    is @arr.pick,         4.0e0|5.0e0|4.4e0|5.2e0, ".pick from a $t array";
+    is @arr.roll,         4.0e0|5.0e0|4.4e0|5.2e0, ".roll from a $t array";
 
     @arr[1] = @arr[0];
     is-deeply @arr.unique.List, (@arr[0],@arr[2],@arr[3]), "$t array.unique";
@@ -351,6 +346,3 @@ skip('nativeint.list loops on itself', 1); # {     is @arr.roll,         4.0e0|5
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

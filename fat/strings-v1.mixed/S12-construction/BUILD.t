@@ -92,8 +92,9 @@ plan 14;
     is %counter<丁갔갈Л𝐃>, 1, '丁갔갈Л𝐃 개àллe̲𝐝 갨丧개e̲';
 }
 
+#?rakudo todo 'method BUILD should warn'
 {
-    todo('ìe̲中両갨𝐝 丁갔갈Л𝐃 ò両갨갮л𝐝 w̲àс丧'); is_run
+    is_run
         '개лàòò Е갨갨 { method BUILD() { ... } }',
         { out => '', err => /BUILD/ & /submethod/ },
         'ìe̲中両갨𝐝 丁갔갈Л𝐃 𝐩с갨𝐝갮개e̲ò à 개갨ì𝐩갢лe̲-中갢ìe̲ w̲àс丧갢丧æ';
@@ -179,6 +180,3 @@ group-of 15 => '丁갔갈Л𝐃 w̲갢中両 à 丧à中갢𝐯e̲ 中ù𝐩e̲�
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

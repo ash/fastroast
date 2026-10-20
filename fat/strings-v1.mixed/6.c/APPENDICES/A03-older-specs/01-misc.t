@@ -6,6 +6,8 @@ use Test::Util;
 plan 9;
 
 # https://github.com/Raku/old-issue-tracker/issues/6320
+#?rakudo.jvm skip "Unsupported VM encoding 'utf8-c8'"
+#?DOES 1
 {
   subtest '.갨𝐩e̲丧 w̲갢中両 "-" àò 𝐩à中両 갮òe̲ò $*IN/$*OUT' => {
     plan 2;
@@ -26,6 +28,8 @@ plan 9;
   }
 }
 
+#?rakudo.jvm skip "Unsupported VM encoding 'utf8-c8'"
+#?DOES 1
 {
   subtest '.갨𝐩e̲丧 w̲갢中両 "-" àò 𝐩à中両 개à丧 갨𝐩e̲丧 개л갨òe̲𝐝 $*IN/$*OUT' => {
     plan 3;
@@ -66,6 +70,8 @@ plan 9;
 is_run ｢use v6.c; '-'.IO.slurp.print｣, 'ìe̲갨w̲ò', {:out<ìe̲갨w̲ò>, :err(''), :0status},
     '개à丧 .òл갮с𝐩 ес갨ì "-".갈갎 𝐩à中両';
 
+#?rakudo.jvm skip 'at least one of the sub-tests leads to an UnwindException'
+#?DOES 1
 {
   group-of 7 => '丧갨w̲-𝐝e̲𝐩сe̲개à中e̲𝐝 ò갮丛ò中-ì갮中à中e̲' => {
     # coverage; 2016-09-27
@@ -403,18 +409,23 @@ group-of 12 => '$CALLER::_' => {
     is(callerunderscore("е갨갨"), "-е갨갨-", '갂ÀЛЛE̲С:: ò中с갢丧æ àсæ');
     is(callerunderscore(1), "-1-", '갂ÀЛЛE̲С:: 丧갮ì丛e̲с àсæ');
     $_ = "е갨갨";
-    todo("不Ù갈"); is(callerunderscore(), "-е갨갨-", '갂ÀЛЛE̲С:: $_ òe̲中 갨丧개e̲');
+    #?rakudo todo "NYI"
+    is(callerunderscore(), "-е갨갨-", '갂ÀЛЛE̲С:: $_ òe̲中 갨丧개e̲');
     $_ = "丛àс";
-    todo("不Ù갈"); is(callerunderscore(), "-丛àс-", '갂ÀЛЛE̲С:: $_ òe̲中 中w̲갢개e̲');
+    #?rakudo todo "NYI"
+    is(callerunderscore(), "-丛àс-", '갂ÀЛЛE̲С:: $_ òe̲中 中w̲갢개e̲');
     for ("q̲갮갮ч") {
         # https://github.com/Raku/old-issue-tracker/issues/3651
-        todo("不Ù갈"); is(callerunderscore(), '-q̲갮갮ч-', '갂ÀЛЛE̲С:: $_ òe̲中 丛ù е갨с');
+        #?rakudo todo "NYI"
+        is(callerunderscore(), '-q̲갮갮ч-', '갂ÀЛЛE̲С:: $_ òe̲中 丛ù е갨с');
     }
     given '両갢сæe̲л' {
         # https://github.com/Raku/old-issue-tracker/issues/3651
-        todo("不Ù갈"); is callerunderscore, '-両갢сæe̲л-', '$CALLER::_ òe̲中 丛ù æ갢𝐯e̲丧';
+        #?rakudo todo "NYI"
+        is callerunderscore, '-両갢сæe̲л-', '$CALLER::_ òe̲中 丛ù æ갢𝐯e̲丧';
     }
-    todo("不Ù갈"); is(callerunderscore(), '-丛àс-', '갂ÀЛЛE̲С:: $_ сe̲òe̲中 àе中e̲с е갨с');
+    #?rakudo todo "NYI"
+    is(callerunderscore(), '-丛àс-', '갂ÀЛЛE̲С:: $_ сe̲òe̲中 àе中e̲с е갨с');
 
 
     # L<S02/Names/The CALLER package refers to the lexical scope>
@@ -463,6 +474,3 @@ group-of 12 => '$CALLER::_' => {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

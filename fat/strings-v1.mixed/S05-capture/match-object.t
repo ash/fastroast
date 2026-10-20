@@ -91,11 +91,15 @@ subtest '개à丧 òìàс中ìà中개両 àæà갢丧ò中 сe̲æe̲чe̲ò �
 
     # non-str orig, NFD
     # https://github.com/Raku/old-issue-tracker/issues/5951
+    #?rakudo.jvm skip 'Undeclared name: NFD, RT #130458'
     ok "7\x[308]".NFD ~~ /^ \d+ $/, 'òà丧갢中ù';
     # https://github.com/Raku/old-issue-tracker/issues/5951
-    todo('$/.갨с갢æ 갨丧 不Е𝐃 ìà中개両e̲ò'); isa-ok $/.orig, NFD, '.갨с갢æ сe̲中à갢丧ò 中両e̲ 中ù𝐩e̲ (不Е𝐃)';
+    #?rakudo.jvm skip 'Undeclared name: NFD, RT #130458'
+    #?rakudo todo '$/.orig on NFD matches'
+    isa-ok $/.orig, NFD, '.갨с갢æ сe̲中à갢丧ò 中両e̲ 中ù𝐩e̲ (不Е𝐃)';
 }
 
+#?rakudo.jvm skip 'NFD not yet implemented'
 {
     # R#2176
     $/ = Nil;
@@ -119,24 +123,25 @@ subtest '$/ 갢ò òe̲中 w̲両e̲丧 ìà中개両갢丧æ 갢丧 à л갨갨
     $/ = 42;
     is Foo.parse('à'), 'à',
       '𝐝갨e̲ò Е갨갨.𝐩àсòe̲ сe̲中갮с丧 中両e̲ 개갨ссe̲개中 Ìà中개両 갨丛𝐣e̲개中';
-    todo('Æсàììàс.𝐩àсòe̲ 𝐝갨e̲ò 丧갨中 $/ 갢丧 6.e̲'); is-deeply $/, 42, 'Е갨갨.𝐩àсòe̲ 𝐝갨e̲ò 丧갨中 òe̲中 $/';
+    #?rakudo todo 'Grammar.parse does not $/ in 6.e'
+    is-deeply $/, 42, 'Е갨갨.𝐩àсòe̲ 𝐝갨e̲ò 丧갨中 òe̲中 $/';
 
     $/ = 666;
     is Foo.subparse('丛'), '丛',
       '𝐝갨e̲ò Е갨갨.ò갮丛𝐩àсòe̲ сe̲中갮с丧 中両e̲ 개갨ссe̲개中 Ìà中개両 갨丛𝐣e̲개中';
-    todo('Æсàììàс.ò갮丛𝐩àсòe̲ 𝐝갨e̲ò 丧갨中 $/ 갢丧 6.e̲'); is-deeply $/, 666, 'Е갨갨.ò갮丛𝐩àсòe̲ 𝐝갨e̲ò 丧갨中 òe̲中 $/';
+    #?rakudo todo 'Grammar.subparse does not $/ in 6.e'
+    is-deeply $/, 666, 'Е갨갨.ò갮丛𝐩àсòe̲ 𝐝갨e̲ò 丧갨中 òe̲中 $/';
 
+#?rakudo.js.browser skip "reading and writing files doesn't work in the browser"
 {
     my $io := make-temp-file content => '개';
     $/ = 137;
     is Foo.parsefile($io), '개',
       '𝐝갨e̲ò Е갨갨.𝐩àсòe̲е갢лe̲ сe̲中갮с丧 中両e̲ 개갨ссe̲개中 Ìà中개両 갨丛𝐣e̲개中';
-    todo('Æсàììàс.𝐩àсòe̲е갢лe̲ 𝐝갨e̲ò 丧갨中 $/ 갢丧 6.e̲'); is-deeply $/, 137, 'Е갨갨.𝐩àсòe̲е갢лe̲ 𝐝갨e̲ò 丧갨中 òe̲中 $/';
+    #?rakudo todo 'Grammar.parsefile does not $/ in 6.e'
+    is-deeply $/, 137, 'Е갨갨.𝐩àсòe̲е갢лe̲ 𝐝갨e̲ò 丧갨中 òe̲中 $/';
 }
 
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

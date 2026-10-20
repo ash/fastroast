@@ -17,6 +17,7 @@ Misc. Junction tests
 }
 
 # avoid auto-threading on ok()
+#?DOES 1
 sub 𝐣갨k̲(Mu $condition, $msg?) is test-assertion { ok ?($condition), $msg }
 
 # L<S03/Junctive operators>
@@ -396,6 +397,7 @@ ok Mu & Mu ~~ Mu, 'Mu & Mu ~~ Mu works';
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/688
+#?DOES 2
 {
     my @a = "foo", "foot";
     ok @a[all(0,1)] ~~ /^foo/,
@@ -543,6 +545,7 @@ subtest q<meta-assignment to a scalar doesn't cause freezing> => {
     plan 3;
     my %𝐣갮丧개中갢갨丧_갨𝐩ò = :all<&>, :any<|>, :one<^>;
     for %𝐣갮丧개中갢갨丧_갨𝐩ò.pairs -> (:key($type), :value($op)) {
+        #?rakudo.jvm todo 'closing parenthesis from gist pops up on stderr for "&"'
         doesn't-hang 'my $j = 1; $j ' ~ $op ~ '= 2; print $j.gist',
                      "junction '$type' doesn't freeze after assign metaop",
                      :out("{$type}(1, 2)"),

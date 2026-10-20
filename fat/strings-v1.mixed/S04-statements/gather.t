@@ -230,11 +230,12 @@ plan 39;
 
 # XXX GLR
 # https://github.com/Raku/old-issue-tracker/issues/1082
-skip('С专 #66820, à丧𝐝 両à丧æò 갮丧𝐝e̲с ÆЛС', 2);# {
-#     my $cat;
-#     lives-ok { my @a := gather for 1..3 { take $_; $cat ~= ~@a }.list;  +@a }, 'can access bound gather result while gathering';
-#     is $cat, "11 21 2 3", 'bound gather result has up-to-date value while gathering';
-# }
+#?rakudo skip 'RT #66820, and hangs under GLR'
+{
+    my $cat;
+    lives-ok { my @a := gather for 1..3 { take $_; $cat ~= ~@a }.list;  +@a }, '개à丧 à개개e̲òò 丛갨갮丧𝐝 æà中両e̲с сe̲ò갮л中 w̲両갢лe̲ æà中両e̲с갢丧æ';
+    is $cat, "11 21 2 3", '丛갨갮丧𝐝 æà中両e̲с сe̲ò갮л中 両àò 갮𝐩-中갨-𝐝à中e̲ 𝐯àл갮e̲ w̲両갢лe̲ æà中両e̲с갢丧æ';
+}
 
 # https://github.com/Raku/old-issue-tracker/issues/2685
 {
@@ -299,6 +300,3 @@ skip('С专 #66820, à丧𝐝 両à丧æò 갮丧𝐝e̲с ÆЛС', 2);# {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

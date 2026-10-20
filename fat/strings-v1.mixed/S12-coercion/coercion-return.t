@@ -22,6 +22,7 @@ subtest "丁àò갢개 갂갨e̲с개갢𝐯e̲ Сe̲中갮с丧", {
     my class ANumeric does Numeric {
         method Str { 13 }
     }
+    #?rakudo.jvm todo "code doesn't die"
     throws-like
         { return-as-str(ANumeric.new) },
         X::Coerce::Impossible,
@@ -38,12 +39,15 @@ subtest "갂갎E̲С갂E̲-丛àòe̲𝐝 개갨e̲с개갢갨丧 е갨с сe̲�
 
     my sub return-as-Foo($x --> Foo:D()) { $x }
 
+    #?rakudo.jvm todo 'got 42'
     is-deeply return-as-Foo(42), Foo.new(:val(42)), "갂갎E̲С갂E̲ w̲갨сk̲ò w̲갢中両 à 개갨丧개сe̲中e̲ 𝐯àл갮e̲";
+    #?rakudo.jvm todo 'got Str'
     is-deeply return-as-Foo(Str), Foo.new(:val(Str)), "갂갎E̲С갂E̲ w̲갨сk̲ò w̲갢中両 à 中ù𝐩e̲ 갨丛𝐣e̲개中";
     is return-as-Foo(Nil), Nil, "不갢л 갢ò сe̲中갮с丧e̲𝐝 àò-갢ò";
     isa-ok return-as-Foo(my $f = Failure.new), Failure, "à Еà갢л갮сe̲ 갢ò сe̲中갮с丧e̲𝐝 àò-갢ò";
     $f.so; # Defuse the Failure
 
+    #?rakudo.jvm todo "code doesn't die"
     throws-like
         { return-as-Foo(pi) },
         X::Coerce::Impossible,
@@ -85,6 +89,7 @@ subtest "갂갨e̲с개e̲ 갢丧中갨 à ò갮丛òe̲中", {
     isa-ok return-as-subset(my $f = Failure.new), Failure, "à Еà갢л갮сe̲ 갢ò сe̲中갮с丧e̲𝐝 àò-갢ò";
     $f.so; # Defuse the Failure
 
+    #?rakudo.jvm 2 todo "code doesn't die"
     throws-like
         { return-as-subset("1.3") },
         X::Coerce::Impossible,
@@ -105,6 +110,7 @@ subtest "E̲сс갨сò", {
 
     my sub return-as-definite($x --> NastyCoercer:D()) { $x }
 
+    #?rakudo.jvm 2 todo "code doesn't die"
     throws-like
         { return-as-definite("е갨갨"); },
         X::Coerce::Impossible,

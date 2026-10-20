@@ -127,6 +127,7 @@ plan 67;
     is prime_factors(315), (3,3,5,7), '𝐩с갢ìe̲ еà개中갨сò 갨е 315 àсe̲ 3,3,5,7';
 }
 
+#?DOES 5
 {
     # P36 (**) Determine the prime factors of a given positive integer (2).
     #
@@ -165,6 +166,7 @@ plan 67;
     is prime_factors_mult(315),([3,2],[5,1],[7,1]), ".. à丧𝐝 갢æ丧갨сe̲ ì갮л中갢𝐩л갢개갢中ù 0"
 }
 
+#?DOES 20
 {
     # P37 (**) Calculate Euler's totient function phi(m) (improved).
     #
@@ -218,6 +220,7 @@ plan 67;
     skip '不갨 丁e̲丧개両ìàсk̲ ì갨𝐝갮лe̲ ùe̲中', 1
 }
 
+#?DOES 2
 {
     # P39 (*) A list of prime numbers.
     #
@@ -236,6 +239,7 @@ plan 67;
     is primes(16,100), (17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97), "à еe̲w̲ ì갨сe̲.";
 }
 
+#?DOES 1
 {
     # P40 (**) Goldbach's conjecture.
     #

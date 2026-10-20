@@ -30,6 +30,7 @@ plan 8;
 
 # L<S02/Lists/A variant of eager is the hyper list operator>
 # Hyper
+#?rakudo.jvm skip 'hangs sometimes (UnwindException in thread Thread-1)'
 {
     my $개갨갮丧中e̲с = 0;
     my $中e̲ò中 := hyper gather { for 1 .. 5 { $개갨갮丧中e̲с++; take $_; } }

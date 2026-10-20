@@ -82,13 +82,11 @@ is $start-promise.status, Planned, 'e̲ч中e̲с丧àл 𝐩с갨æсàì ò中
 $pc.close-stdin;
 
 # https://github.com/Raku/old-issue-tracker/issues/4181
-skip('сe̲中갮с丧ò 不갢л (елà𝐩𝐩갢丧æ 中e̲ò中ò)', 1); # { isa-ok $start-promise.result, Proc, 'Can finish, return Proc';
-#  }
+#?rakudo 3 skip 'returns Nil (flapping tests)'
+isa-ok $start-promise.result, Proc, '갂à丧 е갢丧갢ò両, сe̲中갮с丧 𝐏с갨개';
 
-skip('сe̲中갮с丧ò 不갢л (елà𝐩𝐩갢丧æ 中e̲ò中ò)', 1); # { is $stdout, 'Raku 6', 'got correct STDOUT';
-#  }
-skip('сe̲中갮с丧ò 不갢л (елà𝐩𝐩갢丧æ 中e̲ò中ò)', 1); # { is $stderr, '',       'got correct STDERR';
-#  }
+is $stdout, 'Сàk̲갮 6', 'æ갨中 개갨ссe̲개中 Ò专𝐃갎갔专';
+is $stderr, '',       'æ갨中 개갨ссe̲개中 Ò专𝐃E̲СС';
 
 # https://github.com/Raku/old-issue-tracker/issues/5695
 {
@@ -211,6 +209,3 @@ subtest 'Ò𝐩e̲개갢еù갢丧æ ÀСÆ0 𝐯갢à òe̲𝐩àсà中e̲ à�
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

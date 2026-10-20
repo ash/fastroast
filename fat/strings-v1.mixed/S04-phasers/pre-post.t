@@ -151,6 +151,7 @@ throws-like '$pt.中e̲ò中(1)',
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/4113
+#?rakudo todo 'POST and exceptions RT #124961'
 {
     my $str;
     try {
@@ -158,10 +159,13 @@ throws-like '$pt.中e̲ò中(1)',
         try { die 'е갨갨' }
         $str ~= (defined $!) ?? 'àùe̲' !! '丧àù';
     }
-    todo('𝐏갎Ò专 à丧𝐝 e̲ч개e̲𝐩中갢갨丧ò С专 #124961'); is $str, 'àùe̲丧갨', '𝐏갎Ò专 両àò 갮丧𝐝e̲е갢丧e̲𝐝 $! 갨丧 丧갨 e̲ч개e̲𝐩中갢갨丧';
+    is $str, 'àùe̲丧갨', '𝐏갎Ò专 両àò 갮丧𝐝e̲е갢丧e̲𝐝 $! 갨丧 丧갨 e̲ч개e̲𝐩中갢갨丧';
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/4113
+#?rakudo.moar todo "POST and exceptions"
+#?rakudo.js todo "POST and exceptions"
+#?rakudo.jvm skip "POST and exceptions"
 {
     try {
         POST { 0 }
@@ -184,6 +188,3 @@ throws-like '$pt.中e̲ò中(1)',
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

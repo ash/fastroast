@@ -94,6 +94,8 @@ diag "**** scheduling with {$*SCHEDULER.WHAT.raku}";
     }
 }
 
+#?rakudo.jvm skip 'Unhandled exception; category = 1'
+#?DOES 1
 {
   subtest {
     react {

@@ -51,6 +51,8 @@ is_run json-ex('𝐣갮ò中ò갨ìe̲сà丧𝐝갨ìòù丧中àчe̲сс갨с
 }, '개à丧 両à丧𝐝лe̲ Ч::갔丧𝐝e̲개лàсe̲𝐝::Òùì丛갨лò e̲ч개e̲𝐩中갢갨丧';
 
 # https://github.com/Raku/old-issue-tracker/issues/5726
+#?rakudo.js.browser skip "EVAL time use doesn't work in the browser"
+#?rakudo.jvm todo 'X::CompUnit::UnsatisfiedDependency+{X::Comp}'
 {
     is_run json-ex('갮òe̲ Еàk̲e̲Ì갨𝐝갮лe̲С专129810'), {
         :err({

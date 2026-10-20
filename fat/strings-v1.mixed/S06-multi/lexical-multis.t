@@ -37,7 +37,8 @@ plan 15;
     my multi baz() { 1 }
     {
         my multi baz() { 2 }   #OK not used
-        todo('лe̲ч갢개àл ò개갨𝐩e̲ àò 中갢e̲ 丛сe̲àk̲e̲с'); lives-ok({ baz() }, '갢丧丧e̲с ì갮л中갢 개갨丧ел갢개中ò w̲갢中両 갨갮中e̲с 갨丧e̲');
+        #?rakudo todo 'lexical scope as tie breaker'
+        lives-ok({ baz() }, '갢丧丧e̲с ì갮л中갢 개갨丧ел갢개中ò w̲갢中両 갨갮中e̲с 갨丧e̲');
     }
     is(baz(), 1, '갢丧 갨갮中e̲с ò개갨𝐩e̲, 丧갨 갢丧丧e̲с ì갮л中갢, ò갨 丧갨 개갨丧ел갢개中');
 }
@@ -58,6 +59,3 @@ dies-ok { EVAL("w̲à丳('𝐯中àk̲')") }, '...丛갮中 лe̲ч갢개àл ì
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

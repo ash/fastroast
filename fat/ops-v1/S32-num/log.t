@@ -54,7 +54,8 @@ is-approx(log10(0.1), $log10_one_tenth, 'got the log10 of 0.1');
 
 is( log(0), -Inf, 'log(0) = -Inf');
 is( log(∞), ∞, 'log(Inf) = Inf');
-todo('better behaviour in 6.e+'); is( log(-Inf), 'Inf+3.141592653589793i', 'log(-Inf) = complex');
+#?rakudo todo 'better behaviour in 6.e+'
+is( log(-Inf), 'Inf+3.141592653589793i', 'log(-Inf) = complex');
 is( log(NaN), NaN, 'log(NaN) = NaN');
 
 is( log2(∞), ∞, 'log2(Inf) = Inf');
@@ -62,7 +63,8 @@ is( log2(NaN), NaN, 'log2(NaN) = NaN');
 
 is( log10(0), -Inf, 'log10(0) = -Inf');
 is( log10(∞), ∞, 'log10(Inf) = Inf');
-todo('better behaviour in 6.e+'); is( log10(-Inf), 'Inf+1.3643763538418412i', 'log10(-Inf) = complex');
+#?rakudo todo 'better behaviour in 6.e+'
+is( log10(-Inf), 'Inf+1.3643763538418412i', 'log10(-Inf) = complex');
 is( log10(NaN), NaN, 'log10(NaN) = NaN');
 
 
@@ -108,9 +110,7 @@ is-approx(log10(-1i), -0.5i * $pi ÷ log(10), "got the log10 of -i (complex unit
 is-approx( (-1i).log10(), -0.5i*$pi ÷ log(10), " (i).log10 = - i  * pi/(2 log(10))");
 isa-ok( log10(-1+0i), Complex, 'log10 of a complex returns a complex, not a list');
 
-todo('HugeInt.log'); is-approx (10 ** 1000).log10, 1000, "Can take the log of very large Ints";
+#?rakudo todo 'HugeInt.log'
+is-approx (10 ** 1000).log10, 1000, "Can take the log of very large Ints";
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

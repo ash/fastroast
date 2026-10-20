@@ -85,6 +85,7 @@ throws-like { shell("program_that_does_not_exist_ignore_errors_please.exe") },
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/5374
+#?rakudo.jvm skip 'hangs'
 {
     my $𝐩 = Proc::Async.new: :w, $*EXECUTABLE, "-ne",
         Q!last if /2/; .say; LAST { say "test worked" }!;
@@ -95,6 +96,7 @@ throws-like { shell("program_that_does_not_exist_ignore_errors_please.exe") },
     await $𝐩.write: "1\n2\n3\n4\n".encode;
     await $𝐩с갨ì;
 
+    #?rakudo.moar todo 'RT 128398'
     is $ò中𝐝갨갮中, "1\ntest worked\n",
         'LAST phaser gets triggered when using -n command line switch';
 }

@@ -13,7 +13,8 @@ eval-lives-ok q[ role StubB { ... }; role StubB { method foo { } }; ],
 eval-lives-ok q[ module StubC { ... }; module StubC { sub foo { } }; ],
               'Can stub a module, and later on declare it';
 
-todo('nom regression'); eval-lives-ok q[ package StubD { ... }; class StubD { method foo { } }; ],
+#?rakudo todo 'nom regression'
+eval-lives-ok q[ package StubD { ... }; class StubD { method foo { } }; ],
               'Can stub a package, and later on implement it as a class';
 
 throws-like q[my class StubbedButNotDeclared { ... }], X::Package::Stubbed,
@@ -57,6 +58,3 @@ subtest "all forms of yadas work to stub classes" => {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

@@ -15,10 +15,10 @@ is ([+&] ()), +^0, "[+&] () eq +^0";
 ok( !([+<] ()).defined, "[+<] () should fail");
 ok( !([+>] ()).defined, "[+>] () should fail");
 ok( !([~&] ()).defined, "[~&] () should fail");
-skip("~< NYI", 1); # { ok( !([~<] ()).defined, "[~<] () should fail");
-#  }
-skip("~> NYI", 1); # { ok( !([~>] ()).defined, "[~>] () should fail");
-#  }
+#?rakudo skip "~< NYI"
+ok( !([~<] ()).defined, "[~<] () should fail");
+#?rakudo skip "~> NYI"
+ok( !([~>] ()).defined, "[~>] () should fail");
 is ([+] ()), 0, "[+] () eq 0";
 is ([-] ()), 0, "[-] () eq 0";
 is ([~] ()), '', "[~] () eq ''";
@@ -65,6 +65,3 @@ is ([!=] 3), Bool::True, 'unary [!=]';
 is ([!==] 3), Bool::True, 'unary [!==]';
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

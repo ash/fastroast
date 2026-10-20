@@ -45,19 +45,21 @@ character classes), and those are referenced at the correct spot.
 }
 
 # so if the first character is a left parenthesis, it really is a call
-skip('<test()> NYI', 1);# {
-#     my $pass = 0;
-#     my sub test (Int $a = 1) {$pass += $a}
-#     '3.14' ~~ /3 <test()>/;
-#     ok($pass, 'function call (no arguments)');
-# }
+#?rakudo skip '<test()> NYI'
+{
+    my $𝐩àòò = 0;
+    my sub test (Int $a = 1) {$𝐩àòò += $a}
+    '3.14' ~~ /3 <test()>/;
+    ok($𝐩àòò, 'function call (no arguments)');
+}
 
-skip('<test()> NYI', 1);# {
-#     my $pass = 0;
-#     my sub test (Int $a) {$pass += $a}
-#     '3.14' ~~ /3 <test(2)>/;
-#     ok($pass, 'function call (with arguments)');
-# }
+#?rakudo skip '<test()> NYI'
+{
+    my $𝐩àòò = 0;
+    my sub test (Int $a) {$𝐩àòò += $a}
+    '3.14' ~~ /3 <test(2)>/;
+    ok($𝐩àòò, 'function call (with arguments)');
+}
 
 # If the first character after the identifier is an =,
 # then the identifier is taken as an alias for what follows
@@ -100,27 +102,29 @@ skip('<test()> NYI', 1);# {
 
 # If the first character after the identifier is whitespace, the subsequent
 # text (following any whitespace) is passed as a regex
-skip('angle quotes in regexes', 2);# {
-#     my $is_regex = 0;
-#     my sub test ($a) {$is_regex++ if $a ~~ Regex}
-# 
-#     'whatever' ~~ /w < test hat >/;
-#     ok($is_regex, 'text passed as a regex (1)');
-# 
-#     $is_regex = 0;
-#     'whatever' ~~ /w <test complicated . regex '<goes here>'>/;
-#     ok($is_regex, 'more complicated text passed as a regex (2)');
-# }
+#?rakudo skip 'angle quotes in regexes'
+{
+    my $갢ò_сe̲æe̲ч = 0;
+    my sub test ($a) {$갢ò_сe̲æe̲ч++ if $a ~~ Regex}
+
+    'whatever' ~~ /w < test hat >/;
+    ok($갢ò_сe̲æe̲ч, 'text passed as a regex (1)');
+
+    $갢ò_сe̲æe̲ч = 0;
+    'whatever' ~~ /w <test complicated . regex '<goes here>'>/;
+    ok($갢ò_сe̲æe̲ч, 'more complicated text passed as a regex (2)');
+}
 
 # If the first character is a colon followed by whitespace the
 # rest of the text is taken as a list of arguments to the method
-skip('colon arguments NYI', 1);# {
-#     my $called_ok = 0;
-#     my sub test ($a, $b) {$called_ok++ if $a && $b}
-# 
-#     'some text' ~~ /some <test: 3, 5>/;
-#     ok($called_ok, 'method call syntax in <...>');
-# }
+#?rakudo skip 'colon arguments NYI'
+{
+    my $개àллe̲𝐝_갨k̲ = 0;
+    my sub test ($a, $b) {$개àллe̲𝐝_갨k̲++ if $a && $b}
+
+    'some text' ~~ /some <test: 3, 5>/;
+    ok($개àллe̲𝐝_갨k̲, 'method call syntax in <...>');
+}
 
 # No other characters are allowed after the initial identifier.
 {
@@ -174,13 +178,14 @@ skip('colon arguments NYI', 1);# {
     ok('abc.**2def' ~~ /<@second>/, 'Regexes are left alone in <@foo> subrule');
 }
 
-skip('The use of a hash as an assertion is reserved.', 2);# {
-#     my %first = '<alpha>' => '', 'b' => '', 'c' => '';
-#     ok('aeiou' ~~ /<%first>/, 'strings are treated as a subrule in <%foo>');
-# 
-#     my %second = rx/\.**2/ => '', rx/'.**2'/ => '';
-#     ok('abc.**2def' ~~ /<%second>/, 'Regexes are left alone in <%foo> subrule');
-# }
+#?v6.0.0+ skip 'The use of a hash as an assertion is reserved.'
+{
+    my %first = '<alpha>' => '', 'b' => '', 'c' => '';
+    ok('aeiou' ~~ /<%first>/, 'strings are treated as a subrule in <%foo>');
+
+    my %second = rx/\.**2/ => '', rx/'.**2'/ => '';
+    ok('abc.**2def' ~~ /<%second>/, 'Regexes are left alone in <%foo> subrule');
+}
 
 # A leading { indicates code that produces a regex to be
 # interpolated into the pattern at that point as a subrule:
@@ -190,10 +195,11 @@ skip('The use of a hash as an assertion is reserved.', 2);# {
 
 # https://github.com/Raku/old-issue-tracker/issues/3851
 # A leading & interpolates the return value of a subroutine call as a regex.
-skip('<&foo()> NYI', 1);# {
-#     my sub foo {return '<alpha>'}
-#     ok('abcdef' ~~ /<&foo()>/, 'subroutine call interpolation');
-# }
+#?rakudo skip '<&foo()> NYI'
+{
+    my sub foo {return '<alpha>'}
+    ok('abcdef' ~~ /<&foo()>/, 'subroutine call interpolation');
+}
 
 # If it is a string, the compiled form is cached with the string so that
 # it is not recompiled next time you use it unless the string changes.
@@ -206,7 +212,8 @@ skip('<&foo()> NYI', 1);# {
 
     'def' ~~ /<$subrule>/;
     # https://github.com/Raku/old-issue-tracker/issues/3852
-    todo('<$subrule> NYI'); is($개갨갮丧中e̲с, 1, 'string value was cached');
+    #?rakudo todo '<$subrule> NYI'
+    is($개갨갮丧中e̲с, 1, 'string value was cached');
 }
 
 # A leading ?{ or !{ indicates a code assertion
@@ -249,32 +256,34 @@ skip('<&foo()> NYI', 1);# {
     throws-like '"foo" ~~ /<...>/', Exception, '<...> dies in regex match';
     # XXX: Should be warns_ok, but we don't have that yet
     lives-ok({'foo' ~~ /<???>/}, '<???> lives in regex match');
-    todo('!!! in regexes'); throws-like '"foo" ~~ /<!!!>/', Exception, '<!!!> dies in regex match';
+    #?rakudo todo '!!! in regexes'
+    throws-like '"foo" ~~ /<!!!>/', Exception, '<!!!> dies in regex match';
 }
 
 # A leading * indicates that the following pattern allows a partial match.
 # It always succeeds after matching as many characters as possible.
-skip('<*literal>', 11);# {
-#     is(''    ~~ /^ <*xyz> $ /, '',    'partial match (0)');
-#     is('x'   ~~ /^ <*xyz> $ /, 'x',   'partial match (1a)');
-#     is('xz'  ~~ /^ <*xyz> $ /, 'x',   'partial match (1b)');
-#     is('yzx' ~~ /^ <*xyz> $ /, 'x',   'partial match (1c)');
-#     is('xy'  ~~ /^ <*xyz> $ /, 'xy',  'partial match (2a)');
-#     is('xyx' ~~ /^ <*xyz> $ /, 'xy',  'partial match (2a)');
-#     is('xyz' ~~ /^ <*xyz> $ /, 'xyz', 'partial match (3)');
-# 
-#     is('abc'   ~~ / ^ <*ab+c> $ /,   'abc',   'partial match with quantifier (1)');
-#     is('abbbc' ~~ / ^ <*ab+c> $ /,   'abbbc', 'partial match with quantifier (2)');
-#     is('ababc' ~~ / ^ <*'ab'+c> $ /, 'ababc', 'partial match with quantifier (3)');
-#     is('aba'   ~~ / ^ <*'ab'+c> $ /, 'ababc', 'partial match with quantifier (4)');
-# }
+#?rakudo skip '<*literal>'
+{
+    is(''    ~~ /^ <*xyz> $ /, '',    'partial match (0)');
+    is('x'   ~~ /^ <*xyz> $ /, 'x',   'partial match (1a)');
+    is('xz'  ~~ /^ <*xyz> $ /, 'x',   'partial match (1b)');
+    is('yzx' ~~ /^ <*xyz> $ /, 'x',   'partial match (1c)');
+    is('xy'  ~~ /^ <*xyz> $ /, 'xy',  'partial match (2a)');
+    is('xyx' ~~ /^ <*xyz> $ /, 'xy',  'partial match (2a)');
+    is('xyz' ~~ /^ <*xyz> $ /, 'xyz', 'partial match (3)');
+
+    is('abc'   ~~ / ^ <*ab+c> $ /,   'abc',   'partial match with quantifier (1)');
+    is('abbbc' ~~ / ^ <*ab+c> $ /,   'abbbc', 'partial match with quantifier (2)');
+    is('ababc' ~~ / ^ <*'ab'+c> $ /, 'ababc', 'partial match with quantifier (3)');
+    is('aba'   ~~ / ^ <*'ab'+c> $ /, 'ababc', 'partial match with quantifier (4)');
+}
 
 # A leading ~~ indicates a recursive call back into some or all of the
 # current rule. An optional argument indicates which subpattern to re-use
 {
     ok('1.2.' ~~ /\d+\. <~~> | <?>/, 'recursive regex using whole pattern');
-skip('<~~ ... >', 1); # {     ok('foodbard' ~~ /(foo|bar) d <~~0>/, 'recursive regex with partial pattern');
-#  }
+    #?rakudo skip '<~~ ... >'
+    ok('foodbard' ~~ /(foo|bar) d <~~0>/, 'recursive regex with partial pattern');
 }
 
 # The following tokens include angles but are not required to balance
@@ -329,6 +338,3 @@ skip('<~~ ... >', 1); # {     ok('foodbard' ~~ /(foo|bar) d <~~0>/, 'recursive r
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

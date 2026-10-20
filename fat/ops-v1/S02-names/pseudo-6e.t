@@ -93,11 +93,12 @@ subtest "Root" => {
     $MY::a18 := $x;
     ok $a18 =:= $x, '$MY:: binding works on our-aliases';
 
-skip("No ? twigil yet", 2);# {
-#     my constant $?q = 20;
-#     is $?MY::q, 20, '$?MY:: can be used on constants';  #OK
-#     is MY::.{'$?q'}, 20, 'MY::.{} can be used on constants';
-# }
+#?rakudo skip "No ? twigil yet"
+{
+    my constant $?q = 20;
+    is $?MY::q, 20, '$?MY:: can be used on constants';  #OK
+    is MY::.{'$?q'}, 20, 'MY::.{} can be used on constants';
+}
 
     for 1 .. 1 {
         state $r = 21;
@@ -141,19 +142,20 @@ skip("No ? twigil yet", 2);# {
         LEXICAL::.{'$z'} := $y;
         ok $z =:= $y, 'Can bind through LEXICAL::.{}';
 
-skip("::= isn't implemented yet", 4);# {
-#         $LEXICAL::z ::= $y;
-#         is $z, $y, '::= binding through $LEXICAL::z works';
-#         throws-like { $z = 5 },
-#           Exception,
-#           '... and makes readonly';
-# 
-#         LEXICAL::.{'$z'} ::= $x;
-#         is $z, $x, '::= binding through LEXICAL::.{} works';
-#         throws-like { $z = 5 },
-#           Exception,
-#           '... and makes readonly';
-# }
+#?rakudo skip "::= isn't implemented yet"
+{
+        $LEXICAL::z ::= $y;
+        is $z, $y, '::= binding through $LEXICAL::z works';
+        throws-like { $z = 5 },
+          Exception,
+          '... and makes readonly';
+
+        LEXICAL::.{'$z'} ::= $x;
+        is $z, $x, '::= binding through LEXICAL::.{} works';
+        throws-like { $z = 5 },
+          Exception,
+          '... and makes readonly';
+}
     }
 
     my class A1 {
@@ -200,11 +202,12 @@ skip("::= isn't implemented yet", 4);# {
     $LEXICAL::a18 := $x;
     ok $a18 =:= $x, '$LEXICAL:: binding works on our-aliases';
 
-skip("No ? twigil yet", 2);# {
-#     my constant $?q = 20;
-#     is $?LEXICAL::q, 20, '$?LEXICAL:: can be used on constants';  #OK
-#     is LEXICAL::.{'$?q'}, 20, 'LEXICAL::.{} can be used on constants';
-# }
+#?rakudo skip "No ? twigil yet"
+{
+    my constant $?q = 20;
+    is $?LEXICAL::q, 20, '$?LEXICAL:: can be used on constants';  #OK
+    is LEXICAL::.{'$?q'}, 20, 'LEXICAL::.{} can be used on constants';
+}
 
     ok LEXICAL::{'&say'} === &say, 'LEXICAL::.{} can find CORE names';
     ok &LEXICAL::say === &say, '&LEXICAL:: can find CORE names';
@@ -258,17 +261,20 @@ skip("No ? twigil yet", 2);# {
     is OUR::A40.WHO.<$x>, 41, '$OUR:: can autovivify packages (reference)';
     $OUR::A41::x := 42;
     is OUR::A41.WHO.<$x>, 42, '$OUR:: can autovivify packages (binding)';
-#    $::($our)::A42::x = 43;
-skip('interpolation and auto-viv NYI', 1); # {     is ::($our)::A42.WHO.<$x>, 43, '::("OUR") can autovivify packages (r)';
-#  }
+    #?rakudo emit #
+    $::($our)::A42::x = 43;
+    #?rakudo skip 'interpolation and auto-viv NYI'
+    is ::($our)::A42.WHO.<$x>, 43, '::("OUR") can autovivify packages (r)';
 
-#    $::($our)::A43::x := 44;
-skip('binding and interpolation together NYI', 1); # {     is ::($our)::A43.WHO.<$x>, 44, '::("OUR") can autovivify packages (b)';
-#  }
+    #?rakudo emit #
+    $::($our)::A43::x := 44;
+    #?rakudo skip 'binding and interpolation together NYI'
+    is ::($our)::A43.WHO.<$x>, 44, '::("OUR") can autovivify packages (b)';
 
-#    ::($our)::A44 := class { our $x = 41; };
-skip('binding and interpolation together NYI', 1); # {     is $::($our)::A44::x, 41, '::("OUR") can follow aliased packages';
-#  }
+    #?rakudo emit #
+    ::($our)::A44 := class { our $x = 41; };
+    #?rakudo skip 'binding and interpolation together NYI'
+    is $::($our)::A44::x, 41, '::("OUR") can follow aliased packages';
 }
 
 # CORE
@@ -296,20 +302,18 @@ skip('binding and interpolation together NYI', 1); # {     is $::($our)::A44::x,
     lives-ok { CORE::.<&none> := &f2 }, 'CORE::.{} binding lives';
     ok &none =:= &f2, '... and works';
     # https://github.com/Raku/old-issue-tracker/issues/4560
-skip('Cannot bind to &::("CORE")::foo', 1); # {     lives-ok { &::($core)::none := &f3 }, '::("CORE") binding lives';
-#  }
-skip('Cannot bind to &::("CORE")::foo', 1); # {     ok &none =:= &f3, '... and works';
-#  }
+    #?rakudo 2 skip 'Cannot bind to &::("CORE")::foo'
+    lives-ok { &::($core)::none := &f3 }, '::("CORE") binding lives';
+    ok &none =:= &f3, '... and works';
 
     # in niecza v8, dynamic variables go through a separate code path.
     # make sure accessing it in CORE works
     lives-ok { $CORE::_ := 50 }, 'Binding to $CORE::_ lives';
     is $CORE::_, 50, 'Accessing $CORE::_ works';
     # https://github.com/Raku/old-issue-tracker/issues/4560
-skip('Cannot bind to &::("CORE")::foo', 1); # {     lives-ok { $::($core)::_ := 51 }, 'Binding to $::("CORE")::_ lives';
-#  }
-skip('Cannot bind to &::("CORE")::foo', 1); # {     is $::($core)::_, 51, 'Accessing $::("CORE")::_ works';
-#  }
+    #?rakudo 2 skip 'Cannot bind to &::("CORE")::foo'
+    lives-ok { $::($core)::_ := 51 }, 'Binding to $::("CORE")::_ lives';
+    is $::($core)::_, 51, 'Accessing $::("CORE")::_ works';
 }
 
 # GLOBAL - functionality is very similar to OUR
@@ -343,62 +347,63 @@ skip('Cannot bind to &::("CORE")::foo', 1); # {     is $::($core)::_, 51, 'Acces
 # COMPILING - not testable without BEGIN
 
 # DYNAMIC
-skip('various issues to resolve', 23);# {
-#     my $dyn = "DYNAMIC";
-# 
-#     {
-#         my $*x80 = 82;
-#         my $y; my $z;
-#         is $*DYNAMIC::x80, 82, '$DYNAMIC:: works';
-#         is DYNAMIC::.<$*x80>, 82, 'DYNAMIC::.{} works';
-#         is ::($dyn)::('$*x80'), 82, '::("DYNAMIC") works';
-# 
-#         $*DYNAMIC::x80 := $y;
-#         ok $*x80 =:= $y, 'Can bind through $DYNAMIC::';
-#         ::($dyn)::('$*x80') := $z;
-#         ok $*x80 =:= $z, 'Can bind through ::("DYNAMIC")';
-# 
-#         ok !defined($*DYNAMIC::x82), 'Unfound dynamics are undefined';
-#         ok !defined(::($dyn)::('$*x82')), 'Unfound with ::("DYNAMIC")';
-#     }
-# 
-#     {
-#         my $x83 is dynamic = 83; #OK
-#         my $*x84 = 84; #OK
-# 
-#         is $DYNAMIC::x83, 83, 'DYNAMIC on non-$* vars works';
-#         is $::($dyn)::x83, 83, '::("DYNAMIC") on non-$* vars works';
-# 
-#         ok !defined($DYNAMIC::x84), 'DYNAMIC $x does not find $*x';
-#         ok !defined($::($dyn)::x84), '::("DYNAMIC") $x does not find $*x';
-#         ok !defined($*DYNAMIC::x83), 'DYNAMIC $*x does not find $x';
-#         ok !defined(::($dyn)::('$*x83')), '::("DYNAMIC") $x does not find $*x';
-#     }
-# 
-#     sub docall($f) { my $*x80 = 80; my $x81 is dynamic = 81; $f() } #OK
-# 
-#     {
-#         is docall({ $DYNAMIC::x81 }), 81, 'DYNAMIC:: searches callers';
-#         is docall({ $::($dyn)::x81 }), 81, '::("DYNAMIC") searches callers';
-#         my ($fun1, $fun2) = do {
-#             my $x81 is dynamic = 85; #OK
-#             { $DYNAMIC::x81 }, { $::($dyn)::x81 }
-#         };
-#         ok !defined($fun1()), 'DYNAMIC:: does not search outers';
-#         ok !defined($fun2()), '::("DYNAMIC") does not search outers';
-# 
-#         $GLOBAL::x86 = 86;
-#         ok !defined($DYNAMIC::x86), 'DYNAMIC:: without twigil ignores GLOBAL';
-#         ok !defined($::($dyn)::x86), '"DYNAMIC" without twigil ignores GLOBAL';
-#         is $*DYNAMIC::x86, 86, 'DYNAMIC:: with * searches GLOBAL';
-#         is ::($dyn)::('$*x86'), 86, '::("DYNAMIC") with * searches GLOBAL';
-# 
-#         ok DYNAMIC::<$*IN> === $PROCESS::IN,
-#             'DYNAMIC:: with * searches PROCESS';
-#         ok ::($dyn)::('$*IN') === $PROCESS::IN,
-#             '::("DYNAMIC") with * searches PROCESS';
-#     }
-# }
+#?rakudo skip 'various issues to resolve'
+{
+    my $dyn = "DYNAMIC";
+
+    {
+        my $*x80 = 82;
+        my $y; my $z;
+        is $*DYNAMIC::x80, 82, '$DYNAMIC:: works';
+        is DYNAMIC::.<$*x80>, 82, 'DYNAMIC::.{} works';
+        is ::($dyn)::('$*x80'), 82, '::("DYNAMIC") works';
+
+        $*DYNAMIC::x80 := $y;
+        ok $*x80 =:= $y, 'Can bind through $DYNAMIC::';
+        ::($dyn)::('$*x80') := $z;
+        ok $*x80 =:= $z, 'Can bind through ::("DYNAMIC")';
+
+        ok !defined($*DYNAMIC::x82), 'Unfound dynamics are undefined';
+        ok !defined(::($dyn)::('$*x82')), 'Unfound with ::("DYNAMIC")';
+    }
+
+    {
+        my $x83 is dynamic = 83; #OK
+        my $*x84 = 84; #OK
+
+        is $DYNAMIC::x83, 83, 'DYNAMIC on non-$* vars works';
+        is $::($dyn)::x83, 83, '::("DYNAMIC") on non-$* vars works';
+
+        ok !defined($DYNAMIC::x84), 'DYNAMIC $x does not find $*x';
+        ok !defined($::($dyn)::x84), '::("DYNAMIC") $x does not find $*x';
+        ok !defined($*DYNAMIC::x83), 'DYNAMIC $*x does not find $x';
+        ok !defined(::($dyn)::('$*x83')), '::("DYNAMIC") $x does not find $*x';
+    }
+
+    sub docall($f) { my $*x80 = 80; my $x81 is dynamic = 81; $f() } #OK
+
+    {
+        is docall({ $DYNAMIC::x81 }), 81, 'DYNAMIC:: searches callers';
+        is docall({ $::($dyn)::x81 }), 81, '::("DYNAMIC") searches callers';
+        my ($fun1, $fun2) = do {
+            my $x81 is dynamic = 85; #OK
+            { $DYNAMIC::x81 }, { $::($dyn)::x81 }
+        };
+        ok !defined($fun1()), 'DYNAMIC:: does not search outers';
+        ok !defined($fun2()), '::("DYNAMIC") does not search outers';
+
+        $GLOBAL::x86 = 86;
+        ok !defined($DYNAMIC::x86), 'DYNAMIC:: without twigil ignores GLOBAL';
+        ok !defined($::($dyn)::x86), '"DYNAMIC" without twigil ignores GLOBAL';
+        is $*DYNAMIC::x86, 86, 'DYNAMIC:: with * searches GLOBAL';
+        is ::($dyn)::('$*x86'), 86, '::("DYNAMIC") with * searches GLOBAL';
+
+        ok DYNAMIC::<$*IN> === $PROCESS::IN,
+            'DYNAMIC:: with * searches PROCESS';
+        ok ::($dyn)::('$*IN') === $PROCESS::IN,
+            '::("DYNAMIC") with * searches PROCESS';
+    }
+}
 
 # CALLER - assumes MY:: has taken care of most access testing
 {
@@ -527,7 +532,10 @@ subtest 'no guts spillage when going too high up scope in pseudopackages' => {
     eval-lives-ok 'CORE::UNIT::True',          'CORE::UNIT::...';
 
     my $mixed := ([~] '$', |(@packs.pick xx 100), 'True');
+    #?rakudo.jvm skip 'unknown problem'
     eval-lives-ok($mixed, 'mixed') or diag "Failing mixed combination: $mixed";
+    #?rakudo.jvm skip 'unknown problem'
+    #?DOES 10
     eval-lives-ok $_ x 100 ~ 'True', $_ for @packs;
 }
 
@@ -778,6 +786,3 @@ subtest "PROCESS and GLOBAL with dynamic pseudos" => {
 
 done-testing;
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

@@ -13,6 +13,7 @@ plan 55;
     is-deeply $rh, $%h, '개à丧 w̲e̲ с갨갮丧𝐝中с갢𝐩 ò갢ì𝐩лe̲ 両àò両';
     is $rh.of,    Mu,       'ìàk̲e̲ ò갮сe̲ à丧ù 𝐯àл갮e̲ 개à丧 丛e̲ ò中갨сe̲𝐝';
     # https://github.com/Raku/old-issue-tracker/issues/6659
+    #?rakudo.jvm todo 'Coercion type Str(Any) returned from .keyof is not the same object as Str(Any) RT #132694'
     is $rh.keyof, Str(Any), 'ìàk̲e̲ ò갮сe̲ k̲e̲ùò àсe̲ Ò中с(À丧ù)';
 } #4
 
@@ -25,6 +26,7 @@ plan 55;
     is-deeply $rh, %h, '개à丧 w̲e̲ с갨갮丧𝐝中с갢𝐩 両àò両 개갨丧ò中сà갢丧e̲𝐝 𝐯àл갮e̲ò';
     is $rh.of,    Int,      'ìàk̲e̲ ò갮сe̲ с갨갮丧𝐝中с갢𝐩𝐩e̲𝐝 𝐯àл갮e̲ò àсe̲ 갈丧中';
     # https://github.com/Raku/old-issue-tracker/issues/6659
+    #?rakudo.jvm todo 'Coercion type Str(Any) returned from .keyof is not the same object as Str(Any) RT #132694'
     is $rh.keyof, Str(Any), 'ìàk̲e̲ ò갮сe̲ с갨갮丧𝐝中с갢𝐩𝐩e̲𝐝 k̲e̲ùò àсe̲ Ò中с(À丧ù)';
 } #4
 

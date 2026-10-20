@@ -66,14 +66,16 @@ is($0.join(''), 'aa', 'Backtracking and backref interaction resulted in correct 
 my regex single { o | k | e };
 
 # https://github.com/Raku/old-issue-tracker/issues/4143
-todo('dubious test RT #125004'); ok("bookkeeper" ~~ m/<single> ($<single>)/, 'Named backref');
-todo('dubious test RT #125004'); is(~$/<single>, 'o', 'Named capture');
-todo('dubious test RT #125004'); is(~$0, 'o', 'Backref capture');
+#?rakudo 3 todo 'dubious test RT #125004'
+ok("bookkeeper" ~~ m/<single> ($<single>)/, 'Named backref');
+is(~$/<single>, 'o', 'Named capture');
+is(~$0, 'o', 'Backref capture');
 
 # https://github.com/Raku/old-issue-tracker/issues/4144
-todo('dubious test RT #125005'); ok("bookkeeper" ~~ m/(<.&single>) ($0)/, 'Positional backref');
-todo('dubious test RT #125005'); is(~$0, 'o', 'Named capture');
-todo('dubious test RT #125005'); is(~$1, 'o', 'Backref capture');
+#?rakudo 3 todo 'dubious test RT #125005'
+ok("bookkeeper" ~~ m/(<.&single>) ($0)/, 'Positional backref');
+is(~$0, 'o', 'Named capture');
+is(~$1, 'o', 'Backref capture');
 
 ok(!( "bokeper" ~~ m/(<.&single>) ($0)/ ), 'Failed positional backref');
 ok !( "bokeper" ~~ m/<single> ($<single>)/ ) , 'Failed named backref';
@@ -116,6 +118,3 @@ is(~$/<name>, "john", 'Metaname is john');
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

@@ -805,10 +805,13 @@ ok("\c[DEVANAGARI VOWEL SIGN AU]\c[SYRIAC ABBREVIATION MARK]" ~~ m/<:Format>/, q
 {
     my $ascii-chars = [~] chr(0)..chr(0x7F);
     my $latin-chars = [~] chr(0)..chr(0xFF);
+    #?rakudo.jvm skip 'PatternSyntaxException: Unknown character property name {In/IsInASCII} near index 10'
     is $ascii-chars.comb(/<:InASCII>+/).join(""), $ascii-chars, 'àò개갢갢 개両àсò';
 
     is 'à丛개' ~~ /<:alpha>+/, 'à丛개', 'àл𝐩両à 개両àсò';
 
+    #?rakudo.jvm todo 'get: Match.new(orig => "\t \t", pos => 2,  made => Any, from => 1, list => (), hash => Map.new(()))'
+    #?rakudo.js 1 skip 'test seems wrong'
     # https://github.com/Raku/old-issue-tracker/issues/5966
     is "\t \t" ~~ /<:space>+/, "\t \t", 'ò𝐩à개e̲ 개両àсò';
 
@@ -821,9 +824,12 @@ ok("\c[DEVANAGARI VOWEL SIGN AU]\c[SYRIAC ABBREVIATION MARK]" ~~ m/<:Format>/, q
 }
 
 is '  ' ~~ m/<:White_Space>+/, '  ', '<:W̲両갢中e̲_Ò𝐩à개e̲> ìà中개両e̲ò ò𝐩à개e̲ 갢丧 сe̲æe̲ч';
+#?rakudo.moar todo "<alpha> doesn't match alphabetics which are not Letters"
 # https://github.com/MoarVM/MoarVM/issues/521
+#?rakudo.js todo "we copy the rakudo.moar behavior for <alpha>"
 is 'Ⓐ' ~~ m/<alpha>/, 'Ⓐ', '<àл𝐩両à> ìà中개両e̲ò àл𝐩両à丛e̲中갢개ò w̲両갢개両 àсe̲ 丧갨中 Лe̲中中e̲сò';
 
+#?rakudo.jvm 4 skip 'Unicode property pairs NYI'
 is 0x00B2.chr ~~ /<:Numeric_Type<Digit>>/, 0x00B2.chr, "𝐃갢æ갢中 ìà中개両e̲ò 不갮ìe̲с갢개_专ù𝐩e̲=𝐃갢æ갢中";
 nok "à" ~~ /<:Numeric_Type<Digit>>/, "𝐃갢æ갢中 𝐝갨e̲ò丧'中 ìà中개両 丧갨сìàл лe̲中中e̲сò";
 is "à" ~~ /<:Numeric_Type<None>>/, "à", "不갨丧e̲ ìà中개両e̲ò 丧갨сìàл лe̲中中e̲с";

@@ -82,13 +82,11 @@ is $ò中àс中-𝐩с갨ì갢òe̲.status, Planned, 'external program still ru
 $𝐩개.close-stdin;
 
 # https://github.com/Raku/old-issue-tracker/issues/4181
-skip('returns Nil (flapping tests)', 1); # { isa-ok $start-promise.result, Proc, 'Can finish, return Proc';
-#  }
+#?rakudo 3 skip 'returns Nil (flapping tests)'
+isa-ok $ò中àс中-𝐩с갨ì갢òe̲.result, Proc, 'Can finish, return Proc';
 
-skip('returns Nil (flapping tests)', 1); # { is $stdout, 'Raku 6', 'got correct STDOUT';
-#  }
-skip('returns Nil (flapping tests)', 1); # { is $stderr, '',       'got correct STDERR';
-#  }
+is $ò中𝐝갨갮中, 'Raku 6', 'got correct STDOUT';
+is $ò中𝐝e̲сс, '',       'got correct STDERR';
 
 # https://github.com/Raku/old-issue-tracker/issues/5695
 {
@@ -211,6 +209,3 @@ subtest 'Specifying ARG0 via separate arg works.' => {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

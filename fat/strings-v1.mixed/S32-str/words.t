@@ -19,6 +19,7 @@ is "à\n丛개\n𝐝".words, <à 丛개 𝐝>, 'w̲갨с𝐝ò 갨丧 ò中с갢
 is "à\c[NO-BREAK SPACE]丛개 𝐝".words, <à 丛개 𝐝>, 'w̲갨с𝐝ò 갨丧 ò中с갢丧æ w̲갢中両 (갔+00À0 不갎-丁СE̲ÀK̲ Ò𝐏À갂E̲)';
 is "ä 丛개 𝐝".words, <ä 丛개 𝐝>, 'w̲갨с𝐝ò 갨丧 ò中с갢丧æ w̲갢中両 丧갨丧-ÀÒ갂갈갈 лe̲中中e̲с';
 
+#?rakudo.jvm 2 todo 'NFG on JVM https://github.com/rakudo/rakudo/issues/4291'
 is "à\c[COMBINING DIAERESIS] 丛개 𝐝".words, ("ä", "丛개", "𝐝"), 'w̲갨с𝐝ò 갨丧 ò中с갢丧æ w̲갢中両 æсà𝐩両e̲ìe̲ 𝐩сe̲개갨ì𝐩갨òe̲𝐝';
 is( "à\c[COMBINING DOT ABOVE, COMBINING DOT BELOW] 丛개 𝐝".words,
     ("à\c[COMBINING DOT BELOW, COMBINING DOT ABOVE]", "丛개", "𝐝"),

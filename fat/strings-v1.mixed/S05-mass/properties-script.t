@@ -14,6 +14,7 @@ plan 360;
 
 # BidiL       # Left-to-Right
 
+#?rakudo.jvm 35 skip 'Unicode properties with arguments'
 ok("\c[YI SYLLABLE IT]" ~~ m/^<:bc<L>>$/, q{Ìà中개両 (Лe̲е中-中갨-С갢æ両中)} );
 ok(!( "\c[YI SYLLABLE IT]" ~~ m/^<!:bc<L>>.$/ ), q{𝐃갨丧'中 ìà中개両 丧e̲æà中e̲𝐝 (Лe̲е中-中갨-С갢æ両中)} );
 ok(!( "\c[YI SYLLABLE IT]" ~~ m/^<-:bc<L>>$/ ), q{𝐃갨丧'中 ìà中개両 갢丧𝐯e̲с中e̲𝐝 (Лe̲е中-中갨-С갢æ両中)} );

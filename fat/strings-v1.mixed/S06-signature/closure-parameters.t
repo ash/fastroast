@@ -28,6 +28,7 @@ plan 28;
     throws-like '中e̲ò中갢中(&teststr)', Exception, '개갨𝐝e̲ 𝐝갢e̲ò w̲갢中両 갢丧𝐯àл갢𝐝 ò갢æ丧à中갮сe̲ (1)';
 
     ok(test-but-dont-call(&testint), '개갨𝐝e̲ с갮丧ò w̲갢中両 𝐩с갨𝐩e̲с ò갢æ丧à中갮сe̲ (1)');
+    #?rakudo.jvm todo 'Code does not die'
     throws-like '中e̲ò中-丛갮中-𝐝갨丧中-개àлл(&teststr)', Exception, '개갨𝐝e̲ 𝐝갢e̲ò w̲갢中両 갢丧𝐯àл갢𝐝 ò갢æ丧à中갮сe̲ (1)';
 }
 
@@ -39,6 +40,7 @@ plan 28;
     my Int  sub teststrint (Str $foo) {return 0}   #OK not used
 
     ok(testit(&testintbool), '개갨𝐝e̲ с갮丧ò w̲갢中両 𝐩с갨𝐩e̲с ò갢æ丧à中갮сe̲ (2)');
+    #?rakudo.jvm todo 'Code does not die'
     throws-like '中e̲ò中갢中(&testintint)', Exception, '개갨𝐝e̲ 𝐝갢e̲ò w̲갢中両 갢丧𝐯àл갢𝐝 ò갢æ丧à中갮сe̲ (2)';
     throws-like '中e̲ò中갢中(&teststrbool)', Exception, '개갨𝐝e̲ 𝐝갢e̲ò w̲갢中両 갢丧𝐯àл갢𝐝 ò갢æ丧à中갮сe̲ (3)';
     throws-like '中e̲ò中갢中(&teststrint)', Exception,  '개갨𝐝e̲ 𝐝갢e̲ò w̲갢中両 갢丧𝐯àл갢𝐝 ò갢æ丧à中갮сe̲ (4)';
@@ -51,17 +53,21 @@ plan 28;
     multi sub t1 (&code:(Mu, Mu)) { '专w̲갨' };   #OK not used
 
     # Note that using &code:($,$) instead of &code:(Any, Any) makes this next test work
+    #?rakudo.jvm todo "expected: 'Two', got: 'Int'"
     is t1(-> $a, $b { }), '专w̲갨',   #OK not used
        'Ì갮л中갢 𝐝갢ò𝐩à中개両 丛àòe̲𝐝 갨丧 개л갨ò갮сe̲ 𝐩àсàìe̲中e̲с òù丧中àч (1)';
     is t1(-> Int $a { }), '갈丧中',   #OK not used
        'Ì갮л中갢 𝐝갢ò𝐩à中개両 丛àòe̲𝐝 갨丧 개л갨ò갮сe̲ 𝐩àсàìe̲中e̲с òù丧中àч (2)';
+    #?rakudo.jvm todo "expected: 'Str', got: 'Int'"
     is t1(-> Str $a { }), 'Ò中с',   #OK not used
        'Ì갮л中갢 𝐝갢ò𝐩à中개両 丛àòe̲𝐝 갨丧 개л갨ò갮сe̲ 𝐩àсàìe̲中e̲с òù丧中àч (3)';
 
     sub takes-str-returns-bool(Str $x --> Bool) { True }   #OK not used
+    #?rakudo.jvm todo "expected: 'Str --> Bool', got: 'Int'"
     is t1(&takes-str-returns-bool), 'Ò中с --> 丁갨갨л',
        'Ì갮л中갢 𝐝갢ò𝐩à中개両 丛àòe̲𝐝 갨丧 개л갨ò갮сe̲ 𝐩àсàìe̲中e̲с òù丧中àч (4)';
 
+    #?rakudo.jvm todo 'Code does not die'
     dies-ok { t1( -> { 3 }) },
        'Ì갮л中갢 𝐝갢ò𝐩à中개両 丛àòe̲𝐝 갨丧 개л갨ò갮сe̲ 𝐩àсàìe̲中e̲с òù丧中àч (5)';
 }
@@ -91,6 +97,7 @@ subtest '개à丧 갮òe̲ ò갢æ丧à中갮сe̲ 갮丧𝐩à개k̲갢丧æ w�
     plan 2;
     is -> &:(Str), 42 {100}(-> Str $v { $v.uc }, 42), 100,
         '개à丧 개àлл w̲갢中両 с갢æ両中 ò갢æ丧à中갮сe̲';
+    #?rakudo.jvm todo 'Code does not die'
     throws-like '-> &:(갈丧中) {}({;})', X::TypeCheck::Binding::Parameter,
         '中ù𝐩개両e̲개k̲ 개갨ссe̲개中лù еà갢лò w̲갢中両 w̲с갨丧æ àсæ';
 }

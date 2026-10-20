@@ -26,6 +26,8 @@ plan 5;
 
 # https://github.com/Raku/old-issue-tracker/issues/5770
 # This stress test covers a SEGV in the following code, submitted in RT #129949.
+#?rakudo.jvm skip 'Does not finish fourth run RT #129949'
+#?DOES 4
 {
     sub bogosort_concurrent ( @list ) {
         my $sorted = Channel.new;

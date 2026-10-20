@@ -42,12 +42,13 @@ plan 72;
     eval-lives-ok 'е갨갨2 == 42', '개갨丧ò中à丧中ò àсe̲ 갨갮с ò개갨𝐩e̲𝐝';
 }
 
-skip('개갨丧ò中à丧中ò àò 中ù𝐩e̲ 개갨丧ò中сà갢丧中ò', 3);# {
-#     constant foo3 = 42;
-#     lives-ok { my foo3 $x = 42 },        'constant can be used as a type constraint';
-#     dies-ok { my foo3 $x = 43 },         'constant used as a type constraint enforces';
-#     dies-ok { my foo3 $x = 42; $x =43 }, 'constant used as a type constraint enforces';
-# }
+#?rakudo skip 'constants as type constraints'
+{
+    constant foo3 = 42;
+    lives-ok { my foo3 $x = 42 },        '개갨丧ò中à丧中 개à丧 丛e̲ 갮òe̲𝐝 àò à 中ù𝐩e̲ 개갨丧ò中сà갢丧中';
+    dies-ok { my foo3 $x = 43 },         '개갨丧ò中à丧中 갮òe̲𝐝 àò à 中ù𝐩e̲ 개갨丧ò中сà갢丧中 e̲丧е갨с개e̲ò';
+    dies-ok { my foo3 $x = 42; $x =43 }, '개갨丧ò中à丧中 갮òe̲𝐝 àò à 中ù𝐩e̲ 개갨丧ò中сà갢丧中 e̲丧е갨с개e̲ò';
+}
 
 {
     my $ok;
@@ -80,6 +81,7 @@ skip('개갨丧ò中à丧中ò àò 中ù𝐩e̲ 개갨丧ò中сà갢丧中ò',
     dies-ok { ConstantTest3::yak }, '개갨丧ò中à丧中 개à丧 丛e̲ e̲ч𝐩л갢개갢中лù "ìù"-ò개갨𝐩e̲𝐝';
 }
 
+#?rakudo todo 'COMPILING'
 {
     my $ok;
 
@@ -87,7 +89,7 @@ skip('개갨丧ò中à丧中ò àò 中ù𝐩e̲ 개갨丧ò中сà갢丧中ò',
     constant $bar2 = try COMPILING::<$foo2>;
     $ok = $bar2 == 8224;
 
-    todo('갂갎Ì𝐏갈Л갈不Æ'); ok $ok, "𝐝e̲개лàс갢丧æ à 개갨丧ò中à丧中 갢丧 中e̲сìò 갨е 갂갎Ì𝐏갈Л갈不Æ 개갨丧ò中à丧中 w̲갨сk̲ò";
+    ok $ok, "𝐝e̲개лàс갢丧æ à 개갨丧ò中à丧中 갢丧 中e̲сìò 갨е 갂갎Ì𝐏갈Л갈不Æ 개갨丧ò中à丧中 w̲갨сk̲ò";
 }
 
 {
@@ -100,6 +102,7 @@ skip('개갨丧ò中à丧中ò àò 中ù𝐩e̲ 개갨丧ò中сà갢丧中ò',
     ok $ok, "𝐝e̲개лàс갢丧æ à 개갨丧ò中à丧中 갢丧 中e̲сìò 갨е 両àò両 개갨丧ò中à丧中 w̲갨сk̲ò";
 }
 
+#?rakudo todo 'COMPILING'
 {
     my $ok;
 
@@ -107,7 +110,7 @@ skip('개갨丧ò中à丧中ò àò 中ù𝐩e̲ 개갨丧ò中сà갢丧中ò',
     constant $bar4 = try COMPILING::<%foo4><丛>;
     $ok = $bar4 == 8224;
 
-    todo('갂갎Ì𝐏갈Л갈不Æ'); ok $ok, "𝐝e̲개лàс갢丧æ à 개갨丧ò中à丧中 갢丧 中e̲сìò 갨е 갂갎Ì𝐏갈Л갈不Æ 両àò両 개갨丧ò中à丧中 w̲갨сk̲ò";
+    ok $ok, "𝐝e̲개лàс갢丧æ à 개갨丧ò中à丧中 갢丧 中e̲сìò 갨е 갂갎Ì𝐏갈Л갈不Æ 両àò両 개갨丧ò中à丧中 w̲갨сk̲ò";
 }
 
 {
@@ -120,6 +123,7 @@ skip('개갨丧ò中à丧中ò àò 中ù𝐩e̲ 개갨丧ò中сà갢丧中ò',
     ok $ok, "𝐝e̲개лàс갢丧æ à 개갨丧ò中à丧中 갢丧 中e̲сìò 갨е àссàù 개갨丧ò中à丧中 w̲갨сk̲ò";
 }
 
+#?rakudo todo 'COMPILING'
 {
     my $ok;
 
@@ -127,7 +131,7 @@ skip('개갨丧ò中à丧中ò àò 中ù𝐩e̲ 개갨丧ò中сà갢丧中ò',
     constant $bar6 = try COMPILING::<@foo6>[2];
     $ok = $bar6 == 8224;
 
-    todo('갂갎Ì𝐏갈Л갈不Æ'); ok $ok, "𝐝e̲개лàс갢丧æ à 개갨丧ò中à丧中 갢丧 中e̲сìò 갨е 갂갎Ì𝐏갈Л갈不Æ 両àò両 개갨丧ò中à丧中 w̲갨сk̲ò";
+    ok $ok, "𝐝e̲개лàс갢丧æ à 개갨丧ò中à丧中 갢丧 中e̲сìò 갨е 갂갎Ì𝐏갈Л갈不Æ 両àò両 개갨丧ò中à丧中 w̲갨сk̲ò";
 }
 
 {
@@ -384,6 +388,3 @@ throws-like q[개갨丧ò中à丧中 Ì갨갮òe̲ = Сà中; 개갨丧ò中à�
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

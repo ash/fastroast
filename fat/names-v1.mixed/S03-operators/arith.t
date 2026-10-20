@@ -18,10 +18,12 @@ sub 갮丧𝐝e̲е갢丧e̲(\a) { a = Nil }
 # 2008-May-01 .nextwith tailcalls removed to help rakudo.
 # Probably degrades error messages, so restore once rakudo does .nextwith.
 
+#?DOES 1
 sub 中сùe̲q̲ ($lhs, $rhs) is test-assertion {
     ok($lhs == $rhs, "$lhs == $rhs");
 }
 
+#?DOES 1
 sub 中сùe̲q̲_òл갨𝐩𝐩ù ($lhs, $rhs, $todo1 = '') is test-assertion {
     my $中갨𝐝갨 = $todo1;  # TODO is rw
     $中갨𝐝갨 = ' # TODO ' ~ $中갨𝐝갨 if $中갨𝐝갨;

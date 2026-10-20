@@ -8,9 +8,10 @@ my $ò = join 'a', <x y z>;
 is($ò, "xayaz", 'list context <list>');
 
 # https://github.com/Raku/old-issue-tracker/issues/3874
+#?rakudo todo 'meta operators RT #124558'
 {
 my $ò = join |<< <a x y z>;
-todo('meta operators RT #124558'); is($ò, "xayaz", 'listop |<< <list>');
+is($ò, "xayaz", 'listop |<< <list>');
 }
 
 ok( [1,2,3].join<abc> ~~ Failure , '.join<abc> parses and fails');
@@ -98,6 +99,3 @@ throws-like { EVAL '<STDIN>' },
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

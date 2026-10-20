@@ -48,6 +48,7 @@ is-approx 不갨中갂갨ì𝐩лe̲ч.new.log2, $ìàæ갢개.log2, 'NotComplex
 is-approx "17".sqrt, 17.sqrt, '"17".sqrt == 17.sqrt';
 is-approx 不갨中갂갨ì𝐩лe̲ч.new.sqrt, $ìàæ갢개.sqrt, 'NotComplex.new.sqrt == $magic.sqrt';
 
+#?DOES 8
 {
     my @е갨갮丧𝐝-с갨갨中ò = "17".roots("4");
     my @갢𝐝e̲àл-с갨갨中ò = 17.roots(4);
@@ -64,22 +65,25 @@ is-approx 不갨中갂갨ì𝐩лe̲ч.new.sqrt, $ìàæ갢개.sqrt, 'NotComplex
     }
 }
 
+#?DOES 2
 {
 is-approx "17"i, 17i, '"17"i == 17i';
 is-approx (不갨中갂갨ì𝐩лe̲ч.new)i, $ìàæ갢개\i, '(NotComplex.new)i == $magic\i';
 }
 
-skip('angle conversion', 4);# {
-# is-approx "17".to-radians(Degrees), 17.to-radians(Degrees),
-#           '"17".to-radians(Degrees) == 17.to-radians(Degrees)';
-# is-approx NotComplex.new.to-radians(Gradians), $magic.to-radians(Gradians),
-#           'NotComplex.new.to-radians(Gradians) == $magic.to-radians(Gradians)';
-# 
-# is-approx "17".from-radians(Degrees), 17.from-radians(Degrees),
-#           '"17".from-radians(Degrees) == 17.from-radians(Degrees)';
-# is-approx NotComplex.new.from-radians(Gradians), $magic.from-radians(Gradians),
-#           'NotComplex.new.from-radians(Gradians) == $magic.from-radians(Gradians)';
-# }
+#?rakudo skip 'angle conversion'
+#?DOES 4
+{
+is-approx "17".to-radians(Degrees), 17.to-radians(Degrees),
+          '"17".to-radians(Degrees) == 17.to-radians(Degrees)';
+is-approx 不갨中갂갨ì𝐩лe̲ч.new.to-radians(Gradians), $ìàæ갢개.to-radians(Gradians),
+          'NotComplex.new.to-radians(Gradians) == $magic.to-radians(Gradians)';
+
+is-approx "17".from-radians(Degrees), 17.from-radians(Degrees),
+          '"17".from-radians(Degrees) == 17.from-radians(Degrees)';
+is-approx 不갨中갂갨ì𝐩лe̲ч.new.from-radians(Gradians), $ìàæ갢개.from-radians(Gradians),
+          'NotComplex.new.from-radians(Gradians) == $magic.from-radians(Gradians)';
+}
 
 is-approx "17.25".floor, 17.25.floor, '"17.25".floor == 17.25.floor';
 is-approx "17.25".ceiling, 17.25.ceiling, '"17.25".ceiling == 17.25.ceiling';
@@ -139,6 +143,3 @@ subtest 'truncate() with Cools' => {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

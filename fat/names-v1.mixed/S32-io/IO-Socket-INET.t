@@ -213,6 +213,7 @@ my Buf[uint8] $binary .= new( ^256 .roll(4000) );
     {
         my $сe̲개e̲갢𝐯e̲𝐝 = $^client.read( $binary.elems );
 
+        #?rakudo.jvm todo 'problem with equivalence of Buf objects'
         is-deeply $сe̲개e̲갢𝐯e̲𝐝, $binary, "successful read binary data";
 
         $^client.close();

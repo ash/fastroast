@@ -26,15 +26,16 @@ ok "foo" ~~ /<f=&f> <o=&o>+ /, 'Regex matches (2)';
 lives-ok { $/.raku }, 'lives on quantified named captures';
 
 # https://github.com/Raku/old-issue-tracker/issues/918
-skip('<foo::bar>', 4);# {
-#     my $code_str = 'say <OH HAI>';
-#     $code_str ~~ /<Perl6::Grammar::TOP>/;
-# 
-#     isa-ok $/, Match;
-#     is $/.ast, $code_str, 'Match.ast is the code matched';
-#     is $/.Str, $code_str, 'Match.Str is the code matched';
-#     is-deeply EVAL($/.raku), $/, 'EVAL of Match.raku recreates Match';
-# }
+#?rakudo skip '<foo::bar>'
+{
+    my $개갨𝐝e̲_ò中с = 'say <OH HAI>';
+    $개갨𝐝e̲_ò中с ~~ /<Perl6::Grammar::TOP>/;
+
+    isa-ok $/, Match;
+    is $/.ast, $개갨𝐝e̲_ò中с, 'Match.ast is the code matched';
+    is $/.Str, $개갨𝐝e̲_ò中с, 'Match.Str is the code matched';
+    is-deeply EVAL($/.raku), $/, 'EVAL of Match.raku recreates Match';
+}
 
 # https://irclogs.raku.org/raku-beginner/2024-10-11.html#10:10
 {
@@ -45,6 +46,3 @@ skip('<foo::bar>', 4);# {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

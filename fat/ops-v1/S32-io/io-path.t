@@ -34,6 +34,7 @@ isa-ok $path.path, Str,      'IO::Path.path returns Str';
 isa-ok $path.IO,   IO::Path, 'IO::Path.IO returns IO::Path';
 
 # Try to guess from context that the correct backend is loaded:
+#?DOES 2
 {
   if $*DISTRO.name eq any <win32 mswin32 os2 dos symbian netware> {
       ok "c:\\".IO.is-absolute, "Win32ish OS loaded (volume)";

@@ -22,6 +22,7 @@ subtest "Basic Coercive Return", {
     my class ANumeric does Numeric {
         method Str { 13 }
     }
+    #?rakudo.jvm todo "code doesn't die"
     throws-like
         { return-as-str(ANumeric.new) },
         X::Coerce::Impossible,
@@ -38,12 +39,15 @@ subtest "COERCE-based coercion for returns", {
 
     my sub return-as-Foo($x --> Foo:D()) { $x }
 
+    #?rakudo.jvm todo 'got 42'
     is-deeply return-as-Foo(42), Foo.new(:val(42)), "COERCE works with a concrete value";
+    #?rakudo.jvm todo 'got Str'
     is-deeply return-as-Foo(Str), Foo.new(:val(Str)), "COERCE works with a type object";
     is return-as-Foo(Nil), Nil, "Nil is returned as-is";
     isa-ok return-as-Foo(my $f = Failure.new), Failure, "a Failure is returned as-is";
     $f.so; # Defuse the Failure
 
+    #?rakudo.jvm todo "code doesn't die"
     throws-like
         { return-as-Foo(π) },
         X::Coerce::Impossible,
@@ -85,6 +89,7 @@ subtest "Coerce into a subset", {
     isa-ok return-as-subset(my $f = Failure.new), Failure, "a Failure is returned as-is";
     $f.so; # Defuse the Failure
 
+    #?rakudo.jvm 2 todo "code doesn't die"
     throws-like
         { return-as-subset("1.3") },
         X::Coerce::Impossible,
@@ -105,6 +110,7 @@ subtest "Errors", {
 
     my sub return-as-definite($x --> NastyCoercer:D()) { $x }
 
+    #?rakudo.jvm 2 todo "code doesn't die"
     throws-like
         { return-as-definite("foo"); },
         X::Coerce::Impossible,

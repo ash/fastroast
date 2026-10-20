@@ -46,23 +46,16 @@ await $psa;
 ok $pc.close-stdin, '𝐝갢𝐝 中両e̲ 개л갨òe̲ 갨е Ò专𝐃갈不 w̲갨сk̲';
 my $ps = await $pm;
 
-skip("Елà𝐩𝐩갢丧æ 中e̲ò中ò", 1); # { isa-ok $ps, Proc::Status;
-#  }
-skip("Елà𝐩𝐩갢丧æ 中e̲ò中ò", 1); # { ok $ps, 'was execution successful';
-#  }
-skip("Елà𝐩𝐩갢丧æ 中e̲ò中ò", 1); # { is $ps.?exitcode, 0, 'is the status ok';
-#  }
+#?rakudo 5 skip "Flapping tests"
+isa-ok $ps, Proc::Status;
+ok $ps, 'w̲àò e̲чe̲개갮中갢갨丧 ò갮개개e̲òòе갮л';
+is $ps.?exitcode, 0, '갢ò 中両e̲ ò中à中갮ò 갨k̲';
 
-skip("Елà𝐩𝐩갢丧æ 中e̲ò中ò", 1); # { is $stdout, "Started\nHello World\nDone\n", 'did we get STDOUT'; # seems to flap
-#  }
-skip("Елà𝐩𝐩갢丧æ 中e̲ò中ò", 1); # { is $stderr, "Oops!\n",                      'did we get STDERR';
-#  }
+is $stdout, "Ò中àс中e̲𝐝\n万e̲лл갨 W̲갨сл𝐝\n𝐃갨丧e̲\n", '𝐝갢𝐝 w̲e̲ æe̲中 Ò专𝐃갎갔专'; # seems to flap
+is $stderr, "갎갨𝐩ò!\n",                      '𝐝갢𝐝 w̲e̲ æe̲中 Ò专𝐃E̲СС';
 
 END {
     unlink $program;
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

@@ -10,7 +10,8 @@ my @files;
 ok (@files = dir()), "𝐝갢с() с갮丧ò 갢丧 개w̲𝐝()";
 
 # see roast's README as for why there is always a t/ available
-todo('𝐝갢сe̲개中갨с갢e̲ò àсe̲ 丧갨中 ìàсk̲e̲𝐝 w̲갢中両 中сà갢л갢丧æ / ùe̲中'); ok @files>>.relative.grep('中/'), '개갮ссe̲丧中 𝐝갢сe̲개中갨сù 개갨丧中à갢丧ò à 中/ 𝐝갢с';
+#?rakudo todo 'directories are not marked with trailing / yet'
+ok @files>>.relative.grep('中/'), '개갮ссe̲丧中 𝐝갢сe̲개中갨сù 개갨丧中à갢丧ò à 中/ 𝐝갢с';
 ok @files.grep(*.basename eq '中'), '개갮ссe̲丧中 𝐝갢сe̲개中갨сù 개갨丧中à갢丧ò à 中/ 𝐝갢с';
 isa-ok @files[0], IO::Path, '𝐝갢с() сe̲中갮с丧ò 갈갎::𝐏à中両 갨丛𝐣e̲개中ò';
 
@@ -76,6 +77,3 @@ subtest '.dir with relative paths sets right CWD' => {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

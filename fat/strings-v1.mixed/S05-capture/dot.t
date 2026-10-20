@@ -66,14 +66,16 @@ is($0.join(''), 'àà', '丁à개k̲中сà개k̲갢丧æ à丧𝐝 丛à개k̲�
 my regex single { o | k | e };
 
 # https://github.com/Raku/old-issue-tracker/issues/4143
-todo('𝐝갮丛갢갨갮ò 中e̲ò中 С专 #125004'); ok("丛갨갨k̲k̲e̲e̲𝐩e̲с" ~~ m/<single> ($<single>)/, '不àìe̲𝐝 丛à개k̲сe̲е');
-todo('𝐝갮丛갢갨갮ò 中e̲ò中 С专 #125004'); is(~$/<ò갢丧æлe̲>, '갨', '不àìe̲𝐝 개à𝐩中갮сe̲');
-todo('𝐝갮丛갢갨갮ò 中e̲ò中 С专 #125004'); is(~$0, '갨', '丁à개k̲сe̲е 개à𝐩中갮сe̲');
+#?rakudo 3 todo 'dubious test RT #125004'
+ok("丛갨갨k̲k̲e̲e̲𝐩e̲с" ~~ m/<single> ($<single>)/, '不àìe̲𝐝 丛à개k̲сe̲е');
+is(~$/<ò갢丧æлe̲>, '갨', '不àìe̲𝐝 개à𝐩中갮сe̲');
+is(~$0, '갨', '丁à개k̲сe̲е 개à𝐩中갮сe̲');
 
 # https://github.com/Raku/old-issue-tracker/issues/4144
-todo('𝐝갮丛갢갨갮ò 中e̲ò中 С专 #125005'); ok("丛갨갨k̲k̲e̲e̲𝐩e̲с" ~~ m/(<.&single>) ($0)/, '𝐏갨ò갢中갢갨丧àл 丛à개k̲сe̲е');
-todo('𝐝갮丛갢갨갮ò 中e̲ò中 С专 #125005'); is(~$0, '갨', '不àìe̲𝐝 개à𝐩中갮сe̲');
-todo('𝐝갮丛갢갨갮ò 中e̲ò中 С专 #125005'); is(~$1, '갨', '丁à개k̲сe̲е 개à𝐩中갮сe̲');
+#?rakudo 3 todo 'dubious test RT #125005'
+ok("丛갨갨k̲k̲e̲e̲𝐩e̲с" ~~ m/(<.&single>) ($0)/, '𝐏갨ò갢中갢갨丧àл 丛à개k̲сe̲е');
+is(~$0, '갨', '不àìe̲𝐝 개à𝐩中갮сe̲');
+is(~$1, '갨', '丁à개k̲сe̲е 개à𝐩中갮сe̲');
 
 ok(!( "丛갨k̲e̲𝐩e̲с" ~~ m/(<.&single>) ($0)/ ), 'Еà갢лe̲𝐝 𝐩갨ò갢中갢갨丧àл 丛à개k̲сe̲е');
 ok !( "丛갨k̲e̲𝐩e̲с" ~~ m/<single> ($<single>)/ ) , 'Еà갢лe̲𝐝 丧àìe̲𝐝 丛à개k̲сe̲е';
@@ -116,6 +118,3 @@ is(~$/<丧àìe̲>, "𝐣갨両丧", 'Ìe̲中à丧àìe̲ 갢ò 𝐣갨両丧')
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

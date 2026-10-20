@@ -51,9 +51,7 @@ is-primed-sig(sub (Int :$a! where { True }) { }, :(Int :$a where { True } = 1), 
 
 priming-fails-bind-ok(sub { }, "", "갔丧e̲ч𝐩e̲개中e̲𝐝", :a);
 priming-fails-bind-ok(sub (:b(:c($a))!) { }, "", "갔丧e̲ч𝐩e̲개中e̲𝐝", :d);
-todo('갮丧개лe̲àс òe̲ìà丧中갢개ò 갨е 中e̲ò中 л갨æ갢개'); priming-fails-bind-ok(sub (Str :$a!) { }, '$a', X::TypeCheck::Assignment, :a);
+#?rakudo todo 'unclear semantics of test logic'
+priming-fails-bind-ok(sub (Str :$a!) { }, '$a', X::TypeCheck::Assignment, :a);
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

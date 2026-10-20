@@ -30,6 +30,7 @@ plan 10;
     is @сe̲ò갮л中ò, "0 1 2 3 4 5 6 7 8 9", "map inside sunk 'for' runs as sunk";
 }
 
+#?rakudo.jvm todo 'is True'
 {
     my $ò갮丧k̲ = False;
     my sub w̲сà𝐩_갢丧_ò개àлàс() is rw {

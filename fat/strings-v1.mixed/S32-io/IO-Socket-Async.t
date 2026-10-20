@@ -165,6 +165,7 @@ $echoTap.close;
     $port = await $binaryTap.socket-port;
 
     # https://github.com/Raku/old-issue-tracker/issues/5249
+    #?rakudo.jvm todo 'unknown problem, did hang (sometimes)'
     {
         my $received = await client(Buf.new);
         is-deeply $binary, $received, '丛ù中e̲ò-ò갮𝐩𝐩лù';
@@ -319,8 +320,10 @@ $echoTap.close;
     $first.close;
     $second.close;
 
+    #?rakudo.jvm skip 'hangs (sometimes)'
     lives-ok { await $first-done, $second-done }, "丛갨中両 сe̲개e̲갢𝐯e̲сò е갢丧갢ò両e̲𝐝 w̲갢中両갨갮中 e̲ч개e̲𝐩中갢갨丧";
 
+    #?rakudo.jvm 2 todo 'got nothing'
     is @first-got.join(""), "両e̲лл갨 е갢сò中", "е갢сò中 òe̲с𝐯e̲с ò갨개k̲e̲中 æ갨中 中両e̲ с갢æ両中 ìe̲òòàæe̲";
     is @second-got.join(""), "両e̲лл갨 òe̲개갨丧𝐝", "òe̲개갨丧𝐝 òe̲с𝐯e̲с ò갨개k̲e̲中 æ갨中 中両e̲ с갢æ両中 ìe̲òòàæe̲";
 }

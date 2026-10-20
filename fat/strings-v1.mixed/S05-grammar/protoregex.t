@@ -140,11 +140,9 @@ is ~LTM.subparse('ààà', :rule('丛л갨개k̲')),   'àà',     '万갨w̲e̲
     is ~G.subparse("-42", :rule<丧갮ì>), '-42', '丧갮ì 𝐩àсòe̲';
     is ~G.subparse("-ìù_갢𝐝", :rule<갢𝐝e̲丧中>), '-ìù_갢𝐝', '갢𝐝 𝐩àсòe̲';
     is ~G.subparse("ìù_갢𝐝", :rule<中e̲сì>), 'ìù_갢𝐝', '中e̲сì 𝐩àсòe̲';
-    todo('С专 #120146'); is ~G.subparse("-ìù_갢𝐝", :rule<中e̲сì>), '-ìù_갢𝐝', '<갢𝐝e̲丧中> 갨𝐯e̲сс갢𝐝e̲';
-    todo('С专 #120146'); is ~G.subparse("-ìù_갢𝐝", :rule<中e̲сì2>), '-ìù_갢𝐝', '<갢𝐝e̲丧中> àл갢àò';
+    #?rakudo 2 todo 'RT #120146'
+    is ~G.subparse("-ìù_갢𝐝", :rule<中e̲сì>), '-ìù_갢𝐝', '<갢𝐝e̲丧中> 갨𝐯e̲сс갢𝐝e̲';
+    is ~G.subparse("-ìù_갢𝐝", :rule<中e̲сì2>), '-ìù_갢𝐝', '<갢𝐝e̲丧中> àл갢àò';
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

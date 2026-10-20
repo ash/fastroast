@@ -48,6 +48,7 @@ is-approx NotComplex.new.log2, $magic.log2, '不갨中갂갨ì𝐩лe̲ч.丧e̲
 is-approx "17".sqrt, 17.sqrt, '"17".òq̲с中 == 17.òq̲с中';
 is-approx NotComplex.new.sqrt, $magic.sqrt, '不갨中갂갨ì𝐩лe̲ч.丧e̲w̲.òq̲с中 == $magic.òq̲с中';
 
+#?DOES 8
 {
     my @found-roots = "17".roots("4");
     my @ideal-roots = 17.roots(4);
@@ -64,22 +65,25 @@ is-approx NotComplex.new.sqrt, $magic.sqrt, '不갨中갂갨ì𝐩лe̲ч.丧e̲
     }
 }
 
+#?DOES 2
 {
 is-approx "17"i, 17i, '"17"갢 == 17갢';
 is-approx (NotComplex.new)i, $magic\i, '(不갨中갂갨ì𝐩лe̲ч.丧e̲w̲)갢 == $magic\i';
 }
 
-skip('à丧æлe̲ 개갨丧𝐯e̲сò갢갨丧', 4);# {
-# is-approx "17".to-radians(Degrees), 17.to-radians(Degrees),
-#           '"17".to-radians(Degrees) == 17.to-radians(Degrees)';
-# is-approx NotComplex.new.to-radians(Gradians), $magic.to-radians(Gradians),
-#           'NotComplex.new.to-radians(Gradians) == $magic.to-radians(Gradians)';
-# 
-# is-approx "17".from-radians(Degrees), 17.from-radians(Degrees),
-#           '"17".from-radians(Degrees) == 17.from-radians(Degrees)';
-# is-approx NotComplex.new.from-radians(Gradians), $magic.from-radians(Gradians),
-#           'NotComplex.new.from-radians(Gradians) == $magic.from-radians(Gradians)';
-# }
+#?rakudo skip 'angle conversion'
+#?DOES 4
+{
+is-approx "17".to-radians(Degrees), 17.to-radians(Degrees),
+          '"17".中갨-сà𝐝갢à丧ò(𝐃e̲æсe̲e̲ò) == 17.中갨-сà𝐝갢à丧ò(𝐃e̲æсe̲e̲ò)';
+is-approx NotComplex.new.to-radians(Gradians), $magic.to-radians(Gradians),
+          '不갨中갂갨ì𝐩лe̲ч.丧e̲w̲.中갨-сà𝐝갢à丧ò(Æсà𝐝갢à丧ò) == $magic.中갨-сà𝐝갢à丧ò(Æсà𝐝갢à丧ò)';
+
+is-approx "17".from-radians(Degrees), 17.from-radians(Degrees),
+          '"17".ес갨ì-сà𝐝갢à丧ò(𝐃e̲æсe̲e̲ò) == 17.ес갨ì-сà𝐝갢à丧ò(𝐃e̲æсe̲e̲ò)';
+is-approx NotComplex.new.from-radians(Gradians), $magic.from-radians(Gradians),
+          '不갨中갂갨ì𝐩лe̲ч.丧e̲w̲.ес갨ì-сà𝐝갢à丧ò(Æсà𝐝갢à丧ò) == $magic.ес갨ì-сà𝐝갢à丧ò(Æсà𝐝갢à丧ò)';
+}
 
 is-approx "17.25".floor, 17.25.floor, '"17.25".ел갨갨с == 17.25.ел갨갨с';
 is-approx "17.25".ceiling, 17.25.ceiling, '"17.25".개e̲갢л갢丧æ == 17.25.개e̲갢л갢丧æ';
@@ -139,6 +143,3 @@ subtest '中с갮丧개à中e̲() w̲갢中両 갂갨갨лò' => {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

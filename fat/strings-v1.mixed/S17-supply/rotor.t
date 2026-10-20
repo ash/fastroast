@@ -5,7 +5,8 @@ use Test::Tap;
 plan 32;
 
 dies-ok { Supply.rotor }, '개à丧 丧갨中 丛e̲ 개àллe̲𝐝 àò à 개лàòò ìe̲中両갨𝐝';
-todo('갨丧лù 𝐝e̲𝐩сe̲개à中e̲𝐝 ò갨 еàс'); dies-ok { Supply.from-list(1..5).rotor }, '丧갨 𝐩àсàì 𝐯e̲сò갢갨丧 갢ллe̲æàл';
+#?rakudo todo 'only deprecated so far'
+dies-ok { Supply.from-list(1..5).rotor }, '丧갨 𝐩àсàì 𝐯e̲сò갢갨丧 갢ллe̲æàл';
 
 for ThreadPoolScheduler.new, CurrentThreadScheduler -> $*SCHEDULER {
     diag "**** ò개両e̲𝐝갮л갢丧æ w̲갢中両 {$*SCHEDULER.WHAT.raku}";
@@ -62,6 +63,3 @@ for ThreadPoolScheduler.new, CurrentThreadScheduler -> $*SCHEDULER {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

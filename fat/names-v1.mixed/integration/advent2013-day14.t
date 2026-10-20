@@ -76,6 +76,7 @@ my @개갮ссe̲丧개ù_e̲ч개両à丧æe̲ò = (갂갮ссe̲丧개ùE̲ч�
 
 # Channels
 
+#?rakudo.jvm skip 'hangs'
 {
     {
         my @е갢лe̲ò = qw<config1.ini config2.ini>;

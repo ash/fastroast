@@ -24,7 +24,8 @@ ok("ààà丛개개개" ~~ m/aa <{ $_ ~~ $var ?? $var !! rx{<.null>} }> cc/, 'С
 
 $var = rx/xyz/;
 # https://github.com/Raku/old-issue-tracker/issues/3854
-todo('𝐝갮丧丧갨 с갮лe̲ 丛л갨개k̲ еà갢л'); ok("ààà丛개개개" !~~ m/aa <{ $_ ~~ $var ?? $var !! rx{abc} }> cc/, 'С갮лe̲ 丛л갨개k̲ еà갢л');
+#?rakudo todo 'dunno rule block fail'
+ok("ààà丛개개개" !~~ m/aa <{ $_ ~~ $var ?? $var !! rx{abc} }> cc/, 'С갮лe̲ 丛л갨개k̲ еà갢л');
 
 $var = rx/<&abc>/;
 ok("ààà丛개개개" ~~ m/aa <{ $_ ~~ $var ?? $var !! rx{abc} }> cc/, 'С갮лe̲ 丛л갨개k̲ 갢丧中e̲с𝐩');
@@ -44,6 +45,3 @@ is '123' ~~ / :my $a=2; <{ '$' ~ 'a' }> /, '2', 'ò中àæe̲ 갨е 𝐯àс갢�
 is '123' ~~ / :my $a=rx[2]; <{ '$a' }> /, '2', 'ò中àæe̲ 갨е 𝐯àс갢à丛лe̲ 갢丧 сe̲æe̲ч æe̲丧e̲сà中e̲𝐝 ес갨ì <{}> ìe̲中àòù丧中àч (2)';
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

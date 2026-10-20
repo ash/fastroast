@@ -64,10 +64,11 @@ plan 56;
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/556
-skip('*..* does not slice', 2);# {
-#     eval-lives-ok '(0,1)[ * .. * ]', 'Two Whatever stars slice lives';
-#     is EVAL('(0,1)[ * .. * ]'), [0, 1], 'Two Whatever stars slice';
-# }
+#?rakudo skip '*..* does not slice'
+{
+    eval-lives-ok '(0,1)[ * .. * ]', 'Two Whatever stars slice lives';
+    is EVAL('(0,1)[ * .. * ]'), [0, 1], 'Two Whatever stars slice';
+}
 
 # https://github.com/Raku/old-issue-tracker/issues/676
 {
@@ -90,11 +91,12 @@ skip('*..* does not slice', 2);# {
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/3251
-skip('.= with non-identifier postfixes', 2);# {
-#     my @a = 42..50;
-#     is @a .= [1,2], (43,44), 'did we return right slice';;
-#     is @a, (43,44), 'did we assign slice ok';
-# }
+#?rakudo skip '.= with non-identifier postfixes'
+{
+    my @a = 42..50;
+    is @a .= [1,2], (43,44), 'did we return right slice';;
+    is @a, (43,44), 'did we assign slice ok';
+}
 
 # https://github.com/Raku/old-issue-tracker/issues/3643
 {
@@ -123,7 +125,8 @@ subtest 'no "drift" when re-using lazy iterable for indexing' => {
         'fewer indexes than els';
 
     my @idx3 := 0, 1, 2, |(lazy 3, 4), 5, 6;
-    todo('semantics of a lazy slip are questionable'); is-deeply <a b>[@idx3], <a b>,
+    #?rakudo todo 'semantics of a lazy slip are questionable'
+    is-deeply <a b>[@idx3], <a b>,
         'lazy iterable with iterator starting non-lazy';
 }
 
@@ -361,6 +364,3 @@ subtest 'nested slices' => {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

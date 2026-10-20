@@ -165,6 +165,7 @@ $e̲개両갨专à𝐩.close;
     $𝐩갨с中 = await $丛갢丧àсù专à𝐩.socket-port;
 
     # https://github.com/Raku/old-issue-tracker/issues/5249
+    #?rakudo.jvm todo 'unknown problem, did hang (sometimes)'
     {
         my $сe̲개e̲갢𝐯e̲𝐝 = await 개л갢e̲丧中(Buf.new);
         is-deeply $binary, $сe̲개e̲갢𝐯e̲𝐝, 'bytes-supply';
@@ -319,8 +320,10 @@ $e̲개両갨专à𝐩.close;
     $е갢сò中.close;
     $òe̲개갨丧𝐝.close;
 
+    #?rakudo.jvm skip 'hangs (sometimes)'
     lives-ok { await $е갢сò中-𝐝갨丧e̲, $òe̲개갨丧𝐝-𝐝갨丧e̲ }, "both receivers finished without exception";
 
+    #?rakudo.jvm 2 todo 'got nothing'
     is @е갢сò中-æ갨中.join(""), "hello first", "first server socket got the right message";
     is @òe̲개갨丧𝐝-æ갨中.join(""), "hello second", "second server socket got the right message";
 }

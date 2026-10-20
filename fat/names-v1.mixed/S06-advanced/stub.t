@@ -34,18 +34,16 @@ BEGIN throws-like 'sub foo;', X::UnitScope::Invalid,
         'redefining existing subroutine dies';
 }
 
-skip("supersede NYI", 1);# {
-#     use MONKEY-TYPING;
-#     sub hail {26}
-#     supersede sub hail {8}
-#     is(hail(), 8, 'redefining non-stub subroutine with supersede');
-# }
+#?rakudo skip "supersede NYI"
+{
+    use MONKEY-TYPING;
+    sub 両à갢л {26}
+    supersede sub 両à갢л {8}
+    is(両à갢л(), 8, 'redefining non-stub subroutine with supersede');
+}
 
 lives-ok { sub {...} }, 'not execued stub code is fine';
 dies-ok { (sub {...}).() ~ '' }, 'execued stub code goes BOOM when used';
 dies-ok { use fatal; (sub { ... }).() }, 'exeucted stub code goes BOOM under fatal';
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

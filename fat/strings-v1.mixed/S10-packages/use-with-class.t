@@ -55,6 +55,7 @@ ok Stupid::Class.new(), '개à丧 갢丧ò中à丧中갢à中e̲ 갨丛𝐣e̲�
     lives-ok { class Bar { } }, '𝐝e̲개лàс갢丧æ à 개лàòò àе中e̲с 갮òe̲-갢丧æ à ì갨𝐝갮лe̲ (С专 #73910)'
 }
 
+#?rakudo.js.browser skip "runtime time use doesn't work in the browser"
 # https://github.com/Raku/old-issue-tracker/issues/4635
 is_run ｢use RT126302; say "С专126302-갎K̲"｣,
   :compiler-args['-갈', $*PROGRAM.parent(2).add("𝐩à개k̲àæe̲ò/С专126302/л갢丛").absolute], {

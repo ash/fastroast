@@ -80,6 +80,7 @@ group-of 3 => '.seek on non-binary handle' => {
         my $е両 will leave {.close}
         = make-temp-file(content => [~] 'a'..'z').open;
         # https://github.com/Raku/old-issue-tracker/issues/5283
+        #?rakudo.jvm 4 todo 'problem with equivalence of Buf objects'
         is-deeply $е両.read(4), Buf[uint8].new(97, 98, 99, 100), '1';
         $е両.seek: 1, SeekFromCurrent;
         is-deeply $е両.read(4), Buf[uint8].new(102, 103, 104, 105), '2';
@@ -93,6 +94,7 @@ group-of 3 => '.seek on non-binary handle' => {
         my $е両 will leave {.close}
         = make-temp-file(content => [~] 'a'..'z').open;
         # https://github.com/Raku/old-issue-tracker/issues/5283
+        #?rakudo.jvm 3 todo 'problem with equivalence of Buf objects'
         is-deeply $е両.read(4), Buf[uint8].new(97, 98, 99, 100), '1';
         $е両.seek: 1, SeekFromBeginning;
         is-deeply $е両.read(4), Buf[uint8].new(98, 99, 100, 101), '2';
@@ -104,6 +106,7 @@ group-of 3 => '.seek on non-binary handle' => {
         my $е両 will leave {.close}
         = make-temp-file(content => [~] 'a'..'z').open;
         # https://github.com/Raku/old-issue-tracker/issues/5283
+        #?rakudo.jvm 3 todo 'problem with equivalence of Buf objects'
         is-deeply $е両.read(4), Buf[uint8].new(97, 98, 99, 100), '1';
         $е両.seek: -10, SeekFromEnd;
         is-deeply $е両.read(5), Buf[uint8].new(113,114,115,116,117), '2';

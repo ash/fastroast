@@ -59,16 +59,17 @@ for $@a, Any, $@ai, Int -> \a, \T {
     ok !$a.EXISTS-POS(0),         "\$à.E̲Ч갈Ò专Ò-𝐏갎Ò (àе中e̲с 𝐝e̲лe̲中e̲)";
 }
 
-skip("不갨 ò갮개両 ìe̲中両갨𝐝 '丁갈不𝐃-𝐏갎Ò' е갨с 갢丧𝐯갨개à丧中 갨е 中ù𝐩e̲ 'À丧ù'", 5);# {
-#     my $a;
-#     my $b = 42;
-#     is ($a.BIND-POS(0,$b)), 42, "\$a.BIND-POS (undefined)";
-#     is $a.AT-POS(0),        42, "\$a.AT-POS (defined)";
-#     $b = 65;
-#     is $a.AT-POS(0),        65, "\$a.AT-POS (defined)";
-#     is $a.DELETE-POS(0),    65, "\$a.DELETE-POS (defined)";
-#     ok !$a.EXISTS-POS(0),       "\$a.EXISTS-POS (after delete)";
-# }
+#?rakudo skip "No such method 'BIND-POS' for invocant of type 'Any'"
+{
+    my $a;
+    my $b = 42;
+    is ($a.BIND-POS(0,$b)), 42, "\$à.丁갈不𝐃-𝐏갎Ò (갮丧𝐝e̲е갢丧e̲𝐝)";
+    is $a.AT-POS(0),        42, "\$à.À专-𝐏갎Ò (𝐝e̲е갢丧e̲𝐝)";
+    $b = 65;
+    is $a.AT-POS(0),        65, "\$à.À专-𝐏갎Ò (𝐝e̲е갢丧e̲𝐝)";
+    is $a.DELETE-POS(0),    65, "\$à.𝐃E̲ЛE̲专E̲-𝐏갎Ò (𝐝e̲е갢丧e̲𝐝)";
+    ok !$a.EXISTS-POS(0),       "\$à.E̲Ч갈Ò专Ò-𝐏갎Ò (àе中e̲с 𝐝e̲лe̲中e̲)";
+}
 
 {
     my $a;
@@ -102,6 +103,3 @@ skip("不갨 ò갮개両 ìe̲中両갨𝐝 '丁갈不𝐃-𝐏갎Ò' е갨с �
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

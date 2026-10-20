@@ -225,7 +225,8 @@ throws-like 'my $z = $z', X::Syntax::Variable::Initializer, name => '$z';
     }
 
     # XXX As I write this, this does not die right.  more testing needed.
-    todo('only pass with rakuast'); throws-like 'my Int $x = "abc";', X::TypeCheck, 'type error'; #OK
+    #?rakudo todo 'only pass with rakuast'
+    throws-like 'my Int $x = "abc";', X::TypeCheck, 'type error'; #OK
     dies-ok { EVAL '$x = "abc"'; my Int $x; }, 'also a type error';
 }
 
@@ -420,8 +421,8 @@ subtest 'can assign to sigil-less variables' => {
     my \a = 1;          is-deeply a, 1,           'simple';
     my (\b, \c) = 1, 2; is-deeply (b, c), (1, 2), 'complex';
     my (\d, (\e, (\f, (\g, \h)))) = 1, (2, (3, (4, 5)));
-skip('not implemented', 1); # {     is-deeply (d, e, f, g, h), (1, 2, 3, 4, 5),   'complexerastic';
-#  }
+    #?rakudo skip 'not implemented'
+    is-deeply (d, e, f, g, h), (1, 2, 3, 4, 5),   'complexerastic';
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/3763
@@ -431,19 +432,17 @@ subtest 'can bind to sigil-less variables' => {
     my (\b, \c) := 1, 2; is-deeply (b, c), (1, 2), 'complex';
     my (\d, (\e, (\f, (\g, \h)))) := 1, (2, (3, (4, 5)));
     # https://github.com/Raku/old-issue-tracker/issues/6165
-skip('not implemented', 1); # {     is-deeply (d, e, f, g, h), (1, 2, 3, 4, 5),   'complexerastic';
-#  }
+    #?rakudo skip 'not implemented'
+    is-deeply (d, e, f, g, h), (1, 2, 3, 4, 5),   'complexerastic';
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/3763
 subtest 'can compile-time bind to sigil-less variables' => {
     plan 3;
-skip('::= NYI', 1); # {     ok 1;
-#  }
-skip('::= NYI', 1); # {     ok 1;
-#  }
-skip('::= NYI', 1); # {     ok 1;
-#  }
+    #?rakudo 3 skip '::= NYI'
+    ok 1;
+    ok 1;
+    ok 1;
     # my \a ::= 1;          is-deeply a, 1,           'simple';
     # my (\b, \c) ::= 1, 2; is-deeply (b, c), (1, 2), 'complex';
     # my (\d, (\e, (\f, (\g, \h)))) ::= 1, (2, (3, (4, 5)));
@@ -451,6 +450,3 @@ skip('::= NYI', 1); # {     ok 1;
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

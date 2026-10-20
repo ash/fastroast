@@ -14,7 +14,8 @@ do {
     sub 𝐩сe̲е갢ч:<!> (Int $x) is tighter(&갢丧е갢ч:<**>) {
         return 3 * $x;
     }
-    todo('changing precedence of already declared op'); is !1**2, 9, "'is tighter' on prefix works";
+    #?rakudo todo 'changing precedence of already declared op'
+    is !1**2, 9, "'is tighter' on prefix works";
 }
 
 do {
@@ -110,6 +111,3 @@ do {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

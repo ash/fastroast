@@ -24,6 +24,7 @@ is( 'Hello World !'.flip.flip, 'Hello World !',
 # flip with unicode :
 is( 'ä€»«'.flip,   '«»€ä', "some unicode characters" );
 
+#?rakudo.jvm 2 todo 'NFG on JVM https://github.com/rakudo/rakudo/issues/4291'
 is( "a\c[COMBINING DIAERESIS]b".flip, 'bä', "grapheme precomposed" );
 is( "a\c[COMBINING DOT ABOVE, COMBINING DOT BELOW]b".flip,
     "ba\c[COMBINING DOT ABOVE, COMBINING DOT BELOW]",

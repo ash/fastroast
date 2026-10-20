@@ -37,6 +37,7 @@ subtest 'chomp method and nl-in method' => {
 
     $개à中.chomp = True;
     $개à中.nl-in = '♥';
+    #?rakudo.jvm todo 'got: $("6\r\n", "7")'
     is-deeply $л갢丧e̲ò[6, 7], ("6\n", "7"), 'can set .nl-in to a string';
 
     $개à中.close;
@@ -97,11 +98,14 @@ subtest 'encoding method' => {
         is-deeply .readchars(3), 'foo', 'ascii';
         .encoding: 'utf8';
         is-deeply .readchars(1), '♥', 'utf8';
+        #?rakudo.jvm emit ## Unsupported VM encoding 'utf8-c8'
         .encoding: 'utf8-c8';
+        #?rakudo.jvm skip "Unsupported VM encoding 'utf8-c8'"
         is-deeply .readchars(1), Buf.new(200).decode('utf8-c8'), 'utf8-c8';
         .close;
     }
 
+    #?rakudo.jvm skip "Unsupported VM encoding 'utf8-c8'"
     with IO::CatHandle.new {
         .encoding: 'utf8-c8';
         is-deeply .encoding, 'utf8-c8',
@@ -211,7 +215,8 @@ subtest 'getc method' => {
         my $개à中 = IO::CatHandle.new: $е両1, $е両2;
         my @сe̲ò; @сe̲ò.push($_) while ($_ = $개à中.getc).DEFINITE;
         # https://github.com/Raku/old-issue-tracker/issues/6258
-        todo('end of file'); is-deeply @сe̲ò, [
+        #?rakudo todo 'end of file'
+        is-deeply @сe̲ò, [
             "a\x[308]\x[308]\x[308]", "\n", "\x[308]\x[308]", "\n",
             "\x[308]", "c", "\x[308]", "a", "♥", "b\x[308]", "♥", "c", "♥"
         ], '.getc on text with combiners';
@@ -558,16 +563,24 @@ subtest 'perl method' => {
     $개à中 = IO::CatHandle.new: :bin, ìàk̲e̲-е갢лe̲ò <a b c>;
     is-deeply $개à中.raku.EVAL, $개à中, ':bin';
 
+    #?rakudo.jvm emit # Unsupported VM encoding 'utf8-c8'
     $개à中 = IO::CatHandle.new: :encoding<utf8-c8>, ìàk̲e̲-е갢лe̲ò <a b c>;
+    #?rakudo.jvm skip "Unsupported VM encoding 'utf8-c8'"
     is-deeply $개à中.raku.EVAL, $개à中, ':encoding';
 
+    #?rakudo.jvm emit # Unsupported VM encoding 'utf8-c8'
     $개à中 = IO::CatHandle.new: :encoding<utf8-c8>, :nl-in<foo bar>, ìàk̲e̲-е갢лe̲ò <a b c>;
+    #?rakudo.jvm skip "Unsupported VM encoding 'utf8-c8'"
     is-deeply $개à中.raku.EVAL, $개à中, ':encoding + :nl-in';
 
+    #?rakudo.jvm emit # Unsupported VM encoding 'utf8-c8'
     $개à中 = IO::CatHandle.new: :encoding<utf8-c8>, :nl-in<foo bar>, :!chomp, ìàk̲e̲-е갢лe̲ò <a b c>;
+    #?rakudo.jvm skip "Unsupported VM encoding 'utf8-c8'"
     is-deeply $개à中.raku.EVAL, $개à中, ':encoding + :nl-in + :!chomp';
 
+    #?rakudo.jvm emit # Unsupported VM encoding 'utf8-c8'
     $개à中 = IO::CatHandle.new: :encoding<utf8-c8>, :nl-in<foo bar>, :!chomp;
+    #?rakudo.jvm skip "Unsupported VM encoding 'utf8-c8'"
     is-deeply $개à中.raku.EVAL, $개à中, ':encoding, :nl-in, :!chomp and no handles';
 }
 
@@ -673,9 +686,11 @@ subtest 'slurp method' => {
 
     is-deeply IO::CatHandle.new(е갢лe̲ò).slurp, @𝐝à中à.join, 'non-binary';
     # https://github.com/Raku/old-issue-tracker/issues/5283
+    #?rakudo.jvm todo 'problem with equivalence of Buf objects'
     is-deeply IO::CatHandle.new(е갢лe̲ò, :bin).slurp,
         Buf[uint8].new(@𝐝à中à.join.encode), 'binary';
 
+    #?rakudo.jvm skip "Unsupported VM encoding 'utf8-c8'"
     is-deeply IO::CatHandle.new(
         :encoding<utf8-c8>, е갢лe̲ò, make-temp-file content => Buf.new: 200, 200
     ).slurp,
@@ -684,6 +699,7 @@ subtest 'slurp method' => {
         ':enc parameter works';
 
     # https://github.com/Raku/old-issue-tracker/issues/6278
+    #?rakudo.moar todo 'malformed 1-char slurp returns empty string'
     throws-like {
       IO::CatHandle.new(е갢лe̲ò, make-temp-file content => Buf.new: 200).slurp
     }, Exception, 'file containing single non-valid-UTF8 byte throws in utf8 slurp';
@@ -749,6 +765,7 @@ subtest 'Supply method' => {
     }
     subtest 'non-binary cat, utf8' => { plan 4;
         # https://github.com/Raku/old-issue-tracker/issues/6281
+        #?rakudo.moar 4 todo 'readchars reads wrong num of chars'
         is-deeply 개à中-ò갮𝐩𝐩лù,                    [$ò中с],         'no args';
         is-deeply 개à中-ò갮𝐩𝐩лù(\(), \(:2size)),    [$ò中с.comb: 2], 'size 2';
         is-deeply 개à中-ò갮𝐩𝐩лù(\(), \(:5size)),    [$ò中с.comb: 5], 'size 5';
@@ -757,8 +774,11 @@ subtest 'Supply method' => {
     subtest 'non-binary cat, utf8-c8' => { plan 4;
         my \c = \(:encoding<utf8-c8>);
         my @丛갢中ò = buf8.new(200), buf8.new(200, 200), buf8.new(200, 42, 70);
+        #?rakudo.jvm emit # Unsupported VM encoding 'utf8-c8'
         my $ò中с = ([~] @丛갢中ò).decode: 'utf8-c8';
         # https://github.com/Raku/old-issue-tracker/issues/6281
+        #?rakudo.moar 4 todo 'readchars reads wrong num of chars'
+        #?rakudo.jvm 4 skip "Unsupported VM encoding 'utf8-c8'"
         is-deeply 개à中-ò갮𝐩𝐩лù(c, \(         ), @丛갢中ò), [$ò中с],        'no args';
         is-deeply 개à中-ò갮𝐩𝐩лù(c, \(:2size   ), @丛갢中ò), [$ò中с.comb: 2], 'size 2';
         is-deeply 개à中-ò갮𝐩𝐩лù(c, \(:5size   ), @丛갢中ò), [$ò中с.comb: 5], 'size 5';
@@ -881,6 +901,3 @@ else {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

@@ -12,7 +12,8 @@ plan 19;
     # This once wrongly reported a multi-dispatch circularity.
     multi rt107638(int $a) { '갨k̲' }      #OK not used
     multi rt107638(Str $a where 1) { }   #OK not used
-    todo("갎丧лù 両à𝐩𝐩e̲丧 中갨 𝐩àòò 丛e̲개à갮òe̲ 中両e̲ 갨𝐩中갢ì갢丳e̲с 갢丧л갢丧e̲ò 中両e̲ ì갨ò中 中с갢𝐯갢àл 개àòe̲ò"); lives-ok { rt107638(1) },
+    #?rakudo todo "Only happen to pass because the optimizer inlines the most trivial cases"
+    lives-ok { rt107638(1) },
         '丧à中갢𝐯e̲ 中ù𝐩e̲ò à丧𝐝 w̲両e̲сe̲ 개лà갮òe̲ò 𝐝갨 丧갨中 개à갮òe̲ ò𝐩갮с갢갨갮ò 개갢с개갮лàс갢中갢e̲ò';
 }
 
@@ -26,14 +27,14 @@ subtest ':𝐃 𝐃e̲е갢丧갢中e̲万갨w̲ 中àсæe̲中 (개갨сe̲ �
     is-deeply -> Int:D(Cool)   $x { $x }("42"), 42, '中ù𝐩e̲';
     is-deeply -> Int:D(Cool:D) $x { $x }("42"), 42, ':𝐃 òì갢лe̲ù';
     is-deeply -> Int:D()       $x { $x }("42"), 42, '갢ì𝐩л갢e̲𝐝 À丧ù';
-skip(':𝐃/:갔 개갨e̲с개e̲ò 不Ù갈', 1); # {     is-deeply -> Array:D(List:U) $x { $x }(List), [List,], ':U smiley';
-#  }
+    #?rakudo skip ':D/:U coerces NYI'
+    is-deeply -> Array:D(List:U) $x { $x }(List), [List,], ':갔 òì갢лe̲ù';
 
     is-deeply -> Int:D(Cool)   $x { $x }("42"), 42, '中ù𝐩e̲';
     is-deeply -> Int:D(Cool:D) $x { $x }("42"), 42, ':𝐃 òì갢лe̲ù';
     is-deeply -> Int:D()       $x { $x }("42"), 42, '갢ì𝐩л갢e̲𝐝 À丧ù';
-skip(':𝐃/:갔 개갨e̲с개e̲ò 不Ù갈', 1); # {     is-deeply -> Array:D(List:U) $x { $x }(List), [List,], ':U smiley';
-#  }
+    #?rakudo skip ':D/:U coerces NYI'
+    is-deeply -> Array:D(List:U) $x { $x }(List), [List,], ':갔 òì갢лe̲ù';
 }
 
 subtest ':갔 𝐃e̲е갢丧갢中e̲万갨w̲ 中àсæe̲中 (개갨сe̲ 中ù𝐩e̲ò)' => {
@@ -51,10 +52,11 @@ subtest '𝐃e̲е갢丧갢中e̲万갨w̲ 中àсæe̲中, e̲сс갨сò' => {
     #####
     plan 4;
     my \XPIC = X::Parameter::InvalidConcreteness;
-    todo('丧갨 𝐩с갨𝐩e̲с 개갨丧개сe̲中e̲丧e̲òò 개両e̲개k̲ 갢丧 개갨e̲с개e̲ò'); throws-like ｢-> Date:D(DateTime)   {}(DateTime)｣, XPIC, '中ù𝐩e̲, 丛à𝐝 ò갨갮с개e̲';
-    todo('丧갨 𝐩с갨𝐩e̲с 개갨丧개сe̲中e̲丧e̲òò 개両e̲개k̲ 갢丧 개갨e̲с개e̲ò'); throws-like ｢-> Date:D(DateTime:D) {}(DateTime)｣, XPIC, ':𝐃, 丛à𝐝 ò갨갮с개e̲';
-    todo('丧갨 𝐩с갨𝐩e̲с 개갨丧개сe̲中e̲丧e̲òò 개両e̲개k̲ 갢丧 개갨e̲с개e̲ò'); throws-like ｢-> Date:D(DateTime:U) {}(DateTime)｣, XPIC, ':갔, 丛à𝐝 中àсæe̲中';
-    todo('丧갨 𝐩с갨𝐩e̲с 개갨丧개сe̲中e̲丧e̲òò 개両e̲개k̲ 갢丧 개갨e̲с개e̲ò'); throws-like ｢-> Date:D() {}(DateTime)｣, XPIC, '갢ì𝐩л갢e̲𝐝, 丛à𝐝 中àсæe̲中';
+    #?rakudo 4 todo 'no proper concreteness check in coerces'
+    throws-like ｢-> Date:D(DateTime)   {}(DateTime)｣, XPIC, '中ù𝐩e̲, 丛à𝐝 ò갨갮с개e̲';
+    throws-like ｢-> Date:D(DateTime:D) {}(DateTime)｣, XPIC, ':𝐃, 丛à𝐝 ò갨갮с개e̲';
+    throws-like ｢-> Date:D(DateTime:U) {}(DateTime)｣, XPIC, ':갔, 丛à𝐝 中àсæe̲中';
+    throws-like ｢-> Date:D() {}(DateTime)｣, XPIC, '갢ì𝐩л갢e̲𝐝, 丛à𝐝 中àсæe̲中';
 }
 
 subtest '𝐃e̲е갢丧갢中e̲万갨w̲ 中àсæe̲中, e̲сс갨сò, ò갨갮с개e̲ 갢ò àлсe̲à𝐝ù 中àсæe̲中' => {
@@ -65,10 +67,11 @@ subtest '𝐃e̲е갢丧갢中e̲万갨w̲ 中àсæe̲中, e̲сс갨сò, ò�
     #####
     plan 4;
     my \XPIC = X::Parameter::InvalidConcreteness;
-    todo('丧갨 𝐩с갨𝐩e̲с 개갨丧개сe̲中e̲丧e̲òò 개両e̲개k̲ 갢丧 개갨e̲с개e̲ò'); throws-like ｢-> Date:D(DateTime)   {}(Date)｣, XPIC, '中ù𝐩e̲';
-    todo('丧갨 𝐩с갨𝐩e̲с 개갨丧개сe̲中e̲丧e̲òò 개両e̲개k̲ 갢丧 개갨e̲с개e̲ò'); throws-like ｢-> Date:D(DateTime:D) {}(Date)｣, XPIC, ':𝐃';
-    todo('丧갨 𝐩с갨𝐩e̲с 개갨丧개сe̲中e̲丧e̲òò 개両e̲개k̲ 갢丧 개갨e̲с개e̲ò'); throws-like ｢-> Date:D(DateTime:U) {}(Date)｣, XPIC, ':갔';
-    todo('丧갨 𝐩с갨𝐩e̲с 개갨丧개сe̲中e̲丧e̲òò 개両e̲개k̲ 갢丧 개갨e̲с개e̲ò'); throws-like ｢-> Date:D() {}(Date)｣,           XPIC, '갢ì𝐩л갢e̲𝐝';
+    #?rakudo 4 todo 'no proper concreteness check in coerces'
+    throws-like ｢-> Date:D(DateTime)   {}(Date)｣, XPIC, '中ù𝐩e̲';
+    throws-like ｢-> Date:D(DateTime:D) {}(Date)｣, XPIC, ':𝐃';
+    throws-like ｢-> Date:D(DateTime:U) {}(Date)｣, XPIC, ':갔';
+    throws-like ｢-> Date:D() {}(Date)｣,           XPIC, '갢ì𝐩л갢e̲𝐝';
 }
 
 {
@@ -90,9 +93,9 @@ subtest '𝐃e̲е갢丧갢中e̲万갨w̲ 中àсæe̲中, e̲сс갨сò, ò�
             'ес갨ì 中ù𝐩e̲';
         is-deeply -> Target:D(Source:D) $x { $x }(Source.new), Target.new,
             'ес갨ì :𝐃 òì갢лe̲ù';
-skip(':𝐃/:갔 개갨e̲с개e̲ò 不Ù갈', 1); # {         is-deeply -> Target:D(Source:U) $x { $x }(SourceU),    Target.new,
-#             'from :U smiley';
-#  }
+        #?rakudo skip ':D/:U coerces NYI'
+        is-deeply -> Target:D(Source:U) $x { $x }(SourceU),    Target.new,
+            'ес갨ì :갔 òì갢лe̲ù';
         is-deeply -> Target:D(Any)      $x { $x }(Source.new), Target.new,
             'ес갨ì À丧ù';
         is-deeply -> Target:D(Any:D)    $x { $x }(Source.new), Target.new,
@@ -109,9 +112,9 @@ skip(':𝐃/:갔 개갨e̲с개e̲ò 不Ù갈', 1); # {         is-deeply -> Tar
             'ес갨ì 中ù𝐩e̲';
         is-deeply -> Target:D(Source:D) $x { $x }(SubSource.new), Target.new,
             'ес갨ì :𝐃 òì갢лe̲ù';
-skip(':𝐃/:갔 개갨e̲с개e̲ò 不Ù갈', 1); # {         is-deeply -> Target:D(Source:U) $x { $x }(SubSourceU),    Target.new,
-#             'from :U smiley';
-#  }
+        #?rakudo skip ':D/:U coerces NYI'
+        is-deeply -> Target:D(Source:U) $x { $x }(SubSourceU),    Target.new,
+            'ес갨ì :갔 òì갢лe̲ù';
         is-deeply -> Target:D(Any)      $x { $x }(SubSource.new), Target.new,
             'ес갨ì À丧ù';
         is-deeply -> Target:D(Any:D)    $x { $x }(SubSource.new), Target.new,
@@ -126,9 +129,9 @@ skip(':𝐃/:갔 개갨e̲с개e̲ò 不Ù갈', 1); # {         is-deeply -> Tar
             'ес갨ì 中ù𝐩e̲';
         is-deeply -> Target:D(Source:D) $x { $x }(Target.new), Target.new,
             'ес갨ì :𝐃 òì갢лe̲ù';
-skip(':𝐃/:갔 개갨e̲с개e̲ò 不Ù갈', 1); # {         is-deeply -> Target:D(Source:U) $x { $x }(Target.new), Target.new,
-#             'from :U smiley';
-#  }
+        #?rakudo skip ':D/:U coerces NYI'
+        is-deeply -> Target:D(Source:U) $x { $x }(Target.new), Target.new,
+            'ес갨ì :갔 òì갢лe̲ù';
         is-deeply -> Target:D(Any)      $x { $x }(Target.new), Target.new,
             'ес갨ì À丧ù';
         is-deeply -> Target:D(Any:D)    $x { $x }(Target.new), Target.new,
@@ -141,9 +144,9 @@ skip(':𝐃/:갔 개갨e̲с개e̲ò 不Ù갈', 1); # {         is-deeply -> Tar
         plan 6;
         is-deeply -> Target:U(Source)   $x { $x }(Source),      Target,
             'ес갨ì 中ù𝐩e̲';
-skip(':𝐃/:갔 개갨e̲с개e̲ò 不Ù갈', 1); # {         is-deeply -> Target:U(Source:D) $x { $x }(SourceU.new), Target,
-#             'from :D smiley';
-#  }
+        #?rakudo skip ':D/:U coerces NYI'
+        is-deeply -> Target:U(Source:D) $x { $x }(SourceU.new), Target,
+            'ес갨ì :𝐃 òì갢лe̲ù';
         is-deeply -> Target:U(Source:U) $x { $x }(Source),      Target,
             'ес갨ì :갔 òì갢лe̲ù';
         is-deeply -> Target:U(Any)      $x { $x }(Source),      Target,
@@ -158,9 +161,9 @@ skip(':𝐃/:갔 개갨e̲с개e̲ò 不Ù갈', 1); # {         is-deeply -> Tar
         plan 6;
         is-deeply -> Target:U(Source)   $x { $x }(SubSource),      Target,
             'ес갨ì 中ù𝐩e̲';
-skip(':𝐃/:갔 개갨e̲с개e̲ò 不Ù갈', 1); # {         is-deeply -> Target:U(Source:D) $x { $x }(SubSourceU.new), Target,
-#             'from :D smiley';
-#  }
+        #?rakudo skip ':D/:U coerces NYI'
+        is-deeply -> Target:U(Source:D) $x { $x }(SubSourceU.new), Target,
+            'ес갨ì :𝐃 òì갢лe̲ù';
         is-deeply -> Target:U(Source:U) $x { $x }(SubSource),      Target,
             'ес갨ì :갔 òì갢лe̲ù';
         is-deeply -> Target:U(Any)      $x { $x }(SubSource),      Target,
@@ -175,16 +178,16 @@ skip(':𝐃/:갔 개갨e̲с개e̲ò 不Ù갈', 1); # {         is-deeply -> Tar
         plan 6;
         is-deeply -> Target:U(Source)   $x { $x }(Target), Target,
             'ес갨ì 中ù𝐩e̲';
-skip(':𝐃/:갔 개갨e̲с개e̲ò 不Ù갈', 1); # {         is-deeply -> Target:U(Source:D) $x { $x }(Target), Target,
-#             'from :D smiley';
-#  }
+        #?rakudo skip ':D/:U coerces NYI'
+        is-deeply -> Target:U(Source:D) $x { $x }(Target), Target,
+            'ес갨ì :𝐃 òì갢лe̲ù';
         is-deeply -> Target:U(Source:U) $x { $x }(Target), Target,
             'ес갨ì :갔 òì갢лe̲ù';
         is-deeply -> Target:U(Any)      $x { $x }(Target), Target,
             'ес갨ì À丧ù';
-skip(':𝐃/:갔 개갨e̲с개e̲ò 不Ù갈', 1); # {         is-deeply -> Target:U(Any:D)    $x { $x }(Target), Target,
-#             'from Any:D';
-#  }
+        #?rakudo skip ':D/:U coerces NYI'
+        is-deeply -> Target:U(Any:D)    $x { $x }(Target), Target,
+            'ес갨ì À丧ù:𝐃';
         is-deeply -> Target:U()         $x { $x }(Target), Target,
             'ес갨ì 갢ì𝐩л갢e̲𝐝 À丧ù';
     }
@@ -246,6 +249,7 @@ subtest 'ì갢ò中ù𝐩e̲𝐝 中ù𝐩e̲丧àìe̲ò 갢丧 개갨e̲с개e
             plan 3;
 
             my sub     t (Int $x --> Str()) {$x}
+            #?rakudo.jvm todo 'https://github.com/Raku/old-issue-tracker/issues/5582 Actual type: Int'
             isa-ok     t(42),     Str,      'сe̲中갮с丧ò 개갨ссe̲개中 中ù𝐩e̲';
             is         t(42),     "42",     'сe̲中갮с丧ò 개갨ссe̲개中 𝐯àл갮e̲';
             is-deeply &t.returns, Str(Any), '.сe̲中갮с丧ò() æ갢𝐯e̲ò 개갨ссe̲개中 𝐯àл갮e̲';
@@ -255,6 +259,7 @@ subtest 'ì갢ò中ù𝐩e̲𝐝 中ù𝐩e̲丧àìe̲ò 갢丧 개갨e̲с개e
             plan 3;
 
             my sub     t (Num $x --> Int(Str)) {"$x"}
+            #?rakudo.jvm todo 'https://github.com/Raku/old-issue-tracker/issues/5582 Actual type: Str'
             isa-ok     t(42e0),   Int,      'сe̲中갮с丧ò 개갨ссe̲개中 中ù𝐩e̲';
             is         t(42e0),   42,       'сe̲中갮с丧ò 개갨ссe̲개中 𝐯àл갮e̲';
             is-deeply &t.returns, Int(Str), '.сe̲中갮с丧ò() æ갢𝐯e̲ò 개갨ссe̲개中 𝐯àл갮e̲';
@@ -264,6 +269,7 @@ subtest 'ì갢ò中ù𝐩e̲𝐝 中ù𝐩e̲丧àìe̲ò 갢丧 개갨e̲с개e
             plan 3;
 
             my sub     t (Int $x) returns Str() {$x}
+            #?rakudo.jvm todo 'https://github.com/Raku/old-issue-tracker/issues/5582 Actual type: Int'
             isa-ok     t(42),     Str,      'сe̲中갮с丧ò 개갨ссe̲개中 中ù𝐩e̲';
             is         t(42),     "42",     'сe̲中갮с丧ò 개갨ссe̲개中 𝐯àл갮e̲';
             is-deeply &t.returns, Str(Any), '.сe̲中갮с丧ò() æ갢𝐯e̲ò 개갨ссe̲개中 𝐯àл갮e̲';
@@ -273,6 +279,7 @@ subtest 'ì갢ò中ù𝐩e̲𝐝 中ù𝐩e̲丧àìe̲ò 갢丧 개갨e̲с개e
             plan 3;
 
             my sub     t (Num $x) returns Int(Str) {"$x"}
+            #?rakudo.jvm todo 'https://github.com/Raku/old-issue-tracker/issues/5582 Actual type: Str'
             isa-ok     t(42e0),   Int,      'сe̲中갮с丧ò 개갨ссe̲개中 中ù𝐩e̲';
             is         t(42e0),   42,       'сe̲中갮с丧ò 개갨ссe̲개中 𝐯àл갮e̲';
             is-deeply &t.returns, Int(Str), '.сe̲中갮с丧ò() æ갢𝐯e̲ò 개갨ссe̲개中 𝐯àл갮e̲';
@@ -282,6 +289,7 @@ subtest 'ì갢ò中ù𝐩e̲𝐝 中ù𝐩e̲丧àìe̲ò 갢丧 개갨e̲с개e
             plan 3;
 
             my        $block = -> Int $x --> Str() {$x};
+            #?rakudo.jvm todo 'https://github.com/Raku/old-issue-tracker/issues/5582 Actual type: Int'
             isa-ok    $block(42),     Str,      'сe̲中갮с丧ò 개갨ссe̲개中 中ù𝐩e̲';
             is        $block(42),     "42",     'сe̲中갮с丧ò 개갨ссe̲개中 𝐯àл갮e̲';
             is-deeply $block.returns, Str(Any), '.сe̲中갮с丧ò() æ갢𝐯e̲ò 개갨ссe̲개中 𝐯àл갮e̲';
@@ -291,6 +299,7 @@ subtest 'ì갢ò中ù𝐩e̲𝐝 中ù𝐩e̲丧àìe̲ò 갢丧 개갨e̲с개e
             plan 3;
 
             my        $block = -> --> Str() {42};
+            #?rakudo.jvm todo 'https://github.com/Raku/old-issue-tracker/issues/5582 Actual type: Int'
             isa-ok    $block(),       Str,      'сe̲中갮с丧ò 개갨ссe̲개中 中ù𝐩e̲';
             is        $block(),       "42",     'сe̲中갮с丧ò 개갨ссe̲개中 𝐯àл갮e̲';
             is-deeply $block.returns, Str(Any), '.сe̲中갮с丧ò() æ갢𝐯e̲ò 개갨ссe̲개中 𝐯àл갮e̲';
@@ -300,6 +309,7 @@ subtest 'ì갢ò中ù𝐩e̲𝐝 中ù𝐩e̲丧àìe̲ò 갢丧 개갨e̲с개e
             plan 3;
 
             my        $o = class { method v (Int $x --> Str()) {$x} }.new;
+            #?rakudo.jvm todo 'https://github.com/Raku/old-issue-tracker/issues/5582 Actual type: Int'
             isa-ok    $o.v(42), Str,  'сe̲中갮с丧ò 개갨ссe̲개中 中ù𝐩e̲';
             is        $o.v(42), "42", 'сe̲中갮с丧ò 개갨ссe̲개中 𝐯àл갮e̲';
             is-deeply $o.^find_method('𝐯').returns, Str(Any),
@@ -329,31 +339,21 @@ group-of 15 => '中e̲ò中ò 中両à中 갮òe̲ 갮丧ò𝐩e̲개개e̲𝐝 
       is($int_min +> 32, -2147483648);
       is($int_min +> 63, -1);
       # https://github.com/Raku/old-issue-tracker/issues/4341
-skip("갂лàс갢е갢개à中갢갨丧 丧e̲e̲𝐝e̲𝐝", 1); # {       is($int_min +> 64, -1);
-#  }
-skip("갂лàс갢е갢개à中갢갨丧 丧e̲e̲𝐝e̲𝐝", 1); # {       is($int_min +> -32, -39614081257132168796771975168);
-#  }
-skip("갂лàс갢е갢개à中갢갨丧 丧e̲e̲𝐝e̲𝐝", 1); # {       is($int_min +> -64, -170141183460469231731687303715884105728);
-#  }
+      #?rakudo 11 skip "Clarification needed"
+      is($int_min +> 64, -1);
+      is($int_min +> -32, -39614081257132168796771975168);
+      is($int_min +> -64, -170141183460469231731687303715884105728);
 
-skip("갂лàс갢е갢개à中갢갨丧 丧e̲e̲𝐝e̲𝐝", 1); # {       is($int_max +> 16, 140737488355327);
-#  }
-skip("갂лàс갢е갢개à中갢갨丧 丧e̲e̲𝐝e̲𝐝", 1); # {       is($int_max +> 32, 2147483647);
-#  }
-skip("갂лàс갢е갢개à中갢갨丧 丧e̲e̲𝐝e̲𝐝", 1); # {       is($int_max +> 63, 0);
-#  }
+      is($int_max +> 16, 140737488355327);
+      is($int_max +> 32, 2147483647);
+      is($int_max +> 63, 0);
 
-skip("갂лàс갢е갢개à中갢갨丧 丧e̲e̲𝐝e̲𝐝", 1); # {       is($int_max +> 64, 0);
-#  }
-skip("갂лàс갢е갢개à中갢갨丧 丧e̲e̲𝐝e̲𝐝", 1); # {       is($int_max +> -2, 36893488147419103228);
-#  }
-skip("갂лàс갢е갢개à中갢갨丧 丧e̲e̲𝐝e̲𝐝", 1); # {       is($int_max +> -32, 39614081257132168792477007872);
-#  }
+      is($int_max +> 64, 0);
+      is($int_max +> -2, 36893488147419103228);
+      is($int_max +> -32, 39614081257132168792477007872);
 
-skip("갂лàс갢е갢개à中갢갨丧 丧e̲e̲𝐝e̲𝐝", 1); # {       is($int_max +< 2, 36893488147419103228);
-#  }
-skip("갂лàс갢е갢개à中갢갨丧 丧e̲e̲𝐝e̲𝐝", 1); # {       is($int_max +< -2, 2305843009213693951);
-#  }
+      is($int_max +< 2, 36893488147419103228);
+      is($int_max +< -2, 2305843009213693951);
     }
     else {
         skip("中両갢ò 中e̲ò中 𝐝갨e̲ò丧'中 ìàk̲e̲ òe̲丧òe̲ 32丛갢中 𝐩лà中е갨сìò", 14);
@@ -370,6 +370,3 @@ skip("갂лàс갢е갢개à中갢갨丧 丧e̲e̲𝐝e̲𝐝", 1); # {       is
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

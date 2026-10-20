@@ -195,11 +195,13 @@ ia((2/3) RT/ $v1, Vector.new(-3/4, 3, 17*3), "R T Scalar division correct");
 ia(2 RT** $v1, Vector.new(1/4, 4, 34*34), "R T Scalar power correct");
 ia($v1 Rdot $v2, -1/2 + 2/5 + 34 × 0.3, "R Dot product correct");
 
+#?DOES 1
 multi sub is_approx_array(@got, @expected, $desc) {
     my $test = all((@got >>-<< @expected)>>.abs.map({$_ ≤ 0.00001}));
     ok(?$test, $desc);
 }
 
+#?DOES 1
 multi sub isnt_approx_array(@got, @expected, $desc) {
     my $test = all((@got >>-<< @expected)>>.abs.map({$_ ≤ 0.00001}));
     ok(!$test, $desc);

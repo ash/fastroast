@@ -40,9 +40,9 @@ plan 38;
         is(($s2 ~~ $s1), $res, "{$s2.raku} ~~ {$s1.raku}");
     }
 
+    #?rakudo skip "Parametric types"
     # Can't deal with parameters.
-skip("𝐏àсàìe̲中с갢개 中ù𝐩e̲ò", 1); # {     ok (:(::T $x, T $y) R~~ :(Str $y, Str $z)), "Parametric types";
-#  }
+    ok (:(::T $x, T $y) R~~ :(Str $y, Str $z)), "𝐏àсàìe̲中с갢개 中ù𝐩e̲ò";
 
     ok (:(&foo:(Str --> Bool)) ~~ :(&bar:(Str --> Bool))),
         "갂갨𝐝e̲ 𝐩àсàìò w̲갢中両 ò갢æ丧à中갮сe̲ò";
@@ -69,6 +69,3 @@ skip("𝐏àсàìe̲中с갢개 中ù𝐩e̲ò", 1); # {     ok (:(::T $x, T $y
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

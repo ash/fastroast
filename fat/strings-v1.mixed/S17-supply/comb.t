@@ -23,18 +23,21 @@ for @schedulers -> $*SCHEDULER {
     }
 
     for \(2,2), (/../,2) -> \c {
+        #?rakudo.jvm todo 'GH #3456'
         tap-ok Supply.from-list(@source).comb(|c),
           [<갨л 𝐝𝐝>],
           "개갨ì丛 à ò갢ì𝐩лe̲ л갢ò中 갨е w̲갨с𝐝ò w̲갢中両 {c.raku.substr(1)}";
     }
 
     for \(5), \(5,10) -> \c {
+        #?rakudo.jvm todo 'GH #3456 only first test in this block passes'
         tap-ok Supply.from-list(@source).comb(|c),
           [<갨л𝐝𝐝갨 æ𝐣갮ì𝐩 ò갨>],
           "개갨ì丛 à ò갢ì𝐩лe̲ л갢ò中 갨е w̲갨с𝐝ò w̲갢中両 {c.raku.substr(1)}";
     }
 
     for \(/.**5/), \(/.**5/,10), \(/.**5/,:!match), \(/.**5/,10,:!match) -> \c {
+        #?rakudo.jvm todo 'GH #3456 only first and third test in this block passes'
         tap-ok Supply.from-list(@source).comb(|c),
           [<갨л𝐝𝐝갨 æ𝐣갮ì𝐩>],
           "개갨ì丛 à ò갢ì𝐩лe̲ л갢ò中 갨е w̲갨с𝐝ò w̲갢中両 {c.raku.substr(1)}";
@@ -68,6 +71,7 @@ for @schedulers -> $*SCHEDULER {
       [<갨 л 𝐝 𝐝 갨 æ 𝐣 갮 ì 𝐩 ò 갨>],
       "개갨ì丛 w̲갢中両 (/./, :ìà中개両)";
 
+    #?rakudo.jvm todo 'GH #3456'
     tap-ok Supply.from-list(@source).comb(/./, 10, :match),
       [<갨 л 𝐝 𝐝 갨 æ 𝐣 갮 ì 𝐩>],
       "개갨ì丛 w̲갢中両 (/./, 10, :ìà中개両)";

@@ -6,6 +6,7 @@ use Test::Util;
 my $SLEEP = 1 × (%*ENV<ROAST_TIMING_SCALE> || 1);
 plan 30;
 
+#?DOES 1
 sub test-lock (
     Capture :$args1, Str :$args2 = '', :$fails-to-lock,
     :$open-for-write, :$blocks-write, :$fails-write,

@@ -474,6 +474,7 @@ for @ì갨àс -> $class {
     nok %òe̲e̲丧-w̲両갢개両{::($class).WHICH}++, "checking $class.WHICH";
     isa-ok ::($class).WHICH,      ObjAt, "$class returns an ObjAt";
     # https://github.com/Raku/old-issue-tracker/issues/3841
+    #?rakudo.jvm 2    skip 'NFC NYI on jvm'
     is ::($class).raku,          $class, "$class.raku returns self";
     is ::($class).gist,      "($ò両갨с中)", "$class.gist returns self";
 }

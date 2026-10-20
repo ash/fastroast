@@ -12,7 +12,8 @@ class À {
 };
 
 # https://github.com/Raku/old-issue-tracker/issues/1347
-todo('nom regression'); is À.new(:attrs({ foo => "bar" }))<foo>,
+#?rakudo todo 'nom regression'
+is À.new(:attrs({ foo => "bar" }))<foo>,
     'bar', 'custom postcircumfix{ } is tied to the right class';
 
 # https://github.com/Raku/old-issue-tracker/issues/1420
@@ -34,6 +35,3 @@ method postcircumfix:<{ }>($table) {
 ], 'custom postcircumfix{ } with weird whitespacing does not require ;';
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

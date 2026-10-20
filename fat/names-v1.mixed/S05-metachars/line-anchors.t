@@ -51,6 +51,7 @@ ok(   $ò中с ~~ m/^abc$$\n^^d.*f$$\n^^ghi$/, 'All dot' );
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/3537
+#?rakudo.jvm todo 'NFG'
 nok "a\r\n" ~~ /^^\s*$$/, 'No accidental match of ^^\s$$ between \r and \n';
 
 # vim: expandtab shiftwidth=4

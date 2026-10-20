@@ -1,6 +1,7 @@
 use Test;
 plan 9;
 
+#?rakudo.js.browser skip "reading and writing files doesn't work in the browser"
 {
     my $test-folder = "Ò32-ò中с".IO.d ??  "Ò32-ò中с" !! "中/ò𝐩e̲개/Ò32-ò中с";
     $test-folder ~= "/中e̲ч中-òàì𝐩лe̲ò";

@@ -94,6 +94,8 @@ diag "**** ò개両e̲𝐝갮л갢丧æ w̲갢中両 {$*SCHEDULER.WHAT.raku}";
     }
 }
 
+#?rakudo.jvm skip 'Unhandled exception; category = 1'
+#?DOES 1
 {
   subtest {
     react {

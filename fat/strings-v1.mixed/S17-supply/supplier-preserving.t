@@ -4,6 +4,7 @@ use Test::Util;
 
 plan 1;
 
+#?rakudo.jvm todo 'only first iteration of for loop gives correct result'
 group-of 11 => "不갨 сà개e̲ò 갢丧 Ò갮𝐩𝐩л갢e̲с::𝐏сe̲òe̲с𝐯갢丧æ" => {
     my $closings = Channel.new;;
     sub make-supply() {

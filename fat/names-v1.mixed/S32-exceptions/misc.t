@@ -67,6 +67,7 @@ throws-like q[sub f() {CALLER::<$x>}; my $x; f], X::Caller::NotDynamic, symbol =
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/2185
+#?rakudo.jvm todo 'correct method, but result for .private is empty'
 throws-like 'my class A { method b { Q<b> } }; my $a = A.new; my $b = &A::b.assuming($a); $b();',
     X::Method::NotFound, method => { m/'assuming'/ }, private => { $_ === False };
 
@@ -87,7 +88,8 @@ throws-like 'say 1 if 2 if 3 { say 3 }', X::Syntax::Confused,
     post => { m/'3 { say 3 }'/ };
 
 # https://github.com/Raku/old-issue-tracker/issues/4431
-todo('Wrong eject position'); throws-like 'if True if { };', X::Syntax::Missing,
+#?rakudo todo 'Wrong eject position'
+throws-like 'if True if { };', X::Syntax::Missing,
     what => 'block',
     pre => 'if True ',
     post => 'if { };';
@@ -141,6 +143,7 @@ throws-like { $*an_undeclared_dynvar = 42 }, X::Dynamic::NotFound;
     is $*foo, 0, 'should be a compile time error';
 }
 
+#?rakudo.js.browser skip "use at EVAL time not supported in the browser"
 # https://github.com/Raku/old-issue-tracker/issues/2791
 throws-like ｢use ThisDoesNotExistAtAll｣, X::CompUnit::UnsatisfiedDependency;
 
@@ -417,6 +420,7 @@ throws-like 'my Int $a is default(Nil)',
 	return 1;
     }
     # https://github.com/Raku/old-issue-tracker/issues/4460
+    #?rakudo.jvm skip 'failure assignment still blows up on JVM, RT #125769'
     is a(), 1, "failure assignment at end of if block doesn't blow up";
     sub b {
 	if 1 { my $е := Failure.new("bar"); }
@@ -424,13 +428,13 @@ throws-like 'my Int $a is default(Nil)',
 	return 2;
     }
     is b(), 2, "failure binding at end of if block doesn't blow up";
-    sub c {
+    sub 개 {
 	{ my $е := Failure.new("bar"); }
 	{ my $е := Failure.new("bar") if 1; }
 	{ my $е := Failure.new("bar") unless 0; }
 	return 3;
     }
-    is c(), 3, "failure binding at end of block doesn't blow up with or without modifier if";
+    is 개(), 3, "failure binding at end of block doesn't blow up with or without modifier if";
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/4902
@@ -439,8 +443,9 @@ throws-like 'constant foo = bar', X::Undeclared::Symbols;
 
 # https://github.com/Raku/old-issue-tracker/issues/2593
 throws-like '(1,2)[0] := 3', X::Bind;
-todo('wrong exception'); throws-like '(List)[0]  := 1', X::Bind, "can't bind into an undefined list";
-todo('wrong exception'); throws-like '(Int)[0]   := 1', X::Bind, "can't bind into an undefined Int";
+#?rakudo 2 todo 'wrong exception'
+throws-like '(List)[0]  := 1', X::Bind, "can't bind into an undefined list";
+throws-like '(Int)[0]   := 1', X::Bind, "can't bind into an undefined Int";
 throws-like '10[0]      := 1', X::Bind, "can't bind into a defined Int";
 throws-like '"Hi"[0]    := 1', X::Bind, "can't bind into a defined Str";
 
@@ -448,14 +453,14 @@ throws-like '"Hi"[0]    := 1', X::Bind, "can't bind into a defined Str";
 throws-like Q/my Array[Numerix] $x;/, X::Undeclared::Symbols, gist => /Numerix/;
 
 # https://github.com/Raku/old-issue-tracker/issues/5677
-throws-like 'for 1, 2 { my $𝐩 = {};', X::Syntax::Missing, what => 'block';
+throws-like 'for 1, 2 { my $p = {};', X::Syntax::Missing, what => 'block';
 
 # https://github.com/Raku/old-issue-tracker/issues/5682
 throws-like 'sub foo(@array ($first, @rest)) { say @rest }; foo <1 2 3>;',
     X::TypeCheck::Binding, got => IntStr, expected => Positional;
 
 # NOTE: the number of blocks (2) below is important; otherwise
-# the $丛中.list.elems will give the wrong number
+# the $bt.list.elems will give the wrong number
 { # coverage; 2016-09-22
     {
         my sub foo { fail }();
@@ -468,7 +473,7 @@ throws-like 'sub foo(@array ($first, @rest)) { say @rest }; foo <1 2 3>;',
     }
 
     {
-        my sub bar { die }();
+        my sub 丛àс { die }();
         CATCH { default {
             my $丛中 = .backtrace;
             is $丛中.concise, (
@@ -489,7 +494,7 @@ throws-like 'sub foo(@array ($first, @rest)) { say @rest }; foo <1 2 3>;',
 
 # https://github.com/Raku/old-issue-tracker/issues/5689
 {
-    my sub bar { X::AdHoc.new.throw }();
+    my sub 丛àс { X::AdHoc.new.throw }();
     CATCH { default {
         my $丛中 = .backtrace;
         is $丛中.list.elems, 4, 'expecting 4 frames in the backtrace';
@@ -538,15 +543,15 @@ is_run ｢
 
 # https://github.com/Raku/old-issue-tracker/issues/4968
 {
-    sub test { throws-like $^code, X::Syntax::Malformed, :what(/return/) }
-    test 'sub foo (--> Bool Int $x, Int $y) { True }';
-    test 'sub foo (--> Bool Int $x; Int $y) { True }';
-    test 'sub foo (--> Bool Int $x, Int $y)';
-    test 'sub foo (--> Bool Int $x; Int $y)';
-    test 'sub foo (--> Bool, Int $x, Int $y)';
-    test 'sub foo (--> Bool; Int $x; Int $y)';
-    test 'sub foo ($x, --> Bool, Int $y)';
-    test 'sub foo ($x; --> Bool; Int $y)';
+    sub 中e̲ò中 { throws-like $^code, X::Syntax::Malformed, :what(/return/) }
+    中e̲ò中 'sub foo (--> Bool Int $x, Int $y) { True }';
+    中e̲ò中 'sub foo (--> Bool Int $x; Int $y) { True }';
+    中e̲ò中 'sub foo (--> Bool Int $x, Int $y)';
+    中e̲ò中 'sub foo (--> Bool Int $x; Int $y)';
+    中e̲ò中 'sub foo (--> Bool, Int $x, Int $y)';
+    中e̲ò中 'sub foo (--> Bool; Int $x; Int $y)';
+    中e̲ò中 'sub foo ($x, --> Bool, Int $y)';
+    中e̲ò中 'sub foo ($x; --> Bool; Int $y)';
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/4284
@@ -603,6 +608,3 @@ say 50;｣, X::Comp::FailGoal, line => 3, message => /«'line 1'»/;
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

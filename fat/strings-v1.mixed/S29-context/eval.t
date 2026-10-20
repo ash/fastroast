@@ -60,8 +60,8 @@ dies-ok({EVAL {; 42} }, '丛л갨개k̲ E̲𝐕ÀЛ 갢ò æ갨丧e̲');
 # https://github.com/Raku/old-issue-tracker/issues/3432
 {
     is EVAL("'ìø𝐩'".encode('갔专Е-8')), 'ìø𝐩', 'E̲𝐕ÀЛ(丁갮е)';
-skip('丁갮е.E̲𝐕ÀЛ 不Ù갈 (갢е e̲𝐯e̲с)', 1); # {     is "'møp'".encode('UTF-8').EVAL, 'møp', 'Buf.EVAL';
-#  }
+#?rakudo skip 'Buf.EVAL NYI (if ever)'
+    is "'ìø𝐩'".encode('갔专Е-8').EVAL, 'ìø𝐩', '丁갮е.E̲𝐕ÀЛ';
 }
 
 {
@@ -137,6 +137,3 @@ is_run '갮òe̲ Ì갎不K̲E̲Ù-ÒE̲E̲-不갎-E̲𝐕ÀЛ; E̲𝐕ÀЛ q̲|�
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

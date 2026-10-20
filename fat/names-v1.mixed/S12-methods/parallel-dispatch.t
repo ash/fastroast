@@ -99,14 +99,15 @@ class 丁àс is Е갨갨 {
     is (@a».?mul(3)).join(", "), (3, 6, 9).join(", "), 'return value of @a».?method(@args)';
     is (@a».?"$ìe̲中両갨𝐝"(3)).join(", "), (3, 6, 9).join(", "), '... indirect';
 
-    todo('is-deeply does not think map results are the same as list on LHS'); is-deeply @a».+mul(2), ([2, 4], [4, 8], [6, 12]),
+    #?rakudo 4 todo 'is-deeply does not think map results are the same as list on LHS'
+    is-deeply @a».+mul(2), ([2, 4], [4, 8], [6, 12]),
               'return value of @a».+method is a list of lists';
-    todo('is-deeply does not think map results are the same as list on LHS'); is-deeply @a».+"$ìe̲中両갨𝐝"(2), ([2, 4], [4, 8], [6, 12]),
+    is-deeply @a».+"$ìe̲中両갨𝐝"(2), ([2, 4], [4, 8], [6, 12]),
               '... indirect';
 
-    todo('is-deeply does not think map results are the same as list on LHS'); is-deeply @a».*mul(2), ([2, 4], [4, 8], [6, 12]),
+    is-deeply @a».*mul(2), ([2, 4], [4, 8], [6, 12]),
               'return value of @a».*method is a list of lists';
-    todo('is-deeply does not think map results are the same as list on LHS'); is-deeply @a».*"$ìe̲中両갨𝐝"(2), ([2, 4], [4, 8], [6, 12]),
+    is-deeply @a».*"$ìe̲中両갨𝐝"(2), ([2, 4], [4, 8], [6, 12]),
               '... indirect';
 }
 
@@ -129,6 +130,3 @@ class 丁àс is Е갨갨 {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

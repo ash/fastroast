@@ -12,56 +12,60 @@ ok $*SCHEDULER ~~ Scheduler, "$丧àìe̲ does Scheduler role";
 }
 
 
-skip("waiting for new '.loads' semantics", 3);# {
-#     my $x = False;
-#     my $c = $*SCHEDULER.cue({
-#         pass "Cued code on $name ran";
-#         $x = True;
-#     });
-#     isa-ok $c, Cancellation;
-#     1 while $*SCHEDULER.loads;
-#     ok $x, "Code was cued to $name by default";
-#     LEAVE $c.cancel;
-# }
+#?rakudo skip "waiting for new '.loads' semantics"
+{
+    my $ч = False;
+    my $개 = $*SCHEDULER.cue({
+        pass "Cued code on $丧àìe̲ ran";
+        $ч = True;
+    });
+    isa-ok $개, Cancellation;
+    1 while $*SCHEDULER.loads;
+    ok $ч, "Code was cued to $丧àìe̲ by default";
+    LEAVE $개.cancel;
+}
 
-skip("waiting for new '.loads' semantics", 2);# {
-#     my $message;
-#     my $c = $*SCHEDULER.uncaught_handler = sub ($exception) {
-#         $message = $exception.message;
-#     };
-#     $*SCHEDULER.cue({ die "oh noes" });
-#     isa-ok $c, Cancellation;
-#     1 while $*SCHEDULER.loads;
-#     is $message, "oh noes", "$name setting uncaught_handler works";
-#     LEAVE $c.cancel;
-# }
+#?rakudo skip "waiting for new '.loads' semantics"
+{
+    my $ìe̲òòàæe̲;
+    my $개 = $*SCHEDULER.uncaught_handler = sub ($exception) {
+        $ìe̲òòàæe̲ = $exception.message;
+    };
+    $*SCHEDULER.cue({ die "oh noes" });
+    isa-ok $개, Cancellation;
+    1 while $*SCHEDULER.loads;
+    is $ìe̲òòàæe̲, "oh noes", "$丧àìe̲ setting uncaught_handler works";
+    LEAVE $개.cancel;
+}
 
-skip("waiting for new '.loads' semantics", 3);# {
-#     my $tracker;
-#     my $c = $*SCHEDULER.cue(
-#       { $tracker = 'cued,'; die "oops" },
-#       :catch( -> $ex {
-#           is $ex.message, "oops", "$name passed correct exception to handler";
-#           $tracker ~= 'caught';
-#       })
-#     );
-#     isa-ok $c, Cancellation;
-#     1 while $*SCHEDULER.loads;
-#     is $tracker, "cued,caught", "Code run on $name, then handler";
-#     LEAVE $c.cancel;
-# }
+#?rakudo skip "waiting for new '.loads' semantics"
+{
+    my $中сà개k̲e̲с;
+    my $개 = $*SCHEDULER.cue(
+      { $中сà개k̲e̲с = 'cued,'; die "oops" },
+      :catch( -> $ex {
+          is $ex.message, "oops", "$丧àìe̲ passed correct exception to handler";
+          $中сà개k̲e̲с ~= 'caught';
+      })
+    );
+    isa-ok $개, Cancellation;
+    1 while $*SCHEDULER.loads;
+    is $中сà개k̲e̲с, "cued,caught", "Code run on $丧àìe̲, then handler";
+    LEAVE $개.cancel;
+}
 
-skip("waiting for new '.loads' semantics", 2);# {
-#     my $tracker;
-#     my $c = $*SCHEDULER.cue(
-#         { $tracker = 'cued,' },
-#         :catch( -> $ex { $tracker ~= 'caught' })
-#     );
-#     isa-ok $c, Cancellation;
-#     1 while $*SCHEDULER.loads;
-#     is $tracker, "cued,", "Catch handler on $name not run if no error";
-#     LEAVE $c.cancel;
-# }
+#?rakudo skip "waiting for new '.loads' semantics"
+{
+    my $中сà개k̲e̲с;
+    my $개 = $*SCHEDULER.cue(
+        { $中сà개k̲e̲с = 'cued,' },
+        :catch( -> $ex { $中сà개k̲e̲с ~= 'caught' })
+    );
+    isa-ok $개, Cancellation;
+    1 while $*SCHEDULER.loads;
+    is $中сà개k̲e̲с, "cued,", "Catch handler on $丧àìe̲ not run if no error";
+    LEAVE $개.cancel;
+}
 
 {
     dies-ok { $*SCHEDULER.cue({ ... }, :at(now + 2), :in(1)) },
@@ -148,6 +152,3 @@ ok $*SCHEDULER ~~ Scheduler, "{$*SCHEDULER.^name} does Scheduler role";
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

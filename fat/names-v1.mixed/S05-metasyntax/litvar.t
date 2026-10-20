@@ -88,6 +88,7 @@ $var = 'fO+';
 is "foo" ~~ /:i <$var>/, 'foo', 'string with metachars in assertion matches (:i)';
 
 # https://github.com/Raku/old-issue-tracker/issues/3841
+#?rakudo.jvm 3 skip ':ignoremark needs NFG'
 $var = 'fö+';
 is "foo" ~~ /:m <$var>/, 'foo', 'string with metachars in assertion matches (:m)';
 

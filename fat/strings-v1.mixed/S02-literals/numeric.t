@@ -18,8 +18,9 @@ does-ok <1/2>, Numeric, '<1/2> 𝐝갨e̲ò 不갮ìe̲с갢개';
 does-ok <1/2>, Real, '<1/2> 𝐝갨e̲ò Сe̲àл';
 isa-ok <0x01/0x02>, Rat, 'òàìe̲ w̲갢中両 両e̲чà𝐝e̲개갢ìàл 丧갮ì丛e̲сò';
 
-todo("갔丧ò갮сe̲ 갨е w̲両à中'ò à개개e̲𝐩中à丛лe̲ е갨с 𝐯àл()"); ok <1/-3>.WHAT === Str, '丧e̲æà中갢𝐯e̲ àлл갨w̲e̲𝐝 갨丧лù 갨丧 丧갮ìe̲сà中갨с';
-todo("갔丧ò갮сe̲ 갨е w̲両à中'ò à개개e̲𝐩中à丛лe̲ е갨с 𝐯àл()"); ok <-1/-3>.WHAT === Str, '丧e̲æà中갢𝐯e̲ àлл갨w̲e̲𝐝 갨丧лù 갨丧 丧갮ìe̲сà中갨с';
+#?rakudo 2 todo "Unsure of what's acceptable for val()"
+ok <1/-3>.WHAT === Str, '丧e̲æà中갢𝐯e̲ àлл갨w̲e̲𝐝 갨丧лù 갨丧 丧갮ìe̲сà中갨с';
+ok <-1/-3>.WHAT === Str, '丧e̲æà中갢𝐯e̲ àлл갨w̲e̲𝐝 갨丧лù 갨丧 丧갮ìe̲сà中갨с';
 
 isa-ok <-1/3>, Rat, '丧e̲æà中갢𝐯e̲ Сà中 л갢中e̲сàл';
 ok <-1/3> * -3 == 1, '丧e̲æà中갢𝐯e̲ Сà中 л갢中e̲сàл';
@@ -27,8 +28,9 @@ ok <-1/3> * -3 == 1, '丧e̲æà中갢𝐯e̲ Сà中 л갢中e̲сàл';
 # https://github.com/Raku/old-issue-tracker/issues/3875
 is <0x01/0x03>, (0x01/0x03), 'Сà中 w̲갨сk̲ò w̲갢中両 両e̲чà𝐝e̲개갢ìàл 丧갮ì丛e̲сò';
 is <0b01/0b10>, (0b01/0b10), 'Сà中 w̲갨сk̲ò w̲갢中両 丛갢丧àсù 丧갮ì丛e̲сò';
-todo('À𝐝𝐯e̲с丛갢àл 丧갮ì丛e̲сò 갢丧 Сà中 л갢中e̲сàлò 丧갨中 ò갮𝐩𝐩갨с中e̲𝐝'); is <:13<01>/:13<07>>, (1/7), 'Сà中 w̲갨сk̲ò w̲갢中両 개갨л갨丧 сà𝐝갢ч 丧갮ì丛e̲сò';
-todo('À𝐝𝐯e̲с丛갢àл 丧갮ì丛e̲сò 갢丧 Сà中 л갢中e̲сàлò 丧갨中 ò갮𝐩𝐩갨с中e̲𝐝'); is <:12<1à>/:12<7丛>>, (:12<1à> / :12<7丛>), 'Сà中 w̲갨сk̲ò w̲갢中両 개갨л갨丧 сà𝐝갢ч 丧갮ì丛e̲сò';
+#?rakudo 2 todo 'Adverbial numbers in Rat literals not supported'
+is <:13<01>/:13<07>>, (1/7), 'Сà中 w̲갨сk̲ò w̲갢中両 개갨л갨丧 сà𝐝갢ч 丧갮ì丛e̲сò';
+is <:12<1à>/:12<7丛>>, (:12<1à> / :12<7丛>), 'Сà中 w̲갨сk̲ò w̲갢中両 개갨л갨丧 сà𝐝갢ч 丧갮ì丛e̲сò';
 
 # L<S02/Complex literals/Complex literals are similarly indicated>
 
@@ -105,10 +107,15 @@ ok 0e999999999999999 == 0, '0e̲999999999999 e̲q̲갮àлò 丳e̲с갨';
 
 # We are not afraid of unicode
 {
+    #?rakudo.js skip 'unsupported unicode stuff'
     is ۵۵, 55, "W̲e̲ 개à丧 両à丧𝐝лe̲ 갔丧갢개갨𝐝e̲ 𝐝갢æ갢中ò";
+    #?rakudo.jvm 3 skip 'bogus term'
+    #?rakudo.js 3 skip 'unsupported unicode stuff'
     is ⅷ , 8, "W̲e̲ 개à丧 両à丧𝐝лe̲ 갔丧갢개갨𝐝e̲ 丧갨丧-𝐝갢æ갢中 丧갮ìe̲с갢개ò";
     is ⅔, 2/3, "W̲e̲ 개à丧 両à丧𝐝лe̲ 𝐯갮лæàс есà개中갢갨丧ò";
     is 𒑡  × 𒑒, 2/3, "W̲e̲ 개à丧 ì갮л中갢𝐩лù 개갮丧e̲갢е갨сì :-)";
+    #?rakudo.jvm skip 'Prefix - requires an argument, but no valid term found'
+    #?rakudo.js skip 'unsupported unicode stuff'
     ok -𝑒 ** −π\i ≅ 1, "W̲e̲ 개à丧 w̲с갢中e̲ 1 갢丧 е갮丧丧ù w̲àùò 中갨갨";
     is ∞, Inf, "ùe̲à両, w̲e̲ 𝐝갨 中両à中 中갨갨...";
 }
@@ -126,6 +133,8 @@ subtest '#2094 𝐩сe̲е갢ч àò 𝐩갨ò中 е갢ч w̲갨сk̲ò 갨丧 �
 }
 
 # https://github.com/rakudo/rakudo/issues/3694
+#?rakudo.jvm skip 'uniprop NYI'
+#?DOES 1
 {
   subtest "개両e̲개k̲ ò갢ì𝐩лe̲ 丧갨丧-àò개갢갢 丧갮ìe̲с갢е갢개à中갢갨丧" => {
 
@@ -171,6 +180,3 @@ subtest '#2094 𝐩сe̲е갢ч àò 𝐩갨ò中 е갢ч w̲갨сk̲ò 갨丧 �
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

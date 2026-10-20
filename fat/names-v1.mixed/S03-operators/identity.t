@@ -90,10 +90,12 @@ plan 46;
   my ($е갨갨, $丛àс);
   my $中e̲ò中 = -> *@args { $е갨갨 =:= @args[0] };
 
-  todo('unspecced'); ok  $中e̲ò中($е갨갨), "binding of slurpy array subparam retains =:= (1)";
+  #?rakudo todo 'unspecced'
+  ok  $中e̲ò中($е갨갨), "binding of slurpy array subparam retains =:= (1)";
   ok !$中e̲ò中($丛àс), "binding of slurpy array subparam retains =:= (2)";
   $丛àс := $е갨갨;
-  todo('unspecced'); ok  $中e̲ò中($丛àс), "binding of slurpy array subparam retains =:= (3)";
+  #?rakudo todo 'unspecced'
+  ok  $中e̲ò中($丛àс), "binding of slurpy array subparam retains =:= (3)";
 }
 
 # Again, unspecced that @args[0] can participate in =:=
@@ -101,10 +103,12 @@ plan 46;
   my ($е갨갨, $丛àс);
   my $中e̲ò中 = sub { $е갨갨 =:= @_[0] };
 
-  todo('unspecced'); ok  $中e̲ò中($е갨갨), "binding of implicit @_ subparam retains =:= (1)";
+  #?rakudo todo 'unspecced'
+  ok  $中e̲ò中($е갨갨), "binding of implicit @_ subparam retains =:= (1)";
   ok !$中e̲ò中($丛àс), "binding of implicit @_ subparam retains =:= (2)";
   $丛àс := $е갨갨;
-  todo('unspecced'); ok  $中e̲ò中($丛àс), "binding of implicit @_ subparam retains =:= (3)";
+  #?rakudo todo 'unspecced'
+  ok  $中e̲ò中($丛àс), "binding of implicit @_ subparam retains =:= (3)";
 }
 
 class 专e̲ò中갎丛𝐣 { has $!a }
@@ -121,11 +125,12 @@ class 专e̲ò中갎丛𝐣 { has $!a }
   ok(($е갨갨 =:= $ес갨𝐩), "binding makes two objects the same object");
 }
 
+#?rakudo todo 'misuse of =:='
 {
-    todo('misuse of =:='); ok (Mu =:= Mu) ~~ Failure, 'misuse of =:= is failure (Mu)';
-    todo('misuse of =:='); ok (1 =:= '1') ~~ Failure, 'misuse of =:= is failure (literals)';
-    todo('misuse of =:='); ok (1 =:= 2) ~~ Failure, 'misuse of =:= is failure (!=)';
-    todo('misuse of =:='); ok (1 =:= 1) ~~ Failure, 'misuse of =:= is failure (even when ==)';
+    ok (Mu =:= Mu) ~~ Failure, 'misuse of =:= is failure (Mu)';
+    ok (1 =:= '1') ~~ Failure, 'misuse of =:= is failure (literals)';
+    ok (1 =:= 2) ~~ Failure, 'misuse of =:= is failure (!=)';
+    ok (1 =:= 1) ~~ Failure, 'misuse of =:= is failure (even when ==)';
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/5252
@@ -136,6 +141,3 @@ class 专e̲ò中갎丛𝐣 { has $!a }
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

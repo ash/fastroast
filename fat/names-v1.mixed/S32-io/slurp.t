@@ -95,8 +95,10 @@ subtest '&slurp(IO::Handle)' => {
 
     is-deeply slurp('foo'.&е.open), 'foo', 'slurp($fh)';
     # https://github.com/Raku/old-issue-tracker/issues/5283
+    #?rakudo.jvm todo 'problem with equivalence of Buf objects'
     is-deeply slurp('foo'.&е.open: :bin), Buf[uint8].new(102,111,111),
         'slurp($fh, :bin)';
+    #?rakudo.jvm skip "Unsupported VM encoding 'utf8-c8'"
     is-deeply slurp(buf8.new(200).&е.open: :enc<utf8-c8>),
         buf8.new(200).decode('utf8-c8'), 'slurp($fh, :enc<utf8-c8>)';
 
@@ -112,6 +114,8 @@ subtest '&slurp(IO::Handle)' => {
     }
 }
 
+#?rakudo.jvm skip 'floods stderr, IO::Handle.slurp(:bin)'
+#?DOES 1
 {
   subtest ':bin arg to IO::Handle.slurp method' => {
     plan 5;

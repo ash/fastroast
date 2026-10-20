@@ -19,19 +19,21 @@ plan 21;
     ok( $ч eq '-Inf', 'negative string equal' );
 }
 
+#?rakudo skip 'integer Inf'
 # https://github.com/Raku/old-issue-tracker/issues/520
-skip('integer Inf', 2);# {
-#     my $x = Inf.Int;
-#     ok( $x == Inf,   'int numeric equal' );
-#     ok( $x eq 'Inf', 'int string equal' );
-# }
+{
+    my $ч = Inf.Int;
+    ok( $ч == Inf,   'int numeric equal' );
+    ok( $ч eq 'Inf', 'int string equal' );
+}
 
+#?rakudo skip 'integer -Inf'
 # https://github.com/Raku/old-issue-tracker/issues/520
-skip('integer -Inf', 2);# {
-#     my $x = ( -Inf ).Int;
-#     ok( $x == -Inf,   'int numeric equal' );
-#     ok( $x eq '-Inf', 'int string equal' );
-# }
+{
+    my $ч = ( -Inf ).Int;
+    ok( $ч == -Inf,   'int numeric equal' );
+    ok( $ч eq '-Inf', 'int string equal' );
+}
 
 # Inf should == Inf. Additionally, Inf's stringification (~Inf), "Inf", should
 # eq to the stringification of other Infs.
@@ -87,6 +89,3 @@ ok truncate(Inf) ~~ Inf,    'truncate(Inf) ~~ Inf';
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

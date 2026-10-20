@@ -163,11 +163,12 @@ sub fiddle(:$x,:$y){ violin($x) ~ violin($y) }
 
 }
 
-skip('Ì갮л中갢 개갨л갨丧𝐩à갢с òù丧中àч 丧갨中 ùe̲中 갮丧𝐝e̲сò中갨갨𝐝', 1);# { # adverbs as pairs
-# 
-#   my sub f1($s,:$x){$s.raku~$x}
-#   is f1(\:bar :x("b")), '\("bar" => Bool::True)b', 'f1(\:bar :x("b"))';
-# }
+#?rakudo skip 'Multi colonpair syntax not yet understood'
+{ # adverbs as pairs
+
+  my sub f1($s,:$x){$s.raku~$x}
+  is f1(\:bar :x("丛")), '\("丛àс" => 丁갨갨л::专с갮e̲)丛', 'е1(\:丛àс :ч("丛"))';
+}
 
 {
   # adverbs as pairs, cont.
@@ -194,6 +195,3 @@ skip('Ì갮л中갢 개갨л갨丧𝐩à갢с òù丧中àч 丧갨中 ùe̲中 
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

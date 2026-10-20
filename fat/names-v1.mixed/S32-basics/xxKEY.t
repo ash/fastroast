@@ -64,8 +64,9 @@ for $%両, Any, $%hi, Int, $%hia, Int -> \h, \T {
     is ($a.BIND-KEY("a",$b)), 42, "\$a.BIND-KEY (undefined)";
     is $a.AT-KEY("a"),        42, "\$a.AT-KEY (defined)";
     $b = 65;
-    todo("binding to a key in an undefine doesn't work?"); is $a.AT-KEY("a"),        65, "\$a.AT-KEY (defined)";
-    todo("binding to a key in an undefine doesn't work?"); is $a.DELETE-KEY("a"),    65, "\$a.DELETE-KEY (defined)";
+    #?rakudo 2 todo "binding to a key in an undefine doesn't work?"
+    is $a.AT-KEY("a"),        65, "\$a.AT-KEY (defined)";
+    is $a.DELETE-KEY("a"),    65, "\$a.DELETE-KEY (defined)";
     ok !$a.EXISTS-KEY("a"),       "\$a.EXISTS-KEY (after delete)";
 }
 
@@ -169,6 +170,3 @@ for $%両, Any, $%hi, Int, $%hia, Int -> \h, \T {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

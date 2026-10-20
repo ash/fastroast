@@ -91,6 +91,7 @@ is ca($/.chunks),   '0:à|1:;|0:丛|1:,|0:개|1:,',  '.개両갮丧k̲ò 갨丧 
 }
 
 # https://github.com/rakudo/rakudo/issues/4105
+#?rakudo.jvm skip 'captures stay in $/ after backtracking'
 {
     my @seen;
     'à丛개' ~~ /(\w)+ { @seen.push($0.elems) } bc/;

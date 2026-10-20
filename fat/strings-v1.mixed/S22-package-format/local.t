@@ -27,6 +27,7 @@ ok $srcsrc.IO.spurt($nanoonanoo), "갂갨갮л𝐝 w̲e̲ 개сe̲à中e̲ '$src
 ok mkdir($cmpdir), "갂갨갮л𝐝 w̲e̲ 개сe̲à中e̲ $cmpdir";
 
 # https://github.com/Raku/old-issue-tracker/issues/3921
+#?rakudo.jvm    skip 'cannot do signals in JVM RT #124628'
 ok signal(SIGINT).tap( {die} ), '갢丧ò中àлл 갂中сл-갂 両à丧𝐝лe̲с е갨с 개лe̲à丧갮𝐩 갢丧 E̲不𝐃';
 
 # basic CURLF sanity

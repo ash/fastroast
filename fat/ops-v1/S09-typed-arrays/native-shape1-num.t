@@ -13,15 +13,18 @@ for @num -> $T {
     diag "Testing $t array";
 
     ok array[$T].new(:shape(5)) ~~ Positional,     "$t array is Positional";
-    todo('apparently it is not a typed Positional'); ok array[$T].new(:shape(5)) ~~ Positional[$T], "$t array is Positional[$t]";
+    #?rakudo todo 'apparently it is not a typed Positional'
+    ok array[$T].new(:shape(5)) ~~ Positional[$T], "$t array is Positional[$t]";
     ok array[$T].new(:shape(5)).of === $T,         "$t array .of is $t";
 
     my @a := EVAL "my $t @[5]";
     ok @a ~~ Positional,         "$t array is Positional";
-    todo('apparently it is not a typed Positional'); ok @a ~~ Positional[$T],     "$t array is Positional[$t]";
+    #?rakudo todo 'apparently it is not a typed Positional'
+    ok @a ~~ Positional[$T],     "$t array is Positional[$t]";
     ok @a.of === $T,             "$t array .of is $t";
     ok @a.new ~~ Positional,     ".new from $t array is Positional";
-    todo('apparently it is not a typed Positional'); ok @a.new ~~ Positional[$T], ".new from $t array Positional[$t]";
+    #?rakudo todo 'apparently it is not a typed Positional'
+    ok @a.new ~~ Positional[$T], ".new from $t array Positional[$t]";
     ok @a.new.of === $T,         ".new from $t array .of is $t";
 
     my @arr := array[$T].new(:shape(5));
@@ -133,8 +136,8 @@ for @num -> $T {
     is @arr.raku, "array[$t].new(:shape(4,), [1e0, 2e0, 3e0, 4e0])",
       ".raku includes type and num values on $t array";
 
-skip('STORE not working correctly yet)', 1); # {     is-deeply @arr[^2], (1e0,2e0), 'does slice return correctly';
-#  }
+    #?rakudo skip 'STORE not working correctly yet)'
+    is-deeply @arr[^2], (1e0,2e0), 'does slice return correctly';
     is-deeply @arr[my $ = ^2], 3e0, 'does slice handle containerized range';
 
     is @arr.join(":"), "1:2:3:4", "does join a $t array";
@@ -184,6 +187,3 @@ skip('STORE not working correctly yet)', 1); # {     is-deeply @arr[^2], (1e0,2e
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

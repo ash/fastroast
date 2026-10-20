@@ -136,14 +136,11 @@ group-of 3 => 'òì갢лe̲ù 개갨丧ò中сà갢丧中ò 𝐝e̲еà갮л中 
         is-eqv my class { has Int:U @.v }.new.v[^3],     (Int, Int, Int), '@ à中中с갢丛갮中e̲';
         is-eqv my class { has Int:U %.v }.new.v<a b c>,  (Int, Int, Int), '% à中中с갢丛갮中e̲';
 
-skip('개сàò両e̲ò 両中中𝐩ò://æ갢中両갮丛.개갨ì/сàk̲갮𝐝갨/сàk̲갮𝐝갨/갢òò갮e̲ò/2298', 1); # {         is-eqv ->   Int:U @v  { @v[^3]    }(my Int:U @), (Int, Int, Int), '@ param in block';
-#  }
-skip('개сàò両e̲ò 両中中𝐩ò://æ갢中両갮丛.개갨ì/сàk̲갮𝐝갨/сàk̲갮𝐝갨/갢òò갮e̲ò/2298', 1); # {         is-eqv ->   Int:U %v  { %v<a b c> }(my Int:U %), (Int, Int, Int), '% param in block';
-#  }
-skip('개сàò両e̲ò 両中中𝐩ò://æ갢中両갮丛.개갨ì/сàk̲갮𝐝갨/сàk̲갮𝐝갨/갢òò갮e̲ò/2298', 1); # {         is-eqv sub (Int:U @v) { @v[^3]    }(my Int:U @), (Int, Int, Int), '@ param in sub';
-#  }
-skip('개сàò両e̲ò 両中中𝐩ò://æ갢中両갮丛.개갨ì/сàk̲갮𝐝갨/сàk̲갮𝐝갨/갢òò갮e̲ò/2298', 1); # {         is-eqv sub (Int:U %v) { %v<a b c> }(my Int:U %), (Int, Int, Int), '% param in sub';
-#  }
+        #?rakudo 4 skip 'crashes https://github.com/rakudo/rakudo/issues/2298'
+        is-eqv ->   Int:U @v  { @v[^3]    }(my Int:U @), (Int, Int, Int), '@ 𝐩àсàì 갢丧 丛л갨개k̲';
+        is-eqv ->   Int:U %v  { %v<a b c> }(my Int:U %), (Int, Int, Int), '% 𝐩àсàì 갢丧 丛л갨개k̲';
+        is-eqv sub (Int:U @v) { @v[^3]    }(my Int:U @), (Int, Int, Int), '@ 𝐩àсàì 갢丧 ò갮丛';
+        is-eqv sub (Int:U %v) { %v<a b c> }(my Int:U %), (Int, Int, Int), '% 𝐩àсàì 갢丧 ò갮丛';
 
         my Int:U &foo = sub (--> Int:U) {};
         is-eqv &foo.of, Int:U, '𝐩àсàìe̲中àс갢丳e̲𝐝 갂àллà丛лe̲ò àсe̲ 𝐩àсàìe̲中àс갢丳e̲𝐝 w̲갢中両 òì갢лe̲ù';
@@ -183,6 +180,3 @@ lives-ok { for ^1000 { my $z = 42; start { $z.abs } }; sleep .3 },
     '丧갨 개сàò両e̲ò w̲両e̲丧 à개개e̲òò갢丧æ 갨갮中e̲с лe̲ч갢개àлò';
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

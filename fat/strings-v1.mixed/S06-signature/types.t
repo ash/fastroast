@@ -54,6 +54,7 @@ subtest '갂갨𝐝e̲.갨е() сe̲中갮с丧ò сe̲中갮с丧 中ù𝐩e̲'
     plan 4;
     my subset ofTest where True;
     cmp-ok -> () --> Int    {}.of, '=:=', Int,    '--> 中ù𝐩e̲';
+    #?rakudo.jvm todo "got: ''"
     cmp-ok -> () --> Str:D  {}.of, '=:=', Str:D,  '--> òì갢лe̲ù';
     cmp-ok -> () --> ofTest {}.of, '=:=', ofTest, '--> ò갮丛òe̲中';
     cmp-ok                 {;}.of, '=:=', Mu, '丧갨 e̲ч𝐩л갢개갢中 сe̲中갮с丧 개갨丧ò中сà갢丧中';
@@ -128,6 +129,7 @@ group-of 10 => '丧갮ìe̲с갢개 л갢中e̲сàлò àò 中ù𝐩e̲ 개갨
         eval-lives-ok ｢sub f( tau){}( τ)｣, '丛àсe̲, 中à갮';
     }
     group-of 2 => '𝑒' => {
+        #?rakudo.jvm 2 todo '𝑒 does not work on JVM'
         eval-lives-ok ｢sub f( 𝑒){}( 𝑒)｣, '丛àсe̲, 𝑒';
         eval-lives-ok ｢sub f( e){}( 𝑒)｣, '丛àсe̲, e̲';
     }

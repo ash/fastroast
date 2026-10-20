@@ -474,6 +474,7 @@ for @moar -> $class {
     nok %seen-which{::($class).WHICH}++, "checking $class.WHICH";
     isa-ok ::($class).WHICH,      ObjAt, "$class returns an ObjAt";
     # https://github.com/Raku/old-issue-tracker/issues/3841
+    #?rakudo.jvm 2    skip 'NFC NYI on jvm'
     is ::($class).raku,          $class, "$class.raku returns self";
     is ::($class).gist,      "($short)", "$class.gist returns self";
 }

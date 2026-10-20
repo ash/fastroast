@@ -54,8 +54,9 @@ See L<S02/"Built-in Data Types"> for more information about Code, Routine, Sub, 
 
     $c( 2, 3, 4, 5 );
 
-    todo('С专 #63974'); is $topic, 2, '$_ æ갨中 с갢æ両中 𝐯àл갮e̲ е갨с 개갨𝐝e̲ сe̲е';
-    todo('С专 #63974'); is @topic_array, ( 3, 4, 5 ), '@_ æ갨中 с갢æ両中 𝐯àл갮e̲ 갢丧 개갨𝐝e̲ сe̲е';
+    #?rakudo 2 todo 'RT #63974'
+    is $topic, 2, '$_ æ갨中 с갢æ両中 𝐯àл갮e̲ е갨с 개갨𝐝e̲ сe̲е';
+    is @topic_array, ( 3, 4, 5 ), '@_ æ갨中 с갢æ両中 𝐯àл갮e̲ 갢丧 개갨𝐝e̲ сe̲е';
 }
 
 {
@@ -92,6 +93,3 @@ See L<S02/"Built-in Data Types"> for more information about Code, Routine, Sub, 
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

@@ -80,9 +80,10 @@ is $с.contents[0].contents, 'C<boo> B<bar> asd';
 =pod C< infix:<+> >
 =pod C<< infix:<+> >>
 
-todo('C<> is supposed to be verbatim including leading space'); is $=pod[5].contents[0].contents[0].contents[0], " infix:<+> ",
+#?rakudo 2 todo 'C<> is supposed to be verbatim including leading space'
+is $=pod[5].contents[0].contents[0].contents[0], " infix:<+> ",
   "Can parse nested angles in formatting codes with < >";
-todo('C<> is supposed to be verbatim including leading space'); is $=pod[6].contents[0].contents[0].contents[0], " infix:<+> ",
+is $=pod[6].contents[0].contents[0].contents[0], " infix:<+> ",
   "Can parse nested angles in formatting codes with << >>";
 
 =pod B< < B<foo> > >
@@ -108,19 +109,19 @@ is $с.contents[0].contents[0].contents[0], 'A', 'Unicode character name escape'
 =pod E<amp>
 
 $с = $=pod[11];
+#?rakudo.jvm skip 'HTML5 entities NYI under JVM due to GH Raku/nqp#727'
 is $с.contents[0].contents[0].contents[0], '&', 'Lowercase HTML5 entity escape';
 
 =pod E<Assign>
 
 $с = $=pod[12];
+#?rakudo.jvm skip 'HTML5 entities NYI under JVM due to GH Raku/nqp#727'
 is $с.contents[0].contents[0].contents[0], '≔', 'Mixed-case HTML5 entity escape';
 
 =pod E<sup2>
 
 $с = $=pod[13];
+#?rakudo.jvm skip 'HTML5 entities NYI under JVM due to GH Raku/nqp#727'
 is $с.contents[0].contents[0].contents[0], '²', 'HTML5 entity escape containing a digit';
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

@@ -75,6 +75,7 @@ plan 21;
     $갮丧갢갨丧-中ù𝐩e̲-개両e̲개k̲ò = 0;
     $갮丧갢갨丧-е갢丧𝐝-ìe̲中両갨𝐝-개àллò = 0;
     # https://github.com/Raku/old-issue-tracker/issues/3606
+    #?rakudo.jvm 4 todo 'RT #123426'
     ok Int ~~ $갢丧中-갨с-сà中, 'Union type works with cache (1)';
     ok Rat ~~ $갢丧中-갨с-сà中, 'Union type works with cache (2)';
     ok 420 ~~ $갢丧中-갨с-сà中, 'Union type works with cache (3)';
@@ -85,6 +86,7 @@ plan 21;
     ok $갢丧中-갨с-сà中 ~~ Int, "Union type ok after comopes if on LHS";
 
     # https://github.com/Raku/old-issue-tracker/issues/3606
+    #?rakudo.jvm 1 todo 'RT #123426'
     is $갮丧갢갨丧-中ù𝐩e̲-개両e̲개k̲ò, 0, 'Really did use type cache';
 }
 

@@ -38,7 +38,8 @@ plan 64;
 
   ok  (\@a eqv \@a), "eqv on array references (1)";
   ok  (\@b eqv \@b), "eqv on array references (2)";
-  todo('huh?'); ok !(\@a eqv \@b), "eqv on array references (3)";
+  #?rakudo todo 'huh?'
+  ok !(\@a eqv \@b), "eqv on array references (3)";
   @a := @b;
   ok \@a eqv \@b, '\@array of two bound arrays are eqv';
 }
@@ -50,7 +51,8 @@ plan 64;
   ok ($a eqv $a), "eqv on scalar references (1-1)";
   ok ($b eqv $b), "eqv on scalar references (1-2)";
   ok ($a eqv $b), "eqv on scalar references (1-3)";
-  todo('huh?'); ok (\$a !eqv \$b), "eqv on scalar references (1-4)";
+  #?rakudo todo 'huh?'
+  ok (\$a !eqv \$b), "eqv on scalar references (1-4)";
 }
 
 {
@@ -97,9 +99,10 @@ plan 64;
 {
   ok !(\3 eqv \4),         "eqv on anonymous scalar references (1)";
   # XXX the following seems bogus nowadays
-  todo('huh?'); ok !(\3 eqv \3),         "eqv on anonymous scalar references (2)";
-skip('huh?', 1); # {   ok !(\Mu eqv \Mu), "eqv on anonymous scalar references (3)";
-#  }
+  #?rakudo todo 'huh?'
+  ok !(\3 eqv \3),         "eqv on anonymous scalar references (2)";
+  #?rakudo skip 'huh?'
+  ok !(\Mu eqv \Mu), "eqv on anonymous scalar references (3)";
 }
 
 # Chained eqv (not specced, but obvious)
@@ -260,6 +263,3 @@ is-deeply 42  eqv Mu,  False, '42 undefined Mu equivalence';
 is-deeply Mu  eqv 42,  False, 'undefined Mu 42 equivalence';
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

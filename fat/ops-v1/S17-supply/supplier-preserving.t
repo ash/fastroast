@@ -4,6 +4,7 @@ use Test::Util;
 
 plan 1;
 
+#?rakudo.jvm todo 'only first iteration of for loop gives correct result'
 group-of 11 => "No races in Supplier::Preserving" => {
     my $closings = Channel.new;;
     sub make-supply() {

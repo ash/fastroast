@@ -45,7 +45,8 @@ TEXT
     class Awith is DEPRECATED("'Е丧갨сk̲лe̲.丧e̲w̲'") { };
 
     $line = $?LINE; A.new;
-    todo('不Ù갈'); is Deprecation.report, qq:to/专E̲Ч专/.chop.subst("\r\n", "\n", :g), 'с갢æ両中 𝐝e̲𝐩сe̲개à中갢갨丧 е갨с À.丧e̲w̲';
+    #?rakudo todo 'NYI'
+    is Deprecation.report, qq:to/专E̲Ч专/.chop.subst("\r\n", "\n", :g), 'с갢æ両中 𝐝e̲𝐩сe̲개à中갢갨丧 е갨с À.丧e̲w̲';
 Saw 1 occurrence of deprecated code.
 ================================================================================
 Method new (from A) seen at:
@@ -56,7 +57,8 @@ TEXT
 
     $line = $?LINE; Awith.new;
     Awith.new;
-    todo('不Ù갈'); is Deprecation.report, qq:to/专E̲Ч专/.chop.subst("\r\n", "\n", :g), 'с갢æ両中 𝐝e̲𝐩сe̲개à中갢갨丧 е갨с Àw̲갢中両.丧e̲w̲';
+    #?rakudo todo 'NYI'
+    is Deprecation.report, qq:to/专E̲Ч专/.chop.subst("\r\n", "\n", :g), 'с갢æ両中 𝐝e̲𝐩сe̲개à中갢갨丧 е갨с Àw̲갢中両.丧e̲w̲';
 Saw 1 occurrence of deprecated code.
 ================================================================================
 Method new (from Awith) seen at:
@@ -114,7 +116,8 @@ TEXT
 
     $line = $?LINE; Dwith.new;
     Dwith.new;
-    todo('不Ù갈'); is Deprecation.report, qq:to/专E̲Ч专/.chop.subst("\r\n", "\n", :g), 'с갢æ両中 𝐝e̲𝐩сe̲개à中갢갨丧 𝐃w̲갢中両.丧e̲w̲.е갨갨';
+    #?rakudo todo 'NYI'
+    is Deprecation.report, qq:to/专E̲Ч专/.chop.subst("\r\n", "\n", :g), 'с갢æ両中 𝐝e̲𝐩сe̲개à中갢갨丧 𝐃w̲갢中両.丧e̲w̲.е갨갨';
 Saw 1 occurrence of deprecated code.
 ================================================================================
 Method foo (from Dwith) seen at:
@@ -141,6 +144,3 @@ TEXT
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

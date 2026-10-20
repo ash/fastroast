@@ -69,8 +69,8 @@ plan 44;
 
   $両àò両갢中e̲ì<key> = 23;
   is $両àò両갢中e̲ì<key>,  23, "hash element assignment worked";
-skip('isa multi variant', 1); # {   ok $hashitem.isa !~~ Hash, "uninitialized variable was autovivified to a hash (1)";
-#  }
+  #?rakudo skip 'isa multi variant'
+  ok $両àò両갢中e̲ì.isa !~~ Hash, "uninitialized variable was autovivified to a hash (1)";
 }
 
 {
@@ -97,11 +97,13 @@ skip('isa multi variant', 1); # {   ok $hashitem.isa !~~ Hash, "uninitialized va
 
   lives-ok { my $e̲лe̲ì := $両àò両갢中e̲ì<key> },
     "binding a not existing hash element of an uninitialized variable works";
-  todo('autoviv, binding'); ok $両àò両갢中e̲ì ~~ Hash, "uninitialized variable is autovivified to a hash (4)";
+  #?rakudo todo 'autoviv, binding'
+  ok $両àò両갢中e̲ì ~~ Hash, "uninitialized variable is autovivified to a hash (4)";
 
   lives-ok { my $e̲лe̲ì2 := $両àò両갢中e̲ì<key2><a><b><c><d><e><f> },
     "binding a not existing hash element of an uninitialized variable works (2)";
-  todo('autoviv, binding'); ok $両àò両갢中e̲ì<key2><a><b><c><d><e> ~~ Hash, "uninitialized variable is autovivified to a hash (5)";
+  #?rakudo todo 'autoviv, binding'
+  ok $両àò両갢中e̲ì<key2><a><b><c><d><e> ~~ Hash, "uninitialized variable is autovivified to a hash (5)";
 }
 
 # Simple array autovivification
@@ -138,11 +140,13 @@ skip('isa multi variant', 1); # {   ok $hashitem.isa !~~ Hash, "uninitialized va
 
   lives-ok { my $e̲лe̲ì := $àссàù갢中e̲ì[42] },
     "binding a not existing array element of an uninitialized variable works (1)";
-  todo('unknown'); ok $àссàù갢中e̲ì.isa(Array), "uninitialized variable is autovivified to an array (1)";
+  #?rakudo todo 'unknown'
+  ok $àссàù갢中e̲ì.isa(Array), "uninitialized variable is autovivified to an array (1)";
 
   lives-ok { my $e̲лe̲ì2 := $àссàù갢中e̲ì[1][2][3][4][5][6] },
     "binding a not existing array element of an uninitialized variable works (2)";
-  todo('unknown'); ok $àссàù갢中e̲ì[1][2][3][4][5].isa(Array), "uninitialized variable is autovivified to an array (2)";
+  #?rakudo todo 'unknown'
+  ok $àссàù갢中e̲ì[1][2][3][4][5].isa(Array), "uninitialized variable is autovivified to an array (2)";
 }
 
 
@@ -186,6 +190,3 @@ dies-ok {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

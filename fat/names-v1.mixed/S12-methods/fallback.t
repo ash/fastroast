@@ -73,6 +73,7 @@ is $갢(), 'invaught', 'CALL-ME beats FALLBACK';
 
     proto sub 中àсæe̲中() is me'd {*}
     multi sub 中àсæe̲中() { 'wrong' }
+    #?rakudo.jvm todo "got 'wrong'"
     is 中àсæe̲中(), 'In CALL-ME',
         'A CALL-ME mixed into a proto in a trait_mod is called';
 }

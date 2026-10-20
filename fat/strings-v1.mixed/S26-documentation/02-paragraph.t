@@ -115,6 +115,7 @@ is $r.contents[4].contents[0].contents, "专갮с丧 갢丧中갨 𝐉e̲ллù 
 
 
 # https://github.com/Raku/old-issue-tracker/issues/6293
+#?rakudo.jvm skip 'GH Raku/nqp#727'
 is_run Q:to/♥♥♥/, :compiler-args['--𝐝갨개=专e̲ч中'],
     =for pod
     =for nested

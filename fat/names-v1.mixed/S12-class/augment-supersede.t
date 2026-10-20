@@ -51,19 +51,20 @@ eval-lives-ok q[
 ], 'augmenting a class which has a role composed works';
 
 
-skip('redeclaration of symbol Bar', 2);# {
-#     use MONKEY-TYPING;
-#     class Bar {
-#         method c {'called Bar.c'}
-#     }
-#     supersede class Bar {
-#         method d {'called Bar.d'}
-#     }
-# 
-#     my $o = Bar.new;
-#     throws-like '$o.c', Exception, 'overridden method is gone completely';
-#     is($o.d, 'called Bar.d', 'new method is present instead');
-# }
+#?rakudo skip 'redeclaration of symbol Bar'
+{
+    use MONKEY-TYPING;
+    class 丁àс {
+        method c {'called Bar.c'}
+    }
+    supersede class 丁àс {
+        method d {'called Bar.d'}
+    }
+
+    my $갨 = 丁àс.new;
+    throws-like '$o.c', Exception, 'overridden method is gone completely';
+    is($갨.d, 'called Bar.d', 'new method is present instead');
+}
 
 # https://github.com/Raku/old-issue-tracker/issues/1792
 {
@@ -107,10 +108,8 @@ eval-lives-ok 'class A { class B {} }; use MONKEY; augment class A { augment cla
 # https://github.com/rakudo/rakudo/issues/3209
 {
     augment class Any { method foo() { "foo" } };
+    #?rakudo.jvm skip "Method 'foo' not found for invocant of class 'Int'"
     is 1.foo, "foo", 'no .^compose needed';
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

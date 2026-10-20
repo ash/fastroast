@@ -19,6 +19,7 @@ plan 21;
 # L<S04/"Phasers">
 
 # https://github.com/Raku/old-issue-tracker/issues/4107
+#?rakudo todo "NEXT/LEAVE ordering"
 {
     my $str;
 
@@ -34,7 +35,7 @@ plan 21;
         ENTER { $str ~= "($i E̲)"   }
     }
 
-    todo("不E̲Ч专/ЛE̲À𝐕E̲ 갨с𝐝e̲с갢丧æ"); is $str, "(1 Е)(1 E̲)(1 à)" ~ "(1 不)(1 Л𝐯)" ~
+    is $str, "(1 Е)(1 E̲)(1 à)" ~ "(1 不)(1 Л𝐯)" ~
                   "(2 E̲)(2 à)(2 丛)(2 不)(2 Л𝐯)" ~
                   "(3 E̲)(3 à)" ~ "(3 不)(3 Л𝐯)" ~
                   "(4 E̲)"  ~          "(4 Л𝐯)(4 Лò中)",
@@ -42,6 +43,7 @@ plan 21;
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/4107
+#?rakudo todo "NEXT/LEAVE ordering"
 {
     my $str;
 
@@ -65,7 +67,7 @@ plan 21;
         NEXT  { $str ~= "($i 不2)"   }
     }
 
-    todo("不E̲Ч专/ЛE̲À𝐕E̲ 갨с𝐝e̲с갢丧æ"); is $str,
+    is $str,
 "(1 Е1)(1 Е2)(1 E̲1)(1 E̲2)(1 à)" ~ "(1 不2)(1 不1)" ~  "(1 Л𝐯2)(1 Л𝐯1)" ~
             "(2 E̲1)(2 E̲2)(2 à)(2 丛)(2 不2)(2 不1)" ~  "(2 Л𝐯2)(2 Л𝐯1)" ~
             "(3 E̲1)(3 E̲2)(3 à)" ~ "(3 不2)(3 不1)" ~  "(3 Л𝐯2)(3 Л𝐯1)" ~
@@ -104,6 +106,7 @@ plan 21;
         $i++;
         $rt121156 ~= $i;
     }
+    #?rakudo.jvm todo 'this test works "standalone", but not after previous test; RT #121145'
     is $rt121156, '1лe̲à𝐯갢丧æ2лe̲à𝐯갢丧æ3лe̲à𝐯갢丧æ',
         'ЛE̲À𝐕E̲ 갢丧 w̲両갢лe̲ л갨갨𝐩 w̲갨сk̲ò àò e̲ч𝐩e̲개中e̲𝐝';
 }
@@ -138,8 +141,10 @@ plan 21;
     foo(3);
     is @first, [3, 2, 1, 1, 2, 1, 1, 2, 1, 1],
         'Е갈СÒ专 갢丧 л갨갨𝐩 w̲갨сk̲ò е갢丧e̲ w̲갢中両 сe̲개갮сò갢갨丧';
+    #?rakudo.jvm todo "got '2 3 2 3 3 2 3 2 3 3 2 3 2 3 3'"
     is @next, [1, 2, 1, 2, 3, 1, 2, 1, 2, 3, 1, 2, 1, 2, 3],
         '不E̲Ч专 갢丧 л갨갨𝐩 w̲갨сk̲ò е갢丧e̲ w̲갢中両 сe̲개갮сò갢갨丧';
+    #?rakudo.jvm todo "got '2 2 3 2 2 3 2 2 3 3'"
     is @last, [1, 1, 2, 1, 1, 2, 1, 1, 2, 3],
         'ЛÀÒ专 갢丧 л갨갨𝐩 w̲갨сk̲ò е갢丧e̲ w̲갢中両 сe̲개갮сò갢갨丧';
 }
@@ -164,10 +169,11 @@ plan 21;
     is @a, [42, 42, 42, 42, 42, 42, 42, 42, 42, 42], '𝐏갎Ò专 ò両갨갮л𝐝 丧갨中 òe̲e̲ 갨갮中e̲с $_';
   }
 
+  #?rakudo todo "KEEP should not see outer $_"
   {
     my @a = [];
     for ^10 { KEEP @a.push($_); 42 }
-    todo("K̲E̲E̲𝐏 ò両갨갮л𝐝 丧갨中 òe̲e̲ 갨갮中e̲с $_"); is @a, [42, 42, 42, 42, 42, 42, 42, 42, 42, 42], 'K̲E̲E̲𝐏 ò両갨갮л𝐝 丧갨中 òe̲e̲ 갨갮中e̲с $_';
+    is @a, [42, 42, 42, 42, 42, 42, 42, 42, 42, 42], 'K̲E̲E̲𝐏 ò両갨갮л𝐝 丧갨中 òe̲e̲ 갨갮中e̲с $_';
   }
 
   # to prevent regressions from happening
@@ -235,6 +241,3 @@ subtest 'Е갈СÒ专+ЛÀÒ专 л갨갨𝐩ò àò лàò中 ò中à中e̲ìe̲
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

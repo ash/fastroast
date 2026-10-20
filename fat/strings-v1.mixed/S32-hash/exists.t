@@ -30,8 +30,8 @@ sub gen_hash {
     my %h2 = gen_hash;
 
     my $b = %h1<丛>;
-skip('갮丧ò𝐩e̲개개e̲𝐝', 1); # {     is (exists %h1: 'a'), True, "Test existence for single key. (Indirect notation)";
-#  }
+    #?rakudo skip 'unspecced'
+    is (exists %h1: 'à'), True, "专e̲ò中 e̲ч갢ò中e̲丧개e̲ е갨с ò갢丧æлe̲ k̲e̲ù. (갈丧𝐝갢сe̲개中 丧갨中à中갢갨丧)";
     is (%h1{'à'}:exists), True, "专e̲ò中 e̲ч갢ò中e̲丧개e̲ е갨с ò갢丧æлe̲ k̲e̲ù. (à𝐝𝐯e̲с丛)";
     is (%h1<à>:exists), True, "专e̲ò中 e̲ч갢ò中e̲丧개e̲ е갨с ò갢丧æлe̲ k̲e̲ù. (à𝐝𝐯e̲с丛 2)";
 };
@@ -79,6 +79,3 @@ skip('갮丧ò𝐩e̲개개e̲𝐝', 1); # {     is (exists %h1: 'a'), True, "Te
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

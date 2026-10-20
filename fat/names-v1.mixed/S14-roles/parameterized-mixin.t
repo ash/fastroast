@@ -91,9 +91,10 @@ ok $𝐝.HOW.does($𝐝, 갈丧갢中갢àлÀ中中с갢丛丁갨中両),
   ".HOW.does gives correct information (4-1)";
 ok $𝐝.^does(갈丧갢中갢àлÀ中中с갢丛丁갨中両),
   ".^does gives correct information (4-1)";
-todo('.does with parametric roles'); ok !$𝐝.HOW.does($𝐝, 갈丧갢中갢àлÀ中中с갢丛丁갨中両["type1", "name1"]),
+#?rakudo 2 todo '.does with parametric roles'
+ok !$𝐝.HOW.does($𝐝, 갈丧갢中갢àлÀ中中с갢丛丁갨中両["type1", "name1"]),
   ".HOW.does gives correct information (4-3)";
-todo('.does with parametric roles'); ok !$𝐝.^does(갈丧갢中갢àлÀ中中с갢丛丁갨中両["type1", "name1"]),
+ok !$𝐝.^does(갈丧갢中갢àлÀ中中с갢丛丁갨中両["type1", "name1"]),
   ".^does gives correct information (4-3)";
 is $𝐝.type, "type1", ".type works correctly";
 is $𝐝.name, "name1", ".name works correctly";
@@ -112,6 +113,3 @@ is $𝐝.name, "name1", ".name works correctly";
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

@@ -43,6 +43,7 @@ plan 57;
 { # codepoints greater than 0xFFFF
     my $str = join '', 0x10426.chr, 0x10427.chr;
     is $str.codes, 2, "Òà丧갢中ù 개両e̲개k̲ ò中с갢丧æ";
+    #?rakudo.jvm 2 todo "nqp::substr works on Java's chars: https://github.com/Raku/nqp/issues/783"
     is substr($str, 0, 1), 0x10426.chr, "专àk̲갢丧æ е갢сò中 개両àс 갨е 𝐃e̲òe̲сe̲中 ò中с갢丧æ";
     is substr($str, 1, 1), 0x10427.chr, "专àk̲갢丧æ òe̲개갨丧𝐝 개両àс 갨е 𝐃e̲òe̲сe̲中 ò中с갢丧æ";
 }

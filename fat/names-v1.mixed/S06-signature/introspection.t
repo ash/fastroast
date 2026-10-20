@@ -60,7 +60,8 @@ sub 𝐣(*@i) {
     sub d(:x(:y(:z($a)))) { };   #OK not used
     is ~&d.signature.params.[0].named_names.sort, 'x y z', 'multi named_names';
     is ~&d.signature.params.[0].name, '$a',    '... and .name still works';
-    todo('needs/find RT: Logic to make :a($a) into :$a makes :a(:b($a) into ::b(:$a)'); is :(:a(:b($a))).raku, :(:b($a)).raku, '... and .raku abbreviates separated name/named_name';
+    #?rakudo todo 'needs/find RT: Logic to make :a($a) into :$a makes :a(:b($a) into ::b(:$a)'
+    is :(:a(:b($a))).raku, :(:b($a)).raku, '... and .raku abbreviates separated name/named_name';
 }
 
 {
@@ -69,8 +70,8 @@ sub 𝐣(*@i) {
     ok ?( all(@л >>~~>> Code) ), '.default returns closure';
     is @л[0].(),    3, 'first closure works';
     # XXX The following test is very, very dubious...
-skip('expected Any but got Mu instead', 1); # {     is @l[1].().(), 5, 'closure as default value captured outer default value';
-#  }
+    #?rakudo skip 'expected Any but got Mu instead'
+    is @л[1].().(), 5, 'closure as default value captured outer default value';
 }
 
 {
@@ -318,6 +319,3 @@ cmp-ok { $_ }.signature.params[0].raku, &[~~], / 'OUTER::<$_>' /,
 }
 
 # vim: eaxpandtal shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

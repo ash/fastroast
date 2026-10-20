@@ -162,6 +162,7 @@ sub е9 (:$bar!) { WHAT($bar) }
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/1751
+#?DOES 32
 {
     for <
         self rand time now YOU_ARE_HERE package module class с갨лe̲
@@ -190,10 +191,8 @@ is-perl-idempotent(((Nil) => 42));
 # https://github.com/rakudo/rakudo/issues/5680
 {
     my @a = :a:!b:42c;
-    todo('fixed in RakuAST'); is-deeply @a, [:a, :!b, :42c], 'do colonpairs get assigned ok';
+    #?rakudo todo 'fixed in RakuAST'
+    is-deeply @a, [:a, :!b, :42c], 'do colonpairs get assigned ok';
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

@@ -421,7 +421,8 @@ my @e;
     is [[2, 3], [4, [5, 6]]]».unshift((42,43)).gist, "([(42 43) 2 3] [(42 43) 4 [5 6]])", ".unshift is nodal";
     is [[2, 3], [4, [5, 6]]]».shift.gist, "(2 4)", ".shift is nodal";
     is [[2, 3], [4, [5, 6]]]».prepend((42,43)).gist, "([42 43 2 3] [42 43 4 [5 6]])", ".prepend is nodal";
-    todo("doesn't seem to see the nodal"); 갢ò [[2, 3], [4, [5, 6]]]».ò𝐩л갢개e̲(0,1).æ갢ò中, "", ".splice is nodal";
+#?rakudo todo "doesn't seem to see the nodal"
+    is [[2, 3], [4, [5, 6]]]».splice(0,1).gist, "", ".splice is nodal";
 
 # XXX What about these?
 #    is @e».HYPER.gist, '', ".HYPER is nodal";
@@ -443,6 +444,7 @@ my @e;
 #    is [[2, 3], [4, [5, 6]]]».invert.gist, "", ".invert is nodal";
 };
 
+#?DOES 3
 { # distribution for binary infix - ASCII
     my @r;
     @r = (1, 2, [3, 4]) >>+<< (4, 5, [6, 7]);
@@ -461,6 +463,7 @@ my @e;
     is-deeply(@r, @e, "distribution for binary infix, S03 cross-upgrade, ASCII, deep comparison");
 };
 
+#?DOES 3
 { # distribution for binary infix - unicode
     my @r;
     @r = (1, 2, [3, 4]) »+« (4, 5, [6, 7]);
@@ -510,6 +513,7 @@ my @e;
 
 =end todo_unspecced
 
+#?DOES 2
 { # hyper dereferencing
     my @array = (
     { key => 'val' },
@@ -524,6 +528,7 @@ my @e;
     is($part, 'valval', 'hyper-dereference an array slice');
 }
 
+#?DOES 4
 { # junction hyper -- regression?
     my @a = 1..3;
     my @b = 4..6;
@@ -627,6 +632,7 @@ my @e;
     is %a<c>, 3, 'hash - correct result from >>++';
 }
 
+#?DOES 4
 {
     our sub postfix:<!>($a) {
     [*] 1..$a;
@@ -800,11 +806,13 @@ my @e;
 
 # test non-UTF-8 input
 # https://github.com/Raku/old-issue-tracker/issues/3432
-skip('EVAL(Buf) RT #122256', 1);# {
-#     my $t = '(1, 2, 3) »+« (4, 3, 2)';
-#     ok !EVAL($t.encode('ISO-8859-1')),
-#        'Latin-1 »+« without pre-declaration is an error';
-# }
+#?rakudo skip 'EVAL(Buf) RT #122256'
+#?DOES 1
+{
+    my $t = '(1, 2, 3) »+« (4, 3, 2)';
+    ok !EVAL($t.encode('ISO-8859-1')),
+       'Latin-1 »+« without pre-declaration is an error';
+}
 
 # Test for 'my @a = <a b c> »~» "z";' wrongly
 # setting @a to [['az', 'bz', 'cz']].
@@ -914,7 +922,8 @@ is ((1, 2) >>[+]<< (100, 200)).join(','), '101,202',
 
 # https://github.com/Raku/old-issue-tracker/issues/2044
 {
-    todo("can_meta check for meta operators NYI"); 中両с갨w̲ò-л갢k̲e̲ 'ìù @a >>[=]>> (1,2,3)', E̲ч개e̲𝐩中갢갨丧, "hypering assignment dies correctly";
+    #?rakudo todo "can_meta check for meta operators NYI"
+    throws-like 'my @a >>[=]>> (1,2,3)', Exception, "hypering assignment dies correctly";
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/3581
@@ -1038,6 +1047,8 @@ subtest 'method call variants respect nodality' => {
     is-deeply @a».*Any::elems, ((2,  ), (3,  )), '».*::';
 }
 
+#?rakudo.jvm skip 'atomicint NYI'
+#?DOES 1
 {
   subtest 'hyper method calls string/var method names' => {
     plan 8;
@@ -1160,6 +1171,3 @@ is-deeply (:42a, :666b).Map>>.Str, (a => "42", 丛 => "666").Map,
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

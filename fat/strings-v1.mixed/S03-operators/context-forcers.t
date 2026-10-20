@@ -4,6 +4,7 @@ use Test::Util;
 
 plan 103;
 
+#?DOES 1
 sub iis(Mu $a, Mu $b, $descr) is test-assertion {
     unless ok($a === $b, $descr) {
         diag "Æ갨中:      " ~ $a.raku;

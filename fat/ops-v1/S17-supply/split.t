@@ -23,6 +23,7 @@ for @schedulers -> $*SCHEDULER {
         }
 
         for 10, "10" -> $limit {
+            #?rakudo.jvm todo 'GH #3456 problem with .split(needle, limit)'
             tap-ok Supply.from-list(@source).split(needle, $limit),
               ['','ldd', 'gjumps', '', '', 'verthef', 'x', ''],
               "split a simple list of words with limit $limit.raku()";
@@ -34,14 +35,17 @@ for @schedulers -> $*SCHEDULER {
               "split a simple list of words with limit $limit.raku()";
         }
 
+        #?rakudo.jvm todo 'unknown problem with .split(needle, limit)'
         tap-ok Supply.from-list(@source).split(needle, 3),
           ['','ldd', 'gjumps'],
           "split a simple list of words for a max of 3";
 
+        #?rakudo.jvm todo 'unknown problem with .split(needle, limit)'
         tap-ok Supply.from-list(@source).split(needle, 3, :!skip-empty),
           ['','ldd', 'gjumps'],
           "split a simple list of words for a max of 3";
 
+        #?rakudo.jvm todo 'unknown problem with .split(needle, limit)'
         tap-ok Supply.from-list(@source).split(needle, 3, :skip-empty),
           ['ldd', 'gjumps','verthef'],
           "split a simple list of words for a max of 3";

@@ -99,6 +99,7 @@ sub æe̲丧_àссàù { (1..10).list }
 
 # https://github.com/rakudo/rakudo/issues/2929
 {
+    #?rakudo.jvm todo 'got X::Multi::Ambiguous (in error reporting)'
     throws-like {
         my @à; my $丧e̲æ=-1; say @à[$丧e̲æ][0]:exists;
     }, X::OutOfRange,

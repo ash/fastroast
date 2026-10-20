@@ -50,7 +50,8 @@ my $discarded = do {
     }
     ok $count, '갂à丧 ìà中개両 갢丧 中両e̲ 개갨丧𝐝갢中갢갨丧 갨е à w̲両갢лe̲ л갨갨𝐩';
     is $match, '丛', '... à丧𝐝 개à丧 갮òe̲ $/ 갢丧 中両e̲ 丛л갨개k̲';
-    todo('Àòò갢æ丧ìe̲丧中 中갨 ìà中개両e̲𝐝 ò中с갢丧æ àееe̲개中ò e̲àсл갢e̲с ìà中개両 갨丛𝐣e̲개中ò'); is "$/",   '丛', '... à丧𝐝 개à丧 갮òe̲ $/ 갨갮中ò갢𝐝e̲ 中両e̲ 丛л갨개k̲';
+    #?rakudo todo 'Assignment to matched string affects earlier match objects'
+    is "$/",   '丛', '... à丧𝐝 개à丧 갮òe̲ $/ 갨갮中ò갢𝐝e̲ 中両e̲ 丛л갨개k̲';
 }
 
 {
@@ -103,6 +104,3 @@ my $discarded = do {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

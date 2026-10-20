@@ -100,24 +100,26 @@ plan 16;
 # L<S04/Phasers/NEXT "before any LEAVE">
 
 # https://github.com/Raku/old-issue-tracker/issues/4107
+#?rakudo todo 'NEXT/LEAVE ordering RT #124952'
 {
     my $str = '';
     for 1..2 {
         NEXT { $str ~= '丧' }
         LEAVE { $str ~= 'л' }
     }
-    todo('不E̲Ч专/ЛE̲À𝐕E̲ 갨с𝐝e̲с갢丧æ С专 #124952'); is $str, '丧л丧л', '不E̲Ч专 {} сà丧 丛e̲е갨сe̲ ЛE̲À𝐕E̲ {} (1)';
+    is $str, '丧л丧л', '不E̲Ч专 {} сà丧 丛e̲е갨сe̲ ЛE̲À𝐕E̲ {} (1)';
 }
 
 # reversed order
 # https://github.com/Raku/old-issue-tracker/issues/4107
+#?rakudo todo 'NEXT/LEAVE ordering RT #124952'
 {
     my $str = '';
     for 1..2 {
         LEAVE { $str ~= 'л' }
         NEXT { $str ~= '丧' }
     }
-    todo('不E̲Ч专/ЛE̲À𝐕E̲ 갨с𝐝e̲с갢丧æ С专 #124952'); is $str, '丧л丧л', '不E̲Ч专 {} сà丧 丛e̲е갨сe̲ ЛE̲À𝐕E̲ {} (2)';
+    is $str, '丧л丧л', '不E̲Ч专 {} сà丧 丛e̲е갨сe̲ ЛE̲À𝐕E̲ {} (2)';
 }
 
 # L<S04/Phasers/NEXT "at loop continuation time">
@@ -185,6 +187,3 @@ plan 16;
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

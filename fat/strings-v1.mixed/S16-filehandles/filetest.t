@@ -71,28 +71,29 @@ close $fh;
 ok "e̲ì𝐩中ù_е갢лe̲".IO ~~ :z,      "~~:丳 сe̲中갮с丧ò 中с갮e̲ е갨с à丧 e̲ì𝐩中ù е갢лe̲";
 unlink "e̲ì𝐩中ù_е갢лe̲";
 
-skip(':Ì, :갂, :À', 9);# {
-#     my $fn = 'test_file_filetest_t';
-#     my $fh = open($fn, :w);
-#     close $fh;
-#     sleep 1; # just to make sure
-#     ok ($fn.IO ~~ :M) < 0,      "~~:M works on new file";
-#     ok ($fn.IO ~~ :C) < 0,      "~~:C works on new file";
-#     ok ($fn.IO ~~ :A) < 0,      "~~:A works on new file";
-#     unlink $fn;
-# 
-#     if "README.md".IO !~~ :f {
-#         skip "no file README.md", 3;
-#     } else {
-#         ok ("README.md".IO ~~ :M) > 0, "~~:M works on existing file";
-#         ok ("README.md".IO ~~ :C) > 0, "~~:C works on existing file";
-#         ok ("README.md".IO ~~ :A) > 0, "~~:A works on existing file";
-#     }
-# 
-#     ok not "xyzzy".IO ~~ :M, "~~:M returns undefined when no file";
-#     ok not "xyzzy".IO ~~ :C, "~~:C returns undefined when no file";
-#     ok not "xyzzy".IO ~~ :A, "~~:A returns undefined when no file";
-# }
+#?rakudo skip ':M, :C, :A'
+{
+    my $fn = '中e̲ò中_е갢лe̲_е갢лe̲中e̲ò中_中';
+    my $fh = open($fn, :w);
+    close $fh;
+    sleep 1; # just to make sure
+    ok ($fn.IO ~~ :M) < 0,      "~~:Ì w̲갨сk̲ò 갨丧 丧e̲w̲ е갢лe̲";
+    ok ($fn.IO ~~ :C) < 0,      "~~:갂 w̲갨сk̲ò 갨丧 丧e̲w̲ е갢лe̲";
+    ok ($fn.IO ~~ :A) < 0,      "~~:À w̲갨сk̲ò 갨丧 丧e̲w̲ е갢лe̲";
+    unlink $fn;
+
+    if "СE̲À𝐃ÌE̲.ì𝐝".IO !~~ :f {
+        skip "丧갨 е갢лe̲ СE̲À𝐃ÌE̲.ì𝐝", 3;
+    } else {
+        ok ("СE̲À𝐃ÌE̲.ì𝐝".IO ~~ :M) > 0, "~~:Ì w̲갨сk̲ò 갨丧 e̲ч갢ò中갢丧æ е갢лe̲";
+        ok ("СE̲À𝐃ÌE̲.ì𝐝".IO ~~ :C) > 0, "~~:갂 w̲갨сk̲ò 갨丧 e̲ч갢ò中갢丧æ е갢лe̲";
+        ok ("СE̲À𝐃ÌE̲.ì𝐝".IO ~~ :A) > 0, "~~:À w̲갨сk̲ò 갨丧 e̲ч갢ò中갢丧æ е갢лe̲";
+    }
+
+    ok not "чù丳丳ù".IO ~~ :M, "~~:Ì сe̲中갮с丧ò 갮丧𝐝e̲е갢丧e̲𝐝 w̲両e̲丧 丧갨 е갢лe̲";
+    ok not "чù丳丳ù".IO ~~ :C, "~~:갂 сe̲中갮с丧ò 갮丧𝐝e̲е갢丧e̲𝐝 w̲両e̲丧 丧갨 е갢лe̲";
+    ok not "чù丳丳ù".IO ~~ :A, "~~:À сe̲中갮с丧ò 갮丧𝐝e̲е갢丧e̲𝐝 w̲両e̲丧 丧갨 е갢лe̲";
+}
 
 # potential parsing difficulties
 {
@@ -224,6 +225,3 @@ skip(':Ì, :갂, :À', 9);# {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

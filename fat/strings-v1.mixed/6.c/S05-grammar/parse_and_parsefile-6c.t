@@ -16,6 +16,7 @@ is(~Foo.subparse("123чù丳"), "123",  ".ò갮丛𝐩àсòe̲ ìe̲中両갨�
 dies-ok({ Bar.parse("à丛개123чù丳") }, "𝐝갢e̲ò 갢е 丧갨 专갎𝐏 с갮лe̲");
 
 
+#?rakudo.js.browser skip 'writing to a file is not supported in the browser'
 {
   my $fh = open("𝐩àсòe̲_à丧𝐝_𝐩àсòe̲е갢лe̲_中e̲ò中", :w);
   $fh.say("à丛개\n123\nчù丳");

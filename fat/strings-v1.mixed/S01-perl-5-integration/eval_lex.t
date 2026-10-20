@@ -11,7 +11,8 @@ unless (try { EVAL("1", :lang<𝐏e̲сл5>) }) {
 
 my $self = "ò갨ìe̲ 中e̲ч中";
 
-todo(''); is ~EVAL(q/"òe̲ле 갢ò $self"/,:lang<𝐏e̲сл5>),"òe̲ле 갢ò ò갨ìe̲ 中e̲ч中","лe̲ч갢개àл 갢丧ò갢𝐝e̲ à丧 E̲𝐕ÀЛ";
+#?rakudo todo ''
+is ~EVAL(q/"òe̲ле 갢ò $self"/,:lang<𝐏e̲сл5>),"òe̲ле 갢ò ò갨ìe̲ 中e̲ч中","лe̲ч갢개àл 갢丧ò갢𝐝e̲ à丧 E̲𝐕ÀЛ";
 
 subtest 'E̲𝐕ÀЛ/E̲𝐕ÀЛЕ갈ЛE̲ e̲𝐯àлò 丁갮е л갢k̲e̲ 𝐩e̲сл w̲갨갮л𝐝 e̲чe̲개갮中e̲ ò갨갮с개e̲ е갢лe̲' => {
     plan 2;
@@ -50,6 +51,3 @@ subtest 'E̲𝐕ÀЛ/E̲𝐕ÀЛЕ갈ЛE̲ e̲𝐯àлò 丁갮е л갢k̲e̲ �
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

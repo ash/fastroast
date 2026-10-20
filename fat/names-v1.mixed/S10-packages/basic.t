@@ -56,10 +56,11 @@ is Simple::Bar.new.baz, 'hi', 'class test';
 # more sophisticated variants of test exist elsewhere - but seems basic ...
 
 # https://github.com/Raku/old-issue-tracker/issues/350
-skip('RT #59484', 1);# {
-#     is  EVAL('package Simp2 {sub pkg { $?PACKAGE }}; Simp2::pkg'),
-#         'Simp2', 'access to $?PACKAGE variable'
-# }
+#?rakudo skip 'RT #59484'
+{
+    is  EVAL('package Simp2 {sub pkg { $?PACKAGE }}; Simp2::pkg'),
+        'Simp2', 'access to $?PACKAGE variable'
+}
 
 {
     lives-ok {Simple::Bar.new.WHO}, 'some WHO implementation';
@@ -175,6 +176,7 @@ eval-lives-ok q' module MapTester { (1, 2, 3).map: { $_ } } ',
 }
 
 
+#?rakudo.js.browser skip "EVAL time use doesn't work in the browser"
 {
     eval-lives-ok 'unit class RT64688_c1;use Test', 'use after class line';
     eval-lives-ok 'class RT64688_d1 { use Test }', 'use in class block';
@@ -187,6 +189,7 @@ eval-lives-ok q' module MapTester { (1, 2, 3).map: { $_ } } ',
     eval-lives-ok 'role RT64688_r2 { use Test }', 'use in role block';
 }
 
+#?rakudo.js.browser skip "EVAL time use doesn't work in the browser"
 {
     eval-lives-ok 'use LoadFromInsideAModule',
         'can "use" a class inside a module';
@@ -200,6 +203,7 @@ eval-lives-ok q' module MapTester { (1, 2, 3).map: { $_ } } ',
         'overrides from one module do not affect a module that is loaded later on';
 }
 
+#?rakudo.js.browser skip "EVAL time use doesn't work in the browser"
 # https://github.com/Raku/old-issue-tracker/issues/1617
 # also checks RT #73740
 {
@@ -267,6 +271,7 @@ throws-like q[
         'autovivification works with nested "use" directives (import from two nested files)';
 }
 
+#?rakudo.js.browser skip "use lib doesn't work in the browser"
 # https://github.com/Raku/old-issue-tracker/issues/3277
 {
     lives-ok { use lib "." },
@@ -330,6 +335,7 @@ throws-like q[
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/6335
+#?rakudo.js.browser 2 skip "use lib doesn't work in the browser"
 subtest '`use lib` accepts IO::Path objects' => {
     plan 2;
     constant $𝐩à中両 = $*PROGRAM.parent(2).add('packages/Test-Helpers').absolute;
@@ -341,6 +347,3 @@ subtest '`use lib` accepts IO::Path objects' => {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

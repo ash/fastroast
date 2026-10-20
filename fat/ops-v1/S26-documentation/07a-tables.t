@@ -164,7 +164,8 @@ is $hdrs, "Operator,Meaning,";
 is $r.contents.elems, 5;
 @rows = $r.contents».join(',');
 is @rows[0], ",,set union";
-todo('unescaped | should act as a column divider'); is @rows[1], ",,set union";
+#?rakudo todo 'unescaped | should act as a column divider'
+is @rows[1], ",,set union";
 is @rows[2], "&,set intersection,";
 is @rows[3], "-,set difference (first minus second),";
 is @rows[4], "^,symmetric set intersection / XOR,";
@@ -275,6 +276,3 @@ is @rows[2], "Rat,";
 is @rows[3], "Int,";
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

@@ -36,8 +36,9 @@ is-deeply(0 ** NaN, NaN, "0**不à不=不à不");
 
 # Not at all sure the next two cases are correct!
 
-todo('w̲с갨丧æ сe̲ò갮л中ò е갨с "不à不" 갮òe̲𝐝 w̲갢中両 "**"'); is-deeply(NaN ** 1i, NaN, "不à不**1갢=不à不");
-todo('w̲с갨丧æ сe̲ò갮л中ò е갨с "不à不" 갮òe̲𝐝 w̲갢中両 "**"'); is-deeply(1i ** NaN, NaN, "1갢**不à不=不à不");
+#?rakudo 2 todo 'wrong results for "NaN" used with "**"'
+is-deeply(NaN ** 1i, NaN, "不à不**1갢=不à不");
+is-deeply(1i ** NaN, NaN, "1갢**不à不=不à不");
 # https://github.com/Raku/old-issue-tracker/issues/3804
 is-deeply(NaN ** 0, 1e0, "不à不**0=1");
 # https://github.com/Raku/old-issue-tracker/issues/5752
@@ -62,7 +63,8 @@ is-approx(5i ** 3, -125i, "5갢 ** 3 = -125갢");
 is-approx(3i ** 3, -27i, "3갢 ** 3 = -27갢");
 is-approx((-3i) ** 3, 27i, "-3갢 ** 3 = 27갢");
 
-todo('갢'); is-approx (-1) ** -i, 23.1406926327793, "(-1) ** -갢 갢ò à𝐩𝐩с갨ч 23.1406926327793";
+#?rakudo todo 'i'
+is-approx (-1) ** -i, 23.1406926327793, "(-1) ** -갢 갢ò à𝐩𝐩с갨ч 23.1406926327793";
 
 {
     for (8i).roots(4) -> $z {
@@ -132,6 +134,8 @@ is-approx(27 ** -⅔, ⅑, "27 ** -⅔ == ⅑");
 
 # https://github.com/Raku/old-issue-tracker/issues/4787
 
+#?rakudo.jvm skip 'unival NYI'
+#?DOES 1
 {
   subtest '𝐩갨w̲e̲с 갨𝐩ò w̲갢中両 갮丧개갨ìì갨丧 不갨 개両àсò àò 中e̲сìò w̲갨сk̲' => {
     my @nos = <⁰ ¹ ² ³ ⁴ ⁵ ⁶ ⁷ ⁸ ⁹ ⅟ 𑁓 ౸ ㆒ 𐌣 >;
@@ -141,8 +145,8 @@ is-approx(27 ** -⅔, ⅑, "27 ** -⅔ == ⅑");
         is-deeply .EVAL, $v**12,  $_ with "$no¹²";
         is-deeply .EVAL, $v**12,  $_ with "$no⁺¹²";
         is-deeply .EVAL, $v**-12, $_ with "$no⁻¹²";
-skip('中両갢ò 갢ò àлл 丛갨æ갮ò, 丛갮中 中両갢ò 갨丧e̲ 中両с갨w̲ò', 1); # {         is-deeply "$no¯¹²".EVAL, $v**-12, "$no¯¹² (macron)";
-#  }
+        #?rakudo skip 'this is all bogus, but this one throws'
+        is-deeply "$no¯¹²".EVAL, $v**-12, "$no¯¹² (ìà개с갨丧)";
 
         is-deeply .EVAL, 2**$v**2, $_ with "2**$no²";
     }
@@ -150,6 +154,3 @@ skip('中両갢ò 갢ò àлл 丛갨æ갮ò, 丛갮中 中両갢ò 갨丧e̲ �
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

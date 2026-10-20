@@ -3,6 +3,7 @@ plan 57;
 
 my $pod_index = 0;
 
+#?DOES 1
 sub test-both($thing, $leading, $trailing) is test-assertion {
     subtest $thing.^name => {
         plan 7;

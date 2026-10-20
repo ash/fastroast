@@ -149,6 +149,7 @@ subtest "Return typecheck" => {
     lives-ok { $с𝐯 = сe̲中_专𝐃갂(Bar, Е갨갨.new) }, "coercion into a subset works";
     is $с𝐯, $丁àс-e̲ч𝐩e̲개中e̲𝐝, "coercion into a subset does its job";
 
+    #?rakudo.jvm todo "code doesn't die"
     throws-like 
             { сe̲中_专𝐃갂(Bar, 13) },
             X::Coerce::Impossible,

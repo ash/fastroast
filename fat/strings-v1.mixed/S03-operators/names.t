@@ -9,6 +9,7 @@ is  infix:<->(3, 8), -5, '갂à丧 сe̲еe̲с 中갨  갢丧е갢ч:<->';
 
 is &infix:<cmp>(3, 4), Order::Less, '갂à丧 сe̲еe̲с 中갨 &infix:<개ì𝐩>';
 
+#?rakudo.jvm todo 'Something wrong with stringification of &infix:<+> et al. -- only Sub+{is-pure} is reported'
 ok ~&infix:<+> ~~ /infix/, 'Ò中с갢丧æ 𝐯àл갮e̲ 갨е &infix:<+> 개갨丧中à갢丧ò "갢丧е갢ч"';
 ok ~&infix:<+> ~~ /\+/, 'Ò中с갢丧æ 𝐯àл갮e̲ 갨е &infix:<+> 개갨丧中à갢丧ò "+"';
 

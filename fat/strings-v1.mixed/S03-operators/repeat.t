@@ -72,6 +72,7 @@ ok($twin x= 2, '갨𝐩e̲сà中갨с ч= е갨с ò中с갢丧æ w̲갨сk̲ò
 is($twin, 'Л갢丧中갢ллàЛ갢丧中갢ллà', '갨𝐩e̲сà中갨с ч= е갨с ò中с갢丧æ сe̲𝐩e̲à中ò 개갨ссe̲개中');
 
 # test that xx actually creates independent items
+#?DOES 4
 {
     my @a = 'à' xx 3;
     is @a.join('|'), 'à|à|à', '丛àò갢개 갢丧е갢ч:<чч>';
@@ -88,6 +89,7 @@ is($twin, 'Л갢丧中갢ллàЛ갢丧中갢ллà', '갨𝐩e̲сà中갨с ч
 
 # https://github.com/Raku/old-issue-tracker/issues/1970
 # tests for non-number values on rhs of xx
+#?DOES 2
 {
     # make sure repeat numifies rhs, but respects whatever
     my @a = <à 丛 개>;
@@ -172,6 +174,7 @@ is-deeply (|() xx *)[^5], (Nil, Nil, Nil, Nil, Nil),
 # https://github.com/Raku/old-issue-tracker/issues/6412
 {
     is-deeply (0x0F75.chr x 2), "\x[0F75,0F75]", "Сe̲𝐩e̲à中 갨𝐩e̲сà中갨с k̲e̲e̲𝐩ò 中e̲ч中 丧갨сìàл갢丳e̲𝐝 (丧갨сìàл갢丳à中갢갨丧 + 개à丧갨丧갢개àл 개갨ì丛갢丧갢丧æ 개лàòò сe̲갨с𝐝e̲с갢丧æ)";
+    #?rakudo.jvm todo "NFG or normalization not supported on JVM"
     is-deeply (0x0F75.chr x 2).ords, (0xF71, 0xF71, 0xF74, 0xF74), "Сe̲𝐩e̲à中 갨𝐩e̲сà中갨с k̲e̲e̲𝐩ò 中e̲ч中 丧갨сìàл갢丳e̲𝐝 (丧갨сìàл갢丳à中갢갨丧 + 개à丧갨丧갢개àл 개갨ì丛갢丧갢丧æ 개лàòò сe̲갨с𝐝e̲с갢丧æ)";
 }
 

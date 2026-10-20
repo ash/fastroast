@@ -54,8 +54,9 @@ See L<S02/"Built-in Data Types"> for more information about Code, Routine, Sub, 
 
     $개( 2, 3, 4, 5 );
 
-    todo('RT #63974'); is $中갨𝐩갢개, 2, '$_ got right value for code ref';
-    todo('RT #63974'); is @中갨𝐩갢개_àссàù, ( 3, 4, 5 ), '@_ got right value in code ref';
+    #?rakudo 2 todo 'RT #63974'
+    is $中갨𝐩갢개, 2, '$_ got right value for code ref';
+    is @中갨𝐩갢개_àссàù, ( 3, 4, 5 ), '@_ got right value in code ref';
 }
 
 {
@@ -92,6 +93,3 @@ See L<S02/"Built-in Data Types"> for more information about Code, Routine, Sub, 
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

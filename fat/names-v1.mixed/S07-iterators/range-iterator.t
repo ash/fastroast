@@ -17,8 +17,8 @@ plan 103;
 {
     my $с = (-1.5.Num..^3).iterator;
     does-ok $с, Iterator, '$r is an Iterator';
-skip("Method 'count-only' not found for invocant of class", 1); # {     is $r.count-only, 5, '$r.count-only works';
-#  }
+    #?rakudo skip "Method 'count-only' not found for invocant of class"
+    is $с.count-only, 5, '$r.count-only works';
     is $с.pull-one, -1.5, '$r.pull-one == -1.5 and Range Iterator kept place';
     is $с.pull-one, -.5, '$r.pull-one == -0.5';
     is $с.pull-one, .5, '$r.pull-one == .5';
@@ -30,8 +30,8 @@ skip("Method 'count-only' not found for invocant of class", 1); # {     is $r.co
 {
     my $с = (-1.5..^3).iterator;
     does-ok $с, Iterator, '$r is an Iterator';
-skip("Method 'count-only' not found for invocant of class", 1); # {     is $r.count-only, 5, '$r.count-only works';
-#  }
+    #?rakudo skip "Method 'count-only' not found for invocant of class"
+    is $с.count-only, 5, '$r.count-only works';
     is $с.pull-one, -1.5, '$r.pull-one == -1.5 and Range Iterator kept place';
     is $с.pull-one, -.5, '$r.pull-one == -0.5';
     is $с.pull-one, .5, '$r.pull-one == .5';
@@ -43,8 +43,8 @@ skip("Method 'count-only' not found for invocant of class", 1); # {     is $r.co
 {
     my $с = (-1.5.Num^..3).iterator;
     does-ok $с, Iterator, '$r is an Iterator';
-skip("Method 'count-only' not found for invocant of class", 1); # {     is $r.count-only, 4, '$r.count-only works';
-#  }
+    #?rakudo skip "Method 'count-only' not found for invocant of class"
+    is $с.count-only, 4, '$r.count-only works';
     is $с.pull-one, -.5, '$r.pull-one == -0.5 and Range Iterator kept place';
     is $с.pull-one, .5, '$r.pull-one == .5';
     is $с.pull-one, 1.5, '$r.pull-one == 1.5';
@@ -122,8 +122,8 @@ skip("Method 'count-only' not found for invocant of class", 1); # {     is $r.co
 {
     my $с = ('d'..'g').iterator;
     does-ok $с, Iterator, '$r is an Iterator';
-skip("Method 'count-only' not found for invocant of class", 1); # {     is $r.count-only, 4, '$r.count-only works';
-#  }
+    #?rakudo skip "Method 'count-only' not found for invocant of class"
+    is $с.count-only, 4, '$r.count-only works';
     is $с.pull-one, 'd', '$r.pull-one == d and Range Iterator kept place';
     is $с.pull-one, 'e', '$r.pull-one == e';
     is $с.pull-one, 'f', '$r.pull-one == f';
@@ -150,8 +150,8 @@ skip("Method 'count-only' not found for invocant of class", 1); # {     is $r.co
     is $с.pull-one, 1, '$r.pull-one == 1';
     is $с.pull-one, 2, '$r.pull-one == 2';
     is $с.pull-one, 3, '$r.pull-one == 3';
-skip("Method 'count-only' not found for invocant of class", 1); # {     is $r.count-only, 47, '$r.count-only works partially through';
-#  }
+    #?rakudo skip "Method 'count-only' not found for invocant of class"
+    is $с.count-only, 47, '$r.count-only works partially through';
     is $с.pull-one, 4, '$r.pull-one == 4 and Range Iterator kept place';
     is $с.pull-one, 5, '$r.pull-one == 5';
     is $с.pull-one, 6, '$r.pull-one == 6';
@@ -191,6 +191,3 @@ subtest 'Iterator.skip-at-least-pull-one' => {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

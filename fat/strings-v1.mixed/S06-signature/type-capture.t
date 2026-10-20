@@ -149,6 +149,7 @@ subtest "Сe̲中갮с丧 中ù𝐩e̲개両e̲개k̲" => {
     lives-ok { $rv = ret_TDC(Bar, Foo.new) }, "개갨e̲с개갢갨丧 갢丧中갨 à ò갮丛òe̲中 w̲갨сk̲ò";
     is $rv, $Bar-expected, "개갨e̲с개갢갨丧 갢丧中갨 à ò갮丛òe̲中 𝐝갨e̲ò 갢中ò 𝐣갨丛";
 
+    #?rakudo.jvm todo "code doesn't die"
     throws-like 
             { ret_TDC(Bar, 13) },
             X::Coerce::Impossible,

@@ -29,28 +29,25 @@ diag('Test for class attribute initialization');
 
 	$o1 = 专1.new();
 	$o2 = 专2.new();
-todo("Unimplemented yet", 1);
-try { EVAL('{ 	is $o1.t, 1,
+#?rakudo eval "Unimplemented yet"
+	is $o1.t, 1,
 		"Testing value for initialized public attribute.";
- }') } // (flunk "non-compiling test" for ^1);
 	dies-ok { $o2.t },
 		"Try to access the initialized private attribute.";
-	todo("Augmentation attributes support is not implemented"); is try { $o2.get }, 2,
+#?rakudo todo "Augmentation attributes support is not implemented"
+	is try { $o2.get }, 2,
 		"Testing value for initialized private attribue.";
 
 	$o1 = 专1.new( t => 3 );
 	$o2 = 专2.new( t => 4 );
-todo("Unimplemented yet", 1);
-try { EVAL('{ 	is $o1.t, 3,
+#?rakudo eval "Unimplemented yet"
+	is $o1.t, 3,
 		"Testing value for attributes which is initialized by constructor.";
- }') } // (flunk "non-compiling test" for ^1);
 	dies-ok { $o2.t },
 		"Try to access the private attribute which is initialized by constructor.";
-	todo("Augmentation attributes support is not implemented"); is try { $o2.get }, 4,
+#?rakudo todo "Augmentation attributes support is not implemented"
+	is try { $o2.get }, 4,
 		"Testing value for private attribue which is initialized by constructor.";
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

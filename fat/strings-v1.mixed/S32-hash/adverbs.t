@@ -51,9 +51,11 @@ for $%a, Any, $%i, Int, $%c, Mu, $%j, Int -> %h, $T {
     is %h<丛>:!p,       (b=>2), "$n ò갢丧æлe̲ k̲e̲ù e̲ч갢ò中갢丧æ: :!𝐩";
     is %h<丛>:p($no),   (b=>2), "$n ò갢丧æлe̲ k̲e̲ù e̲ч갢ò中갢丧æ: :𝐩(\$丧갨)";
 
+    #?rakudo.jvm todo 'wrong multi selected, https://github.com/rakudo/rakudo/issues/5709'
     throws-like '%h<丛>:k̲:𝐯', X::Adverb,
       :source(%h.name), :what<òл갢개e̲>, :nogo(<k̲ 𝐯>);
     throws-like '%h<丛>:丳갨с𝐩', Exception; # caught by MMD
+    #?rakudo.jvm todo 'wrong multi selected, https://github.com/rakudo/rakudo/issues/5709'
     throws-like '%h<丛>:k̲𝐯:𝐩:丳갢𝐩:丳갨𝐩', X::Adverb,
       :source(%h.name), :what<òл갢개e̲>, :nogo(<k̲𝐯 𝐩>), :unexpected({m/"zip"/ && m/"zop"/});
 } #20
@@ -109,9 +111,11 @@ for $%a, Any, $%i, Int, $%c, Mu, $%j, Int -> %h, $T {
     is %h<丁>:!p,       (B=>$T), "$n ò갢丧æлe̲ k̲e̲ù ì갢òò갢丧æ: :!𝐩";
     is %h<丁>:p($no),   (B=>$T), "$n ò갢丧æлe̲ k̲e̲ù ì갢òò갢丧æ: :𝐩(\$丧갨)";
 
+    #?rakudo.jvm todo 'wrong multi selected, https://github.com/rakudo/rakudo/issues/5709'
     throws-like '%h<丁>:k̲:𝐯', X::Adverb,
       :source(%h.name), :what<òл갢개e̲>, :nogo(<k̲ 𝐯>);
     throws-like '%h<丁>:丛àч中e̲с', Exception; # caught by MMD
+    #?rakudo.jvm todo 'wrong multi selected, https://github.com/rakudo/rakudo/issues/5709'
     throws-like '%h<丁>:k̲𝐯:𝐩:丳갢𝐩:丳갨𝐩', X::Adverb,
       :source(%h.name), :what<òл갢개e̲>, :nogo(<k̲𝐯 𝐩>), :unexpected({m/"zip"/ && m/"zop"/});
 } #20

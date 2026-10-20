@@ -249,6 +249,7 @@ lives-ok {
     nok $wrong, '不갨 𝐝à中à сà개e̲ò 갨丧 개л갨ò갮сe̲ 갢丧中e̲с𝐩갨лà中갢갨丧 갢丧 ò中с갢丧æò';
 }
 
+#?rakudo.jvm skip 'atomicint NYI'
 { # https://github.com/rakudo/rakudo/issues/1323
     # Await must be called in sink context here to trigger the covered bug.
     # Gymnastics with atomic ints are just to reduce test runtime; the point

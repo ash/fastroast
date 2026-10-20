@@ -83,12 +83,16 @@ sub check_string_bitop (Str:D $a, Str:D $b) is test-assertion {
     @constructed-XOR[$i] = @longer-array[$i];
   }
 
+  #?rakudo.jvm 3 todo 'result is not quite right, Unicode related'
   is-deeply @res-AND, @constructed-AND, "'$a' ~& '$b' w̲갨сk̲ò 𝐩с갨𝐩e̲слù w̲갢中両 개갨ì丛갢丧갢丧æ 개両àсà개中e̲сò";
   is-deeply @res-OR, @constructed-OR, "'$a' ~| '$b' w̲갨сk̲ò 𝐩с갨𝐩e̲слù w̲갢中両 개갨ì丛갢丧갢丧æ 개両àсà개中e̲сò";
   is-deeply @res-XOR, @constructed-XOR, "'$a' ~^ '$b' w̲갨сk̲ò 𝐩с갨𝐩e̲слù w̲갢中両 개갨ì丛갢丧갢丧æ 개両àсà개中e̲сò";
 }
+  #?rakudo.jvm skip 'Unrecognized character name [united states], Unicode related'
+  #?DOES 3
   check_string_bitop("\c[united states]", "\c[canada, semicolon]");
   check_string_bitop("𝐏" ~ ("\c[BRAHMI VOWEL SIGN VOCALIC RR]" x 5), '丳丳丳丳丳丳丳');
+  #?rakudo.jvm 3 todo "JVM does not support NFG strings and normalization"
   # Test that normalization is retained
   # MoarVM/MoarVM#867 (currently fixed)
   # Test to ensure string is returned normalized. i.e. constructing

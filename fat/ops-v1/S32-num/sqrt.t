@@ -21,10 +21,12 @@ is-approx(42.sqrt * sqrt(42), 42, 'got the square root of 42');
 is-approx(1/42.sqrt * sqrt(1/42), 1/42, 'got the square root of 1/42');
 is-approx(1e2.sqrt, 10, 'got square root of 1e2');
 
-todo('better behaviour in 6.e+'); is(sqrt(-1), i, 'sqrt(-1) is i');
+#?rakudo todo 'better behaviour in 6.e+'
+is(sqrt(-1), i, 'sqrt(-1) is i');
 is(sqrt(NaN), NaN, 'sqrt(NaN) is NaN');
 is(sqrt(∞), ∞, 'sqrt(Inf) is Inf');
-todo('better behaviour in 6.e+'); is(sqrt(-Inf), 0+∞\i, 'sqrt(-Inf) is 0+Inf\\i');
+#?rakudo todo 'better behaviour in 6.e+'
+is(sqrt(-Inf), 0+∞\i, 'sqrt(-Inf) is 0+Inf\\i');
 
 is(sqrt(-0.0e0), -0.0e0, 'sqrt preserves sign of Num zero');
 
@@ -35,6 +37,3 @@ is-approx(sqrt(1i), (1+1i)/sqrt(2), 'got the square root of 1i');
 is-approx(sqrt(-1i), (1-1i)/sqrt(2), 'got the square root of -1i');
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

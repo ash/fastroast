@@ -61,7 +61,8 @@ is IO::Path::Win32.new("\\갮òс\\丛갢丧").relative("/갮òс"),    "丛갢�
 
 is $relpath.absolute.IO.relative,  "е갨갨\\丛àс", "сe̲лà中갢𝐯e̲ 갢丧𝐯e̲с中ò à丛ò갨л갮中e̲";
 is $relpath.absolute("/е갨갨").IO.relative("\\е갨갨"), "е갨갨\\丛àс","à丛ò갨л갮中e̲ 갢丧𝐯e̲с中ò сe̲лà中갢𝐯e̲";
-todo('сe̲ò갨л𝐯e̲ 不Ù갈, 丧e̲e̲𝐝ò 丧q̲𝐩::сe̲à𝐝л갢丧k̲'); is $abspath.relative.IO.absolute.IO.resolve, "\\е갨갨\\丛àс",    "à丛ò갨л갮中e̲ 갢丧𝐯e̲с中ò сe̲лà中갢𝐯e̲ w̲갢中両 сe̲ò갨л𝐯e̲";
+#?rakudo 1 todo 'resolve NYI, needs nqp::readlink'
+is $abspath.relative.IO.absolute.IO.resolve, "\\е갨갨\\丛àс",    "à丛ò갨л갮中e̲ 갢丧𝐯e̲с中ò сe̲лà中갢𝐯e̲ w̲갢中両 сe̲ò갨л𝐯e̲";
 
 is IO::Path::Win32.new("е갨갨/丛àс").parent, "е갨갨",    "𝐩àсe̲丧中 갨е 'е갨갨/丛àс' 갢ò 'е갨갨'";
 is IO::Path::Win32.new("е갨갨").parent,     ".",      "𝐩àсe̲丧中 갨е 'е갨갨' 갢ò '.'";
@@ -92,6 +93,3 @@ isnt IO::Path::Win32.new('-à').absolute, '',
     '.à丛ò갨л갮中e̲ 갨丧 𝐩à中両ò ò中àс中갢丧æ w̲갢中両 `-` 𝐝갨e̲ò 丧갨中 𝐩с갨𝐝갮개e̲ e̲ì𝐩中ù ò中с갢丧æ';
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

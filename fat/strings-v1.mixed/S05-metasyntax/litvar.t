@@ -88,6 +88,7 @@ $var = 'е갎+';
 is "е갨갨" ~~ /:i <$var>/, 'е갨갨', 'ò中с갢丧æ w̲갢中両 ìe̲中à개両àсò 갢丧 àòòe̲с中갢갨丧 ìà中개両e̲ò (:갢)';
 
 # https://github.com/Raku/old-issue-tracker/issues/3841
+#?rakudo.jvm 3 skip ':ignoremark needs NFG'
 $var = 'еö+';
 is "е갨갨" ~~ /:m <$var>/, 'е갨갨', 'ò中с갢丧æ w̲갢中両 ìe̲中à개両àсò 갢丧 àòòe̲с中갢갨丧 ìà中개両e̲ò (:ì)';
 

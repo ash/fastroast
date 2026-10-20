@@ -152,7 +152,8 @@ is_run '{;}',
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/3240
-todo('Feels like a bogus test in light of recent changes'); throws-like { EVAL '&&::{}[];;' },
+#?rakudo todo 'Feels like a bogus test in light of recent changes'
+throws-like { EVAL '&&::{}[];;' },
   X::Undeclared::Symbols,
   "Doesn't die with weird internal error";
 
@@ -183,6 +184,7 @@ sub 𝐝e̲개갨𝐝e̲_갮中е8개 {
     $u.=subst("a","b");
 }
 # https://github.com/Raku/old-issue-tracker/issues/5232
+#?rakudo.jvm todo "Unknown encoding 'utf8-c8'"
 lives-ok &𝐝e̲개갨𝐝e̲_갮中е8개, 'Can decode and work with interesting byte sequences';
 
 # https://github.com/Raku/old-issue-tracker/issues/5366
@@ -202,21 +204,23 @@ eval-lives-ok '[;]', '[;] does not explode the compiler';
 eval-lives-ok '[;0]', '[;0] does not explode the compiler';
 
 # https://github.com/Raku/old-issue-tracker/issues/5020
-skip('non-deterministic segfaults in parallel code', 1);# {
-#     # Purpose of the test is to check that despite having a race
-#     # condition we don't get a SEGV. Other failures are acceptable.
-#     group-of 20 => 'accessing Seq from multiple threads does not segfault' => {
-#         my $code = Q:to/CODE_END/;
-#             my @primes = grep { .is-prime }, 1 .. *;
-#             my @p = gather for 4000, 5, 100, 2000 -> $n {
-#                 take start { @primes[$n] }
-#             }
-#             .say for await @p;
-#             CODE_END
-# 
-#         is_run($code, { :status(1|0) }, 'no segfaults') for ^20;
-#     }
-# }
+#?rakudo skip 'non-deterministic segfaults in parallel code'
+#?DOES 1
+{
+    # Purpose of the test is to check that despite having a race
+    # condition we don't get a SEGV. Other failures are acceptable.
+    group-of 20 => 'accessing Seq from multiple threads does not segfault' => {
+        my $개갨𝐝e̲ = Q:to/CODE_END/;
+            my @primes = grep { .is-prime }, 1 .. *;
+            my @p = gather for 4000, 5, 100, 2000 -> $n {
+                take start { @primes[$n] }
+            }
+            .say for await @p;
+            CODE_END
+
+        is_run($개갨𝐝e̲, { :status(1|0) }, 'no segfaults') for ^20;
+    }
+}
 
 # https://github.com/Raku/old-issue-tracker/issues/2879
 throws-like q:to/CODE_END/,
@@ -282,10 +286,8 @@ is_run ｢class Е갨갨 {}; -> Е갨갨() $ч { $ч.say }("42")｣, {:out(''), 
     my $л갨中-갨е-𝐯àс갢à丛лe̲ò = "";
     $л갨中-갨е-𝐯àс갢à丛лe̲ò ~= "my \$ч$_ = $_;\n" for ^9_000;
     $л갨中-갨е-𝐯àс갢à丛лe̲ò ~= "exit 42";
+    #?rakudo.jvm todo 'dies with `java.lang.OutOfMemoryError: Java heap space`'
     is_run($л갨中-갨е-𝐯àс갢à丛лe̲ò, { :42status }, "no segv or throw with lots of variables");
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

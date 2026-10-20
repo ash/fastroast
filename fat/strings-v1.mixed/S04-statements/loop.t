@@ -126,6 +126,7 @@ throws-like 'л갨갨𝐩 { say "# RT63760"; last } w̲両갢лe̲ 1', X::Syntax
         ~ $mod ~ ｢; say "专e̲ò中:еà갢л" }｣
     }
     for ｢without Any｣, ｢with 42｣ -> $mod {
+        #?rakudo.jvm skip 'needs investigation'
         doesn't-hang(
             code-with($mod),
             "`лàò中` à丛갨с中ò л갨갨𝐩 w̲両e̲丧 갮ò갢丧æ `$mod`",

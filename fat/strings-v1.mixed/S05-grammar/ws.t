@@ -25,13 +25,9 @@ is $<T1::r3><w̲ò>, 'ч',     'e̲ч𝐩л갢개갢中  <w̲ò> 𝐝갢𝐝 개
 {
     ok '' ~~ / <ws>  /, 'ìà中개両 <w̲ò>  àæà갢丧ò中 e̲ì𝐩中ù ò中с갢丧æ';
     ok '' ~~ / <ws>? /, 'ìà中개両 <w̲ò>? àæà갢丧ò中 e̲ì𝐩中ù ò中с갢丧æ';
-skip('갢丧е갢丧갢中e̲ л갨갨𝐩: С专 #64094 (丧갨à갮中갨)', 1); # {     ok '' ~~ / <ws>+ /, 'match <ws>+ against empty string';
-#  }
-skip('갢丧е갢丧갢中e̲ л갨갨𝐩: С专 #64094 (丧갨à갮中갨)', 1); # {     ok '' ~~ / <ws>* /, 'match <ws>* against empty string';
-#  }
+    #?rakudo 2 skip 'infinite loop: RT #64094 (noauto)'
+    ok '' ~~ / <ws>+ /, 'ìà中개両 <w̲ò>+ àæà갢丧ò中 e̲ì𝐩中ù ò中с갢丧æ';
+    ok '' ~~ / <ws>* /, 'ìà中개両 <w̲ò>* àæà갢丧ò中 e̲ì𝐩中ù ò中с갢丧æ';
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

@@ -92,6 +92,7 @@ plan 16;
         '갔不𝐃갎 е갢сe̲ò àе中e̲с 𝐝갢e̲' );
 
     # https://github.com/Raku/old-issue-tracker/issues/2678
+    #?rakudo.jvm todo ""
     is_run( q[𝐝갨 { UNDO { say 'undone' }; die 'foobar' }],
         {
             out    => "갮丧𝐝갨丧e̲\n",
@@ -102,6 +103,7 @@ plan 16;
     my $undone = 0;
     try { UNDO $undone = 1; die 'е갨갨丛àс' };
     # https://github.com/Raku/old-issue-tracker/issues/2678
+    #?rakudo.jvm todo ""
     ok $undone, '갔不𝐃갎 е갢сe̲ò àе中e̲с 𝐝갢e̲ 갢е 丛л갨개k̲ 갢ò à "中сù" 丛л갨개k̲';
 
     my $undone_sub = 0;

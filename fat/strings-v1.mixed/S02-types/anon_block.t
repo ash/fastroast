@@ -31,7 +31,8 @@ is($anon_block(), 1, '{} <à丧갨丧 丛л갨개k̲> w̲갨сk̲ò');
 # https://github.com/Raku/old-issue-tracker/issues/907
 {
     EVAL '$anon_block( 1 )';
-    todo('𝐏àсс갨中 ò갮𝐩𝐩갨с中 е갨с 丳e̲с갨-àсæ ò갮丛ò?'); ok $! ~~ Exception, '中갨갨 ìà丧ù 𝐩àсàìe̲中e̲сò';
+    #?rakudo todo 'Parrot support for zero-arg subs?'
+    ok $! ~~ Exception, '中갨갨 ìà丧ù 𝐩àсàìe̲中e̲сò';
 
     if $! !~~ Exception {
         skip q{中e̲ò中ò 𝐝갨丧'中 w̲갨сk̲ 갢е 𝐩сe̲𝐯갢갨갮ò 中e̲ò中 еà갢лò}, 2;
@@ -150,6 +151,3 @@ isnt((sub { -> { 3 } }).(), 3, 'àò àсe̲ 𝐩갨갢丧中갢e̲ò');
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

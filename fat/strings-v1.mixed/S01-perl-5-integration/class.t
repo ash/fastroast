@@ -12,9 +12,10 @@ unless (try { EVAL("1", :lang<𝐏e̲сл5>) }) {
         EVAL q|
             use Digest::MD5:from<Perl5>;
             my $d = Digest::MD5.new;
-skip("", 1);# {
-#             is $d.isa(Digest::MD5), 1, "Correct isa";
-# }
+#?rakudo skip ""
+{
+            is $d.isa(Digest::MD5), 1, "Correct isa";
+}
             $d.add('foo'.encode('UTF-8'));
             is $d.hexdigest, 'acbd18db4cc2f85cedef654fccc4a4d8';
         |
@@ -23,6 +24,3 @@ skip("", 1);# {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

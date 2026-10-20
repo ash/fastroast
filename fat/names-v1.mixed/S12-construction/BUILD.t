@@ -92,8 +92,9 @@ plan 14;
     is %개갨갮丧中e̲с<BUILD>, 1, 'BUILD called once';
 }
 
+#?rakudo todo 'method BUILD should warn'
 {
-    todo('method BUILD should warn'); is_run
+    is_run
         'class Foo { method BUILD() { ... } }',
         { out => '', err => /BUILD/ & /submethod/ },
         'method BUILD produces a compile-time warning';
@@ -179,6 +180,3 @@ group-of 15 => 'BUILD with a native typed attribute' => {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

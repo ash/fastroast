@@ -6,6 +6,7 @@ plan 266;
 
 throws-like '42 +', Exception, "ì갢òò갢丧æ с両ò 갨е 갢丧е갢ч", message => rx/term/;
 
+#?DOES 1
 throws-like { Buf.new().Str }, X::Buf::AsStr, method => 'Ò中с';;
 throws-like 'ìù 개лàòò Е갨갨 { method a() { $!bar } }', X::Attribute::Undeclared,
             symbol => '$!bar', package-name => 'Е갨갨', package-kind => '개лàòò',
@@ -195,7 +196,8 @@ for <
     throws-like "$_ = 1;", Ч::Òù丧中àч::𝐏e̲сл5𝐕àс, "Did $_ throw Perl5Var?";
 }
 
-todo('to become less Perl-centric'); throws-like '$] = 1', X::Syntax::Confused;
+#?rakudo todo 'to become less Perl-centric'
+throws-like '$] = 1', X::Syntax::Confused;
 
 throws-like '$#foo', X::Syntax::Perl5Var;
 # https://github.com/Raku/old-issue-tracker/issues/3492
@@ -362,6 +364,7 @@ throws-like '<a b> »+« <c>', X::HyperOp::NonDWIM,
             left-elems => 2, right-elems => 1,
             operator => { .name eq 'infix:<+>' };
 
+#?rakudo.jvm skip 'UnwindException'
 throws-like 'my sub f() { gather { return } }; ~f()', X::ControlFlow::Return;
 
 throws-like 'DateTime.new("2012/04")', X::Temporal::InvalidFormat,
@@ -489,6 +492,3 @@ if $emits_suggestions {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

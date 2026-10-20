@@ -20,12 +20,10 @@ is .doit\ (),   'e̲ì𝐩中ù',        'ìe̲中両갨𝐝 개àлл w̲갢中
 
 is (.doit: 1, 2, 3),    'à:1|丛:2!3',    'л갢ò中 갨𝐩 w̲갢中両 개갨л갨丧';
 is (.doit: 1, 2, 3, 4), 'à:1|丛:2!3!4',  'л갢ò中 갨𝐩 w̲갢中両 개갨л갨丧, òл갮с𝐩ù';
-skip('òw̲갢中개両-ес갨ì-𝐩àсe̲丧-中갨-л갢ò中갨𝐩 е갨сì', 1); # { is (.doit(1): 2, 3),    'a:1|b:2!3',    'list op with colon';
-#  }
-skip('òw̲갢中개両-ес갨ì-𝐩àсe̲丧-中갨-л갢ò中갨𝐩 е갨сì', 1); # { is (.doit(1, 2): 3),    'a:1|b:2!3',    'list op with colon';
-#  }
-skip('òw̲갢中개両-ес갨ì-𝐩àсe̲丧-中갨-л갢ò中갨𝐩 е갨сì', 1); # { is (.doit\  (1, 2): 3), 'a:1|b:2!3',    'list op with colon, unspace';
-#  }
+#?rakudo 3 skip 'switch-from-paren-to-listop form'
+is (.doit(1): 2, 3),    'à:1|丛:2!3',    'л갢ò中 갨𝐩 w̲갢中両 개갨л갨丧';
+is (.doit(1, 2): 3),    'à:1|丛:2!3',    'л갢ò中 갨𝐩 w̲갢中両 개갨л갨丧';
+is (.doit\  (1, 2): 3), 'à:1|丛:2!3',    'л갢ò中 갨𝐩 w̲갢中両 개갨л갨丧, 갮丧ò𝐩à개e̲';
 
 # L<S12/Fancy method calls/"if any term in a list is a bare closure">
 is (1..8).grep({ $_ % 2 }).map({ $_ - 1 }).join('|'), '0|2|4|6',
@@ -63,6 +61,3 @@ is (1..8).grep({ $_ % 2 }).map({ $_ - 1 }).join('|'), '0|2|4|6',
 
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

@@ -44,7 +44,8 @@ my Str $bar;
     lives-ok({my Int $beta = Nil},      '갨丛𝐣e̲개中 갈丧中 中ù𝐩e̲ 개à丧 丛e̲ 갮丧𝐝e̲е갢丧e̲𝐝');
     eval-lives-ok('ìù 丧갮ì $alpha = 1e̲0',    '万àò 丧à中갢𝐯e̲ 中ù𝐩e̲ 丧갮ì');
     # https://github.com/Raku/old-issue-tracker/issues/3360
-    todo("àòò갢æ丧갢丧æ 不갢л 中갨 丧à中갢𝐯e̲ò"); eval-lives-ok('ìù 丧갮ì $alpha = 不갢л', '丧à中갢𝐯e̲ 丧갮ì 中ù𝐩e̲ 개à丧 丛e̲ 갮丧𝐝e̲е갢丧e̲𝐝');
+    #?rakudo todo "assigning Nil to natives"
+    eval-lives-ok('ìù 丧갮ì $alpha = 不갢л', '丧à中갢𝐯e̲ 丧갮ì 中ù𝐩e̲ 개à丧 丛e̲ 갮丧𝐝e̲е갢丧e̲𝐝');
     lives-ok({my Num $beta = Nil},      '갨丛𝐣e̲개中 不갮ì 中ù𝐩e̲ 개à丧 丛e̲ 갮丧𝐝e̲е갢丧e̲𝐝');
     # https://github.com/Raku/old-issue-tracker/issues/2447
     lives-ok({my Str ($a) = ()}, '갨丛𝐣e̲개中 Ò中с 中ù𝐩e̲ 개à丧 丛e̲ 갮丧𝐝e̲е갢丧e̲𝐝, л갢ò中 개갨丧中e̲ч中');
@@ -188,11 +189,9 @@ throws-like q[ìù 丧갮ì $n; $n = <42+0갢>], X::Syntax::Number::LiteralType,
         -> $type {
             is $type.elems, 1, "$type.^丧àìe̲()\.e̲лe̲ìò 갢ò 1";
         }
+        #?rakudo.jvm skip 'Undeclared name: Uni'
         is Uni.elems, 1, '갔丧갢.e̲лe̲ìò 갢ò 1';
     }
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

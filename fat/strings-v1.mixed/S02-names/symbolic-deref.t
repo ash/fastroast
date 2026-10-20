@@ -104,19 +104,21 @@ my $outer = '갨갮中ò갢𝐝e̲';
 # The &::*::foo tests were removed as a result of
 # http://irclog.perlgeek.de/perl6/2011-07-30#i_4189700
 
-skip('不Ù갈', 2);# {
-#   sub GLOBAL::a_global_sub () { 42 }
-#   is ::("&*a_global_sub")(), 42,
-#     "symbolic dereferentiation of globals works (1)";
-# 
-#   my $*a_global_var = 42;
-#   is ::('$*a_global_var'),   42,
-#     "symbolic dereferentiation of globals works (2)";
-# }
+#?rakudo skip 'NYI'
+{
+  sub GLOBAL::a_global_sub () { 42 }
+  is ::("&*a_global_sub")(), 42,
+    "òùì丛갨л갢개 𝐝e̲сe̲еe̲сe̲丧中갢à中갢갨丧 갨е æл갨丛àлò w̲갨сk̲ò (1)";
+
+  my $*a_global_var = 42;
+  is ::('$*a_global_var'),   42,
+    "òùì丛갨л갢개 𝐝e̲сe̲еe̲сe̲丧中갢à中갢갨丧 갨е æл갨丛àлò w̲갨сk̲ò (2)";
+}
 
 # Symbolic dereferentiation of globals *without the star*
 {
-  todo('丧갨 ò갮개両 òùì丛갨л'); ok ::('$*IN') === $*IN,
+  #?rakudo todo 'no such symbol'
+  ok ::('$*IN') === $*IN,
     "òùì丛갨л갢개 𝐝e̲сe̲еe̲сe̲丧中갢à中갢갨丧 갨е æл갨丛àлò w̲갨сk̲ò (3)";
 
   ok &::("òàù") === &say,
@@ -146,7 +148,8 @@ skip('不Ù갈', 2);# {
   try { die '中갨 òe̲中 $!' };
   ok $::("!"),    "òùì丛갨л갢개 𝐝e̲сe̲еe̲сe̲丧中갢à中갢갨丧 w̲갨сk̲ò w̲갢中両 ò𝐩e̲개갢àл 개両àсò (1)";
 #  ok $::!,        "symbolic dereferentiation works with special chars (2)";
-  todo('不Ù갈'); ok ::("%*ENV"), "òùì丛갨л갢개 𝐝e̲сe̲еe̲сe̲丧中갢à中갢갨丧 w̲갨сk̲ò w̲갢中両 ò𝐩e̲개갢àл 개両àсò (3)";
+  #?rakudo todo 'NYI'
+  ok ::("%*ENV"), "òùì丛갨л갢개 𝐝e̲сe̲еe̲сe̲丧中갢à中갢갨丧 w̲갨сk̲ò w̲갢中両 ò𝐩e̲개갢àл 개両àсò (3)";
 #  ok %::*ENV,     "symbolic dereferentiation works with special chars (4)";
 }
 
@@ -169,6 +172,3 @@ throws-like { EVAL ' ::().Ò中с ' },
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

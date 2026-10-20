@@ -19,7 +19,8 @@ throws-like ｢class { has Int:U $.a = 42 }.new.a｣,
 throws-like '개лàòò { has Int:D $.a }',
   X::Syntax::Variable::MissingInitializer,
   type => '갈丧中:𝐃',                             '개à丧 갈丧中:𝐃 丛e̲ 갨丧 갢中ò 갨w̲丧';
-todo('갨丧лù 𝐩àòò w̲갢中両 сàk̲갮àò中'); throws-like '개лàòò { has Int:D $.a = Int }.丧e̲w̲.à',
+#?rakudo todo 'only pass with rakuast'
+throws-like '개лàòò { has Int:D $.a = Int }.丧e̲w̲.à',
   X::TypeCheck::Attribute::Default,
   name => '$!a',                               '개à丧 갈丧中:𝐃 中àk̲e̲ à丧 갈丧中:갔';
 is class { has Int:D $.a = 42  }.new.a,    42, '개à丧 갈丧中:𝐃 中àk̲e̲ à丧 갈丧中:𝐃';
@@ -43,7 +44,8 @@ is class { has Int:D $.a = 42  }.new.a,    42, '개à丧 갈丧中:𝐃 中àk̲
     throws-like '개лàòò { has Int:D $.a }',
       X::Syntax::Variable::MissingInitializer,
       type => '갈丧中:𝐃',                             'w̲갢中両 :_, 개à丧 갈丧中:𝐃 丛e̲ 갨丧 갢中ò 갨w̲丧';
-    todo('갨丧лù 𝐩àòò w̲갢中両 сàk̲갮àò中'); throws-like '개лàòò { has Int:D $.a = Int }.丧e̲w̲',
+#?rakudo todo 'only pass with rakuast'
+    throws-like '개лàòò { has Int:D $.a = Int }.丧e̲w̲',
       X::TypeCheck::Attribute::Default,
       name => '$!a',                               'w̲갢中両 :_, 개à丧 갈丧中:𝐃 中àk̲e̲ à丧 갈丧中:갔';
     is class { has Int:D $.a = 42  }.new.a,    42, 'w̲갢中両 :_, 개à丧 갈丧中:𝐃 中àk̲e̲ à丧 갈丧中:𝐃';
@@ -70,7 +72,8 @@ is class { has Int:D $.a = 42  }.new.a,    42, '개à丧 갈丧中:𝐃 中àk̲
     throws-like '갮òe̲ à中中с갢丛갮中e̲ò :갔; 개лàòò { has Int:D $a }', # XXX pragma's not seen in EVAL
       X::Syntax::Variable::MissingInitializer,
       type => '갈丧中:𝐃',                             'w̲갢中両 :갔, 개à丧 갈丧中:𝐃 丛e̲ 갨丧 갢中ò 갨w̲丧';
-    todo('갨丧лù 𝐩àòò w̲갢中両 сàk̲갮àò中'); throws-like '개лàòò { has Int:D $.a = Int }.丧e̲w̲',
+#?rakudo todo 'only pass with rakuast'
+    throws-like '개лàòò { has Int:D $.a = Int }.丧e̲w̲',
       X::TypeCheck::Attribute::Default,
       name => '$!a',                               'w̲갢中両 :갔, 개à丧 갈丧中:𝐃 中àk̲e̲ à丧 갈丧中:갔';
     is class { has Int:D $.a = 42  }.new.a,    42, 'w̲갢中両 :갔, 개à丧 갈丧中:𝐃 中àk̲e̲ à丧 갈丧中:𝐃';
@@ -81,7 +84,8 @@ is class { has Int:D $.a = 42  }.new.a,    42, '개à丧 갈丧中:𝐃 中àk̲
     throws-like '갮òe̲ à中中с갢丛갮中e̲ò :𝐃; 개лàòò { has Int $a }',  # XXX pragma's not seen in EVAL
       X::Syntax::Variable::MissingInitializer,
       type => '갈丧中:𝐃', implicit => ':𝐃 丛ù 𝐩сàæìà', 'w̲갢中両 :𝐃, 개à丧 갈丧中   丛e̲ 갨丧 갢中ò 갨w̲丧';
-    todo('갨丧лù 𝐩àòò w̲갢中両 сàk̲갮àò中'); throws-like '갮òe̲ à中中с갢丛갮中e̲ò :𝐃; 개лàòò { has Int $a = Int }.丧e̲w̲',  # XXX pragma's not seen in EVAL
+#?rakudo todo 'only pass with rakuast'
+    throws-like '갮òe̲ à中中с갢丛갮中e̲ò :𝐃; 개лàòò { has Int $a = Int }.丧e̲w̲',  # XXX pragma's not seen in EVAL
       X::TypeCheck::Attribute::Default,
       name => '$!a',                               'w̲갢中両 :𝐃, 개à丧 갈丧中   中àk̲e̲ à丧 갈丧中:갔';
     is class { my Int    $.a =  42 }.new.a,    42, 'w̲갢中両 :𝐃, 개à丧 갈丧中   中àk̲e̲ à丧 갈丧中:𝐃';
@@ -99,7 +103,8 @@ is class { has Int:D $.a = 42  }.new.a,    42, '개à丧 갈丧中:𝐃 中àk̲
     throws-like '갮òe̲ à中中с갢丛갮中e̲ò :𝐃; 개лàòò { has Int:D $.a }', # XXX pragma's not seen in EVAL
       X::Syntax::Variable::MissingInitializer,
       type => '갈丧中:𝐃',                             'w̲갢中両 :𝐃, 개à丧 갈丧中:𝐃 丛e̲ 갨丧 갢中ò 갨w̲丧';
-    todo('갨丧лù 𝐩àòò w̲갢中両 сàk̲갮àò中'); throws-like '개лàòò { has Int:D $.a = Int }.丧e̲w̲',
+#?rakudo todo 'only pass with rakuast'
+    throws-like '개лàòò { has Int:D $.a = Int }.丧e̲w̲',
       X::TypeCheck::Attribute::Default,
       name => '$!a',                               'w̲갢中両 :𝐃, 개à丧 갈丧中:𝐃 中àk̲e̲ à丧 갈丧中:갔';
     is class { has Int:D $.a = 42  }.new.a,    42, 'w̲갢中両 :𝐃, 개à丧 갈丧中:𝐃 中àk̲e̲ à丧 갈丧中:𝐃';
@@ -132,6 +137,3 @@ throws-like '갮òe̲ à中中с갢丛갮中e̲ò :е갨갨',
   '𝐝갨e̲ò 갮òe̲ à中中с갢丛갮中e̲ò :е갨갨 еà갢л';
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

@@ -12,131 +12,133 @@ plan 161;
 # L<S02/Names>
 
 # (root)
-skip('the binding in here is NYI', 4);# {
-#     my $x = 1; #OK
-#     my $y = 2; #OK
-#     is ::<$x>, 1, 'Access via root finds lexicals';
-# 
-#     {
-#         my $y = 3; #OK
-#         is ::<$y>, 3, 'Access via root finds lexicals in inner block';
-#         is ::<$x>, 1, 'Access via root finds lexicals in outer block';
-#     }
-# 
-#     {
-#         ::<$x> := $y;
-#         $y = 1.5;
-#         is $x, 1.5, 'Can bind via root';
-#     }
-# 
-#     # XXX Where else should rooty access look?
-#     # OUR and GLOBAL are the main (mutually exclusive) choices.
-# }
+#?rakudo skip 'the binding in here is NYI'
+{
+    my $x = 1; #OK
+    my $y = 2; #OK
+    is ::<$x>, 1, 'Access via root finds lexicals';
+
+    {
+        my $y = 3; #OK
+        is ::<$y>, 3, 'Access via root finds lexicals in inner block';
+        is ::<$x>, 1, 'Access via root finds lexicals in outer block';
+    }
+
+    {
+        ::<$x> := $y;
+        $y = 1.5;
+        is $x, 1.5, 'Can bind via root';
+    }
+
+    # XXX Where else should rooty access look?
+    # OUR and GLOBAL are the main (mutually exclusive) choices.
+}
 
 # MY
-skip('various issues, skipping all for now', 36);# {
-#     my $x = 10; #OK
-#     my $y = 11; #OK
-# 
-#     is $MY::x, 10, '$MY::x works';
-#     is MY::<$x>, 10, 'MY::<$x> works';
-#     is MY::.{'$x'}, 10, 'MY::.{\'$x\'} works';
-#     is MY.WHO.{'$x'}, 10, 'MY.WHO access works';
-# 
-#     {
-#         my $y = 12; #OK
-#         is $MY::y, 12, '$MY::y finds shadow';
-#         is $MY::x, 10, '$MY::x finds original';
-#         is MY::.{'$y'}, 12, 'Hash-like access finds shadow $y';
-#         is MY::.{'$x'}, 10, 'Hash-like access finds original $x';
-#     }
-# 
-#     my $z;
-#     {
-#         $x = [1,2,3];
-#         $MY::z := $x;
-#         ok $z =:= $x, 'Can bind through $MY::z';
-#         is +[$z], 1, '... it is a scalar binding';
-#         lives-ok { $z = 15 }, '... it is mutable';
-# 
-#         MY::.{'$z'} := $y;
-#         ok $z =:= $y, 'Can bind through MY::.{}';
-# 
-#         $MY::z ::= $y;
-#         is $z, $y, '::= binding through $MY::z works';
-#         throws-like { $z = 5 },
-#           Exception,
-#           '... and makes readonly';
-# 
-#         MY::.{'$z'} ::= $x;
-#         is $z, $x, '::= binding through MY::.{} works';
-#         throws-like { $z = 5 },
-#           Exception,
-#           '... and makes readonly';
-#     }
-# 
-#     my class A1 {
-#         our $pies = 14;
-#         method pies() { }
-#     }
-#     ok MY::A1.^can('pies'), 'MY::classname works';
-#     is $MY::A1::pies, 14, 'Can access package hashes through MY::A1';
-#     ok MY::.{'A1'}.^can('pies'), 'MY::.{classname} works';
-# 
-#     {
-#         ok MY::A1.^can('pies'), 'MY::classname works from inner scope';
-#         ok MY::.{'A1'}.^can('pies'), 'MY::.{classname} works from inner scope';
-# 
-#         my class A2 {
-#             method spies { 15 }
-#         }
-#     }
-# 
-#     throws-like { EVAL 'MY::A2' },
-#       Exception,
-#       'Cannot use MY::A2 directly from outer scope';
-#     throws-like { MY::.{'A2'}.spies },
-#       Exception,
-#       'Cannot use MY::.{"A2"} from outer scope';
-# 
-#     sub callee { MY::.{'$*k'} }
-#     sub callee2($f is rw) { MY::.{'$*k'} := $f }
-#     # slightly dubious, but a straightforward extrapolation from the behavior
-#     # of CALLER::<$*k> and OUTER::<$*k>
-#     {
-#         my $*k = 16;
-#         my $z  = 17;
-#         is callee(), 16, 'MY::.{\'$*k\'} does a dynamic search';
-#         callee2($z);
-#         ok $*k =:= $z, 'MY::.{\'$*k\'} can be used to bind dynamic variables';
-#     }
-# 
-#     # niecza does a case analysis on the variable's storage type to implement
-#     # this, so there is room for bugs to hide in all cases
-#     our $a18 = 19;
-#     is $MY::a18, 19, '$MY:: can be used on our-aliases';
-#     is MY::.{'$a18'}, 19, 'MY::.{} can be used on our-aliases';
-#     $MY::a18 := $x;
-#     ok $a18 =:= $x, '$MY:: binding works on our-aliases';
-# 
-#     my constant $?q = 20;
-#     is $?MY::q, 20, '$?MY:: can be used on constants';  #OK
-#     is MY::.{'$?q'}, 20, 'MY::.{} can be used on constants';
-# 
-#     ok MY::{'&say'} === &say, 'MY::.{} can find CORE names';
-#     ok &MY::say === &say, '&MY:: can find CORE names';
-# 
-#     for 1 .. 1 {
-#         state $r = 21;
-#         is MY::.{'$r'}, 21, 'MY::.{} can access state names';
-#         is $MY::r, 21, '$MY:: can access state names';
-#     }
-# 
-#     my $my = 'MY';
-#     my $l = 22; #OK
-#     is ::($my)::('$l'), 22, 'Can access MY itself indirectly ::()';
-#     is ::.<MY>.WHO.<$l>, 22, 'Can access MY itself indirectly via ::';
-# }
+#?rakudo skip 'various issues, skipping all for now'
+{
+    my $x = 10; #OK
+    my $y = 11; #OK
+
+    is $MY::x, 10, '$MY::x works';
+    is MY::<$x>, 10, 'MY::<$x> works';
+    is MY::.{'$x'}, 10, 'MY::.{\'$x\'} works';
+    is MY.WHO.{'$x'}, 10, 'MY.WHO access works';
+
+    {
+        my $y = 12; #OK
+        is $MY::y, 12, '$MY::y finds shadow';
+        is $MY::x, 10, '$MY::x finds original';
+        is MY::.{'$y'}, 12, 'Hash-like access finds shadow $y';
+        is MY::.{'$x'}, 10, 'Hash-like access finds original $x';
+    }
+
+    my $z;
+    {
+        $x = [1,2,3];
+        $MY::z := $x;
+        ok $z =:= $x, 'Can bind through $MY::z';
+        is +[$z], 1, '... it is a scalar binding';
+        lives-ok { $z = 15 }, '... it is mutable';
+
+        MY::.{'$z'} := $y;
+        ok $z =:= $y, 'Can bind through MY::.{}';
+
+        $MY::z ::= $y;
+        is $z, $y, '::= binding through $MY::z works';
+        throws-like { $z = 5 },
+          Exception,
+          '... and makes readonly';
+
+        MY::.{'$z'} ::= $x;
+        is $z, $x, '::= binding through MY::.{} works';
+        throws-like { $z = 5 },
+          Exception,
+          '... and makes readonly';
+    }
+
+    my class A1 {
+        our $pies = 14;
+        method pies() { }
+    }
+    ok MY::A1.^can('pies'), 'MY::classname works';
+    is $MY::A1::pies, 14, 'Can access package hashes through MY::A1';
+    ok MY::.{'A1'}.^can('pies'), 'MY::.{classname} works';
+
+    {
+        ok MY::A1.^can('pies'), 'MY::classname works from inner scope';
+        ok MY::.{'A1'}.^can('pies'), 'MY::.{classname} works from inner scope';
+
+        my class A2 {
+            method spies { 15 }
+        }
+    }
+
+    throws-like { EVAL 'MY::A2' },
+      Exception,
+      'Cannot use MY::A2 directly from outer scope';
+    throws-like { MY::.{'A2'}.spies },
+      Exception,
+      'Cannot use MY::.{"A2"} from outer scope';
+
+    sub callee { MY::.{'$*k'} }
+    sub callee2($f is rw) { MY::.{'$*k'} := $f }
+    # slightly dubious, but a straightforward extrapolation from the behavior
+    # of CALLER::<$*k> and OUTER::<$*k>
+    {
+        my $*k = 16;
+        my $z  = 17;
+        is callee(), 16, 'MY::.{\'$*k\'} does a dynamic search';
+        callee2($z);
+        ok $*k =:= $z, 'MY::.{\'$*k\'} can be used to bind dynamic variables';
+    }
+
+    # niecza does a case analysis on the variable's storage type to implement
+    # this, so there is room for bugs to hide in all cases
+    our $a18 = 19;
+    is $MY::a18, 19, '$MY:: can be used on our-aliases';
+    is MY::.{'$a18'}, 19, 'MY::.{} can be used on our-aliases';
+    $MY::a18 := $x;
+    ok $a18 =:= $x, '$MY:: binding works on our-aliases';
+
+    my constant $?q = 20;
+    is $?MY::q, 20, '$?MY:: can be used on constants';  #OK
+    is MY::.{'$?q'}, 20, 'MY::.{} can be used on constants';
+
+    ok MY::{'&say'} === &say, 'MY::.{} can find CORE names';
+    ok &MY::say === &say, '&MY:: can find CORE names';
+
+    for 1 .. 1 {
+        state $r = 21;
+        is MY::.{'$r'}, 21, 'MY::.{} can access state names';
+        is $MY::r, 21, '$MY:: can access state names';
+    }
+
+    my $my = 'MY';
+    my $l = 22; #OK
+    is ::($my)::('$l'), 22, 'Can access MY itself indirectly ::()';
+    is ::.<MY>.WHO.<$l>, 22, 'Can access MY itself indirectly via ::';
+}
 
 # OUR
 
@@ -175,14 +177,20 @@ skip('various issues, skipping all for now', 36);# {
     is OUR::A40.WHO.<$x>, 41, '$OUR:: can autovivify packages (reference)';
     $OUR::A41::x := 42;
     is OUR::A41.WHO.<$x>, 42, '$OUR:: can autovivify packages (binding)';
-#    $::($our)::A42::x = 43;
-    todo('interpolation and auto-viv NYI'); is ::($our)::A42.WHO.<$x>, 43, '::("OUR") can autovivify packages (r)';
+    #?rakudo emit #
+    $::($our)::A42::x = 43;
+    #?rakudo todo 'interpolation and auto-viv NYI'
+    is ::($our)::A42.WHO.<$x>, 43, '::("OUR") can autovivify packages (r)';
 
-#    $::($our)::A43::x := 44;
-    todo('binding and interpolation together NYI'); is ::($our)::A43.WHO.<$x>, 44, '::("OUR") can autovivify packages (b)';
+    #?rakudo emit #
+    $::($our)::A43::x := 44;
+    #?rakudo todo 'binding and interpolation together NYI'
+    is ::($our)::A43.WHO.<$x>, 44, '::("OUR") can autovivify packages (b)';
 
-#    ::($our)::A44 := class { our $x = 41; };
-    todo('binding and interpolation together NYI'); is $::($our)::A44::x, 41, '::("OUR") can follow aliased packages';
+    #?rakudo emit #
+    ::($our)::A44 := class { our $x = 41; };
+    #?rakudo todo 'binding and interpolation together NYI'
+    is $::($our)::A44::x, 41, '::("OUR") can follow aliased packages';
 }
 
 # CORE
@@ -210,20 +218,18 @@ skip('various issues, skipping all for now', 36);# {
     lives-ok { CORE::.<&none> := &f2 }, 'CORE::.{} binding lives';
     ok &none =:= &f2, '... and works';
     # https://github.com/Raku/old-issue-tracker/issues/4560
-skip('Cannot bind to &::("CORE")::foo', 1); # {     lives-ok { &::($core)::none := &f3 }, '::("CORE") binding lives';
-#  }
-skip('Cannot bind to &::("CORE")::foo', 1); # {     ok &none =:= &f3, '... and works';
-#  }
+    #?rakudo 2 skip 'Cannot bind to &::("CORE")::foo'
+    lives-ok { &::($core)::none := &f3 }, '::("CORE") binding lives';
+    ok &none =:= &f3, '... and works';
 
     # in niecza v8, dynamic variables go through a separate code path.
     # make sure accessing it in CORE works
     lives-ok { $CORE::_ := 50 }, 'Binding to $CORE::_ lives';
     is $CORE::_, 50, 'Accessing $CORE::_ works';
     # https://github.com/Raku/old-issue-tracker/issues/4560
-skip('Cannot bind to &::("CORE")::foo', 1); # {     lives-ok { $::($core)::_ := 51 }, 'Binding to $::("CORE")::_ lives';
-#  }
-skip('Cannot bind to &::("CORE")::foo', 1); # {     is $::($core)::_, 51, 'Accessing $::("CORE")::_ works';
-#  }
+    #?rakudo 2 skip 'Cannot bind to &::("CORE")::foo'
+    lives-ok { $::($core)::_ := 51 }, 'Binding to $::("CORE")::_ lives';
+    is $::($core)::_, 51, 'Accessing $::("CORE")::_ works';
 }
 
 # GLOBAL - functionality is very similar to OUR
@@ -257,62 +263,63 @@ skip('Cannot bind to &::("CORE")::foo', 1); # {     is $::($core)::_, 51, 'Acces
 # COMPILING - not testable without BEGIN
 
 # DYNAMIC
-skip('various issues to resolve', 23);# {
-#     my $dyn = "DYNAMIC";
-# 
-#     {
-#         my $*x80 = 82;
-#         my $y; my $z;
-#         is $*DYNAMIC::x80, 82, '$DYNAMIC:: works';
-#         is DYNAMIC::.<$*x80>, 82, 'DYNAMIC::.{} works';
-#         is ::($dyn)::('$*x80'), 82, '::("DYNAMIC") works';
-# 
-#         $*DYNAMIC::x80 := $y;
-#         ok $*x80 =:= $y, 'Can bind through $DYNAMIC::';
-#         ::($dyn)::('$*x80') := $z;
-#         ok $*x80 =:= $z, 'Can bind through ::("DYNAMIC")';
-# 
-#         ok !defined($*DYNAMIC::x82), 'Unfound dynamics are undefined';
-#         ok !defined(::($dyn)::('$*x82')), 'Unfound with ::("DYNAMIC")';
-#     }
-# 
-#     {
-#         my $x83 is dynamic = 83; #OK
-#         my $*x84 = 84; #OK
-# 
-#         is $DYNAMIC::x83, 83, 'DYNAMIC on non-$* vars works';
-#         is $::($dyn)::x83, 83, '::("DYNAMIC") on non-$* vars works';
-# 
-#         ok !defined($DYNAMIC::x84), 'DYNAMIC $x does not find $*x';
-#         ok !defined($::($dyn)::x84), '::("DYNAMIC") $x does not find $*x';
-#         ok !defined($*DYNAMIC::x83), 'DYNAMIC $*x does not find $x';
-#         ok !defined(::($dyn)::('$*x83')), '::("DYNAMIC") $x does not find $*x';
-#     }
-# 
-#     sub docall($f) { my $*x80 = 80; my $x81 is dynamic = 81; $f() } #OK
-# 
-#     {
-#         is docall({ $DYNAMIC::x81 }), 81, 'DYNAMIC:: searches callers';
-#         is docall({ $::($dyn)::x81 }), 81, '::("DYNAMIC") searches callers';
-#         my ($fun1, $fun2) = do {
-#             my $x81 is dynamic = 85; #OK
-#             { $DYNAMIC::x81 }, { $::($dyn)::x81 }
-#         };
-#         ok !defined($fun1()), 'DYNAMIC:: does not search outers';
-#         ok !defined($fun2()), '::("DYNAMIC") does not search outers';
-# 
-#         $GLOBAL::x86 = 86;
-#         ok !defined($DYNAMIC::x86), 'DYNAMIC:: without twigil ignores GLOBAL';
-#         ok !defined($::($dyn)::x86), '"DYNAMIC" without twigil ignores GLOBAL';
-#         is $*DYNAMIC::x86, 86, 'DYNAMIC:: with * searches GLOBAL';
-#         is ::($dyn)::('$*x86'), 86, '::("DYNAMIC") with * searches GLOBAL';
-# 
-#         ok DYNAMIC::<$*IN> === $PROCESS::IN,
-#             'DYNAMIC:: with * searches PROCESS';
-#         ok ::($dyn)::('$*IN') === $PROCESS::IN,
-#             '::("DYNAMIC") with * searches PROCESS';
-#     }
-# }
+#?rakudo skip 'various issues to resolve'
+{
+    my $dyn = "DYNAMIC";
+
+    {
+        my $*x80 = 82;
+        my $y; my $z;
+        is $*DYNAMIC::x80, 82, '$DYNAMIC:: works';
+        is DYNAMIC::.<$*x80>, 82, 'DYNAMIC::.{} works';
+        is ::($dyn)::('$*x80'), 82, '::("DYNAMIC") works';
+
+        $*DYNAMIC::x80 := $y;
+        ok $*x80 =:= $y, 'Can bind through $DYNAMIC::';
+        ::($dyn)::('$*x80') := $z;
+        ok $*x80 =:= $z, 'Can bind through ::("DYNAMIC")';
+
+        ok !defined($*DYNAMIC::x82), 'Unfound dynamics are undefined';
+        ok !defined(::($dyn)::('$*x82')), 'Unfound with ::("DYNAMIC")';
+    }
+
+    {
+        my $x83 is dynamic = 83; #OK
+        my $*x84 = 84; #OK
+
+        is $DYNAMIC::x83, 83, 'DYNAMIC on non-$* vars works';
+        is $::($dyn)::x83, 83, '::("DYNAMIC") on non-$* vars works';
+
+        ok !defined($DYNAMIC::x84), 'DYNAMIC $x does not find $*x';
+        ok !defined($::($dyn)::x84), '::("DYNAMIC") $x does not find $*x';
+        ok !defined($*DYNAMIC::x83), 'DYNAMIC $*x does not find $x';
+        ok !defined(::($dyn)::('$*x83')), '::("DYNAMIC") $x does not find $*x';
+    }
+
+    sub docall($f) { my $*x80 = 80; my $x81 is dynamic = 81; $f() } #OK
+
+    {
+        is docall({ $DYNAMIC::x81 }), 81, 'DYNAMIC:: searches callers';
+        is docall({ $::($dyn)::x81 }), 81, '::("DYNAMIC") searches callers';
+        my ($fun1, $fun2) = do {
+            my $x81 is dynamic = 85; #OK
+            { $DYNAMIC::x81 }, { $::($dyn)::x81 }
+        };
+        ok !defined($fun1()), 'DYNAMIC:: does not search outers';
+        ok !defined($fun2()), '::("DYNAMIC") does not search outers';
+
+        $GLOBAL::x86 = 86;
+        ok !defined($DYNAMIC::x86), 'DYNAMIC:: without twigil ignores GLOBAL';
+        ok !defined($::($dyn)::x86), '"DYNAMIC" without twigil ignores GLOBAL';
+        is $*DYNAMIC::x86, 86, 'DYNAMIC:: with * searches GLOBAL';
+        is ::($dyn)::('$*x86'), 86, '::("DYNAMIC") with * searches GLOBAL';
+
+        ok DYNAMIC::<$*IN> === $PROCESS::IN,
+            'DYNAMIC:: with * searches PROCESS';
+        ok ::($dyn)::('$*IN') === $PROCESS::IN,
+            '::("DYNAMIC") with * searches PROCESS';
+    }
+}
 
 # CALLER - assumes MY:: has taken care of most access testing
 {
@@ -455,7 +462,10 @@ subtest 'no guts spillage when going too high up scope in pseudopackages' => {
     eval-lives-ok '$CORE::UNIT::True',          'CORE::UNIT::...';
 
     my $mixed := ([~] '$', |(@packs.pick xx 100), 'True');
+    #?rakudo.jvm skip 'unknown problem'
     eval-lives-ok($mixed, 'mixed') or diag "Failing mixed combination: $mixed";
+    #?rakudo.jvm skip 'unknown problem'
+    #?DOES 11
     eval-lives-ok '$' ~ $_ x 100 ~ 'True', $_ for @packs;
 }
 
@@ -505,6 +515,3 @@ subtest "Bound dynamics" => {
 
 done-testing;
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

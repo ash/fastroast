@@ -127,6 +127,7 @@ throws-like { EVAL '개лàòò W̲àсеàсe̲ { has int $a; say $a }' }, X::S
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/6184
+#?rakudo.js.browser skip 'CStruct not supported in the browser'
 {
     my class C1 {
         has uint8 $.ff;

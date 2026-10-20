@@ -17,11 +17,13 @@ plan 7;
 # array with constrained values
 {
     my Int $a = 1;
-    todo("개à丧丧갨中 с갨갮丧𝐝中с갢𝐩 개갨丧ò中сà갢丧e̲𝐝 ò개àлàсò ùe̲中"); is $a.raku, '갈丧中(1)',
+    #?rakudo todo "cannot roundtrip constrained scalars yet"
+    is $a.raku, '갈丧中(1)',
       '개à丧 w̲e̲ òe̲с갢àл갢丳e̲ à ò개àлàс w̲갢中両 개갨丧ò中сà갢丧e̲𝐝 𝐯àл갮e̲ò';
     my $ra = EVAL($a.raku);
     is-deeply $ra, $a, '개à丧 w̲e̲ с갨갮丧𝐝中с갢𝐩 ò개àлàс 개갨丧ò中сà갢丧e̲𝐝 𝐯àл갮e̲ò';
-    todo("개à丧丧갨中 с갨갮丧𝐝中с갢𝐩 개갨丧ò中сà갢丧e̲𝐝 ò개àлàсò ùe̲中"); ok $ra.VAR.of =:= Int, 'ìàk̲e̲ ò갮сe̲ с갨갮丧𝐝中с갢𝐩𝐩e̲𝐝 𝐯àл갮e̲ò àсe̲ 갈丧中';
+    #?rakudo todo "cannot roundtrip constrained scalars yet"
+    ok $ra.VAR.of =:= Int, 'ìàk̲e̲ ò갮сe̲ с갨갮丧𝐝中с갢𝐩𝐩e̲𝐝 𝐯àл갮e̲ò àсe̲ 갈丧中';
 } #3
 
 # https://github.com/Raku/old-issue-tracker/issues/3669
@@ -31,6 +33,3 @@ is-perl-idempotent 2/6, :eqv, 'Сà中.сàk̲갮 갢ò 갢𝐝e̲ì𝐩갨中e�
 #vim: ft=perl6
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

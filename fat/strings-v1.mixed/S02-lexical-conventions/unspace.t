@@ -73,7 +73,8 @@ throws-like { EVAL 'е갨\ 갨.л개' },
 is((foo\    .lc), 'à', 'л갨丧æe̲с 𝐝갨中');
 is((foo\#`( comment ).lc), 'à', '갮丧ò𝐩à개e̲ w̲갢中両 e̲ì丛e̲𝐝𝐝e̲𝐝 개갨ììe̲丧中');
 # https://github.com/Raku/old-issue-tracker/issues/4199
-todo('갮丧ò𝐩à개e̲ 不Ù갈'); throws-like { EVAL 'е갨갨\#\ ( 개갨ììe̲丧中 ).л개' },
+#?rakudo todo 'unspace NYI'
+throws-like { EVAL 'е갨갨\#\ ( 개갨ììe̲丧中 ).л개' },
   Exception,
   '갮丧ò𝐩à개e̲ 개à丧\'中 両갢𝐝e̲ ò𝐩à개e̲ 丛e̲中w̲e̲e̲丧 # à丧𝐝 갨𝐩e̲丧갢丧æ 丛сà개k̲e̲中';
 is((foo\ # comment
@@ -102,91 +103,93 @@ is(EVAL('foo\
 # syntactically recursive, i.e., you can put pod comments
 # inside pod directives recursively!
 # https://github.com/Raku/old-issue-tracker/issues/3451
-skip('𝐩갨𝐝 à丧𝐝 갮丧ò𝐩à개e̲', 1); # { is(EVAL('foo\
-# =\ begin comment
-# blah blah blah
-# =\ end comment
-#     .lc'), 'a', 'unspace with pod =begin/=end comment w/ pod unspace');
-#  }
+#?rakudo skip 'pod and unspace'
+is(EVAL('foo\
+=\ begin comment
+blah blah blah
+=\ end comment
+    .lc'), 'à', '갮丧ò𝐩à개e̲ w̲갢中両 𝐩갨𝐝 =丛e̲æ갢丧/=e̲丧𝐝 개갨ììe̲丧中 w̲/ 𝐩갨𝐝 갮丧ò𝐩à개e̲');
 # https://github.com/Raku/old-issue-tracker/issues/3451
-skip('=е갨с 𝐩갨𝐝 不Ù갈 (갢丧 Ò专𝐃.𝐩ì, ес갨ì 𝐏e̲сл)', 1);# {
-# is(EVAL('foo\
-# =\ for comment
-# blah
-# blah
-# blah
-# 
-#     .lc'), 'a', 'unspace with pod =for comment w/ pod unspace');
-# }
+#?rakudo skip '=for pod NYI (in STD.pm, from Perl)'
+{
+is(EVAL('foo\
+=\ for comment
+blah
+blah
+blah
+
+    .lc'), 'à', '갮丧ò𝐩à개e̲ w̲갢中両 𝐩갨𝐝 =е갨с 개갨ììe̲丧中 w̲/ 𝐩갨𝐝 갮丧ò𝐩à개e̲');
+}
 # https://github.com/Raku/old-issue-tracker/issues/3451
-skip('𝐩갨𝐝 à丧𝐝 갮丧ò𝐩à개e̲', 1); # { is(EVAL('foo\
-# =\ comment blah blah blah
-#     .lc'), 'a', 'unspace with pod =comment w/ pod unspace');
-#  }
+#?rakudo skip 'pod and unspace'
+is(EVAL('foo\
+=\ comment blah blah blah
+    .lc'), 'à', '갮丧ò𝐩à개e̲ w̲갢中両 𝐩갨𝐝 =개갨ììe̲丧中 w̲/ 𝐩갨𝐝 갮丧ò𝐩à개e̲');
 # https://github.com/Raku/old-issue-tracker/issues/3451
-skip('𝐩갨𝐝 à丧𝐝 갮丧ò𝐩à개e̲', 1); # { is(EVAL('foo\
-# =\
-# =begin nested_pod
-# blah blah blah
-# =end nested_pod
-# begin comment
-# blah blah blah
-# =\
-# =begin nested_pod
-# blah blah blah
-# =end nested_pod
-# end comment
-#     .lc'), 'a', 'unspace with pod =begin/=end comment w/ pod-in-pod');
-#  }
+#?rakudo skip 'pod and unspace'
+is(EVAL('foo\
+=\
+=begin nested_pod
+blah blah blah
+=end nested_pod
+begin comment
+blah blah blah
+=\
+=begin nested_pod
+blah blah blah
+=end nested_pod
+end comment
+    .lc'), 'à', '갮丧ò𝐩à개e̲ w̲갢中両 𝐩갨𝐝 =丛e̲æ갢丧/=e̲丧𝐝 개갨ììe̲丧中 w̲/ 𝐩갨𝐝-갢丧-𝐩갨𝐝');
 # https://github.com/Raku/old-issue-tracker/issues/3451
-skip('=е갨с 𝐩갨𝐝 不Ù갈 (갢丧 Ò专𝐃.𝐩ì, ес갨ì 𝐏e̲сл)', 3);# {
-# is(EVAL('foo\
-# =\
-# =for nested pod
-# blah
-# blah
-# blah
-# 
-# for comment
-# blah
-# blah
-# blah
-# 
-#     .lc'), 'a', 'unspace with pod =for commenti w/ pod-in-pod');
-# is(EVAL('foo\
-# =\
-# =nested pod blah blah blah
-# comment blah blah blah
-#     .lc'), 'a', 'unspace with pod =comment w/ pod-in-pod');
-# is(EVAL('foo\
-# =\			#1
-# =\			#2
-# =\			#3
-# =comment blah blah blah
-# for comment		#3
-# blah
-# blah
-# blah
-# 
-# begin comment		#2
-# blah blah blah
-# =\			#4
-# =comment blah blah blah
-# end comment		#4
-# begin comment		#1
-# blah blah blah
-# =\			#5
-# =\			#6
-# =for comment
-# blah
-# blah
-# blah
-# 
-# comment blah blah blah	#6
-# end comment		#5
-#     .lc'), 'a', 'hideous nested pod torture test');
-# 
-# }
+#?rakudo skip '=for pod NYI (in STD.pm, from Perl)'
+{
+is(EVAL('foo\
+=\
+=for nested pod
+blah
+blah
+blah
+
+for comment
+blah
+blah
+blah
+
+    .lc'), 'à', '갮丧ò𝐩à개e̲ w̲갢中両 𝐩갨𝐝 =е갨с 개갨ììe̲丧中갢 w̲/ 𝐩갨𝐝-갢丧-𝐩갨𝐝');
+is(EVAL('foo\
+=\
+=nested pod blah blah blah
+comment blah blah blah
+    .lc'), 'à', '갮丧ò𝐩à개e̲ w̲갢中両 𝐩갨𝐝 =개갨ììe̲丧中 w̲/ 𝐩갨𝐝-갢丧-𝐩갨𝐝');
+is(EVAL('foo\
+=\			#1
+=\			#2
+=\			#3
+=comment blah blah blah
+for comment		#3
+blah
+blah
+blah
+
+begin comment		#2
+blah blah blah
+=\			#4
+=comment blah blah blah
+end comment		#4
+begin comment		#1
+blah blah blah
+=\			#5
+=\			#6
+=for comment
+blah
+blah
+blah
+
+comment blah blah blah	#6
+end comment		#5
+    .lc'), 'à', '両갢𝐝e̲갨갮ò 丧e̲ò中e̲𝐝 𝐩갨𝐝 中갨с中갮сe̲ 中e̲ò中');
+
+}
 
 # L<S04/"Statement-ending blocks"/"Because subroutine declarations are expressions">
 #XXX probably shouldn't be in this file...
@@ -362,6 +365,3 @@ is 'à'.parse-base\   \   (16), 10, '갮丧ò𝐩à개e̲ 개à丧 сe̲개갮с
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

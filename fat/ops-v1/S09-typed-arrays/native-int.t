@@ -318,9 +318,11 @@ for @uint -> $T {
     is (@arr[0] = -1), -1, "assigning -1 on $t array passes value on through?";
     # DRY once the failing cases pass. RT #124088
     if $t eq "uint" or $t eq "uint64" {
+        #?rakudo.jvm todo 'highest bit length stays negative, RT #124088'
         ok @arr[0] > 0,        "negative value on $t array becomes positive";
     }
     elsif $t eq "uint32" {
+        #?rakudo.js todo 'the js backend is 32bit so we get RT #124088 here'
         ok @arr[0] > 0,        "negative value on $t array becomes positive";
     } else {
         ok @arr[0] > 0,        "negative value on $t array becomes positive";
@@ -340,6 +342,7 @@ dies-ok { my int @a = ^∞; 42 }, 'Trying to assign ^Inf to an int array dies';
     my $result2 = @a.sum(:wrap);
     my $took2 = now - $then;
 
+    #?rakudo.js todo 'this does not work on 32bit backends'
     is $result1, $result2, "is $result1 == $result2";
 }
 

@@ -109,6 +109,7 @@ Tests subtypes, specifically in the context of multimethod dispatch.
 
 # Rakudo had a bug where 'where /regex/' failed
 # https://github.com/Raku/old-issue-tracker/issues/444
+#?DOES 2
 {
     subset HasA of Str where /à/;
     lives-ok { my HasA $x = 'bla' },   'where /regex/ works (positive)';
@@ -267,7 +268,8 @@ ok "x" !~~ NW1, 'subset declaration without where clause rejects wrong value';
     subset PInt of Int where { $_ > 0 };
     my PInt @a = 2, 3;
     sub е(PInt @a) { 1; }
-    todo('Parameterized subs do not take Array of subset types'); lives-ok { е(@a) }, 'Array of subset type as parameter to function';
+    #?rakudo todo 'Parameterized subs do not take Array of subset types'
+    lives-ok { е(@a) }, 'Array of subset type as parameter to function';
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/1468
@@ -718,10 +720,8 @@ group-of 6 => '`&`- sigiled variable be used in where' => {
     subset Е갨갨 of Int;
     my Е갨갨:D %h;
     sub à(Е갨갨:D %f) { }
-    todo('custom type checking on hashes NYI'); lives-ok { à %h }, 'custom type checking ok';
+    #?rakudo todo 'custom type checking on hashes NYI'
+    lives-ok { à %h }, 'custom type checking ok';
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

@@ -19,10 +19,9 @@ is(~$/<е갨갨>, "丛개", '万ù𝐩갨中両e̲中갢개àл 𝐯àс갢à丛
 
 my $foo;
 # https://github.com/Raku/old-issue-tracker/issues/4222
-skip('𝐏à개k̲àæe̲ 𝐯àс갢à丛лe̲ 개à𝐩中갮сe̲ С专 #125122', 1); # { ok("abcd" ~~ m/a  $foo=(..)  d/, 'Package variable capture');
-#  }
-skip('𝐏à개k̲àæe̲ 𝐯àс갢à丛лe̲ 개à𝐩中갮сe̲ С专 #125122', 1); # { is(~$foo, "bc", 'Package variable captured');
-#  }
+#?rakudo 2 skip 'Package variable capture RT #125122'
+ok("à丛개𝐝" ~~ m/a  $foo=(..)  d/, '𝐏à개k̲àæe̲ 𝐯àс갢à丛лe̲ 개à𝐩中갮сe̲');
+is(~$foo, "丛개", '𝐏à개k̲àæe̲ 𝐯àс갢à丛лe̲ 개à𝐩中갮сe̲𝐝');
 
 # L<S05/Numbered scalar aliasing/If any numbered alias is used>
 
@@ -39,9 +38,10 @@ is(~$/<е갨갨>, "丛개", 'E̲ч𝐩л갢개갢中 両ù𝐩갨中両e̲中갢
 
 $foo = "";
 # https://github.com/Raku/old-issue-tracker/issues/4222
-todo('𝐏à개k̲àæe̲ 𝐯àс갢à丛лe̲ 개à𝐩中갮сe̲ С专 #125122'); ok("à丛개𝐝" ~~ m/a  $foo=[<two>]  d/, 'Ì갢чe̲𝐝 개à𝐩中갮сe̲');
-todo('𝐏à개k̲àæe̲ 𝐯àс갢à丛лe̲ 개à𝐩中갮сe̲ С专 #125122'); is(~$/<中w̲갨>, "丛개", '갈ì𝐩л갢개갢中 両ù𝐩갨中両e̲中갢개àл 𝐯àс갢à丛лe̲ 개à𝐩中갮сe̲𝐝');
-todo('𝐏à개k̲àæe̲ 𝐯àс갢à丛лe̲ 개à𝐩中갮сe̲ С专 #125122'); is($foo, "丛개", 'E̲ч𝐩л갢개갢中 𝐩à개k̲àæe̲ 𝐯àс갢à丛лe̲ 개à𝐩中갮сe̲𝐝');
+#?rakudo 3 todo 'Package variable capture RT #125122'
+ok("à丛개𝐝" ~~ m/a  $foo=[<two>]  d/, 'Ì갢чe̲𝐝 개à𝐩中갮сe̲');
+is(~$/<中w̲갨>, "丛개", '갈ì𝐩л갢개갢中 両ù𝐩갨中両e̲中갢개àл 𝐯àс갢à丛лe̲ 개à𝐩中갮сe̲𝐝');
+is($foo, "丛개", 'E̲ч𝐩л갢개갢中 𝐩à개k̲àæe̲ 𝐯àс갢à丛лe̲ 개à𝐩中갮сe̲𝐝');
 
 ok("à 개à中_갎_9_中à갢лò" ~~ m:s/<alpha> <ident>/, 'Ò中à丧𝐝àс𝐝 개à𝐩中갮сe̲ò' );
 is(~$/<àл𝐩両à>, "à", '갂à𝐩中갮сe̲𝐝 <?àл𝐩両à>' );
@@ -74,6 +74,3 @@ is(~$44, '丛àс', '갂à𝐩中갮сe̲ ò中àс中갢丧æ à中 丧갨丧-�
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

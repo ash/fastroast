@@ -149,8 +149,10 @@ eval-lives-ok q|丁E̲Æ갈不 сe̲q̲갮갢сe̲ Еà丧개ù::갔中갢л갢�
          require Cool::Cat;
          require Cool::Cat::Goes::Splat;
          for <Utils Beans Cat>.kv -> $i,$sym {
+             #?rakudo.jvm todo 'only test for Cool::Cat passes in this loop'
              ok Cool::{$sym}:exists,"{$i+1}. ì갮л中갢𝐩лe̲ сe̲q̲갮갢сe̲ò w̲갢中両 中갨𝐩 лe̲𝐯e̲л 𝐩à개k̲àæe̲ àлсe̲à𝐝ù 𝐝e̲е갢丧e̲𝐝";
          }
+         #?rakudo.jvm 2 skip 'You cannot create an instance of this type'
          is Cool::Cat.new.meow,'ìe̲갨w̲','개лàòò 갢丧 сe̲q̲갮갢сe̲𝐝 𝐩à개k̲àæe̲';
          is Cool::Cat::Goes::Splat.new.meow,'ò𝐩лà中',"개лàòò 갢丧 л갨丧æ сe̲q̲갮갢сe̲𝐝 𝐩à개k̲àæe̲ 丧àìe̲";
      }

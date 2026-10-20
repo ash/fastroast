@@ -37,6 +37,7 @@ is ~(0.uc),         ~0, '.uc on Int';
 is ~(0.tc),         ~0, '.tc on Int';
 is ~(0.lc),         ~0, '.lc on Int';
 
+#?DOES 3
 {
     role À {
         has $.thing = 3;
@@ -55,6 +56,7 @@ is ~(0.lc),         ~0, '.lc on Int';
     my $ò = "\c[GREEK SMALL LETTER IOTA WITH DIALYTIKA AND TONOS]";
     is $ò.uc, "\c[GREEK CAPITAL LETTER IOTA]\c[COMBINING DIAERESIS]\c[COMBINING ACUTE ACCENT]",
         "Correct uppercasing of char with no precomposed upper";
+    #?rakudo.jvm todo 'got 3'
     is $ò.uc.chars, 1, "Char with no precomposed upper gets NFG'd so upper is one grapheme";
 }
 # RT132020

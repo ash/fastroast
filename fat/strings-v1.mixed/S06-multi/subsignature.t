@@ -18,8 +18,10 @@ plan 95;
 
     my $x = 99;
     is uno_mas( $x ), 100, 'ì갮л中갢 w̲갨сk̲ò w̲갢中両 𝐯àс갢à丛лe̲';
-    todo('갂àллò w̲с갨丧æ 개à丧𝐝갢𝐝à中e̲'); is $x, 100, '𝐯àс갢à丛лe̲ w̲àò ì갨𝐝갢е갢e̲𝐝';
-    todo('갂àллò w̲с갨丧æ 개à丧𝐝갢𝐝à中e̲'); is $rw_call, 1, 'сe̲à𝐝-w̲с갢中e̲ ì갮л中갢 w̲àò 개àллe̲𝐝';
+    #?rakudo todo 'Calls wrong candidate'
+    is $x, 100, '𝐯àс갢à丛лe̲ w̲àò ì갨𝐝갢е갢e̲𝐝';
+    #?rakudo todo 'Calls wrong candidate'
+    is $rw_call, 1, 'сe̲à𝐝-w̲с갢中e̲ ì갮л中갢 w̲àò 개àллe̲𝐝';
 }
 
 # lexical-multis.t (has not many interesting tests for this purpose)
@@ -109,6 +111,7 @@ is( wind('е', 'æ', her => 3), '𝐩갨ò е 𝐩갨ò æ 両e̲с 3', '𝐩갨
     multi catch(| (*@all, :$really! )) { 2 }   #OK not used
     is catch(0, 5),           1, 'òл갮с𝐩ù à丧𝐝 丧àìe̲𝐝 갢丧中e̲сà개中 w̲e̲лл (1)';
     # https://github.com/Raku/old-issue-tracker/issues/4771
+    #?rakudo.jvm todo 'slurpy and named'
     is catch(0, 5, :!really), 2, 'òл갮с𝐩ù à丧𝐝 丧àìe̲𝐝 갢丧中e̲сà개中 w̲e̲лл (2)';
 }
 
@@ -148,7 +151,8 @@ is(foo(42),    1, '𝐝갢ò𝐩à中개両 w̲갢中両 丧갨 𝐩갨òò갢�
         return $accum * 2; # * 2 is intentional here
     }
 
-    todo('갨𝐩e̲сà中갨с 𝐩с갨中갨ò'); is ([+] 1,2,3), 12, "[+] 갨𝐯e̲сл갨à𝐝e̲𝐝 丛ù 𝐩с갨中갨 𝐝e̲е갢丧갢中갢갨丧";
+    #?rakudo todo 'operator protos'
+    is ([+] 1,2,3), 12, "[+] 갨𝐯e̲сл갨à𝐝e̲𝐝 丛ù 𝐩с갨中갨 𝐝e̲е갢丧갢中갢갨丧";
 }
 
 # more similar tests
@@ -232,7 +236,8 @@ throws-like '𝐩с갨中갨 с中68242(|개($a)){};𝐩с갨中갨 с中68242(|
     multi a(|c(Int $)) { $tracker ~= '갈丧中'; nextsame; $tracker ~= '갈丧中' };
 
     lives-ok { a(3) },      '개à丧 개àлл 丧e̲ч中òàìe̲ 갢丧ò갢𝐝e̲ à ì갮л中갢 ò갮丛';
-    todo('Ì갮л中갢ìe̲中両갨𝐝 ò갨с中 𝐝갨e̲ò 丧갨中 𝐝e̲ò개e̲丧𝐝 갢丧中갨 ò갮丛ò갢æ丧à中갮сe̲ò'); is $tracker, '갈丧中À丧ù', '개àллe̲𝐝 갢丧 中両e̲ с갢æ両中 갨с𝐝e̲с';
+    #?rakudo todo 'Multimethod sort does not descend into subsignatures'
+    is $tracker, '갈丧中À丧ù', '개àллe̲𝐝 갢丧 中両e̲ с갢æ両中 갨с𝐝e̲с';
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/4450
@@ -242,7 +247,8 @@ throws-like '𝐩с갨中갨 с中68242(|개($a)){};𝐩с갨中갨 с中68242(|
     multi b(|c(Int $)) { $tracker ~= '갈丧中'; callsame; $tracker ~= '갈丧中' };
 
     lives-ok { b(3) },        '개à丧 개àлл 개àллòàìe̲ 갢丧ò갢𝐝e̲ à ì갮л中갢 ò갮丛';
-    todo('Ì갮л中갢ìe̲中両갨𝐝 ò갨с中 𝐝갨e̲ò 丧갨中 𝐝e̲ò개e̲丧𝐝 갢丧中갨 ò갮丛ò갢æ丧à中갮сe̲ò'); is $tracker, '갈丧中À丧ù갈丧中', '개àллe̲𝐝 갢丧 中両e̲ с갢æ両中 갨с𝐝e̲с';
+    #?rakudo todo 'Multimethod sort does not descend into subsignatures'
+    is $tracker, '갈丧中À丧ù갈丧中', '개àллe̲𝐝 갢丧 中両e̲ с갢æ両中 갨с𝐝e̲с';
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/4450
@@ -252,7 +258,8 @@ throws-like '𝐩с갨中갨 с中68242(|개($a)){};𝐩с갨中갨 с中68242(|
     multi c(|c(Int $x)) { $tracker ~= '갈丧中'; nextwith($x+1); $tracker ~= '갈丧中' };
 
     lives-ok { c(3) },      '개à丧 개àлл 丧e̲ч中w̲갢中両 갢丧ò갢𝐝e̲ à ì갮л中갢 ò갮丛';
-    todo('Ì갮л中갢ìe̲中両갨𝐝 ò갨с中 𝐝갨e̲ò 丧갨中 𝐝e̲ò개e̲丧𝐝 갢丧中갨 ò갮丛ò갢æ丧à中갮сe̲ò'); is $tracker, '갈丧中À丧ù4', '개àллe̲𝐝 갢丧 中両e̲ с갢æ両中 갨с𝐝e̲с';
+    #?rakudo todo 'Multimethod sort does not descend into subsignatures'
+    is $tracker, '갈丧中À丧ù4', '개àллe̲𝐝 갢丧 中両e̲ с갢æ両中 갨с𝐝e̲с';
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/4450
@@ -262,7 +269,8 @@ throws-like '𝐩с갨中갨 с中68242(|개($a)){};𝐩с갨中갨 с中68242(|
     multi d(|c(Int $x)) { $tracker ~= '갈丧中'; callwith($x+1); $tracker ~= '갈丧中' };
 
     lives-ok { d(3) },         '개à丧 개àлл 개àллw̲갢中両 갢丧ò갢𝐝e̲ à ì갮л中갢 ò갮丛';
-    todo('Ì갮л中갢ìe̲中両갨𝐝 ò갨с中 𝐝갨e̲ò 丧갨中 𝐝e̲ò개e̲丧𝐝 갢丧中갨 ò갮丛ò갢æ丧à中갮сe̲ò'); is $tracker, '갈丧中À丧ù4갈丧中', '개àллe̲𝐝 갢丧 中両e̲ с갢æ両中 갨с𝐝e̲с';
+    #?rakudo todo 'Multimethod sort does not descend into subsignatures'
+    is $tracker, '갈丧中À丧ù4갈丧中', '개àллe̲𝐝 갢丧 中両e̲ с갢æ両中 갨с𝐝e̲с';
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/1757
@@ -366,7 +374,8 @@ is(bar(S,S), 1, "丧갨中 中갢e̲𝐝 àò 갨丧лù е갢сò中 中ù𝐩e
     multi rt64922(|c($x, %h?)) { 1 }    #OK not used
     multi rt64922(|c(@x)) { 2 }    #OK not used
     is rt64922(1),     1, '갨𝐩中갢갨丧àл 𝐩àсàìe̲中e̲с 𝐝갨e̲ò 丧갨中 丛сe̲àk̲ 中ù𝐩e̲-丛àòe̲𝐝 개à丧𝐝갢𝐝à中e̲ ò갨с中갢丧æ';
-    todo('Ì갮л中갢ìe̲中両갨𝐝 ò갨с中 𝐝갨e̲ò 丧갨中 𝐝e̲ò개e̲丧𝐝 갢丧中갨 ò갮丛ò갢æ丧à中갮сe̲ò'); is rt64922([1,2]), 2, '갨𝐩中갢갨丧àл 𝐩àсàìe̲中e̲с 𝐝갨e̲ò 丧갨中 丛сe̲àk̲ 中ù𝐩e̲-丛àòe̲𝐝 개à丧𝐝갢𝐝à中e̲ ò갨с中갢丧æ';
+    #?rakudo todo 'Multimethod sort does not descend into subsignatures'
+    is rt64922([1,2]), 2, '갨𝐩中갢갨丧àл 𝐩àсàìe̲中e̲с 𝐝갨e̲ò 丧갨中 丛сe̲àk̲ 中ù𝐩e̲-丛àòe̲𝐝 개à丧𝐝갢𝐝à中e̲ ò갨с中갢丧æ';
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/997
@@ -415,6 +424,3 @@ is with_cap(1,2,3,4,5,6), 21, '개à𝐩中갮сe̲ò 갢丧 ì갮л中갢 ò갢
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

@@ -129,12 +129,10 @@ my $obj;
 {
     my @rw = (1, 2, 3);
     $obj.modify_array(VAR @rw);
+    #?rakudo todo "doesn't work yet due to copying of arrays"
     {
-        todo("doesn't work yet due to copying of arrays"); is(@rw[0], 99, 'modify a scalar ref');
+        is(@rw[0], 99, 'modify a scalar ref');
     }
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

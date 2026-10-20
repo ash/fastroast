@@ -18,6 +18,7 @@ child processes see the modified C<%*ENV>.
 
 =end desc
 
+#?rakudo.js.browser skip "in the browser we start with no env variables"
 # It must not be empty at startup.
 ok +%*ENV.keys, '%*ENV has keys';
 
@@ -59,11 +60,12 @@ throws-like { EVAL "%ENV" },
   '%ENV not visible by default';
 
 # https://github.com/Raku/old-issue-tracker/issues/3447
-skip('import fails, ENV not available: RT #122339', 1);# {
-#     # It must be importable
-#     import PROCESS <%ENV>;
-#     ok +%ENV.keys, 'imported %ENV has keys';
-# }
+#?rakudo skip 'import fails, ENV not available: RT #122339'
+{
+    # It must be importable
+    import PROCESS <%ENV>;
+    ok +%ENV.keys, 'imported %ENV has keys';
+}
 
 # Importation must be lexical
 {
@@ -103,6 +105,7 @@ skip('import fails, ENV not available: RT #122339', 1);# {
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/4498
+#?rakudo.js.browser skip "spawning a new process in a browser doesn't work"
 {
     %*ENV<FOOBAR> = 1;
     lives-ok { run($*EXECUTABLE, '-v') },
@@ -110,6 +113,3 @@ skip('import fails, ENV not available: RT #122339', 1);# {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

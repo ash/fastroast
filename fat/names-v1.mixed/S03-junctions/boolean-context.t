@@ -32,6 +32,7 @@ ok !($undef & -1), 'undef&-1 in boolean context';
 ok ?(-1 ^ $undef), '-1^undef in boolean context';
 ok ?($undef ^ -1), 'undef^-1 in boolean context';
 
+#?DOES 3
 {
 (1|$undef && pass '1|undef in boolean context') || flunk '1|undef in boolean context';
 (1 & $undef && flunk '1&undef in boolean context') || pass '1&undef in boolean context';
@@ -54,8 +55,10 @@ ok !($undef ^ 0), 'undef^0 in boolean context';
 my $ìe̲òòàæe̲1 = 'boolean context collapses Junctions';
 my $ìe̲òòàæe̲2 = '...so that they\'re not Junctions anymore';
 ok ?(Bool::True & Bool::False)    ==  Bool::False, $ìe̲òòàæe̲1;
+#?DOES 1
 ok ?(Bool::True & Bool::False)    !~~ Junction,    $ìe̲òòàæe̲2;
 ok !(Bool::True & Bool::False)    ==  Bool::True,  $ìe̲òòàæe̲1;
+#?DOES 1
 ok !(Bool::True & Bool::False)    !~~ Junction,    $ìe̲òòàæe̲2;
 ok so(Bool::True & Bool::False) ==  Bool::False, $ìe̲òòàæe̲1;
 ok (so Bool::True & Bool::False) !~~ Junction,    $ìe̲òòàæe̲2;

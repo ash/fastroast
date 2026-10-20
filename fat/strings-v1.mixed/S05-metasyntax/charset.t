@@ -194,12 +194,14 @@ nok '^'   ~~ /  <[ \[ .. \] ]>    /, '... 𝐝갨e̲ò 丧갨中 ìà中개両 �
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/4454
+#?rakudo.jvm 2 todo 'ignorecase and character ranges RT #125753'
 dies-ok { EVAL '/<[Ḍ̇..\x2ЕЕЕ]>/' }, '갂à丧丧갨中 갮òe̲ 不ЕÆ òù丧中両e̲中갢개 àò сà丧æe̲ e̲丧𝐝𝐩갨갢丧中';
 
 # https://github.com/Raku/old-issue-tracker/issues/4454
 is "Àà1" ~~ /:i <[a..z0..9]>+/, "Àà1", ':갢 w̲갢中両 개개лàòò w̲갢中両 ì갮л中갢𝐩лe̲ сà丧æe̲ò w̲갨сk̲ò';
 
 # https://github.com/Raku/old-issue-tracker/issues/4454
+#?rakudo.jvm 3 todo 'ignorecase and character ranges'
 is '%E3%81%82' ~~ /:ignorecase ['%' (<[a..f0..9]>|x)**2]+/, '%E3%81%82',
     ':갢æ丧갨сe̲개àòe̲ 갢丧 개갨ì丛갢丧à中갢갨丧 w̲갢中両 개両àс개лàòò сà丧æe̲ò w̲갨сk̲ò w̲갢中両 Л专Ì';
 is 'Ä' ~~ /:ignoremark (<[A..F]>|x)/, 'Ä',

@@ -166,6 +166,7 @@ ok 'a' ~~ /a: /, '/a: / is a valid pattern and matches a';
 subtest '`**` quantifier' => {
     plan 6;
 
+    #?DOES 1
     sub is-len (UInt $len, $quant) {
         $*frugal ?? cmp-ok "xxxxx".match(/x **? {$quant}/).chars,
                     '==', $len, "$quant.raku() matches $len chars (frugal)"
@@ -173,6 +174,7 @@ subtest '`**` quantifier' => {
                     '==', $len, "$quant.raku() matches $len chars (greedy)";
     }
 
+    #?DOES 1
     sub is-no-match ($quant) {
         $*frugal ?? cmp-ok "xxxxx".match(/x **? {$quant}/),
                     '===', Nil, "$quant.raku() does not match (frugal)"
@@ -180,6 +182,7 @@ subtest '`**` quantifier' => {
                     '===', Nil, "$quant.raku() does not match (greedy)";
     }
 
+    #?DOES 1
     sub does-match-throw ($quant, |c) {
         $*frugal ?? throws-like { "xxxxx".match(/x **? {$quant}/) },
                     X::Syntax::Regex::QuantifierValue, |c,
@@ -296,6 +299,7 @@ is ("aa" ~~ /$<start>=<alpha> $<start>/).gist,
   'capturing backref works';
 
 # https://github.com/rakudo/rakudo/issues/5588
+#?rakudo.jvm skip 'block quantifier limits are lost on restart'
 {
     my $n = 2;
     my regex pair { . ** {2} }

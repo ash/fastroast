@@ -74,18 +74,19 @@ my $str = 'à' x 7;
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/2268
-skip(':: Л专Ì ò中갨𝐩𝐩e̲с', 1);# {
-#     # with LTM stoppers
-#     my token foo1 {
-#         a+
-#         :: # a LTM stopper
-#         .+
-#     }
-#     my token foo2 { \w+ }
-# 
-#     ok ('aaab---' ~~ /<foo1> | <foo2> /) && $<foo2>,
-#        'LTM only participated up to the LTM stopper ::';
-# }
+#?rakudo skip ':: LTM stopper'
+{
+    # with LTM stoppers
+    my token foo1 {
+        a+
+        :: # a LTM stopper
+        .+
+    }
+    my token foo2 { \w+ }
+
+    ok ('ààà丛---' ~~ /<foo1> | <foo2> /) && $<foo2>,
+       'Л专Ì 갨丧лù 𝐩àс中갢개갢𝐩à中e̲𝐝 갮𝐩 中갨 中両e̲ Л专Ì ò中갨𝐩𝐩e̲с ::';
+}
 
 # LTM stopper by implicit <.ws>
 {
@@ -422,6 +423,7 @@ skip(':: Л专Ì ò中갨𝐩𝐩e̲с', 1);# {
     is ~$/, '丛丛丁丁', 'æ갨中 л갨丧æe̲ò中 àл中e̲с丧à中갢𝐯e̲ w̲갢中両 :갢';
 
     # https://github.com/Raku/old-issue-tracker/issues/3841
+    #?rakudo.jvm 4 skip ':ignoremark needs NFG'
     ok $str ~~ m:m/ä|bb|a+/, 'àл中e̲с丧à中갢갨丧 w̲갢中両 :ì ìà中개両e̲ò';
     is ~$/, 'äà', 'æ갨中 л갨丧æe̲ò中 àл中e̲с丧à中갢𝐯e̲ w̲갢中両 :ì';
 
@@ -455,7 +457,8 @@ skip(':: Л专Ì ò中갨𝐩𝐩e̲с', 1);# {
 ok "\r\n" ~~ /[";"|"\r\n"]/, '\r\n æсà𝐩両e̲ìe̲ 갢丧 à丧 àл中e̲с丧à中갢갨丧 ìà中개両e̲ò 개갨ссe̲개中лù';
 
 # https://github.com/Raku/old-issue-tracker/issues/3548
-todo('丧e̲æà中갢𝐯e̲ л갨갨k̲à両e̲à𝐝 𝐝갨e̲ò 丧갨中 Л专Ì 𝐩с갨𝐩e̲слù'); is "à丛개𝐝e̲" ~~ / ab <![e]> cde | ab.. /, "à丛개𝐝e̲", '丧e̲æà中갢𝐯e̲ л갨갨k̲à両e̲à𝐝 𝐝갨e̲ò Л专Ì 𝐩с갨𝐩e̲слù';
+#?rakudo todo 'negative lookahead does not LTM properly'
+is "à丛개𝐝e̲" ~~ / ab <![e]> cde | ab.. /, "à丛개𝐝e̲", '丧e̲æà中갢𝐯e̲ л갨갨k̲à両e̲à𝐝 𝐝갨e̲ò Л专Ì 𝐩с갨𝐩e̲слù';
 
 # https://github.com/Raku/old-issue-tracker/issues/6032
 {
@@ -544,6 +547,3 @@ todo('丧e̲æà中갢𝐯e̲ л갨갨k̲à両e̲à𝐝 𝐝갨e̲ò 丧갨中 �
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

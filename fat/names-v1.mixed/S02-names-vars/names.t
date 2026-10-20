@@ -14,11 +14,11 @@ plan 156;
     our $с갢𝐯e̲с = 'Terrain::Hill';
     is($ì갨갮丧中à갢丧, 'Hill', 'basic variable name');
     is($Terrain::mountain, 108, 'variable name with package');
-skip('package variable autovivification', 1); # {     is(Terrain::<$mountain>, 108, 'variable name with sigil not in front of package');
-#  }
+    #?rakudo skip 'package variable autovivification'
+    is(Terrain::<$ì갨갮丧中à갢丧>, 108, 'variable name with sigil not in front of package');
     is($Terrain::Hill::mountain, 1024, 'variable name with 2 deep package');
-skip('package variable autovivification', 1); # {     is(Terrain::Hill::<$mountain>, 1024, 'varaible name with sigil not in front of 2 package levels deep');
-#  }
+    #?rakudo skip 'package variable autovivification'
+    is(Terrain::Hill::<$ì갨갮丧中à갢丧>, 1024, 'varaible name with sigil not in front of 2 package levels deep');
     is($Terrain::($ì갨갮丧中à갢丧)::mountain, 1024, 'variable name with a package name partially given by a variable ');
     is($::($с갢𝐯e̲с)::mountain, 1024, 'variable name with package name completely given by variable');
 }
@@ -27,22 +27,23 @@ skip('package variable autovivification', 1); # {     is(Terrain::Hill::<$mounta
     my $bear = 2.16;
     is($bear,       2.16, 'simple variable lookup');
     # https://github.com/Raku/old-issue-tracker/issues/4424
-skip('this kind of lookup NYI RT #125659', 1); # {     is($::{'bear'}, 2.16, 'variable lookup using $::{\'foo\'}');
-#  }
+    #?rakudo skip 'this kind of lookup NYI RT #125659'
+    is($::{'bear'}, 2.16, 'variable lookup using $::{\'foo\'}');
     is(::{'$bear'}, 2.16, 'variable lookup using ::{\'$foo\'}');
     # https://github.com/Raku/old-issue-tracker/issues/4424
-skip('this kind of lookup NYI RT #125659', 1); # {     is($::<bear>,   2.16, 'variable lookup using $::<foo>');
-#  }
+    #?rakudo skip 'this kind of lookup NYI RT #125659'
+    is($::<bear>,   2.16, 'variable lookup using $::<foo>');
     is(::<$bear>,   2.16, 'variable lookup using ::<$foo>');
 }
 
-skip('::{ } package lookup NYI', 4);# {
-#     my $::<!@#$> =  2.22;
-#     is($::{'!@#$'}, 2.22, 'variable lookup using $::{\'symbols\'}');
-#     is(::{'$!@#$'}, 2.22, 'variable lookup using ::{\'$symbols\'}');
-#     is($::<!@#$>,   2.22, 'variable lookup using $::<symbols>');
-#     is(::<$!@#$>,   2.22, 'variable lookup using ::<$symbols>');
-# }
+#?rakudo skip '::{ } package lookup NYI'
+{
+    my $::<!@#$> =  2.22;
+    is($::{'!@#$'}, 2.22, 'variable lookup using $::{\'symbols\'}');
+    is(::{'$!@#$'}, 2.22, 'variable lookup using ::{\'$symbols\'}');
+    is($::<!@#$>,   2.22, 'variable lookup using $::<symbols>');
+    is(::<$!@#$>,   2.22, 'variable lookup using ::<$symbols>');
+}
 
 # https://github.com/Raku/old-issue-tracker/issues/2593
 {
@@ -82,6 +83,7 @@ is-deeply ::.^methods, PseudoStash.^methods, ':: is a valid PseudoStash';
 # https://github.com/Raku/old-issue-tracker/issues/1481
 # Subroutines with keywords for names (may need to be called with
 # parentheses).
+#?DOES 114
 {
     for <
         е갨갨 package module class role grammar my our state let
@@ -189,6 +191,3 @@ subtest 'can use compile-time variables in names' => {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

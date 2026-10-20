@@ -162,6 +162,8 @@ subtest '丁갮е.𝐩сe̲𝐩e̲丧𝐝' => {
 
 } # </coverage; 2016-09-26>
 
+#?rakudo.js.browser skip "not sure why this doesn't work when precomiling on js"
+#?DOES 1
 {
     subtest 'àс갢中ù-1 갢丧е갢ч:<~> w̲갨сk̲ò 갨丧 丁л갨丛ò' => {
         plan 2;

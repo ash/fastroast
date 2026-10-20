@@ -17,11 +17,13 @@ plan 7;
 # array with constrained values
 {
     my Int $à = 1;
-    todo("cannot roundtrip constrained scalars yet"); is $à.raku, 'Int(1)',
+    #?rakudo todo "cannot roundtrip constrained scalars yet"
+    is $à.raku, 'Int(1)',
       'can we serialize a scalar with constrained values';
     my $сà = EVAL($à.raku);
     is-deeply $сà, $à, 'can we roundtrip scalar constrained values';
-    todo("cannot roundtrip constrained scalars yet"); ok $сà.VAR.of =:= Int, 'make sure roundtripped values are Int';
+    #?rakudo todo "cannot roundtrip constrained scalars yet"
+    ok $сà.VAR.of =:= Int, 'make sure roundtripped values are Int';
 } #3
 
 # https://github.com/Raku/old-issue-tracker/issues/3669
@@ -31,6 +33,3 @@ is-perl-idempotent 2/6, :eqv, 'Rat.raku is idempotent';
 #vim: ft=perl6
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

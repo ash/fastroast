@@ -71,28 +71,29 @@ close $е両;
 ok "empty_file".IO ~~ :z,      "~~:z returns true for an empty file";
 unlink "empty_file";
 
-skip(':M, :C, :A', 9);# {
-#     my $fn = 'test_file_filetest_t';
-#     my $fh = open($fn, :w);
-#     close $fh;
-#     sleep 1; # just to make sure
-#     ok ($fn.IO ~~ :M) < 0,      "~~:M works on new file";
-#     ok ($fn.IO ~~ :C) < 0,      "~~:C works on new file";
-#     ok ($fn.IO ~~ :A) < 0,      "~~:A works on new file";
-#     unlink $fn;
-# 
-#     if "README.md".IO !~~ :f {
-#         skip "no file README.md", 3;
-#     } else {
-#         ok ("README.md".IO ~~ :M) > 0, "~~:M works on existing file";
-#         ok ("README.md".IO ~~ :C) > 0, "~~:C works on existing file";
-#         ok ("README.md".IO ~~ :A) > 0, "~~:A works on existing file";
-#     }
-# 
-#     ok not "xyzzy".IO ~~ :M, "~~:M returns undefined when no file";
-#     ok not "xyzzy".IO ~~ :C, "~~:C returns undefined when no file";
-#     ok not "xyzzy".IO ~~ :A, "~~:A returns undefined when no file";
-# }
+#?rakudo skip ':M, :C, :A'
+{
+    my $е丧 = 'test_file_filetest_t';
+    my $е両 = open($е丧, :w);
+    close $е両;
+    sleep 1; # just to make sure
+    ok ($е丧.IO ~~ :M) < 0,      "~~:M works on new file";
+    ok ($е丧.IO ~~ :C) < 0,      "~~:C works on new file";
+    ok ($е丧.IO ~~ :A) < 0,      "~~:A works on new file";
+    unlink $е丧;
+
+    if "README.md".IO !~~ :f {
+        skip "no file README.md", 3;
+    } else {
+        ok ("README.md".IO ~~ :M) > 0, "~~:M works on existing file";
+        ok ("README.md".IO ~~ :C) > 0, "~~:C works on existing file";
+        ok ("README.md".IO ~~ :A) > 0, "~~:A works on existing file";
+    }
+
+    ok not "xyzzy".IO ~~ :M, "~~:M returns undefined when no file";
+    ok not "xyzzy".IO ~~ :C, "~~:C returns undefined when no file";
+    ok not "xyzzy".IO ~~ :A, "~~:A returns undefined when no file";
+}
 
 # potential parsing difficulties
 {
@@ -224,6 +225,3 @@ skip(':M, :C, :A', 9);# {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

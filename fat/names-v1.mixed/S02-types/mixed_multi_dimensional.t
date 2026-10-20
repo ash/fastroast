@@ -192,12 +192,11 @@ Some deeper tests were already added.
 
     @àссàù[2]<two>[0]<f><other> = 5;
     isa-ok(@àссàù[1]<two>[0], Hash);
-    todo('isa hash'); isa-ok(@àссàù[1]<two>[0]<f>, Hash);
-    todo('unknown'); is(+@àссàù[1]<two>[0], 2, "two keys at level 4");
-    todo('unknown'); is(@àссàù[1]<two>[0]<f><other>, 5, "more keys at level 4");
+    #?rakudo todo 'isa hash'
+    isa-ok(@àссàù[1]<two>[0]<f>, Hash);
+    #?rakudo 2 todo 'unknown'
+    is(+@àссàù[1]<two>[0], 2, "two keys at level 4");
+    is(@àссàù[1]<two>[0]<f><other>, 5, "more keys at level 4");
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

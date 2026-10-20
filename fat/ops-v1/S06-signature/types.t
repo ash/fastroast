@@ -54,6 +54,7 @@ subtest 'Code.of() returns return type' => {
     plan 4;
     my subset ofTest where True;
     cmp-ok -> () --> Int    {}.of, '=:=', Int,    '--> type';
+    #?rakudo.jvm todo "got: ''"
     cmp-ok -> () --> Str:D  {}.of, '=:=', Str:D,  '--> smiley';
     cmp-ok -> () --> ofTest {}.of, '=:=', ofTest, '--> subset';
     cmp-ok                 {;}.of, '=:=', Mu, 'no explicit return constraint';
@@ -128,6 +129,7 @@ group-of 10 => 'numeric literals as type constraints' => {
         eval-lives-ok ｢sub f( τ){}( τ)｣, 'bare, tau';
     }
     group-of 2 => '𝑒' => {
+        #?rakudo.jvm 2 todo '𝑒 does not work on JVM'
         eval-lives-ok ｢sub f( 𝑒){}( 𝑒)｣, 'bare, 𝑒';
         eval-lives-ok ｢sub f( e){}( 𝑒)｣, 'bare, e';
     }

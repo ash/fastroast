@@ -6,6 +6,8 @@ use Test::Util;
 plan 9;
 
 # https://github.com/Raku/old-issue-tracker/issues/6320
+#?rakudo.jvm skip "Unsupported VM encoding 'utf8-c8'"
+#?DOES 1
 {
   subtest '.open with "-" as path uses $*IN/$*OUT' => {
     plan 2;
@@ -26,6 +28,8 @@ plan 9;
   }
 }
 
+#?rakudo.jvm skip "Unsupported VM encoding 'utf8-c8'"
+#?DOES 1
 {
   subtest '.open with "-" as path can open closed $*IN/$*OUT' => {
     plan 3;
@@ -66,6 +70,8 @@ plan 9;
 is_run ｢use v6.c; '-'.IO.slurp.print｣, 'meows', {:out<meows>, :err(''), :0status},
     'can .slurp from "-".IO path';
 
+#?rakudo.jvm skip 'at least one of the sub-tests leads to an UnwindException'
+#?DOES 1
 {
   group-of 7 => 'now-deprecated subst-mutate' => {
     # coverage; 2016-09-27
@@ -403,18 +409,23 @@ group-of 12 => '$CALLER::_' => {
     is(개àллe̲с갮丧𝐝e̲сò개갨сe̲("foo"), "-foo-", 'CALLER:: string arg');
     is(개àллe̲с갮丧𝐝e̲сò개갨сe̲(1), "-1-", 'CALLER:: number arg');
     $_ = "foo";
-    todo("NYI"); is(개àллe̲с갮丧𝐝e̲сò개갨сe̲(), "-foo-", 'CALLER:: $_ set once');
+    #?rakudo todo "NYI"
+    is(개àллe̲с갮丧𝐝e̲сò개갨сe̲(), "-foo-", 'CALLER:: $_ set once');
     $_ = "bar";
-    todo("NYI"); is(개àллe̲с갮丧𝐝e̲сò개갨сe̲(), "-bar-", 'CALLER:: $_ set twice');
+    #?rakudo todo "NYI"
+    is(개àллe̲с갮丧𝐝e̲сò개갨сe̲(), "-bar-", 'CALLER:: $_ set twice');
     for ("quux") {
         # https://github.com/Raku/old-issue-tracker/issues/3651
-        todo("NYI"); is(개àллe̲с갮丧𝐝e̲сò개갨сe̲(), '-quux-', 'CALLER:: $_ set by for');
+        #?rakudo todo "NYI"
+        is(개àллe̲с갮丧𝐝e̲сò개갨сe̲(), '-quux-', 'CALLER:: $_ set by for');
     }
     given 'hirgel' {
         # https://github.com/Raku/old-issue-tracker/issues/3651
-        todo("NYI"); is 개àллe̲с갮丧𝐝e̲сò개갨сe̲, '-hirgel-', '$CALLER::_ set by given';
+        #?rakudo todo "NYI"
+        is 개àллe̲с갮丧𝐝e̲сò개갨сe̲, '-hirgel-', '$CALLER::_ set by given';
     }
-    todo("NYI"); is(개àллe̲с갮丧𝐝e̲сò개갨сe̲(), '-bar-', 'CALLER:: $_ reset after for');
+    #?rakudo todo "NYI"
+    is(개àллe̲с갮丧𝐝e̲сò개갨сe̲(), '-bar-', 'CALLER:: $_ reset after for');
 
 
     # L<S02/Names/The CALLER package refers to the lexical scope>
@@ -463,6 +474,3 @@ group-of 12 => '$CALLER::_' => {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

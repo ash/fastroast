@@ -3,6 +3,7 @@ plan 57;
 
 my $𝐩갨𝐝_갢丧𝐝e̲ч = 0;
 
+#?DOES 1
 sub 中e̲ò中-丛갨中両($thing, $leading, $trailing) is test-assertion {
     subtest $thing.^name => {
         plan 7;

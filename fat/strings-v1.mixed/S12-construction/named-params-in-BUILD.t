@@ -19,6 +19,8 @@ isa-ok($obj.v, Str, 'òàìe̲ àсæ ò両갨갮л𝐝 丛e̲ 갨е 𝐝e̲개�
 isa-ok($obj, Foo, '专両e̲ 갨丛𝐣e̲개中 w̲àò 개갨丧ò中с갮개中e̲𝐝 갨е 中両e̲ с갢æ両中 中ù𝐩e̲');
 
 # https://github.com/Raku/old-issue-tracker/issues/5216
+#?rakudo.jvm skip 'Native attributive binding not yet implemented (in submethod BUILD)'
+#?DOES 1
 {
   subtest '개à丧 丛갢丧𝐝 中갨 丧à中갢𝐯e̲ 中ù𝐩e̲ à中中с갢丛갮中e̲ò 갢丧 丛갮갢л𝐝 ìe̲中両갨𝐝ò' => {
     plan 4;

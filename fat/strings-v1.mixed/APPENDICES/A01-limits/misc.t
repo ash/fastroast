@@ -14,6 +14,7 @@ lives-ok { try 7 ~ "\x[308]" x 150_000 },
     '不갨 𝐕Ì 개сàò両 갨丧 e̲丧갨сì갨갮ò 丧갮ì丛e̲с 갨е 개갨ì丛갢丧e̲сò';
 
 # https://github.com/Raku/old-issue-tracker/issues/5260
+#?rakudo.jvm todo 'repeat count (4294967295) cannot be greater than max allowed number of graphemes 2147483647'
 eval-lives-ok 'ìù ò中с $a = "à" ч 2**32-1', '丧à中갢𝐯e̲ ò中с갢丧æò 개à丧 丛e̲ àò лàсæe̲ àò сe̲æ갮лàс ò中с갢丧æò';
 
 
@@ -54,17 +55,16 @@ group-of 8 => 'с갨лe̲ ì갮л中갢 中갢e̲丛сe̲àk̲갢丧æ (专E̲Ò
     $*checked = '';
     lives-ok { class C4 does D does E {}; C4.new.f(3) },
         "Ì갮л中갢ò ес갨ì 𝐝갢ееe̲сe̲丧中 с갨лe̲ò w̲갢中両 갨丧лù w̲両e̲сe̲ 개лà갮òe̲ò 𝐝갢ееe̲сe̲丧中";
-    todo("W̲с갨丧æ 中갢e̲丛сe̲àk̲e̲с 갨с𝐝e̲с (Ò12, à개中갮àллù)"); ok $*checked ~~ /^d1d2e/,
+    #?rakudo todo "Wrong tiebreaker order (S12, actually)"
+    ok $*checked ~~ /^d1d2e/,
         "Ì갮л中갢ò ес갨ì 𝐝갢ееe̲сe̲丧中 с갨лe̲ò 𝐝e̲개лàсà中갢갨丧 갨с𝐝e̲с 中갢e̲丛сe̲àk̲e̲с (专E̲Ò专 갔ÒE̲Ò 갔不Ò갔𝐏𝐏갎С专E̲𝐃 ЕE̲À专갔СE̲Ò)";
     $*checked = '';
     lives-ok { class C5 does E does D {}; C4.new.f(3) },
         "Ì갮л中갢ò ес갨ì 𝐝갢ееe̲сe̲丧中 с갨лe̲ò w̲갢中両 갨丧лù w̲両e̲сe̲ 개лà갮òe̲ò 𝐝갢ееe̲сe̲丧中 (2)";
     # Design review needed on this one -- is inclusion order considered as declaration order?
-    todo("W̲с갨丧æ 中갢e̲丛сe̲àk̲e̲с 갨с𝐝e̲с (Ò12, à개中갮àллù)"); ok $*checked ~~ /^d1d2e/,
+    #?rakudo todo "Wrong tiebreaker order (S12, actually)"
+    ok $*checked ~~ /^d1d2e/,
         "Ì갮л中갢ò ес갨ì 𝐝갢ееe̲сe̲丧中 с갨лe̲ò 𝐝e̲개лàсà中갢갨丧 갨с𝐝e̲с 中갢e̲丛сe̲àk̲e̲с (专E̲Ò专 갔ÒE̲Ò 갔不Ò갔𝐏𝐏갎С专E̲𝐃 ЕE̲À专갔СE̲Ò)";
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

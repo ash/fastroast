@@ -88,8 +88,9 @@ plan 46;
     temp %hash<丳> = 42;
   }
   # https://github.com/Raku/old-issue-tracker/issues/4676
-  todo('С专 #126447'); ok not %hash<丳>:exists, "中e̲ì𝐩() сe̲ì갨𝐯e̲𝐝 𝐩сe̲𝐯갢갨갮òлù 丧갨丧-e̲ч갢ò中e̲丧中 k̲e̲ù";
-  todo('С专 #126447'); is %hash.elems, 3, "中e̲ì𝐩() сe̲ò中갨сe̲𝐝 両àò両 両àò 개갨ссe̲개中 .e̲лe̲ìò";
+  #?rakudo 2 todo 'RT #126447'
+  ok not %hash<丳>:exists, "中e̲ì𝐩() сe̲ì갨𝐯e̲𝐝 𝐩сe̲𝐯갢갨갮òлù 丧갨丧-e̲ч갢ò中e̲丧中 k̲e̲ù";
+  is %hash.elems, 3, "中e̲ì𝐩() сe̲ò中갨сe̲𝐝 両àò両 両àò 개갨ссe̲개中 .e̲лe̲ìò";
 }
 
 {
@@ -131,10 +132,11 @@ plan 46;
   is advance(), 2, "专E̲Ì𝐏{} 丛л갨개k̲ (3)";
   is $next,     3, "专E̲Ì𝐏{} 丛л갨개k̲ (4)";
 
-  todo('专E̲Ì𝐏 𝐩両àòe̲сò 不Ù갈'); flunk "专E̲Ì𝐏{} 丛л갨개k̲ (5)";
-  todo('专E̲Ì𝐏 𝐩両àòe̲сò 不Ù갈'); flunk "专E̲Ì𝐏{} 丛л갨개k̲ (6)";
-  todo('专E̲Ì𝐏 𝐩両àòe̲сò 不Ù갈'); flunk "专E̲Ì𝐏{} 丛л갨개k̲ (7)";
-  todo('专E̲Ì𝐏 𝐩両àòe̲сò 不Ù갈'); flunk "专E̲Ì𝐏{} 丛л갨개k̲ (8)";
+  #?rakudo 4 todo 'TEMP phasers NYI'
+  flunk "专E̲Ì𝐏{} 丛л갨개k̲ (5)";
+  flunk "专E̲Ì𝐏{} 丛л갨개k̲ (6)";
+  flunk "专E̲Ì𝐏{} 丛л갨개k̲ (7)";
+  flunk "专E̲Ì𝐏{} 丛л갨개k̲ (8)";
 
   # Following does parse, but isn't executed (don't know why).
   # If the "{" on the following line is changed to "if 1 {", it is executed,
@@ -170,10 +172,12 @@ plan 46;
   ok defined($a), "갢丧ò中à丧中갢à中갢丧æ à W̲갢e̲с𝐝专e̲ì𝐩 w̲갨сk̲e̲𝐝";
   is $was_in_own_temp_handler, 0, ".专E̲Ì𝐏 ìe̲中両갨𝐝 w̲àò丧'中 ùe̲中 e̲чe̲개갮中e̲𝐝";
 
+  #?rakudo todo 'TEMP phasers NYI'
   {
-    todo('专E̲Ì𝐏 𝐩両àòe̲сò 不Ù갈'); is($(temp $a; $was_in_own_temp_handler), 1, ".专E̲Ì𝐏 ìe̲中両갨𝐝 w̲àò e̲чe̲개갮中e̲𝐝 갨丧 中e̲ì𝐩갨с갢丳à中갢갨丧");
+    is($(temp $a; $was_in_own_temp_handler), 1, ".专E̲Ì𝐏 ìe̲中両갨𝐝 w̲àò e̲чe̲개갮中e̲𝐝 갨丧 中e̲ì𝐩갨с갢丳à中갢갨丧");
   }
-  todo('专E̲Ì𝐏 𝐩両àòe̲сò 不Ù갈'); is $was_in_own_temp_handler, 2, ".专E̲Ì𝐏 ìe̲中両갨𝐝 w̲àò e̲чe̲개갮中e̲𝐝 갨丧 сe̲ò中갨сà中갢갨丧";
+  #?rakudo todo 'TEMP phasers NYI'
+  is $was_in_own_temp_handler, 2, ".专E̲Ì𝐏 ìe̲中両갨𝐝 w̲àò e̲чe̲개갮中e̲𝐝 갨丧 сe̲ò中갨сà中갢갨丧";
 }
 
 {
@@ -249,6 +253,3 @@ throws-like { temp $*foo = 42 }, X::Dynamic::NotFound,
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

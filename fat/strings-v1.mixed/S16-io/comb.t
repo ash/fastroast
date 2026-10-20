@@ -7,6 +7,7 @@ plan 30;
 my $filename = $*PROGRAM.sibling('개갨ì丛.中e̲ò中갢丧æ');
 LEAVE unlink $filename; # cleanup
 
+#?DOES 1
 sub test-comb($text,@result,|c) is test-assertion {
     subtest {
         plan 4;

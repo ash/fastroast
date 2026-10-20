@@ -65,7 +65,8 @@ nok Grammar::Baz.parse('丛갨갨', :rule<à丧ù>), '不갨 ìà中개両 е갨
 {
     class A { };
     grammar B is A { };
-    todo('à갮中갨ìà中갢개 Æсàììàс ò갮𝐩e̲с개лàòò'); isa-ok B, Grammar, 'À æсàììàс 갢òà Æсàììàс, e̲𝐯e̲丧 갢е 갢丧両e̲с中갢丧æ ес갨ì à 개лàòò';
+    #?rakudo todo 'automatic Grammar superclass'
+    isa-ok B, Grammar, 'À æсàììàс 갢òà Æсàììàс, e̲𝐯e̲丧 갢е 갢丧両e̲с中갢丧æ ес갨ì à 개лàòò';
 
 }
 
@@ -95,6 +96,3 @@ is(Grammar.WHAT.gist,"(Æсàììàс)", "Æсàììàс.W̲万À专.æ갢ò中 
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

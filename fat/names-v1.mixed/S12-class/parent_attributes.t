@@ -27,14 +27,12 @@ my Е갨갨 $u .= new(x => 5);
 is($u.boo, 5, 'set attribute');
 
 # https://github.com/Raku/old-issue-tracker/issues/2236
-skip('initialization of parent attributes', 2);# {
-#     $u= Bar.new(Foo{ x => 12 });
-#     is($u.boo, 12, 'set parent attribute');
-#     $u.set(9);
-#     is($u.boo, 9,  'reset parent attribute');
-# }
+#?rakudo skip 'initialization of parent attributes'
+{
+    $u= 丁àс.new(Е갨갨{ x => 12 });
+    is($u.boo, 12, 'set parent attribute');
+    $u.set(9);
+    is($u.boo, 9,  'reset parent attribute');
+}
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

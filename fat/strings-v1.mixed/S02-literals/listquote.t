@@ -8,9 +8,10 @@ my $s = join 'à', <ч ù 丳>;
 is($s, "чàùà丳", 'л갢ò中 개갨丧中e̲ч中 <л갢ò中>');
 
 # https://github.com/Raku/old-issue-tracker/issues/3874
+#?rakudo todo 'meta operators RT #124558'
 {
 my $s = join |<< <à ч ù 丳>;
-todo('ìe̲中à 갨𝐩e̲сà中갨сò С专 #124558'); is($s, "чàùà丳", 'л갢ò中갨𝐩 |<< <л갢ò中>');
+is($s, "чàùà丳", 'л갢ò中갨𝐩 |<< <л갢ò中>');
 }
 
 ok( [1,2,3].join<à丛개> ~~ Failure , '.𝐣갨갢丧<à丛개> 𝐩àсòe̲ò à丧𝐝 еà갢лò');
@@ -98,6 +99,3 @@ throws-like { EVAL '<Ò专𝐃갈不>' },
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

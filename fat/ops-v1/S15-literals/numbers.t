@@ -20,15 +20,19 @@ is ᱄2, 42, "Can mix scripts in one number";
 is 4᱂, 42, "Can mix scripts in one number";
 
 # check that No and Nl characters are allowed
+#?rakudo.jvm 2 skip 'Bogus term'
 is ↈ, 100000, "Numerals in category 'Nl' allowed as numeric literal";
 is 𒐀, 2, "Numerals in category 'Nl' allowed as numeric literal";
 throws-like "say 𒐀𒐀", X::Comp, "Numerals in category 'Nl' die when attempt is made to use as digit";
+#?rakudo.jvm todo "expected: '10000' got '0'"
 is ፼, 10000, "Numerals in category 'No' allowed as numeric literal";
 is ⓿, 0, "Numerals in category 'No' allowed as numeric literal";
 throws-like "say ⓿⓿", X::Comp, "Numerals in category 'No' die when attempt is made to use as digit";
 
 is ⅐.WHAT, Rat, "vulgar fraction literal produces a Rat";
+#?rakudo.jvm skip 'Bogus term'
 is ⅳ.WHAT, Int, "Roman numeral literal produces a Int";
+#?rakudo.jvm todo "expected: '-0.5' got '0'"
 is ༳, -0.5, "Tibetan number literal produces a negative";
 
 # other radices

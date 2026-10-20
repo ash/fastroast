@@ -40,18 +40,19 @@ plan 16;
 }
 
 # Public class attributes
-skip('개лàòò à中中с갢丛갮中e̲ò', 3);# {
-#     my $var = 42;
-#     my class Klass3 { our $.x; method bind { $!x := $var } }
-# 
-#     try { Klass3.bind() };
-# 
-#     is try { Klass3.x }, 42, "binding public class attribute (1)";
-#     $var = 23;
-#     is try { Klass3.x }, 23, "binding public class attribute (2)";
-#     try { Klass3.x = 19 };
-#     is $var,    19,  "binding public class attribute (3)";
-# }
+#?rakudo skip 'class attributes'
+{
+    my $var = 42;
+    my class Klass3 { our $.x; method bind { $!x := $var } }
+
+    try { Klass3.bind() };
+
+    is try { Klass3.x }, 42, "丛갢丧𝐝갢丧æ 𝐩갮丛л갢개 개лàòò à中中с갢丛갮中e̲ (1)";
+    $var = 23;
+    is try { Klass3.x }, 23, "丛갢丧𝐝갢丧æ 𝐩갮丛л갢개 개лàòò à中中с갢丛갮中e̲ (2)";
+    try { Klass3.x = 19 };
+    is $var,    19,  "丛갢丧𝐝갢丧æ 𝐩갮丛л갢개 개лàòò à中中с갢丛갮中e̲ (3)";
+}
 
 # Private class attributes
 {
@@ -90,6 +91,3 @@ skip('개лàòò à中中с갢丛갮中e̲ò', 3);# {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

@@ -42,12 +42,10 @@ is tester2({ '丛л갨개k̲' }), 1, '갂à丧 𝐩àòò à 丛л갨개k̲ 中�
     sub foo(&foo = &foo) {
         $tracker = &foo
     };
-    todo('С专 #67932'); lives-ok { foo },
+    #?rakudo todo 'RT #67932'
+    lives-ok { foo },
         '개à丧 개àлл à ò갮丛 w̲갢中両 à 개갨𝐝e̲ 갨丛𝐣e̲개中 𝐝e̲еà갮л中갢丧æ 中갨 ò갨ìe̲中両갢丧æ 갨е 갢中ò 갨w̲丧 丧àìe̲';
     ok !$tracker.defined, '中両e̲ 갢丧丧e̲с &foo 갢ò 갮丧𝐝e̲е갢丧e̲𝐝 (ò개갨𝐩갢丧æ)';
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

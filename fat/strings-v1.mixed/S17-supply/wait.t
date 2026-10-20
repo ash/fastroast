@@ -19,6 +19,7 @@ dies-ok { Supply.wait }, '개à丧 丧갨中 丛e̲ 개àллe̲𝐝 àò à 개
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/5658
+#?rakudo.jvm skip 'hangs (sometimes?)'
 {
     my $supplier = Supplier.new;
     my $supply   = $supplier.Supply;

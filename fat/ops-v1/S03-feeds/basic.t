@@ -53,8 +53,9 @@ plan 23;
     @a ==> foo "x";
 
     is($got_x, "x", "x was passed as explicit param");
-    todo('feeds + signatures'); ok(!defined($got_y), "optional param y was not bound to fed list");
-    todo('feeds + signatures'); is(~@got_z, ~@a, '...slurpy array *@z got it');
+    #?rakudo 2 todo 'feeds + signatures'
+    ok(!defined($got_y), "optional param y was not bound to fed list");
+    is(~@got_z, ~@a, '...slurpy array *@z got it');
 }
 
 {
@@ -63,11 +64,12 @@ plan 23;
 
     @data = <1 2 4 5 7 8>;
     @data <== grep {$_ % 2} <== eager @data;
-    todo('feeds + eager'); is(~@data, ~@odds, '@arr <== grep <== eager @arr works');
+    #?rakudo 2 todo 'feeds + eager'
+    is(~@data, ~@odds, '@arr <== grep <== eager @arr works');
 
     @data = <1 2 4 5 7 8>;
     @data <== eager grep {$_ % 2} <== @data;
-    todo('feeds + eager'); is(~@data, ~@odds, '@arr <== eager grep <== @arr works');
+    is(~@data, ~@odds, '@arr <== eager grep <== @arr works');
 }
 
 # checking the contents of a feed: installing a tap
@@ -77,33 +79,36 @@ plan 23;
 
     @data <== map {$_ + 1} <== @tap <== grep {$_ % 2} <== eager @data;
     is(@tap, <1 3 5 7 9>, '@tap contained what was expected at the time');
-    todo('feeds + eager'); is(@data, <2 4 6 8 10>, 'final result was unaffected by the tap variable');
+    #?rakudo todo 'feeds + eager'
+    is(@data, <2 4 6 8 10>, 'final result was unaffected by the tap variable');
 }
 
 # <<== and ==>> pretending to be unshift and push, respectively
-skip('double-ended feeds', 2);# {
-#     my @odds = <1 3 5 7 9>;
-#     my @even = <0 2 4 6 8>;
-# 
-#     my @numbers = do {@odds ==>> @even};
-#     is(~@numbers, ~(@even, @odds), 'basic ==>> test');
-# 
-#     @numbers = do {@odds <<== @even};
-#     is(~@numbers, ~(@odds, @even), 'basic <<== test');
-# }
+#?rakudo skip 'double-ended feeds'
+{
+    my @odds = <1 3 5 7 9>;
+    my @even = <0 2 4 6 8>;
+
+    my @numbers = do {@odds ==>> @even};
+    is(~@numbers, ~(@even, @odds), 'basic ==>> test');
+
+    @numbers = do {@odds <<== @even};
+    is(~@numbers, ~(@odds, @even), 'basic <<== test');
+}
 
 # feeding to whatever using ==> and ==>>
 
-skip('double-ended feeds', 2);# {
-#     my @data = 'a' .. 'e';
-# 
-#     @data ==> *;
-#     is(@(*), @data, 'basic feed to whatever');
-# 
-#     <a b c d> ==>  *;
-#     0 .. 3    ==>> *;
-#     is(@(*), <a b c d 0 1 2 3>, 'two feeds to whatever as array');
-# }
+#?rakudo skip 'double-ended feeds'
+{
+    my @data = 'a' .. 'e';
+
+    @data ==> *;
+    is(@(*), @data, 'basic feed to whatever');
+
+    <a b c d> ==>  *;
+    0 .. 3    ==>> *;
+    is(@(*), <a b c d 0 1 2 3>, 'two feeds to whatever as array');
+}
 
 # feed and Inf
 {
@@ -114,23 +119,23 @@ skip('double-ended feeds', 2);# {
   my $call-count = 0;
   my @a <== gather for 1..10 -> $i { $call-count++; take $i };
   @a[0];
-  todo("isn't lazy"); is $call-count, 1;
+  #?rakudo todo "isn't lazy"
+  is $call-count, 1;
 }
 
 # no need for temp variables in feeds: $(*), @(*), %(*)
-skip('* feeds', 4);# {
-#     my @data = 'a' .. 'z';
-#     my @out  = <a e i o u y>;
-# 
-#     @data ==> grep {/<[aeiouy]>/} ==> is($(*), $(@out), 'basic test for $(*)');
-#     @data ==> grep {/<[aeiouy]>/} ==> is(@(*), @(@out), 'basic test for @(*)');
-#     @data ==> grep {/<[aeiouy]>/} ==> is(%(*), %(@out), 'basic test for %(*)');
-# 
-#     # XXX: currently the same as the @(*) test above. Needs to be improved
-#     @data ==> grep {/<[aeiouy]>/} ==> is(@(*).slice, @(@out).slice, 'basic test for @(*).slice');
-# }
+#?rakudo skip '* feeds'
+#?DOES 4
+{
+    my @data = 'a' .. 'z';
+    my @out  = <a e i o u y>;
+
+    @data ==> grep {/<[aeiouy]>/} ==> is($(*), $(@out), 'basic test for $(*)');
+    @data ==> grep {/<[aeiouy]>/} ==> is(@(*), @(@out), 'basic test for @(*)');
+    @data ==> grep {/<[aeiouy]>/} ==> is(%(*), %(@out), 'basic test for %(*)');
+
+    # XXX: currently the same as the @(*) test above. Needs to be improved
+    @data ==> grep {/<[aeiouy]>/} ==> is(@(*).slice, @(@out).slice, 'basic test for @(*).slice');
+}
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

@@ -51,19 +51,20 @@ eval-lives-ok q[
 ], 'à갮æìe̲丧中갢丧æ à 개лàòò w̲両갢개両 両àò à с갨лe̲ 개갨ì𝐩갨òe̲𝐝 w̲갨сk̲ò';
 
 
-skip('сe̲𝐝e̲개лàсà中갢갨丧 갨е òùì丛갨л 丁àс', 2);# {
-#     use MONKEY-TYPING;
-#     class Bar {
-#         method c {'called Bar.c'}
-#     }
-#     supersede class Bar {
-#         method d {'called Bar.d'}
-#     }
-# 
-#     my $o = Bar.new;
-#     throws-like '$o.c', Exception, 'overridden method is gone completely';
-#     is($o.d, 'called Bar.d', 'new method is present instead');
-# }
+#?rakudo skip 'redeclaration of symbol Bar'
+{
+    use MONKEY-TYPING;
+    class Bar {
+        method c {'개àллe̲𝐝 丁àс.개'}
+    }
+    supersede class Bar {
+        method d {'개àллe̲𝐝 丁àс.𝐝'}
+    }
+
+    my $o = Bar.new;
+    throws-like '$o.개', Exception, '갨𝐯e̲сс갢𝐝𝐝e̲丧 ìe̲中両갨𝐝 갢ò æ갨丧e̲ 개갨ì𝐩лe̲中e̲лù';
+    is($o.d, '개àллe̲𝐝 丁àс.𝐝', '丧e̲w̲ ìe̲中両갨𝐝 갢ò 𝐩сe̲òe̲丧中 갢丧ò中e̲à𝐝');
+}
 
 # https://github.com/Raku/old-issue-tracker/issues/1792
 {
@@ -107,10 +108,8 @@ eval-lives-ok '개лàòò À { class B {} }; 갮òe̲ Ì갎不K̲E̲Ù; à갮æ
 # https://github.com/rakudo/rakudo/issues/3209
 {
     augment class Any { method foo() { "е갨갨" } };
+    #?rakudo.jvm skip "Method 'foo' not found for invocant of class 'Int'"
     is 1.foo, "е갨갨", '丧갨 .^개갨ì𝐩갨òe̲ 丧e̲e̲𝐝e̲𝐝';
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

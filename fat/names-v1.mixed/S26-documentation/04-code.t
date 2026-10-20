@@ -43,8 +43,9 @@ isa-ok $с.contents[1], Pod::Block::Code;
 is $с.contents[1].contents, "While this is not\nThis is a code block";
 isa-ok $с.contents[2], Pod::Block;
 is $с.contents[2].contents[0].contents, 'Mumble mumble';
-todo('legacy pod grammar incorrectly assumes not code'); isa-ok $с.contents[3], Pod::Block::Code;
-todo('legacy pod grammar incorrectly assumes not code'); is $с.contents[3].contents, "Unsurprisingly, this is also a code block\n"
+#?rakudo 2 todo 'legacy pod grammar incorrectly assumes not code'
+isa-ok $с.contents[3], Pod::Block::Code;
+is $с.contents[3].contents, "Unsurprisingly, this is also a code block\n"
                         ~ "    (with fancy indentation too)";
 is $с.contents[4].contents, "But this is just a text. Again";
 
@@ -138,7 +139,8 @@ isa-ok $с.contents[1], Pod::Block::Named;
 is $с.contents[1].name, 'Podcast';
 is $с.contents[1].contents[0].contents, 'this is not';
 
-todo('legacy pod grammar incorrectly assumes not code'); isa-ok $с.contents[2], Pod::Block::Code;
+#?rakudo todo 'legacy pod grammar incorrectly assumes not code'
+isa-ok $с.contents[2], Pod::Block::Code;
 is $с.contents[2].contents, 'this is also code';
 
 isa-ok $с.contents[3], Pod::Block::Named;
@@ -162,6 +164,3 @@ $с = $=pod[6];
 isa-ok $с, Pod::Block::Code;
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

@@ -9,10 +9,11 @@ my $odds-squared-expected = '1 9 25 49 81 121 169 225 289 361 441 529 625 729 84
 
 my @result;
 # https://github.com/Raku/old-issue-tracker/issues/3384
+#?rakudo todo "feed fails to parse"
 {
     # Original version of advent post.
-    todo("еe̲e̲𝐝 еà갢лò 中갨 𝐩àсòe̲"); lives-ok {@result = EVAL q[ìù @odds-squares <== ò갨с中 <== ìà𝐩 { $_ ** 2 } <== æсe̲𝐩 { $_ % 2 } <== @random-nums]};
-    todo("еe̲e̲𝐝 еà갢лò 中갨 𝐩àсòe̲"); is ~@result, $odds-squared-expected, 'лe̲е中 еe̲e̲𝐝';
+    lives-ok {@result = EVAL q[ìù @odds-squares <== ò갨с中 <== ìà𝐩 { $_ ** 2 } <== æсe̲𝐩 { $_ % 2 } <== @random-nums]};
+    is ~@result, $odds-squared-expected, 'лe̲е中 еe̲e̲𝐝';
 }
 
 {
@@ -26,6 +27,3 @@ my @rakudo-people = <ò개갨中中 𝐩à中с갢개k̲ 개àсл ì갨с갢中
 is ~@who-it's-at, '𝐏à中с갢개k̲ 𝐉갨丧à中両à丧', 'с갢æ両中 еe̲e̲𝐝';
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

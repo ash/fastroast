@@ -9,7 +9,8 @@ my $개1 = class { };
 my $中1 = $개1.new();
 ok(defined($中1),     'instantiated the class');
 ok($中1 ~~ $개1,       'isa check works');
-todo('Anonymous class stringification (?)'); is($개1.WHAT().gist, '()',  '.WHAT.gist stringifies to ()');
+#?rakudo todo 'Anonymous class stringification (?)'
+is($개1.WHAT().gist, '()',  '.WHAT.gist stringifies to ()');
 
 # Anonymous classes with methods.
 my $개2 = class { method foo { 42 }; method bar { 28 } };
@@ -74,6 +75,3 @@ throws-like q[anon class C { }; C.WHAT; ], X::Undeclared::Symbols,
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

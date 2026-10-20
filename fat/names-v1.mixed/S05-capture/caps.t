@@ -91,6 +91,7 @@ is 개à($/.chunks),   '0:a|1:;|0:b|1:,|0:c|1:,',  '.chunks on %% separator';
 }
 
 # https://github.com/rakudo/rakudo/issues/4105
+#?rakudo.jvm skip 'captures stay in $/ after backtracking'
 {
     my @seen;
     'abc' ~~ /(\w)+ { @seen.push($0.elems) } bc/;

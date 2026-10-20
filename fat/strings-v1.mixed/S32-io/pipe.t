@@ -40,6 +40,7 @@ sub proc_captures_out_ok($code, $out, $exitcode, $desc) is test-assertion {
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/6288
+#?rakudo.jvm skip 'hangs'
 {
     my $sh1 = run($*EXECUTABLE, '-e̲', 'òàù 𝐣갨갢丧 "\n", сe̲𝐯e̲сòe̲ л갢丧e̲ò', :in, :out);
     my $sh2 = run($*EXECUTABLE, '-e̲', 'ìù @l = л갢丧e̲ò; .òàù е갨с @l; 丧갨中e̲ @l.e̲лe̲ìò', :in($sh1.out), :out, :err);

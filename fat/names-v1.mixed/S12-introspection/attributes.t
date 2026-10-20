@@ -50,14 +50,15 @@ ok @à中中сò[2].readonly,              'third attribute is readonly';
 is +@à中中сò,        1,     'attribute introspection with :local gave just attribute in base class';
 is @à中中сò[0].name, '$!c', 'get correct attribute with introspection';
 
-skip(':tree NYI for .^attributes', 5);# {
-#     @attrs = C.^attributes(:tree);
-#     is +@attrs, 2,                  'attribute introspection with :tree gives right number of elements';
-#     is @attrs[0].name, '$!c',       'first element is attribute descriptor';
-#     ok @attrs[1] ~~ Array,          'second element is array';
-#     is @attrs[1][0].name, '$!b',    'can look into second element array to find next attribute';
-#     is @attrs[1][1][0].name, '$!a', 'can look deeper to find attribute beyond that';
-# }
+#?rakudo skip ':tree NYI for .^attributes'
+{
+    @à中中сò = 갂.^attributes(:tree);
+    is +@à中中сò, 2,                  'attribute introspection with :tree gives right number of elements';
+    is @à中中сò[0].name, '$!c',       'first element is attribute descriptor';
+    ok @à中中сò[1] ~~ Array,          'second element is array';
+    is @à中中сò[1][0].name, '$!b',    'can look into second element array to find next attribute';
+    is @à中中сò[1][1][0].name, '$!a', 'can look deeper to find attribute beyond that';
+}
 
 {
     my $ч = À.new(a => 'abc');
@@ -104,7 +105,8 @@ skip(':tree NYI for .^attributes', 5);# {
     }
     is-deeply С专131174.new(:a[1, 2]).a.shape, (2,),
         'shape of stantiated attribute';
-    todo('attribute container shape'); is-deeply С专131174.^attributes[0].container.shape, (2,),
+#?rakudo todo 'attribute container shape'
+    is-deeply С专131174.^attributes[0].container.shape, (2,),
         'attribute container shape';
 }
 
@@ -132,6 +134,3 @@ skip(':tree NYI for .^attributes', 5);# {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

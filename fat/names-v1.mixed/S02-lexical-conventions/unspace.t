@@ -73,7 +73,8 @@ throws-like { EVAL 'fo\ o.lc' },
 is((е갨갨\    .lc), 'a', 'longer dot');
 is((е갨갨\#`( comment ).lc), 'a', 'unspace with embedded comment');
 # https://github.com/Raku/old-issue-tracker/issues/4199
-todo('unspace NYI'); throws-like { EVAL 'foo\#\ ( comment ).lc' },
+#?rakudo todo 'unspace NYI'
+throws-like { EVAL 'foo\#\ ( comment ).lc' },
   Exception,
   'unspace can\'t hide space between # and opening bracket';
 is((е갨갨\ # comment
@@ -102,91 +103,93 @@ is(EVAL('foo\
 # syntactically recursive, i.e., you can put pod comments
 # inside pod directives recursively!
 # https://github.com/Raku/old-issue-tracker/issues/3451
-skip('pod and unspace', 1); # { is(EVAL('foo\
-# =\ begin comment
-# blah blah blah
-# =\ end comment
-#     .lc'), 'a', 'unspace with pod =begin/=end comment w/ pod unspace');
-#  }
+#?rakudo skip 'pod and unspace'
+is(EVAL('foo\
+=\ begin comment
+blah blah blah
+=\ end comment
+    .lc'), 'a', 'unspace with pod =begin/=end comment w/ pod unspace');
 # https://github.com/Raku/old-issue-tracker/issues/3451
-skip('=for pod NYI (in STD.pm, from Perl)', 1);# {
-# is(EVAL('foo\
-# =\ for comment
-# blah
-# blah
-# blah
-# 
-#     .lc'), 'a', 'unspace with pod =for comment w/ pod unspace');
-# }
+#?rakudo skip '=for pod NYI (in STD.pm, from Perl)'
+{
+is(EVAL('foo\
+=\ for comment
+blah
+blah
+blah
+
+    .lc'), 'a', 'unspace with pod =for comment w/ pod unspace');
+}
 # https://github.com/Raku/old-issue-tracker/issues/3451
-skip('pod and unspace', 1); # { is(EVAL('foo\
-# =\ comment blah blah blah
-#     .lc'), 'a', 'unspace with pod =comment w/ pod unspace');
-#  }
+#?rakudo skip 'pod and unspace'
+is(EVAL('foo\
+=\ comment blah blah blah
+    .lc'), 'a', 'unspace with pod =comment w/ pod unspace');
 # https://github.com/Raku/old-issue-tracker/issues/3451
-skip('pod and unspace', 1); # { is(EVAL('foo\
-# =\
-# =begin nested_pod
-# blah blah blah
-# =end nested_pod
-# begin comment
-# blah blah blah
-# =\
-# =begin nested_pod
-# blah blah blah
-# =end nested_pod
-# end comment
-#     .lc'), 'a', 'unspace with pod =begin/=end comment w/ pod-in-pod');
-#  }
+#?rakudo skip 'pod and unspace'
+is(EVAL('foo\
+=\
+=begin nested_pod
+blah blah blah
+=end nested_pod
+begin comment
+blah blah blah
+=\
+=begin nested_pod
+blah blah blah
+=end nested_pod
+end comment
+    .lc'), 'a', 'unspace with pod =begin/=end comment w/ pod-in-pod');
 # https://github.com/Raku/old-issue-tracker/issues/3451
-skip('=for pod NYI (in STD.pm, from Perl)', 3);# {
-# is(EVAL('foo\
-# =\
-# =for nested pod
-# blah
-# blah
-# blah
-# 
-# for comment
-# blah
-# blah
-# blah
-# 
-#     .lc'), 'a', 'unspace with pod =for commenti w/ pod-in-pod');
-# is(EVAL('foo\
-# =\
-# =nested pod blah blah blah
-# comment blah blah blah
-#     .lc'), 'a', 'unspace with pod =comment w/ pod-in-pod');
-# is(EVAL('foo\
-# =\			#1
-# =\			#2
-# =\			#3
-# =comment blah blah blah
-# for comment		#3
-# blah
-# blah
-# blah
-# 
-# begin comment		#2
-# blah blah blah
-# =\			#4
-# =comment blah blah blah
-# end comment		#4
-# begin comment		#1
-# blah blah blah
-# =\			#5
-# =\			#6
-# =for comment
-# blah
-# blah
-# blah
-# 
-# comment blah blah blah	#6
-# end comment		#5
-#     .lc'), 'a', 'hideous nested pod torture test');
-# 
-# }
+#?rakudo skip '=for pod NYI (in STD.pm, from Perl)'
+{
+is(EVAL('foo\
+=\
+=for nested pod
+blah
+blah
+blah
+
+for comment
+blah
+blah
+blah
+
+    .lc'), 'a', 'unspace with pod =for commenti w/ pod-in-pod');
+is(EVAL('foo\
+=\
+=nested pod blah blah blah
+comment blah blah blah
+    .lc'), 'a', 'unspace with pod =comment w/ pod-in-pod');
+is(EVAL('foo\
+=\			#1
+=\			#2
+=\			#3
+=comment blah blah blah
+for comment		#3
+blah
+blah
+blah
+
+begin comment		#2
+blah blah blah
+=\			#4
+=comment blah blah blah
+end comment		#4
+begin comment		#1
+blah blah blah
+=\			#5
+=\			#6
+=for comment
+blah
+blah
+blah
+
+comment blah blah blah	#6
+end comment		#5
+    .lc'), 'a', 'hideous nested pod torture test');
+
+}
 
 # L<S04/"Statement-ending blocks"/"Because subroutine declarations are expressions">
 #XXX probably shouldn't be in this file...
@@ -362,6 +365,3 @@ is 'a'.parse-base\   \   (16), 10, 'unspace can recurse';
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

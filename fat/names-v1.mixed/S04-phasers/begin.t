@@ -74,11 +74,12 @@ plan 13;
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/3676
-skip('RT#123776', 1);# {
-#     my $bound;
-#     BEGIN { $bound := 'foo'; }
-#     is $bound, 'foo', "Value bound to variable in BEGIN persists";
-# }
+#?rakudo skip 'RT#123776'
+{
+    my $丛갨갮丧𝐝;
+    BEGIN { $丛갨갮丧𝐝 := 'foo'; }
+    is $丛갨갮丧𝐝, 'foo', "Value bound to variable in BEGIN persists";
+}
 
 # https://github.com/Raku/old-issue-tracker/issues/3677
 {
@@ -87,6 +88,3 @@ skip('RT#123776', 1);# {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

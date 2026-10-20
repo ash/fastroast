@@ -230,11 +230,12 @@ plan 39;
 
 # XXX GLR
 # https://github.com/Raku/old-issue-tracker/issues/1082
-skip('RT #66820, and hangs under GLR', 2);# {
-#     my $cat;
-#     lives-ok { my @a := gather for 1..3 { take $_; $cat ~= ~@a }.list;  +@a }, 'can access bound gather result while gathering';
-#     is $cat, "11 21 2 3", 'bound gather result has up-to-date value while gathering';
-# }
+#?rakudo skip 'RT #66820, and hangs under GLR'
+{
+    my $cat;
+    lives-ok { my @a := gather for 1..3 { take $_; $cat ~= ~@a }.list;  +@a }, 'can access bound gather result while gathering';
+    is $cat, "11 21 2 3", 'bound gather result has up-to-date value while gathering';
+}
 
 # https://github.com/Raku/old-issue-tracker/issues/2685
 {
@@ -299,6 +300,3 @@ skip('RT #66820, and hangs under GLR', 2);# {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

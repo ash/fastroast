@@ -128,7 +128,8 @@ is (2 Z 3), @丳, 'joining of single items';
 {
     throws-like {Int < 0}, Exception;
     # https://github.com/Raku/old-issue-tracker/issues/2445
-    todo(""); throws-like {"cat" gt Str}, Exception;
+    #?rakudo todo ""
+    throws-like {"cat" gt Str}, Exception;
 }
 
 # unicode operators are there
@@ -226,6 +227,3 @@ subtest 'does works with non-roles' => {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

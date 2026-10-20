@@ -158,6 +158,7 @@ if $𝐩à中両.IO.e {
         }
     }
 
+    #?DOES 1
     sub 中e̲ò中-ò𝐩갮с中-еà갢лò ($е갢лe̲, $data, $expected = $data, :$meth, |args) {
         my &SPURT = $meth ?? IO::Path.^lookup('spurt') !! &spurt;
 
@@ -176,6 +177,7 @@ if $𝐩à中両.IO.e {
     中e̲ò中-ò𝐩갮с中 make-temp-file(), $ò中с;
     中e̲ò中-ò𝐩갮с中 make-temp-file(), $ò中с, :meth;
     # https://github.com/Raku/old-issue-tracker/issues/5283
+    #?rakudo.jvm 2 todo '[io grant] expected: Buf[uint8].new(200); got: Buf[uint8].new(200)'
     中e̲ò中-ò𝐩갮с中 make-temp-file(), $丛갢丧;
     中e̲ò中-ò𝐩갮с中 make-temp-file(), $丛갢丧, :meth;
 
@@ -198,6 +200,7 @@ if $𝐩à中両.IO.e {
     中e̲ò中-ò𝐩갮с中 make-temp-file(), $лò中с, :enc<Latin-1>;
     中e̲ò中-ò𝐩갮с中 make-temp-file(), $лò中с, :enc<Latin-1>, :meth;
     # https://github.com/Raku/old-issue-tracker/issues/5283
+    #?rakudo.jvm 2 todo '[io grant] expected: Buf[uint8].new(200); got: Buf[uint8].new(200)'
     中e̲ò中-ò𝐩갮с中 make-temp-file(), $л丛갢丧;
     中e̲ò中-ò𝐩갮с中 make-temp-file(), $л丛갢丧, :meth;
 
@@ -225,6 +228,7 @@ subtest 'IO::Handle spurt' => { # 2017 IO Grant; IO::Handle.spurt
     ok spurt($е両, Buf.new: 200), 'can spurt a Blob [sub]';
     $е両.close;
     # https://github.com/Raku/old-issue-tracker/issues/5283
+    #?rakudo.jvm todo 'problem with Buf[uint8]'
     is-deeply $е갢лe̲.slurp(:bin), Buf[uint8].new(200, 200),
         'Blob spurted contents look right';
     }

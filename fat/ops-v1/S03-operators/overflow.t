@@ -120,6 +120,7 @@ is($b, -(++$a), 'test oder of predecrement in -(++$a)');
     is -2147483640 + -10, -2147483650;
 }
 
+#?DOES 1
 sub tryeq_sloppy ($lhs, $rhs, $todo1 = '') is test-assertion {
     my $todo = $todo1;  # TODO is rw
     $todo = ' # TODO ' ~ $todo if $todo;

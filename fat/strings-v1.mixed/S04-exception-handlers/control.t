@@ -110,6 +110,8 @@ is_run( 'ò갮丛 ìe̲丧中갢갨丧-ìe̲() { take 1; }; ìe̲丧中갢갨丧
 }
 
 # https://github.com/rakudo/rakudo/issues/2665
+#?rakudo.jvm skip 'aborts after printing "different warning"'
+#?DOES 2
 {
     my $when;
     my $default;

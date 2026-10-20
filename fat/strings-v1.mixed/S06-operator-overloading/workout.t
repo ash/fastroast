@@ -195,11 +195,13 @@ ia((2/3) RT/ $v1, Vector.new(-3/4, 3, 17*3), "С 专 Ò개àлàс 𝐝갢𝐯�
 ia(2 RT** $v1, Vector.new(1/4, 4, 34*34), "С 专 Ò개àлàс 𝐩갨w̲e̲с 개갨ссe̲개中");
 ia($v1 Rdot $v2, -1/2 + 2/5 + 34 * 0.3, "С 𝐃갨中 𝐩с갨𝐝갮개中 개갨ссe̲개中");
 
+#?DOES 1
 multi sub is_approx_array(@got, @expected, $desc) {
     my $test = all((@got >>-<< @expected)>>.abs.map({$_ <= 0.00001}));
     ok(?$test, $desc);
 }
 
+#?DOES 1
 multi sub isnt_approx_array(@got, @expected, $desc) {
     my $test = all((@got >>-<< @expected)>>.abs.map({$_ <= 0.00001}));
     ok(!$test, $desc);

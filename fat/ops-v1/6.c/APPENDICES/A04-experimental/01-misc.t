@@ -12,7 +12,8 @@ plan 19;
     # This once wrongly reported a multi-dispatch circularity.
     multi rt107638(int $a) { 'ok' }      #OK not used
     multi rt107638(Str $a where 1) { }   #OK not used
-    todo("Only happen to pass because the optimizer inlines the most trivial cases"); lives-ok { rt107638(1) },
+    #?rakudo todo "Only happen to pass because the optimizer inlines the most trivial cases"
+    lives-ok { rt107638(1) },
         'native types and where clauses do not cause spurious circularities';
 }
 
@@ -26,14 +27,14 @@ subtest ':D DefiniteHow target (core types)' => {
     is-deeply -> Int:D(Cool)   $x { $x }("42"), 42, 'type';
     is-deeply -> Int:D(Cool:D) $x { $x }("42"), 42, ':D smiley';
     is-deeply -> Int:D()       $x { $x }("42"), 42, 'implied Any';
-skip(':D/:U coerces NYI', 1); # {     is-deeply -> Array:D(List:U) $x { $x }(List), [List,], ':U smiley';
-#  }
+    #?rakudo skip ':D/:U coerces NYI'
+    is-deeply -> Array:D(List:U) $x { $x }(List), [List,], ':U smiley';
 
     is-deeply -> Int:D(Cool)   $x { $x }("42"), 42, 'type';
     is-deeply -> Int:D(Cool:D) $x { $x }("42"), 42, ':D smiley';
     is-deeply -> Int:D()       $x { $x }("42"), 42, 'implied Any';
-skip(':D/:U coerces NYI', 1); # {     is-deeply -> Array:D(List:U) $x { $x }(List), [List,], ':U smiley';
-#  }
+    #?rakudo skip ':D/:U coerces NYI'
+    is-deeply -> Array:D(List:U) $x { $x }(List), [List,], ':U smiley';
 }
 
 subtest ':U DefiniteHow target (core types)' => {
@@ -51,10 +52,11 @@ subtest 'DefiniteHow target, errors' => {
     #####
     plan 4;
     my \XPIC = X::Parameter::InvalidConcreteness;
-    todo('no proper concreteness check in coerces'); throws-like ｢-> Date:D(DateTime)   {}(DateTime)｣, XPIC, 'type, bad source';
-    todo('no proper concreteness check in coerces'); throws-like ｢-> Date:D(DateTime:D) {}(DateTime)｣, XPIC, ':D, bad source';
-    todo('no proper concreteness check in coerces'); throws-like ｢-> Date:D(DateTime:U) {}(DateTime)｣, XPIC, ':U, bad target';
-    todo('no proper concreteness check in coerces'); throws-like ｢-> Date:D() {}(DateTime)｣, XPIC, 'implied, bad target';
+    #?rakudo 4 todo 'no proper concreteness check in coerces'
+    throws-like ｢-> Date:D(DateTime)   {}(DateTime)｣, XPIC, 'type, bad source';
+    throws-like ｢-> Date:D(DateTime:D) {}(DateTime)｣, XPIC, ':D, bad source';
+    throws-like ｢-> Date:D(DateTime:U) {}(DateTime)｣, XPIC, ':U, bad target';
+    throws-like ｢-> Date:D() {}(DateTime)｣, XPIC, 'implied, bad target';
 }
 
 subtest 'DefiniteHow target, errors, source is already target' => {
@@ -65,10 +67,11 @@ subtest 'DefiniteHow target, errors, source is already target' => {
     #####
     plan 4;
     my \XPIC = X::Parameter::InvalidConcreteness;
-    todo('no proper concreteness check in coerces'); throws-like ｢-> Date:D(DateTime)   {}(Date)｣, XPIC, 'type';
-    todo('no proper concreteness check in coerces'); throws-like ｢-> Date:D(DateTime:D) {}(Date)｣, XPIC, ':D';
-    todo('no proper concreteness check in coerces'); throws-like ｢-> Date:D(DateTime:U) {}(Date)｣, XPIC, ':U';
-    todo('no proper concreteness check in coerces'); throws-like ｢-> Date:D() {}(Date)｣,           XPIC, 'implied';
+    #?rakudo 4 todo 'no proper concreteness check in coerces'
+    throws-like ｢-> Date:D(DateTime)   {}(Date)｣, XPIC, 'type';
+    throws-like ｢-> Date:D(DateTime:D) {}(Date)｣, XPIC, ':D';
+    throws-like ｢-> Date:D(DateTime:U) {}(Date)｣, XPIC, ':U';
+    throws-like ｢-> Date:D() {}(Date)｣,           XPIC, 'implied';
 }
 
 {
@@ -90,9 +93,9 @@ subtest 'DefiniteHow target, errors, source is already target' => {
             'from type';
         is-deeply -> Target:D(Source:D) $x { $x }(Source.new), Target.new,
             'from :D smiley';
-skip(':D/:U coerces NYI', 1); # {         is-deeply -> Target:D(Source:U) $x { $x }(SourceU),    Target.new,
-#             'from :U smiley';
-#  }
+        #?rakudo skip ':D/:U coerces NYI'
+        is-deeply -> Target:D(Source:U) $x { $x }(SourceU),    Target.new,
+            'from :U smiley';
         is-deeply -> Target:D(Any)      $x { $x }(Source.new), Target.new,
             'from Any';
         is-deeply -> Target:D(Any:D)    $x { $x }(Source.new), Target.new,
@@ -109,9 +112,9 @@ skip(':D/:U coerces NYI', 1); # {         is-deeply -> Target:D(Source:U) $x { $
             'from type';
         is-deeply -> Target:D(Source:D) $x { $x }(SubSource.new), Target.new,
             'from :D smiley';
-skip(':D/:U coerces NYI', 1); # {         is-deeply -> Target:D(Source:U) $x { $x }(SubSourceU),    Target.new,
-#             'from :U smiley';
-#  }
+        #?rakudo skip ':D/:U coerces NYI'
+        is-deeply -> Target:D(Source:U) $x { $x }(SubSourceU),    Target.new,
+            'from :U smiley';
         is-deeply -> Target:D(Any)      $x { $x }(SubSource.new), Target.new,
             'from Any';
         is-deeply -> Target:D(Any:D)    $x { $x }(SubSource.new), Target.new,
@@ -126,9 +129,9 @@ skip(':D/:U coerces NYI', 1); # {         is-deeply -> Target:D(Source:U) $x { $
             'from type';
         is-deeply -> Target:D(Source:D) $x { $x }(Target.new), Target.new,
             'from :D smiley';
-skip(':D/:U coerces NYI', 1); # {         is-deeply -> Target:D(Source:U) $x { $x }(Target.new), Target.new,
-#             'from :U smiley';
-#  }
+        #?rakudo skip ':D/:U coerces NYI'
+        is-deeply -> Target:D(Source:U) $x { $x }(Target.new), Target.new,
+            'from :U smiley';
         is-deeply -> Target:D(Any)      $x { $x }(Target.new), Target.new,
             'from Any';
         is-deeply -> Target:D(Any:D)    $x { $x }(Target.new), Target.new,
@@ -141,9 +144,9 @@ skip(':D/:U coerces NYI', 1); # {         is-deeply -> Target:D(Source:U) $x { $
         plan 6;
         is-deeply -> Target:U(Source)   $x { $x }(Source),      Target,
             'from type';
-skip(':D/:U coerces NYI', 1); # {         is-deeply -> Target:U(Source:D) $x { $x }(SourceU.new), Target,
-#             'from :D smiley';
-#  }
+        #?rakudo skip ':D/:U coerces NYI'
+        is-deeply -> Target:U(Source:D) $x { $x }(SourceU.new), Target,
+            'from :D smiley';
         is-deeply -> Target:U(Source:U) $x { $x }(Source),      Target,
             'from :U smiley';
         is-deeply -> Target:U(Any)      $x { $x }(Source),      Target,
@@ -158,9 +161,9 @@ skip(':D/:U coerces NYI', 1); # {         is-deeply -> Target:U(Source:D) $x { $
         plan 6;
         is-deeply -> Target:U(Source)   $x { $x }(SubSource),      Target,
             'from type';
-skip(':D/:U coerces NYI', 1); # {         is-deeply -> Target:U(Source:D) $x { $x }(SubSourceU.new), Target,
-#             'from :D smiley';
-#  }
+        #?rakudo skip ':D/:U coerces NYI'
+        is-deeply -> Target:U(Source:D) $x { $x }(SubSourceU.new), Target,
+            'from :D smiley';
         is-deeply -> Target:U(Source:U) $x { $x }(SubSource),      Target,
             'from :U smiley';
         is-deeply -> Target:U(Any)      $x { $x }(SubSource),      Target,
@@ -175,16 +178,16 @@ skip(':D/:U coerces NYI', 1); # {         is-deeply -> Target:U(Source:D) $x { $
         plan 6;
         is-deeply -> Target:U(Source)   $x { $x }(Target), Target,
             'from type';
-skip(':D/:U coerces NYI', 1); # {         is-deeply -> Target:U(Source:D) $x { $x }(Target), Target,
-#             'from :D smiley';
-#  }
+        #?rakudo skip ':D/:U coerces NYI'
+        is-deeply -> Target:U(Source:D) $x { $x }(Target), Target,
+            'from :D smiley';
         is-deeply -> Target:U(Source:U) $x { $x }(Target), Target,
             'from :U smiley';
         is-deeply -> Target:U(Any)      $x { $x }(Target), Target,
             'from Any';
-skip(':D/:U coerces NYI', 1); # {         is-deeply -> Target:U(Any:D)    $x { $x }(Target), Target,
-#             'from Any:D';
-#  }
+        #?rakudo skip ':D/:U coerces NYI'
+        is-deeply -> Target:U(Any:D)    $x { $x }(Target), Target,
+            'from Any:D';
         is-deeply -> Target:U()         $x { $x }(Target), Target,
             'from implied Any';
     }
@@ -246,6 +249,7 @@ subtest 'mistyped typenames in coercers give good error' => {
             plan 3;
 
             my sub     t (Int $x --> Str()) {$x}
+            #?rakudo.jvm todo 'https://github.com/Raku/old-issue-tracker/issues/5582 Actual type: Int'
             isa-ok     t(42),     Str,      'returns correct type';
             is         t(42),     "42",     'returns correct value';
             is-deeply &t.returns, Str(Any), '.returns() gives correct value';
@@ -255,6 +259,7 @@ subtest 'mistyped typenames in coercers give good error' => {
             plan 3;
 
             my sub     t (Num $x --> Int(Str)) {"$x"}
+            #?rakudo.jvm todo 'https://github.com/Raku/old-issue-tracker/issues/5582 Actual type: Str'
             isa-ok     t(42e0),   Int,      'returns correct type';
             is         t(42e0),   42,       'returns correct value';
             is-deeply &t.returns, Int(Str), '.returns() gives correct value';
@@ -264,6 +269,7 @@ subtest 'mistyped typenames in coercers give good error' => {
             plan 3;
 
             my sub     t (Int $x) returns Str() {$x}
+            #?rakudo.jvm todo 'https://github.com/Raku/old-issue-tracker/issues/5582 Actual type: Int'
             isa-ok     t(42),     Str,      'returns correct type';
             is         t(42),     "42",     'returns correct value';
             is-deeply &t.returns, Str(Any), '.returns() gives correct value';
@@ -273,6 +279,7 @@ subtest 'mistyped typenames in coercers give good error' => {
             plan 3;
 
             my sub     t (Num $x) returns Int(Str) {"$x"}
+            #?rakudo.jvm todo 'https://github.com/Raku/old-issue-tracker/issues/5582 Actual type: Str'
             isa-ok     t(42e0),   Int,      'returns correct type';
             is         t(42e0),   42,       'returns correct value';
             is-deeply &t.returns, Int(Str), '.returns() gives correct value';
@@ -282,6 +289,7 @@ subtest 'mistyped typenames in coercers give good error' => {
             plan 3;
 
             my        $block = -> Int $x --> Str() {$x};
+            #?rakudo.jvm todo 'https://github.com/Raku/old-issue-tracker/issues/5582 Actual type: Int'
             isa-ok    $block(42),     Str,      'returns correct type';
             is        $block(42),     "42",     'returns correct value';
             is-deeply $block.returns, Str(Any), '.returns() gives correct value';
@@ -291,6 +299,7 @@ subtest 'mistyped typenames in coercers give good error' => {
             plan 3;
 
             my        $block = -> --> Str() {42};
+            #?rakudo.jvm todo 'https://github.com/Raku/old-issue-tracker/issues/5582 Actual type: Int'
             isa-ok    $block(),       Str,      'returns correct type';
             is        $block(),       "42",     'returns correct value';
             is-deeply $block.returns, Str(Any), '.returns() gives correct value';
@@ -300,6 +309,7 @@ subtest 'mistyped typenames in coercers give good error' => {
             plan 3;
 
             my        $o = class { method v (Int $x --> Str()) {$x} }.new;
+            #?rakudo.jvm todo 'https://github.com/Raku/old-issue-tracker/issues/5582 Actual type: Int'
             isa-ok    $o.v(42), Str,  'returns correct type';
             is        $o.v(42), "42", 'returns correct value';
             is-deeply $o.^find_method('v').returns, Str(Any),
@@ -329,31 +339,21 @@ group-of 15 => 'tests that use unspecced $?BITS to make decisions' => {
       is($int_min +> 32, -2147483648);
       is($int_min +> 63, -1);
       # https://github.com/Raku/old-issue-tracker/issues/4341
-skip("Clarification needed", 1); # {       is($int_min +> 64, -1);
-#  }
-skip("Clarification needed", 1); # {       is($int_min +> -32, -39614081257132168796771975168);
-#  }
-skip("Clarification needed", 1); # {       is($int_min +> -64, -170141183460469231731687303715884105728);
-#  }
+      #?rakudo 11 skip "Clarification needed"
+      is($int_min +> 64, -1);
+      is($int_min +> -32, -39614081257132168796771975168);
+      is($int_min +> -64, -170141183460469231731687303715884105728);
 
-skip("Clarification needed", 1); # {       is($int_max +> 16, 140737488355327);
-#  }
-skip("Clarification needed", 1); # {       is($int_max +> 32, 2147483647);
-#  }
-skip("Clarification needed", 1); # {       is($int_max +> 63, 0);
-#  }
+      is($int_max +> 16, 140737488355327);
+      is($int_max +> 32, 2147483647);
+      is($int_max +> 63, 0);
 
-skip("Clarification needed", 1); # {       is($int_max +> 64, 0);
-#  }
-skip("Clarification needed", 1); # {       is($int_max +> -2, 36893488147419103228);
-#  }
-skip("Clarification needed", 1); # {       is($int_max +> -32, 39614081257132168792477007872);
-#  }
+      is($int_max +> 64, 0);
+      is($int_max +> -2, 36893488147419103228);
+      is($int_max +> -32, 39614081257132168792477007872);
 
-skip("Clarification needed", 1); # {       is($int_max +< 2, 36893488147419103228);
-#  }
-skip("Clarification needed", 1); # {       is($int_max +< -2, 2305843009213693951);
-#  }
+      is($int_max +< 2, 36893488147419103228);
+      is($int_max +< -2, 2305843009213693951);
     }
     else {
         skip("this test doesn't make sense 32bit platforms", 14);
@@ -370,6 +370,3 @@ skip("Clarification needed", 1); # {       is($int_max +< -2, 230584300921369395
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

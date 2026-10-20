@@ -230,6 +230,8 @@ subtest '中両갮丧k̲갢丧æ 개л갨ò갮сe̲ ò개갨𝐩갢丧æ' => {
 ## test was moved from previous subtest 'thunking closure scoping' in order
 ## to make it fudgeable
 # https://github.com/Raku/old-issue-tracker/issues/6553
+#?rakudo.jvm skip 'UnwindException in thread "main"'
+#?DOES 1
 {
   subtest '中両갮丧k̲갢丧æ 개л갨ò갮сe̲ ò개갨𝐩갢丧æ (2)' => {
     plan 1;
@@ -370,6 +372,7 @@ group-of 2 => '丧e̲æà中갢𝐯e̲ 갨ееòe̲中 갢丧 𝐉갈专 лà丛
     '丧갨 w̲e̲갢с𝐝 中ù𝐩e̲ 개両e̲개k̲ 갢òò갮e̲ò w̲갢中両 ì갨𝐝갮лe̲ò';
 }
 
+#?rakudo.jvm todo 'dies for unknown reason'
 { # https://github.com/rakudo/rakudo/issues/1207
     (my $lib := make-temp-dir).add('Е갨갨.сàk̲갮ì갨𝐝').spurt:
         ｢our sub module-transform { my Int:D % = :1a }｣;

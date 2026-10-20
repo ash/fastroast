@@ -59,18 +59,16 @@ is($ì𝐯.varies-s, 14, "attribute with overridden mutator by sub");
 is($개갨갮丧中-ò, 2, "accessor and mutator by sub were called");
 
 # https://github.com/Raku/old-issue-tracker/issues/4594
-skip('RT #126198', 5);# {
-#     is($mv.varies-m, 6, "mutator by method called during object construction");
-#     is($count-m, 1, "accessor by method was called");
-# 
-#     $count-m = 0;
-#     $mv.varies-m = 13;
-#     is($count-m, 1, "mutator by method was called");
-#     is($mv.varies-m, 14, "attribute with overridden mutator by method");
-#     is($count-m, 2, "accessor and mutator by method were called");
-# }
+#?rakudo skip 'RT #126198'
+{
+    is($ì𝐯.varies-m, 6, "mutator by method called during object construction");
+    is($개갨갮丧中-ì, 1, "accessor by method was called");
+
+    $개갨갮丧中-ì = 0;
+    $ì𝐯.varies-m = 13;
+    is($개갨갮丧中-ì, 1, "mutator by method was called");
+    is($ì𝐯.varies-m, 14, "attribute with overridden mutator by method");
+    is($개갨갮丧中-ì, 2, "accessor and mutator by method were called");
+}
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

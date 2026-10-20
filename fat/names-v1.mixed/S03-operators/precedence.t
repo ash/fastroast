@@ -218,13 +218,13 @@ is(@개, [1,2,3], "@ = binds looser than ,");
     my $갢 = 2;
 
     # https://github.com/Raku/old-issue-tracker/issues/5917
-skip('superscript exponent associativity', 1); # {     is(++$i², 9, "++ bind tighter than superscript exponent");
-#  }
-skip('superscript exponent associativity', 1); # {     is(--$i², 4, "-- does too");
-#  }
+    #?rakudo 2 skip 'superscript exponent associativity'
+    is(++$갢², 9, "++ bind tighter than superscript exponent");
+    is(--$갢², 4, "-- does too");
 
     # https://github.com/Raku/old-issue-tracker/issues/5917
-    todo('superscript exponent associativity'); is(2²**3, 256, "mixed exponent does right associative");
+    #?rakudo todo 'superscript exponent associativity'
+    is(2²**3, 256, "mixed exponent does right associative");
 
     is(-2², -4, "superscript exponent binds tighter than unary -");
     isa-ok(~2⁴, Str, "~2⁴ is a string");
@@ -304,6 +304,3 @@ throws-like 'my $lizmat = 42; ++$lizmat++',
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

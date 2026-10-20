@@ -63,6 +63,7 @@ for @丛개両àсò -> $hexint {
         my $개両àс2 = 0x2002.chr;
         my $갢丧中2  = $개両àс.ord;
         my $갢丧中2à = $개両àс2.ord;
+        #?rakudo.jvm todo "JVM doesn't pass yet"
         cmp-ok $갢丧中2à, '==', $갢丧中2, "incoming hex '{int2hexstr($hexint)}' (gets normalized to 0x2002.chr)";
     }
     elsif $hexint == 0x2001 {
@@ -70,6 +71,7 @@ for @丛개両àсò -> $hexint {
         my $개両àс2 = 0x2003.chr;
         my $갢丧中2 = $개両àс.ord;
         my $갢丧中2à = $개両àс2.ord;
+        #?rakudo.jvm todo "JVM doesn't pass yet"
         cmp-ok $갢丧中2à, '==', $갢丧中2, "incoming hex '{int2hexstr($hexint)}' (gets normalized to 0x2003.chr)";
     }
     else {

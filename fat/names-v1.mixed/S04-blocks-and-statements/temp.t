@@ -88,8 +88,9 @@ plan 46;
     temp %両àò両<z> = 42;
   }
   # https://github.com/Raku/old-issue-tracker/issues/4676
-  todo('RT #126447'); ok not %両àò両<z>:exists, "temp() removed previously non-existent key";
-  todo('RT #126447'); is %両àò両.elems, 3, "temp() restored hash has correct .elems";
+  #?rakudo 2 todo 'RT #126447'
+  ok not %両àò両<z>:exists, "temp() removed previously non-existent key";
+  is %両àò両.elems, 3, "temp() restored hash has correct .elems";
 }
 
 {
@@ -131,10 +132,11 @@ plan 46;
   is à𝐝𝐯à丧개e̲(), 2, "TEMP{} block (3)";
   is $丧e̲ч中,     3, "TEMP{} block (4)";
 
-  todo('TEMP phasers NYI'); flunk "TEMP{} block (5)";
-  todo('TEMP phasers NYI'); flunk "TEMP{} block (6)";
-  todo('TEMP phasers NYI'); flunk "TEMP{} block (7)";
-  todo('TEMP phasers NYI'); flunk "TEMP{} block (8)";
+  #?rakudo 4 todo 'TEMP phasers NYI'
+  flunk "TEMP{} block (5)";
+  flunk "TEMP{} block (6)";
+  flunk "TEMP{} block (7)";
+  flunk "TEMP{} block (8)";
 
   # Following does parse, but isn't executed (don't know why).
   # If the "{" on the following line is changed to "if 1 {", it is executed,
@@ -170,10 +172,12 @@ plan 46;
   ok defined($a), "instantiating a WierdTemp worked";
   is $w̲àò_갢丧_갨w̲丧_中e̲ì𝐩_両à丧𝐝лe̲с, 0, ".TEMP method wasn't yet executed";
 
+  #?rakudo todo 'TEMP phasers NYI'
   {
-    todo('TEMP phasers NYI'); is($(temp $a; $w̲àò_갢丧_갨w̲丧_中e̲ì𝐩_両à丧𝐝лe̲с), 1, ".TEMP method was executed on temporization");
+    is($(temp $a; $w̲àò_갢丧_갨w̲丧_中e̲ì𝐩_両à丧𝐝лe̲с), 1, ".TEMP method was executed on temporization");
   }
-  todo('TEMP phasers NYI'); is $w̲àò_갢丧_갨w̲丧_中e̲ì𝐩_両à丧𝐝лe̲с, 2, ".TEMP method was executed on restoration";
+  #?rakudo todo 'TEMP phasers NYI'
+  is $w̲àò_갢丧_갨w̲丧_中e̲ì𝐩_両à丧𝐝лe̲с, 2, ".TEMP method was executed on restoration";
 }
 
 {
@@ -249,6 +253,3 @@ throws-like { temp $*foo = 42 }, X::Dynamic::NotFound,
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

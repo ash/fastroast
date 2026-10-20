@@ -50,7 +50,8 @@ my $𝐝갢ò개àс𝐝e̲𝐝 = do {
     }
     ok $개갨갮丧中, 'Can match in the condition of a while loop';
     is $ìà中개両, 'b', '... and can use $/ in the block';
-    todo('Assignment to matched string affects earlier match objects'); is "$/",   'b', '... and can use $/ outside the block';
+    #?rakudo todo 'Assignment to matched string affects earlier match objects'
+    is "$/",   'b', '... and can use $/ outside the block';
 }
 
 {
@@ -103,6 +104,3 @@ my $𝐝갢ò개àс𝐝e̲𝐝 = do {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

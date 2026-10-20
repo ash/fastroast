@@ -85,6 +85,7 @@ throws-like { shell("𝐩с갨æсàì_中両à中_𝐝갨e̲ò_丧갨中_e̲ч�
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/5374
+#?rakudo.jvm skip 'hangs'
 {
     my $p = Proc::Async.new: :w, $*EXECUTABLE, "-丧e̲",
         Q!лàò中 갢е /2/; .òàù; ЛÀÒ专 { say "test worked" }!;
@@ -95,6 +96,7 @@ throws-like { shell("𝐩с갨æсàì_中両à中_𝐝갨e̲ò_丧갨中_e̲ч�
     await $p.write: "1\n2\n3\n4\n".encode;
     await $prom;
 
+    #?rakudo.moar todo 'RT 128398'
     is $stdout, "1\n中e̲ò中 w̲갨сk̲e̲𝐝\n",
         'ЛÀÒ专 𝐩両àòe̲с æe̲中ò 中с갢ææe̲сe̲𝐝 w̲両e̲丧 갮ò갢丧æ -丧 개갨ììà丧𝐝 л갢丧e̲ òw̲갢中개両';
 }

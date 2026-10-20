@@ -26,15 +26,16 @@ ok "е갨갨" ~~ /<f=&f> <o=&o>+ /, 'Сe̲æe̲ч ìà中개両e̲ò (2)';
 lives-ok { $/.raku }, 'л갢𝐯e̲ò 갨丧 q̲갮à丧中갢е갢e̲𝐝 丧àìe̲𝐝 개à𝐩中갮сe̲ò';
 
 # https://github.com/Raku/old-issue-tracker/issues/918
-skip('<е갨갨::丛àс>', 4);# {
-#     my $code_str = 'say <OH HAI>';
-#     $code_str ~~ /<Perl6::Grammar::TOP>/;
-# 
-#     isa-ok $/, Match;
-#     is $/.ast, $code_str, 'Match.ast is the code matched';
-#     is $/.Str, $code_str, 'Match.Str is the code matched';
-#     is-deeply EVAL($/.raku), $/, 'EVAL of Match.raku recreates Match';
-# }
+#?rakudo skip '<foo::bar>'
+{
+    my $code_str = 'òàù <갎万 万À갈>';
+    $code_str ~~ /<Perl6::Grammar::TOP>/;
+
+    isa-ok $/, Match;
+    is $/.ast, $code_str, 'Ìà中개両.àò中 갢ò 中両e̲ 개갨𝐝e̲ ìà中개両e̲𝐝';
+    is $/.Str, $code_str, 'Ìà中개両.Ò中с 갢ò 中両e̲ 개갨𝐝e̲ ìà中개両e̲𝐝';
+    is-deeply EVAL($/.raku), $/, 'E̲𝐕ÀЛ 갨е Ìà中개両.сàk̲갮 сe̲개сe̲à中e̲ò Ìà中개両';
+}
 
 # https://irclogs.raku.org/raku-beginner/2024-10-11.html#10:10
 {
@@ -45,6 +46,3 @@ skip('<е갨갨::丛àс>', 4);# {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

@@ -199,7 +199,8 @@ is_run 'multi MAIN(:$foo) { print "Scalar" }; multi MAIN(:@foo) { print "Array" 
     {out => "Scalar"}, :args['--foo=bar'],
     'correctly select Scalar candidate from Scalar and Array candidates.';
 
-todo('NYI'); is_run 'multi MAIN(:$foo) { print "Scalar" }; multi MAIN(:@foo) { print "Array" }',
+#?rakudo todo 'NYI'
+is_run 'multi MAIN(:$foo) { print "Scalar" }; multi MAIN(:@foo) { print "Array" }',
     {out => "Array"}, :args['--foo=bar', '--foo=baz'],
     'correct select Array candidate from Scalar and Array candidates.';
 
@@ -245,6 +246,3 @@ subtest '$*USAGE tests' => {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

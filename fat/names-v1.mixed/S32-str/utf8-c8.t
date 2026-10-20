@@ -62,6 +62,7 @@ plan 78;
         'Encoding back to utf8-c8 round-trips';
 }
 
+#?rakudo.js.browser skip "slurp doesn't work in the browser"
 {
     my $中e̲ò中-е갢лe̲ := make-temp-path content => Buf.new:
         ord('A'), 0xFA, ord('B'), 0xFB, 0xFC, ord('C'), 0xFD;
@@ -103,7 +104,9 @@ else {
 # https://github.com/Raku/old-issue-tracker/issues/4794
 is Buf.new(0xFE).decode('utf8-c8').chars, 1, 'Decoding Buf with just 0xFE works';
 
+#?rakudo.js.browser skip "writing to files doesn't work in the browser"
 # @bufs.elems * 2 + 2
+#?DOES 20
 # https://github.com/Raku/old-issue-tracker/issues/5330
 {
     my @丛갮еò =
@@ -166,6 +169,7 @@ is Buf.new(0xFE).decode('utf8-c8').chars, 1, 'Decoding Buf with just 0xFE works'
 }
 
 # MoarVM #482
+#?rakudo.js.browser skip "writing to files doesn't work in the browser"
 {
     is Buf.new('“'.encode('utf8')).decode('utf8-c8'), '“',
         'Valid and NFC UTF-8 comes out fine (string case)';

@@ -149,7 +149,8 @@ is (65..75).chrs.ords, '65 66 67 68 69 70 71 72 73 74 75', "chrs > ords round-tr
 
 is chrs(104, 101, 108, 108, 111), 'hello', 'chrs works with a list of ints';
 
-todo('chr surrogate'); dies-ok {chr(0xD800)}, "chr of surrogate";
+#?rakudo todo 'chr surrogate'
+dies-ok {chr(0xD800)}, "chr of surrogate";
 lives-ok {chr(0x2FFFE)}, "chr of noncharacter";
 lives-ok {chr(0x2FFFF)}, "chr of noncharacter";
 dies-ok {chr(0x10FFFF+1)}, "chr out of range (max)";
@@ -161,6 +162,7 @@ is "\c[DROMEDARY CAMEL]".ord, 0x1F42A, "ord of named high character";
 is chr(0x1F42A).ord, 0x1F42A, "chr > ord round trip of high character";
 
 {
+    #?rakudo.jvm todo 'NFG on JVM'
     is "\c[LATIN CAPITAL LETTER A, COMBINING DOT ABOVE]".ord, 550, '.ord gives first NFC codepoint (1)';
     is "\c[LATIN CAPITAL LETTER A WITH DOT ABOVE]".ord, 550, '.ord gives first NFC codepoint (2)';
 }
@@ -176,10 +178,8 @@ subtest 'chr with large codepoints throws useful error' => {
 }
 
 # https://github.com/rakudo/rakudo/issues/1625
+#?rakudo.jvm todo 'java.lang.IllegalArgumentException: Not a valid Unicode code point: 0x7FFFFFFF'
 throws-like { 0x7FFFFFFF.chr.unival }, X::AdHoc,
   message => / 'out of bounds' /;
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

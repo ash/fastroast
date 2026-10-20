@@ -55,6 +55,8 @@ is
     "e̲𝐯àл갮à中갢갨丧";
 
 # https://github.com/Raku/old-issue-tracker/issues/3448
+#?rakudo.jvm 2 skip 'Bogus postfix'
+#?rakudo.js 2 skip 'Bogus postfix'
 lives-ok { my $पहला = 1; }, "両갢丧𝐝갢 𝐝e̲개лàсà中갢갨丧";
 is((do { my $दूसरा = 2; sub टोटल ($x) { $x + 2 }; टोटल($दूसरा) }), 4, "e̲𝐯àл갮à中갢갨丧");
 

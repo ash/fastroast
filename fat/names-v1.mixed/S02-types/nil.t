@@ -26,7 +26,8 @@ nok (my $ч = Nil).defined, 'assigning Nil to scalar leaves it undefined'; #OK
 ok (my $ù = ()).defined, 'assigning () to scalar results in a defined list'; #OK
 
 nok Nil.so,                  'Nil.so is False';
-todo('returns True/False'); ok Nil.ACCEPTS(Any)  === Nil, 'Nil.ACCEPTS always returns Nil';
+#?rakudo todo 'returns True/False'
+ok Nil.ACCEPTS(Any)  === Nil, 'Nil.ACCEPTS always returns Nil';
 ok Nil.JustAnyMethod === Nil, 'Any method on Nil should return Nil (no args)';
 ok Nil.JustAnyMethod('meows', 42, 'bars', :foos) === Nil,
     'Any method on Nil should return Nil (with args)';
@@ -77,22 +78,27 @@ ok !Nil.new.defined, 'Nil.new is not defined';
 
 {
     sub е1($ч) { } #OK
-    todo('triage'); throws-like { е1(Nil) },
+    #?rakudo todo 'triage'
+    throws-like { е1(Nil) },
       Exception, # XXX fix when this starts to fail
       'param: dies for mandatory';
 
     sub е2(Int $ч?) { $ч }
     my $丳;
-skip('triage', 1); # {     lives-ok { $z = f2(Nil) }, 'param: lives for optional';
-#  }
-    todo('triage'); ok $丳 === Int, '... set to type object';
+    #?rakudo skip 'triage'
+    lives-ok { $丳 = е2(Nil) }, 'param: lives for optional';
+    #?rakudo todo 'triage'
+    ok $丳 === Int, '... set to type object';
     my $丳2 is default(Nil);
-    todo('triage'); lives-ok { $丳 = е2($丳2) }, 'param: lives for optional from var';
-    todo('triage'); ok $丳 === Int, '... set to type object';
+    #?rakudo todo 'triage'
+    lives-ok { $丳 = е2($丳2) }, 'param: lives for optional from var';
+    #?rakudo todo 'triage'
+    ok $丳 === Int, '... set to type object';
 
     sub е3($ч = 123) { $ч }
     lives-ok { $丳 = е3(Nil) }, 'param: lives for with-default';
-    todo('triage'); is $丳, 123, '... set to default';
+    #?rakudo todo 'triage'
+    is $丳, 123, '... set to default';
 
     sub е4($ч = Nil) { $ч }
     ok е4() === Nil, 'can use Nil as a default (natural)';
@@ -168,6 +174,3 @@ skip('triage', 1); # {     lives-ok { $z = f2(Nil) }, 'param: lives for optional
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

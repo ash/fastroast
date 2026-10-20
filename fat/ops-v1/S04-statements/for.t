@@ -478,8 +478,9 @@ throws-like 'for(0..5) { }', X::Comp::Group, 'keyword needs at least one whitesp
                 "for loop with label-less last flattens out last iteration";
 
 # https://github.com/Raku/old-issue-tracker/issues/2593
+#?rakudo todo 'Rakudo still uses Nil here RT #124569'
     $l = (for ^5 { 41; last if $_ == 2; $_; });
-    todo('Rakudo still uses Nil here RT #124569'); is $l[2].raku, "()", "for loop iteration with label-less 'last' gives ()";
+    is $l[2].raku, "()", "for loop iteration with label-less 'last' gives ()";
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/637
@@ -709,6 +710,8 @@ is (for 5 { (sub { "OH HAI" })() }), "OH HAI", 'Anon sub inside for works.';
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/6336
+#?rakudo.jvm skip 'labeled next without loop construct'
+#?DOES 1
 {
   subtest 'next with label works inside list comprehended for loops' => {
     # We have several of these cases because some implementations chose
@@ -786,6 +789,3 @@ is (for 5 { (sub { "OH HAI" })() }), "OH HAI", 'Anon sub inside for works.';
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

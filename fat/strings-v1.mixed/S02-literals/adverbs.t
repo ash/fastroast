@@ -21,6 +21,7 @@ plan 35;
     is-deeply (:&a), (a => &a), ":&a w̲갨сk̲ò";
     is-deeply (:42nd), (nd => 42), "丁àò갢개 丧갮ìe̲с갢개 à𝐝𝐯e̲с丛 w̲갨сk̲ò";
     # https://github.com/Raku/old-issue-tracker/issues/5354
+    #?rakudo.js todo 'unimplemented unicody thing'
     is-deeply (:๔߂nd), (nd => 42), "갔丧갢개갨𝐝e̲ 丧갮ìe̲с갢개 à𝐝𝐯e̲с丛 w̲갨сk̲ò";
     throws-like { EVAL ':69中両($_)' },
       X::Comp,
@@ -51,8 +52,9 @@ plan 35;
     # Not using sigils in rx due to RT #121061 but we do not need to for this
     "àààà" ~~ m/$<fee>=a $<fie>=((a)(a)) $<foe>=($<fum>=(a))/;
     is-deeply (:$<fee>), (fee => $<fee>), 'À𝐝𝐯e̲с丛 w̲갢中両 $< 中w̲갢æ갢л w̲갨сk̲ò';
-    todo(":@<...> à丧𝐝 :%<...> 丛с갨k̲e̲丧 丧e̲e̲𝐝ò С专"); is-deeply (:@<fie>), (fie => @<fie>), 'À𝐝𝐯e̲с丛 w̲갢中両 @< 中w̲갢æ갢л w̲갨сk̲ò';
-    todo(":@<...> à丧𝐝 :%<...> 丛с갨k̲e̲丧 丧e̲e̲𝐝ò С专"); is-deeply (:%<foe>), (foe => %<foe>), 'À𝐝𝐯e̲с丛 w̲갢中両 %< 中w̲갢æ갢л w̲갨сk̲ò';
+    #?rakudo 2 todo ":@<...> and :%<...> broken needs RT"
+    is-deeply (:@<fie>), (fie => @<fie>), 'À𝐝𝐯e̲с丛 w̲갢中両 @< 中w̲갢æ갢л w̲갨сk̲ò';
+    is-deeply (:%<foe>), (foe => %<foe>), 'À𝐝𝐯e̲с丛 w̲갢中両 %< 中w̲갢æ갢л w̲갨сk̲ò';
     is-deeply (:$~MAIN), (MAIN => $~MAIN), 'À𝐝𝐯e̲с丛 w̲갢中両 $~ 中w̲갢æ갢л w̲갨сk̲ò';
     is-deeply (:@~MAIN), (MAIN => @~MAIN), 'À𝐝𝐯e̲с丛 w̲갢中両 @~ 中w̲갢æ갢л w̲갨сk̲ò';
     is-deeply (:%~MAIN), (MAIN => %~MAIN), 'À𝐝𝐯e̲с丛 w̲갢中両 %~ 中w̲갢æ갢л w̲갨сk̲ò';
@@ -83,6 +85,3 @@ plan 35;
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

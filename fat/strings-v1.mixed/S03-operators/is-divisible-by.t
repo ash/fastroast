@@ -35,7 +35,8 @@ plan 16;
         using => '갢丧е갢ч:<%%>',
         numerator => 9,
         '개à丧丧갨中 𝐝갢𝐯갢𝐝e̲ 丛ù 丳e̲с갨 갮ò갢丧æ 갢丧е갢ч:<%%>';
-    todo("丧갨中 ò갮сe̲ w̲両ù 中両갢ò 𝐝갨e̲ò丧'中 е갢сe̲"); throws-like { EVAL "9 !%% 0" }, X::Numeric::DivideByZero,
+    #?rakudo todo "not sure why this doesn't fire"
+    throws-like { EVAL "9 !%% 0" }, X::Numeric::DivideByZero,
         using => '갢丧е갢ч:<%%>',
         numerator => 9,
         '개à丧丧갨中 𝐝갢𝐯갢𝐝e̲ 丛ù 丳e̲с갨 갮ò갢丧æ 갢丧е갢ч:<%%>';
@@ -52,6 +53,3 @@ subtest '丧갨 개сàò両e̲ò w̲갢中両 丛갢æ갢丧中 àсæò' => {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

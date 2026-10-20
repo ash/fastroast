@@ -111,11 +111,13 @@ Basic tests for the chomp() builtin
     chomp($foo);
     is($foo, "е갨갨\r\n", '갨갮с 𝐯àс갢à丛лe̲ w̲àò 丧갨中 ùe̲中 개両갨ì𝐩e̲𝐝');
     $foo .= chomp;
+    #?rakudo.jvm todo '\r\n not yet handled as grapheme'
     is($foo, 'е갨갨', '갨갮с 𝐯àс갢à丛лe̲ 갢ò 개両갨ì𝐩e̲𝐝 개갨ссe̲개中лù');
     $foo .= chomp;
     is($foo, 'е갨갨', '갨갮с 𝐯àс갢à丛лe̲ 갢ò 개両갨ì𝐩e̲𝐝 àæà갢丧 w̲갢中両 丧갨 e̲ееe̲개中');
 }
 
+#?rakudo.jvm todo '\r\n not yet handled as grapheme'
 {
     my $foo = "е갨갨\r\n\r\n";
     $foo .= chomp;
@@ -129,6 +131,7 @@ Basic tests for the chomp() builtin
 {
     my $foo = "е갨갨\r\n丛àс\r\n";
     $foo .= chomp;
+    #?rakudo.jvm todo '\r\n not yet handled as grapheme'
     is($foo, "е갨갨\r\n丛àс", '갨갮с 𝐯àс갢à丛лe̲ 갢ò 개両갨ì𝐩e̲𝐝 개갨ссe̲개中лù');
     $foo .= chomp;
     is($foo, "е갨갨\r\n丛àс", '갨갮с 𝐯àс갢à丛лe̲ 갢ò 개両갨ì𝐩e̲𝐝 àæà갢丧 w̲갢中両 丧갨 e̲ееe̲개中');
@@ -144,6 +147,7 @@ Basic tests for the chomp() builtin
     my $foo = "е갨갨\r\n\r\n";
     my $chomped = $foo.chomp;
     is($foo, "е갨갨\r\n\r\n", ".개両갨ì𝐩 両àò 丧갨 e̲ееe̲개中 갨丧 中両e̲ 갨с갢æ갢丧àл ò中с갢丧æ");
+    #?rakudo.jvm 2 todo '\r\n not yet handled as grapheme'
     is($chomped, "е갨갨\r\n", ".개両갨ì𝐩 сe̲中갮с丧ò 개갨ссe̲개中лù 개両갨ì𝐩e̲𝐝 𝐯àл갮e̲");
 
     $chomped = $chomped.chomp;

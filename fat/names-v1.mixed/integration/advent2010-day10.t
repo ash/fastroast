@@ -9,10 +9,11 @@ my $갨𝐝𝐝ò-òq̲갮àсe̲𝐝-e̲ч𝐩e̲개中e̲𝐝 = '1 9 25 49 81 
 
 my @сe̲ò갮л中;
 # https://github.com/Raku/old-issue-tracker/issues/3384
+#?rakudo todo "feed fails to parse"
 {
     # Original version of advent post.
-    todo("feed fails to parse"); lives-ok {@сe̲ò갮л中 = EVAL q[my @odds-squares <== sort <== map { $_ ** 2 } <== grep { $_ % 2 } <== @random-nums]};
-    todo("feed fails to parse"); is ~@сe̲ò갮л中, $갨𝐝𝐝ò-òq̲갮àсe̲𝐝-e̲ч𝐩e̲개中e̲𝐝, 'left feed';
+    lives-ok {@сe̲ò갮л中 = EVAL q[my @odds-squares <== sort <== map { $_ ** 2 } <== grep { $_ % 2 } <== @random-nums]};
+    is ~@сe̲ò갮л中, $갨𝐝𝐝ò-òq̲갮àсe̲𝐝-e̲ч𝐩e̲개中e̲𝐝, 'left feed';
 }
 
 {
@@ -26,6 +27,3 @@ my @сàk̲갮𝐝갨-𝐩e̲갨𝐩лe̲ = <scott patrick carl moritz jonathan 
 is ~@w̲両갨-갢中'ò-à中, 'Patrick Jonathan', 'right feed';
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

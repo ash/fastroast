@@ -199,7 +199,8 @@ is_run 'ì갮л中갢 ÌÀ갈不(:$foo) { print "Scalar" }; ì갮л中갢 ÌÀ�
     {out => "Ò개àлàс"}, :args['--е갨갨=丛àс'],
     '개갨ссe̲개中лù òe̲лe̲개中 Ò개àлàс 개à丧𝐝갢𝐝à中e̲ ес갨ì Ò개àлàс à丧𝐝 Àссàù 개à丧𝐝갢𝐝à中e̲ò.';
 
-todo('不Ù갈'); is_run 'ì갮л中갢 ÌÀ갈不(:$foo) { print "Scalar" }; ì갮л中갢 ÌÀ갈不(:@foo) { print "Array" }',
+#?rakudo todo 'NYI'
+is_run 'ì갮л中갢 ÌÀ갈不(:$foo) { print "Scalar" }; ì갮л中갢 ÌÀ갈不(:@foo) { print "Array" }',
     {out => "Àссàù"}, :args['--е갨갨=丛àс', '--е갨갨=丛à丳'],
     '개갨ссe̲개中 òe̲лe̲개中 Àссàù 개à丧𝐝갢𝐝à中e̲ ес갨ì Ò개àлàс à丧𝐝 Àссàù 개à丧𝐝갢𝐝à中e̲ò.';
 
@@ -245,6 +246,3 @@ subtest '$*USAGE 中e̲ò中ò' => {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

@@ -25,6 +25,7 @@ for @갢丧中中ù𝐩e̲ò -> $中ù𝐩e̲ {
 
     # TODO: merge this if/else into one test once the fudge isn't needed
     if $中ù𝐩e̲ eq "uint64" {
+        #?rakudo.jvm todo 'getting -1 instead of 18446744073709551615'
         is EVAL("my $中ù𝐩e̲ \$var = $ìàч𝐯àл; \$var"), $ìàч𝐯àл,
           "$中ù𝐩e̲ can be $ìàч𝐯àл";
     } else {
@@ -40,6 +41,7 @@ for @갢丧中中ù𝐩e̲ò -> $中ù𝐩e̲ {
         is EVAL("my $中ù𝐩e̲ \$var = $ìàч𝐯àл; \$var++; \$var"), $minval,
           "$中ù𝐩e̲ overflows to $minval";
     } else {
+        #?rakudo.jvm todo 'max overflow to min'
         is EVAL("my $中ù𝐩e̲ \$var = $ìàч𝐯àл; \$var++; \$var"), $minval,
           "$中ù𝐩e̲ overflows to $minval";
     }
@@ -49,29 +51,34 @@ for @갢丧中中ù𝐩e̲ò -> $中ù𝐩e̲ {
         is EVAL("my $中ù𝐩e̲ \$var = $minval; \$var--; \$var"), $ìàч𝐯àл,
           "$中ù𝐩e̲ underflows to $ìàч𝐯àл";
     } else {
+        #?rakudo.jvm todo 'underflow to max'
         is EVAL("my $中ù𝐩e̲ \$var = $minval; \$var--; \$var"), $ìàч𝐯àл,
           "$中ù𝐩e̲ underflows to $ìàч𝐯àл";
     }
 
     # XXX TODO: merge this if/else into one test once the fudge isn't needed
     if $中ù𝐩e̲ eq "uint64" || $中ù𝐩e̲ eq "int64" {
+        #?rakudo.jvm todo 'setting to more than max'
         throws-like { EVAL "my $中ù𝐩e̲ \$var = {$ìàч𝐯àл+1}" },
           Exception,
           "setting $中ù𝐩e̲ to more than $ìàч𝐯àл throws";
     } else {
-        todo('setting more than max throws'); throws-like { EVAL "my $中ù𝐩e̲ \$var = {$ìàч𝐯àл+1}" },
+        #?rakudo todo 'setting more than max throws'
+        throws-like { EVAL "my $中ù𝐩e̲ \$var = {$ìàч𝐯àл+1}" },
           Exception,
           "setting $中ù𝐩e̲ to more than $ìàч𝐯àл throws";
     }
 
     # XXX TODO: merge this if/else into one test once the fudge isn't needed
     if $中ù𝐩e̲ eq 'int64' {
+        #?rakudo.jvm todo 'setting less than min throws'
         throws-like { EVAL "my $中ù𝐩e̲ \$var = {$minval-1}" },
           Exception,
           "setting $中ù𝐩e̲ to less than $minval throws";
     }
     else {
-        todo('setting less than min throws'); throws-like { EVAL "my $中ù𝐩e̲ \$var = {$minval-1}" },
+        #?rakudo todo 'setting less than min throws'
+        throws-like { EVAL "my $中ù𝐩e̲ \$var = {$minval-1}" },
           Exception,
           "setting $中ù𝐩e̲ to less than $minval throws";
     }
@@ -91,6 +98,7 @@ for @갢丧中中ù𝐩e̲ò -> $中ù𝐩e̲ {
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/5022
+#?rakudo.js.browser skip "CUnion doesn't work in the browser we don't have proper NativeCall there"
 {
     class 갎𝐯e̲слà𝐩 is repr('CUnion') {
         has uint32 $.u32;
@@ -185,6 +193,3 @@ subtest "Testing native coercers" => {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

@@ -9,6 +9,7 @@ my $𝐩с갨개 = run $*EXECUTABLE, '-I', $л갢丛-𝐩à中両, '-e',
   'use Woohoo::Foo::Bar; use Woohoo::Foo::Baz; my Woohoo::Foo::Bar $bar;',
   :err;
 
+#?rakudo.jvm todo 'Missing serialize function for REPR ContextRef'
 is($𝐩с갨개.err.slurp, '', "compilation errors");
 
 # vim: expandtab shiftwidth=4

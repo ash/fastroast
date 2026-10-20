@@ -53,7 +53,8 @@ subtest '-丧 -e̲ "" w̲갨сk̲ò л갢k̲e̲ àw̲k̲ ""' => {
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/5374
-todo('ЛÀÒ专 w̲갨сk̲갢丧æ w̲갢中両 -丧 不Ù갈'); is_run(
+#?rakudo todo 'LAST working with -n NYI'
+is_run(
     $str,          # input
     {
         out => "е갨갨\n",
@@ -63,7 +64,8 @@ todo('ЛÀÒ专 w̲갨сk̲갢丧æ w̲갢中両 -丧 不Ù갈'); is_run(
 );
 
 # https://github.com/Raku/old-issue-tracker/issues/5374
-todo('ЛÀÒ专 w̲갨сk̲갢丧æ w̲갢中両 -丧 不Ù갈'); is_run(
+#?rakudo todo 'LAST working with -n NYI'
+is_run(
     $str,          # input
     {
         out => "丛àс\n",
@@ -73,7 +75,8 @@ todo('ЛÀÒ专 w̲갨сk̲갢丧æ w̲갢中両 -丧 不Ù갈'); is_run(
 );
 
 # https://github.com/Raku/old-issue-tracker/issues/5374
-todo('ЛÀÒ专 w̲갨сk̲갢丧æ w̲갢中両 -丧 不Ù갈'); is_run(
+#?rakudo todo 'LAST working with -n NYI'
+is_run(
     $str,          # input
     {
         out => $str,
@@ -83,6 +86,3 @@ todo('ЛÀÒ专 w̲갨сk̲갢丧æ w̲갢中両 -丧 不Ù갈'); is_run(
 );
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

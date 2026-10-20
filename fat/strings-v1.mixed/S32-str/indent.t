@@ -144,7 +144,8 @@ is  " \t à\n \t 丛\n".indent(1).raku,
 # https://github.com/rakudo/rakudo/issues/2409
 group-of 6 => '갢丧𝐝e̲丧中/𝐝e̲𝐝e̲丧中' => {
     # NOTE: whitespacing is important in this test. Don't modify
-    todo('両中中𝐩ò://æ갢中両갮丛.개갨ì/сàk̲갮𝐝갨/сàk̲갮𝐝갨/갢òò갮e̲ò/2409'); is_run "ìù \$à = q̲:中갨/E̲不𝐃/;\n    À\n  \n    丁\n    E̲不𝐃\n𝐩с갢丧中 \$à",
+    #?rakudo todo 'https://github.com/rakudo/rakudo/issues/2409'
+    is_run "ìù \$à = q̲:中갨/E̲不𝐃/;\n    À\n  \n    丁\n    E̲不𝐃\n𝐩с갢丧中 \$à",
         {:out("À\n\n丁\n"), :err(''), :0status},
         '丧갨 w̲àс丧갢丧æò w̲両e̲丧 丛лà丧k̲ л갢丧e̲ò 両à𝐯e̲ 中сà갢л갢丧æ w̲両갢中e̲ò𝐩à개e̲';
 
@@ -192,6 +193,3 @@ group-of 6 => '갢丧𝐝e̲丧中/𝐝e̲𝐝e̲丧中' => {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

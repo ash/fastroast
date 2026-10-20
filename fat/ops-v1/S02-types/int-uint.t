@@ -25,6 +25,7 @@ for @inttypes -> $type {
 
     # TODO: merge this if/else into one test once the fudge isn't needed
     if $type eq "uint64" {
+        #?rakudo.jvm todo 'getting -1 instead of 18446744073709551615'
         is EVAL("my $type \$var = $maxval; \$var"), $maxval,
           "$type can be $maxval";
     } else {
@@ -40,6 +41,7 @@ for @inttypes -> $type {
         is EVAL("my $type \$var = $maxval; \$var++; \$var"), $minval,
           "$type overflows to $minval";
     } else {
+        #?rakudo.jvm todo 'max overflow to min'
         is EVAL("my $type \$var = $maxval; \$var++; \$var"), $minval,
           "$type overflows to $minval";
     }
@@ -49,29 +51,34 @@ for @inttypes -> $type {
         is EVAL("my $type \$var = $minval; \$var--; \$var"), $maxval,
           "$type underflows to $maxval";
     } else {
+        #?rakudo.jvm todo 'underflow to max'
         is EVAL("my $type \$var = $minval; \$var--; \$var"), $maxval,
           "$type underflows to $maxval";
     }
 
     # XXX TODO: merge this if/else into one test once the fudge isn't needed
     if $type eq "uint64" || $type eq "int64" {
+        #?rakudo.jvm todo 'setting to more than max'
         throws-like { EVAL "my $type \$var = {$maxval+1}" },
           Exception,
           "setting $type to more than $maxval throws";
     } else {
-        todo('setting more than max throws'); throws-like { EVAL "my $type \$var = {$maxval+1}" },
+        #?rakudo todo 'setting more than max throws'
+        throws-like { EVAL "my $type \$var = {$maxval+1}" },
           Exception,
           "setting $type to more than $maxval throws";
     }
 
     # XXX TODO: merge this if/else into one test once the fudge isn't needed
     if $type eq 'int64' {
+        #?rakudo.jvm todo 'setting less than min throws'
         throws-like { EVAL "my $type \$var = {$minval-1}" },
           Exception,
           "setting $type to less than $minval throws";
     }
     else {
-        todo('setting less than min throws'); throws-like { EVAL "my $type \$var = {$minval-1}" },
+        #?rakudo todo 'setting less than min throws'
+        throws-like { EVAL "my $type \$var = {$minval-1}" },
           Exception,
           "setting $type to less than $minval throws";
     }
@@ -91,6 +98,7 @@ for @inttypes -> $type {
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/5022
+#?rakudo.js.browser skip "CUnion doesn't work in the browser we don't have proper NativeCall there"
 {
     class Overlap is repr('CUnion') {
         has uint32 $.u32;
@@ -185,6 +193,3 @@ subtest "Testing native coercers" => {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

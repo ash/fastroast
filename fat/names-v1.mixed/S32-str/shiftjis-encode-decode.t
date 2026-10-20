@@ -1,6 +1,7 @@
 use Test;
 plan 9;
 
+#?rakudo.js.browser skip "reading and writing files doesn't work in the browser"
 {
     my $中e̲ò中-е갨л𝐝e̲с = "S32-str".IO.d ??  "S32-str" !! "t/spec/S32-str";
     $中e̲ò中-е갨л𝐝e̲с ~= "/text-samples";

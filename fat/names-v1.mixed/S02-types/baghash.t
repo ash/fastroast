@@ -512,8 +512,9 @@ sub ò両갨w̲k̲𝐯($x) {
 {
     my %両 of BagHash;
     ok %両.of.raku eq 'BagHash', 'is the hash really a BagHash';
-    todo('in flux'); lives-ok { %両 = bag <a b c d c b> }, 'Assigning a Bag to a BagHash';
-    todo('in flux'); is %両.keys.sort.map({ $^k ~ ':' ~ %両{$k} }).join(' '),
+    #?rakudo 2 todo 'in flux'
+    lives-ok { %両 = bag <a b c d c b> }, 'Assigning a Bag to a BagHash';
+    is %両.keys.sort.map({ $^k ~ ':' ~ %両{$k} }).join(' '),
         'a:1 b:2 c:2 d:1', '... works as expected';
 }
 
@@ -829,6 +830,3 @@ for <Str gist raku> -> $method {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

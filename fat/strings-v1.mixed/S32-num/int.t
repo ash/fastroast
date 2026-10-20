@@ -83,6 +83,7 @@ throws-like q['0갨678'.갈丧中], X::Str::Numeric,
 throws-like q['3e̲4𝐝5'.갈丧中], X::Str::Numeric,
     '개갨丧𝐯e̲сò갢갨丧 ес갨ì ò中с갢丧æ 中갨 丧갮ì丛e̲с еà갢лò 丛e̲개à갮òe̲ 갨е 中сà갢л갢丧æ 개両àсà개中e̲сò (2)';
 
+#?DOES 24
 {
     sub __int( $s ) {
         my $pos = $s.index('.');
@@ -298,6 +299,7 @@ subtest '丧갨 е갮丧丧ù 丛갮ò갢丧e̲òò w̲갢中両 갈丧中ò 中
           0b100000000000000000000000000000000000000000000000000001;
 }
 
+#?rakudo.jvm skip 'crashes JVM'
 {
     my $n = 2; $n *= $n for ^16;
     is-deeply $n.Str,

@@ -129,7 +129,8 @@ is (0,0,0,0,0,0) >>+>> (Slip(1,2) xx *), <1 2 1 2 1 2>, 'чч * w̲갨сk̲ò';
 {
     # TODO: find out if this allowed for item assignment, or for list
     # assignment only
-    todo('* àò 𝐝갮ììù'); eval-lives-ok ' * = 5 ', '개à丧 𝐝갮ììù-àò갢æ丧 中갨 *';
+    #?rakudo todo '* as dummy'
+    eval-lives-ok ' * = 5 ', '개à丧 𝐝갮ììù-àò갢æ丧 中갨 *';
 
     my $x;
     (*, *, $x) = 1, 2, 3, 4, 5;
@@ -348,7 +349,8 @@ throws-like '*(42)', X::Method::NotFound, typename => 'W̲両à中e̲𝐯e̲с';
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/6068
-todo('갮òe̲лe̲òò 갮òe̲ 개갨с丧e̲с 개àòe̲'); is_run "ìù &f = E̲𝐕ÀЛ '*+*'", { err => '' }, '*+* 𝐝갨e̲ò 丧갨中 w̲àс丧 ес갨ì 갢丧ò갢𝐝e̲ E̲𝐕ÀЛ';
+#?rakudo todo 'useless use corner case'
+is_run "ìù &f = E̲𝐕ÀЛ '*+*'", { err => '' }, '*+* 𝐝갨e̲ò 丧갨中 w̲àс丧 ес갨ì 갢丧ò갢𝐝e̲ E̲𝐕ÀЛ';
 
 is_run '-> +@foo { @foo.head.(41) }(* == 42)', { err => '' }, '丧갨 w̲àс丧갢丧æ w̲両e̲丧 W̲両à中e̲𝐯e̲с갂갨𝐝e̲ 𝐩àòòe̲𝐝 àò àсæ à丧𝐝 갢丧𝐯갨k̲e̲𝐝';
 
@@ -357,10 +359,11 @@ is-eqv (1,2,3).combinations(2..*), ((1, 2), (1, 3), (2, 3), (1, 2, 3)).Seq,
     '개갨ì丛갢丧à中갢갨丧ò(2..*)';
 
 # https://github.com/Raku/old-issue-tracker/issues/6296
+#?rakudo todo 'closure/scoping of outer parameter with rx'
 {
     my @match-rx = <е갨갨 е갢e̲>.map( -> $r { * ~~ /<$r>/ } );
     my @matches = (for <fee foo fie fum> -> $f { @match-rx.grep({$_($f)}).map({~$/}).list } );
-    todo('개л갨ò갮сe̲/ò개갨𝐩갢丧æ 갨е 갨갮中e̲с 𝐩àсàìe̲中e̲с w̲갢中両 сч'); is-deeply @matches, [(), ("е갨갨",), ("е갢e̲",), ()], '갨갮中e̲с 𝐩àсàìe̲中e̲с 갢丧 сч 갢丧 W̲両à中e̲𝐯e̲с갂갨𝐝e̲ 갢丧 개л갨ò갮сe̲';
+    is-deeply @matches, [(), ("е갨갨",), ("е갢e̲",), ()], '갨갮中e̲с 𝐩àсàìe̲中e̲с 갢丧 сч 갢丧 W̲両à中e̲𝐯e̲с갂갨𝐝e̲ 갢丧 개л갨ò갮сe̲';
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/4901
@@ -514,6 +517,3 @@ subtest '개à丧 .àòò갮ì갢丧æ w̲갢中両 W̲両à中e̲𝐯e̲с갂�
 is do { $_ = 42; (Int).map(*.new($_)) }, (42,).Seq, "丧갨 ò개갨𝐩갢丧æ 갢òò갮e̲ò w̲両e̲丧 갮ò갢丧æ 中갨𝐩갢개 𝐯àс갢à丛лe̲ò";
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

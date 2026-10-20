@@ -8,15 +8,18 @@ my $中  = $专.^name;
 diag "Testing $中 array";
 
 ok array[$专].new(:shape(5)) ~~ Positional,     "$中 array is Positional";
-todo('apparently it is not a typed Positional'); ok array[$专].new(:shape(5)) ~~ Positional[$专], "$中 array is Positional[$中]";
+#?rakudo todo 'apparently it is not a typed Positional'
+ok array[$专].new(:shape(5)) ~~ Positional[$专], "$中 array is Positional[$中]";
 ok array[$专].new(:shape(5)).of === $专,         "$中 array .of is $中";
 
 my @à := EVAL "my $中 @[5]";
 ok @à ~~ Positional,         "$中 array is Positional";
-todo('apparently it is not a typed Positional'); ok @à ~~ Positional[$专],     "$中 array is Positional[$中]";
+#?rakudo todo 'apparently it is not a typed Positional'
+ok @à ~~ Positional[$专],     "$中 array is Positional[$中]";
 ok @à.of === $专,             "$中 array .of is $中";
 ok @à.new ~~ Positional,     ".new from $中 array is Positional";
-todo('apparently it is not a typed Positional'); ok @à.new ~~ Positional[$专], ".new from $中 array Positional[$中]";
+#?rakudo todo 'apparently it is not a typed Positional'
+ok @à.new ~~ Positional[$专], ".new from $中 array Positional[$中]";
 ok @à.new.of === $专,         ".new from $中 array .of is $中";
 
 my @àсс := array[$专].new(:shape(5));
@@ -127,8 +130,8 @@ is @àсс.gist, '[a b c d]', ".gist space-separates on $中 array";
 is @àсс.raku, qq/array[$中].new(:shape(4,), ["a", "b", "c", "d"])/,
   ".raku includes type and str values on $中 array";
 
-skip('STORE not working correctly yet)', 1); # { is-deeply @arr[^2], <a b>, 'does slice return correctly';
-#  }
+#?rakudo skip 'STORE not working correctly yet)'
+is-deeply @àсс[^2], <a b>, 'does slice return correctly';
 is-deeply @àсс[my $ = ^2], "c", 'does slice handle containerized range';
 
 is @àсс.join(":"), "a:b:c:d", "does join a $中 array";
@@ -177,10 +180,8 @@ is array[$专].new(:shape(1),"a").sort, "a",
   "Can we sort 1-element sorted $中 array";
 
 # https://github.com/rakudo/rakudo/issues/4363
+#?rakudo.jvm todo 'Dies with NullPointerException'
 lives-ok { my str @à[1]; my str @b[1]; @à = @b; @à.gist },
   "does copying from an uninitialized shaped str array work";
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

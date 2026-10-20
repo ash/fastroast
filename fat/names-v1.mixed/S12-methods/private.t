@@ -92,6 +92,7 @@ dies-ok {$갨."b"() },  'can not call private method via quotes from outside';  
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/2928
+#?DOES 2
 throws-like '$_!X::a', X::Method::Private::Permission;
 
 # https://github.com/Raku/old-issue-tracker/issues/4425

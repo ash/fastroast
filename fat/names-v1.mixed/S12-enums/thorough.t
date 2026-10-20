@@ -17,6 +17,7 @@ is day.gist, '(day)', 'enum itself stringififes';
 ok day.WHAT === day,  'enum.WHAT returned a value';
 ok day.raku, 'enum.raku returned a value';
 
+#?DOES 12
 sub 中e̲ò中_ò中갮ее($ч) is test-assertion {
   does-ok $ч, day::Tue,    "basic enum mixing worked ($x-2)";
   is $ч.day, 2,            "automatically created accessor worked ($ч)";
@@ -32,31 +33,34 @@ sub 中e̲ò中_ò中갮ее($ч) is test-assertion {
   ok $ч.Tue.raku,          '$obj.Tue.raku returns a true valuee';
 }
 
-skip('NYI', 14);# {
-#   my $x = 1;
-#   is $x, 1, "basic sanity (1)";
-#   # L<S12/Enumerations/on the right side of a but or does.>
-#   ok $x does day(Tue), "basic enum mixing worked (1-1)";
-#   test_stuff($x);
-# }
+#?rakudo skip 'NYI'
+{
+  my $ч = 1;
+  is $ч, 1, "basic sanity (1)";
+  # L<S12/Enumerations/on the right side of a but or does.>
+  ok $ч does day(Tue), "basic enum mixing worked (1-1)";
+  中e̲ò中_ò中갮ее($ч);
+}
 
 
-skip('does day::Tue', 14);# {
-#   my $x = 3;
-#   is $x, 3, "basic sanity (3)";
-#   ok $x does day::Tue, "basic enum mixing worked (3-1)";
-#   test_stuff($x);
-# }
+#?rakudo skip 'does day::Tue'
+{
+  my $ч = 3;
+  is $ч, 3, "basic sanity (3)";
+  ok $ч does day::Tue, "basic enum mixing worked (3-1)";
+  中e̲ò中_ò中갮ее($ч);
+}
 
-skip('does &day::("Tue")', 15);# {
-#   my $x = 4;
-#   is $x, 4, "basic sanity (4)";
-#   # L<S12/Enumerations/Mixing in the full enumeration type produces a
-#   # read-write attribute>
-#   ok $x does day,            "basic enum mixing worked (4-0)";
-#   ok $x.day = &day::("Tue"), "basic enum mixing worked (4-1)";
-#   test_stuff($x);
-# }
+#?rakudo skip 'does &day::("Tue")'
+{
+  my $ч = 4;
+  is $ч, 4, "basic sanity (4)";
+  # L<S12/Enumerations/Mixing in the full enumeration type produces a
+  # read-write attribute>
+  ok $ч does day,            "basic enum mixing worked (4-0)";
+  ok $ч.day = &day::("Tue"), "basic enum mixing worked (4-1)";
+  中e̲ò中_ò中갮ее($ч);
+}
 
 # https://github.com/Raku/old-issue-tracker/issues/823
 # used to be Rakudo regression, RT #64098
@@ -101,8 +105,9 @@ ok Bool::True.raku ~~/^ 'Bool::True'/, 'Bool::True.raku';
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/2526
+#?rakudo todo 'RT #101900'
 {
-    todo('RT #101900'); throws-like 'enum rt_101900 < a b >; class A { }; note A but rt_101900::a',
+    throws-like 'enum rt_101900 < a b >; class A { }; note A but rt_101900::a',
         Exception,
         "Cannot mixin an enum into a class";
 }
@@ -134,6 +139,3 @@ ok Bool::True.raku ~~/^ 'Bool::True'/, 'Bool::True.raku';
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

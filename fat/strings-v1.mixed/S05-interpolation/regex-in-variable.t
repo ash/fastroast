@@ -130,7 +130,8 @@ throws-like 'my $x := { a => 1 }; "a" ~~ m/$x/', X::Syntax::Reserved, 'cannot in
 {
     my $u;
     ok 'a' !~~ /$u/, 'undefined variable does not match';
-    todo('warn on undef'); is_run(
+    #?rakudo todo 'warn on undef'
+    is_run(
             q{my $u; 'a' ~~ /$u/},
             {
                 status  => 0,
@@ -161,6 +162,3 @@ throws-like 'my $x := { a => 1 }; "a" ~~ m/$x/', X::Syntax::Reserved, 'cannot in
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

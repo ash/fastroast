@@ -18,11 +18,12 @@ my @list = (1 .. 5);
     is @result.join(', '), '2, 4, 6, 8, 10', 'got the values we expected';
 }
 
-skip("adverbial block", 2);# {
-#     my @result = @list.map():{ $_ * 2 };
-#     is(+@result, 5, 'adverbial block: we got a list back');
-#     is @result.join(', '), '2, 4, 6, 8, 10', 'got the values we expected';
-# }
+#?rakudo skip "adverbial block"
+{
+    my @result = @list.map():{ $_ × 2 };
+    is(+@result, 5, 'adverbial block: we got a list back');
+    is @result.join(', '), '2, 4, 6, 8, 10', 'got the values we expected';
+}
 
 {
     my @result = @list.map: { $_ × 2 };
@@ -30,11 +31,12 @@ skip("adverbial block", 2);# {
     is @result.join(', '), '2, 4, 6, 8, 10', 'got the values we expected';
 }
 
-skip("closure as non-final argument", 2);# {
-#     my @result = map { $_ * 2 }: @list;
-#     is(+@result, 5, 'we got a list back');
-#     is @result.join(', '), '2, 4, 6, 8, 10', 'got the values we expected';
-# }
+#?rakudo skip "closure as non-final argument"
+{
+    my @result = map { $_ × 2 }: @list;
+    is(+@result, 5, 'we got a list back');
+    is @result.join(', '), '2, 4, 6, 8, 10', 'got the values we expected';
+}
 
 # Testing map that returns an array
 {
@@ -285,6 +287,3 @@ is( ~((1..3).map: { dbl( $_ ) }),'2 4 6','extern method in map');
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

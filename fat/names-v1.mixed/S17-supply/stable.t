@@ -9,24 +9,25 @@ dies-ok { Supply.stable(1) }, 'can not be called as a class method';
 for ThreadPoolScheduler.new, CurrentThreadScheduler -> $*SCHEDULER {
     diag "**** scheduling with {$*SCHEDULER.WHAT.raku}";
 
-skip("doesn't work or can't test", 1);# {
-#         my $s = Supply.new;
-#         tap-ok $s.stable(2),
-#           [1,4],
-#           ".stable worked",
-#           :after-tap( {
-#                $s.emit(1);
-#                sleep 1;
-#                $s.emit(1);
-#                sleep 1;
-#                $s.emit(2);
-#                $s.emit(3);
-#                sleep 1;
-#                $s.emit(4);
-#                $s.done;
-#           } ),
-#           :live;
-# }
+#?rakudo skip "doesn't work or can't test"
+{
+        my $ò = Supply.new;
+        tap-ok $ò.stable(2),
+          [1,4],
+          ".stable worked",
+          :after-tap( {
+               $ò.emit(1);
+               sleep 1;
+               $ò.emit(1);
+               sleep 1;
+               $ò.emit(2);
+               $ò.emit(3);
+               sleep 1;
+               $ò.emit(4);
+               $ò.done;
+          } ),
+          :live;
+}
 
     {
         my $е갨с   = Supply.from-list(1..10);
@@ -37,6 +38,3 @@ skip("doesn't work or can't test", 1);# {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

@@ -6,6 +6,7 @@ my $pod_index = 0;
 # Test that we get the values we expect from WHY.contents, WHY.leading,
 # WHY.trailing, and that WHY.WHEREFORE is the appropriate thing
 # Also checks the $=pod object is set appropriately.
+#?DOES 1
 sub test-leading($thing, $value) is test-assertion {
     subtest $thing.^name => {
         plan 7;

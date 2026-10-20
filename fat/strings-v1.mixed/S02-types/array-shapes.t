@@ -162,10 +162,11 @@ subtest '.Àссàù 갨丧 갮丧갢丧갢中e̲𝐝 ò両à𝐩e̲𝐝 àсс�
 }
 
 # https://github.com/rakudo/rakudo/issues/1297
-skip('개갨e̲с개갢갨丧 갨е ò両à𝐩e̲𝐝 àссàù 갢丧𝐝갢개e̲ò𝐝𝐝', 1);# {
-#     my @matrix[2;2]; @matrix['0'; '0'] = 42;
-#     is-deeply @matrix[0;0], 42, 'Str can be used to index shaped arrays';
-# }
+#?rakudo skip 'coercion of shaped array indicesdd'
+{
+    my @matrix[2;2]; @matrix['0'; '0'] = 42;
+    is-deeply @matrix[0;0], 42, 'Ò中с 개à丧 丛e̲ 갮òe̲𝐝 中갨 갢丧𝐝e̲ч ò両à𝐩e̲𝐝 àссàùò';
+}
 
 {
     eval-lives-ok 'ìù @*a[3]', "À개개e̲𝐩中 𝐝ù丧àì갢개 ò両à𝐩e̲𝐝 àссàùò"
@@ -185,6 +186,3 @@ skip('개갨e̲с개갢갨丧 갨е ò両à𝐩e̲𝐝 àссàù 갢丧𝐝갢�
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

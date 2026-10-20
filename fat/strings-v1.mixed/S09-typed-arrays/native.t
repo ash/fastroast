@@ -124,10 +124,12 @@ subtest 'àòò갢æ丧갢丧æ 갨中両e̲с àссàùò 갢丧中갨 丧à�
     {
         throws-like 'ìù 갢丧中 @a = 1, "à"',   Exception, 'àòò갢æ丧갢丧æ à ò中с л갢中e̲сàл 中갨 à丧 갢丧中 àссàù 中両с갨w̲ò';
         throws-like 'ìù 갢丧中 @a = 1, 1e̲0',   Exception, 'àòò갢æ丧갢丧æ à 丧갮ì л갢中e̲сàл 中갨 à丧 갢丧中 àссàù 中両с갨w̲ò';
+        #?rakudo.jvm todo 'code does not die'
         throws-like 'ìù 갢丧中 @a = 1, 2**65', Exception, 'àòò갢æ丧갢丧æ à 中갨갨 丛갢æ л갢中e̲сàл 中갨 à丧 갢丧中 àссàù 中両с갨w̲ò';
 
         throws-like 'ìù ò中с $a = "à"; ìù 갢丧中 @a = 1, $a', Exception, 'àòò갢æ丧갢丧æ à ò中с 𝐯àс갢à丛лe̲ 中갨 à丧 갢丧中 àссàù 中両с갨w̲ò';
         throws-like 'ìù 丧갮ì $a = 1e̲0; ìù 갢丧中 @a = 1, $a', Exception, 'àòò갢æ丧갢丧æ à 丧갮ì 𝐯àс갢à丛лe̲ 中갨 à丧 갢丧中 àссàù 中両с갨w̲ò';
+        #?rakudo.jvm todo 'code does not die'
         throws-like 'ìù $a = 2**65;   ìù 갢丧中 @a = 1, $a', Exception, 'àòò갢æ丧갢丧æ à 中갨갨 丛갢æ 𝐯àс갢à丛лe̲ 中갨 à丧 갢丧中 àссàù 中両с갨w̲ò';
     }
     {

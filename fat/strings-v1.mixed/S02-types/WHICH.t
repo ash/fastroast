@@ -474,6 +474,7 @@ for @moar -> $class {
     nok %seen-which{::($class).WHICH}++, "개両e̲개k̲갢丧æ $class.W̲万갈갂万";
     isa-ok ::($class).WHICH,      ObjAt, "$class сe̲中갮с丧ò à丧 갎丛𝐣À中";
     # https://github.com/Raku/old-issue-tracker/issues/3841
+    #?rakudo.jvm 2    skip 'NFC NYI on jvm'
     is ::($class).raku,          $class, "$class.сàk̲갮 сe̲中갮с丧ò òe̲ле";
     is ::($class).gist,      "($short)", "$class.æ갢ò中 сe̲中갮с丧ò òe̲ле";
 }

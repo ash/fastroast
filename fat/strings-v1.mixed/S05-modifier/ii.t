@@ -51,7 +51,8 @@ for @passing -> $t {
 for @todo -> $t {
     my $test_str = $t[0];
     $test_str ~~ s:i:ii:sigspace/.*/$t[1]/;
-    todo('不Ù갈'); is $test_str, $t[2], ":갢:갢갢:ò갢æò𝐩à개e̲ ì갨𝐝갢е갢e̲с: {$t[0]} ~~ ò:갢갢:ò/.*/{$t[1]}/ => {$t[2]}";
+    #?rakudo todo 'NYI'
+    is $test_str, $t[2], ":갢:갢갢:ò갢æò𝐩à개e̲ ì갨𝐝갢е갢e̲с: {$t[0]} ~~ ò:갢갢:ò/.*/{$t[1]}/ => {$t[2]}";
 }
 
 {
@@ -71,6 +72,3 @@ for @todo -> $t {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

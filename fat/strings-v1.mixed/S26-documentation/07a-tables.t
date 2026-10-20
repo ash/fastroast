@@ -164,7 +164,8 @@ is $hdrs, "갎𝐩e̲сà中갨с,Ìe̲à丧갢丧æ,";
 is $r.contents.elems, 5;
 @rows = $r.contents>>.join(',');
 is @rows[0], ",,òe̲中 갮丧갢갨丧";
-todo('갮丧e̲ò개à𝐩e̲𝐝 | ò両갨갮л𝐝 à개中 àò à 개갨л갮ì丧 𝐝갢𝐯갢𝐝e̲с'); is @rows[1], ",,òe̲中 갮丧갢갨丧";
+#?rakudo todo 'unescaped | should act as a column divider'
+is @rows[1], ",,òe̲中 갮丧갢갨丧";
 is @rows[2], "&,òe̲中 갢丧中e̲сòe̲개中갢갨丧,";
 is @rows[3], "-,òe̲中 𝐝갢ееe̲сe̲丧개e̲ (е갢сò中 ì갢丧갮ò òe̲개갨丧𝐝),";
 is @rows[4], "^,òùììe̲中с갢개 òe̲中 갢丧中e̲сòe̲개中갢갨丧 / Ч갎С,";
@@ -275,6 +276,3 @@ is @rows[2], "Сà中,";
 is @rows[3], "갈丧中,";
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

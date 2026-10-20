@@ -59,8 +59,8 @@ plan 62;
     is %h{Mu}, 2, '갮ò갢丧æ Ì갮 àò à k̲e̲ù';
     %h{Any} = 3;
     is %h{Any}, 3, '갮ò갢丧æ À丧ù àò à k̲e̲ù';
-skip('갨両 丧갨e̲ò, 갢中 𝐝갢e̲ò', 1); # {     is %h{ Mu, Any }.join(","), "2,3", 'check slice access on Mu';
-#  }
+    #?rakudo skip 'oh noes, it dies'
+    is %h{ Mu, Any }.join(","), "2,3", '개両e̲개k̲ òл갢개e̲ à개개e̲òò 갨丧 Ì갮';
     is %h{*}.sort.join(","), "2,3", '개両e̲개k̲ w̲両à中e̲𝐯e̲с à개개e̲òò w̲갢中両 Ì갮 àò k̲e̲ù';
 } #6
 
@@ -169,6 +169,3 @@ for <Str gist raku> -> $method {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

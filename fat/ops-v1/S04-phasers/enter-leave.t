@@ -81,17 +81,18 @@ plan 36;
 
 # normal closure:
 # https://github.com/Raku/old-issue-tracker/issues/4112
-skip('leave NYI RT #124960', 1);# {
-#     is EVAL(q{
-#         my $a;
-#         {
-#             leave;
-#             $a = 100;
-#             LEAVE { $a++ }
-#         }
-#         $a;
-#     }), 1, 'leave triggers LEAVE {}';
-# }
+#?rakudo skip 'leave NYI RT #124960'
+{
+    is EVAL(q{
+        my $a;
+        {
+            leave;
+            $a = 100;
+            LEAVE { $a++ }
+        }
+        $a;
+    }), 1, 'leave triggers LEAVE {}';
+}
 
 {
     my $str;
@@ -120,7 +121,8 @@ skip('leave NYI RT #124960', 1);# {
         try { die 'foo' }
         $str ~= (defined($!) ?? 'aye' !! 'nay');
     }
-    todo('is this spec? why would LEAVE not see outer $!? fossil?'); is $str, 'ayeno', '$! not set in LEAVE if exception not thrown';
+    #?rakudo todo 'is this spec? why would LEAVE not see outer $!? fossil?'
+    is $str, 'ayeno', '$! not set in LEAVE if exception not thrown';
 }
 
 {
@@ -146,6 +148,7 @@ skip('leave NYI RT #124960', 1);# {
         }
         $str ~= ')';
     }
+    #?rakudo.jvm todo "nigh"
     is $str, '(x)', 'die in LEAVE caught by try';
 }
 
@@ -180,6 +183,7 @@ skip('leave NYI RT #124960', 1);# {
         LEAVE { $str ~= '2'; die 'foo' }
     }
     is $str, '21', 'die doesn\'t abort LEAVE queue';
+    #?rakudo.jvm todo 'RT #121530'
     is $!.message, 'foo', 'single exception from LEAVE is rethrown after running LEAVEs';
 }
 
@@ -324,6 +328,3 @@ skip('leave NYI RT #124960', 1);# {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

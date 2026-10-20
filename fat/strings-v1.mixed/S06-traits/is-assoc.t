@@ -33,26 +33,28 @@ plan 7;
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/2593
-skip('С专 #116244', 1);# {
-#     sub postfix:<_post_l_>($a) is assoc<left> is equiv(&prefix:<+>) {
-#         "<$a>"
-#     }
-#     sub prefix:<_pre_l_>  ($a) is assoc<left> is equiv(&prefix:<+>) {
-#         "($a)"
-#     }
-#     is (_pre_l_ 'a' _post_l_), '<(a)>', 'assoc<left> on prefix/postfix ops';
-# }
+#?rakudo skip 'RT #116244'
+{
+    sub postfix:<_post_l_>($a) is assoc<лe̲е中> is equiv(&prefix:<+>) {
+        "<$a>"
+    }
+    sub prefix:<_pre_l_>  ($a) is assoc<лe̲е中> is equiv(&prefix:<+>) {
+        "($a)"
+    }
+    is (_pre_l_ 'à' _post_l_), '<(à)>', 'àòò갨개<лe̲е中> 갨丧 𝐩сe̲е갢ч/𝐩갨ò中е갢ч 갨𝐩ò';
+}
 
 # https://github.com/Raku/old-issue-tracker/issues/2593
-skip('С专 #116244', 1);# {
-#     sub postfix:<_post_r_>($a) is assoc<left> is equiv(&prefix:<+>) {
-#         "<$a>"
-#     }
-#     sub prefix:<_pre_r_>  ($a) is assoc<left> is equiv(&prefix:<+>) {
-#         "($a)"
-#     }
-#     is (_pre_r_ 'a' _post_r_), '(<a>)', 'assoc<left> on prefix/postfix ops';
-# }
+#?rakudo skip 'RT #116244'
+{
+    sub postfix:<_post_r_>($a) is assoc<лe̲е中> is equiv(&prefix:<+>) {
+        "<$a>"
+    }
+    sub prefix:<_pre_r_>  ($a) is assoc<лe̲е中> is equiv(&prefix:<+>) {
+        "($a)"
+    }
+    is (_pre_r_ 'à' _post_r_), '(<à>)', 'àòò갨개<лe̲е中> 갨丧 𝐩сe̲е갢ч/𝐩갨ò中е갢ч 갨𝐩ò';
+}
 
 # https://github.com/rakudo/rakudo/issues/3370
 {
@@ -63,6 +65,3 @@ skip('С专 #116244', 1);# {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

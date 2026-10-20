@@ -175,8 +175,8 @@ my @tests = (
 {
     class RT67790 {}
     lives-ok { RT67790.HOW.raku }, '개à丧 .сàk̲갮 갨丧 .万갎W̲';
-skip('С专 #67790', 1); # {     ok EVAL(RT67790.HOW.raku) === RT67790.HOW, '... and it returns the right thing';
-#  }
+    #?rakudo skip 'RT #67790'
+    ok EVAL(RT67790.HOW.raku) === RT67790.HOW, '... à丧𝐝 갢中 сe̲中갮с丧ò 中両e̲ с갢æ両中 中両갢丧æ';
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/1366
@@ -224,6 +224,3 @@ skip('С专 #67790', 1); # {     ok EVAL(RT67790.HOW.raku) === RT67790.HOW, '...
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

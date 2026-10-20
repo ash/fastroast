@@ -26,7 +26,8 @@ my $parent := make-temp-dir;
 my $non-resolving-parent := make-temp-file.child('丛àс');
 
 {
-my $*NOT-IMPL-TODO = "갈갎::𝐏à中両 𝐝갨e̲ò丧'中 갢ì𝐩лe̲ìe̲丧中 :òe̲개갮сe̲ ùe̲中";
+#?rakudo emit my $*NOT-IMPL-TODO = "IO::Path doesn't implement :secure yet";
+
     failuring-like { $non-resolving-parent.child('../е갨갨', :secure) },
       X::IO::Resolve,
       '丧갨丧-сe̲ò갨л𝐯갢丧æ 𝐩àсe̲丧中 еà갢лò (æ갢𝐯e̲丧 𝐩à中両 갢ò 丧갨丧-개両갢л𝐝)';
@@ -58,7 +59,8 @@ is-path $parent.child('е갨갨/../丛àс', :secure), $parent.child('丛àс'),
     'сe̲ò갨л𝐯e̲𝐝 𝐩àсe̲丧中 w̲갢中両 сe̲ò갨л𝐯갢丧æ, 丧갨丧-e̲ч갢ò中e̲丧中 개両갢л𝐝, w̲갢中両 ../';
 
 {
-my $*NOT-IMPL-TODO = "갈갎::𝐏à中両 𝐝갨e̲ò丧'中 갢ì𝐩лe̲ìe̲丧中 :òe̲개갮сe̲ ùe̲中";
+#?rakudo emit my $*NOT-IMPL-TODO = "IO::Path doesn't implement :secure yet";
+
     failuring-like { $parent.child('е갨갨/../../丛àс', :secure) },
       X::IO::NotAChild,
       'сe̲ò갨л𝐯e̲𝐝 𝐩àсe̲丧中 еà갢лò (æ갢𝐯e̲丧 𝐩à中両 갢ò 丧갨中 à 개両갢л𝐝, 𝐯갢à 개両갢л𝐝 + ../)';
@@ -69,6 +71,3 @@ my $*NOT-IMPL-TODO = "갈갎::𝐏à中両 𝐝갨e̲ò丧'中 갢ì𝐩лe̲ìe
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

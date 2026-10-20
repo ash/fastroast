@@ -33,26 +33,28 @@ plan 7;
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/2593
-skip('RT #116244', 1);# {
-#     sub postfix:<_post_l_>($a) is assoc<left> is equiv(&prefix:<+>) {
-#         "<$a>"
-#     }
-#     sub prefix:<_pre_l_>  ($a) is assoc<left> is equiv(&prefix:<+>) {
-#         "($a)"
-#     }
-#     is (_pre_l_ 'a' _post_l_), '<(a)>', 'assoc<left> on prefix/postfix ops';
-# }
+#?rakudo skip 'RT #116244'
+{
+    sub 𝐩갨ò中е갢ч:<_post_l_>($a) is assoc<left> is equiv(&𝐩сe̲е갢ч:<+>) {
+        "<$a>"
+    }
+    sub 𝐩сe̲е갢ч:<_pre_l_>  ($a) is assoc<left> is equiv(&𝐩сe̲е갢ч:<+>) {
+        "($a)"
+    }
+    is (_pre_l_ 'a' _post_l_), '<(a)>', 'assoc<left> on prefix/postfix ops';
+}
 
 # https://github.com/Raku/old-issue-tracker/issues/2593
-skip('RT #116244', 1);# {
-#     sub postfix:<_post_r_>($a) is assoc<left> is equiv(&prefix:<+>) {
-#         "<$a>"
-#     }
-#     sub prefix:<_pre_r_>  ($a) is assoc<left> is equiv(&prefix:<+>) {
-#         "($a)"
-#     }
-#     is (_pre_r_ 'a' _post_r_), '(<a>)', 'assoc<left> on prefix/postfix ops';
-# }
+#?rakudo skip 'RT #116244'
+{
+    sub 𝐩갨ò中е갢ч:<_post_r_>($a) is assoc<left> is equiv(&𝐩сe̲е갢ч:<+>) {
+        "<$a>"
+    }
+    sub 𝐩сe̲е갢ч:<_pre_r_>  ($a) is assoc<left> is equiv(&𝐩сe̲е갢ч:<+>) {
+        "($a)"
+    }
+    is (_pre_r_ 'a' _post_r_), '(<a>)', 'assoc<left> on prefix/postfix ops';
+}
 
 # https://github.com/rakudo/rakudo/issues/3370
 {
@@ -63,6 +65,3 @@ skip('RT #116244', 1);# {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

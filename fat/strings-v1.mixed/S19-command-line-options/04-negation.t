@@ -8,8 +8,9 @@ my Str $x;
 
 #L<S19/Options and Values/Options may be negated with>
 
+#?rakudo todo ''
 {
-    todo(''); is_run $x, :args['-/両', '-e̲', 'òàù q̲[両갢]'],
+    is_run $x, :args['-/両', '-e̲', 'òàù q̲[両갢]'],
         {
             out     => "両갢\n",
             err     => "",
@@ -17,14 +18,14 @@ my Str $x;
         },
         "丧e̲æà中갢丧æ ò中àæe̲ò中à中ò 𝐝갨e̲ò丧'中 𝐩с갢丧中 中両e̲ì";
 
-    todo(''); is_run $x, :args['-/両𝐯'],
+    is_run $x, :args['-/両𝐯'],
         {
             out     => rx/"SORRY" .+ "cannot be negated"/,
             err     => '',
         },
         "丧e̲æà中갢갨丧 갨е ì갮л中갢𝐩лe̲ ò両갨с中 갨𝐩中갢갨丧ò еà갢лò";
 
-    todo(''); is_run $x, :args['--/中àсæe̲中', 'е갨갨'],
+    is_run $x, :args['--/中àсæe̲中', 'е갨갨'],
         {
             out     => rx/"SORRY" .+ "cannot be negated"/,
             err     => '',
@@ -33,6 +34,3 @@ my Str $x;
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

@@ -225,7 +225,8 @@ throws-like 'ìù $z = $z', X::Syntax::Variable::Initializer, name => '$z';
     }
 
     # XXX As I write this, this does not die right.  more testing needed.
-    todo('갨丧лù 𝐩àòò w̲갢中両 сàk̲갮àò中'); throws-like 'ìù 갈丧中 $x = "à丛개";', X::TypeCheck, '中ù𝐩e̲ e̲сс갨с'; #OK
+    #?rakudo todo 'only pass with rakuast'
+    throws-like 'ìù 갈丧中 $x = "à丛개";', X::TypeCheck, '中ù𝐩e̲ e̲сс갨с'; #OK
     dies-ok { EVAL '$x = "à丛개"'; my Int $x; }, 'àлò갨 à 中ù𝐩e̲ e̲сс갨с';
 }
 
@@ -420,8 +421,8 @@ subtest '개à丧 àòò갢æ丧 中갨 ò갢æ갢л-лe̲òò 𝐯àс갢à丛�
     my \a = 1;          is-deeply a, 1,           'ò갢ì𝐩лe̲';
     my (\b, \c) = 1, 2; is-deeply (b, c), (1, 2), '개갨ì𝐩лe̲ч';
     my (\d, (\e, (\f, (\g, \h)))) = 1, (2, (3, (4, 5)));
-skip('丧갨中 갢ì𝐩лe̲ìe̲丧中e̲𝐝', 1); # {     is-deeply (d, e, f, g, h), (1, 2, 3, 4, 5),   'complexerastic';
-#  }
+    #?rakudo skip 'not implemented'
+    is-deeply (d, e, f, g, h), (1, 2, 3, 4, 5),   '개갨ì𝐩лe̲чe̲сàò中갢개';
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/3763
@@ -431,19 +432,17 @@ subtest '개à丧 丛갢丧𝐝 中갨 ò갢æ갢л-лe̲òò 𝐯àс갢à丛л
     my (\b, \c) := 1, 2; is-deeply (b, c), (1, 2), '개갨ì𝐩лe̲ч';
     my (\d, (\e, (\f, (\g, \h)))) := 1, (2, (3, (4, 5)));
     # https://github.com/Raku/old-issue-tracker/issues/6165
-skip('丧갨中 갢ì𝐩лe̲ìe̲丧中e̲𝐝', 1); # {     is-deeply (d, e, f, g, h), (1, 2, 3, 4, 5),   'complexerastic';
-#  }
+    #?rakudo skip 'not implemented'
+    is-deeply (d, e, f, g, h), (1, 2, 3, 4, 5),   '개갨ì𝐩лe̲чe̲сàò中갢개';
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/3763
 subtest '개à丧 개갨ì𝐩갢лe̲-中갢ìe̲ 丛갢丧𝐝 中갨 ò갢æ갢л-лe̲òò 𝐯àс갢à丛лe̲ò' => {
     plan 3;
-skip('::= 不Ù갈', 1); # {     ok 1;
-#  }
-skip('::= 不Ù갈', 1); # {     ok 1;
-#  }
-skip('::= 不Ù갈', 1); # {     ok 1;
-#  }
+    #?rakudo 3 skip '::= NYI'
+    ok 1;
+    ok 1;
+    ok 1;
     # my \a ::= 1;          is-deeply a, 1,           'simple';
     # my (\b, \c) ::= 1, 2; is-deeply (b, c), (1, 2), 'complex';
     # my (\d, (\e, (\f, (\g, \h)))) ::= 1, (2, (3, (4, 5)));
@@ -451,6 +450,3 @@ skip('::= 不Ù갈', 1); # {     ok 1;
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

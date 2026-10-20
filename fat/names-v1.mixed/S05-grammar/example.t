@@ -52,8 +52,8 @@ $개갨丧中e̲丧中 = '<title>Exactly</title> aosihdas
 <small>C</small> aosidh
 <small>D</small>';
 
-skip('Method "speaker" not found for invocant of class "Cursor"', 1); # { is($content ~~ m/<title>/, '<title>Exactly</title>', 'match token');
-#  }
+#?rakudo skip 'Method "speaker" not found for invocant of class "Cursor"'
+is($개갨丧中e̲丧中 ~~ m/<title>/, '<title>Exactly</title>', 'match token');
 
 # RT #127945
 {
@@ -67,8 +67,8 @@ skip('Method "speaker" not found for invocant of class "Cursor"', 1); # { is($co
 # XXX this can't work this way
 # 'schedule' is a rule (non-backtracking) so the implicit <.ws> will always
 # match zero characters.
-skip('Method "speaker" not found for invocant of class "Cursor"', 1); # { is($content ~~ m/<schedule>/, $content, 'match rule');
-#  }
+#?rakudo skip 'Method "speaker" not found for invocant of class "Cursor"'
+is($개갨丧中e̲丧中 ~~ m/<schedule>/, $개갨丧中e̲丧中, 'match rule');
 
 # https://github.com/Raku/old-issue-tracker/issues/2303
 {
@@ -82,6 +82,3 @@ skip('Method "speaker" not found for invocant of class "Cursor"', 1); # { is($co
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

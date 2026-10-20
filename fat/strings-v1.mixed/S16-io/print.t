@@ -30,6 +30,8 @@ is_run 'ìù $a = (\'갨\', \'k̲\', \'k̲\'); $*OUT.𝐩с갢丧中: $a', { out
     '$*OUT.𝐩с갢丧中: 개갨丧中à갢丧e̲с갢丳e̲𝐝 Àссàù';
 
 # https://github.com/Raku/old-issue-tracker/issues/6647
+#?rakudo.jvm skip 'atomicint NYI'
+#?DOES 1
 {
   subtest '𝐩с갢丧中갢丧æ с갨갮中갢丧e̲ò w̲갢中両 𝐉갮丧개中갢갨丧ò' => {
     plan 2;

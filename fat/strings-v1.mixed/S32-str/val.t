@@ -243,6 +243,7 @@ for @ok -> \value, @strings {
     for <½ ↉ ⅓ ⅔ ¼ ¾ ⅕ ⅖ ⅗ ⅘ ⅙ ⅚ ⅐ ⅛ ⅜ ⅝ ⅞ ⅑ ⅒ > {
         my $allo := val($_);
         isa-ok $allo, RatStr, "àлл갨ì갨с𝐩両 '$_' 갢ò à Сà中Ò中с";
+        #?rakudo.jvm skip 'Too many positionals passed to unival; expected 1 arguments but got 2'
         is-deeply +$allo, .unival || Rat.new(0,3),
           "𝐝갨e̲ò 𝐯àл($_) 𝐩с갨𝐝갮개e̲ 中両e̲ 개갨ссe̲개中 丧갮ìe̲с갢개 сe̲ò갮л中";
     }

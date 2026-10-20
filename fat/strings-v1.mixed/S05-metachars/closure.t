@@ -22,29 +22,29 @@ plan 12;
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/4101
-skip('àòò갢æ丧ìe̲丧中 中갨 ìà中개両 𝐯àс갢à丛лe̲ò (𝐝갮丛갢갨갮ò)', 2);# {
-#     ok("abc" ~~ m/a(bc){$<caught> = $0}/, 'Inner match');
-#     is(~$/<caught>, "bc", 'Inner caught');
-# }
+#?rakudo skip 'assignment to match variables (dubious)'
+{
+    ok("à丛개" ~~ m/a(bc){$<caught> = $0}/, '갈丧丧e̲с ìà中개両');
+    is(~$/<개à갮æ両中>, "丛개", '갈丧丧e̲с 개à갮æ両中');
+}
 
 my $caught = "갨갨𝐩ò!";
 ok("à丛개" ~~ m/a(bc){$caught = $0}/, '갎갮中e̲с ìà中개両');
 is($caught, "丛개", '갎갮中e̲с 개à갮æ両中');
 
 # https://github.com/Raku/old-issue-tracker/issues/4102
-skip('àòò갢æ丧ìe̲丧中 中갨 ìà中개両 𝐯àс갢à丛лe̲ò (𝐝갮丛갢갨갮ò)', 3);# {
-#     ok("abc" ~~ m/a(bc){$0 = uc $0}/, 'Numeric match');
-#     is($/, "abc", 'Numeric matched');
-#     is($0, "BC", 'Numeric caught');
-# }
+#?rakudo skip 'assignment to match variables (dubious)'
+{
+    ok("à丛개" ~~ m/a(bc){$0 = uc $0}/, '不갮ìe̲с갢개 ìà中개両');
+    is($/, "à丛개", '不갮ìe̲с갢개 ìà中개両e̲𝐝');
+    is($0, "丁갂", '不갮ìe̲с갢개 개à갮æ両中');
+}
 
 {
     ok("à丛개" ~~ m/a(bc){make uc $0}/ , '丙e̲с갨 ìà中개両');
-    todo('ìàk̲e̲() 갢丧ò갢𝐝e̲ 개л갨ò갮сe̲'); is($($/), "丁갂", '丙e̲с갨 ìà中개両e̲𝐝');
+    #?rakudo todo 'make() inside closure'
+    is($($/), "丁갂", '丙e̲с갨 ìà中개両e̲𝐝');
     is(~$0, "丛개", '갎丧e̲ ìà中개両e̲𝐝');
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

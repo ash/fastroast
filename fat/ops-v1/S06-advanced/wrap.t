@@ -112,9 +112,11 @@ sub levelwrap($n) {
 is( levelwrap( 1 ), 1, "Sanity test." );
 is( levelwrap( 2 ), 2, "Sanity test." );
 
-todo('callwith'); lives-ok { &levelwrap.callwith( 1 )},
+#?rakudo todo 'callwith'
+lives-ok { &levelwrap.callwith( 1 )},
     "Check that functions have a 'callwith' that works. ";
 
+#?DOES 20
 {
     for (1..10) -> $num {
         lives-ok {
@@ -154,9 +156,11 @@ sub functionB {
         };
         is( functionB, 'yyy', 'Check that function is wrapped.' );
     }
-    todo('temp and wrap'); is( functionB, 'xxx', "Wrap is now out of scope, should be back to normal." );
+    #?rakudo todo 'temp and wrap'
+    is( functionB, 'xxx', "Wrap is now out of scope, should be back to normal." );
 }
-todo('temp and wrap'); is( functionB, 'xxx', "Wrap is now out of scope, should be back to normal." );
+#?rakudo todo 'temp and wrap'
+is( functionB, 'xxx', "Wrap is now out of scope, should be back to normal." );
 
 # https://github.com/Raku/old-issue-tracker/issues/1390
 # call to nextsame with nowhere to go
@@ -231,6 +235,7 @@ try {
         2 × callsame;
     });
     # https://github.com/Raku/old-issue-tracker/issues/2105
+    #?rakudo.jvm todo "still returns 10,"
     is multi-to-wrap(5), 20, 'can wrap a multi';
 }
 
@@ -432,6 +437,3 @@ try {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

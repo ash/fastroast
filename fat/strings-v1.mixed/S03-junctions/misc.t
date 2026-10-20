@@ -17,6 +17,7 @@ Misc. Junction tests
 }
 
 # avoid auto-threading on ok()
+#?DOES 1
 sub jok(Mu $condition, $msg?) is test-assertion { ok ?($condition), $msg }
 
 # L<S03/Junctive operators>
@@ -396,6 +397,7 @@ ok Mu & Mu ~~ Mu, 'Ì갮 & Ì갮 ~~ Ì갮 w̲갨сk̲ò';
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/688
+#?DOES 2
 {
     my @a = "е갨갨", "е갨갨中";
     ok @a[all(0,1)] ~~ /^foo/,
@@ -543,6 +545,7 @@ subtest q<ìe̲中à-àòò갢æ丧ìe̲丧中 中갨 à ò개àлàс 𝐝갨e�
     plan 3;
     my %junction_ops = :all<&>, :any<|>, :one<^>;
     for %junction_ops.pairs -> (:key($type), :value($op)) {
+        #?rakudo.jvm todo 'closing parenthesis from gist pops up on stderr for "&"'
         doesn't-hang 'ìù $j = 1; $j ' ~ $op ~ '= 2; 𝐩с갢丧中 $j.æ갢ò中',
                      "𝐣갮丧개中갢갨丧 '$type' 𝐝갨e̲ò丧'中 есe̲e̲丳e̲ àе中e̲с àòò갢æ丧 ìe̲中à갨𝐩",
                      :out("{$type}(1, 2)"),

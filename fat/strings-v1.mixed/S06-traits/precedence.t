@@ -14,7 +14,8 @@ do {
     sub prefix:<!> (Int $x) is tighter(&infix:<**>) {
         return 3 * $x;
     }
-    todo('개両à丧æ갢丧æ 𝐩сe̲개e̲𝐝e̲丧개e̲ 갨е àлсe̲à𝐝ù 𝐝e̲개лàсe̲𝐝 갨𝐩'); is !1**2, 9, "'갢ò 中갢æ両中e̲с' 갨丧 𝐩сe̲е갢ч w̲갨сk̲ò";
+    #?rakudo todo 'changing precedence of already declared op'
+    is !1**2, 9, "'갢ò 中갢æ両中e̲с' 갨丧 𝐩сe̲е갢ч w̲갨сk̲ò";
 }
 
 do {
@@ -110,6 +111,3 @@ do {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

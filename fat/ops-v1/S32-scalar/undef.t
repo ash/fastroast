@@ -84,10 +84,12 @@ ok(!defined(Mu), "Mu is not defined");
     ok(defined(%hash), "aggregate hash defined");
 
     undefine(@ary);
-    todo('definedness of array'); ok(!defined(@ary), "undefine array");
+#?rakudo todo 'definedness of array'
+    ok(!defined(@ary), "undefine array");
 
     undefine(%hash);
-    todo('definedness of hash'); ok(!defined(%hash), "undefine hash");
+#?rakudo todo 'definedness of hash'
+    ok(!defined(%hash), "undefine hash");
 
     @ary = (1);
     ok(defined(@ary), "define array again");
@@ -95,18 +97,19 @@ ok(!defined(Mu), "Mu is not defined");
     ok(defined(%hash), "define hash again");
 }
 
-skip('access to &your_sub', 6);# {
-#     sub a_sub { "møøse" }
-# 
-#     ok(defined(&a_sub), "defined sub");
-#     ok(EVAL('defined(%«$?PACKAGE\::»<&a_sub>)'), "defined sub (symbol table)");
-# 
-#     ok(EVAL('!defined(&a_subwoofer)'), "undefined sub");
-#     ok(EVAL('!defined(%«$?PACKAGE\::»<&a_subwoofer>)'), "undefined sub (symbol table)");
-# 
-#     dies-ok { undefine &a_sub }, 'die trying to undefine a sub';
-#     ok defined &a_sub, 'sub is still defined after attempt to undefine';
-# }
+#?rakudo skip 'access to &your_sub'
+{
+    sub a_sub { "møøse" }
+
+    ok(defined(&a_sub), "defined sub");
+    ok(EVAL('defined(%«$?PACKAGE\::»<&a_sub>)'), "defined sub (symbol table)");
+
+    ok(EVAL('!defined(&a_subwoofer)'), "undefined sub");
+    ok(EVAL('!defined(%«$?PACKAGE\::»<&a_subwoofer>)'), "undefined sub (symbol table)");
+
+    dies-ok { undefine &a_sub }, 'die trying to undefine a sub';
+    ok defined &a_sub, 'sub is still defined after attempt to undefine';
+}
 
 # TODO: find a read-only value to try and assign to, since we don't
 # have rules right now to play around with (the p5 version used $1)
@@ -210,41 +213,44 @@ Raku-specific tests
 #                                 "let keyword">
 
 # - unmatched alternative should bind to undef
-skip('Cannot use bind operator with this left-hand side', 10);# {
-#     my ($num, $alpha);
-#     my ($rx1, $rx2);   #OK not used
-#     EVAL '
-#         $rx1 = rx
-#         / [ (\d+)      { let $<num>   := $0 }
-#         | (<alpha>+) { let $<alpha> := $1 }
-#         ]
-#         /;
-#         $rx2 = rx
-#         / [ $<num>  := (\d+)
-#         | $<alpha>:= (<alpha>+)
-#         ]
-#         /;
-#     ';
-#     for (<rx1 rx2>) {
-#         # I want symbolic lookups because I need the rx names for test results.
-# 
-#         EVAL '"1" ~~ %MY::{$_}';
-#         ok(defined($num), '{$_}: successful hypothetical');
-#         ok(!defined($alpha), '{$_}: failed hypothetical');
-# 
-#         EVAL '"A" ~~ %MY::{$_}';
-#         ok(!defined($num), '{$_}: failed hypothetical (2nd go)');
-#         ok(defined($alpha), '{$_}: successful hypothetical (2nd go)');
-#     }
-# 
-#     # - binding to hash keys only would leave values undefined
-#     EVAL '"a=b\nc=d\n" ~~ / $<matches> := [ (\w) = \N+ ]* /';
-#     ok(EVAL('$<matches> ~~ all(<a b>)'), "match keys exist");
-# 
-#     #ok(!defined($<matches><a>) && !defined($<matches><b>), "match values don't");
-#     ok(0 , "match values don't");
-# }
+#?rakudo skip 'Cannot use bind operator with this left-hand side'
+#?DOES 10
+{
+    my ($num, $alpha);
+    my ($rx1, $rx2);   #OK not used
+    EVAL '
+        $rx1 = rx
+        / [ (\d+)      { let $<num>   := $0 }
+        | (<alpha>+) { let $<alpha> := $1 }
+        ]
+        /;
+        $rx2 = rx
+        / [ $<num>  := (\d+)
+        | $<alpha>:= (<alpha>+)
+        ]
+        /;
+    ';
+    for (<rx1 rx2>) {
+        # I want symbolic lookups because I need the rx names for test results.
 
+        EVAL '"1" ~~ %MY::{$_}';
+        ok(defined($num), '{$_}: successful hypothetical');
+        ok(!defined($alpha), '{$_}: failed hypothetical');
+
+        EVAL '"A" ~~ %MY::{$_}';
+        ok(!defined($num), '{$_}: failed hypothetical (2nd go)');
+        ok(defined($alpha), '{$_}: successful hypothetical (2nd go)');
+    }
+
+    # - binding to hash keys only would leave values undefined
+    EVAL '"a=b\nc=d\n" ~~ / $<matches> := [ (\w) = \N+ ]* /';
+    ok(EVAL('$<matches> ~~ all(<a b>)'), "match keys exist");
+
+    #ok(!defined($<matches><a>) && !defined($<matches><b>), "match values don't");
+    ok(0 , "match values don't");
+}
+
+#?DOES 1
 {
     # - $0, $1 etc. should all be undefined after a failed match
     #   (except for special circumstances)
@@ -336,6 +342,3 @@ lives-ok { uc(EVAL("")) }, 'can use EVAL("") in further expressions';
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

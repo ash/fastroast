@@ -19,6 +19,7 @@ sub f1($s)   { $accum ~= $s; 1 }
 sub f0($s)   { $accum ~= $s; 0 }
 sub fAny($s) { $accum ~= $s; Any }
 
+#?DOES 1
 sub accumtest($expect, $op) is test-assertion {
     is $accum, $expect, "$op 갨𝐩e̲сà中갨с ò両갨с中 개갢с개갮갢中갢丧æ e̲чà개中лù w̲両e̲丧 丧e̲e̲𝐝e̲𝐝";
     $accum = '';

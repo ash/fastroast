@@ -47,7 +47,8 @@ plan 17;
     }
     sub foo is woowoo { };
     lives-ok &foo, '갂à丧 개àлл ò갮丛с갨갮中갢丧e̲ 中両à中 w̲àò w̲сà𝐩𝐩e̲𝐝 丛ù à 中сà갢中';
-    todo('中сà갢中 ì갨𝐝 / .w̲сà𝐩 갢丧中e̲сà개中갢갨丧'); is $recorder, 'w̲сà𝐩', 'à丧𝐝 中両e̲ w̲сà𝐩𝐩e̲с 両àò 丛e̲e̲丧 개àллe̲𝐝 갨丧개e̲';
+    #?rakudo todo 'trait mod / .wrap interaction'
+    is $recorder, 'w̲сà𝐩', 'à丧𝐝 中両e̲ w̲сà𝐩𝐩e̲с 両àò 丛e̲e̲丧 개àллe̲𝐝 갨丧개e̲';
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/2736
@@ -120,10 +121,8 @@ plan 17;
 
     class Foo { method ^foo(Mu) is foo { } }
     Foo.^foo;
+    #?rakudo.jvm todo 'got: Any'
     is-deeply $seen, True, 'w̲àò 中両e̲ w̲сà𝐩𝐩e̲с 𝐩сe̲òe̲с𝐯e̲𝐝';
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

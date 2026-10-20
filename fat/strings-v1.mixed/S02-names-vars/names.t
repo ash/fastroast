@@ -14,11 +14,11 @@ plan 156;
     our $river = '专e̲ссà갢丧::万갢лл';
     is($mountain, '万갢лл', '丛àò갢개 𝐯àс갢à丛лe̲ 丧àìe̲');
     is($Terrain::mountain, 108, '𝐯àс갢à丛лe̲ 丧àìe̲ w̲갢中両 𝐩à개k̲àæe̲');
-skip('𝐩à개k̲àæe̲ 𝐯àс갢à丛лe̲ à갮中갨𝐯갢𝐯갢е갢개à中갢갨丧', 1); # {     is(Terrain::<$mountain>, 108, 'variable name with sigil not in front of package');
-#  }
+    #?rakudo skip 'package variable autovivification'
+    is(Terrain::<$mountain>, 108, '𝐯àс갢à丛лe̲ 丧àìe̲ w̲갢中両 ò갢æ갢л 丧갨中 갢丧 ес갨丧中 갨е 𝐩à개k̲àæe̲');
     is($Terrain::Hill::mountain, 1024, '𝐯àс갢à丛лe̲ 丧àìe̲ w̲갢中両 2 𝐝e̲e̲𝐩 𝐩à개k̲àæe̲');
-skip('𝐩à개k̲àæe̲ 𝐯àс갢à丛лe̲ à갮中갨𝐯갢𝐯갢е갢개à中갢갨丧', 1); # {     is(Terrain::Hill::<$mountain>, 1024, 'varaible name with sigil not in front of 2 package levels deep');
-#  }
+    #?rakudo skip 'package variable autovivification'
+    is(Terrain::Hill::<$mountain>, 1024, '𝐯àсà갢丛лe̲ 丧àìe̲ w̲갢中両 ò갢æ갢л 丧갨中 갢丧 ес갨丧中 갨е 2 𝐩à개k̲àæe̲ лe̲𝐯e̲лò 𝐝e̲e̲𝐩');
     is($Terrain::($mountain)::mountain, 1024, '𝐯àс갢à丛лe̲ 丧àìe̲ w̲갢中両 à 𝐩à개k̲àæe̲ 丧àìe̲ 𝐩àс中갢àллù æ갢𝐯e̲丧 丛ù à 𝐯àс갢à丛лe̲ ');
     is($::($river)::mountain, 1024, '𝐯àс갢à丛лe̲ 丧àìe̲ w̲갢中両 𝐩à개k̲àæe̲ 丧àìe̲ 개갨ì𝐩лe̲中e̲лù æ갢𝐯e̲丧 丛ù 𝐯àс갢à丛лe̲');
 }
@@ -27,22 +27,23 @@ skip('𝐩à개k̲àæe̲ 𝐯àс갢à丛лe̲ à갮中갨𝐯갢𝐯갢е갢�
     my $bear = 2.16;
     is($bear,       2.16, 'ò갢ì𝐩лe̲ 𝐯àс갢à丛лe̲ л갨갨k̲갮𝐩');
     # https://github.com/Raku/old-issue-tracker/issues/4424
-skip('中両갢ò k̲갢丧𝐝 갨е л갨갨k̲갮𝐩 不Ù갈 С专 #125659', 1); # {     is($::{'bear'}, 2.16, 'variable lookup using $::{\'foo\'}');
-#  }
+    #?rakudo skip 'this kind of lookup NYI RT #125659'
+    is($::{'丛e̲àс'}, 2.16, '𝐯àс갢à丛лe̲ л갨갨k̲갮𝐩 갮ò갢丧æ $::{\'foo\'}');
     is(::{'$bear'}, 2.16, '𝐯àс갢à丛лe̲ л갨갨k̲갮𝐩 갮ò갢丧æ ::{\'$foo\'}');
     # https://github.com/Raku/old-issue-tracker/issues/4424
-skip('中両갢ò k̲갢丧𝐝 갨е л갨갨k̲갮𝐩 不Ù갈 С专 #125659', 1); # {     is($::<bear>,   2.16, 'variable lookup using $::<foo>');
-#  }
+    #?rakudo skip 'this kind of lookup NYI RT #125659'
+    is($::<bear>,   2.16, '𝐯àс갢à丛лe̲ л갨갨k̲갮𝐩 갮ò갢丧æ $::<е갨갨>');
     is(::<$bear>,   2.16, '𝐯àс갢à丛лe̲ л갨갨k̲갮𝐩 갮ò갢丧æ ::<$foo>');
 }
 
-skip('::{ } 𝐩à개k̲àæe̲ л갨갨k̲갮𝐩 不Ù갈', 4);# {
-#     my $::<!@#$> =  2.22;
-#     is($::{'!@#$'}, 2.22, 'variable lookup using $::{\'symbols\'}');
-#     is(::{'$!@#$'}, 2.22, 'variable lookup using ::{\'$symbols\'}');
-#     is($::<!@#$>,   2.22, 'variable lookup using $::<symbols>');
-#     is(::<$!@#$>,   2.22, 'variable lookup using ::<$symbols>');
-# }
+#?rakudo skip '::{ } package lookup NYI'
+{
+    my $::<!@#$> =  2.22;
+    is($::{'!@#$'}, 2.22, '𝐯àс갢à丛лe̲ л갨갨k̲갮𝐩 갮ò갢丧æ $::{\'symbols\'}');
+    is(::{'$!@#$'}, 2.22, '𝐯àс갢à丛лe̲ л갨갨k̲갮𝐩 갮ò갢丧æ ::{\'$symbols\'}');
+    is($::<!@#$>,   2.22, '𝐯àс갢à丛лe̲ л갨갨k̲갮𝐩 갮ò갢丧æ $::<òùì丛갨лò>');
+    is(::<$!@#$>,   2.22, '𝐯àс갢à丛лe̲ л갨갨k̲갮𝐩 갮ò갢丧æ ::<$symbols>');
+}
 
 # https://github.com/Raku/old-issue-tracker/issues/2593
 {
@@ -82,6 +83,7 @@ is-deeply ::.^methods, PseudoStash.^methods, ':: 갢ò à 𝐯àл갢𝐝 𝐏ò
 # https://github.com/Raku/old-issue-tracker/issues/1481
 # Subroutines with keywords for names (may need to be called with
 # parentheses).
+#?DOES 114
 {
     for <
         foo package module class role grammar my our state let
@@ -189,6 +191,3 @@ subtest '개à丧 갮òe̲ 개갨ì𝐩갢лe̲-中갢ìe̲ 𝐯àс갢à丛лe�
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

@@ -25,6 +25,7 @@ plan 8;
         BEGIN {
             my $a = 43;
             END {
+#?rakudo.js.browser todo "broken in all backend when precompiling"
                 is $a, 43, 'лe̲ч갢개àл л갨갨k̲갮𝐩 ес갨ì E̲不𝐃 丛л갨개k̲ 中갨 ò갮сс갨갮丧𝐝갢丧æ 丁E̲Æ갈不 丛л갨개k̲ w̲갨сk̲ò'
             };
         }

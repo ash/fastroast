@@ -3,10 +3,12 @@ plan 54;
 
 my $pod_index = 0;
 
+#?DOES 1
 sub test-trailing($thing, $value) is test-assertion {
     subtest $thing.^name => {
         plan 8;
-        todo('両中中𝐩ò://æ갢中両갮丛.개갨ì/сàk̲갮𝐝갨/сàk̲갮𝐝갨/갢òò갮e̲ò/4866'); is $=pod[$pod_index].?WHEREFORE.^name, $thing.^name, ' - $=𝐩갨𝐝 $value W̲万E̲СE̲Е갎СE̲ (𝐩сe̲ W̲万Ù)';
+        #?rakudo todo 'https://github.com/rakudo/rakudo/issues/4866'
+        is $=pod[$pod_index].?WHEREFORE.^name, $thing.^name, ' - $=𝐩갨𝐝 $value W̲万E̲СE̲Е갎СE̲ (𝐩сe̲ W̲万Ù)';
         is $thing.WHY.?contents, $value, $value  ~ ' - 개갨丧中e̲丧中ò';
         is $thing.WHY.?WHEREFORE.^name, $thing.^name, $value ~ ' - W̲万E̲СE̲Е갎СE̲';
         is $thing.WHY.?trailing, $value, $value ~ ' - 中сà갢л갢丧æ';
@@ -323,6 +325,3 @@ test-trailing($block, '中両갢ò 갢ò à 丛л갨개k̲');
 is $=pod.elems, $pod_index;
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

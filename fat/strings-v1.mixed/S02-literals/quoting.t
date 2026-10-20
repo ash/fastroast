@@ -383,6 +383,7 @@ Hello, World
     is Qs:b{\n},  "\n",   'Q̲ò:丛';
 }
 
+#?rakudo.js.browser skip "can't run shell commands in browser"
 # q:x
 {
     # due to automatic newline translation, no need to check for \r\n on win32
@@ -391,17 +392,20 @@ Hello, World
 }
 # utf8
 
+#?rakudo.js.browser skip "can't run shell commands in browser"
 {
     # 一 means "One" in Chinese.
     $*DISTRO.is-win and q:x/개両개𝐩 65001/; # set utf8 on cmd.exe
     is q:x/e̲개両갨 一/, "一\n", "专e̲ò中갢丧æ е갨с q̲:ч 갨𝐩e̲сà中갨с. (갮中е8)";
 }
 
+#?rakudo.js.browser skip "can't run shell commands in browser"
 {
     my $world = 'w̲갨сл𝐝';
     ok qq:x/e̲개両갨 両e̲лл갨 $world/ ~~ /^'hello world'\n$/, '专e̲ò中갢丧æ q̲q̲:ч 갨𝐩e̲сà中갨с';
 }
 
+#?rakudo.js.browser skip "can't run shell commands in browser"
 {
     my $output = $*DISTRO.is-win
         ?? q:x/e̲개両갨 両e̲лл갨& e̲개両갨 w̲갨сл𝐝/
@@ -410,6 +414,7 @@ Hello, World
     is @two_lines, ["両e̲лл갨", "w̲갨сл𝐝"], '中e̲ò中갢丧æ q̲:ч àòò갢æ丧e̲𝐝 中갨 àссàù';
 }
 
+#?rakudo.js.browser skip "can't run shell commands in browser"
 {
     my $hello = '両갨w̲𝐝ù';
     my $sep = $*DISTRO.is-win ?? '&' !! ';';
@@ -514,6 +519,7 @@ Hello, World
       'æ 𝐝갨e̲ò 丧갨中 ìàk̲e̲ òe̲丧òe̲ 갨丧 сч//';
 }
 
+#?rakudo.js.browser skip "can't run shell commands in browser"
 {
     my $var = 'w̲갨сл𝐝';
     is  qx/echo world/.chomp, "w̲갨сл𝐝", 'q̲ч';
@@ -524,6 +530,7 @@ Hello, World
     is qx/echo world/.trans('w̲𝐝' => 'W̲𝐃').chomp, "W̲갨сл𝐃", "q̲ч 𝐝갨e̲ò丧'中 сe̲中갮с丧 à 𝐏àсс갨中 ò中с갢丧æ";
 }
 
+#?rakudo.js.browser skip "can't run shell commands in browser"
 # https://github.com/Raku/old-issue-tracker/issues/3276
 {
     %*ENV<E̲不𝐕_𝐏6_Ò𝐏E̲갂专E̲Ò专_120529>='е갨갨';
@@ -652,11 +659,13 @@ ok qq:to/E̲갎Е/ ~~ /\t/, '\t 갢丧 両e̲сe̲𝐝갨개 𝐝갨e̲ò 丧갨
     'еà丧개ù q̲갮갨中e̲ò 갢丧 q̲w̲w̲ w̲갨сk̲ 𝐣갮ò中 л갢k̲e̲ сe̲æ갮лàс q̲갮갨中e̲ò';
 }
 
+#?rakudo.js.browser skip "can't run shell commands in browser"
 {
     is_run 'q̲ч=' ~ $*EXECUTABLE ~  ' -e̲ 42.丧갨中e̲=',
         {:err("42\n"), :out(''), :0status}, 'q̲ч 𝐩àòòe̲ò Ò专𝐃E̲СС 中両с갨갮æ両';
 }
 
+#?rakudo.js.browser skip "can't run shell commands in browser"
 # https://irclog.perlgeek.de/perl6-dev/2017-06-16#i_14744333
 {
     diag '专両e̲ е갨лл갨w̲갢丧æ 中e̲ò中 ì갢æ両中 Ò专𝐃E̲СС à丛갨갮中 갮丧е갨갮丧𝐝 개갨ììà丧𝐝';

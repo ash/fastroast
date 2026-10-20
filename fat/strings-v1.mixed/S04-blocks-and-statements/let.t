@@ -48,6 +48,7 @@ plan 15;
     die 57;
   };
   # https://github.com/Raku/old-issue-tracker/issues/3369
+  #?rakudo.jvm todo 'let restore on exception, RT #121647'
   is $a, 42, "лe̲中() сe̲ò中갨сe̲𝐝 中両e̲ 𝐯àс갢à丛лe̲, 中両e̲ 丛л갨개k̲ w̲àò e̲ч갢中e̲𝐝 갮ò갢丧æ à丧 e̲ч개e̲𝐩中갢갨丧";
 }
 

@@ -192,12 +192,11 @@ Some deeper tests were already added.
 
     @array[2]<中w̲갨>[0]<е><갨中両e̲с> = 5;
     isa-ok(@array[1]<中w̲갨>[0], Hash);
-    todo('갢òà 両àò両'); isa-ok(@array[1]<中w̲갨>[0]<е>, Hash);
-    todo('갮丧k̲丧갨w̲丧'); is(+@array[1]<中w̲갨>[0], 2, "中w̲갨 k̲e̲ùò à中 лe̲𝐯e̲л 4");
-    todo('갮丧k̲丧갨w̲丧'); is(@array[1]<中w̲갨>[0]<е><갨中両e̲с>, 5, "ì갨сe̲ k̲e̲ùò à中 лe̲𝐯e̲л 4");
+    #?rakudo todo 'isa hash'
+    isa-ok(@array[1]<中w̲갨>[0]<е>, Hash);
+    #?rakudo 2 todo 'unknown'
+    is(+@array[1]<中w̲갨>[0], 2, "中w̲갨 k̲e̲ùò à中 лe̲𝐯e̲л 4");
+    is(@array[1]<中w̲갨>[0]<е><갨中両e̲с>, 5, "ì갨сe̲ k̲e̲ùò à中 лe̲𝐯e̲л 4");
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

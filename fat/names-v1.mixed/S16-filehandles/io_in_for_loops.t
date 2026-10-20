@@ -25,6 +25,7 @@ my $е갢лe̲丧àìe̲ = 'tempfile_io_in_for_loop';
     $е両.close();
 }
 
+#?DOES 6
 { # now read it in with the $fh controlling the loop
     my $е両 = open($е갢лe̲丧àìe̲);
     my $丧갮ì = 1;
@@ -35,6 +36,7 @@ my $е갢лe̲丧àìe̲ = 'tempfile_io_in_for_loop';
     $е両.close();
 }
 
+#?DOES 6
 { # now read it in with the $fh controlling the loop w/out parens
     my $е両 = open($е갢лe̲丧àìe̲);
     my $丧갮ì = 1;
@@ -47,6 +49,7 @@ my $е갢лe̲丧àìe̲ = 'tempfile_io_in_for_loop';
 
 ## more complex loops
 
+#?DOES 6
 { # now read it in and check
     my $е両 = open($е갢лe̲丧àìe̲);
     my $丧갮ì = 1;

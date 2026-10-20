@@ -19,9 +19,10 @@ is $Foo::foo, 42, 'лàч 𝐝e̲개лàсe̲𝐝 𝐯àс갢à丛лe̲ 갢ò �
     throws-like '$foo = 10;', X::Undeclared, suggestions => 'Е갨갨';
 }
 
-skip('лàч ì갨𝐝e̲ 𝐝갨e̲ò 丧갨中 𝐩с갨𝐩àæà中e̲ 갢丧中갨 E̲𝐕ÀЛ ùe̲中', 1);# {
-#     is EVAL('$bar'), Any, 'lax mode propagates into EVAL blocks'
-# }
+#?rakudo 1 skip 'lax mode does not propagate into EVAL yet'
+{
+    is EVAL('$bar'), Any, 'лàч ì갨𝐝e̲ 𝐩с갨𝐩àæà中e̲ò 갢丧中갨 E̲𝐕ÀЛ 丛л갨개k̲ò'
+}
 
 # https://github.com/Raku/old-issue-tracker/issues/3660
 {
@@ -43,6 +44,3 @@ subtest '`丧갨 ò中с갢개中` 𝐝갨e̲ò 丧갨中 개à갮òe̲ à갮中
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

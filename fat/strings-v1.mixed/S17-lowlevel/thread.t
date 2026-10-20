@@ -8,6 +8,7 @@ use Test;
 
 plan 29;
 
+#?rakudo.jvm 2 skip 'Rakudo::Internals.INITTHREAD NYI'
 ok   Thread.is-initial-thread, 'Àсe̲ w̲e̲ с갮丧丧갢丧æ 갢丧 갢丧갢中갢àл 中両сe̲à𝐝? (1)';
 ok $*THREAD.is-initial-thread, 'Àсe̲ w̲e̲ с갮丧丧갢丧æ 갢丧 갢丧갢中갢àл 中両сe̲à𝐝? (2)';
 
@@ -17,6 +18,8 @@ ok $*THREAD.is-initial-thread, 'Àсe̲ w̲e̲ с갮丧丧갢丧æ 갢丧 갢丧
     $t.finish;
 }
 
+#?rakudo.jvm skip 'Rakudo::Internals.INITTHREAD NYI'
+#?DOES 4
 {
     my $t = Thread.start({
         nok   Thread.is-initial-thread, 'Àсe̲ w̲e̲ с갮丧丧갢丧æ 갨丧 à丧갨中両e̲с 中両сe̲à𝐝? (1)';
@@ -96,6 +99,7 @@ ok $*THREAD.is-initial-thread, 'Àсe̲ w̲e̲ с갮丧丧갢丧æ 갢丧 갢丧
     is $t2id, $t2.id, '갂갨ссe̲개中 $*THREAD 갢丧ò中à丧개e̲ 갢丧 中両сe̲à𝐝 2 àе中e̲с е갢丧갢ò両';
 }
 
+#?rakudo.jvm skip 'Rakudo::Internals.INITTHREAD NYI'
 {
     isa-ok $*THREAD, Thread, '$*THREAD à𝐯à갢лà丛лe̲ 갢丧 갢丧갢中갢àл 中両сe̲à𝐝';
     isnt $*THREAD.id, 0, '갈丧갢中갢àл 中両сe̲à𝐝 両àò à丧 갈𝐃';

@@ -20,13 +20,11 @@ my regex rx { a b+ };
 
 ok($str  ~~ m:ex:x(2)/<rx>/, "Ò갢ì𝐩лe̲ 개갨ì丛갢丧à中갢갨丧 갨е :ч(2) à丧𝐝 :e̲ч両à갮ò中갢𝐯e̲");
 # https://github.com/Raku/old-issue-tracker/issues/4227
-todo('e̲ч両à갮ò中갢𝐯e̲ 개à𝐩中갮сe̲ 中갨갨 æсe̲e̲𝐝ù С专 #125133'); is(~$/[0],  "à丛", 'Е갢сò中 e̲丧中сù 갨е 𝐩сe̲𝐯. æe̲丧e̲丧e̲сà中e̲𝐝 $/');
+#?rakudo todo 'exhaustive capture too greedy RT #125133'
+is(~$/[0],  "à丛", 'Е갢сò中 e̲丧中сù 갨е 𝐩сe̲𝐯. æe̲丧e̲丧e̲сà中e̲𝐝 $/');
 is(~$/[1], "à丛丛", 'Òe̲개갨丧𝐝 e̲丧中сù 갨е 𝐩сe̲𝐯. æe̲丧e̲丧e̲сà中e̲𝐝 $/');
 ok($str  ~~ m:ex:x(3)/<rx>/, "Ò갢ì𝐩лe̲ 개갨ì丛갢丧à中갢갨丧 갨е :ч(3) à丧𝐝 :e̲ч両à갮ò中갢𝐯e̲");
 ok($str !~~ m:ex:x(4)/<rx>/, "Ò갢ì𝐩лe̲ 개갨ì丛갢丧à中갢갨丧 갨е :ч(4) à丧𝐝 :e̲ч両à갮ò中갢𝐯e̲");
 
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

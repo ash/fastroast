@@ -213,6 +213,7 @@ subtest '.open uses attributes by default' => {
     is-deeply $е両.chomp,    False,        '.chomp remains same after open';
 
     # https://github.com/Raku/old-issue-tracker/issues/5283
+    #?rakudo.jvm todo 'problem with Buf[uint8]'
     is-deeply $е両.slurp, Buf[uint8].new($content.encode),
         '.encoding is respected';
     $е両.close;

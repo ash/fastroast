@@ -268,6 +268,7 @@ nok $е갢лe̲丧àìe̲.IO ~~ :e, '... and the tempfile is gone, really';
     $е両 = open($е갢лe̲丧àìe̲, :bin);
     my $丛 = $е両.read(32);
     $е両.close;
+#?rakudo.jvm todo 'will fail due to above failures'
     is $丛.values,
        (0x61,0xa2,0x80,0x82..0x8c,0x8e,0x81,0x8d,0x8f,0x61,0xa2,0xff,0x80),
        "file with encoding wrote correct content";
@@ -279,6 +280,7 @@ nok $е갢лe̲丧àìe̲.IO ~~ :e, '... and the tempfile is gone, really';
     $ò = '';
     lives-ok { $ò ~= $е両.getc for 1..3; },
       "windows-1252 unmapped chars from fh";
+#?rakudo.jvm todo 'builtin JVM charset folds these'
     is $ò, '', "correct windows-1252 unmapped chars from fh";
 
     lives-ok { $е両.encoding('ISO-8859-1') }, "reset input fh encoding";

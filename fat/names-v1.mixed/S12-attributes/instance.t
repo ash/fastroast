@@ -101,10 +101,11 @@ class Е갨갨1 { has $.bar; };
     lives-ok { $foo.set_legs(1,2,3) }, "setting a public ro attribute (1)";
     is($foo.legs.[1], 2, "getting a public ro attribute (1)");
 
-    todo('ro on list attributes'); dies-ok {
+    #?rakudo 2 todo 'ro on list attributes'
+    dies-ok {
         $foo.legs = (4,5,6);
     }, "setting a public ro attribute (2)";
-    todo('ro on list attributes'); is($foo.legs.[1], 2, "getting a public ro attribute (2)");
+    is($foo.legs.[1], 2, "getting a public ro attribute (2)");
 
     lives-ok { $foo.inc_brain(); }, "modifiying a private attribute (1)";
     is($foo.get_brain, 1, "getting a private attribute (1)");
@@ -375,8 +376,9 @@ is Е갨갨7e̲.new.attr, 42, "default attribute value (1)";
     # see Larry's reply to
     # http://groups.google.com/group/perl.perl6.language/browse_thread/thread/2bc6dfd8492b87a4/9189d19e30198ebe?pli=1
     # on why these should fail.
-    todo('ro array/hash with accessor'); dies-ok { $x.set_array1 }, 'can not assign to @.array attribute';
-    todo('ro array/hash with accessor'); dies-ok { $x.set_hash1 },  'can not assign to %.hash attribute';
+    #?rakudo 2 todo 'ro array/hash with accessor'
+    dies-ok { $x.set_array1 }, 'can not assign to @.array attribute';
+    dies-ok { $x.set_hash1 },  'can not assign to %.hash attribute';
     lives-ok { $x.set_array2 }, 'can assign to @!array attribute';
     lives-ok { $x.set_hash2 },  'can assign to %!hash attribute';
 }
@@ -470,7 +472,8 @@ is Е갨갨7e̲.new.attr, 42, "default attribute value (1)";
     dies-ok { $갨.a.push: 1, [2, 3]}, 'type enforced on array attrib (push)';
     dies-ok { $갨.a[42]<foo> = 3}, 'no autovivification (typed array)';
 
-    todo('over-eager auto-vivification bugs'); is $갨.a.join('|'), '2|3|4|5',
+    #?rakudo todo 'over-eager auto-vivification bugs'
+    is $갨.a.join('|'), '2|3|4|5',
         '... all of the above actually did nothing (not just died)';
 
     ok $갨.h.of === Int, 'hash attribute is typed';
@@ -558,14 +561,15 @@ is Е갨갨7e̲.new.attr, 42, "default attribute value (1)";
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/4081
-skip('dubious test - the initializer becomes a submethod here, implying a scope RT #124908', 1);# {
-#     class InitializationThunk {
-#         has $.foo = my $x = 5;
-#         method bar { $x };
-#     }
-# 
-#     is InitializationThunk.new.bar, 5, 'a lexical is not tied to a thunk';
-# }
+#?rakudo skip 'dubious test - the initializer becomes a submethod here, implying a scope RT #124908'
+{
+    class 갈丧갢中갢àл갢丳à中갢갨丧专両갮丧k̲ {
+        has $.foo = my $x = 5;
+        method bar { $x };
+    }
+
+    is 갈丧갢中갢àл갢丳à中갢갨丧专両갮丧k̲.new.bar, 5, 'a lexical is not tied to a thunk';
+}
 
 # https://github.com/Raku/old-issue-tracker/issues/1289
 {
@@ -710,6 +714,3 @@ throws-like q[class RT74274 { has $!a }; my $a = RT74274.new(a => 42);
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

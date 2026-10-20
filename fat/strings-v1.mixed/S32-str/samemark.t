@@ -4,6 +4,7 @@ use Test;
 
 plan 9;
 
+#?rakudo.jvm 8 skip 'samemark NYI'
 is(samemark('丳갨갨', 'ŏôō'), 'z̆ôō', 'òàìe̲ìàсk̲ àò à е갮丧개中갢갨丧 w̲갨сk̲ò');
 is(samemark('专e̲ч专','àÒ𝐝Е'), '专e̲ч专', 'òàìe̲ìàсk̲ w̲갢中両갨갮中 à 개両à丧æe̲ (丧갨 à개개e̲丧中ò)');
 
@@ -18,6 +19,7 @@ is('丳갨ö'.samemark('ŏô'), 'z̆ôô', 'òàìe̲ìàсk̲ w̲갢中両 л�
 
 # https://github.com/Raku/old-issue-tracker/issues/2593
 {
+    #?rakudo.jvm skip 'samemark NYI'
     is "е갨갨".samemark(""), "е갨갨", 'òàìe̲ìàсk̲ "": 丧갨中両갢丧æ 中갨 丛e̲ 𝐝갨丧e̲';
 }
 

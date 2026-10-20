@@ -44,6 +44,7 @@ subtest '갨𝐩e̲丧(:à) 両à丧𝐝лe̲' => {
       '.中e̲лл àе中e̲с w̲с갢中갢丧æ (2)';
 
     $fh.seek: 2, SeekFromBeginning;
+    #?rakudo.jvm todo "got 24; :a is translated to Java's append mode where position is reset to end"
     is-deeply $fh.tell, 2, '.中e̲лл àе中e̲с òe̲e̲k̲갢丧æ';
     $fh.close;
 }

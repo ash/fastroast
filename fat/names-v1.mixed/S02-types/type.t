@@ -44,7 +44,8 @@ my Str $bar;
     lives-ok({my Int $beta = Nil},      'object Int type can be undefined');
     eval-lives-ok('my num $alpha = 1e0',    'Has native type num');
     # https://github.com/Raku/old-issue-tracker/issues/3360
-    todo("assigning Nil to natives"); eval-lives-ok('my num $alpha = Nil', 'native num type can be undefined');
+    #?rakudo todo "assigning Nil to natives"
+    eval-lives-ok('my num $alpha = Nil', 'native num type can be undefined');
     lives-ok({my Num $beta = Nil},      'object Num type can be undefined');
     # https://github.com/Raku/old-issue-tracker/issues/2447
     lives-ok({my Str ($a) = ()}, 'object Str type can be undefined, list context');
@@ -188,11 +189,9 @@ throws-like q[my num $n; $n = <42+0i>], X::Syntax::Number::LiteralType, 'num doe
         -> $type {
             is $type.elems, 1, "$type.^name()\.elems is 1";
         }
+        #?rakudo.jvm skip 'Undeclared name: Uni'
         is Uni.elems, 1, 'Uni.elems is 1';
     }
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

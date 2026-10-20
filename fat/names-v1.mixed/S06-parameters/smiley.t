@@ -29,51 +29,50 @@ is { sub à(--> Int:D) { 42  }; à  }(),  42, 'can --> Int:D return an Int:D';
 throws-like 'sub a(--> Int:foo) { }',
   X::InvalidTypeSmiley,                     'does --> Int:foo fail';
 
-skip('use parameters is NYI until further notice', 4);# {
-#     use parameters :_;
-#     is { sub a(Int $a) { $a }; a Int }(), Int, 'with :_, can Int take an Int:U';
-#     is { sub a(Int $a) { $a }; a  42 }(),  42, 'with :_, can Int take an Int:D';
-#     is { sub a(--> Int) { Int }() }(), Int, 'with :_, can --> Int return Int:U';
-#     is { sub a(--> Int) {  42 }() }(),  42, 'with :_, can --> Int return Int:D';
-# }
+#?rakudo skip 'use parameters is NYI until further notice'
+{
+    use parameters :_;
+    is { sub à(Int $a) { $a }; à Int }(), Int, 'with :_, can Int take an Int:U';
+    is { sub à(Int $a) { $a }; à  42 }(),  42, 'with :_, can Int take an Int:D';
+    is { sub à(--> Int) { Int }() }(), Int, 'with :_, can --> Int return Int:U';
+    is { sub à(--> Int) {  42 }() }(),  42, 'with :_, can --> Int return Int:D';
+}
 
-skip('use parameters is NYI until further notice', 4);# {
-#     use parameters :U;
-#     is { sub a(Int $a) { $a }; a Int }(), Int, 'with :U, can Int take an Int:U';
-#     dies-ok { sub a(Int $a) { $a }; a 42 },  # change to throws-like if passes
-#       'with :U, can Int take an Int:D';
-#     is { sub a(--> Int) { Int }() }(), Int, 'with :U, can --> Int return Int:U';
-#     dies-ok { sub a(--> Int) { 42 }() },  # change to throws-like if passes
-#       'with :U, can --> Int return an Int:D';
-# }
+#?rakudo skip 'use parameters is NYI until further notice'
+{
+    use parameters :U;
+    is { sub à(Int $a) { $a }; à Int }(), Int, 'with :U, can Int take an Int:U';
+    dies-ok { sub à(Int $a) { $a }; à 42 },  # change to throws-like if passes
+      'with :U, can Int take an Int:D';
+    is { sub à(--> Int) { Int }() }(), Int, 'with :U, can --> Int return Int:U';
+    dies-ok { sub à(--> Int) { 42 }() },  # change to throws-like if passes
+      'with :U, can --> Int return an Int:D';
+}
 
-skip('use parameters is NYI until further notice', 4);# {
-#     use parameters :D;
-#     #?rakudo todo 'not yet checking parameters pragma'
-#     dies-ok { sub a(Int $a) { $a }; a Int },  # change to throws-like if passes
-#       'with :D, can Int take an Int:U';
-#     is { sub a(Int $a) { $a }; a  42 }(),  42, 'with :D, can Int take an Int:D';
-#     #?rakudo todo 'not yet checking parameters pragma'
-#     dies-ok { sub a(--> Int) { Int }() },  # change to throws-like if passes
-#       'with :D, can --> Int return an Int:U';
-#     is { sub a(--> Int) { 42 }() }(), 42, 'with :D, can --> Int return Int:D';
-# }
+#?rakudo skip 'use parameters is NYI until further notice'
+{
+    use parameters :D;
+    #?rakudo todo 'not yet checking parameters pragma'
+    dies-ok { sub à(Int $a) { $a }; à Int },  # change to throws-like if passes
+      'with :D, can Int take an Int:U';
+    is { sub à(Int $a) { $a }; à  42 }(),  42, 'with :D, can Int take an Int:D';
+    #?rakudo todo 'not yet checking parameters pragma'
+    dies-ok { sub à(--> Int) { Int }() },  # change to throws-like if passes
+      'with :D, can --> Int return an Int:U';
+    is { sub à(--> Int) { 42 }() }(), 42, 'with :D, can --> Int return Int:D';
+}
 
-skip('use parameters is NYI until further notice', 1); # { throws-like 'use parameters',        X::Pragma::MustOneOf,  :name<parameters>,
-#     'use parameters';
-#  }
-skip('use parameters is NYI until further notice', 1); # { throws-like 'no parameters',         X::Pragma::CannotWhat, :name<parameters>,
-#     :what<no>, 'no parameters';
-#  }
-skip('use parameters is NYI until further notice', 1); # { throws-like 'use parameters "bar"',  X::Pragma::UnknownArg, :name<parameters>,
-#     :arg<bar>, 'use parameters "bar"';
-#  }
-skip('use parameters is NYI until further notice', 1); # { throws-like 'use parameters :U, :D', X::Pragma::OnlyOne,    :name<parameters>,
-#     'use parameters :U, :D';
-#  }
-skip('use parameters is NYI until further notice', 1); # { throws-like 'use parameters :foo',   X::InvalidTypeSmiley,  :name<foo>,
-#     'does use parameters :foo fail';
-#  }
+#?rakudo 5 skip 'use parameters is NYI until further notice'
+throws-like 'use parameters',        X::Pragma::MustOneOf,  :name<parameters>,
+    'use parameters';
+throws-like 'no parameters',         X::Pragma::CannotWhat, :name<parameters>,
+    :what<no>, 'no parameters';
+throws-like 'use parameters "bar"',  X::Pragma::UnknownArg, :name<parameters>,
+    :arg<bar>, 'use parameters "bar"';
+throws-like 'use parameters :U, :D', X::Pragma::OnlyOne,    :name<parameters>,
+    'use parameters :U, :D';
+throws-like 'use parameters :foo',   X::InvalidTypeSmiley,  :name<foo>,
+    'does use parameters :foo fail';
 
 # https://github.com/Raku/old-issue-tracker/issues/5214
 is Int:U        .gist, '(Int:U)',   '.gist on :U smileys';
@@ -82,6 +81,3 @@ is Int:D        .gist, '(Int:D)',   '.gist on :D smileys';
 is Proc::Async:D.gist, '(Async:D)', '.gist on :D smileys uses shortname';
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

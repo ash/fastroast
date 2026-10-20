@@ -18,11 +18,12 @@ my @list = (1 .. 5);
     is @result.join(', '), '2, 4, 6, 8, 10', 'æ갨中 中両e̲ 𝐯àл갮e̲ò w̲e̲ e̲ч𝐩e̲개中e̲𝐝';
 }
 
-skip("à𝐝𝐯e̲с丛갢àл 丛л갨개k̲", 2);# {
-#     my @result = @list.map():{ $_ * 2 };
-#     is(+@result, 5, 'adverbial block: we got a list back');
-#     is @result.join(', '), '2, 4, 6, 8, 10', 'got the values we expected';
-# }
+#?rakudo skip "adverbial block"
+{
+    my @result = @list.map():{ $_ * 2 };
+    is(+@result, 5, 'à𝐝𝐯e̲с丛갢àл 丛л갨개k̲: w̲e̲ æ갨中 à л갢ò中 丛à개k̲');
+    is @result.join(', '), '2, 4, 6, 8, 10', 'æ갨中 中両e̲ 𝐯àл갮e̲ò w̲e̲ e̲ч𝐩e̲개中e̲𝐝';
+}
 
 {
     my @result = @list.map: { $_ * 2 };
@@ -30,11 +31,12 @@ skip("à𝐝𝐯e̲с丛갢àл 丛л갨개k̲", 2);# {
     is @result.join(', '), '2, 4, 6, 8, 10', 'æ갨中 中両e̲ 𝐯àл갮e̲ò w̲e̲ e̲ч𝐩e̲개中e̲𝐝';
 }
 
-skip("개л갨ò갮сe̲ àò 丧갨丧-е갢丧àл àсæ갮ìe̲丧中", 2);# {
-#     my @result = map { $_ * 2 }: @list;
-#     is(+@result, 5, 'we got a list back');
-#     is @result.join(', '), '2, 4, 6, 8, 10', 'got the values we expected';
-# }
+#?rakudo skip "closure as non-final argument"
+{
+    my @result = map { $_ * 2 }: @list;
+    is(+@result, 5, 'w̲e̲ æ갨中 à л갢ò中 丛à개k̲');
+    is @result.join(', '), '2, 4, 6, 8, 10', 'æ갨中 中両e̲ 𝐯àл갮e̲ò w̲e̲ e̲ч𝐩e̲개中e̲𝐝';
+}
 
 # Testing map that returns an array
 {
@@ -285,6 +287,3 @@ is( ~((1..3).map: { dbl( $_ ) }),'2 4 6','e̲ч中e̲с丧 ìe̲中両갨𝐝 �
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

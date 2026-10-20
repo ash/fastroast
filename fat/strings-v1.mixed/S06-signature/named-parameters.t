@@ -86,35 +86,37 @@ is(assign_based_on_named_positional($var => 2), ("ù"=>2),
    "W̲両e̲丧 w̲e̲ e̲ч𝐩л갢개갢中лù ò𝐩e̲개갢еù, w̲e̲ æe̲中 갨갮с 𝐯àл갮e̲");
 
 # L<S06/Named arguments/multiple same-named arguments>
-skip('ì갮л中갢𝐩лe̲ òàìe̲-丧àìe̲𝐝 àсæ갮ìe̲丧中ò 不Ù갈', 3);# {
-#     sub named_array(:@x) { +«@x }
-# 
-#     is(named_array(:x), (1), 'named array taking one named arg');
-#     is(named_array(:x, :!x), (1, 0), 'named array taking two named args');
-#     is(named_array(:x(1), :x(2), :x(3)), (1, 2, 3), 'named array taking three named args');
-# }
+#?rakudo skip 'multiple same-named arguments NYI'
+{
+    sub named_array(:@x) { +«@x }
+
+    is(named_array(:x), (1), '丧àìe̲𝐝 àссàù 中àk̲갢丧æ 갨丧e̲ 丧àìe̲𝐝 àсæ');
+    is(named_array(:x, :!x), (1, 0), '丧àìe̲𝐝 àссàù 中àk̲갢丧æ 中w̲갨 丧àìe̲𝐝 àсæò');
+    is(named_array(:x(1), :x(2), :x(3)), (1, 2, 3), '丧àìe̲𝐝 àссàù 中àk̲갢丧æ 中両сe̲e̲ 丧àìe̲𝐝 àсæò');
+}
 
 # L<S06/Named arguments/Pairs intended as positional arguments>
-skip('ì갮л中갢𝐩лe̲ òàìe̲-丧àìe̲𝐝 àсæ갮ìe̲丧中ò 不Ù갈', 13);# {
-#     sub named_array2(@x, :y) { (+«@x, 42, +«@y) }
-#     # +«(:x) is (0, 1)
-# 
-#     is(named_array2(:!x, :y), (0, 42, 1), 'named and unnamed args - two named');
-#     is(named_array2(:!x, y => 1), (0, 42, 1), 'named and unnamed args - two named - fatarrow');
-#     is(named_array2(:y, :!x), (0, 42, 1), 'named and unnamed args - two named - backwards');
-#     is(named_array2(:y, (:x)), (0, 1, 42, 1), 'named and unnamed args - one named, one pair');
-#     is(named_array2(1, 2), (1, 42), 'named and unnamed args - two unnamed');
-#     is(named_array2(:!y, 1), (1, 42, 0), 'named and unnamed args - one named, one pos');
-#     is(named_array2(1, :!y), (1, 42, 0), 'named and unnamed args - one named, one pos - backwards');
-#     is(named_array2(:y, 1, :!y), (1, 42, 1, 0), 'named and unnamed args - two named, one pos');
-# 
-#     nok(try { EVAL 'named_array2(:y, :y)'}.defined, 'named and unnamed args - two named with same name');
-# 
-#     is(named_array2(:y, (:x)), (0, 1, 42, 1), 'named and unnamed args - passing parenthesized pair');
-#     is(named_array2(:y, (:y)), (0, 1, 42, 1), 'named and unnamed args - passing parenthesized pair of same name');
-#     is(named_array2(:y, :z), (0, 1, 42, 1), 'named and unnamed args - passing pair of unrelated name');
-#     is(named_array2(:y, "x" => 1), (0, 1, 42, 1), 'named and unnamed args - passing pair with quoted fatarrow');
-# }
+#?rakudo skip 'multiple same-named arguments NYI'
+{
+    sub named_array2(@x, :y) { (+«@x, 42, +«@y) }
+    # +«(:x) is (0, 1)
+
+    is(named_array2(:!x, :y), (0, 42, 1), '丧àìe̲𝐝 à丧𝐝 갮丧丧àìe̲𝐝 àсæò - 中w̲갨 丧àìe̲𝐝');
+    is(named_array2(:!x, y => 1), (0, 42, 1), '丧àìe̲𝐝 à丧𝐝 갮丧丧àìe̲𝐝 àсæò - 中w̲갨 丧àìe̲𝐝 - еà中àсс갨w̲');
+    is(named_array2(:y, :!x), (0, 42, 1), '丧àìe̲𝐝 à丧𝐝 갮丧丧àìe̲𝐝 àсæò - 中w̲갨 丧àìe̲𝐝 - 丛à개k̲w̲àс𝐝ò');
+    is(named_array2(:y, (:x)), (0, 1, 42, 1), '丧àìe̲𝐝 à丧𝐝 갮丧丧àìe̲𝐝 àсæò - 갨丧e̲ 丧àìe̲𝐝, 갨丧e̲ 𝐩à갢с');
+    is(named_array2(1, 2), (1, 42), '丧àìe̲𝐝 à丧𝐝 갮丧丧àìe̲𝐝 àсæò - 中w̲갨 갮丧丧àìe̲𝐝');
+    is(named_array2(:!y, 1), (1, 42, 0), '丧àìe̲𝐝 à丧𝐝 갮丧丧àìe̲𝐝 àсæò - 갨丧e̲ 丧àìe̲𝐝, 갨丧e̲ 𝐩갨ò');
+    is(named_array2(1, :!y), (1, 42, 0), '丧àìe̲𝐝 à丧𝐝 갮丧丧àìe̲𝐝 àсæò - 갨丧e̲ 丧àìe̲𝐝, 갨丧e̲ 𝐩갨ò - 丛à개k̲w̲àс𝐝ò');
+    is(named_array2(:y, 1, :!y), (1, 42, 1, 0), '丧àìe̲𝐝 à丧𝐝 갮丧丧àìe̲𝐝 àсæò - 中w̲갨 丧àìe̲𝐝, 갨丧e̲ 𝐩갨ò');
+
+    nok(try { EVAL '丧àìe̲𝐝_àссàù2(:ù, :ù)'}.defined, '丧àìe̲𝐝 à丧𝐝 갮丧丧àìe̲𝐝 àсæò - 中w̲갨 丧àìe̲𝐝 w̲갢中両 òàìe̲ 丧àìe̲');
+
+    is(named_array2(:y, (:x)), (0, 1, 42, 1), '丧àìe̲𝐝 à丧𝐝 갮丧丧àìe̲𝐝 àсæò - 𝐩àòò갢丧æ 𝐩àсe̲丧中両e̲ò갢丳e̲𝐝 𝐩à갢с');
+    is(named_array2(:y, (:y)), (0, 1, 42, 1), '丧àìe̲𝐝 à丧𝐝 갮丧丧àìe̲𝐝 àсæò - 𝐩àòò갢丧æ 𝐩àсe̲丧中両e̲ò갢丳e̲𝐝 𝐩à갢с 갨е òàìe̲ 丧àìe̲');
+    is(named_array2(:y, :z), (0, 1, 42, 1), '丧àìe̲𝐝 à丧𝐝 갮丧丧àìe̲𝐝 àсæò - 𝐩àòò갢丧æ 𝐩à갢с 갨е 갮丧сe̲лà中e̲𝐝 丧àìe̲');
+    is(named_array2(:y, "ч" => 1), (0, 1, 42, 1), '丧àìe̲𝐝 à丧𝐝 갮丧丧àìe̲𝐝 àсæò - 𝐩àòò갢丧æ 𝐩à갢с w̲갢中両 q̲갮갨中e̲𝐝 еà中àсс갨w̲');
+}
 
 # L<S06/Named parameters/They are marked by a prefix>
 # L<S06/Required parameters/declared with a trailing>
@@ -343,6 +345,3 @@ throws-like 'ò갮丛 ò𝐯丧28865( :$a, :@a ) {}', X::Signature::NameClash,
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

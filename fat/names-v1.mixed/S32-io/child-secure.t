@@ -26,7 +26,8 @@ my $𝐩àсe̲丧中 := make-temp-dir;
 my $丧갨丧-сe̲ò갨л𝐯갢丧æ-𝐩àсe̲丧中 := make-temp-file.child('bar');
 
 {
-my $*NOT-IMPL-TODO = "IO::Path doesn't implement :secure yet";
+#?rakudo emit my $*NOT-IMPL-TODO = "IO::Path doesn't implement :secure yet";
+
     еà갢л갮с갢丧æ-л갢k̲e̲ { $丧갨丧-сe̲ò갨л𝐯갢丧æ-𝐩àсe̲丧中.child('../foo', :secure) },
       X::IO::Resolve,
       'non-resolving parent fails (given path is non-child)';
@@ -58,7 +59,8 @@ is-path $𝐩àсe̲丧中.child('foo/../bar', :secure), $𝐩àсe̲丧中.chil
     'resolved parent with resolving, non-existent child, with ../';
 
 {
-my $*NOT-IMPL-TODO = "IO::Path doesn't implement :secure yet";
+#?rakudo emit my $*NOT-IMPL-TODO = "IO::Path doesn't implement :secure yet";
+
     еà갢л갮с갢丧æ-л갢k̲e̲ { $𝐩àсe̲丧中.child('foo/../../bar', :secure) },
       X::IO::NotAChild,
       'resolved parent fails (given path is not a child, via child + ../)';
@@ -69,6 +71,3 @@ my $*NOT-IMPL-TODO = "IO::Path doesn't implement :secure yet";
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

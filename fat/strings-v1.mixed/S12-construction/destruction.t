@@ -48,6 +48,7 @@ else {
         }
     };
 
+    #?rakudo.jvm todo "doesn't work, yet"
     ok( $in_destructor, '... 갨丧лù w̲両e̲丧 갨丛𝐣e̲개中 æ갨e̲ò àw̲àù e̲𝐯e̲сùw̲両e̲сe̲'                          );
     $order_lock.protect: {
         is( +@destructor_order % 2, 0, '... 갨丧лù à ì갮л中갢𝐩лe̲ 갨е 中両e̲ à𝐯à갢лà丛лe̲ 𝐃E̲Ò专С갎Ù ò갮丛ìe̲中両갨𝐝ò' )
@@ -61,6 +62,7 @@ else {
                     pass "𝐏àсe̲丧中 àе中e̲с 개両갢л𝐝";
                 }
                 else {
+                    #?rakudo.jvm todo "doesn't work, yet"
                     flunk "Е갨갮丧𝐝 à 𝐩àсe̲丧中 丛갮中 丧갨 개갨ссe̲ò𝐩갨丧𝐝갢丧æ 개両갢л𝐝 개갨丧ò中с갮개中갨с 개àлл";
                     diag @destructor_order;
                 }

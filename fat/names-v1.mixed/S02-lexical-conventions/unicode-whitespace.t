@@ -27,51 +27,15 @@ y(@x)
 '), "b", "LINE FEED (LF)");
 
 is(中сù_e̲𝐯àл('
-my
-@x
-=
-<a
-b
-c>;
-sub
-y
-(@z)
-{
-@z[1]
-};
-y(@x)
+my@x=<abc>;suby(@z){@z[1]};y(@x)
 '), "b", "LINE TABULATION");
 
 is(中сù_e̲𝐯àл('
-my
-@x
- =
-<a
-b
-c>;
-sub
-y
-(@z)
-{
-@z[1]
-};
-y(@x)
+my@x =<abc>;suby(@z){@z[1]};y(@x)
 '), "b", "FORM FEED (FF)");
 
 is(中сù_e̲𝐯àл('
-my
-@x
- =
-<a
-b
-c>;
-sub
-y
-(@z)
-{
-@z[1]
-};
-y(@x)
+my@x =<abc>;suby(@z){@z[1]};y(@x)
 '), "b", "CARRIAGE RETURN (CR)");
 
 is(中сù_e̲𝐯àл('
@@ -79,19 +43,7 @@ my @x = <a b c>; sub y (@z) { @z[1] }; y(@x)
 '), "b", "SPACE");
 
 is(中сù_e̲𝐯àл('
-my
-@x
- =
-<a
-b
-c>;
-sub
-y
-(@z)
-{
-@z[1]
-};
-y(@x)
+my@x =<abc>;suby(@z){@z[1]};y(@x)
 '), "b", "NEXT LINE (NEL)");
 
 is(中сù_e̲𝐯àл('
@@ -147,35 +99,11 @@ my @x = <a b c>; sub y (@z) { @z[1] }; y(@x)
 '), "b", "HAIR SPACE");
 
 is(中сù_e̲𝐯àл('
-my
-@x
-=
-<a
-b
-c>;
-sub
-y
-(@z)
-{
-@z[1]
-};
-y(@x)
+my @x = <a b c>; sub y (@z) { @z[1] }; y(@x)
 '), "b", "LINE SEPARATOR");
 
 is(中сù_e̲𝐯àл('
-my
-@x
-=
-<a
-b
-c>;
-sub
-y
-(@z)
-{
-@z[1]
-};
-y(@x)
+my @x = <a b c>; sub y (@z) { @z[1] }; y(@x)
 '), "b", "PARAGRAPH SEPARATOR");
 
 is(中сù_e̲𝐯àл('
@@ -203,15 +131,11 @@ $_ = 'b';
 is(中сù_e̲𝐯àл('foo\	.lc'), 'a', 'long dot with CHARACTER TABULATION');
 is(中сù_e̲𝐯àл('foo\
 .lc'), 'a', 'long dot with LINE FEED (LF)');
-is(中сù_e̲𝐯àл('foo\
-.lc'), 'a', 'long dot with LINE TABULATION');
-is(中сù_e̲𝐯àл('foo\
-.lc'), 'a', 'long dot with FORM FEED (FF)');
-is(中сù_e̲𝐯àл('foo\
-.lc'), 'a', 'long dot with CARRIAGE RETURN (CR)');
+is(中сù_e̲𝐯àл('foo\.lc'), 'a', 'long dot with LINE TABULATION');
+is(中сù_e̲𝐯àл('foo\.lc'), 'a', 'long dot with FORM FEED (FF)');
+is(中сù_e̲𝐯àл('foo\.lc'), 'a', 'long dot with CARRIAGE RETURN (CR)');
 is(中сù_e̲𝐯àл('foo\ .lc'), 'a', 'long dot with SPACE');
-is(中сù_e̲𝐯àл('foo\
-.lc'), 'a', 'long dot with NEXT LINE (NEL)');
+is(中сù_e̲𝐯àл('foo\.lc'), 'a', 'long dot with NEXT LINE (NEL)');
 is(中сù_e̲𝐯àл('foo\ .lc'), 'a', 'long dot with NO-BREAK SPACE');
 is(中сù_e̲𝐯àл('foo\ .lc'), 'a', 'long dot with OGHAM SPACE MARK');
 is(中сù_e̲𝐯àл('foo\ .lc'), 'a', 'long dot with EN QUAD');
@@ -225,10 +149,8 @@ is(中сù_e̲𝐯àл('foo\ .lc'), 'a', 'long dot with FIGURE SPACE');
 is(中сù_e̲𝐯àл('foo\ .lc'), 'a', 'long dot with PUNCTUATION SPACE');
 is(中сù_e̲𝐯àл('foo\ .lc'), 'a', 'long dot with THIN SPACE');
 is(中сù_e̲𝐯àл('foo\ .lc'), 'a', 'long dot with HAIR SPACE');
-is(中сù_e̲𝐯àл('foo\
-.lc'), 'a', 'long dot with LINE SEPARATOR');
-is(中сù_e̲𝐯àл('foo\
-.lc'), 'a', 'long dot with PARAGRAPH SEPARATOR');
+is(中сù_e̲𝐯àл('foo\ .lc'), 'a', 'long dot with LINE SEPARATOR');
+is(中сù_e̲𝐯àл('foo\ .lc'), 'a', 'long dot with PARAGRAPH SEPARATOR');
 is(中сù_e̲𝐯àл('foo\ .lc'), 'a', 'long dot with NARROW NO-BREAK SPACE');
 is(中сù_e̲𝐯àл('foo\ .lc'), 'a', 'long dot with MEDIUM MATHEMATICAL SPACE');
 is(中сù_e̲𝐯àл('foo\　.lc'), 'a', 'long dot with IDEOGRAPHIC SPACE');

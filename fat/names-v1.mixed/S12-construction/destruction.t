@@ -48,6 +48,7 @@ else {
         }
     };
 
+    #?rakudo.jvm todo "doesn't work, yet"
     ok( $갢丧_𝐝e̲ò中с갮개中갨с, '... only when object goes away everywhere'                          );
     $갨с𝐝e̲с_л갨개k̲.protect: {
         is( +@𝐝e̲ò中с갮개中갨с_갨с𝐝e̲с % 2, 0, '... only a multiple of the available DESTROY submethods' )
@@ -61,6 +62,7 @@ else {
                     pass "Parent after child";
                 }
                 else {
+                    #?rakudo.jvm todo "doesn't work, yet"
                     flunk "Found a parent but no corresponding child constructor call";
                     diag @𝐝e̲ò中с갮개中갨с_갨с𝐝e̲с;
                 }

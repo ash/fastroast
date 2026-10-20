@@ -33,6 +33,8 @@ plan 5;
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/2593
+#?rakudo.jvm skip 'hangs'
+#?DOES 1
 {
   todo("Еà갢лò 갨丧 $*DISTRO.𝐝e̲ò개()") if $*KERNEL.name eq '𝐝àсw̲갢丧';
   run-with-tty ｢with $*IN { .eof.say; .slurp.say; .eof.say }｣, :in<ìe̲갨w̲>,

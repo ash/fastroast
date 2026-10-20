@@ -16,7 +16,7 @@ sub usage() {
                     [--chapters=S02,S32-str,…] [--files=REL,…] [--per=N] [--seed=N]
                     [--oracle=rakudo] [--candidate=rakupp] [--jobs=N] [--timeout=SEC]
                     [--out=DIR] [--shrink-budget=N] [--no-shrink]
-      fastroast fatten FILE [--transform=NAME[:PALETTE]] [--roast=DIR]
+      fastroast fatten FILE [--transform=NAME[:PALETTE]]
       fastroast fatten --roast=DIR [--transform=…] [--palette=…] [--chapters=…] [--jobs=N] [--out=DIR]
       fastroast coverage --roast=DIR [--transform=…] [--palette=…] [--chapters=…] [--jobs=N] [--out=DIR]
       fastroast transforms
@@ -27,10 +27,12 @@ sub usage() {
     (default out/latest). --per=N takes N files per chapter, chosen by --seed.
     A transform that maps letters runs once per palette (default mixed);
     strings-v1:cjk names one directly.
-    coverage runs no engine: per Roast file, whether it seeds and how many
-    edit groups each transform makes of it. fatten without a FILE does the same
-    and writes the trees laid out as Roast is (default out/fat): seed/ and one
-    directory per spec, such as strings-v1.mixed/S32-str/uc.t.
+    coverage runs no engine: per Roast file, whether its tokens reassemble it
+    and how many edit groups each transform makes of it. fatten without a FILE
+    does the same and writes the trees laid out as Roast is (default out/fat),
+    one directory per spec, such as strings-v1.mixed/S32-str/uc.t. A tree's
+    file is the Roast file as it is, #? directives included, with only the
+    transform's edits applied, so it runs wherever and however Roast runs.
     USAGE
 }
 
@@ -56,17 +58,18 @@ sub MAIN(*@args) {
         when $_ eq 'fatten' && @pos.Bool {
             my $file = @pos[0].IO;
             my ($name, $palette) = parse-spec(%o<transform> // 'strings-v1');
-            my $source = do if %o<roast> && $file.relative(%o<roast>.IO.absolute) -> $rel {
-                roast-seed(%o<roast>.IO, $file.absolute.IO.relative(%o<roast>.IO.absolute), $*TMPDIR) // die "$file is fudged away for rakudo"
-            } else { $file.slurp };
+            my $source = $file.slurp;
             my @t = tokens($source, $*TMPDIR) // die "the tokens of $file do not reassemble it";
             print render($source, transform($name, $source, @t, :palette($palette // 'mixed')));
         }
         when 'coverage' | 'fatten' {
-            # Every Roast file at once, without running an engine: whether it
-            # seeds and how many edit groups each spec makes of it. `fatten`
-            # also writes the trees, laid out as Roast is: seed/S32-str/uc.t
-            # and, where a spec changed it, strings-v1.mixed/S32-str/uc.t.
+            # Every Roast file at once, without running an engine: whether its
+            # tokens reassemble it and how many edit groups each spec makes of
+            # it. `fatten` also writes the trees, laid out as Roast is: where a
+            # spec changed a file, strings-v1.mixed/S32-str/uc.t. A tree starts
+            # from the file as Roast has it, not from a seed: its `#?` lines are
+            # comments no transform touches, so whatever runs Roast applies
+            # them to the fattened file exactly as it does to the plain one.
             my $write = $command eq 'fatten';
             my $roast = (%o<roast> // die '--roast=DIR (a Roast checkout) is required').IO;
             my @palettes = (%o<palette> // 'mixed') eq 'all' ?? palette-names() !! list('palette');
@@ -78,23 +81,22 @@ sub MAIN(*@args) {
             }
             my $tmp = $*TMPDIR.add("fastroast-coverage-$*PID"); $tmp.mkdir;
             my @rows = @files.race(:batch(1), :degree(int('jobs', 2))).map(-> $rel {
-                my $seed = roast-seed($roast, $rel, $tmp);
-                my @t = $seed.defined ?? (tokens($seed, $tmp) // ()) !! ();
-                my $state = !$seed.defined ?? 'fudged away' !! !@t ?? 'tokens do not reassemble' !! 'seeded';
-                put('seed', $rel, $seed) if $write && $state eq 'seeded';
+                my $source = $roast.add($rel).slurp;
+                my @t = tokens($source, $tmp) // ();
+                my $state = @t ?? 'tokenized' !! 'tokens do not reassemble';
                 ($rel, $state, |@specs.map(-> $s {
                     my ($n, $p) = parse-spec($s);
-                    my @g = $state eq 'seeded' ?? transform($n, $seed, @t, :palette($p // 'mixed')) !! ();
-                    put(spec-dir($s), $rel, render($seed, @g)) if $write && @g;
-                    $state eq 'seeded' ?? @g.elems !! ''
+                    my @g = @t ?? transform($n, $source, @t, :palette($p // 'mixed')) !! ();
+                    put(spec-dir($s), $rel, render($source, @g)) if $write && @g;
+                    @t ?? @g.elems !! ''
                 })).List
             }).List;
             $out.add('coverage.tsv').spurt((("file\tstate", |@specs).join("\t"), |@rows.sort(*[0]).map(*.join("\t"))).join("\n") ~ "\n");
             say "{@files.elems} files";
             say sprintf('  %-26s %d', .key, .value) for @rows.map(*[1]).Bag.sort(-*.value);
             for @specs.kv -> $i, $s {
-                my @g = @rows.grep(*[1] eq 'seeded').map(*[2 + $i]);
-                say sprintf('%-18s fattens %d of the %d seeded files (%d edit groups)', $s, @g.grep(* > 0).elems, @g.elems, @g.sum);
+                my @g = @rows.grep(*[1] eq 'tokenized').map(*[2 + $i]);
+                say sprintf('%-18s fattens %d of the %d tokenized files (%d edit groups)', $s, @g.grep(* > 0).elems, @g.elems, @g.sum);
             }
             say "per file: {$out.add('coverage.tsv')}";
             my sub rm-tree(IO::Path $d) { .d && !.l ?? rm-tree($_) !! .unlink for $d.dir; $d.rmdir }

@@ -50,10 +50,11 @@ Testing operator overloading subroutines
 
 # Overriding prefix:<if>
 # L<S04/"Statement parsing" /"since prefix:<if> would hide statement_modifier:<if>">
-skip('ì갢òò갢丧æ 丛л갨개k̲, à𝐩𝐩àсe̲丧中лù "갢е" 丧갨中 à丧 갨𝐩', 1);# {
-#     my proto prefix:<if> ($a) { $a*2 }
-#     is (if+5), 10;
-# }
+#?rakudo skip 'missing block, apparently "if" not an op'
+{
+    my proto prefix:<if> ($a) { $a*2 }
+    is (if+5), 10;
+}
 
 # [NOTE]
 # pmichaud ruled that infix<if> is incorrect:
@@ -187,6 +188,3 @@ skip('ì갢òò갢丧æ 丛л갨개k̲, à𝐩𝐩àсe̲丧中лù "갢е" 丧�
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

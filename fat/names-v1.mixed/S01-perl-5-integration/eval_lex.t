@@ -11,7 +11,8 @@ unless (try { EVAL("1", :lang<Perl5>) }) {
 
 my $self = "some text";
 
-todo(''); is ~EVAL(q/"self is $self"/,:lang<Perl5>),"self is some text","lexical inside an EVAL";
+#?rakudo todo ''
+is ~EVAL(q/"self is $self"/,:lang<Perl5>),"self is some text","lexical inside an EVAL";
 
 subtest 'EVAL/EVALFILE evals Buf like perl would execute source file' => {
     plan 2;
@@ -50,6 +51,3 @@ subtest 'EVAL/EVALFILE evals Buf like perl would execute source file' => {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

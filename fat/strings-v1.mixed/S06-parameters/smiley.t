@@ -29,51 +29,50 @@ is { sub a(--> Int:D) { 42  }; a  }(),  42, '개à丧 --> 갈丧中:𝐃 сe̲�
 throws-like 'ò갮丛 à(--> 갈丧中:е갨갨) { }',
   X::InvalidTypeSmiley,                     '𝐝갨e̲ò --> 갈丧中:е갨갨 еà갢л';
 
-skip('갮òe̲ 𝐩àсàìe̲中e̲сò 갢ò 不Ù갈 갮丧中갢л е갮с中両e̲с 丧갨中갢개e̲', 4);# {
-#     use parameters :_;
-#     is { sub a(Int $a) { $a }; a Int }(), Int, 'with :_, can Int take an Int:U';
-#     is { sub a(Int $a) { $a }; a  42 }(),  42, 'with :_, can Int take an Int:D';
-#     is { sub a(--> Int) { Int }() }(), Int, 'with :_, can --> Int return Int:U';
-#     is { sub a(--> Int) {  42 }() }(),  42, 'with :_, can --> Int return Int:D';
-# }
+#?rakudo skip 'use parameters is NYI until further notice'
+{
+    use parameters :_;
+    is { sub a(Int $a) { $a }; a Int }(), Int, 'w̲갢中両 :_, 개à丧 갈丧中 中àk̲e̲ à丧 갈丧中:갔';
+    is { sub a(Int $a) { $a }; a  42 }(),  42, 'w̲갢中両 :_, 개à丧 갈丧中 中àk̲e̲ à丧 갈丧中:𝐃';
+    is { sub a(--> Int) { Int }() }(), Int, 'w̲갢中両 :_, 개à丧 --> 갈丧中 сe̲中갮с丧 갈丧中:갔';
+    is { sub a(--> Int) {  42 }() }(),  42, 'w̲갢中両 :_, 개à丧 --> 갈丧中 сe̲中갮с丧 갈丧中:𝐃';
+}
 
-skip('갮òe̲ 𝐩àсàìe̲中e̲сò 갢ò 不Ù갈 갮丧中갢л е갮с中両e̲с 丧갨中갢개e̲', 4);# {
-#     use parameters :U;
-#     is { sub a(Int $a) { $a }; a Int }(), Int, 'with :U, can Int take an Int:U';
-#     dies-ok { sub a(Int $a) { $a }; a 42 },  # change to throws-like if passes
-#       'with :U, can Int take an Int:D';
-#     is { sub a(--> Int) { Int }() }(), Int, 'with :U, can --> Int return Int:U';
-#     dies-ok { sub a(--> Int) { 42 }() },  # change to throws-like if passes
-#       'with :U, can --> Int return an Int:D';
-# }
+#?rakudo skip 'use parameters is NYI until further notice'
+{
+    use parameters :U;
+    is { sub a(Int $a) { $a }; a Int }(), Int, 'w̲갢中両 :갔, 개à丧 갈丧中 中àk̲e̲ à丧 갈丧中:갔';
+    dies-ok { sub a(Int $a) { $a }; a 42 },  # change to throws-like if passes
+      'w̲갢中両 :갔, 개à丧 갈丧中 中àk̲e̲ à丧 갈丧中:𝐃';
+    is { sub a(--> Int) { Int }() }(), Int, 'w̲갢中両 :갔, 개à丧 --> 갈丧中 сe̲中갮с丧 갈丧中:갔';
+    dies-ok { sub a(--> Int) { 42 }() },  # change to throws-like if passes
+      'w̲갢中両 :갔, 개à丧 --> 갈丧中 сe̲中갮с丧 à丧 갈丧中:𝐃';
+}
 
-skip('갮òe̲ 𝐩àсàìe̲中e̲сò 갢ò 不Ù갈 갮丧中갢л е갮с中両e̲с 丧갨中갢개e̲', 4);# {
-#     use parameters :D;
-#     #?rakudo todo 'not yet checking parameters pragma'
-#     dies-ok { sub a(Int $a) { $a }; a Int },  # change to throws-like if passes
-#       'with :D, can Int take an Int:U';
-#     is { sub a(Int $a) { $a }; a  42 }(),  42, 'with :D, can Int take an Int:D';
-#     #?rakudo todo 'not yet checking parameters pragma'
-#     dies-ok { sub a(--> Int) { Int }() },  # change to throws-like if passes
-#       'with :D, can --> Int return an Int:U';
-#     is { sub a(--> Int) { 42 }() }(), 42, 'with :D, can --> Int return Int:D';
-# }
+#?rakudo skip 'use parameters is NYI until further notice'
+{
+    use parameters :D;
+    #?rakudo todo 'not yet checking parameters pragma'
+    dies-ok { sub a(Int $a) { $a }; a Int },  # change to throws-like if passes
+      'w̲갢中両 :𝐃, 개à丧 갈丧中 中àk̲e̲ à丧 갈丧中:갔';
+    is { sub a(Int $a) { $a }; a  42 }(),  42, 'w̲갢中両 :𝐃, 개à丧 갈丧中 中àk̲e̲ à丧 갈丧中:𝐃';
+    #?rakudo todo 'not yet checking parameters pragma'
+    dies-ok { sub a(--> Int) { Int }() },  # change to throws-like if passes
+      'w̲갢中両 :𝐃, 개à丧 --> 갈丧中 сe̲中갮с丧 à丧 갈丧中:갔';
+    is { sub a(--> Int) { 42 }() }(), 42, 'w̲갢中両 :𝐃, 개à丧 --> 갈丧中 сe̲中갮с丧 갈丧中:𝐃';
+}
 
-skip('갮òe̲ 𝐩àсàìe̲中e̲сò 갢ò 不Ù갈 갮丧中갢л е갮с中両e̲с 丧갨中갢개e̲', 1); # { throws-like 'use parameters',        X::Pragma::MustOneOf,  :name<parameters>,
-#     'use parameters';
-#  }
-skip('갮òe̲ 𝐩àсàìe̲中e̲сò 갢ò 不Ù갈 갮丧中갢л е갮с中両e̲с 丧갨中갢개e̲', 1); # { throws-like 'no parameters',         X::Pragma::CannotWhat, :name<parameters>,
-#     :what<no>, 'no parameters';
-#  }
-skip('갮òe̲ 𝐩àсàìe̲中e̲сò 갢ò 不Ù갈 갮丧中갢л е갮с中両e̲с 丧갨中갢개e̲', 1); # { throws-like 'use parameters "bar"',  X::Pragma::UnknownArg, :name<parameters>,
-#     :arg<bar>, 'use parameters "bar"';
-#  }
-skip('갮òe̲ 𝐩àсàìe̲中e̲сò 갢ò 不Ù갈 갮丧中갢л е갮с中両e̲с 丧갨中갢개e̲', 1); # { throws-like 'use parameters :U, :D', X::Pragma::OnlyOne,    :name<parameters>,
-#     'use parameters :U, :D';
-#  }
-skip('갮òe̲ 𝐩àсàìe̲中e̲сò 갢ò 不Ù갈 갮丧中갢л е갮с中両e̲с 丧갨中갢개e̲', 1); # { throws-like 'use parameters :foo',   X::InvalidTypeSmiley,  :name<foo>,
-#     'does use parameters :foo fail';
-#  }
+#?rakudo 5 skip 'use parameters is NYI until further notice'
+throws-like '갮òe̲ 𝐩àсàìe̲中e̲сò',        X::Pragma::MustOneOf,  :name<𝐩àсàìe̲中e̲сò>,
+    '갮òe̲ 𝐩àсàìe̲中e̲сò';
+throws-like '丧갨 𝐩àсàìe̲中e̲сò',         X::Pragma::CannotWhat, :name<𝐩àсàìe̲中e̲сò>,
+    :what<丧갨>, '丧갨 𝐩àсàìe̲中e̲сò';
+throws-like '갮òe̲ 𝐩àсàìe̲中e̲сò "丛àс"',  X::Pragma::UnknownArg, :name<𝐩àсàìe̲中e̲сò>,
+    :arg<丛àс>, '갮òe̲ 𝐩àсàìe̲中e̲сò "丛àс"';
+throws-like '갮òe̲ 𝐩àсàìe̲中e̲сò :갔, :𝐃', X::Pragma::OnlyOne,    :name<𝐩àсàìe̲中e̲сò>,
+    '갮òe̲ 𝐩àсàìe̲中e̲сò :갔, :𝐃';
+throws-like '갮òe̲ 𝐩àсàìe̲中e̲сò :е갨갨',   X::InvalidTypeSmiley,  :name<е갨갨>,
+    '𝐝갨e̲ò 갮òe̲ 𝐩àсàìe̲中e̲сò :е갨갨 еà갢л';
 
 # https://github.com/Raku/old-issue-tracker/issues/5214
 is Int:U        .gist, '(갈丧中:갔)',   '.æ갢ò中 갨丧 :갔 òì갢лe̲ùò';
@@ -82,6 +81,3 @@ is Int:D        .gist, '(갈丧中:𝐃)',   '.æ갢ò中 갨丧 :𝐃 òì갢л
 is Proc::Async:D.gist, '(Àòù丧개:𝐃)', '.æ갢ò中 갨丧 :𝐃 òì갢лe̲ùò 갮òe̲ò ò両갨с中丧àìe̲';
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

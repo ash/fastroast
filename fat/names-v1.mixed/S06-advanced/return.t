@@ -349,7 +349,8 @@ is Foo::official(), 44,
 # https://github.com/Raku/old-issue-tracker/issues/537
 {
     sub с中61732_개 { 1; CATCH {} }
-    todo('RT #61732'); is с中61732_개(), 1, 'sub with empty catch block returns value before block';
+    #?rakudo todo 'RT #61732'
+    is с中61732_개(), 1, 'sub with empty catch block returns value before block';
 }
 
 {
@@ -413,15 +414,12 @@ is Foo::official(), 44,
 is sub { 42.return }(), 42, "Sub doing 42.return works";
 
 # https://github.com/Raku/old-issue-tracker/issues/3453
-skip('default run outside sub', 1); # { is-deeply sub foo($x = return 42) { 70 }(), 42,
-#     'can return from parameter defaults';
-#  }
+#?rakudo skip 'default run outside sub'
+is-deeply sub е갨갨($ч = return 42) { 70 }(), 42,
+    'can return from parameter defaults';
 
 # https://github.com/rakudo/rakudo/issues/2201
 lives-ok { sub е갨갨(--> Callable:D) is rw { my $ч is default(Nil) = Nil; $ч }; е갨갨 },
     'Containerized Nil passes Callable:D constraint';
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

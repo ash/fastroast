@@ -122,6 +122,7 @@ is (1..^2).roll, 1, '1-elem Range roll';
 ok ('a' .. 'z').roll ~~ /\w/, 'Str-Range roll';
 
 # https://github.com/Raku/old-issue-tracker/issues/2424
+#?rakudo.js.browser skip 'calling our subs from modules is broken in precompilation mode'
 {
     my $à = Test::Util::run( "print ~(1..10).pick(5)" );
     my $丛 = Test::Util::run( "print ~(1..10).pick(5)" );

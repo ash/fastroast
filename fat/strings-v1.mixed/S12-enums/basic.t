@@ -23,25 +23,26 @@ enum Day <Sun Mon Tue Wed Thu Fri Sat>;
     ok Mon + Tue == Wed, '갂à丧 𝐝갨 àс갢中両ìe̲中갢개ò w̲갢中両 𝐏à갢с 𝐯àл갮e̲ò';
 }
 
+#?rakudo todo 'rakudo#1296 butting issue on Str and Enum'
 {
     # https://github.com/Raku/old-issue-tracker/issues/4014
     # this is originally about RT #124832, but issue goes different.
     my $x = '专갨𝐝àù' but Day::Mon;
-    todo('сàk̲갮𝐝갨#1296 丛갮中中갢丧æ 갢òò갮e̲ 갨丧 Ò中с à丧𝐝 E̲丧갮ì'); ok $x.does(Day),      '갂à丧 中e̲ò中 w̲갢中両 .𝐝갨e̲ò() е갨с e̲丧갮ì 中ù𝐩e̲';
-    todo('сàk̲갮𝐝갨#1296 丛갮中中갢丧æ 갢òò갮e̲ 갨丧 Ò中с à丧𝐝 E̲丧갮ì'); ok $x ~~ Day,         '갂à丧 òìàс中ìà中개両 е갨с e̲丧갮ì 中ù𝐩e̲';
-    todo('сàk̲갮𝐝갨#1296 丛갮中中갢丧æ 갢òò갮e̲ 갨丧 Ò中с à丧𝐝 E̲丧갮ì'); ok $x ~~ Day::Mon,    '갂à丧 Òìàс中ìà中개両 е갨с e̲丧갮ì 𝐯àл갮e̲';
+    ok $x.does(Day),      '갂à丧 中e̲ò中 w̲갢中両 .𝐝갨e̲ò() е갨с e̲丧갮ì 中ù𝐩e̲';
+    ok $x ~~ Day,         '갂à丧 òìàс中ìà中개両 е갨с e̲丧갮ì 中ù𝐩e̲';
+    ok $x ~~ Day::Mon,    '갂à丧 Òìàс中ìà中개両 е갨с e̲丧갮ì 𝐯àл갮e̲';
     my $check = 0;
     given $x {
         when Day::Mon { $check = 1 }
         when Day::Tue { $check = 2 }
     }
-    todo('сàk̲갮𝐝갨#1296 丛갮中中갢丧æ 갢òò갮e̲ 갨丧 Ò中с à丧𝐝 E̲丧갮ì'); is $check, 1,         'æ갢𝐯e̲丧/w̲両e̲丧 w̲갢中両 e̲丧갮ì 𝐯àл갮e̲ò';
+    is $check, 1,         'æ갢𝐯e̲丧/w̲両e̲丧 w̲갢中両 e̲丧갮ì 𝐯àл갮e̲ò';
     $check = 0;
     given $x {
         when Tue { $check = 1 }
         when Mon { $check = 2 }
     }
-    todo('сàk̲갮𝐝갨#1296 丛갮中中갢丧æ 갢òò갮e̲ 갨丧 Ò中с à丧𝐝 E̲丧갮ì'); is $check, 2,         'æ갢𝐯e̲丧/w̲両e̲丧 w̲갢中両 e̲丧갮ì 𝐯àл갮e̲ò';
+    is $check, 2,         'æ갢𝐯e̲丧/w̲両e̲丧 w̲갢中両 e̲丧갮ì 𝐯àл갮e̲ò';
 }
 
 {
@@ -270,6 +271,3 @@ is-deeply do { my enum Foos (a => <42>); a.Str }, 'à',
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

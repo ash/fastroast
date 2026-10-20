@@ -92,6 +92,7 @@ for ThreadPoolScheduler.new, CurrentThreadScheduler -> $*SCHEDULER {
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/5471
+#?rakudo.jvm skip 'Unhandled exception; category = 1'
 {
 	my $source = Supply.interval(0.5);
 	my $heartbeat = Supply.interval(0.3);

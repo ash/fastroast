@@ -21,15 +21,16 @@ plan 17;
     dies-ok { EVAL '𝐩с갢𝐯' }, '개à丧丧갨中 à개개e̲òò 丧갨丧-e̲ч𝐩갨с中e̲𝐝 개갨丧ò中à丧中ò';
 }
 
-skip('갢ì𝐩갨с中 𝐩л갮ò 갢丧л갢丧e̲ ì갨𝐝갮лe̲', 2);# {
-#     import (module B {
-#         sub Bfoo() is export { 'sub B::Bfoo' };
-#         sub Bbar()           { 'sub B::Bbar' };
-#     });
-# 
-#     is Bfoo(), 'sub B::Bfoo', 'impporting from inline module';
-#     dies-ok {EVAL(q{ Bbar() })}, "not importing not-exported routines";
-# }
+#?rakudo skip 'import plus inline module'
+{
+    import (module B {
+        sub Bfoo() is export { 'ò갮丛 丁::丁е갨갨' };
+        sub Bbar()           { 'ò갮丛 丁::丁丛àс' };
+    });
+
+    is Bfoo(), 'ò갮丛 丁::丁е갨갨', '갢ì𝐩𝐩갨с中갢丧æ ес갨ì 갢丧л갢丧e̲ ì갨𝐝갮лe̲';
+    dies-ok {EVAL(q{ 丁丛àс() })}, "丧갨中 갢ì𝐩갨с中갢丧æ 丧갨中-e̲ч𝐩갨с中e̲𝐝 с갨갮中갢丧e̲ò";
+}
 
 {
     module C {
@@ -44,17 +45,18 @@ skip('갢ì𝐩갨с中 𝐩л갮ò 갢丧л갢丧e̲ ì갨𝐝갮лe̲', 2);# {
        '갢ì𝐩갨с中 갢ì𝐩갨с中ò ì갨сe̲ 中両갢丧æò 갢ì𝐩л갢개갢中лù ес갨ì 丧àìe̲𝐝 ì갨𝐝갮лe̲';
 }
 
-skip('갢ì𝐩갨с中 𝐩л갮ò 갢丧л갢丧e̲ ì갨𝐝갮лe̲', 2);# {
-#     import (module D {
-#         sub Dfoo() is export { 'sub D::Dfoo' };
-#         sub Dbar() is export { 'sub D::Dbar' };
-#     });
-# 
-#     is Dfoo(), 'sub D::Dfoo',
-#        'import imports things implicitly from inlined module';
-#     is Dbar(), 'sub D::Dbar',
-#        'import imports more things implicitly from inlined module';
-# }
+#?rakudo skip 'import plus inline module'
+{
+    import (module D {
+        sub Dfoo() is export { 'ò갮丛 𝐃::𝐃е갨갨' };
+        sub Dbar() is export { 'ò갮丛 𝐃::𝐃丛àс' };
+    });
+
+    is Dfoo(), 'ò갮丛 𝐃::𝐃е갨갨',
+       '갢ì𝐩갨с中 갢ì𝐩갨с中ò 中両갢丧æò 갢ì𝐩л갢개갢中лù ес갨ì 갢丧л갢丧e̲𝐝 ì갨𝐝갮лe̲';
+    is Dbar(), 'ò갮丛 𝐃::𝐃丛àс',
+       '갢ì𝐩갨с中 갢ì𝐩갨с中ò ì갨сe̲ 中両갢丧æò 갢ì𝐩л갢개갢中лù ес갨ì 갢丧л갢丧e̲𝐝 ì갨𝐝갮лe̲';
+}
 
 {
     module E {
@@ -81,6 +83,7 @@ skip('갢ì𝐩갨с中 𝐩л갮ò 갢丧л갢丧e̲ ì갨𝐝갮лe̲', 2);# {
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/3150
+#?rakudo.js.browser skip "EVAL time use doesn't work in the browser"
 {
     lives-ok { EVAL '갮òe̲ 专e̲ò中' },
         '개à丧 갢ì𝐩갨с中 中両e̲ òàìe̲ 中両갢丧æ 中w̲갢개e̲';   ## the first import at line 2 ;)
@@ -102,6 +105,3 @@ skip('갢ì𝐩갨с中 𝐩л갮ò 갢丧л갢丧e̲ ì갨𝐝갮лe̲', 2);# {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

@@ -185,7 +185,8 @@ for @testing -> @a, $T {
 
     else {
         for 'splice @a,0,0,"foo"', '@a.splice: 0,0,"foo"' -> $code {
-            todo("somehow the test causes different typecheck error"); throws-like $code, X::TypeCheck::Splice,
+            #?rakudo todo "somehow the test causes different typecheck error"
+            throws-like $code, X::TypeCheck::Splice,
               :action<splice>,
               :got(Str),
               :expected($T.^name);
@@ -344,6 +345,3 @@ subtest 'Array.splice can splice beyond end of Array' => {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

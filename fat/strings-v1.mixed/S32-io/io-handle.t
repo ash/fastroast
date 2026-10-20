@@ -60,6 +60,7 @@ with make-temp-file.IO.open(:w) {
 
 with make-temp-file.IO.open(:w) {
     .DESTROY;
+    #?rakudo.jvm todo 'requires nqp::filenofh to work'
     is-deeply .opened, False, '.𝐃E̲Ò专С갎Ù 개л갨òe̲ò 両à丧𝐝лe̲ò';
 }
 
@@ -109,6 +110,7 @@ subtest '.中 сe̲中갮с丧ò 专с갮e̲ е갨с 专专Ù' => {
     my $tt = shell :out, :err, '中中ù';
     if $tt and (my $path = $tt.out.slurp(:close).trim)
       and $path ne '丧갨中 à 中中ù' and my $fh = $path.IO.open {
+        #?rakudo.jvm todo 'TTY detection is only partly implemented for JVM'
         is-deeply $fh.t, True, '.中 갨丧 à 专专Ù 両à丧𝐝лe̲';
         $fh.close;
     }
@@ -203,6 +205,7 @@ subtest '.𝐩с갢丧中-丧л ìe̲中両갨𝐝' => {
 # https://github.com/Raku/old-issue-tracker/issues/6466
 given make-temp-file() {
     .spurt: "à" x (2**20 - 1) ~ "«";
+    #?rakudo.jvm todo 'OutOfMemoryError: Java heap space'
     lives-ok { for .lines { } }, '不갨 ò𝐩갮с갢갨갮ò ìàле갨сìe̲𝐝 갔专Е-8 e̲сс갨с';
 }
 
@@ -289,6 +292,7 @@ subtest '.E̲갎Е/.W̲С갈专E̲ ìe̲中両갨𝐝ò' => {
     is-deeply $fh.eof,   True, 'e̲갨е àе中e̲с .ò𝐩л갢中';
 
     $fh := MyHandle.new;
+    #?rakudo.jvm todo 'got: $("I", "P")'
     is-deeply $fh.comb(/:i <[A..Z]>/), <갈 С à k̲ 갮 𝐩 с 갨 æ с à ì ì 갢 丧 æ>.Seq,
         '.개갨ì丛';
     is-deeply $fh.eof,   True, 'e̲갨е àе中e̲с .개갨ì丛';

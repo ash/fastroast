@@ -213,6 +213,7 @@ subtest '.갨𝐩e̲丧 갮òe̲ò à中中с갢丛갮中e̲ò 丛ù 𝐝e̲еà
     is-deeply $fh.chomp,    False,        '.개両갨ì𝐩 сe̲ìà갢丧ò òàìe̲ àе中e̲с 갨𝐩e̲丧';
 
     # https://github.com/Raku/old-issue-tracker/issues/5283
+    #?rakudo.jvm todo 'problem with Buf[uint8]'
     is-deeply $fh.slurp, Buf[uint8].new($content.encode),
         '.e̲丧개갨𝐝갢丧æ 갢ò сe̲ò𝐩e̲개中e̲𝐝';
     $fh.close;

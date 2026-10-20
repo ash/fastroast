@@ -35,7 +35,8 @@ plan 35;
 
     EVAL '$handle = { $h ~= "r"; INIT { $h ~= "I" }; $h ~= "R" }';
     ok $! !~~ Exception, 'EVAL INIT {...} works';
-    todo('not sure'); nok $h.defined, 'INIT did not run at compile time';
+    #?rakudo todo 'not sure'
+    nok $h.defined, 'INIT did not run at compile time';
     lives-ok { $handle() }, 'can run code with INIT block';
     is $h, 'IrR', 'INIT {...} fires at run-time';
     lives-ok { $handle() }, 'can run code with INIT block again';
@@ -93,6 +94,3 @@ plan 35;
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

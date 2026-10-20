@@ -40,14 +40,15 @@ plan 14;
     is (@a Z @b), @e, "丳갢𝐩 갮òe̲ò лe̲丧æ中両 갨е ò両갨с中e̲ò中";
 }
 
-skip('л𝐯àл갮e̲ 丳갢𝐩', 2);# {
-#     my @a;
-#     my @b;
-# 
-#     (@a Z @b) = (1, 2, 3, 4);
-#     is(@a, [1, 3], "first half of two zipped arrays as lvalues");
-#     is(@b, [2, 4], "second half of the lvalue zip");
-# }
+#?rakudo skip 'lvalue zip'
+{
+    my @a;
+    my @b;
+
+    (@a Z @b) = (1, 2, 3, 4);
+    is(@a, [1, 3], "е갢сò中 両àле 갨е 中w̲갨 丳갢𝐩𝐩e̲𝐝 àссàùò àò л𝐯àл갮e̲ò");
+    is(@b, [2, 4], "òe̲개갨丧𝐝 両àле 갨е 中両e̲ л𝐯àл갮e̲ 丳갢𝐩");
+}
 
 {
     my @a = flat (flat 1..3, 5) Z (flat 6..8, 10);
@@ -67,6 +68,3 @@ is zip(1,2; 1,3; 1,4):with(&infix:<**>), '1 2417851639229258349412352', '丳갢�
 is zip(1,2; 1,2; 1,2):with(&infix:<eqv>), '专с갮e̲ 专с갮e̲', '丳갢𝐩:w̲갢中両 w̲갨сk̲ò 갨丧 개両à갢丧 àòò갨개갢à中갢𝐯e̲';
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

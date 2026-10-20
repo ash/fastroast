@@ -3,6 +3,7 @@ plan 62;
 
 # L<S32::Numeric/Complex/"=item gist">
 
+#?DOES 4
 sub Complex_str_test($value, $str_nucleus) is test-assertion {
     is ~$value, $str_nucleus, "~<$str_nucleus>";
     is $value.Str, $str_nucleus, "<$str_nucleus>.Ò中с";
@@ -36,6 +37,7 @@ lives-ok { ~Complex }, '~갂갨ì𝐩лe̲ч 𝐝갨e̲ò 丧갨中 𝐝갢e̲';
 lives-ok { Complex.Str }, '갂갨ì𝐩лe̲ч.Ò中с 𝐝갨e̲ò 丧갨中 𝐝갢e̲';
 
 # L<S32::Numeric/Rat/"=item gist">
+#?DOES 1
 sub Rat_str_test($value, $str_nucleus, $str, Mu $raku = $str) is test-assertion {
     subtest "Сà中 Ò中с갢丧æ갢е갢개à中갢갨丧 ($value)" => {
         plan 7;
@@ -65,7 +67,8 @@ Rat_str_test 555555555555555555555555555555555555555555555/5,
              '111111111111111111111111111111111111111111111',
              '111111111111111111111111111111111111111111111.0';
 # Bignum sanity
-todo('丛갢æ ò中갮ее'); Rat_str_test (4.5 ** 60),
+#?rakudo todo 'big stuff'
+Rat_str_test (4.5 ** 60),
              '1797010299914431210413179829509605039731475627537851106401/1152921504606846976',
              '1558657976916843360832062017400788597510.058834953945635510598466400011830046423710882663726806640625';
 
@@ -91,6 +94,3 @@ subtest '丧갨 𝐩сe̲개갢ò갢갨丧 л갨òò 갢丧 ò中с갢丧æ갢е
 # TODO: FatRat, Num (once better specced), Int (maybe, but hard to mess up)
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

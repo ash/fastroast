@@ -218,18 +218,19 @@ sub showset($s) { $s.keys.sort.join(' ') }
 }
 
 # L<S03/Hyper operators/'unordered type'>
-skip("Hypers not yet Set compatible", 9);# {
-#     is showset(set(1, 2, 3) »+» 6), '7 8 9', 'Set »+» Int';
-#     is showset("a" «~« set(<pple bbot rmadillo>)), 'abbot apple armadillo', 'Str «~« Set';
-#     is showset(-« set(3, 9, -4)), '-9 -3 4', '-« Set';
-#     is showset(set(<b e g k z>)».pred), 'a d f j y', 'Set».pred';
-# 
-#     throws-like { set(1, 2) »+« set(3, 4) }, Exception,'Set »+« Set is illegal';
-#     throws-like { set(1, 2) »+« [3, 4] }, Exception, 'Set »+« Array is illegal';
-#     throws-like { set(1, 2) «+» [3, 4] }, Exception, 'Set «+» Array is illegal';
-#     throws-like { [1, 2] »+« set(3, 4) }, Exception, 'Set »+« Array is illegal';
-#     throws-like { [1, 2] «+» set(3, 4) }, Exception, 'Set «+» Array is illegal';
-# }
+#?rakudo skip "Hypers not yet Set compatible"
+{
+    is showset(set(1, 2, 3) »+» 6), '7 8 9', 'Set »+» Int';
+    is showset("a" «~« set(<pple bbot rmadillo>)), 'abbot apple armadillo', 'Str «~« Set';
+    is showset(-« set(3, 9, -4)), '-9 -3 4', '-« Set';
+    is showset(set(<b e g k z>)».pred), 'a d f j y', 'Set».pred';
+
+    throws-like { set(1, 2) »+« set(3, 4) }, Exception,'Set »+« Set is illegal';
+    throws-like { set(1, 2) »+« [3, 4] }, Exception, 'Set »+« Array is illegal';
+    throws-like { set(1, 2) «+» [3, 4] }, Exception, 'Set «+» Array is illegal';
+    throws-like { [1, 2] »+« set(3, 4) }, Exception, 'Set »+« Array is illegal';
+    throws-like { [1, 2] «+» set(3, 4) }, Exception, 'Set «+» Array is illegal';
+}
 
 # L<S32::Containers/Set/roll>
 
@@ -638,6 +639,3 @@ is-deeply <a b>.Set.Capture, %(:a, :b).Capture, 'Set Capture';
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

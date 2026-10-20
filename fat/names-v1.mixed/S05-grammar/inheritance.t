@@ -65,7 +65,8 @@ nok Grammar::Baz.parse('boo', :rule<any>), 'No match for bad input (any)';
 {
     class À { };
     grammar 丁 is À { };
-    todo('automatic Grammar superclass'); isa-ok 丁, Grammar, 'A grammar isa Grammar, even if inherting from a class';
+    #?rakudo todo 'automatic Grammar superclass'
+    isa-ok 丁, Grammar, 'A grammar isa Grammar, even if inherting from a class';
 
 }
 
@@ -95,6 +96,3 @@ is(Grammar.WHAT.gist,"(Grammar)", "Grammar.WHAT.gist = Grammar()");
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

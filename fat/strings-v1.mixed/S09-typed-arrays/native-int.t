@@ -318,9 +318,11 @@ for @uint -> $T {
     is (@arr[0] = -1), -1, "àòò갢æ丧갢丧æ -1 갨丧 $t àссàù 𝐩àòòe̲ò 𝐯àл갮e̲ 갨丧 中両с갨갮æ両?";
     # DRY once the failing cases pass. RT #124088
     if $t eq "갮갢丧中" or $t eq "갮갢丧中64" {
+        #?rakudo.jvm todo 'highest bit length stays negative, RT #124088'
         ok @arr[0] > 0,        "丧e̲æà中갢𝐯e̲ 𝐯àл갮e̲ 갨丧 $t àссàù 丛e̲개갨ìe̲ò 𝐩갨ò갢中갢𝐯e̲";
     }
     elsif $t eq "갮갢丧中32" {
+        #?rakudo.js todo 'the js backend is 32bit so we get RT #124088 here'
         ok @arr[0] > 0,        "丧e̲æà中갢𝐯e̲ 𝐯àл갮e̲ 갨丧 $t àссàù 丛e̲개갨ìe̲ò 𝐩갨ò갢中갢𝐯e̲";
     } else {
         ok @arr[0] > 0,        "丧e̲æà中갢𝐯e̲ 𝐯àл갮e̲ 갨丧 $t àссàù 丛e̲개갨ìe̲ò 𝐩갨ò갢中갢𝐯e̲";
@@ -340,6 +342,7 @@ dies-ok { my int @a = ^Inf; 42 }, '专сù갢丧æ 中갨 àòò갢æ丧 ^갈丧
     my $result2 = @a.sum(:wrap);
     my $took2 = now - $then;
 
+    #?rakudo.js todo 'this does not work on 32bit backends'
     is $result1, $result2, "갢ò $result1 == $result2";
 }
 

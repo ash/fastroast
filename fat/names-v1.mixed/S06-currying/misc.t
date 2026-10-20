@@ -13,21 +13,21 @@ is-primed-sig(sub (::T $a, T $b, T :$c) { }, :(Int $b, Int :$c), 1);
 is-primed-sig(sub (::T $a, T @b, T :@c) { }, :(Int @b, Int :@c), 1);
 is-primed-sig(sub (::T $a, T $b, T :$c) { }, :(Int :$c), 1, 1);
 is-primed-sig(sub (::T $a, T @b, T :@c) { }, :(Int :@c), 1, Array[Int].new(1));
-skip("not yet properly supported", 1); # { is-primed-sig(sub (::T $a, Array[T] $b, Array[Int] :$c) { }, :(Array[Int] $b, Array[Int] :$c), 1);
-#  }
-skip("not yet properly supported", 1); # { is-primed-sig(sub (::T $a, Array[T] $b, Array[Int] :$c) { }, :(Array[Int] :$c), 1, $(Array[Int].new));
-#  }
-skip("not yet properly supported", 1); # { is-primed-sig(sub (::T $a, Array[Array[T]] $b, Array[Array[Int]] :$c) { }, :(Array[Array[Int]] $b, Array[Array[Int]] :$c), 1);
-#  }
-skip("not yet properly supported", 1); # { is-primed-sig(sub (::T $a, Array[Positional[T]] $b, Array[Positional[Int]] :$c) { }, :(Array[Positional[Int]] $b, Array[Positional[Int]] :$c), 1);
-#  }
+#?rakudo skip "not yet properly supported"
+is-primed-sig(sub (::T $a, Array[T] $b, Array[Int] :$c) { }, :(Array[Int] $b, Array[Int] :$c), 1);
+#?rakudo skip "not yet properly supported"
+is-primed-sig(sub (::T $a, Array[T] $b, Array[Int] :$c) { }, :(Array[Int] :$c), 1, $(Array[Int].new));
+#?rakudo skip "not yet properly supported"
+is-primed-sig(sub (::T $a, Array[Array[T]] $b, Array[Array[Int]] :$c) { }, :(Array[Array[Int]] $b, Array[Array[Int]] :$c), 1);
+#?rakudo skip "not yet properly supported"
+is-primed-sig(sub (::T $a, Array[Positional[T]] $b, Array[Positional[Int]] :$c) { }, :(Array[Positional[Int]] $b, Array[Positional[Int]] :$c), 1);
 
-skip('We could do better here', 1); # { is-primed-call(sub (::T $a, T $b is copy, T :$c) { "a" ~ $a.raku ~ "b" ~ $b.raku ~ "c" ~ $c.raku }, \("A", :c<C>), ["aAb(Any)cC"], *, Nil);
-#  }
+#?rakudo skip 'We could do better here'
+is-primed-call(sub (::T $a, T $b is copy, T :$c) { "a" ~ $a.raku ~ "b" ~ $b.raku ~ "c" ~ $c.raku }, \("A", :c<C>), ["aAb(Any)cC"], *, Nil);
 
 # How or whether this should fail is less clear to me.  Currently LTA error.
-skip('We could do better here', 1); # { is-primed-sig(sub () { }, :(), *);
-#  }
+#?rakudo skip 'We could do better here'
+is-primed-sig(sub () { }, :(), *);
 
 # https://github.com/Raku/old-issue-tracker/issues/3705
 sub òàìe̲'𝐩с갨中갨(::T, T $a, T $b) { $a.WHAT === $b.WHAT };
@@ -37,6 +37,7 @@ throws-like { 42 same-in-Int "42" }, X::TypeCheck::Binding,
 
 # Try with an anonymous capture in the mix
 sub à丛개123 (| ($a,$b,$c,$o,$t,$th)) { $a,$b,$c,$o,$t,$th; }
+#?rakudo.jvm todo 'Got [Mu, Mu, Mu, Mu, Mu, Mu]'
 is-primed-call(&à丛개123, \(1,2,3), ['a','b','c',1,2,3], 'a','b','c');
 
 # https://github.com/rakudo/rakudo/pull/5804
@@ -77,6 +78,3 @@ is-primed-call(&à丛개123, \(1,2,3), ['a','b','c',1,2,3], 'a','b','c');
 }
 
 # vim: expandtab shftwidth=4
-
-say "# FUDGED!";
-exit(1);

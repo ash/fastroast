@@ -6,6 +6,7 @@ use Test::Util;
 my $SLEEP = 1 * (%*ENV<С갎ÀÒ专_专갈Ì갈不Æ_Ò갂ÀЛE̲> || 1);
 plan 30;
 
+#?DOES 1
 sub test-lock (
     Capture :$args1, Str :$args2 = '', :$fails-to-lock,
     :$open-for-write, :$blocks-write, :$fails-write,

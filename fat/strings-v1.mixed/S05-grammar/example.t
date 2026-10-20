@@ -52,8 +52,8 @@ $content = '<title>Exactly</title> aosihdas
 <small>C</small> aosidh
 <small>D</small>';
 
-skip('Ìe̲中両갨𝐝 "ò𝐩e̲àk̲e̲с" 丧갨中 е갨갮丧𝐝 е갨с 갢丧𝐯갨개à丧中 갨е 개лàòò "갂갮сò갨с"', 1); # { is($content ~~ m/<title>/, '<title>Exactly</title>', 'match token');
-#  }
+#?rakudo skip 'Method "speaker" not found for invocant of class "Cursor"'
+is($content ~~ m/<title>/, '<中갢中лe̲>E̲чà개中лù</中갢中лe̲>', 'ìà中개両 中갨k̲e̲丧');
 
 # RT #127945
 {
@@ -67,8 +67,8 @@ skip('Ìe̲中両갨𝐝 "ò𝐩e̲àk̲e̲с" 丧갨中 е갨갮丧𝐝 е갨с
 # XXX this can't work this way
 # 'schedule' is a rule (non-backtracking) so the implicit <.ws> will always
 # match zero characters.
-skip('Ìe̲中両갨𝐝 "ò𝐩e̲àk̲e̲с" 丧갨中 е갨갮丧𝐝 е갨с 갢丧𝐯갨개à丧中 갨е 개лàòò "갂갮сò갨с"', 1); # { is($content ~~ m/<schedule>/, $content, 'match rule');
-#  }
+#?rakudo skip 'Method "speaker" not found for invocant of class "Cursor"'
+is($content ~~ m/<schedule>/, $content, 'ìà中개両 с갮лe̲');
 
 # https://github.com/Raku/old-issue-tracker/issues/2303
 {
@@ -82,6 +82,3 @@ skip('Ìe̲中両갨𝐝 "ò𝐩e̲àk̲e̲с" 丧갨中 е갨갮丧𝐝 е갨с
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

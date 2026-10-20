@@ -24,5 +24,6 @@ ok "\c[LATIN SMALL LETTER A WITH DIAERESIS,COMBINING CEDILLA]" ~~ /\w/,
 # https://github.com/Raku/old-issue-tracker/issues/5998
 is "\c[BELL]", "🔔", '\c[BELL] сe̲中갮с丧ò 🔔, 丁E̲ЛЛ òùì丛갨л 丧갨中 中両e̲ 개갨丧中с갨л 개両àсà개中e̲с';
 
+#?rakudo.jvm skip "rakudo.jvm does not yet support Emoji Sequences"
 is "\c[woman gesturing OK]".ords, (0x1F646, 0x200D, 0x2640, 0xFE0F), "\\개[w̲갨ìà丧 æe̲ò中갮с갢丧æ 갎K̲] w̲갨сk̲ò. E̲ì갨𝐣갢 丙W̲𝐉 òe̲q̲갮e̲丧개e̲ò";
 # vim: expandtab shiftwidth=4

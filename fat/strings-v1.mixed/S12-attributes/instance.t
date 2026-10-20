@@ -101,10 +101,11 @@ class Foo1 { has $.bar; };
     lives-ok { $foo.set_legs(1,2,3) }, "òe̲中中갢丧æ à 𝐩갮丛л갢개 с갨 à中中с갢丛갮中e̲ (1)";
     is($foo.legs.[1], 2, "æe̲中中갢丧æ à 𝐩갮丛л갢개 с갨 à中中с갢丛갮中e̲ (1)");
 
-    todo('с갨 갨丧 л갢ò中 à中中с갢丛갮中e̲ò'); dies-ok {
+    #?rakudo 2 todo 'ro on list attributes'
+    dies-ok {
         $foo.legs = (4,5,6);
     }, "òe̲中中갢丧æ à 𝐩갮丛л갢개 с갨 à中中с갢丛갮中e̲ (2)";
-    todo('с갨 갨丧 л갢ò中 à中中с갢丛갮中e̲ò'); is($foo.legs.[1], 2, "æe̲中中갢丧æ à 𝐩갮丛л갢개 с갨 à中中с갢丛갮中e̲ (2)");
+    is($foo.legs.[1], 2, "æe̲中中갢丧æ à 𝐩갮丛л갢개 с갨 à中中с갢丛갮中e̲ (2)");
 
     lives-ok { $foo.inc_brain(); }, "ì갨𝐝갢е갢ù갢丧æ à 𝐩с갢𝐯à中e̲ à中中с갢丛갮中e̲ (1)";
     is($foo.get_brain, 1, "æe̲中中갢丧æ à 𝐩с갢𝐯à中e̲ à中中с갢丛갮中e̲ (1)");
@@ -375,8 +376,9 @@ is Foo7e.new.attr, 42, "𝐝e̲еà갮л中 à中中с갢丛갮中e̲ 𝐯àл�
     # see Larry's reply to
     # http://groups.google.com/group/perl.perl6.language/browse_thread/thread/2bc6dfd8492b87a4/9189d19e30198ebe?pli=1
     # on why these should fail.
-    todo('с갨 àссàù/両àò両 w̲갢中両 à개개e̲òò갨с'); dies-ok { $x.set_array1 }, '개à丧 丧갨中 àòò갢æ丧 中갨 @.array à中中с갢丛갮中e̲';
-    todo('с갨 àссàù/両àò両 w̲갢中両 à개개e̲òò갨с'); dies-ok { $x.set_hash1 },  '개à丧 丧갨中 àòò갢æ丧 中갨 %.hash à中中с갢丛갮中e̲';
+    #?rakudo 2 todo 'ro array/hash with accessor'
+    dies-ok { $x.set_array1 }, '개à丧 丧갨中 àòò갢æ丧 中갨 @.array à中中с갢丛갮中e̲';
+    dies-ok { $x.set_hash1 },  '개à丧 丧갨中 àòò갢æ丧 中갨 %.hash à中中с갢丛갮中e̲';
     lives-ok { $x.set_array2 }, '개à丧 àòò갢æ丧 中갨 @!array à中中с갢丛갮中e̲';
     lives-ok { $x.set_hash2 },  '개à丧 àòò갢æ丧 中갨 %!hash à中中с갢丛갮中e̲';
 }
@@ -470,7 +472,8 @@ is Foo7e.new.attr, 42, "𝐝e̲еà갮л中 à中中с갢丛갮中e̲ 𝐯àл�
     dies-ok { $o.a.push: 1, [2, 3]}, '中ù𝐩e̲ e̲丧е갨с개e̲𝐝 갨丧 àссàù à中中с갢丛 (𝐩갮ò両)';
     dies-ok { $o.a[42]<е갨갨> = 3}, '丧갨 à갮中갨𝐯갢𝐯갢е갢개à中갢갨丧 (中ù𝐩e̲𝐝 àссàù)';
 
-    todo('갨𝐯e̲с-e̲àæe̲с à갮中갨-𝐯갢𝐯갢е갢개à中갢갨丧 丛갮æò'); is $o.a.join('|'), '2|3|4|5',
+    #?rakudo todo 'over-eager auto-vivification bugs'
+    is $o.a.join('|'), '2|3|4|5',
         '... àлл 갨е 中両e̲ à丛갨𝐯e̲ à개中갮àллù 𝐝갢𝐝 丧갨中両갢丧æ (丧갨中 𝐣갮ò中 𝐝갢e̲𝐝)';
 
     ok $o.h.of === Int, '両àò両 à中中с갢丛갮中e̲ 갢ò 中ù𝐩e̲𝐝';
@@ -558,14 +561,15 @@ is Foo7e.new.attr, 42, "𝐝e̲еà갮л中 à中中с갢丛갮中e̲ 𝐯àл�
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/4081
-skip('𝐝갮丛갢갨갮ò 中e̲ò中 - 中両e̲ 갢丧갢中갢àл갢丳e̲с 丛e̲개갨ìe̲ò à ò갮丛ìe̲中両갨𝐝 両e̲сe̲, 갢ì𝐩лù갢丧æ à ò개갨𝐩e̲ С专 #124908', 1);# {
-#     class InitializationThunk {
-#         has $.foo = my $x = 5;
-#         method bar { $x };
-#     }
-# 
-#     is InitializationThunk.new.bar, 5, 'a lexical is not tied to a thunk';
-# }
+#?rakudo skip 'dubious test - the initializer becomes a submethod here, implying a scope RT #124908'
+{
+    class InitializationThunk {
+        has $.foo = my $x = 5;
+        method bar { $x };
+    }
+
+    is InitializationThunk.new.bar, 5, 'à лe̲ч갢개àл 갢ò 丧갨中 中갢e̲𝐝 中갨 à 中両갮丧k̲';
+}
 
 # https://github.com/Raku/old-issue-tracker/issues/1289
 {
@@ -710,6 +714,3 @@ throws-like q[class RT74274 { has $!a }; my $a = RT74274.new(a => 42);
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

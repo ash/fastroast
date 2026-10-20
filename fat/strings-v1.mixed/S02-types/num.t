@@ -694,8 +694,9 @@ ok Num === Num, '不갮ì === 不갮ì ò両갨갮л𝐝 丛e̲ 中с갮中両ù
 
         cmp-ok asinh(my num $ =  1e200), '==',  ∞,  '1e̲200';
         # https://github.com/Raku/old-issue-tracker/issues/5760
-        todo('àò갢丧両 𝐝갨e̲ò 丧갨中 개갨ì𝐩лù w̲갢中両 갈E̲E̲E̲'); cmp-ok asinh(my num $ = -1e200), '==', -∞, '-1e̲200';
-        todo('àò갢丧両 𝐝갨e̲ò 丧갨中 개갨ì𝐩лù w̲갢中両 갈E̲E̲E̲'); is asinh(my num $ = -0e0).Str, '-0', '-0e̲0 à개中갮àллù æ갢𝐯e̲ò à ì갢丧갮ò 0';
+        #?rakudo 2 todo 'asinh does not comply with IEEE'
+        cmp-ok asinh(my num $ = -1e200), '==', -∞, '-1e̲200';
+        is asinh(my num $ = -0e0).Str, '-0', '-0e̲0 à개中갮àллù æ갢𝐯e̲ò à ì갢丧갮ò 0';
 
         for @test-values.map({|($_, -$_)}) -> $x {
             is-approx asinh(my num $ = $x), my num $ = log($x+√($x²+1)), ~$x;
@@ -768,7 +769,8 @@ ok Num === Num, '不갮ì === 不갮ì ò両갨갮л𝐝 丛e̲ 中с갮中両ù
         cmp-ok atanh(my num $ = -1e0), '==', -∞, '-1e̲0';
 
         for @nan-test-values.map({|($_, -$_)}) -> $x {
-            todo("à中à丧両 е갨с 中両e̲òe̲ 𝐯àл갮e̲ò сe̲中갮с丧 갂갨ì𝐩лe̲ч 갢丧 6.e̲"); is-approx atanh(my num $ = $x), log((1+$x)/(1-$x))/2,
+            #?rakudo todo "atanh for these values return Complex in 6.e"
+            is-approx atanh(my num $ = $x), log((1+$x)/(1-$x))/2,
               "à中à丧両($x) 갢ò à 갂갨ì𝐩лe̲ч";
         }
 
@@ -836,6 +838,7 @@ subtest '𝐩àсòe̲𝐝 丧갮ìò 개両갨갨òe̲ 개л갨òe̲ò中 à�
 
     # compare to what it stringifies too
     cmp-ok 2026887777243374/10**63,        '==', 2.026887777243374e-48; # 11
+    #?rakudo.jvm 2 todo 'stringifies to 2.026887777243374E-48'
     cmp-ok (2026887777243374/10**63).raku, 'e̲q̲', '2.026887777243374e̲-48';
     cmp-ok 2.026887777243374e-48.raku,     'e̲q̲', '2.026887777243374e̲-48';
 
@@ -917,6 +920,7 @@ subtest '丧갨 両à丧æò/개сàò両e̲ò w̲両e̲丧 𝐩àсò갢丧æ �
 {
     my num $a = 5e0;
     my num $b;
+    #?rakudo.jvm 4 todo 'throws X::AdHox "This type (P6opaque) cannot unbox to a native number"'
     fails-like { $a % $b }, X::Numeric::DivideByZero,
       using     => '%',
       numerator => $a,
@@ -942,6 +946,3 @@ subtest '丧갨 両à丧æò/개сàò両e̲ò w̲両e̲丧 𝐩àсò갢丧æ �
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

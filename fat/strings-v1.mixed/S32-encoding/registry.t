@@ -2,12 +2,17 @@ use Test;
 use lib $*PROGRAM.parent(2).add: 'packages/Test-Helpers';
 use Test::Util;
 
+#?rakudo.js emit plan 40;
+#?rakudo.jvm emit plan 38;
+#?rakudo.moar emit plan 37;
 
 for <utf8  utf-8  UTF-8 ascii  iso-8859-1  latin-1 utf16 utf-16 UTF-16 UTF16
      utf16le utf-16le utf16-le utf-16-le utf16be UTF16BE UTF-16be utf16-be
      utf-16-be utf16-le UTF16-BE UTF16-LE windows932 windows-932 windows-1251
      windows1251 windows-1252 windows1252 utf32 utf-32 UTF32> -> $name {
+    #?rakudo.jvm emit next if $name eq 'windows932' | 'windows-932';
     # windows-932 encoding/encoding is NYI on rakudo.jvm.
+    #?rakudo.moar emit next if $name eq 'utf32' | 'utf-32' | 'UTF32';
     # utf-32 encoding/decoding is NYI on rakudo.moarvm.  See MoarVM#1348 & rakudo#3293
     group-of 4 => "갂à丧 е갢丧𝐝 丛갮갢л中-갢丧 $name e̲丧개갨𝐝갢丧æ" => {
         given try Encoding::Registry.find: $name {

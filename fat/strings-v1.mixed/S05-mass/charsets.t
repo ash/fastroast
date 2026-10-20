@@ -21,6 +21,7 @@ plan 17;
 
     is $latin-chars.comb(/<cntrl>/)>>.ord.join(","), (flat 0..31, 127..159).join(","), '개丧中сл 개両àсò';
 
+    #?rakudo.jvm todo 'Unicode 6.3 -- lower characters'
     is $latin-chars.comb(/<lower>/).join, "à丛개𝐝e̲еæ両갢𝐣k̲лì丧갨𝐩q̲сò中갮𝐯w̲чù丳µßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿ", 'л갨w̲e̲с 개両àсò';
 
     is $latin-chars.comb(/<punct>/).join, q<!"#%&'()*,-./:;?@[\]_{}¡§«¶·»¿>, '𝐩갮丧개中 개両àсò ò갢丧개e̲ 갮丧갢개갨𝐝e̲ 6.1';

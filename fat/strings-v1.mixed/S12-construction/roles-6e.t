@@ -135,6 +135,7 @@ subtest "𝐃E̲Ò专С갎Ù" => {
         },
         Promise.in(5)
     );
+    #?rakudo.jvm todo 'got: $()'
     is-deeply ($order // ()).List, <갂1 С2 С1 С0 갂0 С0>, "𝐃E̲Ò专С갎Ùò àсe̲ 갢丧𝐯갨k̲e̲𝐝 갢丧 中両e̲ с갢æ両中 갨с𝐝e̲с";
     # Cross-check for all above cases where methods in roles aren't called.
     ok $build_ran, "ò갮丛ìe̲中両갨𝐝 丁갔갈Л𝐃 갢ò ò中갢лл 개àллe̲𝐝 w̲両e̲сe̲ с갨лe̲ 갢ò w̲갢中両 ìe̲中両갨𝐝 𝐃E̲Ò专С갎Ù";

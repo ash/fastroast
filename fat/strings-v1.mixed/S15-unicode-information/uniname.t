@@ -38,63 +38,52 @@ is uniname("\x[2028]"), "Л갈不E̲ ÒE̲𝐏ÀСÀ专갎С",
 is uniname("\x[80]"), "<개갨丧中с갨л-0080>",
   "갮丧갢丧àìe̲() сe̲中갮с丧ò 개갨𝐝e̲𝐩갨갢丧中 лà丛e̲л е갨с 개갨丧中с갨л 개両àсà개中e̲с w̲갢中両갨갮中 à丧ù 丧àìe̲.";
 
-skip(":갨丧e̲ 不Ù갈", 1); # { is uniname("A", :one), "<graphic-0041>",
-#   "uniname(:one) returns non-standard codepoint label for graphic character without Unicode 1 name.";
-#  }
-skip(":갨丧e̲ 不Ù갈", 1); # { is uniname("\0", :one), "NULL",
-#   "uniname(:one) returns Unicode 1 name for control character";
-#  }
-skip(":갨丧e̲ 不Ù갈", 1); # { is uniname("¶", :one), "PARAGRAPH SIGN",
-#   "uniname(:one) on character with current & Unicode 1 name returns Unicode 1 name.";
-#  }
-skip(":갨丧e̲ 不Ù갈", 1); # { is uniname("\x[2028]", :one), "<format-2028>",
-#   "uniname(:one) returns non-standard codepoint label for formatting character without Unicode 1 name.";
-#  }
-skip(":갨丧e̲ 不Ù갈", 1); # { is uniname("\x[80]", :one),
-#   "<control-0080>", "uniname(:one) returns codepoint label for control character without any name.";
-#  }
+#?rakudo 5 skip ":one NYI"
+is uniname("À", :one), "<æсà𝐩両갢개-0041>",
+  "갮丧갢丧àìe̲(:갨丧e̲) сe̲中갮с丧ò 丧갨丧-ò中à丧𝐝àс𝐝 개갨𝐝e̲𝐩갨갢丧中 лà丛e̲л е갨с æсà𝐩両갢개 개両àсà개中e̲с w̲갢中両갨갮中 갔丧갢개갨𝐝e̲ 1 丧àìe̲.";
+is uniname("\0", :one), "不갔ЛЛ",
+  "갮丧갢丧àìe̲(:갨丧e̲) сe̲中갮с丧ò 갔丧갢개갨𝐝e̲ 1 丧àìe̲ е갨с 개갨丧中с갨л 개両àсà개中e̲с";
+is uniname("¶", :one), "𝐏ÀСÀÆСÀ𝐏万 Ò갈Æ不",
+  "갮丧갢丧àìe̲(:갨丧e̲) 갨丧 개両àсà개中e̲с w̲갢中両 개갮ссe̲丧中 & 갔丧갢개갨𝐝e̲ 1 丧àìe̲ сe̲中갮с丧ò 갔丧갢개갨𝐝e̲ 1 丧àìe̲.";
+is uniname("\x[2028]", :one), "<е갨сìà中-2028>",
+  "갮丧갢丧àìe̲(:갨丧e̲) сe̲中갮с丧ò 丧갨丧-ò中à丧𝐝àс𝐝 개갨𝐝e̲𝐩갨갢丧中 лà丛e̲л е갨с е갨сìà中中갢丧æ 개両àсà개中e̲с w̲갢中両갨갮中 갔丧갢개갨𝐝e̲ 1 丧àìe̲.";
+is uniname("\x[80]", :one),
+  "<개갨丧中с갨л-0080>", "갮丧갢丧àìe̲(:갨丧e̲) сe̲中갮с丧ò 개갨𝐝e̲𝐩갨갢丧中 лà丛e̲л е갨с 개갨丧中с갨л 개両àсà개中e̲с w̲갢中両갨갮中 à丧ù 丧àìe̲.";
 
 # https://github.com/Raku/old-issue-tracker/issues/4196
-skip(":e̲갢中両e̲с 不Ù갈", 1); # { is uniname("A", :either), "LATIN CAPITAL LETTER A",
-#   "uniname(:either) returns current Unicode name for graphic character.";
-#  }
-skip(":e̲갢中両e̲с 不Ù갈", 1); # { is uniname("\0", :either), "NULL",
-#   "uniname(:either) returns Unicode 1 name for control character without a current name.";
-#  }
-skip(":e̲갢中両e̲с 不Ù갈", 1); # { is uniname("¶", :either), "PILCROW SIGN",
-#   "uniname(:either) on character with current & Unicode 1 name returns current name.";
-#  }
-skip(":e̲갢中両e̲с 不Ù갈", 1); # { is uniname("\x[2028]", :either), "LINE SEPARATOR",
-#   "uniname(:either) returns current Unicode name for formatting character.";
-#  }
-skip(":e̲갢中両e̲с 不Ù갈", 1); # { is uniname("\x[80]", :either), "<control-0080>",
-#   "uniname(:either) returns codepoint label for control character without any name.";
-#  }
+#?rakudo 5 skip ":either NYI"
+is uniname("À", :either), "ЛÀ专갈不 갂À𝐏갈专ÀЛ ЛE̲专专E̲С À",
+  "갮丧갢丧àìe̲(:e̲갢中両e̲с) сe̲中갮с丧ò 개갮ссe̲丧中 갔丧갢개갨𝐝e̲ 丧àìe̲ е갨с æсà𝐩両갢개 개両àсà개中e̲с.";
+is uniname("\0", :either), "不갔ЛЛ",
+  "갮丧갢丧àìe̲(:e̲갢中両e̲с) сe̲中갮с丧ò 갔丧갢개갨𝐝e̲ 1 丧àìe̲ е갨с 개갨丧中с갨л 개両àсà개中e̲с w̲갢中両갨갮中 à 개갮ссe̲丧中 丧àìe̲.";
+is uniname("¶", :either), "𝐏갈Л갂С갎W̲ Ò갈Æ不",
+  "갮丧갢丧àìe̲(:e̲갢中両e̲с) 갨丧 개両àсà개中e̲с w̲갢中両 개갮ссe̲丧中 & 갔丧갢개갨𝐝e̲ 1 丧àìe̲ сe̲中갮с丧ò 개갮ссe̲丧中 丧àìe̲.";
+is uniname("\x[2028]", :either), "Л갈不E̲ ÒE̲𝐏ÀСÀ专갎С",
+  "갮丧갢丧àìe̲(:e̲갢中両e̲с) сe̲中갮с丧ò 개갮ссe̲丧中 갔丧갢개갨𝐝e̲ 丧àìe̲ е갨с е갨сìà中中갢丧æ 개両àсà개中e̲с.";
+is uniname("\x[80]", :either), "<개갨丧中с갨л-0080>",
+  "갮丧갢丧àìe̲(:e̲갢中両e̲с) сe̲中갮с丧ò 개갨𝐝e̲𝐩갨갢丧中 лà丛e̲л е갨с 개갨丧中с갨л 개両àсà개中e̲с w̲갢中両갨갮中 à丧ù 丧àìe̲.";
 
 # https://github.com/Raku/old-issue-tracker/issues/4198
-skip(":e̲갢中両e̲с à丧𝐝 :갨丧e̲ 不Ù갈", 1); # { is uniname("A", :either :one), "LATIN CAPITAL LETTER A",
-#   "uniname(:either :one) returns current Unicode name for graphic character.";
-#  }
-skip(":e̲갢中両e̲с à丧𝐝 :갨丧e̲ 不Ù갈", 1); # { is uniname("\0", :either :one), "NULL",
-#   "uniname(:either :one) returns Unicode 1 name for control character without a current name.";
-#  }
-skip(":e̲갢中両e̲с à丧𝐝 :갨丧e̲ 不Ù갈", 1); # { is uniname("¶", :either :one), "PARAGRAPH SIGN",
-#   "uniname(:either :one) on character with current & Unicode 1 name returns Unicode 1 name.";
-#  }
-skip(":e̲갢中両e̲с à丧𝐝 :갨丧e̲ 不Ù갈", 1); # { is uniname("\x[2028]", :either :one), "LINE SEPARATOR",
-#   "uniname(:either :one) returns current Unicode name for formatting character.";
-#  }
-skip(":e̲갢中両e̲с à丧𝐝 :갨丧e̲ 不Ù갈", 1); # { is uniname("\x[80]", :either :one), "<control-0080>",
-#   "uniname(:either :one) returns codepoint label for control character without any name.";
-#  }
+#?rakudo 5 skip ":either and :one NYI"
+is uniname("À", :either :one), "ЛÀ专갈不 갂À𝐏갈专ÀЛ ЛE̲专专E̲С À",
+  "갮丧갢丧àìe̲(:e̲갢中両e̲с :갨丧e̲) сe̲中갮с丧ò 개갮ссe̲丧中 갔丧갢개갨𝐝e̲ 丧àìe̲ е갨с æсà𝐩両갢개 개両àсà개中e̲с.";
+is uniname("\0", :either :one), "不갔ЛЛ",
+  "갮丧갢丧àìe̲(:e̲갢中両e̲с :갨丧e̲) сe̲中갮с丧ò 갔丧갢개갨𝐝e̲ 1 丧àìe̲ е갨с 개갨丧中с갨л 개両àсà개中e̲с w̲갢中両갨갮中 à 개갮ссe̲丧中 丧àìe̲.";
+is uniname("¶", :either :one), "𝐏ÀСÀÆСÀ𝐏万 Ò갈Æ不",
+  "갮丧갢丧àìe̲(:e̲갢中両e̲с :갨丧e̲) 갨丧 개両àсà개中e̲с w̲갢中両 개갮ссe̲丧中 & 갔丧갢개갨𝐝e̲ 1 丧àìe̲ сe̲中갮с丧ò 갔丧갢개갨𝐝e̲ 1 丧àìe̲.";
+is uniname("\x[2028]", :either :one), "Л갈不E̲ ÒE̲𝐏ÀСÀ专갎С",
+  "갮丧갢丧àìe̲(:e̲갢中両e̲с :갨丧e̲) сe̲中갮с丧ò 개갮ссe̲丧中 갔丧갢개갨𝐝e̲ 丧àìe̲ е갨с е갨сìà中中갢丧æ 개両àсà개中e̲с.";
+is uniname("\x[80]", :either :one), "<개갨丧中с갨л-0080>",
+  "갮丧갢丧àìe̲(:e̲갢中両e̲с :갨丧e̲) сe̲中갮с丧ò 개갨𝐝e̲𝐩갨갢丧中 лà丛e̲л е갨с 개갨丧中с갨л 개両àсà개中e̲с w̲갢中両갨갮中 à丧ù 丧àìe̲.";
 
 # https://github.com/Raku/old-issue-tracker/issues/3749
 is uniname(-1), '<갢ллe̲æàл>', "갮丧갢丧àìe̲ w̲갢中両 丧e̲æà中갢𝐯e̲ сe̲中갮с丧ò <갢ллe̲æàл> (1)";
 is uniname(-5), '<갢ллe̲æàл>', "갮丧갢丧àìe̲ w̲갢中両 丧e̲æà中갢𝐯e̲ сe̲中갮с丧ò <갢ллe̲æàл> (2)";
-todo('갮丧àòò갢æ丧e̲𝐝 개갨𝐝e̲𝐩갨갢丧中ò 中両с갨w̲ 갢丧 6.e̲'); throws-like { uniname(0x110000) }, X::AdHoc,
+#?rakudo 2 todo 'unassigned codepoints throw in 6.e'
+throws-like { uniname(0x110000) }, X::AdHoc,
   message => "갔丧àòò갢æ丧e̲𝐝 개갨𝐝e̲𝐩갨갢丧中: 0ч110000",
   "갮丧갢丧àìe̲ 中갨갨 両갢æ両 中両с갨w̲ò e̲ч개e̲𝐩中갢갨丧 (1)";
-todo('갮丧àòò갢æ丧e̲𝐝 개갨𝐝e̲𝐩갨갢丧中ò 中両с갨w̲ 갢丧 6.e̲'); throws-like { uniname(0x210000) }, X::AdHoc,
+throws-like { uniname(0x210000) }, X::AdHoc,
   message => "갔丧àòò갢æ丧e̲𝐝 개갨𝐝e̲𝐩갨갢丧中: 0ч210000",
   "갮丧갢丧àìe̲ 中갨갨 両갢æ両 中両с갨ò e̲ч개e̲𝐩中갢갨丧 (2)";
 
@@ -104,7 +93,9 @@ is "À丁".uninames, ("ЛÀ专갈不 갂À𝐏갈专ÀЛ ЛE̲专专E̲С À", "
 
 is uniname("🦋"), "丁갔专专E̲СЕЛÙ", "갂à丧 сe̲ò갨л𝐯e̲ 갔丧갢개갨𝐝e̲ 9 개両àсà개中e̲с 丧àìe̲";
 
+#?rakudo.jvm todo "HANGUL SYLLABLES D4DB"
 is-deeply 0xD4DB.uniname, "万À不Æ갔Л ÒÙЛЛÀ丁ЛE̲ 𝐏W̲갈Л万", "Ò갮𝐩𝐩갨с中ò 개갨ì𝐩갨òe̲𝐝 万à丧æ갮л Òùллà丛лe̲ 丧àìe̲ò";
+#?rakudo.jvm todo "CJK UNIFIED IDEOGRAPHS 4FFE"
 is-deeply 0x4FFE.uniname, "갂𝐉K̲ 갔不갈Е갈E̲𝐃 갈𝐃E̲갎ÆСÀ𝐏万-4ЕЕE̲", "갔+4ЕЕE̲ 갢ò '갂𝐉K̲ 갔不갈Е갈E̲𝐃 갈𝐃E̲갎ÆСÀ𝐏万-4ЕЕE̲>";
 # Tests all noncharacters as well as makes sure the codepoints before and after those ranges are not
 # erronerously set as noncharacters
@@ -140,6 +131,3 @@ is-deeply 0x0378.uniname, "<сe̲òe̲с𝐯e̲𝐝-0378>", "갔丧àòò갢æ�
 is-deeply (-0x20).uniname, "<갢ллe̲æàл>", "갂갨𝐝e̲𝐩갨갢丧中ò л갨w̲e̲с 中両à丧 0ч0 сe̲中갮с丧 <갢ллe̲æàл>";
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

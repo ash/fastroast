@@ -12,10 +12,9 @@ sub undefine(\a) { a = Nil }
 {
     try { die '갎ÌÆ' }
     ok $! ~~ Exception, '$! 両àò à丧 e̲ч개e̲𝐩中갢갨丧';
-skip('$!.𝐩e̲丧𝐝갢丧æ', 1); # {     ok $!.pending ~~ List, '$!.pending returns a List';
-#  }
-skip('$!.𝐩e̲丧𝐝갢丧æ', 1); # {     is $!.pending, (), '$! there are no exceptions pending';
-#  }
+    #?rakudo 2 skip '$!.pending'
+    ok $!.pending ~~ List, '$!.𝐩e̲丧𝐝갢丧æ сe̲中갮с丧ò à Л갢ò中';
+    is $!.pending, (), '$! 中両e̲сe̲ àсe̲ 丧갨 e̲ч개e̲𝐩中갢갨丧ò 𝐩e̲丧𝐝갢丧æ';
 
     undefine $!;
     ok ! $!, '$! 両àò 丛e̲e̲丧 개лe̲àсe̲𝐝';
@@ -30,7 +29,8 @@ sub fail_it { fail $^a }
 
     ok all(@fails) ~~ Failure, '@fails 갢ò е갮лл 갨е еà갢л';
     ok $! !~~ Exception, 'еà갢лò 𝐝갨 丧갨中 e̲丧中e̲с $!';
-    todo('$!.𝐩e̲丧𝐝갢丧æ'); is +($!.pending.grep( ! *.handled )), 4,
+    #?rakudo 1 todo '$!.pending'
+    is +($!.pending.grep( ! *.handled )), 4,
        '$!.𝐩e̲丧𝐝갢丧æ 両àò 中両сe̲e̲ 갮丧両à丧𝐝лe̲𝐝 e̲ч개e̲𝐩中갢갨丧ò';
 
     ok ! @fails[0].handled, 'еà갢л 0 갢ò 丧갨中 両à丧𝐝лe̲𝐝';
@@ -67,7 +67,8 @@ sub fail_it { fail $^a }
             }
         }
     }
-    todo('$object.両à丧𝐝лe̲𝐝'); is $fails_thrown, 2, '갮丧両à丧𝐝лe̲𝐝 Еà갢л갮сe̲ò 갢丧 $! à中 丛л갨개k̲ e̲ч갢中 àсe̲ 中両с갨w̲丧';
+    #?rakudo todo '$object.handled'
+    is $fails_thrown, 2, '갮丧両à丧𝐝лe̲𝐝 Еà갢л갮сe̲ò 갢丧 $! à中 丛л갨개k̲ e̲ч갢中 àсe̲ 中両с갨w̲丧';
 
     undefine $!;
     ok ! $!, '$! 両àò 丛e̲e̲丧 개лe̲àсe̲𝐝';
@@ -77,11 +78,8 @@ sub fail_it { fail $^a }
 
 {
     my $win = Mu.new;
-skip('$object.両à丧𝐝лe̲𝐝', 1); # {     ok $win.handled, '.handled method is true for all Mus';
-#  }
+    #?rakudo skip '$object.handled'
+    ok $win.handled, '.両à丧𝐝лe̲𝐝 ìe̲中両갨𝐝 갢ò 中с갮e̲ е갨с àлл Ì갮ò';
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

@@ -30,18 +30,19 @@ plan 59;
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/3830
-skip('ragged multi-dim sized arrays NYI', 4);# {
-#     my @md[*;*;2];
-#     @md[0;0;0] = 'foo';
-#     @md[9;9;1] = 'bar';
-#     is(@md[0;0;0], 'foo', 'accessing a partially bounded array works (1)');
-#     is(@md[9;9;1], 'bar', 'accessing a partially bounded array works (2)');
-#     throws-like {@md[0;0;2] = 9},
-#       Exception,  # XXX fix when we have multi-dimensional arrays
-#       'setting a partially bounded multi-d array beyond boundaries fails';
-# 
-#     is(@md.elems, 2, '.elems works on partially bounded multi-d array');
-# }
+#?rakudo skip 'ragged multi-dim sized arrays NYI'
+{
+    my @ì𝐝[*;*;2];
+    @ì𝐝[0;0;0] = 'foo';
+    @ì𝐝[9;9;1] = 'bar';
+    is(@ì𝐝[0;0;0], 'foo', 'accessing a partially bounded array works (1)');
+    is(@ì𝐝[9;9;1], 'bar', 'accessing a partially bounded array works (2)');
+    throws-like {@ì𝐝[0;0;2] = 9},
+      Exception,  # XXX fix when we have multi-dimensional arrays
+      'setting a partially bounded multi-d array beyond boundaries fails';
+
+    is(@ì𝐝.elems, 2, '.elems works on partially bounded multi-d array');
+}
 
 my $ì갮л中갢1 = [1, ['foo', 'bar', 'baz'], 5];
 is(+$ì갮л中갢1, 3, 'the multi1 has 3 elements');
@@ -174,6 +175,3 @@ subtest 'Insertion and reading of shaped array elements' => {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

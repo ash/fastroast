@@ -1,0 +1,37 @@
+use lib $?FILE.IO.parent.parent.add('lib').Str;
+use Test;
+
+# fatten writes the trees run-fatroast runs: Roast's files as they are, `#?`
+# directives included, with only a transform's edits applied.
+plan 8;
+my $root  = $?FILE.IO.parent.parent;
+my $roast = $root.add('fixtures/roast-mini');
+my $out   = $*TMPDIR.add("fastroast-t4-$*PID");
+my $p = run($*EXECUTABLE.absolute, $root.add('bin/fastroast').absolute, 'fatten', "--roast={$roast.absolute}",
+            "--out={$out.absolute}", '--jobs=1', :out, :err);
+my $said = $p.out.slurp(:close); $p.err.slurp(:close);
+is $p.exitcode, 0, 'fatten writes the trees';
+nok $out.add('seed').e, 'there is no seed tree: a tree starts from the Roast file itself';
+
+my $rel = 'S32-str/directives.t';
+my @source = $roast.add($rel).lines;
+sub directives(@lines) { @lines.grep(/^ \s* '#?' /).List }
+for <strings-v1.mixed names-v1.mixed ops-v1> -> $spec {
+    my @fat = $out.add($spec).add($rel).lines;
+    subtest "$spec keeps the directives", {
+        ok @fat.elems == @source.elems, 'line for line';
+        is-deeply directives(@fat), directives(@source), 'every #? line as Roast has it';
+        ok (@fat Z@source).grep({ .[0] ne .[1] }), 'and fattens the code around them';
+    }
+}
+ok $out.add('strings-v1.mixed').add($rel).lines.grep(*.contains('my $word = "')).head.contains('"abc"').not,
+    'a string literal outside a directive is fattened';
+ok $out.add('coverage.tsv').lines.grep(*.starts-with("$rel\ttokenized\t")), 'coverage.tsv calls the file tokenized';
+
+$p = run($*EXECUTABLE.absolute, $root.add('bin/fastroast').absolute, 'fatten', $roast.add($rel).absolute,
+         '--transform=ops-v1', :out, :err);
+my $one = $p.out.slurp(:close); $p.err.slurp(:close);
+ok $one.contains('1 ≤ 2') && $one.contains("#?rakudo.moar 2 skip"), 'fatten FILE prints the file fattened, its directives kept';
+
+sub rm-tree(IO::Path $d) { for $d.dir { .d && !.l ?? rm-tree($_) !! .unlink }; $d.rmdir }
+rm-tree($out) if $out.e;

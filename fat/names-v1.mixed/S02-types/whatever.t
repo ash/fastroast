@@ -129,7 +129,8 @@ is (0,0,0,0,0,0) >>+>> (Slip(1,2) xx *), <1 2 1 2 1 2>, 'xx * works';
 {
     # TODO: find out if this allowed for item assignment, or for list
     # assignment only
-    todo('* as dummy'); eval-lives-ok ' * = 5 ', 'can dummy-asign to *';
+    #?rakudo todo '* as dummy'
+    eval-lives-ok ' * = 5 ', 'can dummy-asign to *';
 
     my $ч;
     (*, *, $ч) = 1, 2, 3, 4, 5;
@@ -348,7 +349,8 @@ throws-like '*(42)', X::Method::NotFound, typename => 'Whatever';
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/6068
-todo('useless use corner case'); is_run "my &f = EVAL '*+*'", { err => '' }, '*+* does not warn from inside EVAL';
+#?rakudo todo 'useless use corner case'
+is_run "my &f = EVAL '*+*'", { err => '' }, '*+* does not warn from inside EVAL';
 
 is_run '-> +@foo { @foo.head.(41) }(* == 42)', { err => '' }, 'no warning when WhateverCode passed as arg and invoked';
 
@@ -357,10 +359,11 @@ is-eqv (1,2,3).combinations(2..*), ((1, 2), (1, 3), (2, 3), (1, 2, 3)).Seq,
     'combinations(2..*)';
 
 # https://github.com/Raku/old-issue-tracker/issues/6296
+#?rakudo todo 'closure/scoping of outer parameter with rx'
 {
     my @ìà中개両-сч = <foo fie>.map( -> $r { * ~~ /<$r>/ } );
     my @ìà中개両e̲ò = (for <fee е갨갨 fie fum> -> $е { @ìà中개両-сч.grep({$_($е)}).map({~$/}).list } );
-    todo('closure/scoping of outer parameter with rx'); is-deeply @ìà中개両e̲ò, [(), ("foo",), ("fie",), ()], 'outer parameter in rx in WhateverCode in closure';
+    is-deeply @ìà中개両e̲ò, [(), ("foo",), ("fie",), ()], 'outer parameter in rx in WhateverCode in closure';
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/4901
@@ -514,6 +517,3 @@ subtest 'can .assuming with WhateverCode' => {
 is do { $_ = 42; (Int).map(*.new($_)) }, (42,).Seq, "no scoping issues when using topic variables";
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

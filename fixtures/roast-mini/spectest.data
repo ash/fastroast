@@ -1,3 +1,4 @@
-# a Roast-shaped tree for the campaign test: no `fudge` script, so a seed is
-# the file itself
+# a Roast-shaped tree for the campaign and fatten tests: no `fudge` script, so
+# a campaign's seed is the file itself
+S32-str/directives.t    # slow
 S32-str/fat.t

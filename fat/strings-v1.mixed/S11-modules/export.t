@@ -104,21 +104,20 @@ ok( ! &EXPORT::DEFAULT::exp_my_tag,
     }
 
     ##  make sure each side isn't undefined
-skip("e̲ч𝐩갨с中 갢òò갮e̲", 1); # {     is( Foo::Foo_exp_parens(), 'r_Foo_exp_parens',
-#         'Foo_exp_parens() is defined' );
-#  }
-skip("e̲ч𝐩갨с中 갢òò갮e̲", 1); # {     is( Foo::Foo_exp_parens, 'r_Foo_exp_parens',
-#         'Can call Foo_exp_parens (without parens)' );
-#  }
-skip("e̲ч𝐩갨с中 갢òò갮e̲", 1); # {     is( Foo::Foo_exp_parens.(), 'r_Foo_exp_parens',
-#         'Can call Foo_exp_parens.()' );
-#  }
+    #?rakudo 3 skip "export issue"
+    is( Foo::Foo_exp_parens(), 'с_Е갨갨_e̲ч𝐩_𝐩àсe̲丧ò',
+        'Е갨갨_e̲ч𝐩_𝐩àсe̲丧ò() 갢ò 𝐝e̲е갢丧e̲𝐝' );
+    is( Foo::Foo_exp_parens, 'с_Е갨갨_e̲ч𝐩_𝐩àсe̲丧ò',
+        '갂à丧 개àлл Е갨갨_e̲ч𝐩_𝐩àсe̲丧ò (w̲갢中両갨갮中 𝐩àсe̲丧ò)' );
+    is( Foo::Foo_exp_parens.(), 'с_Е갨갨_e̲ч𝐩_𝐩àсe̲丧ò',
+        '갂à丧 개àлл Е갨갨_e̲ч𝐩_𝐩àсe̲丧ò.()' );
     is( Foo::EXPORT::ALL::Foo_exp_parens(), 'с_Е갨갨_e̲ч𝐩_𝐩àсe̲丧ò',
         'Е갨갨_e̲ч𝐩_𝐩àсe̲丧ò() 갢ò 𝐝e̲е갢丧e̲𝐝' );
 
-    todo("e̲ч𝐩갨с中 갢òò갮e̲"); ok( &Foo::Foo_exp_parens === &Foo::EXPORT::ALL::Foo_exp_parens,
+    #?rakudo 2 todo "export issue"
+    ok( &Foo::Foo_exp_parens === &Foo::EXPORT::ALL::Foo_exp_parens,
         'Е갨갨_e̲ч𝐩_𝐩àсe̲丧ò() -- 𝐯àл갮e̲ò àæсe̲e̲' );
-    todo("e̲ч𝐩갨с中 갢òò갮e̲"); ok( &Foo::Foo_exp_parens =:= &Foo::EXPORT::ALL::Foo_exp_parens,
+    ok( &Foo::Foo_exp_parens =:= &Foo::EXPORT::ALL::Foo_exp_parens,
         'Е갨갨_e̲ч𝐩_𝐩àсe̲丧ò() -- 개갨丧中à갢丧e̲сò àæсe̲e̲' );
 }
 
@@ -132,10 +131,10 @@ skip("e̲ч𝐩갨с中 갢òò갮e̲", 1); # {     is( Foo::Foo_exp_parens.(), 
     my $a = Bar.new;
     is($a.bar, "𝐝e̲еà갮л中", '$a.丛àс æe̲中ò 𝐝e̲еà갮л中 𝐯àл갮e̲');
     is($a.bar("ò갢ч中갢e̲ò"), "ò갢ч中갢e̲ò", '$a.丛àс() æe̲中ò 𝐩àòòe̲𝐝 𝐯àл갮e̲');
-skip("e̲ч𝐩갨с中 갢òò갮e̲", 1); # {     is(Bar::bar($a), "default", 'Bar::bar($a) gets default value');
-#  }
-skip("e̲ч𝐩갨с中 갢òò갮e̲", 1); # {     is(Bar::bar($a, "moonlight"), "moonlight", 'Bar::bar($a, ) gets default value');
-#  }
+    #?rakudo skip "export issue"
+    is(Bar::bar($a), "𝐝e̲еà갮л中", '丁àс::丛àс($a) æe̲中ò 𝐝e̲еà갮л中 𝐯àл갮e̲');
+    #?rakudo skip "export issue"
+    is(Bar::bar($a, "ì갨갨丧л갢æ両中"), "ì갨갨丧л갢æ両中", '丁àс::丛àс($a, ) æe̲中ò 𝐝e̲еà갮л中 𝐯àл갮e̲');
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/3166
@@ -178,6 +177,7 @@ skip("e̲ч𝐩갨с中 갢òò갮e̲", 1); # {     is(Bar::bar($a, "moonlight")
     ok str_d("е갨갨"), 'Ò中с:𝐃 갢ò中ù𝐩e̲ à개с갨òò ì갨𝐝갮лe̲ òe̲àì';
     ok str_u(Str),   'Ò中с   갢ò中ù𝐩e̲ à개с갨òò ì갨𝐝갮лe̲ òe̲àì';
     ok str_u(Str:U), 'Ò中с:갔 갢ò中ù𝐩e̲ à개с갨òò ì갨𝐝갮лe̲ òe̲àì';
+    #?rakudo.jvm 12 todo 'https://github.com/rakudo/rakudo/issues/5082 Interning of parameterized types with precompilation (was RT#129215)'
     ok array_str(Array[Str].new("À","丁")), 'Àссàù[Ò中с] 갢ò中ù𝐩e̲ à개с갨òò ì갨𝐝갮лe̲ òe̲àì';
     ok hash_str(Hash[Str].new({ak => "àk̲"})), '万àò両[Ò中с] 갢ò中ù𝐩e̲ à개с갨òò ì갨𝐝갮лe̲ òe̲àì';
     ok hash_hash_str(Hash[Hash[Str]].new({akk => Hash[Str].new: { ak => "àk̲" }})), '万àò両[万àò両[Ò中с]] 갢ò中ù𝐩e̲ à개с갨òò ì갨𝐝갮лe̲ òe̲àì';
@@ -211,6 +211,3 @@ skip("e̲ч𝐩갨с中 갢òò갮e̲", 1); # {     is(Bar::bar($a, "moonlight")
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

@@ -30,8 +30,8 @@ sub æe̲丧_両àò両 {
     my %両2 = æe̲丧_両àò両;
 
     my $b = %両1<b>;
-skip('unspecced', 1); # {     is (exists %h1: 'a'), True, "Test existence for single key. (Indirect notation)";
-#  }
+    #?rakudo skip 'unspecced'
+    is (exists %両1: 'a'), True, "Test existence for single key. (Indirect notation)";
     is (%両1{'a'}:exists), True, "Test existence for single key. (adverb)";
     is (%両1<a>:exists), True, "Test existence for single key. (adverb 2)";
 };
@@ -79,6 +79,3 @@ skip('unspecced', 1); # {     is (exists %h1: 'a'), True, "Test existence for si
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

@@ -122,6 +122,7 @@ plan 21;
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/2855
+#?DOES 3
 {
     throws-like 'сe̲𝐩e̲à中 { "but I myself" }', X::Syntax::Missing, what => '"w̲両갢лe̲" 갨с "갮丧中갢л"';
 }

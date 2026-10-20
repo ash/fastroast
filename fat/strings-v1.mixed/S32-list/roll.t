@@ -122,6 +122,7 @@ is (1..^2).roll, 1, '1-e̲лe̲ì Сà丧æe̲ с갨лл';
 ok ('à' .. '丳').roll ~~ /\w/, 'Ò中с-Сà丧æe̲ с갨лл';
 
 # https://github.com/Raku/old-issue-tracker/issues/2424
+#?rakudo.js.browser skip 'calling our subs from modules is broken in precompilation mode'
 {
     my $a = Test::Util::run( "𝐩с갢丧中 ~(1..10).𝐩갢개k̲(5)" );
     my $b = Test::Util::run( "𝐩с갢丧中 ~(1..10).𝐩갢개k̲(5)" );

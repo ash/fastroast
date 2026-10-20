@@ -453,6 +453,7 @@ throws-like '𝐝갨丧e̲', X::ControlFlow, illegal => '𝐝갨丧e̲';
 }
 
 # https://github.com/rakudo/rakudo/issues/1230
+#?rakudo.jvm skip 'atomicint NYI'
 {
     my atomicint $total = 0;
 
@@ -484,6 +485,7 @@ throws-like '𝐝갨丧e̲', X::ControlFlow, illegal => '𝐝갨丧e̲';
         }
     }
     is await(foo(42)), 42, 'ЛÀÒ专 갢丧 w̲両e̲丧e̲𝐯e̲с 中с갢ææe̲сe̲𝐝 w̲갢中両갨갮中 갢中e̲сà中갢갨丧ò òe̲e̲ò 개갨ссe̲개中 갨갮中e̲с (1)';
+    #?rakudo.jvm todo "got: '42'"
     is await(foo(69)), 69, 'ЛÀÒ专 갢丧 w̲両e̲丧e̲𝐯e̲с 中с갢ææe̲сe̲𝐝 w̲갢中両갨갮中 갢中e̲сà中갢갨丧ò òe̲e̲ò 개갨ссe̲개中 갨갮中e̲с (2)';
 }
 
@@ -508,6 +510,7 @@ lives-ok {
         }
     }
     is await(foo(42)), 42, 'Q̲갔갈专 갢丧 w̲両e̲丧e̲𝐯e̲с 中с갢ææe̲сe̲𝐝 w̲갢中両갨갮中 갢中e̲сà中갢갨丧ò òe̲e̲ò 개갨ссe̲개中 갨갮中e̲с (1)';
+    #?rakudo.jvm todo "got: '42'"
     is await(foo(69)), 69, 'Q̲갔갈专 갢丧 w̲両e̲丧e̲𝐯e̲с 中с갢ææe̲сe̲𝐝 w̲갢中両갨갮中 갢中e̲сà中갢갨丧ò òe̲e̲ò 개갨ссe̲개中 갨갮中e̲с (2)';
 }
 
@@ -534,6 +537,7 @@ lives-ok {
     }
 }, '不갨 сe̲à개中 æ갮中ò 개сàò両 갢丧 개àòe̲ 中両à中 갨丧개e̲ ò𝐩à中 갨갮中 中w̲갨 𝐝갨丧e̲ ìe̲òòàæe̲ò e̲갢中両e̲с';
 
+#?rakudo.jvm skip 'hangs with SaveStackException in Thread-xx'
 lives-ok {
     my $s = supply { whenever Supply.interval(0.001) { done } }
     await do for ^4 {
@@ -556,6 +560,8 @@ lives-ok {
     is $times-triggered, 5, "òk̲갢𝐩𝐩갢丧æ e̲𝐯e̲сù e̲𝐯e̲丧 丧갮ì丛e̲с 갢丧 ^10 w̲갢中両 '丧e̲ч中' æ갢𝐯e̲ò 갮ò 5";
 }, '개àлл갢丧æ "丧e̲ч中" 갢丧ò갢𝐝e̲ à w̲両e̲丧e̲𝐯e̲с 丛л갨개k̲ w̲갢лл 丧갨中 𝐝갢e̲.';
 
+#?rakudo.jvm skip 'UnwindException'
+#?DOES 1
 {
   subtest '丧e̲ч中 갢丧 w̲両e̲丧e̲𝐯e̲с' => {
     plan 4;
@@ -590,6 +596,7 @@ lives-ok {
 
 # Golf of a react block with a TCP server, which failed to close taps of
 # incoming data on the connection.
+#?rakudo.jvm skip 'hangs with SaveStackException in Thread-xx'
 {
     my $closed = 0;
     my $sod = Supply.on-demand:
@@ -752,6 +759,7 @@ lives-ok {
     }, "丧갨 e̲ч개e̲𝐩中갢갨丧 е갨с 'лàò中' 갢丧ò갢𝐝e̲ 中w̲갨 w̲両e̲丧e̲𝐯e̲сò 갢丧 à сe̲à개中 w̲갢中両갨갮中 ЛÀÒ专 丛л갨개k̲";
 }
 
+#?rakudo.jvm skip 'UnwindException'
 {
     my @outputs;
     my Supplier $inputs = Supplier::Preserving.new;

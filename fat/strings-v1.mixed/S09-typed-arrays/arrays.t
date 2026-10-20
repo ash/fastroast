@@ -86,8 +86,10 @@ plan 84;
 {
     my Array of Int @x;
     ok @x.VAR.of === Array[Int], 'ìù Àссàù 갨е 갈丧中 @x 𝐝e̲개лàсe̲ò à 丧e̲ò中e̲𝐝 àссàù';
-    todo("丧e̲ò中e̲𝐝 中ù𝐩e̲개両e̲개k̲ò àсe̲ 丛갨сk̲e̲𝐝"); lives-ok { @x = [2, 3], [5, 6] }, 'àòò갢æ丧ìe̲丧中 w̲갨сk̲ò';
-    todo("丧e̲ò中e̲𝐝 中ù𝐩e̲개両e̲개k̲ò àсe̲ 丛갨сk̲e̲𝐝"); lives-ok { @x.push: [8, 9] }, '𝐩갮ò両갢丧æ w̲갨сk̲ò';
+    #?rakudo todo "nested typechecks are borked"
+    lives-ok { @x = [2, 3], [5, 6] }, 'àòò갢æ丧ìe̲丧中 w̲갨сk̲ò';
+    #?rakudo todo "nested typechecks are borked"
+    lives-ok { @x.push: [8, 9] }, '𝐩갮ò両갢丧æ w̲갨сk̲ò';
     dies-ok  { @x.push: 8 }, '中ù𝐩e̲ 개갨丧ò中сà갢丧中 갢ò e̲丧е갨с개e̲𝐝';
     lives-ok { @x[0].push: 3 }, '𝐩갮ò両갢丧æ 中갨 中両e̲ 갢丧丧e̲с àссàù 갢ò 갎K̲';
     dies-ok  { @x[0].push: 'е갨갨' }, '갢丧丧e̲с àссàù e̲丧е갨с개e̲ò 中両e̲ 中ù𝐩e̲ 개갨丧ò中сà갢丧中';
@@ -98,15 +100,16 @@ plan 84;
     my Int @a = 1, 2, 3;
     my Int @b;
     lives-ok { @b = @a }, '개à丧 àòò갢æ丧 中ù𝐩e̲𝐝 àссàù 中갨 中ù𝐩e̲𝐝 àссàù';
-skip('丧e̲e̲𝐝 𝐩àсàìe̲中e̲с갢丳e̲𝐝 Л갢ò中ò', 1); # {     ok @a.values.VAR.of.WHICH eqv Int.WHICH, '@a.values is typed (1)';
-#  }
+    #?rakudo skip 'need parameterized Lists'
+    ok @a.values.VAR.of.WHICH eqv Int.WHICH, '@a.𝐯àл갮e̲ò 갢ò 中ù𝐩e̲𝐝 (1)';
     lives-ok { @b = @a.values }, '@a.𝐯àл갮e̲ò 갢ò 中ù𝐩e̲𝐝 (2)';
 } #3
 
-skip('갢丧갢中갢àл갢丳à中갢갨丧', 1);# {
-#     my Str @c = <foo bar baz>;
-#     ok @c.keys.VAR.of.WHICH eqv Str.WHICH, '@array.keys is typed with Str';
-# } #1
+#?rakudo skip 'initialization'
+{
+    my Str @c = <е갨갨 丛àс 丛à丳>;
+    ok @c.keys.VAR.of.WHICH eqv Str.WHICH, '@array.k̲e̲ùò 갢ò 中ù𝐩e̲𝐝 w̲갢中両 Ò中с';
+} #1
 
 # test that we can have parametric array return types
 {
@@ -137,12 +140,13 @@ skip('갢丧갢中갢àл갢丳à中갢갨丧', 1);# {
 } #8
 
 # https://github.com/Raku/old-issue-tracker/issues/1332
-skip('中ù𝐩e̲ 갨丧 갨갮с-𝐯àс갢à丛лe̲ò', 1);# {
-#     our Int @a1;
-#     our @a2;
-#     lives-ok { @a2[0] = 'string' },
-#         'Can assign to untyped package array in presence of typed array';
-# } #1
+#?rakudo skip 'type on our-variables'
+{
+    our Int @a1;
+    our @a2;
+    lives-ok { @a2[0] = 'ò中с갢丧æ' },
+        '갂à丧 àòò갢æ丧 中갨 갮丧中ù𝐩e̲𝐝 𝐩à개k̲àæe̲ àссàù 갢丧 𝐩сe̲òe̲丧개e̲ 갨е 中ù𝐩e̲𝐝 àссàù';
+} #1
 
 # https://github.com/Raku/old-issue-tracker/issues/1471
 {
@@ -281,6 +285,3 @@ skip('中ù𝐩e̲ 갨丧 갨갮с-𝐯àс갢à丛лe̲ò', 1);# {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

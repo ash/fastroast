@@ -20,7 +20,8 @@ is(foo(42),    1, 'dispatch with no possible candidates fell back to proto');
         return $accum × 2; # * 2 is intentional here
     }
 
-    todo('operator protos'); is ([+] 1,2,3), 12, "[+] overloaded by proto definition";
+    #?rakudo todo 'operator protos'
+    is ([+] 1,2,3), 12, "[+] overloaded by proto definition";
 }
 
 # more similar tests
@@ -41,6 +42,7 @@ multi bar(| (A $x)) { 2 }  #OK not used
 multi bar(| (B $x)) { 3 }  #OK not used
 multi bar(| where { $_[0] == 42 })   { 1 }  #OK not used
 is(bar(A.new), 2, 'dispatch on class worked (anon cap)');
+#?rakudo.jvm 3 todo 'wrong multi candidate called'
 is(bar(B.new), 3, 'dispatch on class worked (anon cap)');
 is(bar(42),    1, 'dispatch with no possible candidates fell back to proto (anon cap)');
 throws-like 'bar(41)', Exception, 'impossible dispatch failed (anon cap)';
@@ -141,6 +143,3 @@ throws-like ｢my &x; sub x {}｣, X::Redeclaration,
     'my &x; sub x {} throws useful error';
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

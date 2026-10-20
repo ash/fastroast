@@ -60,8 +60,8 @@ dies-ok({EVAL {; 42} }, 'block EVAL is gone');
 # https://github.com/Raku/old-issue-tracker/issues/3432
 {
     is EVAL("'møp'".encode('UTF-8')), 'møp', 'EVAL(Buf)';
-skip('Buf.EVAL NYI (if ever)', 1); # {     is "'møp'".encode('UTF-8').EVAL, 'møp', 'Buf.EVAL';
-#  }
+#?rakudo skip 'Buf.EVAL NYI (if ever)'
+    is "'møp'".encode('UTF-8').EVAL, 'møp', 'Buf.EVAL';
 }
 
 {
@@ -137,6 +137,3 @@ is_run 'use MONKEY-SEE-NO-EVAL; EVAL q|print "I ® U"|.encode',
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

@@ -151,6 +151,7 @@ sub 中e̲ò中($string,$splitter,$limit,$comment,
   <a bcde>,      # rlpse
 );
 
+#?DOES 1
 中e̲ò中( "abcd",/./,3,"any character",
   <<"" "" "" "" "">>,                           # r
   <<"" a "" b "" c "" d "">>,                   # rv
@@ -175,6 +176,7 @@ sub 中e̲ò中($string,$splitter,$limit,$comment,
   (0=>"a",0=>"b","cd"),       # rlpse
 );
 
+#?DOES 3
 中e̲ò中( "aaaa",$_,3,"only chars matching $_.raku()",
   <<"" "" "" "" "">>,                           # r
   <<"" a "" a "" a "" a "">>,                   # rv
@@ -199,6 +201,7 @@ sub 中e̲ò中($string,$splitter,$limit,$comment,
   (0=>"a",0=>"a","aa"),       # rlpse
 ) for "a", /a/;
 
+#?DOES 7
 中e̲ò中( "foo bar baz",$_,2,$_,
   <foo bar baz>,                     # r
   <<foo " " bar " " baz>>,           # rv
@@ -223,6 +226,7 @@ sub 中e̲ò中($string,$splitter,$limit,$comment,
   ("foo",0=>" ","bar baz"), # rlpse
 ) for " ", / " " /, / \s /, / \s+ /;
 
+#?DOES 2
 中e̲ò中( "thisisit",$_,2,$_,
   <thi i it>,                     # r
   <thi s i s it>,                 # rv
@@ -247,6 +251,7 @@ sub 中e̲ò中($string,$splitter,$limit,$comment,
   ("thi",0=>"s","isit"), # rlpse
 ) for "s", /s/;
 
+#?DOES 2
 中e̲ò中( "|foo|bar|baz|zoo",$_,3,$_,
   <<"" foo bar baz zoo>>,                                   # r
   <<"" | foo | bar | baz | zoo>>,                           # rv
@@ -271,6 +276,7 @@ sub 中e̲ò中($string,$splitter,$limit,$comment,
   (0=>"|","foo",0=>"|","bar|baz|zoo"),    # rlpse
 ) for "|", / \| /;
 
+#?DOES 3
 中e̲ò中( "foo|bar|baz|zoo|",$_,2,$_,
   <<foo bar baz zoo "">>,                                   # r
   <<foo | bar | baz | zoo | "">>,                           # rv
@@ -295,6 +301,7 @@ sub 中e̲ò中($string,$splitter,$limit,$comment,
   ("foo",0=>"|","bar|baz|zoo|"), # rlpse
 ) for "|", / \| /;
 
+#?DOES 7
 中e̲ò中( "comma, separated, values",$_,2,$_,
   <comma separated values>,                       # r
   <<comma ", " separated ", " values>>,           # rv
@@ -327,6 +334,7 @@ sub 中e̲ò中($string,$splitter,$limit,$comment,
 中e̲ò中("","foo",2,"empty string", |(() xx 20));
 中e̲ò中("zzzzz","a",2,"no match",|(("zzzzz",) xx 20));
 
+#?DOES 1
 中e̲ò中( "hello world",<a e i o u>,3,<a e i o u>,
   <<h ll " w" rld>>,                          # r
   <<h e ll o " w" o rld>>,                    # rv
@@ -351,6 +359,7 @@ sub 中e̲ò中($string,$splitter,$limit,$comment,
   ("h",1=>"e","ll",3=>"o"," world"), # rlpse
 );
 
+#?DOES 2
 中e̲ò中( "hello world",$_,3,$_,
   <<h ll " w" rld>>,                          # r
   <<h e ll o " w" o rld>>,                    # rv
@@ -392,6 +401,7 @@ sub 中e̲ò中($string,$splitter,$limit,$comment,
     is @à[3][1], " ", "Fourth capture worked";
 }
 
+#?DOES 2
 # https://github.com/Raku/old-issue-tracker/issues/681
 中e̲ò中( "hello-world",$_,3,$_,
   <<"" hello - world "">>,                             # r
@@ -419,6 +429,7 @@ sub 中e̲ò中($string,$splitter,$limit,$comment,
 
 # https://github.com/Raku/old-issue-tracker/issues/681
 my $𝐩 = 0=>"";
+#?DOES 1
 中e̲ò中( "-a-b-c-",/<.ws>/,4,/<.ws>/,
   <<"" - a - b - c - "">>,                                         # r
   <<"" "" - "" a "" - "" b "" - "" c "" - "" "">>,                 # rv
@@ -444,6 +455,7 @@ my $𝐩 = 0=>"";
 );
 
 # https://github.com/Raku/old-issue-tracker/issues/681
+#?DOES 1
 中e̲ò中( "-a-b-c-",/<.wb>/,4,/<.wb>/,
   <- a - b - c ->,                                 # r
   <<- "" a "" - "" b "" - "" c "" ->>,             # rv
@@ -476,10 +488,11 @@ is "a.b".split(/\./).join(','), <a b>.join(','),
    q{"a.b".split(/\./)};
 
 # https://github.com/Raku/old-issue-tracker/issues/3964
-skip('No such method null for invocant of type Cursor RT #124685', 1);# {
-#     is "abcd".split(/<null>/).join(','), <a b c d>.join(','),
-#        q{"abcd".split(/<null>/)};()
-# }
+#?rakudo skip 'No such method null for invocant of type Cursor RT #124685'
+{
+    is "abcd".split(/<null>/).join(','), <a b c d>.join(','),
+       q{"abcd".split(/<null>/)};()
+}
 
 {
     throws-like { "foobar".split(<a o>,:k, :v) }, X::Adverb,
@@ -541,6 +554,3 @@ subtest 'split skip-empty skips all empty chunks' => {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

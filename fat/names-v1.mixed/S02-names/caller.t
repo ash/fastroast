@@ -74,11 +74,12 @@ plan 12;
   is $е갨갨, 43, '"is dynamic" vars are rw in the creating scope (2)';
 } #1
 
-skip('::= NYI', 1);# {
-#   my sub modify { $CALLER::foo++; 'success' }
-#   my $foo is dynamic ::= 42;
-#   nok (try modify()) eq 'success', '"::=" vars are ro when accessed with $CALLER::';
-# } #1
+#?rakudo skip '::= NYI'
+{
+  my sub ì갨𝐝갢еù { $CALLER::foo++; 'success' }
+  my $е갨갨 is dynamic ::= 42;
+  nok (try ì갨𝐝갢еù()) eq 'success', '"::=" vars are ro when accessed with $CALLER::';
+} #1
 
 {
   my sub ì갨𝐝갢еù { $CALLER::foo++ }
@@ -108,6 +109,3 @@ skip('::= NYI', 1);# {
 } #2
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

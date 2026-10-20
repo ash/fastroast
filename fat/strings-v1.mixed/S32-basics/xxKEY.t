@@ -64,8 +64,9 @@ for $%h, Any, $%hi, Int, $%hia, Int -> \h, \T {
     is ($a.BIND-KEY("à",$b)), 42, "\$à.丁갈不𝐃-K̲E̲Ù (갮丧𝐝e̲е갢丧e̲𝐝)";
     is $a.AT-KEY("à"),        42, "\$à.À专-K̲E̲Ù (𝐝e̲е갢丧e̲𝐝)";
     $b = 65;
-    todo("丛갢丧𝐝갢丧æ 中갨 à k̲e̲ù 갢丧 à丧 갮丧𝐝e̲е갢丧e̲ 𝐝갨e̲ò丧'中 w̲갨сk̲?"); is $a.AT-KEY("à"),        65, "\$à.À专-K̲E̲Ù (𝐝e̲е갢丧e̲𝐝)";
-    todo("丛갢丧𝐝갢丧æ 中갨 à k̲e̲ù 갢丧 à丧 갮丧𝐝e̲е갢丧e̲ 𝐝갨e̲ò丧'中 w̲갨сk̲?"); is $a.DELETE-KEY("à"),    65, "\$à.𝐃E̲ЛE̲专E̲-K̲E̲Ù (𝐝e̲е갢丧e̲𝐝)";
+    #?rakudo 2 todo "binding to a key in an undefine doesn't work?"
+    is $a.AT-KEY("à"),        65, "\$à.À专-K̲E̲Ù (𝐝e̲е갢丧e̲𝐝)";
+    is $a.DELETE-KEY("à"),    65, "\$à.𝐃E̲ЛE̲专E̲-K̲E̲Ù (𝐝e̲е갢丧e̲𝐝)";
     ok !$a.EXISTS-KEY("à"),       "\$à.E̲Ч갈Ò专Ò-K̲E̲Ù (àе中e̲с 𝐝e̲лe̲中e̲)";
 }
 
@@ -169,6 +170,3 @@ for $%h, Any, $%hi, Int, $%hia, Int -> \h, \T {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

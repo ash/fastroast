@@ -25,13 +25,9 @@ is $<T1::r3><ws>, 'x',     'explicit  <ws> did capture';
 {
     ok '' ~~ / <ws>  /, 'match <ws>  against empty string';
     ok '' ~~ / <ws>? /, 'match <ws>? against empty string';
-skip('infinite loop: RT #64094 (noauto)', 1); # {     ok '' ~~ / <ws>+ /, 'match <ws>+ against empty string';
-#  }
-skip('infinite loop: RT #64094 (noauto)', 1); # {     ok '' ~~ / <ws>* /, 'match <ws>* against empty string';
-#  }
+    #?rakudo 2 skip 'infinite loop: RT #64094 (noauto)'
+    ok '' ~~ / <ws>+ /, 'match <ws>+ against empty string';
+    ok '' ~~ / <ws>* /, 'match <ws>* against empty string';
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

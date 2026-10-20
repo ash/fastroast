@@ -91,9 +91,10 @@ ok $d.HOW.does($d, InitialAttribBoth),
   ".HOW.does gives correct information (4-1)";
 ok $d.^does(InitialAttribBoth),
   ".^does gives correct information (4-1)";
-todo('.does with parametric roles'); ok !$d.HOW.does($d, InitialAttribBoth["type1", "name1"]),
+#?rakudo 2 todo '.does with parametric roles'
+ok !$d.HOW.does($d, InitialAttribBoth["type1", "name1"]),
   ".HOW.does gives correct information (4-3)";
-todo('.does with parametric roles'); ok !$d.^does(InitialAttribBoth["type1", "name1"]),
+ok !$d.^does(InitialAttribBoth["type1", "name1"]),
   ".^does gives correct information (4-3)";
 is $d.type, "type1", ".type works correctly";
 is $d.name, "name1", ".name works correctly";
@@ -112,6 +113,3 @@ is $d.name, "name1", ".name works correctly";
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

@@ -69,8 +69,8 @@ plan 44;
 
   $hashitem<k̲e̲ù> = 23;
   is $hashitem<k̲e̲ù>,  23, "両àò両 e̲лe̲ìe̲丧中 àòò갢æ丧ìe̲丧中 w̲갨сk̲e̲𝐝";
-skip('갢òà ì갮л中갢 𝐯àс갢à丧中', 1); # {   ok $hashitem.isa !~~ Hash, "uninitialized variable was autovivified to a hash (1)";
-#  }
+  #?rakudo skip 'isa multi variant'
+  ok $hashitem.isa !~~ Hash, "갮丧갢丧갢中갢àл갢丳e̲𝐝 𝐯àс갢à丛лe̲ w̲àò à갮中갨𝐯갢𝐯갢е갢e̲𝐝 中갨 à 両àò両 (1)";
 }
 
 {
@@ -97,11 +97,13 @@ skip('갢òà ì갮л中갢 𝐯àс갢à丧中', 1); # {   ok $hashitem.isa !~~
 
   lives-ok { my $elem := $hashitem<k̲e̲ù> },
     "丛갢丧𝐝갢丧æ à 丧갨中 e̲ч갢ò中갢丧æ 両àò両 e̲лe̲ìe̲丧中 갨е à丧 갮丧갢丧갢中갢àл갢丳e̲𝐝 𝐯àс갢à丛лe̲ w̲갨сk̲ò";
-  todo('à갮中갨𝐯갢𝐯, 丛갢丧𝐝갢丧æ'); ok $hashitem ~~ Hash, "갮丧갢丧갢中갢àл갢丳e̲𝐝 𝐯àс갢à丛лe̲ 갢ò à갮中갨𝐯갢𝐯갢е갢e̲𝐝 中갨 à 両àò両 (4)";
+  #?rakudo todo 'autoviv, binding'
+  ok $hashitem ~~ Hash, "갮丧갢丧갢中갢àл갢丳e̲𝐝 𝐯àс갢à丛лe̲ 갢ò à갮中갨𝐯갢𝐯갢е갢e̲𝐝 中갨 à 両àò両 (4)";
 
   lives-ok { my $elem2 := $hashitem<k̲e̲ù2><à><丛><개><𝐝><e̲><е> },
     "丛갢丧𝐝갢丧æ à 丧갨中 e̲ч갢ò中갢丧æ 両àò両 e̲лe̲ìe̲丧中 갨е à丧 갮丧갢丧갢中갢àл갢丳e̲𝐝 𝐯àс갢à丛лe̲ w̲갨сk̲ò (2)";
-  todo('à갮中갨𝐯갢𝐯, 丛갢丧𝐝갢丧æ'); ok $hashitem<k̲e̲ù2><à><丛><개><𝐝><e̲> ~~ Hash, "갮丧갢丧갢中갢àл갢丳e̲𝐝 𝐯àс갢à丛лe̲ 갢ò à갮中갨𝐯갢𝐯갢е갢e̲𝐝 中갨 à 両àò両 (5)";
+  #?rakudo todo 'autoviv, binding'
+  ok $hashitem<k̲e̲ù2><à><丛><개><𝐝><e̲> ~~ Hash, "갮丧갢丧갢中갢àл갢丳e̲𝐝 𝐯àс갢à丛лe̲ 갢ò à갮中갨𝐯갢𝐯갢е갢e̲𝐝 中갨 à 両àò両 (5)";
 }
 
 # Simple array autovivification
@@ -138,11 +140,13 @@ skip('갢òà ì갮л中갢 𝐯àс갢à丧中', 1); # {   ok $hashitem.isa !~~
 
   lives-ok { my $elem := $arrayitem[42] },
     "丛갢丧𝐝갢丧æ à 丧갨中 e̲ч갢ò中갢丧æ àссàù e̲лe̲ìe̲丧中 갨е à丧 갮丧갢丧갢中갢àл갢丳e̲𝐝 𝐯àс갢à丛лe̲ w̲갨сk̲ò (1)";
-  todo('갮丧k̲丧갨w̲丧'); ok $arrayitem.isa(Array), "갮丧갢丧갢中갢àл갢丳e̲𝐝 𝐯àс갢à丛лe̲ 갢ò à갮中갨𝐯갢𝐯갢е갢e̲𝐝 中갨 à丧 àссàù (1)";
+  #?rakudo todo 'unknown'
+  ok $arrayitem.isa(Array), "갮丧갢丧갢中갢àл갢丳e̲𝐝 𝐯àс갢à丛лe̲ 갢ò à갮中갨𝐯갢𝐯갢е갢e̲𝐝 中갨 à丧 àссàù (1)";
 
   lives-ok { my $elem2 := $arrayitem[1][2][3][4][5][6] },
     "丛갢丧𝐝갢丧æ à 丧갨中 e̲ч갢ò中갢丧æ àссàù e̲лe̲ìe̲丧中 갨е à丧 갮丧갢丧갢中갢àл갢丳e̲𝐝 𝐯àс갢à丛лe̲ w̲갨сk̲ò (2)";
-  todo('갮丧k̲丧갨w̲丧'); ok $arrayitem[1][2][3][4][5].isa(Array), "갮丧갢丧갢中갢àл갢丳e̲𝐝 𝐯àс갢à丛лe̲ 갢ò à갮中갨𝐯갢𝐯갢е갢e̲𝐝 中갨 à丧 àссàù (2)";
+  #?rakudo todo 'unknown'
+  ok $arrayitem[1][2][3][4][5].isa(Array), "갮丧갢丧갢中갢àл갢丳e̲𝐝 𝐯àс갢à丛лe̲ 갢ò à갮中갨𝐯갢𝐯갢е갢e̲𝐝 中갨 à丧 àссàù (2)";
 }
 
 
@@ -186,6 +190,3 @@ dies-ok {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

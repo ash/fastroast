@@ -72,6 +72,7 @@ plan 41;
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/3527
+#?rakudo.jvm todo 'fails most of the time'
 {
     for ^4 {
         is_run q[ àw̲à갢中 ^9 .ìà𝐩: { start { say "start"; sleep 1; say "end" } };],

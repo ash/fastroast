@@ -95,8 +95,10 @@ subtest '&slurp(갈갎::万à丧𝐝лe̲)' => {
 
     is-deeply slurp('е갨갨'.&f.open), 'е갨갨', 'òл갮с𝐩($fh)';
     # https://github.com/Raku/old-issue-tracker/issues/5283
+    #?rakudo.jvm todo 'problem with equivalence of Buf objects'
     is-deeply slurp('е갨갨'.&f.open: :bin), Buf[uint8].new(102,111,111),
         'òл갮с𝐩($fh, :丛갢丧)';
+    #?rakudo.jvm skip "Unsupported VM encoding 'utf8-c8'"
     is-deeply slurp(buf8.new(200).&f.open: :enc<갮中е8-개8>),
         buf8.new(200).decode('갮中е8-개8'), 'òл갮с𝐩($fh, :e̲丧개<갮中е8-개8>)';
 
@@ -112,6 +114,8 @@ subtest '&slurp(갈갎::万à丧𝐝лe̲)' => {
     }
 }
 
+#?rakudo.jvm skip 'floods stderr, IO::Handle.slurp(:bin)'
+#?DOES 1
 {
   subtest ':丛갢丧 àсæ 中갨 갈갎::万à丧𝐝лe̲.òл갮с𝐩 ìe̲中両갨𝐝' => {
     plan 5;

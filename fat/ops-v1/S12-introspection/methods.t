@@ -66,32 +66,36 @@ for @methods -> $meth {
     }
 }
 is $num_onlys, 1, 'class A has one only method';
+#?rakudo.js.browser todo 'broken on all backends when precompiling'
 is $num_dispatchers, 1, 'class A has one dispatcher method';
 
 @methods = D.^methods().grep(&grepper);
 ok +@methods == 5, 'got all methods in hierarchy but NOT those from Any/Mu';
+#?rakudo.js.browser todo 'broken on all backends when precompiling'
 ok @methods[0].name eq 'foo' && @methods[1].name eq 'bar' ||
    @methods[0].name eq 'bar' && @methods[1].name eq 'foo',
    'first two methods from class D itself';
 is @methods[2].name, 'foo', 'method from B has correct name';
 is @methods[2].of.gist, Num.gist, 'method from B has correct return type';
+#?rakudo.js.browser todo 'broken on all backends when precompiling'
 ok @methods[3].name eq 'foo' && @methods[4].name eq 'bar' ||
    @methods[3].name eq 'bar' && @methods[4].name eq 'foo',
    'two methods from class A itself';
 
-skip('nom regression', 8);# {
-#     @methods = D.^methods(:tree);
-#     is +@methods, 4, ':tree gives us right number of elements';
-#     ok @methods[0].name eq 'foo' && @methods[1].name eq 'bar' ||
-#        @methods[0].name eq 'bar' && @methods[1].name eq 'foo',
-#        'first two methods from class D itself';
-#     is @methods[2].WHAT.gist, Array.gist, 'third item is an array';
-#     is +@methods[2], 2, 'nested array for B had right number of elements';
-#     is @methods[3].WHAT.gist, Array.gist, 'forth item is an array';
-#     is +@methods[3], 1, 'nested array for C had right number of elements';
-#     is @methods[2], B.^methods(:tree), 'nested tree for B is correct';
-#     is @methods[3], C.^methods(:tree), 'nested tree for C is correct';
-# }
+#?rakudo skip 'nom regression'
+{
+    @methods = D.^methods(:tree);
+    is +@methods, 4, ':tree gives us right number of elements';
+    ok @methods[0].name eq 'foo' && @methods[1].name eq 'bar' ||
+       @methods[0].name eq 'bar' && @methods[1].name eq 'foo',
+       'first two methods from class D itself';
+    is @methods[2].WHAT.gist, Array.gist, 'third item is an array';
+    is +@methods[2], 2, 'nested array for B had right number of elements';
+    is @methods[3].WHAT.gist, Array.gist, 'forth item is an array';
+    is +@methods[3], 1, 'nested array for C had right number of elements';
+    is @methods[2], B.^methods(:tree), 'nested tree for B is correct';
+    is @methods[3], C.^methods(:tree), 'nested tree for C is correct';
+}
 
 @methods = List.^methods();
 ok +@methods > 0, 'can get methods for List (proto)';
@@ -124,24 +128,26 @@ is @methods[0].name, 'bar',    'methods call found public method in subclass';
 is @methods[1].name, 'foo',    'methods call found public method in superclass (so no privates)';
 ok @methods[2].name ne '!pm1', 'methods call did not find private method in superclass';
 
-skip('nom regression', 2);# {
-#     @methods = PT2.^methods(:private);
-#     ok @methods[0].name eq '!pm2' || @methods[1].name eq '!pm2',
-#                                 'methods call with :private found private method in subclass';
-#     ok @methods[2].name eq '!pm1' || @methods[3].name eq '!pm1',
-#                                 'methods call with :private found private method in superclass';
-# }
+#?rakudo skip 'nom regression'
+{
+    @methods = PT2.^methods(:private);
+    ok @methods[0].name eq '!pm2' || @methods[1].name eq '!pm2',
+                                'methods call with :private found private method in subclass';
+    ok @methods[2].name eq '!pm1' || @methods[3].name eq '!pm1',
+                                'methods call with :private found private method in superclass';
+}
 
 @methods = PT2.^methods(:local).grep(&grepper);
 is +@methods, 1,            'methods call without :private omits private methods (with :local)';
 is @methods[0].name, 'bar', 'methods call found public method in subclass (with :local)';
 
-skip('nom regression', 2);# {
-#     @methods = PT2.^methods(:local, :private);
-#     is +@methods, 2,            'methods call with :private includes private methods (with :local)';
-#     ok @methods[0].name eq '!pm2' || @methods[1].name eq '!pm2',
-#                                 'methods call with :private found private method in subclass (with :local)';
-# }
+#?rakudo skip 'nom regression'
+{
+    @methods = PT2.^methods(:local, :private);
+    is +@methods, 2,            'methods call with :private includes private methods (with :local)';
+    ok @methods[0].name eq '!pm2' || @methods[1].name eq '!pm2',
+                                'methods call with :private found private method in subclass (with :local)';
+}
 
 {
     lives-ok { Sub.^methods.gist }, 'Can .gist methods of a subroutine';
@@ -162,6 +168,3 @@ skip('nom regression', 2);# {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

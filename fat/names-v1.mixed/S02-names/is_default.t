@@ -432,7 +432,8 @@ subtest "Hash Attributes" => {
       X::Comp::Trait::NotOnNative,
       type    => 'is',
       subtype => 'default';
-    todo('fails first on native int hashes being NYI'); throws-like 'my int %a is default(42)',
+    #?rakudo todo 'fails first on native int hashes being NYI'
+    throws-like 'my int %a is default(42)',
       X::Comp::Trait::NotOnNative,
       type    => 'is',
       subtype => 'default';
@@ -538,6 +539,3 @@ subtest "Generics" => {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

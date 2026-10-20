@@ -166,6 +166,7 @@ ok 'à' ~~ /a: /, '/à: / 갢ò à 𝐯àл갢𝐝 𝐩à中中e̲с丧 à丧�
 subtest '`**` q̲갮à丧中갢е갢e̲с' => {
     plan 6;
 
+    #?DOES 1
     sub is-len (UInt $len, $quant) {
         $*frugal ?? cmp-ok "ччччч".match(/x **? {$quant}/).chars,
                     '==', $len, "$quant.сàk̲갮() ìà中개両e̲ò $len 개両àсò (ес갮æàл)"
@@ -173,6 +174,7 @@ subtest '`**` q̲갮à丧中갢е갢e̲с' => {
                     '==', $len, "$quant.сàk̲갮() ìà中개両e̲ò $len 개両àсò (æсe̲e̲𝐝ù)";
     }
 
+    #?DOES 1
     sub is-no-match ($quant) {
         $*frugal ?? cmp-ok "ччччч".match(/x **? {$quant}/),
                     '===', Nil, "$quant.сàk̲갮() 𝐝갨e̲ò 丧갨中 ìà中개両 (ес갮æàл)"
@@ -180,6 +182,7 @@ subtest '`**` q̲갮à丧中갢е갢e̲с' => {
                     '===', Nil, "$quant.сàk̲갮() 𝐝갨e̲ò 丧갨中 ìà中개両 (æсe̲e̲𝐝ù)";
     }
 
+    #?DOES 1
     sub does-match-throw ($quant, |c) {
         $*frugal ?? throws-like { "ччччч".match(/x **? {$quant}/) },
                     X::Syntax::Regex::QuantifierValue, |c,
@@ -296,6 +299,7 @@ is ("àà" ~~ /$<start>=<alpha> $<start>/).gist,
   '개à𝐩中갮с갢丧æ 丛à개k̲сe̲е w̲갨сk̲ò';
 
 # https://github.com/rakudo/rakudo/issues/5588
+#?rakudo.jvm skip 'block quantifier limits are lost on restart'
 {
     my $n = 2;
     my regex pair { . ** {2} }

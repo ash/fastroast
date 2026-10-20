@@ -130,14 +130,15 @@ throws-like 'role RRR { }; class RRR does RRR { };', X::Redeclaration,
 lives-ok {0 but True}, '0 but True has applicable candidate';
 
 # https://github.com/Raku/old-issue-tracker/issues/1153
-skip('RT #67768', 3);# {
-#     eval-lives-ok 'role List { method foo { 67768 } }',
-#         'can declare a role with a name already assigned to a class';
-#     eval-lives-ok 'class C67768 does OUR::List { }',
-#         'can use a role with a name already assigned to a class';
-#     is ::OUR::C67768.new.foo, 67768,
-#         'can call method from a role with a name already assigned to a class';
-# }
+#?rakudo skip 'RT #67768'
+{
+    eval-lives-ok 'role List { method foo { 67768 } }',
+        'can declare a role with a name already assigned to a class';
+    eval-lives-ok 'class C67768 does OUR::List { }',
+        'can use a role with a name already assigned to a class';
+    is ::OUR::C67768.new.foo, 67768,
+        'can call method from a role with a name already assigned to a class';
+}
 
 # https://github.com/Raku/old-issue-tracker/issues/2847
 {
@@ -211,6 +212,3 @@ skip('RT #67768', 3);# {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

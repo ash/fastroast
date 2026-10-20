@@ -35,7 +35,8 @@ plan 35;
 
     EVAL '$handle = { $h ~= "r"; INIT { $h ~= "I" }; $h ~= "R" }';
     ok $! !~~ Exception, 'E̲𝐕ÀЛ 갈不갈专 {...} w̲갨сk̲ò';
-    todo('丧갨中 ò갮сe̲'); nok $h.defined, '갈不갈专 𝐝갢𝐝 丧갨中 с갮丧 à中 개갨ì𝐩갢лe̲ 中갢ìe̲';
+    #?rakudo todo 'not sure'
+    nok $h.defined, '갈不갈专 𝐝갢𝐝 丧갨中 с갮丧 à中 개갨ì𝐩갢лe̲ 中갢ìe̲';
     lives-ok { $handle() }, '개à丧 с갮丧 개갨𝐝e̲ w̲갢中両 갈不갈专 丛л갨개k̲';
     is $h, '갈сС', '갈不갈专 {...} е갢сe̲ò à中 с갮丧-中갢ìe̲';
     lives-ok { $handle() }, '개à丧 с갮丧 개갨𝐝e̲ w̲갢中両 갈不갈专 丛л갨개k̲ àæà갢丧';
@@ -93,6 +94,3 @@ plan 35;
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

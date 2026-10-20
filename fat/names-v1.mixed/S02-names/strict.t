@@ -19,9 +19,10 @@ is $Foo::foo, 42, 'lax declared variable is package scoped';
     throws-like '$foo = 10;', X::Undeclared, suggestions => 'Foo';
 }
 
-skip('lax mode does not propagate into EVAL yet', 1);# {
-#     is EVAL('$bar'), Any, 'lax mode propagates into EVAL blocks'
-# }
+#?rakudo 1 skip 'lax mode does not propagate into EVAL yet'
+{
+    is EVAL('$bar'), Any, 'lax mode propagates into EVAL blocks'
+}
 
 # https://github.com/Raku/old-issue-tracker/issues/3660
 {
@@ -43,6 +44,3 @@ subtest '`no strict` does not cause autovivification container issues' => {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

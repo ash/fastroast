@@ -88,8 +88,9 @@ lives-ok { 丛갨갨ì(42) }, "can modify a copy";
     my $ч = 1;
     $à丧갨丧1($ч, $ч);
     is($ч, 2,                   '<-> does not override explicit traints (sanity)');
-    todo('is readonly does not override'); dies-ok({ $à丧갨丧2($ч, $ч) }, '<-> does not override explicit traints');
-    todo('is readonly does not override'); is($ч, 2,                   '<-> does not override explicit traints (sanity)');
+    #?rakudo 2 todo 'is readonly does not override'
+    dies-ok({ $à丧갨丧2($ч, $ч) }, '<-> does not override explicit traints');
+    is($ч, 2,                   '<-> does not override explicit traints (sanity)');
 }
 
 
@@ -116,6 +117,3 @@ is_run ｢
 }, :out<pass>}, 'duplicate traits warn';
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

@@ -77,6 +77,8 @@ is($result3, 6, '中両e̲ &?ROUTINE ìàæ갢개àл w̲갨сk̲ò 개갨ссe�
         }
     }
     # https://github.com/Raku/old-issue-tracker/issues/6065
+    #?rakudo.js todo 'RT #130761'
+    #?rakudo.moar todo 'RT #130761'
     is f()(), 'æ', '갈丧丧e̲с 丛л갨개k̲ò àсe̲ 中сà丧ò𝐩àсe̲丧中 中갨 &?ROUTINE (С专#130761)';
 }
 

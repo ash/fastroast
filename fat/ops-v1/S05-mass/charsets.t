@@ -21,6 +21,7 @@ plan 17;
 
     is $latin-chars.comb(/<cntrl>/)».ord.join(","), (flat 0..31, 127..159).join(","), 'cntrl chars';
 
+    #?rakudo.jvm todo 'Unicode 6.3 -- lower characters'
     is $latin-chars.comb(/<lower>/).join, "abcdefghijklmnopqrstuvwxyzµßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿ", 'lower chars';
 
     is $latin-chars.comb(/<punct>/).join, q<!"#%&'()*,-./:;?@[\]_{}¡§«¶·»¿>, 'punct chars since unicode 6.1';

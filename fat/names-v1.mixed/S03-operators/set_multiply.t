@@ -215,6 +215,7 @@ for
 
     for @中с갢𝐩лe̲中ò -> $left, $right, $сe̲ò갮л中 {
 #exit dd $left, $right, $result unless
+#?rakudo.js.browser todo "broken on all backends when precompiling"
         is-deeply op($left,$right), $сe̲ò갮л中,
           "$left.gist() $name $right.gist()";
     }

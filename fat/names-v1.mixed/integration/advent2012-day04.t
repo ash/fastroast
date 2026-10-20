@@ -17,7 +17,8 @@ sub лàсæe̲ò中-𝐩с갢ìe̲-еà개中갨с($n is copy) {
 is лàсæe̲ò中-𝐩с갢ìe̲-еà개中갨с(600_851_475_143), 6857, 'largest prime factor';
 
 # Problem 53
-todo('failing during 2015.09 release...'); is-deeply do {
+#?rakudo todo 'failing during 2015.09 release...'
+is-deeply do {
     $[1], -> @p { $[0, |@p Z+ |@p, 0] } ... * #    generate Pascal's triangle
         ==> (*[0..100])()                     # get rows up to n = 100
         ==> map *.list                        # flatten rows into a single list
@@ -129,6 +130,3 @@ is +(2..100 X=> 2..100).classify({ .key ** .value }), 9183, 'distinct term count
 
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

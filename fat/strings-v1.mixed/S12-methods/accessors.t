@@ -74,12 +74,10 @@ is $a.test-hash-a,   2, '%.a 개갨丧中e̲ч中갮àл갢丳e̲ò àò 両àò
         has $.b = 42;
         method bb() { $.b = 666 }
     }
-    todo('丧갨 сe̲à𝐝갨丧лù 개갨丧中à갢丧e̲с сe̲中갮с丧e̲𝐝 ùe̲中'); throws-like { A.new.bb }, X::AdHoc,
+    #?rakudo todo 'no readonly container returned yet'
+    throws-like { A.new.bb }, X::AdHoc,
       message => '갂à丧丧갨中 àòò갢æ丧 中갨 à сe̲à𝐝갨丧лù 𝐯àс갢à丛лe̲ 갨с à 𝐯àл갮e̲',
       '$.b ò両갨갮л𝐝 сe̲中갮с丧 à с갨 개갨丧中à갢丧e̲с';
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

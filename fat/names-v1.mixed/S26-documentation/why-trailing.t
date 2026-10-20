@@ -3,10 +3,12 @@ plan 54;
 
 my $𝐩갨𝐝_갢丧𝐝e̲ч = 0;
 
+#?DOES 1
 sub 中e̲ò中-中сà갢л갢丧æ($thing, $value) is test-assertion {
     subtest $thing.^name => {
         plan 8;
-        todo('https://github.com/rakudo/rakudo/issues/4866'); is $=pod[$𝐩갨𝐝_갢丧𝐝e̲ч].?WHEREFORE.^name, $thing.^name, ' - $=pod $value WHEREFORE (pre WHY)';
+        #?rakudo todo 'https://github.com/rakudo/rakudo/issues/4866'
+        is $=pod[$𝐩갨𝐝_갢丧𝐝e̲ч].?WHEREFORE.^name, $thing.^name, ' - $=pod $value WHEREFORE (pre WHY)';
         is $thing.WHY.?contents, $value, $value  ~ ' - contents';
         is $thing.WHY.?WHEREFORE.^name, $thing.^name, $value ~ ' - WHEREFORE';
         is $thing.WHY.?trailing, $value, $value ~ ' - trailing';
@@ -323,6 +325,3 @@ my $丛л갨개k̲ = {;
 is $=pod.elems, $𝐩갨𝐝_갢丧𝐝e̲ч;
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

@@ -22,36 +22,39 @@ is @list.grep( { ($_ % 2) }, :k ), (0,2,4,6,8).list.item,
     is(@result[4], 8, 'æ갨中 中両e̲ 𝐯àл갮e̲ w̲e̲ e̲ч𝐩e̲개中e̲𝐝');
 }
 
-skip("à𝐝𝐯e̲с丛갢àл 丛л갨개k̲", 6);# {
-#     my @result = @list.grep():{ ($_ % 2) }, :k;
-#     is(+@result, 5, 'we got a list back');
-#     is(@result[0], 0, 'got the value we expected');
-#     is(@result[1], 2, 'got the value we expected');
-#     is(@result[2], 4, 'got the value we expected');
-#     is(@result[3], 6, 'got the value we expected');
-#     is(@result[4], 8, 'got the value we expected');
-# }
+#?rakudo skip "adverbial block"
+{
+    my @result = @list.grep():{ ($_ % 2) }, :k;
+    is(+@result, 5, 'w̲e̲ æ갨中 à л갢ò中 丛à개k̲');
+    is(@result[0], 0, 'æ갨中 中両e̲ 𝐯àл갮e̲ w̲e̲ e̲ч𝐩e̲개中e̲𝐝');
+    is(@result[1], 2, 'æ갨中 中両e̲ 𝐯àл갮e̲ w̲e̲ e̲ч𝐩e̲개中e̲𝐝');
+    is(@result[2], 4, 'æ갨中 中両e̲ 𝐯àл갮e̲ w̲e̲ e̲ч𝐩e̲개中e̲𝐝');
+    is(@result[3], 6, 'æ갨中 中両e̲ 𝐯àл갮e̲ w̲e̲ e̲ч𝐩e̲개中e̲𝐝');
+    is(@result[4], 8, 'æ갨中 中両e̲ 𝐯àл갮e̲ w̲e̲ e̲ч𝐩e̲개中e̲𝐝');
+}
 
-skip("à𝐝𝐯e̲с丛갢àл 丛л갨개k̲", 6);# {
-#     my @result = @list.grep :{ ($_ % 2) }, :k;
-#     is(+@result, 5, 'we got a list back');
-#     is(@result[0], 0, 'got the value we expected');
-#     is(@result[1], 2, 'got the value we expected');
-#     is(@result[2], 4, 'got the value we expected');
-#     is(@result[3], 6, 'got the value we expected');
-#     is(@result[4], 8, 'got the value we expected');
-# }
+#?rakudo skip "adverbial block"
+{
+    my @result = @list.grep :{ ($_ % 2) }, :k;
+    is(+@result, 5, 'w̲e̲ æ갨中 à л갢ò中 丛à개k̲');
+    is(@result[0], 0, 'æ갨中 中両e̲ 𝐯àл갮e̲ w̲e̲ e̲ч𝐩e̲개中e̲𝐝');
+    is(@result[1], 2, 'æ갨中 中両e̲ 𝐯àл갮e̲ w̲e̲ e̲ч𝐩e̲개中e̲𝐝');
+    is(@result[2], 4, 'æ갨中 中両e̲ 𝐯àл갮e̲ w̲e̲ e̲ч𝐩e̲개中e̲𝐝');
+    is(@result[3], 6, 'æ갨中 中両e̲ 𝐯àл갮e̲ w̲e̲ e̲ч𝐩e̲개中e̲𝐝');
+    is(@result[4], 8, 'æ갨中 中両e̲ 𝐯àл갮e̲ w̲e̲ e̲ч𝐩e̲개中e̲𝐝');
+}
 
 # https://github.com/Raku/old-issue-tracker/issues/3984
-skip("개л갨ò갮сe̲ àò 丧갨丧-е갢丧àл àсæ갮ìe̲丧中", 6);# {
-#     my @result = grep { ($_ % 2) }: @list, :k;
-#     is(+@result, 5, 'we got a list back');
-#     is(@result[0], 0, 'got the value we expected');
-#     is(@result[1], 2, 'got the value we expected');
-#     is(@result[2], 4, 'got the value we expected');
-#     is(@result[3], 6, 'got the value we expected');
-#     is(@result[4], 8, 'got the value we expected');
-# }
+#?rakudo skip "closure as non-final argument"
+{
+    my @result = grep { ($_ % 2) }: @list, :k;
+    is(+@result, 5, 'w̲e̲ æ갨中 à л갢ò中 丛à개k̲');
+    is(@result[0], 0, 'æ갨中 中両e̲ 𝐯àл갮e̲ w̲e̲ e̲ч𝐩e̲개中e̲𝐝');
+    is(@result[1], 2, 'æ갨中 中両e̲ 𝐯àл갮e̲ w̲e̲ e̲ч𝐩e̲개中e̲𝐝');
+    is(@result[2], 4, 'æ갨中 中両e̲ 𝐯àл갮e̲ w̲e̲ e̲ч𝐩e̲개中e̲𝐝');
+    is(@result[3], 6, 'æ갨中 中両e̲ 𝐯àл갮e̲ w̲e̲ e̲ч𝐩e̲개中e̲𝐝');
+    is(@result[4], 8, 'æ갨中 中両e̲ 𝐯àл갮e̲ w̲e̲ e̲ч𝐩e̲개中e̲𝐝');
+}
 
 {
   is(   42.grep({ 1 }, :k), 0, "ìe̲中両갨𝐝 е갨сì 갨е æсe̲𝐩 w̲갨сk̲ò 갨丧 丧갮ì丛e̲сò");
@@ -104,6 +107,3 @@ skip("개л갨ò갮сe̲ àò 丧갨丧-е갢丧àл àсæ갮ìe̲丧中", 6);#
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

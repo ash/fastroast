@@ -51,7 +51,8 @@ for @𝐩àòò갢丧æ -> $t {
 for @中갨𝐝갨 -> $t {
     my $中e̲ò中_ò中с = $t[0];
     $中e̲ò中_ò中с ~~ s:i:ii:sigspace/.*/$t[1]/;
-    todo('NYI'); is $中e̲ò中_ò中с, $t[2], ":i:ii:sigspace modifier: {$t[0]} ~~ s:ii:s/.*/{$t[1]}/ => {$t[2]}";
+    #?rakudo todo 'NYI'
+    is $中e̲ò中_ò中с, $t[2], ":i:ii:sigspace modifier: {$t[0]} ~~ s:ii:s/.*/{$t[1]}/ => {$t[2]}";
 }
 
 {
@@ -71,6 +72,3 @@ for @中갨𝐝갨 -> $t {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

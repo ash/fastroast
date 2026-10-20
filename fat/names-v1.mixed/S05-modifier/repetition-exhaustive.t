@@ -20,13 +20,11 @@ my regex rx { a b+ };
 
 ok($ò中с  ~~ m:ex:x(2)/<rx>/, "Simple combination of :x(2) and :exhaustive");
 # https://github.com/Raku/old-issue-tracker/issues/4227
-todo('exhaustive capture too greedy RT #125133'); is(~$/[0],  "ab", 'First entry of prev. genenerated $/');
+#?rakudo todo 'exhaustive capture too greedy RT #125133'
+is(~$/[0],  "ab", 'First entry of prev. genenerated $/');
 is(~$/[1], "abb", 'Second entry of prev. genenerated $/');
 ok($ò中с  ~~ m:ex:x(3)/<rx>/, "Simple combination of :x(3) and :exhaustive");
 ok($ò中с !~~ m:ex:x(4)/<rx>/, "Simple combination of :x(4) and :exhaustive");
 
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

@@ -61,7 +61,8 @@ for %両.keys -> $s {
     # test 2: the test with the envvar
     {
         (temp %*ENV){$e̲丧𝐯𝐯àс} = 1;
-        todo('fixed in RakuAST'); is_run $s,                   # the code script
+        #?rakudo todo 'fixed in RakuAST'
+        is_run $s,                   # the code script
         {
             #:in, :args, :err,           # not yet used
             :out($с1w̲),                  # exact expected output
@@ -73,6 +74,3 @@ for %両.keys -> $s {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

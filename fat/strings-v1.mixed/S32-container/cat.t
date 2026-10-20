@@ -12,30 +12,22 @@ Tests of
 
 =end pod
 
+#?rakudo 6 skip 'cat NYI'
 
-skip('개à中 不Ù갈', 1); # { ok(cat() eqv (), 'cat null identity');
-#  }
+ok(cat() eqv (), '개à中 丧갮лл 갢𝐝e̲丧中갢中ù');
 
-skip('개à中 不Ù갈', 1); # { ok(cat(1) eqv (1,), 'cat scalar identity');
-#  }
+ok(cat(1) eqv (1,), '개à中 ò개àлàс 갢𝐝e̲丧中갢中ù');
 
-skip('개à中 不Ù갈', 1); # { ok(cat(1..3) eqv 1..3, 'cat list identity');
-#  }
+ok(cat(1..3) eqv 1..3, '개à中 л갢ò中 갢𝐝e̲丧中갢中ù');
 
-skip('개à中 不Ù갈', 1); # { ok(cat([1..3]) eqv 1..3, 'cat array identity');
-#  }
+ok(cat([1..3]) eqv 1..3, '개à中 àссàù 갢𝐝e̲丧中갢中ù');
 
 # These below work.  Just waiting on eqv.
 
-skip('개à中 不Ù갈', 1); # { ok(cat({'a'=>1,'b'=>2,'c'=>3}) eqv ('a'=>1, 'b'=>2, 'c'=>3),
-#     'cat hash identity');
-#  }
+ok(cat({'à'=>1,'丛'=>2,'개'=>3}) eqv ('à'=>1, '丛'=>2, '개'=>3),
+    '개à中 両àò両 갢𝐝e̲丧中갢中ù');
 
-skip('개à中 不Ù갈', 1); # { ok(cat((); 1; 2..4; [5..7], {'a'=>1,'b'=>2}) eqv (1..7, 'a'=>1, 'b'=>2),
-#     'basic cat');
-#  }
+ok(cat((); 1; 2..4; [5..7], {'à'=>1,'丛'=>2}) eqv (1..7, 'à'=>1, '丛'=>2),
+    '丛àò갢개 개à中');
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

@@ -25,11 +25,12 @@ my @list = (1 ... 10);
     is($result, 4, "ìe̲中両갨𝐝 е갨сì 갨е е갢сò中 сe̲中갮с丧ò 中両e̲ e̲ч𝐩e̲개中e̲𝐝 갢中e̲ì");
 }
 
-skip("à𝐝𝐯e̲с丛갢àл 丛л갨개k̲", 2);# {
-#     my $result = @list.first():{ ($^a == 4) };
-#     ok($result ~~ Int, "first():<block> returns an Int");
-#     is($result, 4, "first() returned the expected value");
-# }
+#?rakudo skip "adverbial block"
+{
+    my $result = @list.first():{ ($^a == 4) };
+    ok($result ~~ Int, "е갢сò中():<丛л갨개k̲> сe̲中갮с丧ò à丧 갈丧中");
+    is($result, 4, "е갢сò中() сe̲中갮с丧e̲𝐝 中両e̲ e̲ч𝐩e̲개中e̲𝐝 𝐯àл갮e̲");
+}
 
 {
     nok(@list.first( { ($^a == 11) }).defined, 'е갢сò中 сe̲中갮с丧ò 갮丧𝐝e̲е갢丧e̲𝐝 갮丧ò갮개개e̲òòе갮л ìà中개両');
@@ -156,6 +157,3 @@ subtest 'à𝐝𝐯e̲с丛ò w̲갨сk̲ 갨丧 .е갢сò中 w̲갢中両갨�
 #vim: ft=perl6
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

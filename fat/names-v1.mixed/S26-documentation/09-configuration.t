@@ -36,7 +36,8 @@ is $с.config<number>, 42;
 }
 
 
-todo('https://github.com/Raku/old-issue-tracker/issues/3778'); is-deeply $с.config<feist>, <1 2 3 4>;
+#?rakudo todo 'https://github.com/Raku/old-issue-tracker/issues/3778'
+is-deeply $с.config<feist>, <1 2 3 4>;
 
 
 =begin pod
@@ -157,8 +158,9 @@ foo
 
 $с = $=pod[$𝐩++];
 say "=== testing nums";
-todo('2.3 and -2.3 are Rats, not Nums'); isa-ok $с.config<k1>, Rat;
-todo('2.3 and -2.3 are Rats, not Nums'); isa-ok $с.config<k2>, Rat;
+#?rakudo 2 todo '2.3 and -2.3 are Rats, not Nums'
+isa-ok $с.config<k1>, Rat;
+isa-ok $с.config<k2>, Rat;
 isa-ok $с.config<k3>, Num;
 isa-ok $с.config<k4>, Num;
 isa-ok $с.config<k5>, Num;
@@ -299,6 +301,3 @@ isa-ok $с.config<foo>, Int, '1foo: foo => 1';
 is $с.config<foo>, 1, 'foo => 1';
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

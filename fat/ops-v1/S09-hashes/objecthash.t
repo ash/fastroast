@@ -59,8 +59,8 @@ plan 62;
     is %h{Mu}, 2, 'using Mu as a key';
     %h{Any} = 3;
     is %h{Any}, 3, 'using Any as a key';
-skip('oh noes, it dies', 1); # {     is %h{ Mu, Any }.join(","), "2,3", 'check slice access on Mu';
-#  }
+    #?rakudo skip 'oh noes, it dies'
+    is %h{ Mu, Any }.join(","), "2,3", 'check slice access on Mu';
     is %h{*}.sort.join(","), "2,3", 'check whatever access with Mu as key';
 } #6
 
@@ -169,6 +169,3 @@ for <Str gist raku> -> $method {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

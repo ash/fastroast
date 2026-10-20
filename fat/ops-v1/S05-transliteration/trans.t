@@ -202,9 +202,9 @@ is("&nbsp;&lt;&gt;&amp;".trans(:c, :s, (['&nbsp;', '&gt;', '&amp;'] =>
 }
 
 {
-skip('feed operator NYI', 1); # {     is(EVAL('"abc".trans(<== "a" => "A")'), "Abc",
-#         "you're allowed to leave off the (...) named arg parens when you use <==");
-#  }
+    #?rakudo skip 'feed operator NYI'
+    is(EVAL('"abc".trans(<== "a" => "A")'), "Abc",
+        "you're allowed to leave off the (...) named arg parens when you use <==");
 
     # Make sure the tr/// version works, too.
 
@@ -307,6 +307,3 @@ is_run ｢print '@x'.trans: (/\@/ => '-',), :c｣, {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

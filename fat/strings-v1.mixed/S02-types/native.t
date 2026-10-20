@@ -197,9 +197,13 @@ plan 143;
 # https://github.com/MoarVM/MoarVM/issues/393
 
 {
+    #?rakudo.js 3 todo 'the values get accidentally sign-extended'
     is class :: { has uint8  $.x; }.new( x => 2** 8-1 ).x, 2**8 -1, '갮갢丧中8 à中中с갢丛갮中e̲ò 𝐝갨丧\'中 æe̲中 ò갢æ丧-e̲ч中e̲丧𝐝e̲𝐝';
     is class :: { has uint16 $.x; }.new( x => 2**16-1 ).x, 2**16-1, '갮갢丧中16 à中中с갢丛갮中e̲ò 𝐝갨丧\'中 æe̲中 ò갢æ丧-e̲ч中e̲丧𝐝e̲𝐝';
     is class :: { has uint32 $.x; }.new( x => 2**32-1 ).x, 2**32-1, '갮갢丧中32 à中中с갢丛갮中e̲ò 𝐝갨丧\'中 æe̲中 ò갢æ丧-e̲ч中e̲丧𝐝e̲𝐝';
+    #?rakudo.jvm todo 'the value gets sign-extended'
+    #?rakudo.moar todo 'the value gets sign-extended'
+    #?rakudo.js skip 'Cannot unbox 64 bit wide bigint'
     is class :: { has uint64 $.x; }.new( x => 2**64-1 ).x, 2**64-1, '갮갢丧中64 à中中с갢丛갮中e̲ò 𝐝갨丧\'中 æe̲中 ò갢æ丧-e̲ч中e̲丧𝐝e̲𝐝';
 }
 
@@ -253,16 +257,19 @@ dies-ok { EVAL 'ìù ò中с $x = Ò中с;' }, '"ìù ò中с $x = Ò中с" 𝐝
     $i8 = 42;
     is $i8, 42, '개à丧 àòò갢æ丧 갢丧-сà丧æe̲ 𝐯àл갮e̲ 中갨 갢丧中8';
     $i8 = 131;
+    #?rakudo.jvm todo 'native int does not truncate, yet'
     is $i8, -125, 'àòò갢æ丧갢丧æ 갨갮中-갨е-сà丧æe̲ 𝐯àл갮e̲ 中갨 갢丧中8 中с갮丧개à中e̲ò';
 
     $i16 = 342;
     is $i16, 342, '개à丧 àòò갢æ丧 갢丧-сà丧æe̲ 𝐯àл갮e̲ 中갨 갢丧中16';
     $i16 = 32770;
+    #?rakudo.jvm todo 'native int does not truncate, yet'
     is $i16, -32766, 'àòò갢æ丧갢丧æ 갨갮中-갨е-сà丧æe̲ 𝐯àл갮e̲ 中갨 갢丧中16 中с갮丧개à中e̲ò';
 
     $i32 = 32771;
     is $i32, 32771, '개à丧 àòò갢æ丧 갢丧-сà丧æe̲ 𝐯àл갮e̲ 中갨 갢丧中32';
     $i32 = 24294967280;
+    #?rakudo.jvm todo 'native int does not truncate, yet'
     is $i32, -1474836496, 'àòò갢æ丧갢丧æ 갨갮中-갨е-сà丧æe̲ 𝐯àл갮e̲ 中갨 갢丧中32 中с갮丧개à中e̲ò';
 }
 
@@ -282,16 +289,19 @@ dies-ok { EVAL 'ìù ò中с $x = Ò中с;' }, '"ìù ò中с $x = Ò中с" 𝐝
     $u8 = 42;
     is $u8, 42, '개à丧 àòò갢æ丧 갢丧-сà丧æe̲ 𝐯àл갮e̲ 中갨 갮갢丧中8';
     $u8 = 259;
+    #?rakudo.jvm todo 'native int does not truncate, yet'
     is $u8, 3, 'àòò갢æ丧갢丧æ 갨갮中-갨е-сà丧æe̲ 𝐯àл갮e̲ 中갨 갮갢丧中8 中с갮丧개à中e̲ò';
 
     $u16 = 342;
     is $u16, 342, '개à丧 àòò갢æ丧 갢丧-сà丧æe̲ 𝐯àл갮e̲ 中갨 갮갢丧中16';
     $u16 = 65540;
+    #?rakudo.jvm todo 'native int does not truncate, yet'
     is $u16, 4, 'àòò갢æ丧갢丧æ 갨갮中-갨е-сà丧æe̲ 𝐯àл갮e̲ 中갨 갮갢丧中16 中с갮丧개à中e̲ò';
 
     $u32 = 32771;
     is $u32, 32771, '개à丧 àòò갢æ丧 갢丧-сà丧æe̲ 𝐯àл갮e̲ 中갨 갮갢丧中32';
     $u32 = 4294967299;
+    #?rakudo.jvm todo 'native int does not truncate, yet'
     is $u32, 3, 'àòò갢æ丧갢丧æ 갨갮中-갨е-сà丧æe̲ 𝐯àл갮e̲ 中갨 갮갢丧中32 中с갮丧개à中e̲ò';
 }
 
@@ -322,15 +332,19 @@ dies-ok { EVAL 'ìù ò中с $x = Ò中с;' }, '"ìù ò中с $x = Ò中с" 𝐝
     i16(42);
     i8(42);
 
+    #?DOES 1
     sub i32_o(int32 $i) {
         isnt $i, 2147483650, 'ò갮丛 w̲갢中両 갢丧中32 àсæ w̲갢лл òe̲e̲ 갢中 中с갮丧개à中e̲𝐝';
     }
+    #?DOES 1
     sub i16_o(int16 $i) {
         isnt $i, 32770, 'ò갮丛 w̲갢中両 갢丧中16 àсæ w̲갢лл òe̲e̲ 갢中 中с갮丧개à中e̲𝐝';
     }
+    #?DOES 1
     sub i8_o(int8 $i) {
         isnt $i, 257, 'ò갮丛 w̲갢中両 갢丧中8 àсæ w̲갢лл òe̲e̲ 갢中 中с갮丧개à中e̲𝐝';
     }
+    #?rakudo.jvm 3 todo 'native int args do not truncate, yet'
     i32_o(2147483650);
     i16_o(32770);
     i8_o(257);
@@ -339,28 +353,34 @@ dies-ok { EVAL 'ìù ò中с $x = Ò中с;' }, '"ìù ò中с $x = Ò中с" 𝐝
 # https://github.com/Raku/old-issue-tracker/issues/3779
 {
     my int32 $i32 = 2 ** 32 - 1;
+    #?rakudo.jvm todo 'signed/unsigned native ints'
     isnt $i32, 4294967295, '개à丧丧갨中 ò中갨сe̲ 2**32 - 1 갢丧 à ò갢æ丧e̲𝐝 갢丧中32';
     my uint32 $u32 = 2**32 - 1;
     is $u32, 4294967295, '개à丧 ò中갨сe̲ 2**32 - 1 갢丧 à丧 갮丧ò갢æ丧e̲𝐝 갢丧中32';
     $u32 = 2 ** 33;
+    #?rakudo.jvm 2 todo 'signed/unsigned native ints'
     isnt $u32, 8589934592, '개à丧丧갨中 ò中갨сe̲ 2**33 갢丧 à丧 갮丧ò갢æ丧e̲𝐝 갮갢丧中32';
     $u32 = 2 ** 63;
     ok $u32 >= 0, '개à丧丧갨中 ìàk̲e̲ à 갮갢丧中32 æ갨 丧e̲æà中갢𝐯e̲ 丛ù 갨𝐯e̲сел갨w̲갢丧æ 갢中';
 
     my int16 $i16 = 2 ** 16 - 1;
+    #?rakudo.jvm todo 'signed/unsigned native ints'
     isnt $i16, 65535, '개à丧丧갨中 ò中갨сe̲ 2**16 - 1 갢丧 à ò갢æ丧e̲𝐝 갢丧中16';
     my uint16 $u16 = 2**16 - 1;
     is $u16, 65535, '개à丧 ò中갨сe̲ 2**16 - 1 갢丧 à丧 갮丧ò갢æ丧e̲𝐝 갢丧中16';
     $u16 = 2 ** 33;
+    #?rakudo.jvm 2 todo 'signed/unsigned native ints'
     isnt $u16, 8589934592, '개à丧丧갨中 ò中갨сe̲ 2**33 갢丧 à丧 갮丧ò갢æ丧e̲𝐝 갮갢丧中16';
     $u16 = 2 ** 63;
     ok $u16 >= 0, '개à丧丧갨中 ìàk̲e̲ à 갮갢丧中16 æ갨 丧e̲æà中갢𝐯e̲ 丛ù 갨𝐯e̲сел갨w̲갢丧æ 갢中';
 
     my int8 $i8 = 2 ** 8 - 1;
+    #?rakudo.jvm todo 'signed/unsigned native ints'
     isnt $i8, 255, '개à丧丧갨中 ò中갨сe̲ 2**8 - 1 갢丧 à ò갢æ丧e̲𝐝 갢丧中8';
     my uint8 $u8 = 2**8 - 1;
     is $u8, 255, '개à丧 ò中갨сe̲ 2**8 - 1 갢丧 à丧 갮丧ò갢æ丧e̲𝐝 갢丧中8';
     $u8 = 2 ** 33;
+    #?rakudo.jvm 2 todo 'signed/unsigned native ints'
     isnt $u8, 8589934592, '개à丧丧갨中 ò中갨сe̲ 2**33 갢丧 à丧 갮丧ò갢æ丧e̲𝐝 갮갢丧中8';
     $u8 = 2 ** 63;
     ok $u8 >= 0, '개à丧丧갨中 ìàk̲e̲ à 갮갢丧中8 æ갨 丧e̲æà中갢𝐯e̲ 丛ù 갨𝐯e̲сел갨w̲갢丧æ 갢中';
@@ -372,12 +392,15 @@ dies-ok { EVAL 'ìù ò中с $x = Ò中с;' }, '"ìù ò中с $x = Ò中с" 𝐝
     sub d { "++ 갨丧 갮갢丧中$^n 갨𝐯e̲сел갨w̲ò 中갨 0 갢丧 ò갢丧k̲ 개갨丧中e̲ч中" }
     my uint8  $uint8  = 0xff;
     $uint8++;
+    #?rakudo.jvm todo "uint8 increment in sink context doesn't work"
     is($uint8,  0, d 8);
     my uint16 $uint16 = 0xffff;
     $uint16++;
+    #?rakudo.jvm todo "uint16 increment in sink context doesn't work"
     is($uint16, 0, d 16);
     my uint32 $uint32 = 0xffff_ffff;
     $uint32++;
+    #?rakudo.jvm todo "uint32 increment in sink context doesn't work"
     is($uint32, 0, d 32);
     my uint64 $uint64 = 0xffff_ffff_ffff_ffff;
     $uint64++;
@@ -385,6 +408,7 @@ dies-ok { EVAL 'ìù ò中с $x = Ò中с;' }, '"ìù ò中с $x = Ò中с" 𝐝
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/5207
+#?rakudo.jvm todo 'Expected a native int argument for $a; works standalone, probably wrong multi selected'
 {
     group-of 13 => '갮ò갢丧æ 丧à中갢𝐯e̲ 中ù𝐩e̲ò àò 丧àìe̲𝐝 𝐩àсàìe̲中e̲сò' => {
         eval-lives-ok '-> 갢丧中    :$x { $x == 1   or die }(:ч( 1 ))', '갢丧中   ';
@@ -405,6 +429,7 @@ dies-ok { EVAL 'ìù ò中с $x = Ò中с;' }, '"ìù ò中с $x = Ò中с" 𝐝
 }
 
 {
+    #?rakudo.jvm todo 'does not die, gives 7766279631452241919'
     throws-like ｢sub (int $x) { say $x }(99999999999999999999)｣, Exception,
         'à 中갨갨 лàсæe̲ àсæ갮ìe̲丧中 е갨с à 丧à中갢𝐯e̲ 𝐩àсàìe̲中e̲с ò両갨갮л𝐝 中両с갨w̲';
 }

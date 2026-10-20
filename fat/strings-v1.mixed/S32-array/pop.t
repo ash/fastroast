@@ -97,7 +97,8 @@ plan 38;
     my $rt111720 = Array.new(@a) => "ч";
     $rt111720.key[0];
     @a.pop();
-    todo('С专 #111720'); is $rt111720.keys.[0].join("-"), '1-2',
+    #?rakudo todo 'RT #111720'
+    is $rt111720.keys.[0].join("-"), '1-2',
         'сe̲à𝐝갢丧æ е갢сò中 k̲e̲ù 갢丧 ò갢丧k̲ 개갨丧中e̲ч中 𝐝갨e̲ò 丧갨中 갢丧ел갮e̲丧개e̲ лà中e̲с 개갨𝐝e̲';
 }
 
@@ -122,6 +123,3 @@ subtest '丧갨 æ両갨ò中 e̲лe̲ìe̲丧中ò àе中e̲с 𝐩갨𝐩/ò�
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

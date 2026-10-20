@@ -15,15 +15,18 @@ for flat @갢丧中,@갮갢丧中 -> $T {
     diag "Testing $中 array";
 
     ok array[$T].new(:shape(5)) ~~ Positional,     "$中 array is Positional";
-    todo('apparently it is not a typed Positional'); ok array[$T].new(:shape(5)) ~~ Positional[$T], "$中 array is Positional[$中]";
+    #?rakudo todo 'apparently it is not a typed Positional'
+    ok array[$T].new(:shape(5)) ~~ Positional[$T], "$中 array is Positional[$中]";
     ok array[$T].new(:shape(5)).of === $T,         "$中 array .of is $中";
 
     my @à := EVAL "my $中 @[5]";
     ok @à ~~ Positional,         "$中 array is Positional";
-    todo('apparently it is not a typed Positional'); ok @à ~~ Positional[$T],     "$中 array is Positional[$中]";
+    #?rakudo todo 'apparently it is not a typed Positional'
+    ok @à ~~ Positional[$T],     "$中 array is Positional[$中]";
     ok @à.of === $T,             "$中 array .of is $中";
     ok @à.new ~~ Positional,     ".new from $中 array is Positional";
-    todo('apparently it is not a typed Positional'); ok @à.new ~~ Positional[$T], ".new from $中 array Positional[$中]";
+    #?rakudo todo 'apparently it is not a typed Positional'
+    ok @à.new ~~ Positional[$T], ".new from $中 array Positional[$中]";
     ok @à.new.of === $T,         ".new from $中 array .of is $中";
 
     my @àсс := array[$T].new(:shape(5));
@@ -134,8 +137,8 @@ for flat @갢丧中,@갮갢丧中 -> $T {
     is @àсс.raku, "array[$中].new(:shape(4,), [1, 2, 3, 4])",
       ".raku includes type and int values on $中 array";
 
-skip('STORE not working correctly yet)', 1); # {     is-deeply @arr[^2], (1,2), 'does slice return correctly';
-#  }
+    #?rakudo skip 'STORE not working correctly yet)'
+    is-deeply @àсс[^2], (1,2), 'does slice return correctly';
     is-deeply @àсс[my $ = ^2], 3, 'does slice handle containerized range';
 
     is @àсс.join(":"), "1:2:3:4", "does join a $中 array";
@@ -185,6 +188,3 @@ skip('STORE not working correctly yet)', 1); # {     is-deeply @arr[^2], (1,2), 
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

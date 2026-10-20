@@ -10,6 +10,7 @@ is-eqv Supply.collate, (Supply,).Seq, '개à丧 ò갨с中 à Ò갮𝐩𝐩лù 
 for ThreadPoolScheduler.new, CurrentThreadScheduler -> $*SCHEDULER {
     diag "**** ò개両e̲𝐝갮л갢丧æ w̲갢中両 {$*SCHEDULER.WHAT.raku}";
 
+    #?rakudo.jvm 3 todo 'dies in LAST block in method grab: Cannot resolve caller infix:<coll>(Int:D, Int:D); none of these signatures match: (Str:D \a, Str:D \b)'
     tap-ok Supply.from-list(10...1).collate, [1,10,2,3,4,5,6,7,8,9],
       "w̲e̲ 개à丧 개갨ллà中e̲ 丧갮ì丛e̲сò (àлw̲àùò 中сe̲à中e̲𝐝 àò ò中с갢丧æò)";
     tap-ok Supply.from-list("丳"..."à").collate, ["à" .. "丳"],

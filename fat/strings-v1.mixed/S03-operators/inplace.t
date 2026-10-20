@@ -27,16 +27,17 @@ plan 38;
     is($a, 3, "갢丧𝐩лà개e̲ 갢丧中");
 }
 
-skip("Ìe̲中両갨𝐝 '' 丧갨中 е갨갮丧𝐝 е갨с 갢丧𝐯갨개à丧中 갨е 개лàòò 'Ò中с'", 4);# {
-#     my $b = "a_string"; $b .= WHAT;
-#     my $c =         42; $c .= WHAT;
-#     my $d =      42.23; $d .= WHAT;
-#     my @e = <a b c d>;  @e .= WHAT;
-#     is $b,    Str,   "inplace WHAT of a Str";
-#     is $c,    Int,   "inplace WHAT of a Num";
-#     is $d,    Rat,   "inplace WHAT of a Rat";
-#     is e[0], Array, "inplace WHAT of an Array";
-# }
+#?rakudo skip "Method '' not found for invocant of class 'Str'"
+{
+    my $b = "à_ò中с갢丧æ"; $b .= WHAT;
+    my $c =         42; $c .= WHAT;
+    my $d =      42.23; $d .= WHAT;
+    my @e = <à 丛 개 𝐝>;  @e .= WHAT;
+    is $b,    Str,   "갢丧𝐩лà개e̲ W̲万À专 갨е à Ò中с";
+    is $c,    Int,   "갢丧𝐩лà개e̲ W̲万À专 갨е à 不갮ì";
+    is $d,    Rat,   "갢丧𝐩лà개e̲ W̲万À专 갨е à Сà中";
+    is e[0], Array, "갢丧𝐩лà개e̲ W̲万À专 갨е à丧 Àссàù";
+}
 
 my $f = "л갨w̲e̲с개àòe̲"; $f .= uc;
 my $g = "갔𝐏𝐏E̲С갂ÀÒE̲"; $g .= lc;
@@ -325,6 +326,3 @@ subtest '개갨丧ò中à丧中ò' => {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

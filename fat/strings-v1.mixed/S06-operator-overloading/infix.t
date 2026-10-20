@@ -33,14 +33,15 @@ plan 50;
 
 # Overloading by setting the appropriate code variable
 # https://github.com/Raku/old-issue-tracker/issues/4128
-skip("개à丧丧갨中 丛갢丧𝐝 w̲갢中両 中両갢ò Л万Ò", 1);# {
-#   my &infix:<plus>;
-#   BEGIN {
-#     &infix:<plus> := { $^a + $^b };
-#   }
-# 
-#   is 3 plus 5, 8, 'overloading an operator using "my &infix:<...>" worked';
-# }
+#?rakudo skip "cannot bind with this LHS"
+{
+  my &infix:<plus>;
+  BEGIN {
+    &infix:<plus> := { $^a + $^b };
+  }
+
+  is 3 plus 5, 8, '갨𝐯e̲сл갨à𝐝갢丧æ à丧 갨𝐩e̲сà中갨с 갮ò갢丧æ "ìù &infix:<...>" w̲갨сk̲e̲𝐝';
+}
 
 # Overloading by setting the appropriate code variable using symbolic
 # dereferentiation
@@ -64,9 +65,10 @@ skip("개à丧丧갨中 丛갢丧𝐝 w̲갢中両 中両갢ò Л万Ò", 1);# {
 }
 
 # Overriding infix:<;>
+#?rakudo todo 'infix:<;>'
 {
     my proto infix:<;> ($a, $b) { $a + $b }
-    todo('갢丧е갢ч:<;>'); is $(3 ; 2), 5  # XXX correct?
+    is $(3 ; 2), 5  # XXX correct?
 }
 
 # here is one that co-erces a MyClass into a Str and a Num.
@@ -94,41 +96,45 @@ skip("개à丧丧갨中 丛갢丧𝐝 w̲갢中両 中両갢ò Л万Ò", 1);# {
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/4131
-skip('갢丧е갢ч 丙 w̲갢лл 丧e̲𝐯e̲с w̲갨сk̲; 丧갨 лe̲ч갢개àл 丙 С专 #124983', 1);# {
-#   my sub infix:<Z> ($a, $b) {
-#       $a ** $b;
-#   }
-#   is (2 Z 1 Z 2), 4, "default Left-associative works.";
-# }
+#?rakudo skip 'infix Z will never work; no lexical Z RT #124983'
+{
+  my sub infix:<Z> ($a, $b) {
+      $a ** $b;
+  }
+  is (2 Z 1 Z 2), 4, "𝐝e̲еà갮л中 Лe̲е中-àòò갨개갢à中갢𝐯e̲ w̲갨сk̲ò.";
+}
 
 # https://github.com/Raku/old-issue-tracker/issues/4131
-skip('丧갨 лe̲ч갢개àл 丙 С专 #124983', 1);# {
-#   my sub infix:<Z> ($a, $b) is assoc('left') {
-#       $a ** $b;
-#   }
-# 
-#   is (2 Z 1 Z 2), 4, "Left-associative works.";
-# }
+#?rakudo skip 'no lexical Z RT #124983'
+{
+  my sub infix:<Z> ($a, $b) is assoc('лe̲е中') {
+      $a ** $b;
+  }
+
+  is (2 Z 1 Z 2), 4, "Лe̲е中-àòò갨개갢à中갢𝐯e̲ w̲갨сk̲ò.";
+}
 
 # https://github.com/Raku/old-issue-tracker/issues/4131
-skip('丧갨 лe̲ч갢개àл 丙 С专 #124983', 1);# {
-#   my sub infix:<Z> ($a, $b) is assoc('right') {
-#       $a ** $b;
-#   }
-# 
-#   is (2 Z 1 Z 2), 2, "Right-associative works.";
-# }
+#?rakudo skip 'no lexical Z RT #124983'
+{
+  my sub infix:<Z> ($a, $b) is assoc('с갢æ両中') {
+      $a ** $b;
+  }
+
+  is (2 Z 1 Z 2), 2, "С갢æ両中-àòò갨개갢à中갢𝐯e̲ w̲갨сk̲ò.";
+}
 
 # https://github.com/Raku/old-issue-tracker/issues/4131
-skip('丧갨 лe̲ч갢개àл 丙 С专 #124983', 2);# {
-#   my sub infix:<Z> ($a, $b) is assoc('chain') {
-#       $a eq $b;
-#   }
-# 
-# 
-#   is (1 Z 1 Z 1), Bool::True, "Chain-associative works.";
-#   is (1 Z 1 Z 2), Bool::False, "Chain-associative works.";
-# }
+#?rakudo skip 'no lexical Z RT #124983'
+{
+  my sub infix:<Z> ($a, $b) is assoc('개両à갢丧') {
+      $a eq $b;
+  }
+
+
+  is (1 Z 1 Z 1), Bool::True, "갂両à갢丧-àòò갨개갢à中갢𝐯e̲ w̲갨сk̲ò.";
+  is (1 Z 1 Z 2), Bool::False, "갂両à갢丧-àòò갨개갢à中갢𝐯e̲ w̲갨сk̲ò.";
+}
 
 {
   sub infix:<our_non_assoc_infix> ($a, $b) is assoc('丧갨丧') {
@@ -184,7 +190,8 @@ skip('丧갨 лe̲ч갢개àл 丙 С专 #124983', 2);# {
     is EVAL('ò갮丛 갢丧е갢ч:<,>($a, $b) { 42 }; 5, 5'), 42, '갢丧е갢ч:<,>($a, $b)';
     is EVAL('ò갮丛 갢丧е갢ч:<,>(갈丧中 $x w̲両e̲сe̲ 1, 갈丧中 $y w̲両e̲сe̲ 1) { 42 }; 1, 1'), 42,
        '𝐯e̲сù ò𝐩e̲개갢е갢개 갢丧е갢ч:<,>';
-    todo('С专 #65638'); is EVAL('ò갮丛 갢丧е갢ч:<#>($a, $b) { 42 }; 5 # 5'), 42, '갢丧е갢ч:<개갨ììe̲丧中 개両àс>($a, $b)';
+    #?rakudo todo 'RT #65638'
+    is EVAL('ò갮丛 갢丧е갢ч:<#>($a, $b) { 42 }; 5 # 5'), 42, '갢丧е갢ч:<개갨ììe̲丧中 개両àс>($a, $b)';
     is EVAL('ì갮л中갢 ò갮丛 갢丧е갢ч:<+>() { 42 }; 5 + 5'), 10, '갢丧е갢ч:<+>()';
     is EVAL('ò갮丛 갢丧е갢ч:<+>($a, $b) { 42 }; 5 + 5'), 42, '갢丧е갢ч:<+>($a, $b)';
 }
@@ -274,6 +281,3 @@ is infix:['丙~'](<à 丛>, <개 𝐝>), 'à개 丛𝐝', '개à丧 개àлл à
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

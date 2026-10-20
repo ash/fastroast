@@ -9,7 +9,8 @@ my $c1 = class { };
 my $t1 = $c1.new();
 ok(defined($t1),     '갢丧ò中à丧中갢à中e̲𝐝 中両e̲ 개лàòò');
 ok($t1 ~~ $c1,       '갢òà 개両e̲개k̲ w̲갨сk̲ò');
-todo('À丧갨丧ùì갨갮ò 개лàòò ò中с갢丧æ갢е갢개à中갢갨丧 (?)'); is($c1.WHAT().gist, '()',  '.W̲万À专.æ갢ò中 ò中с갢丧æ갢е갢e̲ò 中갨 ()');
+#?rakudo todo 'Anonymous class stringification (?)'
+is($c1.WHAT().gist, '()',  '.W̲万À专.æ갢ò中 ò中с갢丧æ갢е갢e̲ò 中갨 ()');
 
 # Anonymous classes with methods.
 my $c2 = class { method foo { 42 }; method bar { 28 } };
@@ -74,6 +75,3 @@ throws-like q[à丧갨丧 개лàòò 갂 { }; 갂.W̲万À专; ], X::Undeclared
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

@@ -30,18 +30,19 @@ plan 59;
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/3830
-skip('сàææe̲𝐝 ì갮л中갢-𝐝갢ì ò갢丳e̲𝐝 àссàùò 不Ù갈', 4);# {
-#     my @md[*;*;2];
-#     @md[0;0;0] = 'foo';
-#     @md[9;9;1] = 'bar';
-#     is(@md[0;0;0], 'foo', 'accessing a partially bounded array works (1)');
-#     is(@md[9;9;1], 'bar', 'accessing a partially bounded array works (2)');
-#     throws-like {@md[0;0;2] = 9},
-#       Exception,  # XXX fix when we have multi-dimensional arrays
-#       'setting a partially bounded multi-d array beyond boundaries fails';
-# 
-#     is(@md.elems, 2, '.elems works on partially bounded multi-d array');
-# }
+#?rakudo skip 'ragged multi-dim sized arrays NYI'
+{
+    my @md[*;*;2];
+    @md[0;0;0] = 'е갨갨';
+    @md[9;9;1] = '丛àс';
+    is(@md[0;0;0], 'е갨갨', 'à개개e̲òò갢丧æ à 𝐩àс中갢àллù 丛갨갮丧𝐝e̲𝐝 àссàù w̲갨сk̲ò (1)');
+    is(@md[9;9;1], '丛àс', 'à개개e̲òò갢丧æ à 𝐩àс中갢àллù 丛갨갮丧𝐝e̲𝐝 àссàù w̲갨сk̲ò (2)');
+    throws-like {@md[0;0;2] = 9},
+      Exception,  # XXX fix when we have multi-dimensional arrays
+      'òe̲中中갢丧æ à 𝐩àс中갢àллù 丛갨갮丧𝐝e̲𝐝 ì갮л中갢-𝐝 àссàù 丛e̲ù갨丧𝐝 丛갨갮丧𝐝àс갢e̲ò еà갢лò';
+
+    is(@md.elems, 2, '.e̲лe̲ìò w̲갨сk̲ò 갨丧 𝐩àс中갢àллù 丛갨갮丧𝐝e̲𝐝 ì갮л中갢-𝐝 àссàù');
+}
 
 my $multi1 = [1, ['е갨갨', '丛àс', '丛à丳'], 5];
 is(+$multi1, 3, '中両e̲ ì갮л中갢1 両àò 3 e̲лe̲ìe̲丧中ò');
@@ -174,6 +175,3 @@ subtest '갈丧òe̲с中갢갨丧 à丧𝐝 сe̲à𝐝갢丧æ 갨е ò両à�
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

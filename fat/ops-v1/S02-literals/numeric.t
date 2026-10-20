@@ -18,8 +18,9 @@ does-ok <1/2>, Numeric, '<1/2> does Numeric';
 does-ok <1/2>, Real, '<1/2> does Real';
 isa-ok <0x01/0x02>, Rat, 'same with hexadecimal numbers';
 
-todo("Unsure of what's acceptable for val()"); ok <1/-3>.WHAT === Str, 'negative allowed only on numerator';
-todo("Unsure of what's acceptable for val()"); ok <-1/-3>.WHAT === Str, 'negative allowed only on numerator';
+#?rakudo 2 todo "Unsure of what's acceptable for val()"
+ok <1/-3>.WHAT === Str, 'negative allowed only on numerator';
+ok <-1/-3>.WHAT === Str, 'negative allowed only on numerator';
 
 isa-ok <-1/3>, Rat, 'negative Rat literal';
 ok <-1/3> * -3 == 1, 'negative Rat literal';
@@ -27,8 +28,9 @@ ok <-1/3> * -3 == 1, 'negative Rat literal';
 # https://github.com/Raku/old-issue-tracker/issues/3875
 is <0x01/0x03>, (0x01/0x03), 'Rat works with hexadecimal numbers';
 is <0b01/0b10>, (0b01/0b10), 'Rat works with binary numbers';
-todo('Adverbial numbers in Rat literals not supported'); is <:13<01>/:13<07>>, (1/7), 'Rat works with colon radix numbers';
-todo('Adverbial numbers in Rat literals not supported'); is <:12<1a>/:12<7b>>, (:12<1a> / :12<7b>), 'Rat works with colon radix numbers';
+#?rakudo 2 todo 'Adverbial numbers in Rat literals not supported'
+is <:13<01>/:13<07>>, (1/7), 'Rat works with colon radix numbers';
+is <:12<1a>/:12<7b>>, (:12<1a> / :12<7b>), 'Rat works with colon radix numbers';
 
 # L<S02/Complex literals/Complex literals are similarly indicated>
 
@@ -105,10 +107,15 @@ ok 0e999999999999999 == 0, '0e999999999999 equals zero';
 
 # We are not afraid of unicode
 {
+    #?rakudo.js skip 'unsupported unicode stuff'
     is ۵۵, 55, "We can handle Unicode digits";
+    #?rakudo.jvm 3 skip 'bogus term'
+    #?rakudo.js 3 skip 'unsupported unicode stuff'
     is ⅷ , 8, "We can handle Unicode non-digit numerics";
     is ⅔, 2/3, "We can handle vulgar fractions";
     is 𒑡  × 𒑒, 2/3, "We can multiply cuneiform :-)";
+    #?rakudo.jvm skip 'Prefix - requires an argument, but no valid term found'
+    #?rakudo.js skip 'unsupported unicode stuff'
     ok -𝑒 ** −π\i ≅ 1, "We can write 1 in funny ways too";
     is ∞, ∞, "yeah, we do that too...";
 }
@@ -126,6 +133,8 @@ subtest '#2094 prefix as post fix works on number literals' => {
 }
 
 # https://github.com/rakudo/rakudo/issues/3694
+#?rakudo.jvm skip 'uniprop NYI'
+#?DOES 1
 {
   subtest "check simple non-ascii numerification" => {
 
@@ -171,6 +180,3 @@ subtest '#2094 prefix as post fix works on number literals' => {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

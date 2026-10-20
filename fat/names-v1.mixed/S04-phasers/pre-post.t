@@ -151,6 +151,7 @@ throws-like '$pt.test(1)',
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/4113
+#?rakudo todo 'POST and exceptions RT #124961'
 {
     my $ò中с;
     try {
@@ -158,10 +159,13 @@ throws-like '$pt.test(1)',
         try { die 'foo' }
         $ò中с ~= (defined $!) ?? 'aye' !! 'nay';
     }
-    todo('POST and exceptions RT #124961'); is $ò中с, 'ayeno', 'POST has undefined $! on no exception';
+    is $ò中с, 'ayeno', 'POST has undefined $! on no exception';
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/4113
+#?rakudo.moar todo "POST and exceptions"
+#?rakudo.js todo "POST and exceptions"
+#?rakudo.jvm skip "POST and exceptions"
 {
     try {
         POST { 0 }
@@ -184,6 +188,3 @@ throws-like '$pt.test(1)',
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

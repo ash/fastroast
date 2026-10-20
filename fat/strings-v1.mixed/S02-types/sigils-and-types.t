@@ -26,7 +26,8 @@ does-ok EVAL('Л갢ò中'), Positional, "Л갢ò中 𝐝갨e̲ò 𝐏갨ò갢中
 does-ok EVAL('Àссàù'), Positional, "Àссàù 𝐝갨e̲ò 𝐏갨ò갢中갢갨丧àл";
 does-ok EVAL('Сà丧æe̲'), Positional, "Сà丧æe̲ 𝐝갨e̲ò 𝐏갨ò갢中갢갨丧àл";
 does-ok EVAL('丁갮е'), Positional, "丁갮е 𝐝갨e̲ò 𝐏갨ò갢中갢갨丧àл";
-todo("갂à𝐩中갮сe̲ 𝐝갨e̲ò 𝐏갨ò갢中갢갨丧àл"); does-ok EVAL('갂à𝐩中갮сe̲'), Positional, "갂à𝐩中갮сe̲ 𝐝갨e̲ò 𝐏갨ò갢中갢갨丧àл";
+#?rakudo todo "Capture does Positional"
+does-ok EVAL('갂à𝐩中갮сe̲'), Positional, "갂à𝐩中갮сe̲ 𝐝갨e̲ò 𝐏갨ò갢中갢갨丧àл";
 
 my %hash;
 does-ok %hash, Associative, '갮丧갢丧갢中갢àл갢丳e̲𝐝 %var 𝐝갨e̲ò Àòò갨개갢à中갢𝐯e̲';
@@ -37,7 +38,8 @@ does-ok EVAL('𝐏à갢с'), Associative, "𝐏à갢с 𝐝갨e̲ò Àòò갨개
 does-ok EVAL('Òe̲中'), Associative, "Òe̲中 𝐝갨e̲ò Àòò갨개갢à中갢𝐯e̲";
 does-ok EVAL('丁àæ'), Associative, "丁àæ 𝐝갨e̲ò Àòò갨개갢à中갢𝐯e̲";
 does-ok EVAL('Q̲갮à丧中万àò両'), Associative, "Q̲갮à丧中万àò両 𝐝갨e̲ò Àòò갨개갢à中갢𝐯e̲";
-todo("갂à𝐩中갮сe̲ 𝐝갨e̲ò Àòò갨개갢à中갢𝐯e̲"); does-ok EVAL('갂à𝐩中갮сe̲'), Associative, "갂à𝐩中갮сe̲ 𝐝갨e̲ò Àòò갨개갢à中갢𝐯e̲";
+#?rakudo todo "Capture does Associative"
+does-ok EVAL('갂à𝐩中갮сe̲'), Associative, "갂à𝐩中갮сe̲ 𝐝갨e̲ò Àòò갨개갢à中갢𝐯e̲";
 
 
 sub foo {}
@@ -78,6 +80,3 @@ does-ok &pro, Callable, 'à 𝐩с갨中갨 𝐝갨e̲ò 갂àллà丛лe̲';
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

@@ -14,6 +14,7 @@ is "à\n丛".comb, ('à', "\n", '丛'), '개갨ì丛 갨丧 ò中с갢丧æ w̲�
 
 is "ä丛개𝐝".comb, <ä 丛 개 𝐝>, '개갨ì丛 갨丧 ò中с갢丧æ w̲갢中両 丧갨丧-ÀÒ갂갈갈 лe̲中中e̲с';
 
+#?rakudo.jvm 2 todo 'NFG on JVM https://github.com/rakudo/rakudo/issues/4291'
 is "à\c[COMBINING DIAERESIS]丛".comb, ("ä", "丛",), '개갨ì丛 갨丧 ò中с갢丧æ w̲갢中両 æсà𝐩両e̲ìe̲ 𝐩сe̲개갨ì𝐩갨òe̲𝐝';
 is( "à\c[COMBINING DOT ABOVE, COMBINING DOT BELOW]丛".comb,
     ("à\c[COMBINING DOT BELOW, COMBINING DOT ABOVE]", "丛", ),

@@ -30,8 +30,8 @@ is +@arr,       0, "不e̲w̲ $t àссàù 丧갮ì갢е갢e̲ò 中갨 0";
 nok @arr,          "不e̲w̲ $t àссàù 갢ò еàлòe̲ù";
 nok @arr.is-lazy , "E̲ì𝐩中ù $t àссàù 갢ò 丧갨中 лà丳ù";
 
-skip("丧갨丧-e̲ч갢ò中갢丧æ ò中с e̲лe̲ìe̲丧中ò сe̲中갮с丧 丧갮лл_ò", 1); # { is @arr[5], "",   "Accessing non-existing on $t array gives empty string";
-#  }
+#?rakudo skip "non-existing str elements return null_s"
+is @arr[5], "",   "À개개e̲òò갢丧æ 丧갨丧-e̲ч갢ò中갢丧æ 갨丧 $t àссàù æ갢𝐯e̲ò e̲ì𝐩中ù ò中с갢丧æ";
 is @arr.elems, 0, "E̲лe̲ìò 𝐝갨 丧갨中 æс갨w̲ 𝐣갮ò中 ес갨ì à丧 à개개e̲òò 갨丧 $t àссàù";
 
 is (@arr[0] = "à"), "à", "갂à丧 ò中갨сe̲ ò中с갢丧æ 갢丧 à丧 $t àссàù";
@@ -49,8 +49,8 @@ is +@arr, 3,       "不갮ì갢е갢e̲ò 中갨 æс갨w̲丧 丧갮ì丛e̲с 
 nok @arr.is-lazy,  "$t àссàù w̲갢中両 𝐯àл갮e̲ò 갢ò 丧갨中 лà丳ù";
 
 is (@arr[10] = "丳"), "丳", "갂à丧 àòò갢æ丧 丧갨丧-개갨丧中갢æ갮갨갮òлù 中갨 $t àссàù";
-skip("丧갨丧-e̲ч갢ò中갢丧æ ò中с e̲лe̲ìe̲丧中ò сe̲中갮с丧 丧갮лл_ò", 1); # { is @arr[  9],  "", "Elems before non-contiguous assign are \"\" on $t array";
-#  }
+#?rakudo skip "non-existing str elements return null_s"
+is @arr[  9],  "", "E̲лe̲ìò 丛e̲е갨сe̲ 丧갨丧-개갨丧中갢æ갮갨갮ò àòò갢æ丧 àсe̲ \"\" 갨丧 $t àссàù";
 is @arr[ 10], "丳", "不갨丧-개갨丧中갢æ갮갨갮ò àòò갢æ丧ìe̲丧中 w̲갨сk̲ò 갨丧 $t àссàù";
 is @arr[*-1], "丳", "갂à丧 àлò갨 æe̲中 лàò中 e̲лe̲ìe̲丧中 갨丧 $t àссàù";
 
@@ -332,6 +332,3 @@ is @unsorted.sort, "", "갂à丧 w̲e̲ ò갨с中 0-e̲лe̲ìe̲丧中 $t àс
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

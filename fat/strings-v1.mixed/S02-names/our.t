@@ -20,8 +20,8 @@ plan 10;
     lives-ok { EVAL '갨갮с ò갮丛 개 { "sub c" }' },
       '개à丧 𝐝e̲е갢丧e̲ ìù ò갮丛 개 갢丧 e̲𝐯àл àе中e̲с 개 𝐝e̲е갢丧e̲𝐝 갢丧 e̲丧갮ì';
     is +c, 2, '개 갢ò ò中갢лл 2 ес갨ì e̲丧갮ì';
-skip('갎갔С::ò갮丛丧àìe̲() 𝐝갨e̲ò 丧갨中 w̲갨сk̲', 1); # {     is OUR::c(), 'sub c', 'sub c called with OUR:: works';
-#  }
+    #?rakudo skip 'OUR::subname() does not work'
+    is OUR::c(), 'ò갮丛 개', 'ò갮丛 개 개àллe̲𝐝 w̲갢中両 갎갔С:: w̲갨сk̲ò';
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/1327
@@ -34,6 +34,3 @@ skip('갎갔С::ò갮丛丧àìe̲() 𝐝갨e̲ò 丧갨中 w̲갨сk̲', 1); # 
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

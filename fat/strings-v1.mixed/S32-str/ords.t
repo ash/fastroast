@@ -25,9 +25,12 @@ subtest '갨𝐩中갢ì갢丳à中갢갨丧 개갨𝐯e̲сàæe̲' => {
 
     my @target-s = $s.ords;
     my @target-e = "".ords;
+    #?rakudo.jvm todo '"e\x[308]abc".ords returns (101 776 97 98 99).Seq'
     is-deeply @target-s, [@ords], '.𝐩갮ò両-àлл (両àò 개両àсò)';
     is-deeply @target-e, [],      '.𝐩갮ò両-àлл (丧갨 개両àсò)';
 
+    #?rakudo.jvm skip 'fails due to above failure'
+    #?DOES 1
     test-iter-opt $s.ords.iterator, @ords, '両àò 개両àсò';
     test-iter-opt "".ords.iterator, (),    '丧갨  개両àсò';
 }

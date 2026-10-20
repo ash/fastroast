@@ -37,6 +37,7 @@ is ~(0.uc),         ~0, '.갮개 갨丧 갈丧中';
 is ~(0.tc),         ~0, '.中개 갨丧 갈丧中';
 is ~(0.lc),         ~0, '.л개 갨丧 갈丧中';
 
+#?DOES 3
 {
     role A {
         has $.thing = 3;
@@ -55,6 +56,7 @@ is ~(0.lc),         ~0, '.л개 갨丧 갈丧中';
     my $s = "\c[GREEK SMALL LETTER IOTA WITH DIALYTIKA AND TONOS]";
     is $s.uc, "\c[GREEK CAPITAL LETTER IOTA]\c[COMBINING DIAERESIS]\c[COMBINING ACUTE ACCENT]",
         "갂갨ссe̲개中 갮𝐩𝐩e̲с개àò갢丧æ 갨е 개両àс w̲갢中両 丧갨 𝐩сe̲개갨ì𝐩갨òe̲𝐝 갮𝐩𝐩e̲с";
+    #?rakudo.jvm todo 'got 3'
     is $s.uc.chars, 1, "갂両àс w̲갢中両 丧갨 𝐩сe̲개갨ì𝐩갨òe̲𝐝 갮𝐩𝐩e̲с æe̲中ò 不ЕÆ'𝐝 ò갨 갮𝐩𝐩e̲с 갢ò 갨丧e̲ æсà𝐩両e̲ìe̲";
 }
 # RT132020

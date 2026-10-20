@@ -48,6 +48,7 @@ else {
         }
     };
 
+    #?rakudo.jvm todo "doesn't work, yet"
     ok( $in_destructor, '... only when object goes away everywhere'                          );
     $order_lock.protect: {
         is( +@destructor_order % 2, 0, '... only a multiple of the available DESTROY submethods' )
@@ -61,6 +62,7 @@ else {
                     pass "Parent after child";
                 }
                 else {
+                    #?rakudo.jvm todo "doesn't work, yet"
                     flunk "Found a parent but no corresponding child constructor call";
                     diag @destructor_order;
                 }

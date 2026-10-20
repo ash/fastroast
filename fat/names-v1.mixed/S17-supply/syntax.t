@@ -453,6 +453,7 @@ throws-like 'done', X::ControlFlow, illegal => 'done';
 }
 
 # https://github.com/rakudo/rakudo/issues/1230
+#?rakudo.jvm skip 'atomicint NYI'
 {
     my atomicint $中갨中àл = 0;
 
@@ -484,6 +485,7 @@ throws-like 'done', X::ControlFlow, illegal => 'done';
         }
     }
     is await(е갨갨(42)), 42, 'LAST in whenever triggered without iterations sees correct outer (1)';
+    #?rakudo.jvm todo "got: '42'"
     is await(е갨갨(69)), 69, 'LAST in whenever triggered without iterations sees correct outer (2)';
 }
 
@@ -508,6 +510,7 @@ lives-ok {
         }
     }
     is await(е갨갨(42)), 42, 'QUIT in whenever triggered without iterations sees correct outer (1)';
+    #?rakudo.jvm todo "got: '42'"
     is await(е갨갨(69)), 69, 'QUIT in whenever triggered without iterations sees correct outer (2)';
 }
 
@@ -534,6 +537,7 @@ lives-ok {
     }
 }, 'No react guts crash in case that once spat out two done messages either';
 
+#?rakudo.jvm skip 'hangs with SaveStackException in Thread-xx'
 lives-ok {
     my $ò = supply { whenever Supply.interval(0.001) { done } }
     await do for ^4 {
@@ -556,6 +560,8 @@ lives-ok {
     is $中갢ìe̲ò-中с갢ææe̲сe̲𝐝, 5, "skipping every even number in ^10 with 'next' gives us 5";
 }, 'calling "next" inside a whenever block will not die.';
 
+#?rakudo.jvm skip 'UnwindException'
+#?DOES 1
 {
   subtest 'next in whenever' => {
     plan 4;
@@ -590,6 +596,7 @@ lives-ok {
 
 # Golf of a react block with a TCP server, which failed to close taps of
 # incoming data on the connection.
+#?rakudo.jvm skip 'hangs with SaveStackException in Thread-xx'
 {
     my $개л갨òe̲𝐝 = 0;
     my $ò갨𝐝 = Supply.on-demand:
@@ -752,6 +759,7 @@ lives-ok {
     }, "no exception for 'last' inside two whenevers in a react without LAST block";
 }
 
+#?rakudo.jvm skip 'UnwindException'
 {
     my @갨갮中𝐩갮中ò;
     my Supplier $inputs = Supplier::Preserving.new;

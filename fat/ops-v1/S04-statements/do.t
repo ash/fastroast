@@ -86,57 +86,58 @@ eval-lives-ok 'my $i = 1; do { $i++ } if $i;',
 
 # L<S04/The do-once loop/"can take" "loop control statements">
 # https://github.com/Raku/old-issue-tracker/issues/2593
-skip('next without loop construct RT #124573', 2);# {
-#     my $i;
-#     my $ret = do {
-#         $i++;
-#         next;
-#         $i--;
-#     };
-#     is $i, 1, "'next' works in 'do' block";
-#     is $ret, (), "'next' in 'do' block drives return value";
-# }
+#?rakudo skip 'next without loop construct RT #124573'
+{
+    my $i;
+    my $ret = do {
+        $i++;
+        next;
+        $i--;
+    };
+    is $i, 1, "'next' works in 'do' block";
+    is $ret, (), "'next' in 'do' block drives return value";
+}
 
 # https://github.com/Raku/old-issue-tracker/issues/2593
-skip("Undeclared name A", 1); # { is EVAL('my $i; A: do { $i++; last A; $i-- }; $i'), 1,
-#     "'last' works with label";
-#  }
-skip("Undeclared name A", 1); # { is EVAL('my $i; A: do { $i++; next A; $i-- }; $i'), 1,
-#     "'next' works with label";
-#  }
-skip("Undeclared name A", 1); # { is EVAL('my $i; A: do { $i++; redo A until $i == 5; $i-- }; $i'), 4,
-#     "'redo' works with label";
-#  }
+#?rakudo 3 skip "Undeclared name A"
+is EVAL('my $i; A: do { $i++; last A; $i-- }; $i'), 1,
+    "'last' works with label";
+is EVAL('my $i; A: do { $i++; next A; $i-- }; $i'), 1,
+    "'next' works with label";
+is EVAL('my $i; A: do { $i++; redo A until $i == 5; $i-- }; $i'), 4,
+    "'redo' works with label";
 
 # https://github.com/Raku/old-issue-tracker/issues/2593
-skip('last without loop construct RT #124575', 1);# {
-#     is EVAL('
-#         my $i;
-#         (
-#          do {
-#             $i++;
-#             last;
-#             $i--;
-#         }),
-#         $i;
-#     '), ((),1), "'last' works in 'do' block and drives return value";
-# }
+#?rakudo skip 'last without loop construct RT #124575'
+{
+    is EVAL('
+        my $i;
+        (
+         do {
+            $i++;
+            last;
+            $i--;
+        }),
+        $i;
+    '), ((),1), "'last' works in 'do' block and drives return value";
+}
 
 # IRC notes:
 # <agentzh> audreyt: btw, can i use redo in the do-once loop?
 # <audreyt> it can, and it will redo it
 # https://github.com/Raku/old-issue-tracker/issues/2593
-skip('redo without loop construct RT #124576', 1);# {
-#     is EVAL('
-#         my $i;
-#         do {
-#             $i++;
-#             redo if $i < 3;
-#             $i--;
-#         };
-#         $i;
-#     '), 2, "'redo' works in 'do' block";
-# }
+#?rakudo skip 'redo without loop construct RT #124576'
+{
+    is EVAL('
+        my $i;
+        do {
+            $i++;
+            redo if $i < 3;
+            $i--;
+        };
+        $i;
+    '), 2, "'redo' works in 'do' block";
+}
 
 # L<S04/The do-once loop/"bare block is not a do-once">
 {
@@ -169,6 +170,3 @@ lives-ok { my $a = do given 5 {} }, 'empty do block lives (RT #61034)';
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

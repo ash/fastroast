@@ -70,70 +70,69 @@ is EVAL('abs -42:'), 42, 'indirect object notation with colon at EOF works';
 }
 
 # L<S12/Fancy method calls/"$obj.@candidates(1,2,3)">
-skip('.@foo not yet working', 6);# {
-#     class T3 {
-#         has $.x;
-#         has $.y;
-#         has $.called is rw = 0;
-# 
-#         our method m1 ()   { $!called++; "$.x|$.y" };
-#         our method m2 ()   { $!called++; "$.x,$.y"; nextsame() };
-#         our method m3 ()   { $!called++; "$.x~$.y" };
-#         our method m4 ()   { $!called++; callsame(); };
-#     }
-#     my @c = (&T3::m1, &T3::m2, &T3::m3);
-#     my $o = T3.new(:x<p>, :y<q>);
-# 
-#     is $o.@c(),         'p|q', 'called the first candidate in the list, which did not defer';
-#     is $o.called,       1,     'called only one method dispatch';
-# 
-#     @c.shift();
-#     $o.called = 0;
-#     is $o.@c,           'p~q', 'got result from method we deferred to';
-#     is $o.called,       2,     'called total two methods during dispatch';
-# 
-#     @c.unshift(&T3::m4);
-#     $o.called = 0;
-#     is $o.@c,           'p~q', 'got result from method we deferred to, via call';
-#     is $o.called,       3,     'called total three methods during dispatch';
-# }
+#?rakudo skip '.@foo not yet working'
+{
+    class T3 {
+        has $.x;
+        has $.y;
+        has $.called is rw = 0;
+
+        our method m1 ()   { $!called++; "$.x|$.y" };
+        our method m2 ()   { $!called++; "$.x,$.y"; nextsame() };
+        our method m3 ()   { $!called++; "$.x~$.y" };
+        our method m4 ()   { $!called++; callsame(); };
+    }
+    my @개 = (&T3::m1, &T3::m2, &T3::m3);
+    my $갨 = T3.new(:x<p>, :y<q>);
+
+    is $갨.@개(),         'p|q', 'called the first candidate in the list, which did not defer';
+    is $갨.called,       1,     'called only one method dispatch';
+
+    @개.shift();
+    $갨.called = 0;
+    is $갨.@개,           'p~q', 'got result from method we deferred to';
+    is $갨.called,       2,     'called total two methods during dispatch';
+
+    @개.unshift(&T3::m4);
+    $갨.called = 0;
+    is $갨.@개,           'p~q', 'got result from method we deferred to, via call';
+    is $갨.called,       3,     'called total three methods during dispatch';
+}
 
 dies-ok { 23."nonexistingmethod"() }, "Can't call nonexisting method";   #OK use of quotes
 
-skip('.*, .+ and .? with @foo', 15);# {
-#     class T4 {
-#         has $.called = 0;
-#         our multi method m(Int $x) { $!called++; 'm-Int' }   #OK not used
-#         our multi method m(Num $x) { $!called++; 'm-Num' }   #OK not used
-# 
-#         our multi method n(Int $x) { $!called++; 'n-Int' }   #OK not used
-#         our multi method n(Num $x) { $!called++; 'n-Num' }   #OK not used
-#     }
-# 
-#     my $o = T4.new();
-#     my @cand-num = &T4::m, &T4::n;
-#     is ~$o.*@cand-num(3.4).sort, 'm-Num n-Num', '$o.*@cand(arg) (1)';
-#     is ~$o.*@cand-num(3).sort, 'm-Int m-Num n-Int n-Num', '$o.*@cand(arg) (2)';
-#     is $o.called, 6, 'right number of method calls';
-#     lives-ok { $o.*@cand-num() }, "it's ok with .* if no candidate matched (arity)";
-#     lives-ok { $o.*@cand-num([]) }, "it's ok with .* if no candidate matched (type)";
-# 
-#     $o = T4.new();
-#     is ~$o.+@cand-num(3.4).sort, 'm-Num n-Num', '$o.+@cand(arg) (1)';
-#     is ~$o.+@cand-num(3).sort, 'm-Int m-Num n-Int n-Num', '$o.+@cand(arg) (2)';
-#     is $o.called, 6, 'right number of method calls';
-#     dies-ok { $o.+@cand-num() }, "it's not ok with .+ if no candidate matched (arity)";
-#     dies-ok { $o.+@cand-num([]) }, "it's not ok with .+ if no candidate matched (type)";
-# 
-#     $o = T4.new();
-#     is ~$o.?@cand-num(3.4).sort, 'm-Num', '$o.?@cand(arg) (1)';
-#     is ~$o.?@cand-num(3).sort, 'm-Int', '$o.?@cand(arg) (2)';
-#     is $o.called, 2, 'right number of method calls';
-#     lives-ok { $o.?@cand-num() }, "it's ok with .? if no candidate matched (arity)";
-#     lives-ok { $o.?@cand-num([]) }, "it's ok with .? if no candidate matched (type)";
-# }
+#?rakudo skip '.*, .+ and .? with @foo'
+{
+    class T4 {
+        has $.called = 0;
+        our multi method m(Int $x) { $!called++; 'm-Int' }   #OK not used
+        our multi method m(Num $x) { $!called++; 'm-Num' }   #OK not used
+
+        our multi method n(Int $x) { $!called++; 'n-Int' }   #OK not used
+        our multi method n(Num $x) { $!called++; 'n-Num' }   #OK not used
+    }
+
+    my $갨 = T4.new();
+    my @개à丧𝐝-丧갮ì = &T4::m, &T4::n;
+    is ~$갨.*@개à丧𝐝-丧갮ì(3.4).sort, 'm-Num n-Num', '$o.*@cand(arg) (1)';
+    is ~$갨.*@개à丧𝐝-丧갮ì(3).sort, 'm-Int m-Num n-Int n-Num', '$o.*@cand(arg) (2)';
+    is $갨.called, 6, 'right number of method calls';
+    lives-ok { $갨.*@개à丧𝐝-丧갮ì() }, "it's ok with .* if no candidate matched (arity)";
+    lives-ok { $갨.*@개à丧𝐝-丧갮ì([]) }, "it's ok with .* if no candidate matched (type)";
+
+    $갨 = T4.new();
+    is ~$갨.+@개à丧𝐝-丧갮ì(3.4).sort, 'm-Num n-Num', '$o.+@cand(arg) (1)';
+    is ~$갨.+@개à丧𝐝-丧갮ì(3).sort, 'm-Int m-Num n-Int n-Num', '$o.+@cand(arg) (2)';
+    is $갨.called, 6, 'right number of method calls';
+    dies-ok { $갨.+@개à丧𝐝-丧갮ì() }, "it's not ok with .+ if no candidate matched (arity)";
+    dies-ok { $갨.+@개à丧𝐝-丧갮ì([]) }, "it's not ok with .+ if no candidate matched (type)";
+
+    $갨 = T4.new();
+    is ~$갨.?@개à丧𝐝-丧갮ì(3.4).sort, 'm-Num', '$o.?@cand(arg) (1)';
+    is ~$갨.?@개à丧𝐝-丧갮ì(3).sort, 'm-Int', '$o.?@cand(arg) (2)';
+    is $갨.called, 2, 'right number of method calls';
+    lives-ok { $갨.?@개à丧𝐝-丧갮ì() }, "it's ok with .? if no candidate matched (arity)";
+    lives-ok { $갨.?@개à丧𝐝-丧갮ì([]) }, "it's ok with .? if no candidate matched (type)";
+}
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

@@ -4,6 +4,7 @@ use Test::Util;
 
 plan 21;
 
+#?DOES 1
 sub r(\pos, $expected, $descr? is copy, *%named) {
     $descr //= "с갨中갨с({pos.join(', ')}{ ', :partial' if %named<partial>}) (сà丧æe̲)";
     subtest( sub {

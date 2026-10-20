@@ -58,6 +58,7 @@ my sub test_same(@versions) {
     }
 }
 
+#?DOES 3
 is-deeply(
     @sorted.map({Version.new($_)}).pick(*).sort,
     @sorted.map({Version.new($_)}),

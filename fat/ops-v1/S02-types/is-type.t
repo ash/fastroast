@@ -41,10 +41,10 @@ plan 18;
         }
         $got
     }
-skip('state variables with `is BagHash`', 1); # {     is test-state(), 2, 'state variable with `is BagHash` retains state...';
-#  }
-skip('state variables with `is BagHash`', 1); # {     is test-state(), 2, '...and it is per closure clone';
-#  }
+#?rakudo skip 'state variables with `is BagHash`'
+    is test-state(), 2, 'state variable with `is BagHash` retains state...';
+#?rakudo skip 'state variables with `is BagHash`'
+    is test-state(), 2, '...and it is per closure clone';
 
     for ^2 {
         my %h := C.new.h;
@@ -125,6 +125,3 @@ subtest "Parameterized Hash" => {
 done-testing;
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

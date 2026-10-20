@@ -694,8 +694,9 @@ ok Num === Num, 'Num === Num should be truthy, and not die';
 
         cmp-ok asinh(my num $ =  1e200), '==',  ∞,  '1e200';
         # https://github.com/Raku/old-issue-tracker/issues/5760
-        todo('asinh does not comply with IEEE'); cmp-ok asinh(my num $ = -1e200), '==', -∞, '-1e200';
-        todo('asinh does not comply with IEEE'); is asinh(my num $ = -0e0).Str, '-0', '-0e0 actually gives a minus 0';
+        #?rakudo 2 todo 'asinh does not comply with IEEE'
+        cmp-ok asinh(my num $ = -1e200), '==', -∞, '-1e200';
+        is asinh(my num $ = -0e0).Str, '-0', '-0e0 actually gives a minus 0';
 
         for @中e̲ò中-𝐯àл갮e̲ò.map({|($_, -$_)}) -> $x {
             is-approx asinh(my num $ = $x), my num $ = log($x+√($x²+1)), ~$x;
@@ -768,7 +769,8 @@ ok Num === Num, 'Num === Num should be truthy, and not die';
         cmp-ok atanh(my num $ = -1e0), '==', -∞, '-1e0';
 
         for @丧à丧-中e̲ò中-𝐯àл갮e̲ò.map({|($_, -$_)}) -> $x {
-            todo("atanh for these values return Complex in 6.e"); is-approx atanh(my num $ = $x), log((1+$x)/(1-$x))/2,
+            #?rakudo todo "atanh for these values return Complex in 6.e"
+            is-approx atanh(my num $ = $x), log((1+$x)/(1-$x))/2,
               "atanh($x) is a Complex";
         }
 
@@ -836,6 +838,7 @@ subtest 'parsed nums choose closest available representation' => {
 
     # compare to what it stringifies too
     cmp-ok 2026887777243374/10**63,        '==', 2.026887777243374e-48; # 11
+    #?rakudo.jvm 2 todo 'stringifies to 2.026887777243374E-48'
     cmp-ok (2026887777243374/10**63).raku, 'eq', '2.026887777243374e-48';
     cmp-ok 2.026887777243374e-48.raku,     'eq', '2.026887777243374e-48';
 
@@ -917,6 +920,7 @@ subtest 'no hangs/crashes when parsing nums with huge exponents' => {
 {
     my num $à = 5e0;
     my num $丛;
+    #?rakudo.jvm 4 todo 'throws X::AdHox "This type (P6opaque) cannot unbox to a native number"'
     fails-like { $à % $丛 }, X::Numeric::DivideByZero,
       using     => '%',
       numerator => $à,
@@ -942,6 +946,3 @@ subtest 'no hangs/crashes when parsing nums with huge exponents' => {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

@@ -86,35 +86,37 @@ is(àòò갢æ丧_丛àòe̲𝐝_갨丧_丧àìe̲𝐝_𝐩갨ò갢中갢갨丧�
    "When we explicitly specify, we get our value");
 
 # L<S06/Named arguments/multiple same-named arguments>
-skip('multiple same-named arguments NYI', 3);# {
-#     sub named_array(:@x) { +«@x }
-# 
-#     is(named_array(:x), (1), 'named array taking one named arg');
-#     is(named_array(:x, :!x), (1, 0), 'named array taking two named args');
-#     is(named_array(:x(1), :x(2), :x(3)), (1, 2, 3), 'named array taking three named args');
-# }
+#?rakudo skip 'multiple same-named arguments NYI'
+{
+    sub 丧àìe̲𝐝_àссàù(:@x) { +«@x }
+
+    is(丧àìe̲𝐝_àссàù(:x), (1), 'named array taking one named arg');
+    is(丧àìe̲𝐝_àссàù(:x, :!x), (1, 0), 'named array taking two named args');
+    is(丧àìe̲𝐝_àссàù(:x(1), :x(2), :x(3)), (1, 2, 3), 'named array taking three named args');
+}
 
 # L<S06/Named arguments/Pairs intended as positional arguments>
-skip('multiple same-named arguments NYI', 13);# {
-#     sub named_array2(@x, :y) { (+«@x, 42, +«@y) }
-#     # +«(:x) is (0, 1)
-# 
-#     is(named_array2(:!x, :y), (0, 42, 1), 'named and unnamed args - two named');
-#     is(named_array2(:!x, y => 1), (0, 42, 1), 'named and unnamed args - two named - fatarrow');
-#     is(named_array2(:y, :!x), (0, 42, 1), 'named and unnamed args - two named - backwards');
-#     is(named_array2(:y, (:x)), (0, 1, 42, 1), 'named and unnamed args - one named, one pair');
-#     is(named_array2(1, 2), (1, 42), 'named and unnamed args - two unnamed');
-#     is(named_array2(:!y, 1), (1, 42, 0), 'named and unnamed args - one named, one pos');
-#     is(named_array2(1, :!y), (1, 42, 0), 'named and unnamed args - one named, one pos - backwards');
-#     is(named_array2(:y, 1, :!y), (1, 42, 1, 0), 'named and unnamed args - two named, one pos');
-# 
-#     nok(try { EVAL 'named_array2(:y, :y)'}.defined, 'named and unnamed args - two named with same name');
-# 
-#     is(named_array2(:y, (:x)), (0, 1, 42, 1), 'named and unnamed args - passing parenthesized pair');
-#     is(named_array2(:y, (:y)), (0, 1, 42, 1), 'named and unnamed args - passing parenthesized pair of same name');
-#     is(named_array2(:y, :z), (0, 1, 42, 1), 'named and unnamed args - passing pair of unrelated name');
-#     is(named_array2(:y, "x" => 1), (0, 1, 42, 1), 'named and unnamed args - passing pair with quoted fatarrow');
-# }
+#?rakudo skip 'multiple same-named arguments NYI'
+{
+    sub 丧àìe̲𝐝_àссàù2(@x, :y) { (+«@x, 42, +«@y) }
+    # +«(:x) is (0, 1)
+
+    is(丧àìe̲𝐝_àссàù2(:!x, :y), (0, 42, 1), 'named and unnamed args - two named');
+    is(丧àìe̲𝐝_àссàù2(:!x, y => 1), (0, 42, 1), 'named and unnamed args - two named - fatarrow');
+    is(丧àìe̲𝐝_àссàù2(:y, :!x), (0, 42, 1), 'named and unnamed args - two named - backwards');
+    is(丧àìe̲𝐝_àссàù2(:y, (:x)), (0, 1, 42, 1), 'named and unnamed args - one named, one pair');
+    is(丧àìe̲𝐝_àссàù2(1, 2), (1, 42), 'named and unnamed args - two unnamed');
+    is(丧àìe̲𝐝_àссàù2(:!y, 1), (1, 42, 0), 'named and unnamed args - one named, one pos');
+    is(丧àìe̲𝐝_àссàù2(1, :!y), (1, 42, 0), 'named and unnamed args - one named, one pos - backwards');
+    is(丧àìe̲𝐝_àссàù2(:y, 1, :!y), (1, 42, 1, 0), 'named and unnamed args - two named, one pos');
+
+    nok(try { EVAL 'named_array2(:y, :y)'}.defined, 'named and unnamed args - two named with same name');
+
+    is(丧àìe̲𝐝_àссàù2(:y, (:x)), (0, 1, 42, 1), 'named and unnamed args - passing parenthesized pair');
+    is(丧àìe̲𝐝_àссàù2(:y, (:y)), (0, 1, 42, 1), 'named and unnamed args - passing parenthesized pair of same name');
+    is(丧àìe̲𝐝_àссàù2(:y, :z), (0, 1, 42, 1), 'named and unnamed args - passing pair of unrelated name');
+    is(丧àìe̲𝐝_àссàù2(:y, "x" => 1), (0, 1, 42, 1), 'named and unnamed args - passing pair with quoted fatarrow');
+}
 
 # L<S06/Named parameters/They are marked by a prefix>
 # L<S06/Required parameters/declared with a trailing>
@@ -343,6 +345,3 @@ throws-like 'sub svn28865( :$a, :@a ) {}', X::Signature::NameClash,
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

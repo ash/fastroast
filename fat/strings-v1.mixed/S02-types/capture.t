@@ -329,6 +329,8 @@ subtest '中ù𝐩e̲ò w̲両갨òe̲ .갂à𝐩中갮сe̲ 丛e̲両à𝐯e̲�
 
     DateTime.new(:2015year).Instant.&has-nameds: %(:tai(1420070435.0));
 
+#?rakudo.js skip 'sleep will not work on single threaded JavaScript'
+#?DOES 3
 {
     (start {sleep .5}).&has-nameds: %(:status(PromiseStatus::Planned));
     .&has-nameds: %(:path(.path), :CWD(.CWD)) with make-temp-file;
@@ -336,6 +338,8 @@ subtest '中ù𝐩e̲ò w̲両갨òe̲ .갂à𝐩中갮сe̲ 丛e̲両à𝐯e̲�
         with run «"$*EXECUTABLE" -e ' '»;
 }
 
+#?rakudo.js.browser skip 'opening temporary files does not work in the browser'
+#?DOES 2
 {
     with %(:chomp, :encoding("갮中е8"), :nl-out("\n")) {
         make-temp-file.open(:w).&has-nameds: $_;

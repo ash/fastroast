@@ -72,6 +72,7 @@ ok($twin x= 2, 'operator x= for string works');
 is($twin, 'LintillaLintilla', 'operator x= for string repeats correct');
 
 # test that xx actually creates independent items
+#?DOES 4
 {
     my @a = 'a' xx 3;
     is @a.join('|'), 'a|a|a', 'basic infix:<xx>';
@@ -88,6 +89,7 @@ is($twin, 'LintillaLintilla', 'operator x= for string repeats correct');
 
 # https://github.com/Raku/old-issue-tracker/issues/1970
 # tests for non-number values on rhs of xx
+#?DOES 2
 {
     # make sure repeat numifies rhs, but respects whatever
     my @a = <a b c>;
@@ -172,6 +174,7 @@ is-deeply (|() xx *)[^5], (Nil, Nil, Nil, Nil, Nil),
 # https://github.com/Raku/old-issue-tracker/issues/6412
 {
     is-deeply (0x0F75.chr x 2), "\x[0F75,0F75]", "Repeat operator keeps text normalized (normalization + canonical combining class reordering)";
+    #?rakudo.jvm todo "NFG or normalization not supported on JVM"
     is-deeply (0x0F75.chr x 2).ords, (0xF71, 0xF71, 0xF74, 0xF74), "Repeat operator keeps text normalized (normalization + canonical combining class reordering)";
 }
 

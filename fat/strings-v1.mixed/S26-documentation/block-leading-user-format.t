@@ -61,7 +61,8 @@ for %h.keys -> $s {
     # test 2: the test with the envvar
     {
         (temp %*ENV){$envvar} = 1;
-        todo('е갢чe̲𝐝 갢丧 Сàk̲갮ÀÒ专'); is_run $s,                   # the code script
+        #?rakudo todo 'fixed in RakuAST'
+        is_run $s,                   # the code script
         {
             #:in, :args, :err,           # not yet used
             :out($r1w),                  # exact expected output
@@ -73,6 +74,3 @@ for %h.keys -> $s {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

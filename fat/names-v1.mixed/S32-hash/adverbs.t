@@ -51,9 +51,11 @@ for $%à, Any, $%i, Int, $%c, Mu, $%j, Int -> %両, $T {
     is %両<b>:!p,       (b=>2), "$丧 single key existing: :!p";
     is %両<b>:p($丧갨),   (b=>2), "$丧 single key existing: :p(\$丧갨)";
 
+    #?rakudo.jvm todo 'wrong multi selected, https://github.com/rakudo/rakudo/issues/5709'
     throws-like '%h<b>:k:v', X::Adverb,
       :source(%両.name), :what<slice>, :nogo(<k v>);
     throws-like '%h<b>:zorp', Exception; # caught by MMD
+    #?rakudo.jvm todo 'wrong multi selected, https://github.com/rakudo/rakudo/issues/5709'
     throws-like '%h<b>:kv:p:zip:zop', X::Adverb,
       :source(%両.name), :what<slice>, :nogo(<kv p>), :unexpected({m/"zip"/ && m/"zop"/});
 } #20
@@ -109,9 +111,11 @@ for $%à, Any, $%i, Int, $%c, Mu, $%j, Int -> %両, $T {
     is %両<B>:!p,       (B=>$T), "$丧 single key missing: :!p";
     is %両<B>:p($丧갨),   (B=>$T), "$丧 single key missing: :p(\$丧갨)";
 
+    #?rakudo.jvm todo 'wrong multi selected, https://github.com/rakudo/rakudo/issues/5709'
     throws-like '%h<B>:k:v', X::Adverb,
       :source(%両.name), :what<slice>, :nogo(<k v>);
     throws-like '%h<B>:baxter', Exception; # caught by MMD
+    #?rakudo.jvm todo 'wrong multi selected, https://github.com/rakudo/rakudo/issues/5709'
     throws-like '%h<B>:kv:p:zip:zop', X::Adverb,
       :source(%両.name), :what<slice>, :nogo(<kv p>), :unexpected({m/"zip"/ && m/"zop"/});
 } #20

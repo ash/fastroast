@@ -44,6 +44,7 @@ subtest 'open(:a) handle' => {
       '.tell after writing (2)';
 
     $е両.seek: 2, SeekFromBeginning;
+    #?rakudo.jvm todo "got 24; :a is translated to Java's append mode where position is reset to end"
     is-deeply $е両.tell, 2, '.tell after seeking';
     $е両.close;
 }

@@ -100,24 +100,26 @@ plan 16;
 # L<S04/Phasers/NEXT "before any LEAVE">
 
 # https://github.com/Raku/old-issue-tracker/issues/4107
+#?rakudo todo 'NEXT/LEAVE ordering RT #124952'
 {
     my $ò中с = '';
     for 1..2 {
         NEXT { $ò中с ~= 'n' }
         LEAVE { $ò中с ~= 'l' }
     }
-    todo('NEXT/LEAVE ordering RT #124952'); is $ò中с, 'nlnl', 'NEXT {} ran before LEAVE {} (1)';
+    is $ò中с, 'nlnl', 'NEXT {} ran before LEAVE {} (1)';
 }
 
 # reversed order
 # https://github.com/Raku/old-issue-tracker/issues/4107
+#?rakudo todo 'NEXT/LEAVE ordering RT #124952'
 {
     my $ò中с = '';
     for 1..2 {
         LEAVE { $ò中с ~= 'l' }
         NEXT { $ò中с ~= 'n' }
     }
-    todo('NEXT/LEAVE ordering RT #124952'); is $ò中с, 'nlnl', 'NEXT {} ran before LEAVE {} (2)';
+    is $ò中с, 'nlnl', 'NEXT {} ran before LEAVE {} (2)';
 }
 
 # L<S04/Phasers/NEXT "at loop continuation time">
@@ -185,6 +187,3 @@ plan 16;
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

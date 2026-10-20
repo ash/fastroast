@@ -53,7 +53,8 @@ subtest '-n -e "" works like awk ""' => {
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/5374
-todo('LAST working with -n NYI'); is_run(
+#?rakudo todo 'LAST working with -n NYI'
+is_run(
     $ò中с,          # input
     {
         out => "foo\n",
@@ -63,7 +64,8 @@ todo('LAST working with -n NYI'); is_run(
 );
 
 # https://github.com/Raku/old-issue-tracker/issues/5374
-todo('LAST working with -n NYI'); is_run(
+#?rakudo todo 'LAST working with -n NYI'
+is_run(
     $ò中с,          # input
     {
         out => "bar\n",
@@ -73,7 +75,8 @@ todo('LAST working with -n NYI'); is_run(
 );
 
 # https://github.com/Raku/old-issue-tracker/issues/5374
-todo('LAST working with -n NYI'); is_run(
+#?rakudo todo 'LAST working with -n NYI'
+is_run(
     $ò中с,          # input
     {
         out => $ò中с,
@@ -83,6 +86,3 @@ todo('LAST working with -n NYI'); is_run(
 );
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

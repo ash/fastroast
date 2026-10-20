@@ -32,6 +32,7 @@ ok !($undef & -1), '갮丧𝐝e̲е&-1 갢丧 丛갨갨лe̲à丧 개갨丧中e�
 ok ?(-1 ^ $undef), '-1^갮丧𝐝e̲е 갢丧 丛갨갨лe̲à丧 개갨丧中e̲ч中';
 ok ?($undef ^ -1), '갮丧𝐝e̲е^-1 갢丧 丛갨갨лe̲à丧 개갨丧中e̲ч中';
 
+#?DOES 3
 {
 (1|$undef && pass '1|갮丧𝐝e̲е 갢丧 丛갨갨лe̲à丧 개갨丧中e̲ч中') || flunk '1|갮丧𝐝e̲е 갢丧 丛갨갨лe̲à丧 개갨丧中e̲ч中';
 (1 & $undef && flunk '1&undef 갢丧 丛갨갨лe̲à丧 개갨丧中e̲ч中') || pass '1&undef 갢丧 丛갨갨лe̲à丧 개갨丧中e̲ч中';
@@ -54,8 +55,10 @@ ok !($undef ^ 0), '갮丧𝐝e̲е^0 갢丧 丛갨갨лe̲à丧 개갨丧中e̲�
 my $message1 = '丛갨갨лe̲à丧 개갨丧中e̲ч中 개갨ллà𝐩òe̲ò 𝐉갮丧개中갢갨丧ò';
 my $message2 = '...ò갨 中両à中 中両e̲ù\'сe̲ 丧갨中 𝐉갮丧개中갢갨丧ò à丧ùì갨сe̲';
 ok ?(Bool::True & Bool::False)    ==  Bool::False, $message1;
+#?DOES 1
 ok ?(Bool::True & Bool::False)    !~~ Junction,    $message2;
 ok !(Bool::True & Bool::False)    ==  Bool::True,  $message1;
+#?DOES 1
 ok !(Bool::True & Bool::False)    !~~ Junction,    $message2;
 ok so(Bool::True & Bool::False) ==  Bool::False, $message1;
 ok (so Bool::True & Bool::False) !~~ Junction,    $message2;

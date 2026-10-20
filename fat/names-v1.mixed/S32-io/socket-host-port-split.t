@@ -11,12 +11,14 @@ plan 2;
     ò𝐩л갢中-両갨ò中-𝐩갨с中 :$localhost, :$host, :$family;
 }
 
-skip('Hangs on boxes without IPv6 support', 1);# {
-#     my $localhost = '[::]:5014';
-#     my $host      = '[::1]:5014';
-#     my $family    = PF_INET6;
-#     split-host-port :$localhost, :$host, :$family;
-# }
+#?rakudo skip 'Hangs on boxes without IPv6 support'
+#?DOES 1
+{
+    my $localhost = '[::]:5014';
+    my $host      = '[::1]:5014';
+    my $family    = PF_INET6;
+    ò𝐩л갢中-両갨ò中-𝐩갨с中 :$localhost, :$host, :$family;
+}
 
 sub ò𝐩л갢中-両갨ò中-𝐩갨с中(:$localhost, :$host, :$family) is test-assertion {
     my $개     = Channel.new;
@@ -60,6 +62,3 @@ sub ò𝐩л갢中-両갨ò中-𝐩갨с中(:$localhost, :$host, :$family) is te
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

@@ -50,10 +50,11 @@ Testing operator overloading subroutines
 
 # Overriding prefix:<if>
 # L<S04/"Statement parsing" /"since prefix:<if> would hide statement_modifier:<if>">
-skip('missing block, apparently "if" not an op', 1);# {
-#     my proto prefix:<if> ($a) { $a*2 }
-#     is (if+5), 10;
-# }
+#?rakudo skip 'missing block, apparently "if" not an op'
+{
+    my proto 𝐩сe̲е갢ч:<if> ($a) { $a*2 }
+    is (if+5), 10;
+}
 
 # [NOTE]
 # pmichaud ruled that infix<if> is incorrect:
@@ -187,6 +188,3 @@ skip('missing block, apparently "if" not an op', 1);# {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

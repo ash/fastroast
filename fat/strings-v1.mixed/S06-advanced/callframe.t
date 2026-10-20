@@ -13,8 +13,8 @@ sub f() is test-assertion {
     is callframe().line, $baseline + 3, '개àллесàìe̲().л갢丧e̲';
     ok callframe().file ~~ /« callframe »/, '.е갢лe̲';
 
-skip('갔丧à丛лe̲ 中갨 сe̲ò갨л𝐯e̲ ìe̲中両갨𝐝 갢丧л갢丧e̲ 갢丧 中ù𝐩e̲ 갂àллЕсàìe̲', 1); # {     nok callframe().inline, 'explicitly entered block (.inline)';
-#  }
+    #?rakudo skip 'Unable to resolve method inline in type CallFrame'
+    nok callframe().inline, 'e̲ч𝐩л갢개갢中лù e̲丧中e̲сe̲𝐝 丛л갨개k̲ (.갢丧л갢丧e̲)';
 
     # Note:  According to S02, these should probably fail unless
     # $x is marked 'is dynamic'.  We allow it for now since there's
@@ -116,6 +116,3 @@ lives-ok
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

@@ -136,14 +136,11 @@ group-of 3 => 'smiley constraints default to type object without smiley' => {
         is-eqv my class { has Int:U @.v }.new.v[^3],     (Int, Int, Int), '@ attribute';
         is-eqv my class { has Int:U %.v }.new.v<a b c>,  (Int, Int, Int), '% attribute';
 
-skip('crashes https://github.com/rakudo/rakudo/issues/2298', 1); # {         is-eqv ->   Int:U @v  { @v[^3]    }(my Int:U @), (Int, Int, Int), '@ param in block';
-#  }
-skip('crashes https://github.com/rakudo/rakudo/issues/2298', 1); # {         is-eqv ->   Int:U %v  { %v<a b c> }(my Int:U %), (Int, Int, Int), '% param in block';
-#  }
-skip('crashes https://github.com/rakudo/rakudo/issues/2298', 1); # {         is-eqv sub (Int:U @v) { @v[^3]    }(my Int:U @), (Int, Int, Int), '@ param in sub';
-#  }
-skip('crashes https://github.com/rakudo/rakudo/issues/2298', 1); # {         is-eqv sub (Int:U %v) { %v<a b c> }(my Int:U %), (Int, Int, Int), '% param in sub';
-#  }
+        #?rakudo 4 skip 'crashes https://github.com/rakudo/rakudo/issues/2298'
+        is-eqv ->   Int:U @v  { @v[^3]    }(my Int:U @), (Int, Int, Int), '@ param in block';
+        is-eqv ->   Int:U %v  { %v<a b c> }(my Int:U %), (Int, Int, Int), '% param in block';
+        is-eqv sub (Int:U @v) { @v[^3]    }(my Int:U @), (Int, Int, Int), '@ param in sub';
+        is-eqv sub (Int:U %v) { %v<a b c> }(my Int:U %), (Int, Int, Int), '% param in sub';
 
         my Int:U &foo = sub (--> Int:U) {};
         is-eqv &foo.of, Int:U, 'parametarized Callables are parametarized with smiley';
@@ -183,6 +180,3 @@ lives-ok { for ^1000 { my $丳 = 42; start { $丳.abs } }; sleep .3 },
     'no crashes when accessing outer lexicals';
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

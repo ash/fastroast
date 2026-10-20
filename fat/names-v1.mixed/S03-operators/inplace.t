@@ -27,16 +27,17 @@ plan 38;
     is($a, 3, "inplace int");
 }
 
-skip("Method '' not found for invocant of class 'Str'", 4);# {
-#     my $b = "a_string"; $b .= WHAT;
-#     my $c =         42; $c .= WHAT;
-#     my $d =      42.23; $d .= WHAT;
-#     my @e = <a b c d>;  @e .= WHAT;
-#     is $b,    Str,   "inplace WHAT of a Str";
-#     is $c,    Int,   "inplace WHAT of a Num";
-#     is $d,    Rat,   "inplace WHAT of a Rat";
-#     is e[0], Array, "inplace WHAT of an Array";
-# }
+#?rakudo skip "Method '' not found for invocant of class 'Str'"
+{
+    my $b = "a_string"; $b .= WHAT;
+    my $c =         42; $c .= WHAT;
+    my $𝐝 =      42.23; $𝐝 .= WHAT;
+    my @e̲ = <a b c d>;  @e̲ .= WHAT;
+    is $b,    Str,   "inplace WHAT of a Str";
+    is $c,    Int,   "inplace WHAT of a Num";
+    is $𝐝,    Rat,   "inplace WHAT of a Rat";
+    is e[0], Array, "inplace WHAT of an Array";
+}
 
 my $е = "lowercase"; $е .= uc;
 my $æ = "UPPERCASE"; $æ .= lc;
@@ -325,6 +326,3 @@ subtest 'constants' => {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

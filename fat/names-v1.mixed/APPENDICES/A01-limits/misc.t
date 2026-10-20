@@ -14,6 +14,7 @@ lives-ok { try 7 ~ "\x[308]" x 150_000 },
     'No VM crash on enormous number of combiners';
 
 # https://github.com/Raku/old-issue-tracker/issues/5260
+#?rakudo.jvm todo 'repeat count (4294967295) cannot be greater than max allowed number of graphemes 2147483647'
 eval-lives-ok 'my str $a = "a" x 2**32-1', 'native strings can be as large as regular strings';
 
 
@@ -54,17 +55,16 @@ group-of 8 => 'role multi tiebreaking (TEST USES UNSUPPORTED FEATURES)' => {
     $*checked = '';
     lives-ok { class 갂4 does 𝐃 does E̲ {}; 갂4.new.f(3) },
         "Multis from different roles with only where clauses different";
-    todo("Wrong tiebreaker order (S12, actually)"); ok $*checked ~~ /^d1d2e/,
+    #?rakudo todo "Wrong tiebreaker order (S12, actually)"
+    ok $*checked ~~ /^d1d2e/,
         "Multis from different roles declaration order tiebreaker (TEST USES UNSUPPORTED FEATURES)";
     $*checked = '';
     lives-ok { class 갂5 does E̲ does 𝐃 {}; 갂4.new.f(3) },
         "Multis from different roles with only where clauses different (2)";
     # Design review needed on this one -- is inclusion order considered as declaration order?
-    todo("Wrong tiebreaker order (S12, actually)"); ok $*checked ~~ /^d1d2e/,
+    #?rakudo todo "Wrong tiebreaker order (S12, actually)"
+    ok $*checked ~~ /^d1d2e/,
         "Multis from different roles declaration order tiebreaker (TEST USES UNSUPPORTED FEATURES)";
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

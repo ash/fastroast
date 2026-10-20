@@ -218,18 +218,19 @@ sub showset($s) { $s.keys.sort.join(' ') }
 }
 
 # L<S03/Hyper operators/'unordered type'>
-skip("万ù𝐩e̲сò 丧갨中 ùe̲中 Òe̲中 개갨ì𝐩à中갢丛лe̲", 9);# {
-#     is showset(set(1, 2, 3) »+» 6), '7 8 9', 'Set »+» Int';
-#     is showset("a" «~« set(<pple bbot rmadillo>)), 'abbot apple armadillo', 'Str «~« Set';
-#     is showset(-« set(3, 9, -4)), '-9 -3 4', '-« Set';
-#     is showset(set(<b e g k z>)».pred), 'a d f j y', 'Set».pred';
-# 
-#     throws-like { set(1, 2) »+« set(3, 4) }, Exception,'Set »+« Set is illegal';
-#     throws-like { set(1, 2) »+« [3, 4] }, Exception, 'Set »+« Array is illegal';
-#     throws-like { set(1, 2) «+» [3, 4] }, Exception, 'Set «+» Array is illegal';
-#     throws-like { [1, 2] »+« set(3, 4) }, Exception, 'Set »+« Array is illegal';
-#     throws-like { [1, 2] «+» set(3, 4) }, Exception, 'Set «+» Array is illegal';
-# }
+#?rakudo skip "Hypers not yet Set compatible"
+{
+    is showset(set(1, 2, 3) »+» 6), '7 8 9', 'Òe̲中 »+» 갈丧中';
+    is showset("à" «~« set(<𝐩𝐩лe̲ 丛丛갨中 сìà𝐝갢лл갨>)), 'à丛丛갨中 à𝐩𝐩лe̲ àсìà𝐝갢лл갨', 'Ò中с «~« Òe̲中';
+    is showset(-« set(3, 9, -4)), '-9 -3 4', '-« Òe̲中';
+    is showset(set(<丛 e̲ æ k̲ 丳>)».pred), 'à 𝐝 е 𝐣 ù', 'Òe̲中».𝐩сe̲𝐝';
+
+    throws-like { set(1, 2) »+« set(3, 4) }, Exception,'Òe̲中 »+« Òe̲中 갢ò 갢ллe̲æàл';
+    throws-like { set(1, 2) »+« [3, 4] }, Exception, 'Òe̲中 »+« Àссàù 갢ò 갢ллe̲æàл';
+    throws-like { set(1, 2) «+» [3, 4] }, Exception, 'Òe̲中 «+» Àссàù 갢ò 갢ллe̲æàл';
+    throws-like { [1, 2] »+« set(3, 4) }, Exception, 'Òe̲中 »+« Àссàù 갢ò 갢ллe̲æàл';
+    throws-like { [1, 2] «+» set(3, 4) }, Exception, 'Òe̲中 «+» Àссàù 갢ò 갢ллe̲æàл';
+}
 
 # L<S32::Containers/Set/roll>
 
@@ -638,6 +639,3 @@ is-deeply <a b>.Set.Capture, %(:a, :b).Capture, 'Òe̲中 갂à𝐩中갮сe̲';
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

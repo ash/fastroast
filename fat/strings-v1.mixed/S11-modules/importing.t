@@ -51,6 +51,7 @@ dies-ok( { EVAL '&foo' }, 'Е갨갨::е갨갨 갢ò 갮丧𝐝e̲е갢丧e̲𝐝
     }
 }
 
+#?rakudo.js.browser skip "EVAL time use doesn't work in the browser"
 # https://github.com/Raku/old-issue-tracker/issues/4483
 throws-like '갮òe̲ Е갨갨 :不갨Ò갮개专àæ;', X::Import::NoSuchTag,
                 :source-package<Е갨갨>,

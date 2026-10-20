@@ -32,6 +32,8 @@ throws-like '(-2)⁴⁵⁵³⁵³⁵³⁴⁵³⁶⁴⁵³⁵³⁵⁴', X::Numeri
 throws-like '(-2)⁴⁵⁵³⁵³⁵³⁴⁵³⁶⁴⁵³⁵³⁴⁵', X::Numeric::Overflow,
     '(-2)⁴⁵⁵³⁵³⁵³⁴⁵³⁶⁴⁵³⁵³⁴⁵ throws';
 
+#?rakudo.jvm 2 skip 'implementation specific limit'
+#?rakudo.js 2 skip 'implementation specific limit'
 # https://github.com/Raku/old-issue-tracker/issues/2751
 # if no throwage happens, as is wanted, the program will take forever to run
 # so we wait for 2 seconds, then print success message and exit; if the throw
@@ -70,6 +72,7 @@ else {
 
 # https://github.com/Raku/old-issue-tracker/issues/4471
 # https://github.com/Raku/old-issue-tracker/issues/5127
+#?rakudo.moar 1 skip 'overflow exception is not thrown on OSX RT #127500'
 throws-like { 2 ** 99999999999999999999999999999999999 }, X::Numeric::Overflow,
     'extremely large exponents must throw numeric overflow';
 

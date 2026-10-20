@@ -40,6 +40,7 @@ eval-lives-ok
 use RT117117::Backends;
 use RT117117::Backend::AST;
 use RT117117::Backend::GNUC;
+#?rakudo.jvm todo 'got: $("GNUC",)'
 is-deeply(RT117117::Backend::.keys.sort, ('AST', 'GNUC'), 'All nested modules available');
 
 {

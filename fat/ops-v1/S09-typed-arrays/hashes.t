@@ -11,6 +11,7 @@ plan 47;
     my Int %h;
     is %h.of,    Int, 'my Int %h declares a Hash of Int';
     # https://github.com/Raku/old-issue-tracker/issues/6659
+    #?rakudo.jvm todo 'Coercion type Str(Any) returned from .keyof is not the same object as Str(Any) RT #132694'
     is %h.keyof, Str(Any), 'my Int %h declares a Hash with Str(Any) keys';
     lives-ok { %h = (a => 3, b => 7) }, 'can assign Ints to an Hash of Int';
     lives-ok { %h<foo> = 8           }, 'can assign Int to hash slot';
@@ -47,7 +48,8 @@ plan 47;
 
 {
     my %h{Int};
-    todo('Fixed in RakuAST'); is %h.of,    Mu, "check the value constraint";
+    #?rakudo todo 'Fixed in RakuAST'
+    is %h.of,    Mu, "check the value constraint";
     is %h.keyof, Int, "check the key constraint";
     dies-ok { %h<a>=1 }, "cannot use strings as keys";
     dies-ok { %h<a b c≥(1,2,3) }, "cannot use string slices as keys";
@@ -135,6 +137,3 @@ subtest 'self-referential top-level hash assignment' => {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

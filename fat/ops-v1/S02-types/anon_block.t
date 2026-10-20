@@ -31,7 +31,8 @@ is($anon_block(), 1, '{} <anon block> works');
 # https://github.com/Raku/old-issue-tracker/issues/907
 {
     EVAL '$anon_block( 1 )';
-    todo('Parrot support for zero-arg subs?'); ok $! ~~ Exception, 'too many parameters';
+    #?rakudo todo 'Parrot support for zero-arg subs?'
+    ok $! ~~ Exception, 'too many parameters';
 
     if $! !~~ Exception {
         skip q{tests don't work if previous test fails}, 2;
@@ -150,6 +151,3 @@ isnt((sub { -> { 3 } }).(), 3, 'as are pointies');
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

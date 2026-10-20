@@ -136,9 +136,9 @@ is(:16('0d37'),   0x0D37,  ":16('0d37') uses d as hex digit"     );
         'Zero powers inside');
 
     # https://github.com/Raku/old-issue-tracker/issues/3688
-skip("RT #123862 - negative radix", 1); # {     is-approx(:16<dead_beef> * 16**-1, :16<dead_beef*16**-1>,
-#         'Negative powers inside');
-#  }
+    #?rakudo skip "RT #123862 - negative radix"
+    is-approx(:16<dead_beef> * 16**-1, :16<dead_beef*16**-1>,
+        'Negative powers inside');
 }
 
 # L<S02/General radices/"Any radix may include a fractional part">
@@ -228,8 +228,8 @@ is( :2<1.1> * :2<10> ** :2<10>,             6, 'multiplication and exponentiatio
 # these should be the same values as the previous tests
 {
     is( :2<1.1*2**10>,                   1536, 'Power of two in <> works');
-skip("Really?!", 1); # {     is( :2«1.1*:2<10>**:2<10>»,    6, 'Powers of two in <<>> works');
-#  }
+    #?rakudo skip "Really?!"
+    is( :2«1.1*:2<10>**:2<10>»,    6, 'Powers of two in <<>> works');
 }
 
 # Tests for the :x[ <list> ] notations
@@ -246,7 +246,8 @@ skip("Really?!", 1); # {     is( :2«1.1*:2<10>**:2<10>»,    6, 'Powers of two 
 
     # Representation-stressing large radix.  Do two tests in one here
     # so both 32-bit and 64-bit machines are likely to fail uniformly.
-    todo("This needs an RT"); is :18446744073709551616[1,1] ~ " " ~ :4294967296[1,1], "18446744073709551617 4294967297", "32bit and 64bit large radix literals work";
+    #?rakudo todo "This needs an RT"
+    is :18446744073709551616[1,1] ~ " " ~ :4294967296[1,1], "18446744073709551617 4294967297", "32bit and 64bit large radix literals work";
 }
 
 # What follows are tests that were moved here from t/syntax/numbers/misc.t
@@ -289,6 +290,7 @@ for 2..36 {
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/5676
+#?rakudo.js skip 'Error while compiling: Radix 0 out of range (allowed: 2..36)'
 is-deeply :۳<12>, 5, 'Unicode digit radix bases work';
 
 # https://github.com/Raku/old-issue-tracker/issues/5511
@@ -353,6 +355,3 @@ subtest 'no hangs in bad digits in rad numbers / in .substr' => {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

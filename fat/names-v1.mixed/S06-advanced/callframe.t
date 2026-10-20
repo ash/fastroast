@@ -13,8 +13,8 @@ sub е() is test-assertion {
     is callframe().line, $丛àòe̲л갢丧e̲ + 3, 'callframe().line';
     ok callframe().file ~~ /« callframe »/, '.file';
 
-skip('Unable to resolve method inline in type CallFrame', 1); # {     nok callframe().inline, 'explicitly entered block (.inline)';
-#  }
+    #?rakudo skip 'Unable to resolve method inline in type CallFrame'
+    nok callframe().inline, 'explicitly entered block (.inline)';
 
     # Note:  According to S02, these should probably fail unless
     # $x is marked 'is dynamic'.  We allow it for now since there's
@@ -116,6 +116,3 @@ lives-ok
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

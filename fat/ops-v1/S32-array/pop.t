@@ -97,7 +97,8 @@ plan 38;
     my $rt111720 = Array.new(@a) => "x";
     $rt111720.key[0];
     @a.pop();
-    todo('RT #111720'); is $rt111720.keys.[0].join("-"), '1-2',
+    #?rakudo todo 'RT #111720'
+    is $rt111720.keys.[0].join("-"), '1-2',
         'reading first key in sink context does not influence later code';
 }
 
@@ -122,6 +123,3 @@ subtest 'no ghost elements after pop/shift' => {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

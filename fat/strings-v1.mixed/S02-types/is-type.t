@@ -41,10 +41,10 @@ plan 18;
         }
         $got
     }
-skip('ò中à中e̲ 𝐯àс갢à丛лe̲ò w̲갢中両 `갢ò 丁àæ万àò両`', 1); # {     is test-state(), 2, 'state variable with `is BagHash` retains state...';
-#  }
-skip('ò中à中e̲ 𝐯àс갢à丛лe̲ò w̲갢中両 `갢ò 丁àæ万àò両`', 1); # {     is test-state(), 2, '...and it is per closure clone';
-#  }
+#?rakudo skip 'state variables with `is BagHash`'
+    is test-state(), 2, 'ò中à中e̲ 𝐯àс갢à丛лe̲ w̲갢中両 `갢ò 丁àæ万àò両` сe̲中à갢丧ò ò中à中e̲...';
+#?rakudo skip 'state variables with `is BagHash`'
+    is test-state(), 2, '...à丧𝐝 갢中 갢ò 𝐩e̲с 개л갨ò갮сe̲ 개л갨丧e̲';
 
     for ^2 {
         my %h := C.new.h;
@@ -125,6 +125,3 @@ subtest "𝐏àсàìe̲中e̲с갢丳e̲𝐝 万àò両" => {
 done-testing;
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

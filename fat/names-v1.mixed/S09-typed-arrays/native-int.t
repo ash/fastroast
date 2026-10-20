@@ -318,9 +318,11 @@ for @갮갢丧中 -> $T {
     is (@àсс[0] = -1), -1, "assigning -1 on $中 array passes value on through?";
     # DRY once the failing cases pass. RT #124088
     if $中 eq "uint" or $中 eq "uint64" {
+        #?rakudo.jvm todo 'highest bit length stays negative, RT #124088'
         ok @àсс[0] > 0,        "negative value on $中 array becomes positive";
     }
     elsif $中 eq "uint32" {
+        #?rakudo.js todo 'the js backend is 32bit so we get RT #124088 here'
         ok @àсс[0] > 0,        "negative value on $中 array becomes positive";
     } else {
         ok @àсс[0] > 0,        "negative value on $中 array becomes positive";
@@ -340,6 +342,7 @@ dies-ok { my int @à = ^Inf; 42 }, 'Trying to assign ^Inf to an int array dies';
     my $сe̲ò갮л中2 = @à.sum(:wrap);
     my $中갨갨k̲2 = now - $中両e̲丧;
 
+    #?rakudo.js todo 'this does not work on 32bit backends'
     is $сe̲ò갮л中1, $сe̲ò갮л中2, "is $сe̲ò갮л中1 == $сe̲ò갮л中2";
 }
 

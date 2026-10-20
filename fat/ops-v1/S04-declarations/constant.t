@@ -42,12 +42,13 @@ plan 72;
     eval-lives-ok 'foo2 == 42', 'constants are our scoped';
 }
 
-skip('constants as type constraints', 3);# {
-#     constant foo3 = 42;
-#     lives-ok { my foo3 $x = 42 },        'constant can be used as a type constraint';
-#     dies-ok { my foo3 $x = 43 },         'constant used as a type constraint enforces';
-#     dies-ok { my foo3 $x = 42; $x =43 }, 'constant used as a type constraint enforces';
-# }
+#?rakudo skip 'constants as type constraints'
+{
+    constant foo3 = 42;
+    lives-ok { my foo3 $x = 42 },        'constant can be used as a type constraint';
+    dies-ok { my foo3 $x = 43 },         'constant used as a type constraint enforces';
+    dies-ok { my foo3 $x = 42; $x =43 }, 'constant used as a type constraint enforces';
+}
 
 {
     my $ok;
@@ -80,6 +81,7 @@ skip('constants as type constraints', 3);# {
     dies-ok { ConstantTest3::yak }, 'constant can be explicitly "my"-scoped';
 }
 
+#?rakudo todo 'COMPILING'
 {
     my $ok;
 
@@ -87,7 +89,7 @@ skip('constants as type constraints', 3);# {
     constant $bar2 = try COMPILING::<$foo2>;
     $ok = $bar2 == 8224;
 
-    todo('COMPILING'); ok $ok, "declaring a constant in terms of COMPILING constant works";
+    ok $ok, "declaring a constant in terms of COMPILING constant works";
 }
 
 {
@@ -100,6 +102,7 @@ skip('constants as type constraints', 3);# {
     ok $ok, "declaring a constant in terms of hash constant works";
 }
 
+#?rakudo todo 'COMPILING'
 {
     my $ok;
 
@@ -107,7 +110,7 @@ skip('constants as type constraints', 3);# {
     constant $bar4 = try COMPILING::<%foo4><b>;
     $ok = $bar4 == 8224;
 
-    todo('COMPILING'); ok $ok, "declaring a constant in terms of COMPILING hash constant works";
+    ok $ok, "declaring a constant in terms of COMPILING hash constant works";
 }
 
 {
@@ -120,6 +123,7 @@ skip('constants as type constraints', 3);# {
     ok $ok, "declaring a constant in terms of array constant works";
 }
 
+#?rakudo todo 'COMPILING'
 {
     my $ok;
 
@@ -127,7 +131,7 @@ skip('constants as type constraints', 3);# {
     constant $bar6 = try COMPILING::<@foo6>[2];
     $ok = $bar6 == 8224;
 
-    todo('COMPILING'); ok $ok, "declaring a constant in terms of COMPILING hash constant works";
+    ok $ok, "declaring a constant in terms of COMPILING hash constant works";
 }
 
 {
@@ -384,6 +388,3 @@ throws-like q[constant Mouse = Rat; constant Mouse = Rat], X::Redeclaration,
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

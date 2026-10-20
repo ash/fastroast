@@ -175,8 +175,8 @@ my @中e̲ò中ò = (
 {
     class С专67790 {}
     lives-ok { С专67790.HOW.raku }, 'can .raku on .HOW';
-skip('RT #67790', 1); # {     ok EVAL(RT67790.HOW.raku) === RT67790.HOW, '... and it returns the right thing';
-#  }
+    #?rakudo skip 'RT #67790'
+    ok EVAL(С专67790.HOW.raku) === С专67790.HOW, '... and it returns the right thing';
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/1366
@@ -224,6 +224,3 @@ skip('RT #67790', 1); # {     ok EVAL(RT67790.HOW.raku) === RT67790.HOW, '... an
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

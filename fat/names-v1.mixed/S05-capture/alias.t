@@ -19,10 +19,9 @@ is(~$/<foo>, "bc", 'Hypothetical variable captured');
 
 my $foo;
 # https://github.com/Raku/old-issue-tracker/issues/4222
-skip('Package variable capture RT #125122', 1); # { ok("abcd" ~~ m/a  $foo=(..)  d/, 'Package variable capture');
-#  }
-skip('Package variable capture RT #125122', 1); # { is(~$foo, "bc", 'Package variable captured');
-#  }
+#?rakudo 2 skip 'Package variable capture RT #125122'
+ok("abcd" ~~ m/a  $foo=(..)  d/, 'Package variable capture');
+is(~$foo, "bc", 'Package variable captured');
 
 # L<S05/Numbered scalar aliasing/If any numbered alias is used>
 
@@ -39,9 +38,10 @@ is(~$/<foo>, "bc", 'Explicit hypothetical variable captured');
 
 $foo = "";
 # https://github.com/Raku/old-issue-tracker/issues/4222
-todo('Package variable capture RT #125122'); ok("abcd" ~~ m/a  $foo=[<two>]  d/, 'Mixed capture');
-todo('Package variable capture RT #125122'); is(~$/<two>, "bc", 'Implicit hypothetical variable captured');
-todo('Package variable capture RT #125122'); is($foo, "bc", 'Explicit package variable captured');
+#?rakudo 3 todo 'Package variable capture RT #125122'
+ok("abcd" ~~ m/a  $foo=[<two>]  d/, 'Mixed capture');
+is(~$/<two>, "bc", 'Implicit hypothetical variable captured');
+is($foo, "bc", 'Explicit package variable captured');
 
 ok("a cat_O_9_tails" ~~ m:s/<alpha> <ident>/, 'Standard captures' );
 is(~$/<alpha>, "a", 'Captured <?alpha>' );
@@ -74,6 +74,3 @@ is(~$44, 'bar', 'Capture starting at non-zero, incremented twice');
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

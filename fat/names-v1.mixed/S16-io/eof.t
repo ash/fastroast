@@ -33,6 +33,8 @@ plan 5;
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/2593
+#?rakudo.jvm skip 'hangs'
+#?DOES 1
 {
   todo("Fails on $*DISTRO.desc()") if $*KERNEL.name eq 'darwin';
   run-with-tty ｢with $*IN { .eof.say; .slurp.say; .eof.say }｣, :in<meow>,

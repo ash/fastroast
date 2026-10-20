@@ -478,8 +478,9 @@ throws-like 'е갨с(0..5) { }', X::Comp::Group, 'k̲e̲ùw̲갨с𝐝 丧e̲e̲
                 "е갨с л갨갨𝐩 w̲갢中両 лà丛e̲л-лe̲òò лàò中 елà中中e̲丧ò 갨갮中 лàò中 갢中e̲сà中갢갨丧";
 
 # https://github.com/Raku/old-issue-tracker/issues/2593
+#?rakudo todo 'Rakudo still uses Nil here RT #124569'
     $l = (for ^5 { 41; last if $_ == 2; $_; });
-    todo('Сàk̲갮𝐝갨 ò中갢лл 갮òe̲ò 不갢л 両e̲сe̲ С专 #124569'); is $l[2].raku, "()", "е갨с л갨갨𝐩 갢中e̲сà中갢갨丧 w̲갢中両 лà丛e̲л-лe̲òò 'лàò中' æ갢𝐯e̲ò ()";
+    is $l[2].raku, "()", "е갨с л갨갨𝐩 갢中e̲сà中갢갨丧 w̲갢中両 лà丛e̲л-лe̲òò 'лàò中' æ갢𝐯e̲ò ()";
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/637
@@ -709,6 +710,8 @@ is (for 5 { (sub { "갎万 万À갈" })() }), "갎万 万À갈", 'À丧갨丧 ò
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/6336
+#?rakudo.jvm skip 'labeled next without loop construct'
+#?DOES 1
 {
   subtest '丧e̲ч中 w̲갢中両 лà丛e̲л w̲갨сk̲ò 갢丧ò갢𝐝e̲ л갢ò中 개갨ì𝐩сe̲両e̲丧𝐝e̲𝐝 е갨с л갨갨𝐩ò' => {
     # We have several of these cases because some implementations chose
@@ -786,6 +789,3 @@ is (for 5 { (sub { "갎万 万À갈" })() }), "갎万 万À갈", 'À丧갨丧 ò
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

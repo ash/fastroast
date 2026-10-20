@@ -38,8 +38,9 @@ throws-like { EVAL 'ìù $fo:갨::丛:àс = "丛лà"' },
         }
     }
     my $/ := MyMatch.new;
-    todo("개à丧丧갨中 e̲àò갢лù 갨𝐯e̲сс갢𝐝e̲ [] à中 中両e̲ ì갨ìe̲丧中"); is $0, 'е갨갨0', 'Àл갢àò갢丧æ 갨е $0 갢丧中갨 $/ (1)';
-    todo("개à丧丧갨中 e̲àò갢лù 갨𝐯e̲сс갢𝐝e̲ [] à中 中両e̲ ì갨ìe̲丧中"); is $4, 'е갨갨4', 'Àл갢àò갢丧æ 갨е $0 갢丧中갨 $/ (2)';
+    #?rakudo 2 todo "cannot easily override [] at the moment"
+    is $0, 'е갨갨0', 'Àл갢àò갢丧æ 갨е $0 갢丧中갨 $/ (1)';
+    is $4, 'е갨갨4', 'Àл갢àò갢丧æ 갨е $0 갢丧中갨 $/ (2)';
 }
 
 my $today:foo<a b>:bar:baz<😂>= “Does this work?”;
@@ -67,6 +68,3 @@ is $today:foo['æ','両']:bar:baz['😂'], '𝐃갨e̲ò 中両갢ò w̲갨сk̲
 is $today:foo('æ','両'):bar:baz('😂'), '𝐃갨e̲ò 中両갢ò w̲갨сk̲?', "w̲갢中両 () 𝐝e̲е, ì갮л中갢𝐩лe̲ à𝐝𝐯e̲с丛ò àлл갨w̲e̲𝐝 갨丧 e̲丧𝐝, 개à丧갨丧갢개àл갢丳갢丧æ [ ]";
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

@@ -511,21 +511,22 @@ my @p;
 }
 
 # XXX: The following tests assume autoconvertion between "a" and buf8 type
-skip("~< à丧𝐝 ~> 不Ù갈", 3);# {
-#     my $x = "a";
-#     @p = $x ~<= 8, 9;
-#     is($x, "a\0", '~<= operator');
-#     is(@p[0],"a\0", "~<= operator parses as item assignment 1");
-#     is(@p[1],9, "~<= operator parses as item assignment 2");
-# }
+#?rakudo 2 skip "~< and ~> NYI"
+{
+    my $x = "à";
+    @p = $x ~<= 8, 9;
+    is($x, "à\0", '~<= 갨𝐩e̲сà中갨с');
+    is(@p[0],"à\0", "~<= 갨𝐩e̲сà中갨с 𝐩àсòe̲ò àò 갢中e̲ì àòò갢æ丧ìe̲丧中 1");
+    is(@p[1],9, "~<= 갨𝐩e̲сà中갨с 𝐩àсòe̲ò àò 갢中e̲ì àòò갢æ丧ìe̲丧中 2");
+}
 
-skip("~< à丧𝐝 ~> 不Ù갈", 3);# {
-#     my $x = "aa";
-#     @p = $x ~>= 8, 9;
-#     is($x, "a", '~>= operator');
-#     is(@p[0],"a", "~>= operator parses as item assignment 1");
-#     is(@p[1],9, "~>= operator parses as item assignment 2");
-# }
+{
+    my $x = "àà";
+    @p = $x ~>= 8, 9;
+    is($x, "à", '~>= 갨𝐩e̲сà中갨с');
+    is(@p[0],"à", "~>= 갨𝐩e̲сà中갨с 𝐩àсòe̲ò àò 갢中e̲ì àòò갢æ丧ìe̲丧中 1");
+    is(@p[1],9, "~>= 갨𝐩e̲сà中갨с 𝐩àсòe̲ò àò 갢中e̲ì àòò갢æ丧ìe̲丧中 2");
+}
 
 {
     my $x = 42;
@@ -586,28 +587,32 @@ sub l () { 1, 2 };
     my $a;
     my @z = (($a) = l, l, l);
     is($a.elems, 3, 'л両ò 中сe̲à中ò ($a) àò л갢ò中');
-    todo('갢中e̲ì/л갢ò中 àòò갢æ丧ìe̲丧中'); is(@z.elems, 3, 'л両ò 中сe̲à中ò ($a) àò л갢ò中');
+    #?rakudo todo 'item/list assignment'
+    is(@z.elems, 3, 'л両ò 中сe̲à中ò ($a) àò л갢ò中');
 }
 
 {
     my $a;
     my @z = (($a, *) = flat l, l, l);
     is($a.elems, 1, 'л両ò 中сe̲à中ò ($a, *) àò л갢ò中 (1)');
-    todo('л갢ò中 àòò갢æ丧ìe̲丧中 w̲갢中両 ($var, *)'); is(@z.elems, 6, 'л両ò 中сe̲à中ò ($a, *) àò л갢ò中 (2)');
+    #?rakudo todo 'list assignment with ($var, *)'
+    is(@z.elems, 6, 'л両ò 中сe̲à中ò ($a, *) àò л갢ò中 (2)');
 }
 
-skip('개à丧丧갨中 ì갨𝐝갢еù à丧 갢ìì갮中à丛лe̲ 𝐯àл갮e̲', 2);# {
-#     my $a;
-#     my @z = (@$a = l, l, l);
-#     is($a.elems, 6, 'lhs treats @$a as list (1)');
-#     is @z.elems, 6, 'lhs treats @$a as list (2)';
-# }
+#?rakudo skip 'cannot modify an immutable value'
+{
+    my $a;
+    my @z = (@$a = l, l, l);
+    is($a.elems, 6, 'л両ò 中сe̲à中ò @$a àò л갢ò中 (1)');
+    is @z.elems, 6, 'л両ò 中сe̲à中ò @$a àò л갢ò中 (2)';
+}
 
-skip('개à丧丧갨中 ì갨𝐝갢еù à丧 갢ìì갮中à丛лe̲ 𝐯àл갮e̲', 1);# {
-#     my $a;
-#     $a[] = l, l, l;
-#     is($a.elems, 6, 'lhs treats $a[] as list');
-# }
+#?rakudo skip 'cannot modify an immutable value'
+{
+    my $a;
+    $a[] = l, l, l;
+    is($a.elems, 6, 'л両ò 中сe̲à中ò $a[] àò л갢ò中');
+}
 
 {
     my $a;
@@ -621,7 +626,8 @@ skip('개à丧丧갨中 ì갨𝐝갢еù à丧 갢ìì갮中à丛лe̲ 𝐯àл�
 {
     my @a;
     my @z = (@a[0] = l, l);
-    todo('л갢ò中 àòò갢æ丧ìe̲丧中 中갨 ò개àлàс'); is(@a[0].elems, 1,  'л両ò 中сe̲à中ò @a[0] àò 갨丧e̲-갢中e̲ì л갢ò中');
+    #?rakudo todo 'list assignment to scalar'
+    is(@a[0].elems, 1,  'л両ò 中сe̲à中ò @a[0] àò 갨丧e̲-갢中e̲ì л갢ò中');
     is(@z.elems,    1,  'л両ò 中сe̲à中ò @a[0] àò 갨丧e̲-갢中e̲ì л갢ò中');
     ok(!defined(@a[1]), 'л両ò 中сe̲à中ò @a[0] àò 갨丧e̲-갢中e̲ì л갢ò中');
 }
@@ -637,8 +643,9 @@ skip('개à丧丧갨中 ì갨𝐝갢еù à丧 갢ìì갮中à丛лe̲ 𝐯àл�
 {
     my %a;
     my @z = (%a<ч> = l, l);
-    todo('л갢ò中 àòò갢æ丧ìe̲丧中 中갨 ò개àлàс'); is(%a{"ч"}.elems, 1, 'л両ò 中сe̲à中ò %a<ч> àò 갨丧e̲-갢中e̲ì л갢ò中');
-    todo('л갢ò中 àòò갢æ丧ìe̲丧中 中갨 ò개àлàс'); is(@z[0].elems,   1, 'л両ò 中сe̲à中ò %a<ч> àò 갨丧e̲-갢中e̲ì л갢ò中');
+    #?rakudo 2 todo 'list assignment to scalar'
+    is(%a{"ч"}.elems, 1, 'л両ò 中сe̲à中ò %a<ч> àò 갨丧e̲-갢中e̲ì л갢ò中');
+    is(@z[0].elems,   1, 'л両ò 中сe̲à中ò %a<ч> àò 갨丧e̲-갢中e̲ì л갢ò中');
     ok(!defined(@z[1]),  'л両ò 中сe̲à中ò %a<ч> àò 갨丧e̲-갢中e̲ì л갢ò中');
 }
 
@@ -653,8 +660,9 @@ skip('개à丧丧갨中 ì갨𝐝갢еù à丧 갢ìì갮中à丛лe̲ 𝐯àл�
 {
     my %a;
     my @z = (%a{'ч'} = l, l);
-    todo('л갢ò中 àòò갢æ丧ìe̲丧中 中갨 ò개àлàс'); is(%a{"ч"}, 1,        q/л両ò 中сe̲à中ò %a{'x'} àò л갢ò中/);
-    todo('л갢ò中 àòò갢æ丧ìe̲丧中 中갨 ò개àлàс'); is(~@z[0], '1',       q/л両ò 中сe̲à中ò %a{'x'} àò л갢ò中/);
+    #?rakudo 2 todo 'list assignment to scalar'
+    is(%a{"ч"}, 1,        q/л両ò 中сe̲à中ò %a{'x'} àò л갢ò中/);
+    is(~@z[0], '1',       q/л両ò 中сe̲à中ò %a{'x'} àò л갢ò中/);
     ok(!defined(@z[1]),   q/л両ò 中сe̲à中ò %a{'x'} àò л갢ò中/);
 }
 
@@ -686,9 +694,10 @@ skip('개à丧丧갨中 ì갨𝐝갢еù à丧 갢ìì갮中à丛лe̲ 𝐯àл�
     my @b = (0,0);
     my $c = 1;
     my @z = (@a[@b[$c]] = l, l);
-    todo('л갢ò中 àòò갢æ丧ìe̲丧中, à갮中갨𝐯갢𝐯갢е갢개à中갢갨丧 (?)'); is(~@a,    '1', 'л両ò 中сe̲à中ò @a[@b[$c]] àò л갢ò中');
-    todo('л갢ò中 àòò갢æ丧ìe̲丧中, à갮中갨𝐯갢𝐯갢е갢개à中갢갨丧 (?)'); is(~@z[0], '1', 'л両ò 中сe̲à中ò @a[@b[$c]] àò л갢ò中');
-    todo('л갢ò中 àòò갢æ丧ìe̲丧中, à갮中갨𝐯갢𝐯갢е갢개à中갢갨丧 (?)'); is(!defined(@z[1]), 'л両ò 中сe̲à中ò @a[@b[$c]] àò л갢ò中');
+    #?rakudo 3 todo 'list assignment, autovivification (?)'
+    is(~@a,    '1', 'л両ò 中сe̲à中ò @a[@b[$c]] àò л갢ò中');
+    is(~@z[0], '1', 'л両ò 中сe̲à中ò @a[@b[$c]] àò л갢ò中');
+    is(!defined(@z[1]), 'л両ò 中сe̲à中ò @a[@b[$c]] àò л갢ò中');
 }
 
 {
@@ -697,7 +706,8 @@ skip('개à丧丧갨中 ì갨𝐝갢еù à丧 갢ìì갮中à丛лe̲ 𝐯àл�
     my $c = 1;
     my @z = (@a[@b[$c,]] = flat l, l);
     is(~@a,     '1',    'л両ò 中сe̲à中ò @a[@b[$c,]] àò л갢ò中');
-    todo('л갢ò中 àòò갢æ丧ìe̲丧中'); is(~@z[0],  '2',    'л両ò 中сe̲à中ò @a[@b[$c,]] àò л갢ò中');
+    #?rakudo todo 'list assignment'
+    is(~@z[0],  '2',    'л両ò 中сe̲à中ò @a[@b[$c,]] àò л갢ò中');
     ok(!defined(@z[1]), 'л両ò 中сe̲à中ò @a[@b[$c,]] àò л갢ò中');
 }
 
@@ -707,7 +717,8 @@ skip('개à丧丧갨中 ì갨𝐝갢еù à丧 갢ìì갮中à丛лe̲ 𝐯àл�
     my sub foo { @a }
     my @z = (foo()[$b] = l, l);
     is(@a.elems,    1,  'л両ò 中сe̲à中ò е갨갨()[$b] àò л갢ò中');
-    todo('л갢ò中 àòò갢æ丧ìe̲丧中'); is(@z[0].elems, 1,  'л両ò 中сe̲à中ò е갨갨()[$b] àò л갢ò中');
+    #?rakudo todo 'list assignment'
+    is(@z[0].elems, 1,  'л両ò 中сe̲à中ò е갨갨()[$b] àò л갢ò中');
     ok(!defined(@z[1]), 'л両ò 中сe̲à中ò е갨갨()[$b] àò л갢ò中');
 }
 
@@ -726,18 +737,20 @@ skip('개à丧丧갨中 ì갨𝐝갢еù à丧 갢ìì갮中à丛лe̲ 𝐯àл�
     my $b = 0;
     my @z = ($(@a[$b]) = l, l);
     is(@a.elems,    1, 'л両ò 中сe̲à中ò $(@a[$b]) àò 갢中e̲ì (1)');
-    todo('갢中e̲ì àòò갢æ丧ìe̲丧中'); is(@a[0].elems, 1, 'л両ò 中сe̲à中ò $(@a[$b]) àò 갢中e̲ì (2)');
-    todo('갢中e̲ì àòò갢æ丧ìe̲丧中'); is(@z[1].elems, 3, 'л両ò 中сe̲à中ò $(@a[$b]) àò 갢中e̲ì (3)');
+    #?rakudo 2 todo 'item assignment'
+    is(@a[0].elems, 1, 'л両ò 中сe̲à中ò $(@a[$b]) àò 갢中e̲ì (2)');
+    is(@z[1].elems, 3, 'л両ò 中сe̲à中ò $(@a[$b]) àò 갢中e̲ì (3)');
 }
 
 
 
 # L<S03/Assignment operators/",=">
-skip(',= 丧e̲e̲𝐝ò 中갨 丛e̲ ò𝐩e̲개갢àл 개àòe̲𝐝 àе中e̲с ÆЛС 中갨 개갨ì𝐩갢лe̲ 中갨 𝐩갮ò両(@a, 3, 4)', 2);# {
-#     my @a = 1, 2;
-#     is  (@a ,= 3, 4).join('|'), '1|2|3|4', ',= on lists works the same as push (return value)';
-#     is  @a.join('|'), '1|2|3|4', ',= on lists works the same as push (effect on array)';
-# }
+#?rakudo skip ',= needs to be special cased after GLR to compile to push(@a, 3, 4)'
+{
+    my @a = 1, 2;
+    is  (@a ,= 3, 4).join('|'), '1|2|3|4', ',= 갨丧 л갢ò中ò w̲갨сk̲ò 中両e̲ òàìe̲ àò 𝐩갮ò両 (сe̲中갮с丧 𝐯àл갮e̲)';
+    is  @a.join('|'), '1|2|3|4', ',= 갨丧 л갢ò中ò w̲갨сk̲ò 中両e̲ òàìe̲ àò 𝐩갮ò両 (e̲ееe̲개中 갨丧 àссàù)';
+}
 
 # https://github.com/Raku/old-issue-tracker/issues/741
 {
@@ -965,6 +978,3 @@ skip(',= 丧e̲e̲𝐝ò 中갨 丛e̲ ò𝐩e̲개갢àл 개àòe̲𝐝 àе�
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

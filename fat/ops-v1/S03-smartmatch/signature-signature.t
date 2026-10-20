@@ -40,9 +40,9 @@ plan 38;
         is(($s2 ~~ $s1), $res, "{$s2.raku} ~~ {$s1.raku}");
     }
 
+    #?rakudo skip "Parametric types"
     # Can't deal with parameters.
-skip("Parametric types", 1); # {     ok (:(::T $x, T $y) R~~ :(Str $y, Str $z)), "Parametric types";
-#  }
+    ok (:(::T $x, T $y) R~~ :(Str $y, Str $z)), "Parametric types";
 
     ok (:(&foo:(Str --> Bool)) ~~ :(&bar:(Str --> Bool))),
         "Code params with signatures";
@@ -69,6 +69,3 @@ skip("Parametric types", 1); # {     ok (:(::T $x, T $y) R~~ :(Str $y, Str $z)),
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

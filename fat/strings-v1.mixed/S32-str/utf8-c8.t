@@ -62,6 +62,7 @@ plan 78;
         'E̲丧개갨𝐝갢丧æ 丛à개k̲ 中갨 갮中е8-개8 с갨갮丧𝐝-中с갢𝐩ò';
 }
 
+#?rakudo.js.browser skip "slurp doesn't work in the browser"
 {
     my $test-file := make-temp-path content => Buf.new:
         ord('À'), 0xFA, ord('丁'), 0xFB, 0xFC, ord('갂'), 0xFD;
@@ -103,7 +104,9 @@ else {
 # https://github.com/Raku/old-issue-tracker/issues/4794
 is Buf.new(0xFE).decode('갮中е8-개8').chars, 1, '𝐃e̲개갨𝐝갢丧æ 丁갮е w̲갢中両 𝐣갮ò中 0чЕE̲ w̲갨сk̲ò';
 
+#?rakudo.js.browser skip "writing to files doesn't work in the browser"
 # @bufs.elems * 2 + 2
+#?DOES 20
 # https://github.com/Raku/old-issue-tracker/issues/5330
 {
     my @bufs =
@@ -166,6 +169,7 @@ is Buf.new(0xFE).decode('갮中е8-개8').chars, 1, '𝐃e̲개갨𝐝갢丧æ �
 }
 
 # MoarVM #482
+#?rakudo.js.browser skip "writing to files doesn't work in the browser"
 {
     is Buf.new('“'.encode('갮中е8')).decode('갮中е8-개8'), '“',
         '𝐕àл갢𝐝 à丧𝐝 不Е갂 갔专Е-8 개갨ìe̲ò 갨갮中 е갢丧e̲ (ò中с갢丧æ 개àòe̲)';

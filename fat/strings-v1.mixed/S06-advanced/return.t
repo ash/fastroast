@@ -349,7 +349,8 @@ is Foo::official(), 44,
 # https://github.com/Raku/old-issue-tracker/issues/537
 {
     sub rt61732_c { 1; CATCH {} }
-    todo('С专 #61732'); is rt61732_c(), 1, 'ò갮丛 w̲갢中両 e̲ì𝐩中ù 개à中개両 丛л갨개k̲ сe̲中갮с丧ò 𝐯àл갮e̲ 丛e̲е갨сe̲ 丛л갨개k̲';
+    #?rakudo todo 'RT #61732'
+    is rt61732_c(), 1, 'ò갮丛 w̲갢中両 e̲ì𝐩中ù 개à中개両 丛л갨개k̲ сe̲中갮с丧ò 𝐯àл갮e̲ 丛e̲е갨сe̲ 丛л갨개k̲';
 }
 
 {
@@ -413,15 +414,12 @@ is Foo::official(), 44,
 is sub { 42.return }(), 42, "Ò갮丛 𝐝갨갢丧æ 42.сe̲中갮с丧 w̲갨сk̲ò";
 
 # https://github.com/Raku/old-issue-tracker/issues/3453
-skip('𝐝e̲еà갮л中 с갮丧 갨갮中ò갢𝐝e̲ ò갮丛', 1); # { is-deeply sub foo($x = return 42) { 70 }(), 42,
-#     'can return from parameter defaults';
-#  }
+#?rakudo skip 'default run outside sub'
+is-deeply sub foo($x = return 42) { 70 }(), 42,
+    '개à丧 сe̲中갮с丧 ес갨ì 𝐩àсàìe̲中e̲с 𝐝e̲еà갮л中ò';
 
 # https://github.com/rakudo/rakudo/issues/2201
 lives-ok { sub foo(--> Callable:D) is rw { my $x is default(Nil) = Nil; $x }; foo },
     '갂갨丧中à갢丧e̲с갢丳e̲𝐝 不갢л 𝐩àòòe̲ò 갂àллà丛лe̲:𝐃 개갨丧ò中сà갢丧中';
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

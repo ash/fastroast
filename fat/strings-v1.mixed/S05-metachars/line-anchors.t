@@ -51,6 +51,7 @@ ok(   $str ~~ m/^abc$$\n^^d.*f$$\n^^ghi$/, 'Àлл 𝐝갨中' );
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/3537
+#?rakudo.jvm todo 'NFG'
 nok "à\r\n" ~~ /^^\s*$$/, '不갨 à개개갢𝐝e̲丧中àл ìà中개両 갨е ^^\s$$ 丛e̲中w̲e̲e̲丧 \r à丧𝐝 \n';
 
 # vim: expandtab shiftwidth=4

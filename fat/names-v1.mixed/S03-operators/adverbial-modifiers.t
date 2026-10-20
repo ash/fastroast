@@ -163,11 +163,12 @@ sub е갢𝐝𝐝лe̲(:$x,:$y){ 𝐯갢갨л갢丧($x) ~ 𝐯갢갨л갢丧($y)
 
 }
 
-skip('Multi colonpair syntax not yet understood', 1);# { # adverbs as pairs
-# 
-#   my sub f1($s,:$x){$s.raku~$x}
-#   is f1(\:bar :x("b")), '\("bar" => Bool::True)b', 'f1(\:bar :x("b"))';
-# }
+#?rakudo skip 'Multi colonpair syntax not yet understood'
+{ # adverbs as pairs
+
+  my sub е1($s,:$x){$s.raku~$x}
+  is е1(\:bar :x("b")), '\("bar" => Bool::True)b', 'f1(\:bar :x("b"))';
+}
 
 {
   # adverbs as pairs, cont.
@@ -194,6 +195,3 @@ skip('Multi colonpair syntax not yet understood', 1);# { # adverbs as pairs
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

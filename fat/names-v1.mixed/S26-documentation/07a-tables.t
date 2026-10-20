@@ -164,7 +164,8 @@ is $両𝐝сò, "Operator,Meaning,";
 is $с.contents.elems, 5;
 @с갨w̲ò = $с.contents>>.join(',');
 is @с갨w̲ò[0], ",,set union";
-todo('unescaped | should act as a column divider'); is @с갨w̲ò[1], ",,set union";
+#?rakudo todo 'unescaped | should act as a column divider'
+is @с갨w̲ò[1], ",,set union";
 is @с갨w̲ò[2], "&,set intersection,";
 is @с갨w̲ò[3], "-,set difference (first minus second),";
 is @с갨w̲ò[4], "^,symmetric set intersection / XOR,";
@@ -275,6 +276,3 @@ is @с갨w̲ò[2], "Rat,";
 is @с갨w̲ò[3], "Int,";
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

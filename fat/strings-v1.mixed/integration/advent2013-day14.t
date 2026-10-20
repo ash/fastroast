@@ -76,6 +76,7 @@ my @currency_exchanges = (CurrencyExchange.new( :id<еàò中>, :delay(1) ),
 
 # Channels
 
+#?rakudo.jvm skip 'hangs'
 {
     {
         my @files = qw<개갨丧е갢æ1.갢丧갢 개갨丧е갢æ2.갢丧갢>;

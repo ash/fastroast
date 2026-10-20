@@ -50,9 +50,7 @@ is(sign(NaN),NaN, 'sign of NaN is NaN');
 
 throws-like { sign(Int) }, Exception;
 
-todo('better behaviour in 6.e+'); is-deeply (try sign(3+4i)), 0.6+0.8i, 'Does sign(Complex) return a Complex';
+#?rakudo todo 'better behaviour in 6.e+'
+is-deeply (try sign(3+4i)), 0.6+0.8i, 'Does sign(Complex) return a Complex';
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

@@ -2,6 +2,7 @@ use Test;
 
 plan 9;
 
+#?rakudo.jvm skip 'hangs'
 {
     # Start 100 workers that do a `react`. This will, if `react` blocks,
     # clog up the thread pool.

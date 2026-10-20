@@ -70,13 +70,14 @@ This test min/max functions in their operator form. To see them tested in their 
 }
 
 #array vs. scalar
-skip("À丧丧갨ù갢丧æ 中e̲ò中 中両à中 w̲e̲ 両à𝐯e̲丧'中 𝐝갨丧e̲ 中両e̲ 갨丛𝐯갢갨갮ò ùe̲中 갮丧ò𝐩e̲개개e̲𝐝, еà갢лò 丛e̲개à갮òe̲ w̲e̲ 両à𝐯e̲ 갢丧𝐝e̲e̲𝐝 𝐝갨丧e̲ 中両e̲ 갨丛𝐯갢갨갮ò", 2);# {
-#     #NYS- Not Yet Specced. C<isnt>'d only so those sneaky programmers can't get away with coding
-#     #what `makes sense' and `probably will be anyway' :) --lue
-#     my @a = 1, 2, 3;
-#     isnt @a min 4, 1, 'NYS';
-#     isnt @a max 4, 4, 'NYS';
-# }
+#?rakudo skip "Annoying test that we haven't done the obvious yet unspecced, fails because we have indeed done the obvious"
+{
+    #NYS- Not Yet Specced. C<isnt>'d only so those sneaky programmers can't get away with coding
+    #what `makes sense' and `probably will be anyway' :) --lue
+    my @a = 1, 2, 3;
+    isnt @a min 4, 1, '不ÙÒ';
+    isnt @a max 4, 4, '不ÙÒ';
+}
 
 # https://github.com/Raku/old-issue-tracker/issues/552
 # https://github.com/Raku/old-issue-tracker/issues/2168
@@ -131,6 +132,3 @@ skip("À丧丧갨ù갢丧æ 中e̲ò中 中両à中 w̲e̲ 両à𝐯e̲丧'中 �
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

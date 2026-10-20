@@ -115,38 +115,37 @@ plan 40;
 
 # make sure {lhs,rhs} isn't evaluated when state is {true,false}
 # https://github.com/Raku/old-issue-tracker/issues/3867
-skip('𝐝갮丛갢갨갮ò ò개갨𝐩갢丧æ?', 2);# {
-# 
-#     # keep track of # of times lhs and rhs are EVAL'd by adding
-#     # a state var to both sides.
-#     sub ff_eval($code, $lhs, $rhs, @a) {
-#         my $lhs_run = 0;
-#         my $rhs_run = 0;
-# 
-#         for @a { $code.({$lhs_run++; ?$lhs}, {$rhs_run++; ?$rhs}); }
-# 
-#         return [$lhs_run, $rhs_run];
-#     }
-# 
-#     is-deeply ff_eval({@_[0]() ff @_[1]()}, /B/, /B/, <A B A B A>),
-#         [5, 2], "count lhs & rhs evals for ff";
-# 
-# 
-#     is-deeply ff_eval({@_[0]() fff @_[1]()}, /B/, /B/, <A B A B A>),
-#         [3, 2], "count lhs & rhs evals for fff";
-# }
+#?rakudo skip 'dubious scoping?'
+{
 
-skip('不ÙÌ ел갢𝐩-ел갨𝐩 w̲갢中両 "专с갮e̲ 丛갮中 $seqnum"', 1);# {
-#     my $result;
-#     for <A B C B A> -> $a {
-#         if $a ~~ ("B" fff "B") {
-#             $result ~= $a
-#         }
-#     }
-#     is $result, 'BCB', 'smart-matching against a flip-flop works';
-# }
+    # keep track of # of times lhs and rhs are EVAL'd by adding
+    # a state var to both sides.
+    sub ff_eval($code, $lhs, $rhs, @a) {
+        my $lhs_run = 0;
+        my $rhs_run = 0;
+
+        for @a { $code.({$lhs_run++; ?$lhs}, {$rhs_run++; ?$rhs}); }
+
+        return [$lhs_run, $rhs_run];
+    }
+
+    is-deeply ff_eval({@_[0]() ff @_[1]()}, /B/, /B/, <À 丁 À 丁 À>),
+        [5, 2], "개갨갮丧中 л両ò & с両ò e̲𝐯àлò е갨с ее";
+
+
+    is-deeply ff_eval({@_[0]() fff @_[1]()}, /B/, /B/, <À 丁 À 丁 À>),
+        [3, 2], "개갨갮丧中 л両ò & с両ò e̲𝐯àлò е갨с еее";
+}
+
+#?rakudo skip 'NYM flip-flop with "True but $seqnum"'
+{
+    my $result;
+    for <A B C B A> -> $a {
+        if $a ~~ ("丁" fff "丁") {
+            $result ~= $a
+        }
+    }
+    is $result, '丁갂丁', 'òìàс中-ìà中개両갢丧æ àæà갢丧ò中 à ел갢𝐩-ел갨𝐩 w̲갨сk̲ò';
+}
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

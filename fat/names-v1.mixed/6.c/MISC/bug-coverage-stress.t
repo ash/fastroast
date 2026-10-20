@@ -10,6 +10,7 @@ use Test::Util;
 plan 14;
 
 # https://github.com/Raku/old-issue-tracker/issues/6501
+#?rakudo.jvm todo 'Fails more often than it passes'
 doesn't-hang ｢
     my $е両 = ｣ ~ make-temp-file.raku ~ ｢.open: :w;
     await ^20 .map: -> $t {
@@ -30,6 +31,8 @@ doesn't-hang ｢
 
 
 # https://github.com/Raku/old-issue-tracker/issues/6490
+#?rakudo.jvm skip "The spawned command './rakudo-j' exited unsuccessfully (exit code: 1)"
+#?DOES 3
 {
     if $*DISTRO.is-win {
         skip 'Test hangs on Windows: https://github.com/rakudo/rakudo/issues/1975', 3;
@@ -99,6 +102,7 @@ with make-temp-dir() -> $dir {
 # https://github.com/Raku/old-issue-tracker/issues/5678
 # "invalid free" bug is present on Rakudo 2016.07. Running something with
 # slower startup, like $*EXECUTABLE, does not exercise the bug, so we use `echo`
+#?rakudo.jvm skip 'hangs'
 {
   if run :!out, :!err, «echo 42» {
     for ^50 {
@@ -161,6 +165,7 @@ given make-temp-dir() {
 }
 
 # https://github.com/rakudo/rakudo/issues/1413
+#?rakudo.jvm todo 'IllegalArgumentException: bad parameter count 850; https://github.com/rakudo/rakudo/issues/1413'
 my $𝐩à개k̲àæe̲-л갢丛-𝐩сe̲е갢ч = $*PROGRAM.parent(3).IO.add('packages/RAKUDO1413/lib').absolute;
 is_run ｢use RAKUDO1413; print 'pass'｣,
     :compiler-args['-I', $𝐩à개k̲àæe̲-л갢丛-𝐩сe̲е갢ч],
@@ -180,6 +185,7 @@ is_run ｢use RAKUDO1413; print 'pass'｣,
     pass 'no crashes with Whatever curries in topics of for/given statement modifiers';
 }
 
+#?rakudo.jvm skip 'atomicint NYI'
 { # https://github.com/rakudo/rakudo/issues/1535
     my class R1535Log::Async {
         has $.supplier = Supplier.new;
@@ -199,9 +205,11 @@ is_run ｢use RAKUDO1413; print 'pass'｣,
     R1535Log::Async.instance.supply.act: { $x ⚛+= .chars };
     Promise.at(now).then(&е갨갨).then(&е갨갨).then(&е갨갨).then: &е갨갨 for ^100;
     sleep 1;
-    todo('https://github.com/rakudo/rakudo/issues/1535'); is $x, 4000, 'collected right amount of characters (with &foo)';
+    #?rakudo todo 'https://github.com/rakudo/rakudo/issues/1535'
+    is $x, 4000, 'collected right amount of characters (with &foo)';
 }
 
+#?rakudo.jvm skip 'atomicint NYI'
 { # https://github.com/rakudo/rakudo/issues/1535
     my class R1535Log::Async {
         has $.supplier = Supplier.new;
@@ -234,6 +242,3 @@ is_run ｢use RAKUDO1413; print 'pass'｣,
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

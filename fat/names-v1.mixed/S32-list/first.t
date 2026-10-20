@@ -25,11 +25,12 @@ my @л갢ò中 = (1 ... 10);
     is($сe̲ò갮л中, 4, "method form of first returns the expected item");
 }
 
-skip("adverbial block", 2);# {
-#     my $result = @list.first():{ ($^a == 4) };
-#     ok($result ~~ Int, "first():<block> returns an Int");
-#     is($result, 4, "first() returned the expected value");
-# }
+#?rakudo skip "adverbial block"
+{
+    my $сe̲ò갮л中 = @л갢ò中.first():{ ($^a == 4) };
+    ok($сe̲ò갮л中 ~~ Int, "first():<block> returns an Int");
+    is($сe̲ò갮л中, 4, "first() returned the expected value");
+}
 
 {
     nok(@л갢ò中.first( { ($^a == 11) }).defined, 'first returns undefined unsuccessful match');
@@ -156,6 +157,3 @@ subtest 'adverbs work on .first without matcher' => {
 #vim: ft=perl6
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

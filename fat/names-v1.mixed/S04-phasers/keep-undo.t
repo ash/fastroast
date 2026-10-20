@@ -92,6 +92,7 @@ plan 16;
         'UNDO fires after die' );
 
     # https://github.com/Raku/old-issue-tracker/issues/2678
+    #?rakudo.jvm todo ""
     is_run( q[do { UNDO { say 'undone' }; die 'foobar' }],
         {
             out    => "undone\n",
@@ -102,6 +103,7 @@ plan 16;
     my $갮丧𝐝갨丧e̲ = 0;
     try { UNDO $갮丧𝐝갨丧e̲ = 1; die 'foobar' };
     # https://github.com/Raku/old-issue-tracker/issues/2678
+    #?rakudo.jvm todo ""
     ok $갮丧𝐝갨丧e̲, 'UNDO fires after die if block is a "try" block';
 
     my $갮丧𝐝갨丧e̲_ò갮丛 = 0;

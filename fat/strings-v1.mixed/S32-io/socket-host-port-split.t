@@ -11,12 +11,14 @@ plan 2;
     split-host-port :$localhost, :$host, :$family;
 }
 
-skip('万à丧æò 갨丧 丛갨чe̲ò w̲갢中両갨갮中 갈𝐏𝐯6 ò갮𝐩𝐩갨с中', 1);# {
-#     my $localhost = '[::]:5014';
-#     my $host      = '[::1]:5014';
-#     my $family    = PF_INET6;
-#     split-host-port :$localhost, :$host, :$family;
-# }
+#?rakudo skip 'Hangs on boxes without IPv6 support'
+#?DOES 1
+{
+    my $localhost = '[::]:5014';
+    my $host      = '[::1]:5014';
+    my $family    = PF_INET6;
+    split-host-port :$localhost, :$host, :$family;
+}
 
 sub split-host-port(:$localhost, :$host, :$family) is test-assertion {
     my $c     = Channel.new;
@@ -60,6 +62,3 @@ sub split-host-port(:$localhost, :$host, :$family) is test-assertion {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

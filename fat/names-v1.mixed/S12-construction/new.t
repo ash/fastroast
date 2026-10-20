@@ -18,33 +18,26 @@ is $갨.y, 3, '... worked for the child';
 is $갨.x, 2, '... worked for the parent';
 
 # https://github.com/Raku/old-issue-tracker/issues/2236
-skip('parent attributes in initialization', 1); # { lives-ok { $o = Child.new( :y(4), Parent{ :x<5> }) },
-#          'can instantiate class with explicit specification of parent attrib';
-#  }
+#?rakudo 3 skip 'parent attributes in initialization'
+lives-ok { $갨 = 갂両갢л𝐝.new( :y(4), 𝐏àсe̲丧中{ :x<5> }) },
+         'can instantiate class with explicit specification of parent attrib';
 
-skip('parent attributes in initialization', 1); # { is $o.y, 4, '... worked for the child';
-#  }
-skip('parent attributes in initialization', 1); # { is $o.x, 5, '... worked for the parent';
-#  }
+is $갨.y, 4, '... worked for the child';
+is $갨.x, 5, '... worked for the parent';
 
 class Æсà丧𝐝갂両갢л𝐝 is 갂両갢л𝐝 {
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/2236
-skip('parent attributes in initialization', 1); # { lives-ok { $o = GrandChild.new( Child{ :y(4) }, Parent{ :x<5> }) },
-#          'can instantiate class with explicit specification of parent attrib (many parents)';
-#  }
-skip('parent attributes in initialization', 1); # { is $o.y, 4, '... worked for the class Child';
-#  }
-skip('parent attributes in initialization', 1); # { is $o.x, 5, '... worked for the class Parent';
-#  }
-skip('parent attributes in initialization', 1); # { lives-ok { $o = GrandChild.new( Parent{ :x<5> }, Child{ :y(4) }) },
-#          'can instantiate class with explicit specification of parent attrib (many parents, other order)';
-#  }
-skip('parent attributes in initialization', 1); # { is $o.y, 4, '... worked for the class Child (other order)';
-#  }
-skip('parent attributes in initialization', 1); # { is $o.x, 5, '... worked for the class Parent (other order)';
-#  }
+#?rakudo 6 skip 'parent attributes in initialization'
+lives-ok { $갨 = Æсà丧𝐝갂両갢л𝐝.new( 갂両갢л𝐝{ :y(4) }, 𝐏àсe̲丧中{ :x<5> }) },
+         'can instantiate class with explicit specification of parent attrib (many parents)';
+is $갨.y, 4, '... worked for the class Child';
+is $갨.x, 5, '... worked for the class Parent';
+lives-ok { $갨 = Æсà丧𝐝갂両갢л𝐝.new( 𝐏àсe̲丧中{ :x<5> }, 갂両갢л𝐝{ :y(4) }) },
+         'can instantiate class with explicit specification of parent attrib (many parents, other order)';
+is $갨.y, 4, '... worked for the class Child (other order)';
+is $갨.x, 5, '... worked for the class Parent (other order)';
 
 # https://github.com/Raku/old-issue-tracker/issues/1030
 {
@@ -60,7 +53,8 @@ skip('parent attributes in initialization', 1); # { is $o.x, 5, '... worked for 
         class RT71706::Artie {}
     }
     # TODO: check the error message, not just the timing.
-    todo("nested package handling does't quite get this one right"); dies-ok { RT71706::Artie.new }, 'die trying to instantiate missing class';
+    #?rakudo todo "nested package handling does't quite get this one right"
+    dies-ok { RT71706::Artie.new }, 'die trying to instantiate missing class';
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/1353
@@ -159,6 +153,3 @@ skip('parent attributes in initialization', 1); # { is $o.x, 5, '... worked for 
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

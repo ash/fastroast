@@ -38,8 +38,9 @@ throws-like { EVAL 'my $fo:o::b:ar = "bla"' },
         }
     }
     my $/ := MyMatch.new;
-    todo("cannot easily override [] at the moment"); is $0, 'foo0', 'Aliasing of $0 into $/ (1)';
-    todo("cannot easily override [] at the moment"); is $4, 'foo4', 'Aliasing of $0 into $/ (2)';
+    #?rakudo 2 todo "cannot easily override [] at the moment"
+    is $0, 'foo0', 'Aliasing of $0 into $/ (1)';
+    is $4, 'foo4', 'Aliasing of $0 into $/ (2)';
 }
 
 my $today:foo<a b>:bar:baz<😂≥ “Does this work?”;
@@ -67,6 +68,3 @@ is $today:foo['g','h']:bar:baz['😂'], 'Does this work?', "with () def, multipl
 is $today:foo('g','h'):bar:baz('😂'), 'Does this work?', "with () def, multiple adverbs allowed on end, canonicalizing [ ]";
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

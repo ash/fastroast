@@ -20,8 +20,8 @@ plan 10;
     lives-ok { EVAL 'our sub c { "sub c" }' },
       'can define my sub c in eval after c defined in enum';
     is +c, 2, 'c is still 2 from enum';
-skip('OUR::subname() does not work', 1); # {     is OUR::c(), 'sub c', 'sub c called with OUR:: works';
-#  }
+    #?rakudo skip 'OUR::subname() does not work'
+    is OUR::c(), 'sub c', 'sub c called with OUR:: works';
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/1327
@@ -34,6 +34,3 @@ skip('OUR::subname() does not work', 1); # {     is OUR::c(), 'sub c', 'sub c ca
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

@@ -18,8 +18,10 @@ plan 95;
 
     my $x = 99;
     is uno_mas( $x ), 100, 'multi works with variable';
-    todo('Calls wrong candidate'); is $x, 100, 'variable was modified';
-    todo('Calls wrong candidate'); is $rw_call, 1, 'read-write multi was called';
+    #?rakudo todo 'Calls wrong candidate'
+    is $x, 100, 'variable was modified';
+    #?rakudo todo 'Calls wrong candidate'
+    is $rw_call, 1, 'read-write multi was called';
 }
 
 # lexical-multis.t (has not many interesting tests for this purpose)
@@ -109,6 +111,7 @@ is( wind('f', 'g', her => 3), 'pos f pos g her 3', 'pos, pos, named');
     multi catch(| (*@all, :$really! )) { 2 }   #OK not used
     is catch(0, 5),           1, 'slurpy and named interact well (1)';
     # https://github.com/Raku/old-issue-tracker/issues/4771
+    #?rakudo.jvm todo 'slurpy and named'
     is catch(0, 5, :!really), 2, 'slurpy and named interact well (2)';
 }
 
@@ -148,7 +151,8 @@ is(foo(42),    1, 'dispatch with no possible candidates fell back to proto');
         return $accum × 2; # * 2 is intentional here
     }
 
-    todo('operator protos'); is ([+] 1,2,3), 12, "[+] overloaded by proto definition";
+    #?rakudo todo 'operator protos'
+    is ([+] 1,2,3), 12, "[+] overloaded by proto definition";
 }
 
 # more similar tests
@@ -232,7 +236,8 @@ throws-like 'proto rt68242(|c($a)){};proto rt68242(|c($c,$d)){};', X::Redeclarat
     multi a(|c(Int $)) { $tracker ~= 'Int'; nextsame; $tracker ~= 'Int' };
 
     lives-ok { a(3) },      'can call nextsame inside a multi sub';
-    todo('Multimethod sort does not descend into subsignatures'); is $tracker, 'IntAny', 'called in the right order';
+    #?rakudo todo 'Multimethod sort does not descend into subsignatures'
+    is $tracker, 'IntAny', 'called in the right order';
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/4450
@@ -242,7 +247,8 @@ throws-like 'proto rt68242(|c($a)){};proto rt68242(|c($c,$d)){};', X::Redeclarat
     multi b(|c(Int $)) { $tracker ~= 'Int'; callsame; $tracker ~= 'Int' };
 
     lives-ok { b(3) },        'can call callsame inside a multi sub';
-    todo('Multimethod sort does not descend into subsignatures'); is $tracker, 'IntAnyInt', 'called in the right order';
+    #?rakudo todo 'Multimethod sort does not descend into subsignatures'
+    is $tracker, 'IntAnyInt', 'called in the right order';
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/4450
@@ -252,7 +258,8 @@ throws-like 'proto rt68242(|c($a)){};proto rt68242(|c($c,$d)){};', X::Redeclarat
     multi c(|c(Int $x)) { $tracker ~= 'Int'; nextwith($x+1); $tracker ~= 'Int' };
 
     lives-ok { c(3) },      'can call nextwith inside a multi sub';
-    todo('Multimethod sort does not descend into subsignatures'); is $tracker, 'IntAny4', 'called in the right order';
+    #?rakudo todo 'Multimethod sort does not descend into subsignatures'
+    is $tracker, 'IntAny4', 'called in the right order';
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/4450
@@ -262,7 +269,8 @@ throws-like 'proto rt68242(|c($a)){};proto rt68242(|c($c,$d)){};', X::Redeclarat
     multi d(|c(Int $x)) { $tracker ~= 'Int'; callwith($x+1); $tracker ~= 'Int' };
 
     lives-ok { d(3) },         'can call callwith inside a multi sub';
-    todo('Multimethod sort does not descend into subsignatures'); is $tracker, 'IntAny4Int', 'called in the right order';
+    #?rakudo todo 'Multimethod sort does not descend into subsignatures'
+    is $tracker, 'IntAny4Int', 'called in the right order';
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/1757
@@ -366,7 +374,8 @@ is(bar(S,S), 1, "not tied as only first type in the dispatch");
     multi rt64922(|c($x, %h?)) { 1 }    #OK not used
     multi rt64922(|c(@x)) { 2 }    #OK not used
     is rt64922(1),     1, 'optional parameter does not break type-based candidate sorting';
-    todo('Multimethod sort does not descend into subsignatures'); is rt64922([1,2]), 2, 'optional parameter does not break type-based candidate sorting';
+    #?rakudo todo 'Multimethod sort does not descend into subsignatures'
+    is rt64922([1,2]), 2, 'optional parameter does not break type-based candidate sorting';
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/997
@@ -415,6 +424,3 @@ is with_cap(1,2,3,4,5,6), 21, 'captures in multi sigs work';
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

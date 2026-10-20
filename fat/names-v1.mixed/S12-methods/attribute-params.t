@@ -41,6 +41,7 @@ throws-like 'sub optimal($.x) { }', X::Syntax::NoSelf, variable => '$.x';
 throws-like 'sub optimal($!x) { }', X::Syntax::NoSelf, variable => '$!x';
 
 # https://github.com/Raku/old-issue-tracker/issues/5674
+#?DOES 2
 {
     my class 갂 {
         has int $!i;
@@ -57,6 +58,7 @@ throws-like 'sub optimal($!x) { }', X::Syntax::NoSelf, variable => '$!x';
     is $갨.yi, 42, 'Can use attributive binding on a native attribute (int, positional)';
     is $갨.yn, 1.5e0, 'Can use attributive binding on a native attribute (num, positional)';
 }
+#?DOES 2
 {
     my class 갂 {
         has int $!i;

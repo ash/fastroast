@@ -36,8 +36,9 @@ is-deeply(0 ** NaN, NaN, "0**NaN=NaN");
 
 # Not at all sure the next two cases are correct!
 
-todo('wrong results for "NaN" used with "**"'); is-deeply(NaN ** 1i, NaN, "NaN**1i=NaN");
-todo('wrong results for "NaN" used with "**"'); is-deeply(1i ** NaN, NaN, "1i**NaN=NaN");
+#?rakudo 2 todo 'wrong results for "NaN" used with "**"'
+is-deeply(NaN ** 1i, NaN, "NaN**1i=NaN");
+is-deeply(1i ** NaN, NaN, "1i**NaN=NaN");
 # https://github.com/Raku/old-issue-tracker/issues/3804
 is-deeply(NaN ** 0, 1e0, "NaN**0=1");
 # https://github.com/Raku/old-issue-tracker/issues/5752
@@ -62,7 +63,8 @@ is-approx(5i ** 3, -125i, "5i ** 3 = -125i");
 is-approx(3i ** 3, -27i, "3i ** 3 = -27i");
 is-approx((-3i) ** 3, 27i, "-3i ** 3 = 27i");
 
-todo('i'); is-approx (-1) ** -i, 23.1406926327793, "(-1) ** -i is approx 23.1406926327793";
+#?rakudo todo 'i'
+is-approx (-1) ** -i, 23.1406926327793, "(-1) ** -i is approx 23.1406926327793";
 
 {
     for (8i).roots(4) -> $z {
@@ -132,6 +134,8 @@ is-approx(27 ** -⅔, ⅑, "27 ** -⅔ == ⅑");
 
 # https://github.com/Raku/old-issue-tracker/issues/4787
 
+#?rakudo.jvm skip 'unival NYI'
+#?DOES 1
 {
   subtest 'power ops with uncommon No chars as terms work' => {
     my @nos = <⁰ ¹ ² ³ ⁴ ⁵ ⁶ ⁷ ⁸ ⁹ ⅟ 𑁓 ౸ ㆒ 𐌣 >;
@@ -141,8 +145,8 @@ is-approx(27 ** -⅔, ⅑, "27 ** -⅔ == ⅑");
         is-deeply .EVAL, $v**12,  $_ with "$no¹²";
         is-deeply .EVAL, $v**12,  $_ with "$no⁺¹²";
         is-deeply .EVAL, $v**-12, $_ with "$no⁻¹²";
-skip('this is all bogus, but this one throws', 1); # {         is-deeply "$no¯¹²".EVAL, $v**-12, "$no¯¹² (macron)";
-#  }
+        #?rakudo skip 'this is all bogus, but this one throws'
+        is-deeply "$no¯¹²".EVAL, $v**-12, "$no¯¹² (macron)";
 
         is-deeply .EVAL, 2**$v**2, $_ with "2**$no²";
     }
@@ -150,6 +154,3 @@ skip('this is all bogus, but this one throws', 1); # {         is-deeply "$no¯�
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

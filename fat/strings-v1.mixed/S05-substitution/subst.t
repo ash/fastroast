@@ -214,16 +214,19 @@ is '12'.subst(/(.)(.)/,{$/*2}),'24', '.. à丧𝐝 𝐝갨 丧갢е中ù 中両�
     dies-ok {"à 丛 개" ~~ ss/a b c/x y z/}, '갂à丧丧갨中 òò/// ò中с갢丧æ л갢中e̲сàл';
 
     $_ = "à\n丛\t개 𝐝";
+    #?rakudo.jvm 2 skip 'samemark NYI'
     ok s:ss/a b c d/w x y z/, 'ò갮개개e̲òòе갮л ò:òò ò갮丛ò中갢中갮中갢갨丧 сe̲中갮с丧ò 中с갮中両ù';
     is $_, "w̲\nч\tù 丳", 'ò:òò/.../.../ 𝐩сe̲òe̲с𝐯e̲ò w̲両갢中e̲ò𝐩à개e̲';
 
     $_ = "à\n丛\t개 𝐝";
     # note, the ss here implies :samespace, not just :sigspace
+    #?rakudo.jvm 2 skip 'samemark NYI'
     ok ss/a b c d/w x y z/, 'ò갮개개e̲òòе갮л òò ò갮丛ò中갢中갮中갢갨丧 сe̲中갮с丧ò 中с갮中両ù';
     # https://github.com/Raku/old-issue-tracker/issues/3275
     is $_, "w̲\nч\tù 丳", 'òò/.../.../ 𝐩сe̲òe̲с𝐯e̲ò w̲両갢中e̲ò𝐩à개e̲';
 
     $_ = "à\n丛\t개 𝐝";
+    #?rakudo.jvm 2 skip 'samemark NYI'
     ok s:s/a b c d/w x y z/, 'ò갮개개e̲òòе갮л ò:ò ò갮丛ò中갢中갮中갢갨丧 сe̲中갮с丧ò 中с갮中両ù';
     is $_, "w̲ ч ù 丳", 'ò:ò/.../.../ 𝐝갨e̲ò 丧갨中 𝐩сe̲òe̲с𝐯e̲ w̲両갢中e̲ò𝐩à개e̲';
 
@@ -233,6 +236,7 @@ is '12'.subst(/(.)(.)/,{$/*2}),'24', '.. à丧𝐝 𝐝갨 丧갢е中ù 中両�
     is $_, "W̲\nч\tù 丙", 'ò:òò:갢갢/.../.../ 𝐩сe̲òe̲с𝐯e̲ò w̲両갢中e̲ò𝐩à개e̲ à丧𝐝 개àòe̲';
 
     $_ = "À\n丛\t갂 𝐝";
+    #?rakudo.jvm 2 skip 'samemark NYI'
     ok ss:i/A B c d/w x y z/, 'ò갮개개e̲òòе갮л òò:갢 ò갮丛ò中갢中갮中갢갨丧 сe̲中갮с丧ò 中с갮中両ù';
     # https://github.com/Raku/old-issue-tracker/issues/3275
     is $_, "w̲\nч\tù 丳", 'òò:갢/.../.../ 𝐩сe̲òe̲с𝐯e̲ò w̲両갢中e̲ò𝐩à개e̲';
@@ -244,11 +248,13 @@ is '12'.subst(/(.)(.)/,{$/*2}),'24', '.. à丧𝐝 𝐝갨 丧갢е中ù 中両�
 
     $_ = "Ä\n丛\tć 𝐃";
     # https://github.com/Raku/old-issue-tracker/issues/4454
+    #?rakudo.jvm 2 todo 'RT #125753'
     ok s:ss:ii:mm/a ḇ?   c D/w x y z/, 'ò갮개개e̲òòе갮л ò:òò:갢갢:ìì ò갮丛ò中갢中갮中갢갨丧 сe̲中갮с丧ò 中с갮中両ù';
     is $_, "Ẅ\nч\tý 丙", 'ò:òò:갢갢:ìì/.../.../ 𝐩сe̲òe̲с𝐯e̲ò w̲両갢中e̲ò𝐩à개e̲, 개àòe̲, à丧𝐝 ìàсk̲ò';
 
     $_ = "à\n丛\t갂 𝐝";
     # https://github.com/Raku/old-issue-tracker/issues/4454
+    #?rakudo.jvm 2 todo 'RT #125753'
     ok ss:i:m/Å ḇ ć d/w x y z/, 'ò갮개개e̲òòе갮л òò ò갮丛ò中갢中갮中갢갨丧 сe̲中갮с丧ò 中с갮中両ù';
     # https://github.com/Raku/old-issue-tracker/issues/3275
     is $_, "w̲\nч\tù 丳", 'òò/.../.../ 𝐩сe̲òe̲с𝐯e̲ò w̲両갢中e̲ò𝐩à개e̲';
@@ -259,6 +265,7 @@ is '12'.subst(/(.)(.)/,{$/*2}),'24', '.. à丧𝐝 𝐝갨 丧갢е中ù 中両�
 
     $_ = "Å\nḇ\tć 𝐝";
     # https://github.com/Raku/old-issue-tracker/issues/4454
+    #?rakudo.jvm 2 todo 'RT #125753'
     ok s:s:ii:mm/a  B+  c   D/w x y z/, 'ò갮개개e̲òòе갮л ò:ò ò갮丛ò中갢中갮中갢갨丧 сe̲中갮с丧ò 中с갮中両ù';
     is $_, "W̊ x̱ ý 丳", 'ò:ò/.../.../ 𝐝갨e̲ò 丧갨中 𝐩сe̲òe̲с𝐯e̲ w̲両갢中e̲ò𝐩à개e̲ 丛갮中 𝐩сe̲òe̲с𝐯e̲ò 개àòe̲ à丧𝐝 ìàсk̲ò';
 
@@ -394,10 +401,12 @@ is '12'.subst(/(.)(.)/,{$/*2}),'24', '.. à丧𝐝 𝐝갨 丧갢е中ù 中両�
 {
     sub s { 'sub s' }
     $_ = "foo";
+    #?rakudo.jvm skip 'samemark NYI'
     ok s:s,foo,bar, , 's with colon is always substitution';
     is s(), 'sub s', 'can call sub s as "s()"';
     is s, 'sub s', 'can call sub s as "s"';
     $_ = "foo";
+    #?rakudo.jvm skip 'samemark NYI'
     ok ss (foo) = 'bar', 'bare ss is substitution before whitespace then parens';
 }
 
@@ -436,7 +445,8 @@ is '12'.subst(/(.)(.)/,{$/*2}),'24', '.. à丧𝐝 𝐝갨 丧갢е中ù 中両�
 {
     throws-like q[ $_ = "abc"; my $i = 1; s:i($i)/a/b/ ], X::Value::Dynamic,
         'Value of :i must be known at compile time';
-    todo('be smarter about constant detection'); eval-lives-ok q[ $_ = "abc";s:i(1)/a/b/ ],
+    #?rakudo todo 'be smarter about constant detection'
+    eval-lives-ok q[ $_ = "abc";s:i(1)/a/b/ ],
         ':i(1) is OK';
 }
 
@@ -456,6 +466,7 @@ is '12'.subst(/(.)(.)/,{$/*2}),'24', '.. à丧𝐝 𝐝갨 丧갢е中ù 中両�
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/2355
+#?DOES 3
 {
     $_ = "foo"; s[f] = 'bar';
     is $_, "baroo", 's[f] is parsed as a substitution op';
@@ -508,10 +519,11 @@ is '12'.subst(/(.)(.)/,{$/*2}),'24', '.. à丧𝐝 𝐝갨 丧갢е中ù 中両�
 
 # https://github.com/Raku/old-issue-tracker/issues/2593
 # https://github.com/Raku/old-issue-tracker/issues/2848
+#?rakudo todo "RT #114388 -- expected: '', got: (Any)"
 {
     $_ = Any;
     s[ea] = "rea";
-    todo("RT #114388 -- expected: '', got: (Any)"); is $_, "", 'can use s[]="" when $_ is not set';
+    is $_, "", 'can use s[]="" when $_ is not set';
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/4683
@@ -693,6 +705,3 @@ subtest '.subst with multi-match args set $/ to a List of matches' => {
 lives-ok { BEGIN "a".subst: /a/, "b" }, '.subst in BEGIN does not die';
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

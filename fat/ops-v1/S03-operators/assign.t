@@ -511,21 +511,22 @@ my @p;
 }
 
 # XXX: The following tests assume autoconvertion between "a" and buf8 type
-skip("~< and ~> NYI", 3);# {
-#     my $x = "a";
-#     @p = $x ~<= 8, 9;
-#     is($x, "a\0", '~<= operator');
-#     is(@p[0],"a\0", "~<= operator parses as item assignment 1");
-#     is(@p[1],9, "~<= operator parses as item assignment 2");
-# }
+#?rakudo 2 skip "~< and ~> NYI"
+{
+    my $x = "a";
+    @p = $x ~≤ 8, 9;
+    is($x, "a\0", '~<= operator');
+    is(@p[0],"a\0", "~<= operator parses as item assignment 1");
+    is(@p[1],9, "~<= operator parses as item assignment 2");
+}
 
-skip("~< and ~> NYI", 3);# {
-#     my $x = "aa";
-#     @p = $x ~>= 8, 9;
-#     is($x, "a", '~>= operator');
-#     is(@p[0],"a", "~>= operator parses as item assignment 1");
-#     is(@p[1],9, "~>= operator parses as item assignment 2");
-# }
+{
+    my $x = "aa";
+    @p = $x ~≥ 8, 9;
+    is($x, "a", '~>= operator');
+    is(@p[0],"a", "~>= operator parses as item assignment 1");
+    is(@p[1],9, "~>= operator parses as item assignment 2");
+}
 
 {
     my $x = 42;
@@ -586,28 +587,32 @@ sub l () { 1, 2 };
     my $a;
     my @z = (($a) = l, l, l);
     is($a.elems, 3, 'lhs treats ($a) as list');
-    todo('item/list assignment'); is(@z.elems, 3, 'lhs treats ($a) as list');
+    #?rakudo todo 'item/list assignment'
+    is(@z.elems, 3, 'lhs treats ($a) as list');
 }
 
 {
     my $a;
     my @z = (($a, *) = flat l, l, l);
     is($a.elems, 1, 'lhs treats ($a, *) as list (1)');
-    todo('list assignment with ($var, *)'); is(@z.elems, 6, 'lhs treats ($a, *) as list (2)');
+    #?rakudo todo 'list assignment with ($var, *)'
+    is(@z.elems, 6, 'lhs treats ($a, *) as list (2)');
 }
 
-skip('cannot modify an immutable value', 2);# {
-#     my $a;
-#     my @z = (@$a = l, l, l);
-#     is($a.elems, 6, 'lhs treats @$a as list (1)');
-#     is @z.elems, 6, 'lhs treats @$a as list (2)';
-# }
+#?rakudo skip 'cannot modify an immutable value'
+{
+    my $a;
+    my @z = (@$a = l, l, l);
+    is($a.elems, 6, 'lhs treats @$a as list (1)');
+    is @z.elems, 6, 'lhs treats @$a as list (2)';
+}
 
-skip('cannot modify an immutable value', 1);# {
-#     my $a;
-#     $a[] = l, l, l;
-#     is($a.elems, 6, 'lhs treats $a[] as list');
-# }
+#?rakudo skip 'cannot modify an immutable value'
+{
+    my $a;
+    $a[] = l, l, l;
+    is($a.elems, 6, 'lhs treats $a[] as list');
+}
 
 {
     my $a;
@@ -621,7 +626,8 @@ skip('cannot modify an immutable value', 1);# {
 {
     my @a;
     my @z = (@a[0] = l, l);
-    todo('list assignment to scalar'); is(@a[0].elems, 1,  'lhs treats @a[0] as one-item list');
+    #?rakudo todo 'list assignment to scalar'
+    is(@a[0].elems, 1,  'lhs treats @a[0] as one-item list');
     is(@z.elems,    1,  'lhs treats @a[0] as one-item list');
     ok(!defined(@a[1]), 'lhs treats @a[0] as one-item list');
 }
@@ -637,8 +643,9 @@ skip('cannot modify an immutable value', 1);# {
 {
     my %a;
     my @z = (%a<x> = l, l);
-    todo('list assignment to scalar'); is(%a{"x"}.elems, 1, 'lhs treats %a<x> as one-item list');
-    todo('list assignment to scalar'); is(@z[0].elems,   1, 'lhs treats %a<x> as one-item list');
+    #?rakudo 2 todo 'list assignment to scalar'
+    is(%a{"x"}.elems, 1, 'lhs treats %a<x> as one-item list');
+    is(@z[0].elems,   1, 'lhs treats %a<x> as one-item list');
     ok(!defined(@z[1]),  'lhs treats %a<x> as one-item list');
 }
 
@@ -653,8 +660,9 @@ skip('cannot modify an immutable value', 1);# {
 {
     my %a;
     my @z = (%a{'x'} = l, l);
-    todo('list assignment to scalar'); is(%a{"x"}, 1,        q/lhs treats %a{'x'} as list/);
-    todo('list assignment to scalar'); is(~@z[0], '1',       q/lhs treats %a{'x'} as list/);
+    #?rakudo 2 todo 'list assignment to scalar'
+    is(%a{"x"}, 1,        q/lhs treats %a{'x'} as list/);
+    is(~@z[0], '1',       q/lhs treats %a{'x'} as list/);
     ok(!defined(@z[1]),   q/lhs treats %a{'x'} as list/);
 }
 
@@ -686,9 +694,10 @@ skip('cannot modify an immutable value', 1);# {
     my @b = (0,0);
     my $c = 1;
     my @z = (@a[@b[$c]] = l, l);
-    todo('list assignment, autovivification (?)'); is(~@a,    '1', 'lhs treats @a[@b[$c]] as list');
-    todo('list assignment, autovivification (?)'); is(~@z[0], '1', 'lhs treats @a[@b[$c]] as list');
-    todo('list assignment, autovivification (?)'); is(!defined(@z[1]), 'lhs treats @a[@b[$c]] as list');
+    #?rakudo 3 todo 'list assignment, autovivification (?)'
+    is(~@a,    '1', 'lhs treats @a[@b[$c]] as list');
+    is(~@z[0], '1', 'lhs treats @a[@b[$c]] as list');
+    is(!defined(@z[1]), 'lhs treats @a[@b[$c]] as list');
 }
 
 {
@@ -697,7 +706,8 @@ skip('cannot modify an immutable value', 1);# {
     my $c = 1;
     my @z = (@a[@b[$c,]] = flat l, l);
     is(~@a,     '1',    'lhs treats @a[@b[$c,]] as list');
-    todo('list assignment'); is(~@z[0],  '2',    'lhs treats @a[@b[$c,]] as list');
+    #?rakudo todo 'list assignment'
+    is(~@z[0],  '2',    'lhs treats @a[@b[$c,]] as list');
     ok(!defined(@z[1]), 'lhs treats @a[@b[$c,]] as list');
 }
 
@@ -707,7 +717,8 @@ skip('cannot modify an immutable value', 1);# {
     my sub foo { @a }
     my @z = (foo()[$b] = l, l);
     is(@a.elems,    1,  'lhs treats foo()[$b] as list');
-    todo('list assignment'); is(@z[0].elems, 1,  'lhs treats foo()[$b] as list');
+    #?rakudo todo 'list assignment'
+    is(@z[0].elems, 1,  'lhs treats foo()[$b] as list');
     ok(!defined(@z[1]), 'lhs treats foo()[$b] as list');
 }
 
@@ -726,18 +737,20 @@ skip('cannot modify an immutable value', 1);# {
     my $b = 0;
     my @z = ($(@a[$b]) = l, l);
     is(@a.elems,    1, 'lhs treats $(@a[$b]) as item (1)');
-    todo('item assignment'); is(@a[0].elems, 1, 'lhs treats $(@a[$b]) as item (2)');
-    todo('item assignment'); is(@z[1].elems, 3, 'lhs treats $(@a[$b]) as item (3)');
+    #?rakudo 2 todo 'item assignment'
+    is(@a[0].elems, 1, 'lhs treats $(@a[$b]) as item (2)');
+    is(@z[1].elems, 3, 'lhs treats $(@a[$b]) as item (3)');
 }
 
 
 
 # L<S03/Assignment operators/",=">
-skip(',= needs to be special cased after GLR to compile to push(@a, 3, 4)', 2);# {
-#     my @a = 1, 2;
-#     is  (@a ,= 3, 4).join('|'), '1|2|3|4', ',= on lists works the same as push (return value)';
-#     is  @a.join('|'), '1|2|3|4', ',= on lists works the same as push (effect on array)';
-# }
+#?rakudo skip ',= needs to be special cased after GLR to compile to push(@a, 3, 4)'
+{
+    my @a = 1, 2;
+    is  (@a ,= 3, 4).join('|'), '1|2|3|4', ',= on lists works the same as push (return value)';
+    is  @a.join('|'), '1|2|3|4', ',= on lists works the same as push (effect on array)';
+}
 
 # https://github.com/Raku/old-issue-tracker/issues/741
 {
@@ -965,6 +978,3 @@ skip(',= needs to be special cased after GLR to compile to push(@a, 3, 4)', 2);#
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

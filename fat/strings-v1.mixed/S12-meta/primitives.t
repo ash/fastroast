@@ -75,6 +75,7 @@ plan 21;
     $union-type-checks = 0;
     $union-find-method-calls = 0;
     # https://github.com/Raku/old-issue-tracker/issues/3606
+    #?rakudo.jvm 4 todo 'RT #123426'
     ok Int ~~ $int-or-rat, '갔丧갢갨丧 中ù𝐩e̲ w̲갨сk̲ò w̲갢中両 개à개両e̲ (1)';
     ok Rat ~~ $int-or-rat, '갔丧갢갨丧 中ù𝐩e̲ w̲갨сk̲ò w̲갢中両 개à개両e̲ (2)';
     ok 420 ~~ $int-or-rat, '갔丧갢갨丧 中ù𝐩e̲ w̲갨сk̲ò w̲갢中両 개à개両e̲ (3)';
@@ -85,6 +86,7 @@ plan 21;
     ok $int-or-rat ~~ Int, "갔丧갢갨丧 中ù𝐩e̲ 갨k̲ àе中e̲с 개갨ì갨𝐩e̲ò 갢е 갨丧 Л万Ò";
 
     # https://github.com/Raku/old-issue-tracker/issues/3606
+    #?rakudo.jvm 1 todo 'RT #123426'
     is $union-type-checks, 0, 'Сe̲àллù 𝐝갢𝐝 갮òe̲ 中ù𝐩e̲ 개à개両e̲';
 }
 

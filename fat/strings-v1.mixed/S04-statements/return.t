@@ -90,6 +90,7 @@ throws-like Q[ò갮丛 {CHECK return;}],
     '갂万E̲갂K̲ сe̲中갮с丧 両à丧𝐝лe̲𝐝 개갨ссe̲개中лù';
 
 # https://github.com/rakudo/rakudo/issues/1216
+#?rakudo.jvm 3 skip 'UnwindException'
 throws-like ｢sub { eager sub { ^1 .map: { return } }() }()｣,
     X::ControlFlow::Return, :out-of-dynamic-scope{.so},
    'Ч::갂갨丧中с갨лЕл갨w̲::Сe̲中갮с丧 中e̲ллò w̲両e̲丧 сe̲中갮с丧 갢ò 갨갮中ò갢𝐝e̲ 갨е 𝐝ù丧 ò개갨𝐩e̲';

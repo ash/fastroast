@@ -28,7 +28,8 @@ plan 49;
 # typed array
 {
     my Int @a = 1, Empty, 3;
-    todo(".clone doesn't copy typedness"); is @a.of, '(Int)', "Check that we have an 'Int' array";
+    #?rakudo todo ".clone doesn't copy typedness"
+    is @a.of, '(Int)', "Check that we have an 'Int' array";
     is @a.elems, 2,  'Empty as part of Int list, is empty list';
     ok ( @a.push: Empty ) =:= @a, "assigning Empty returns same array";
     is @a.elems, 2, 'Pushing Empty in Int list context is empty list';
@@ -37,19 +38,22 @@ plan 49;
     ok !defined(@a[1] = Nil), "assigning Nil to Int should work";
     ok !@a[1].defined,  "Nil makes undefined here";
     is (@a = Empty), '', "setting array to Empty returns empty string";
-    todo(".clone doesn't copy typedness"); is @a.of, '(Int)', "Check that we still have an 'Int' array";
+    #?rakudo todo ".clone doesn't copy typedness"
+    is @a.of, '(Int)', "Check that we still have an 'Int' array";
     is @a.elems, 0, 'Setting to Empty restores original state';
 } #11
 
 # typed hash
 {
     my Int %a = a => 1, Empty, c => 3;
-    todo(".clone doesn't copy typedness"); is %a.of, '(Int)', "Check that we have an 'Int' hash";
+    #?rakudo todo ".clone doesn't copy typedness"
+    is %a.of, '(Int)', "Check that we have an 'Int' hash";
     is %a.elems, 2,  'Empty as part of Int list, is empty pair';
     is (%a<b> = Nil), Int, "assigning Nil to hash element should work";
     ok !%a<b>.defined,  "Nil makes undefined here";
     is ( %a = Empty ), '', "setting hash to Empty returns empty string";
-    todo(".clone doesn't copy typedness"); is %a.of, '(Int)', "Check that we still have an 'Int' hash";
+    #?rakudo todo ".clone doesn't copy typedness"
+    is %a.of, '(Int)', "Check that we still have an 'Int' hash";
     is %a.elems, 0, 'Setting to Empty restores original state';
 } #7
 
@@ -95,6 +99,3 @@ plan 49;
 } #12
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

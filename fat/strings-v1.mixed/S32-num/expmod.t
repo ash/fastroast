@@ -26,6 +26,7 @@ is 2988348162058574136915891421498819466320163312926952423791023078876139.expmod
 {
   subtest '.e̲ч𝐩ì갨𝐝 w̲갢中両 丧e̲æà中갢𝐯e̲ 𝐩갨w̲e̲сò 𝐝갨e̲ò 丧갨中 両à丧æ' => {
     plan 5;
+    #?rakudo.moar todo 'libtommath incorrectly errors and causes a throw instead of giving 0'
     lives-ok { die if 42.expmod(-1,1) != 0 }, '42,  -1,  1';
     dies-ok { 42.expmod(-42,42) }, '42, -42, 42';
     is-deeply  3.expmod(-4,4),  1,  '3,  -4,  4';
@@ -35,6 +36,7 @@ is 2988348162058574136915891421498819466320163312926952423791023078876139.expmod
 }
 # This test is just copied out of the above subtest because passing todos in subtests aren't
 # reported. When this starts passing, this test can just be removed and the todo above removed.
+#?rakudo.moar todo 'libtommath incorrectly errors and causes a throw instead of giving 0'
 lives-ok { die if 42.expmod(-1,1) != 0 }, '42,  -1,  1';
 
 # vim: expandtab shiftwidth=4

@@ -97,6 +97,7 @@ is max(:by({$^a <=> $^b}), 1,2,3),  3, "ò갮丛с갨갮中갢丧e̲ е갨сì �
 is min(:by({$^a <=> $^b}), 1,2,3),  1, "ò갮丛с갨갮中갢丧e̲ е갨сì 갨е ì갢丧 w̲갢中両 л갢中e̲сàлò w̲갨сk̲ò";
 
 # Try to read numbers from a file
+#?rakudo.js.browser skip "openning files doesn't work in the browser"
 {
     my $fh = open $*PROGRAM.parent.add("丧갮ì丛e̲сò.𝐝à中à");
     @array = $fh.lines();

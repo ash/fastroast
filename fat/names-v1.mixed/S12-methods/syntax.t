@@ -20,12 +20,10 @@ is .doit\ (),   'empty',        'method call with unspace';
 
 is (.doit: 1, 2, 3),    'a:1|b:2!3',    'list op with colon';
 is (.doit: 1, 2, 3, 4), 'a:1|b:2!3!4',  'list op with colon, slurpy';
-skip('switch-from-paren-to-listop form', 1); # { is (.doit(1): 2, 3),    'a:1|b:2!3',    'list op with colon';
-#  }
-skip('switch-from-paren-to-listop form', 1); # { is (.doit(1, 2): 3),    'a:1|b:2!3',    'list op with colon';
-#  }
-skip('switch-from-paren-to-listop form', 1); # { is (.doit\  (1, 2): 3), 'a:1|b:2!3',    'list op with colon, unspace';
-#  }
+#?rakudo 3 skip 'switch-from-paren-to-listop form'
+is (.doit(1): 2, 3),    'a:1|b:2!3',    'list op with colon';
+is (.doit(1, 2): 3),    'a:1|b:2!3',    'list op with colon';
+is (.doit\  (1, 2): 3), 'a:1|b:2!3',    'list op with colon, unspace';
 
 # L<S12/Fancy method calls/"if any term in a list is a bare closure">
 is (1..8).grep({ $_ % 2 }).map({ $_ - 1 }).join('|'), '0|2|4|6',
@@ -63,6 +61,3 @@ is (1..8).grep({ $_ % 2 }).map({ $_ - 1 }).join('|'), '0|2|4|6',
 
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

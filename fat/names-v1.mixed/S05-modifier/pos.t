@@ -22,7 +22,8 @@ for ("abcdef") {
     $_ = "foofoofoo foofoofoo";
     my $/;
     ok(s:global:pos/foo/FOO/, 'Globally contiguous substitution');
-    todo("s:pos/// NYI"); is($_, "FOOFOOFOO foofoofoo", 'Correctly substituted contiguously');
+    #?rakudo todo "s:pos/// NYI"
+    is($_, "FOOFOOFOO foofoofoo", 'Correctly substituted contiguously');
 }
 
 {
@@ -45,7 +46,8 @@ for ("abcdef") {
 {
     my $ò中с = "abcabcabc";
     my @ч = $ò中с ~~ m:i:g:p/abc/;
-    todo('m:g'); is("@ч", "abc abc abc", 'Insensitive repeated continued match');
+    #?rakudo todo 'm:g'
+    is("@ч", "abc abc abc", 'Insensitive repeated continued match');
     ok($/.to == 9, 'Insensitive repeated continued match pos');
 
     ok ($ò中с !~~ m:i:p/abc/, 'no more match, string exhausted');
@@ -55,7 +57,8 @@ for ("abcdef") {
     my $ò中с = "abcabcabc";
     my @ч = ?($ò中с ~~ m:p:i:g/abc/);
     # XXX is that correct?
-    todo("m:p:i:g// NYI"); is($/.to,  3, 'Insensitive scalar repeated continued match pos');
+    #?rakudo todo "m:p:i:g// NYI"
+    is($/.to,  3, 'Insensitive scalar repeated continued match pos');
 }
 
 {
@@ -103,6 +106,3 @@ for ("abcdef") {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

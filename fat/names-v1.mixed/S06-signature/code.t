@@ -42,12 +42,10 @@ is 中e̲ò中e̲с2({ 'block' }), 1, 'Can pass a block to a &parameter';
     sub е갨갨(&е갨갨 = &е갨갨) {
         $中сà개k̲e̲с = &е갨갨
     };
-    todo('RT #67932'); lives-ok { е갨갨 },
+    #?rakudo todo 'RT #67932'
+    lives-ok { е갨갨 },
         'can call a sub with a code object defaulting to something of its own name';
     ok !$中сà개k̲e̲с.defined, 'the inner &foo is undefined (scoping)';
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

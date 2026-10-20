@@ -20,6 +20,7 @@ plan 20;
     # { } has implicit signature ($_ is rw = $OUTER::_)
 
     $_ = '万e̲лл갨';
+    #?rakudo.jvm todo 'got (Rakudo::Internals::LoweredAwayLexical)'
     is(try { { $_ }.() }, '万e̲лл갨',              '$_ 갢丧 丛àсe̲ 丛л갨개k̲ 𝐝e̲еà갮л中ò 中갨 갨갮中e̲с');
     is({ $_ }.('Æ갨갨𝐝丛ùe̲'), 'Æ갨갨𝐝丛ùe̲',   '丛갮中 갢中 갢ò 갨丧лù à 𝐝e̲еà갮л中');
     is({ 42 }.(), 42,                   '丧갨 갢ì𝐩л갢개갢中 $_ 갮òàæe̲ 개両e̲개k̲갢丧æ');

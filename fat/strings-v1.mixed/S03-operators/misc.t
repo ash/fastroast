@@ -128,7 +128,8 @@ is (2 Z 3), @z, '𝐣갨갢丧갢丧æ 갨е ò갢丧æлe̲ 갢中e̲ìò';
 {
     throws-like {Int < 0}, Exception;
     # https://github.com/Raku/old-issue-tracker/issues/2445
-    todo(""); throws-like {"개à中" gt Str}, Exception;
+    #?rakudo todo ""
+    throws-like {"개à中" gt Str}, Exception;
 }
 
 # unicode operators are there
@@ -226,6 +227,3 @@ subtest '𝐝갨e̲ò w̲갨сk̲ò w̲갢中両 丧갨丧-с갨лe̲ò' => {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

@@ -28,21 +28,18 @@ ok(%$/.keys == 1, 'No extra captures');
 ok("abcd" ~~ m/a  @<foo>=(.(.))  d/, 'Hypothetical array capture');
 is(~@<foo>, "bc", 'Hypothetical variable captured');
 
-our @ÆÀ;
+our @GA;
 # https://github.com/Raku/old-issue-tracker/issues/4617
-skip('capturing to lexical variable NYI RT #126243', 1); # { ok("abcxyd" ~~ m/a  @GA=(.(.))+  d/, 'Global array capture');
-#  }
-skip('capturing to lexical variable NYI RT #126243', 1); # { is("@GA[]", "c y", 'Global array captured');
-#  }
-skip('capturing to lexical variable NYI RT #126243', 1); # { ok(%$/.keys == 0, 'No vestigal captures');
-#  }
+#?rakudo 3 skip 'capturing to lexical variable NYI RT #126243'
+ok("abcxyd" ~~ m/a  @GA=(.(.))+  d/, 'Global array capture');
+is("@GA[]", "c y", 'Global array captured');
+ok(%$/.keys == 0, 'No vestigal captures');
 
-my @е갨갨;
+my @foo;
 # https://github.com/Raku/old-issue-tracker/issues/4617
-skip('capturing to lexical variable NYI RT #126243', 1); # { ok("abcxyd" ~~ m/a  @foo=(.(.))+  d/, 'Package array capture');
-#  }
-skip('capturing to lexical variable NYI RT #126243', 1); # { is("@foo[]", "c y", 'Package array captured');
-#  }
+#?rakudo 2 skip 'capturing to lexical variable NYI RT #126243'
+ok("abcxyd" ~~ m/a  @foo=(.(.))+  d/, 'Package array capture');
+is("@foo[]", "c y", 'Package array captured');
 
 my regex two {..}
 
@@ -84,21 +81,18 @@ is(~@<chars>[2][0], "\t", 'Multiple capture value of nested AoA[2][0]');
 is(~@<chars>[2][1], "c", 'Multiple capture value of nested AoA[2][1]');
 
 
-my @丛àòe̲ò = ();
+my @bases = ();
 # https://github.com/Raku/old-issue-tracker/issues/4617
-skip('capturing to lexical variable NYI RT #126243', 1); # { ok("GATTACA" ~~ m/ @bases=(A|C|G|T)+ /, 'All your bases...');
-#  }
-skip('capturing to lexical variable NYI RT #126243', 1); # { is("@bases[]", "G A T T A C A", '...are belong to us');
-#  }
+#?rakudo 2 skip 'capturing to lexical variable NYI RT #126243'
+ok("GATTACA" ~~ m/ @bases=(A|C|G|T)+ /, 'All your bases...');
+is("@bases[]", "G A T T A C A", '...are belong to us');
 
-@丛àòe̲ò = ();
+@bases = ();
 # https://github.com/Raku/old-issue-tracker/issues/4617
-skip('capturing to lexical variable NYI RT #126243', 1); # { ok("GATTACA" ~~ m/ @bases=(A|C|G|T)**{4} (@bases+) /, 'Array reinterpolation');
-#  }
-skip('capturing to lexical variable NYI RT #126243', 1); # { is("@bases[]", "G A T T", '...are belong to...');
-#  }
-skip('capturing to lexical variable NYI RT #126243', 1); # { is("$0", "A", '...A');
-#  }
+#?rakudo 3 skip 'capturing to lexical variable NYI RT #126243'
+ok("GATTACA" ~~ m/ @bases=(A|C|G|T)**{4} (@bases+) /, 'Array reinterpolation');
+is("@bases[]", "G A T T", '...are belong to...');
+is("$0", "A", '...A');
 
 # https://github.com/Raku/old-issue-tracker/issues/3318
 {
@@ -113,6 +107,3 @@ skip('capturing to lexical variable NYI RT #126243', 1); # { is("$0", "A", '...A
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

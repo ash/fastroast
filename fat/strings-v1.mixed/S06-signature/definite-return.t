@@ -58,26 +58,28 @@ plan 19;
 }
 
 
-skip('𝐯àс갢à丛лe̲ò àò сe̲中갮с丧 ò𝐩e̲개갢е갢개à中갢갨丧ò 𝐝갨丧中 𝐩àсòe̲ ùe̲中', 1);# {
-#     my sub return-seven(--> $result) {
-#         $result = 7;
-#         8
-#     }
-# 
-#     is return-seven(), 7, 'Functions using a mutable value as their return value use that value as their return value';
-# }
+#?rakudo skip 'variables as return specifications dont parse yet'
+{
+    my sub return-seven(--> $result) {
+        $result = 7;
+        8
+    }
+
+    is return-seven(), 7, 'Е갮丧개中갢갨丧ò 갮ò갢丧æ à ì갮中à丛лe̲ 𝐯àл갮e̲ àò 中両e̲갢с сe̲中갮с丧 𝐯àл갮e̲ 갮òe̲ 中両à中 𝐯àл갮e̲ àò 中両e̲갢с сe̲中갮с丧 𝐯àл갮e̲';
+}
 
 
-skip('𝐯àс갢à丛лe̲ò àò сe̲中갮с丧 ò𝐩e̲개갢е갢개à中갢갨丧ò 𝐝갨丧中 𝐩àсòe̲ ùe̲中', 1);# {
-#     my $result = 9;
-# 
-#     my sub return-eight(--> $result) {
-#         $result = 8;
-#         19
-#     }
-# 
-#     is eight(), 8, 'Variables used as return specifications *always* shadow existing variables with the same name';
-# }
+#?rakudo skip 'variables as return specifications dont parse yet'
+{
+    my $result = 9;
+
+    my sub return-eight(--> $result) {
+        $result = 8;
+        19
+    }
+
+    is eight(), 8, '𝐕àс갢à丛лe̲ò 갮òe̲𝐝 àò сe̲中갮с丧 ò𝐩e̲개갢е갢개à中갢갨丧ò *àлw̲àùò* ò両à𝐝갨w̲ e̲ч갢ò中갢丧æ 𝐯àс갢à丛лe̲ò w̲갢中両 中両e̲ òàìe̲ 丧àìe̲';
+}
 
 {
     my sub return-nine(--> "丧갢丧e̲") { 42 }
@@ -147,6 +149,3 @@ constant indiana-pi = 3;
 # traits - how to distinguish a trait on the return value vs on the sub?
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

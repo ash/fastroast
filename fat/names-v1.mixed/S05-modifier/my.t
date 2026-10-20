@@ -45,7 +45,8 @@ plan 24;
     }
     is ~万àò갎갮с专e̲ò中e̲с.parse('dzho'), 'dzho', ':our in regex';
 
-    todo(":our variables in regexes"); is $DeclaratorTest1::our, 'zho', 'can access our variable from the outside';
+    #?rakudo todo ":our variables in regexes"
+    is $DeclaratorTest1::our, 'zho', 'can access our variable from the outside';
 }
 
 {
@@ -66,7 +67,8 @@ plan 24;
     my regex la { :let $a = 5; <&lma> };
     my regex lma { $a $a };
     ok '23' !~~ m/ ^ <la> $ /, 'can detect a non-match with :let';
-    todo("unsuccessful match preserves :let value"); is $a, 1, 'unsuccessful match did not affect :let variable';
+    #?rakudo todo "unsuccessful match preserves :let value"
+    is $a, 1, 'unsuccessful match did not affect :let variable';
 
     ok '55' ~~ m/ ^ <la> $ /, 'can match changed :let variable';
     is $a, 5, 'successful match preserves new :let value';
@@ -82,6 +84,3 @@ plan 24;
     }, ":my terminates upon }\\n"
 }
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

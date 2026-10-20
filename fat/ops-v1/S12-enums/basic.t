@@ -23,25 +23,26 @@ enum Day <Sun Mon Tue Wed Thu Fri Sat>;
     ok Mon + Tue == Wed, 'Can do arithmetics with Pair values';
 }
 
+#?rakudo todo 'rakudo#1296 butting issue on Str and Enum'
 {
     # https://github.com/Raku/old-issue-tracker/issues/4014
     # this is originally about RT #124832, but issue goes different.
     my $x = 'Today' but Day::Mon;
-    todo('rakudo#1296 butting issue on Str and Enum'); ok $x.does(Day),      'Can test with .does() for enum type';
-    todo('rakudo#1296 butting issue on Str and Enum'); ok $x ~~ Day,         'Can smartmatch for enum type';
-    todo('rakudo#1296 butting issue on Str and Enum'); ok $x ~~ Day::Mon,    'Can Smartmatch for enum value';
+    ok $x.does(Day),      'Can test with .does() for enum type';
+    ok $x ~~ Day,         'Can smartmatch for enum type';
+    ok $x ~~ Day::Mon,    'Can Smartmatch for enum value';
     my $check = 0;
     given $x {
         when Day::Mon { $check = 1 }
         when Day::Tue { $check = 2 }
     }
-    todo('rakudo#1296 butting issue on Str and Enum'); is $check, 1,         'given/when with enum values';
+    is $check, 1,         'given/when with enum values';
     $check = 0;
     given $x {
         when Tue { $check = 1 }
         when Mon { $check = 2 }
     }
-    todo('rakudo#1296 butting issue on Str and Enum'); is $check, 2,         'given/when with enum values';
+    is $check, 2,         'given/when with enum values';
 }
 
 {
@@ -270,6 +271,3 @@ is-deeply do { my enum Foos (a => <42>); a.Str }, 'a',
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

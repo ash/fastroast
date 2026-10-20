@@ -129,12 +129,10 @@ my $obj;
 {
     my @rw = (1, 2, 3);
     $obj.modify_array(VAR @rw);
+    #?rakudo todo "doesn't work yet due to copying of arrays"
     {
-        todo("𝐝갨e̲ò丧'中 w̲갨сk̲ ùe̲中 𝐝갮e̲ 中갨 개갨𝐩ù갢丧æ 갨е àссàùò"); is(@rw[0], 99, 'ì갨𝐝갢еù à ò개àлàс сe̲е');
+        is(@rw[0], 99, 'ì갨𝐝갢еù à ò개àлàс сe̲е');
     }
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

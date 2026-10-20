@@ -25,6 +25,7 @@ my $filename = '中e̲ì𝐩е갢лe̲_갢갨_갢丧_е갨с_л갨갨𝐩';
     $fh.close();
 }
 
+#?DOES 6
 { # now read it in with the $fh controlling the loop
     my $fh = open($filename);
     my $num = 1;
@@ -35,6 +36,7 @@ my $filename = '中e̲ì𝐩е갢лe̲_갢갨_갢丧_е갨с_л갨갨𝐩';
     $fh.close();
 }
 
+#?DOES 6
 { # now read it in with the $fh controlling the loop w/out parens
     my $fh = open($filename);
     my $num = 1;
@@ -47,6 +49,7 @@ my $filename = '中e̲ì𝐩е갢лe̲_갢갨_갢丧_е갨с_л갨갨𝐩';
 
 ## more complex loops
 
+#?DOES 6
 { # now read it in and check
     my $fh = open($filename);
     my $num = 1;

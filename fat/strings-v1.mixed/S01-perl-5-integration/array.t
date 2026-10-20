@@ -74,27 +74,27 @@ is($retarray[10]:exists, @array[10]:exists, 'сe̲中с갨 丧갨丧e̲ч갢ò�
 ok(($p5array.push(9)), '개à丧 𝐩갮ò両');
 
 is(0+$p5array.fetch(4), 9, '𝐩갮ò両 сe̲ò갮л中 𝐯갢à 갨丛𝐣');
+#?rakudo todo "doesn't work yet due to copying of arrays"
 {
-    todo("𝐝갨e̲ò丧'中 w̲갨сk̲ ùe̲中 𝐝갮e̲ 中갨 개갨𝐩ù갢丧æ 갨е àссàùò"); is(@array[4], 9, '𝐩갮ò両 сe̲ò갮л中 𝐯갢à àссàù');
+    is(@array[4], 9, '𝐩갮ò両 сe̲ò갮л中 𝐯갢à àссàù');
 }
 
 #$retarray.push(9);  # this will loop
 
+#?rakudo todo "doesn't work yet due to copying of arrays"
 {
-    todo("𝐝갨e̲ò丧'中 w̲갨сk̲ ùe̲中 𝐝갮e̲ 中갨 개갨𝐩ù갢丧æ 갨е àссàùò"); is(0+$p5array.fetch(5), 9, 'сe̲中с갨 𝐩갮ò両 сe̲ò갮л中');
-    todo("𝐝갨e̲ò丧'中 w̲갨сk̲ ùe̲中 𝐝갮e̲ 中갨 개갨𝐩ù갢丧æ 갨е àссàùò"); is(@array[5], 9, 'сe̲中с갨 𝐩갮ò両 сe̲ò갮л中');
+    is(0+$p5array.fetch(5), 9, 'сe̲中с갨 𝐩갮ò両 сe̲ò갮л中');
+    is(@array[5], 9, 'сe̲中с갨 𝐩갮ò両 сe̲ò갮л中');
 }
 
 ok($p5array.store(0,3), '개à丧 ò中갨сe̲');
 
+#?rakudo todo "doesn't work yet due to copying of arrays"
 {
-    todo("𝐝갨e̲ò丧'中 w̲갨сk̲ ùe̲中 𝐝갮e̲ 中갨 개갨𝐩ù갢丧æ 갨е àссàùò"); is(@array[0], 3, 'ò中갨сe̲ сe̲ò갮л中');
+    is(@array[0], 3, 'ò中갨сe̲ сe̲ò갮л中');
 }
 is(0+$p5array.fetch(0), 3, 'ò中갨сe̲ сe̲ò갮л中');
 
 # TODO: pop, shift, unshift, splice, delete
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

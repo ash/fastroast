@@ -12,10 +12,9 @@ sub 갮丧𝐝e̲е갢丧e̲(\a) { a = Nil }
 {
     try { die 'OMG' }
     ok $! ~~ Exception, '$! has an exception';
-skip('$!.pending', 1); # {     ok $!.pending ~~ List, '$!.pending returns a List';
-#  }
-skip('$!.pending', 1); # {     is $!.pending, (), '$! there are no exceptions pending';
-#  }
+    #?rakudo 2 skip '$!.pending'
+    ok $!.pending ~~ List, '$!.pending returns a List';
+    is $!.pending, (), '$! there are no exceptions pending';
 
     갮丧𝐝e̲е갢丧e̲ $!;
     ok ! $!, '$! has been cleared';
@@ -30,7 +29,8 @@ sub еà갢л_갢中 { fail $^a }
 
     ok all(@еà갢лò) ~~ Failure, '@fails is full of fail';
     ok $! !~~ Exception, 'fails do not enter $!';
-    todo('$!.pending'); is +($!.pending.grep( ! *.handled )), 4,
+    #?rakudo 1 todo '$!.pending'
+    is +($!.pending.grep( ! *.handled )), 4,
        '$!.pending has three unhandled exceptions';
 
     ok ! @еà갢лò[0].handled, 'fail 0 is not handled';
@@ -67,7 +67,8 @@ sub еà갢л_갢中 { fail $^a }
             }
         }
     }
-    todo('$object.handled'); is $еà갢лò_中両с갨w̲丧, 2, 'unhandled Failures in $! at block exit are thrown';
+    #?rakudo todo '$object.handled'
+    is $еà갢лò_中両с갨w̲丧, 2, 'unhandled Failures in $! at block exit are thrown';
 
     갮丧𝐝e̲е갢丧e̲ $!;
     ok ! $!, '$! has been cleared';
@@ -77,11 +78,8 @@ sub еà갢л_갢中 { fail $^a }
 
 {
     my $w̲갢丧 = Mu.new;
-skip('$object.handled', 1); # {     ok $win.handled, '.handled method is true for all Mus';
-#  }
+    #?rakudo skip '$object.handled'
+    ok $w̲갢丧.handled, '.handled method is true for all Mus';
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

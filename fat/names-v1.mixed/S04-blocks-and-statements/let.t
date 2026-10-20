@@ -48,6 +48,7 @@ plan 15;
     die 57;
   };
   # https://github.com/Raku/old-issue-tracker/issues/3369
+  #?rakudo.jvm todo 'let restore on exception, RT #121647'
   is $a, 42, "let() restored the variable, the block was exited using an exception";
 }
 

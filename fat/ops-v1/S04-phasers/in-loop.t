@@ -19,6 +19,7 @@ plan 21;
 # L<S04/"Phasers">
 
 # https://github.com/Raku/old-issue-tracker/issues/4107
+#?rakudo todo "NEXT/LEAVE ordering"
 {
     my $str;
 
@@ -34,7 +35,7 @@ plan 21;
         ENTER { $str ~= "($i E)"   }
     }
 
-    todo("NEXT/LEAVE ordering"); is $str, "(1 F)(1 E)(1 a)" ~ "(1 N)(1 Lv)" ~
+    is $str, "(1 F)(1 E)(1 a)" ~ "(1 N)(1 Lv)" ~
                   "(2 E)(2 a)(2 b)(2 N)(2 Lv)" ~
                   "(3 E)(3 a)" ~ "(3 N)(3 Lv)" ~
                   "(4 E)"  ~          "(4 Lv)(4 Lst)",
@@ -42,6 +43,7 @@ plan 21;
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/4107
+#?rakudo todo "NEXT/LEAVE ordering"
 {
     my $str;
 
@@ -65,7 +67,7 @@ plan 21;
         NEXT  { $str ~= "($i N2)"   }
     }
 
-    todo("NEXT/LEAVE ordering"); is $str,
+    is $str,
 "(1 F1)(1 F2)(1 E1)(1 E2)(1 a)" ~ "(1 N2)(1 N1)" ~  "(1 Lv2)(1 Lv1)" ~
             "(2 E1)(2 E2)(2 a)(2 b)(2 N2)(2 N1)" ~  "(2 Lv2)(2 Lv1)" ~
             "(3 E1)(3 E2)(3 a)" ~ "(3 N2)(3 N1)" ~  "(3 Lv2)(3 Lv1)" ~
@@ -104,6 +106,7 @@ plan 21;
         $i++;
         $rt121156 ~= $i;
     }
+    #?rakudo.jvm todo 'this test works "standalone", but not after previous test; RT #121145'
     is $rt121156, '1leaving2leaving3leaving',
         'LEAVE in while loop works as expected';
 }
@@ -138,8 +141,10 @@ plan 21;
     foo(3);
     is @first, [3, 2, 1, 1, 2, 1, 1, 2, 1, 1],
         'FIRST in loop works fine with recursion';
+    #?rakudo.jvm todo "got '2 3 2 3 3 2 3 2 3 3 2 3 2 3 3'"
     is @next, [1, 2, 1, 2, 3, 1, 2, 1, 2, 3, 1, 2, 1, 2, 3],
         'NEXT in loop works fine with recursion';
+    #?rakudo.jvm todo "got '2 2 3 2 2 3 2 2 3 3'"
     is @last, [1, 1, 2, 1, 1, 2, 1, 1, 2, 3],
         'LAST in loop works fine with recursion';
 }
@@ -164,10 +169,11 @@ plan 21;
     is @a, [42, 42, 42, 42, 42, 42, 42, 42, 42, 42], 'POST should not see outer $_';
   }
 
+  #?rakudo todo "KEEP should not see outer $_"
   {
     my @a = [];
     for ^10 { KEEP @a.push($_); 42 }
-    todo("KEEP should not see outer $_"); is @a, [42, 42, 42, 42, 42, 42, 42, 42, 42, 42], 'KEEP should not see outer $_';
+    is @a, [42, 42, 42, 42, 42, 42, 42, 42, 42, 42], 'KEEP should not see outer $_';
   }
 
   # to prevent regressions from happening
@@ -235,6 +241,3 @@ subtest 'FIRST+LAST loops as last statement in subs work and do not crash' => {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

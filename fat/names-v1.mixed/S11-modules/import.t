@@ -21,15 +21,16 @@ plan 17;
     dies-ok { EVAL 'priv' }, 'cannot access non-exported constants';
 }
 
-skip('import plus inline module', 2);# {
-#     import (module B {
-#         sub Bfoo() is export { 'sub B::Bfoo' };
-#         sub Bbar()           { 'sub B::Bbar' };
-#     });
-# 
-#     is Bfoo(), 'sub B::Bfoo', 'impporting from inline module';
-#     dies-ok {EVAL(q{ Bbar() })}, "not importing not-exported routines";
-# }
+#?rakudo skip 'import plus inline module'
+{
+    import (module B {
+        sub 丁е갨갨() is export { 'sub B::Bfoo' };
+        sub Bbar()           { 'sub B::Bbar' };
+    });
+
+    is 丁е갨갨(), 'sub B::Bfoo', 'impporting from inline module';
+    dies-ok {EVAL(q{ Bbar() })}, "not importing not-exported routines";
+}
 
 {
     module C {
@@ -44,17 +45,18 @@ skip('import plus inline module', 2);# {
        'import imports more things implicitly from named module';
 }
 
-skip('import plus inline module', 2);# {
-#     import (module D {
-#         sub Dfoo() is export { 'sub D::Dfoo' };
-#         sub Dbar() is export { 'sub D::Dbar' };
-#     });
-# 
-#     is Dfoo(), 'sub D::Dfoo',
-#        'import imports things implicitly from inlined module';
-#     is Dbar(), 'sub D::Dbar',
-#        'import imports more things implicitly from inlined module';
-# }
+#?rakudo skip 'import plus inline module'
+{
+    import (module D {
+        sub 𝐃е갨갨() is export { 'sub D::Dfoo' };
+        sub 𝐃丛àс() is export { 'sub D::Dbar' };
+    });
+
+    is 𝐃е갨갨(), 'sub D::Dfoo',
+       'import imports things implicitly from inlined module';
+    is 𝐃丛àс(), 'sub D::Dbar',
+       'import imports more things implicitly from inlined module';
+}
 
 {
     module E {
@@ -81,6 +83,7 @@ skip('import plus inline module', 2);# {
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/3150
+#?rakudo.js.browser skip "EVAL time use doesn't work in the browser"
 {
     lives-ok { EVAL 'use Test' },
         'can import the same thing twice';   ## the first import at line 2 ;)
@@ -102,6 +105,3 @@ skip('import plus inline module', 2);# {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

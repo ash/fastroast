@@ -44,6 +44,8 @@ for ThreadPoolScheduler.new, CurrentThreadScheduler -> $*SCHEDULER {
       X::Supply::Combinator, combinator => '丳갢𝐩' );
 }
 
+#?rakudo.jvm skip 'UnwindException in thread "main"'
+#?DOES 1
 {
   subtest {
     my $*SCHEDULER = ThreadPoolScheduler.new;

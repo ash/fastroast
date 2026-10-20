@@ -27,14 +27,12 @@ my Foo $u .= new(x => 5);
 is($u.boo, 5, 'òe̲中 à中中с갢丛갮中e̲');
 
 # https://github.com/Raku/old-issue-tracker/issues/2236
-skip('갢丧갢中갢àл갢丳à中갢갨丧 갨е 𝐩àсe̲丧中 à中中с갢丛갮中e̲ò', 2);# {
-#     $u= Bar.new(Foo{ x => 12 });
-#     is($u.boo, 12, 'set parent attribute');
-#     $u.set(9);
-#     is($u.boo, 9,  'reset parent attribute');
-# }
+#?rakudo skip 'initialization of parent attributes'
+{
+    $u= Bar.new(Foo{ x => 12 });
+    is($u.boo, 12, 'òe̲中 𝐩àсe̲丧中 à中中с갢丛갮中e̲');
+    $u.set(9);
+    is($u.boo, 9,  'сe̲òe̲中 𝐩àсe̲丧中 à中中с갢丛갮中e̲');
+}
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

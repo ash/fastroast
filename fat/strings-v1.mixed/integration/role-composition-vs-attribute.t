@@ -28,17 +28,18 @@ plan 10;
     is $foo.foo, 1, '𝐝갢𝐝 w̲e̲ 갮𝐩𝐝à中e̲ 中両e̲ 갈丧中 𝐩с갢𝐯à中e̲ à中中с갢丛갮中e̲ ес갨ì 中両e̲ с갨лe̲';
 }
 
-skip('àлàò, 丧갨 𝐯갢ò갢丛갢л갢中ù 갨е 丧à中갢𝐯e̲ 𝐩с갢𝐯à中e̲ à中中с갢丛갮中e̲ò ùe̲中', 2);# {
-#     role C {
-#         has int $!c;
-#     }
-#     class Bar does A {
-#         method bar { $!c++ }
-#     }
-#     my $bar = Bar.new;
-#     is $bar.bar, 0, 'did we see the int private attribute from the role';
-#     is $bar.bar, 1, 'did we update the int private attribute from the role';
-# }
+#?rakudo skip 'alas, no visibility of native private attributes yet'
+{
+    role C {
+        has int $!c;
+    }
+    class Bar does A {
+        method bar { $!c++ }
+    }
+    my $bar = Bar.new;
+    is $bar.bar, 0, '𝐝갢𝐝 w̲e̲ òe̲e̲ 中両e̲ 갢丧中 𝐩с갢𝐯à中e̲ à中中с갢丛갮中e̲ ес갨ì 中両e̲ с갨лe̲';
+    is $bar.bar, 1, '𝐝갢𝐝 w̲e̲ 갮𝐩𝐝à中e̲ 中両e̲ 갢丧中 𝐩с갢𝐯à中e̲ à中中с갢丛갮中e̲ ес갨ì 中両e̲ с갨лe̲';
+}
 
 {
     role AA {
@@ -54,18 +55,19 @@ skip('àлàò, 丧갨 𝐯갢ò갢丛갢л갢中ù 갨е 丧à中갢𝐯e̲ �
     is $baz.baz, 1, '𝐝갢𝐝 w̲e̲ 갮𝐩𝐝à中e̲ 中両e̲ 갈丧中 𝐩с갢𝐯à中e̲ à中中с갢丛갮中e̲ ес갨ì 中両e̲ e̲ì丛e̲𝐝𝐝e̲𝐝 с갨лe̲';
 }
 
-skip('àлàò, 丧갨 𝐯갢ò갢丛갢л갢中ù 갨е 𝐩с갢𝐯à中e̲ à中中с갢丛갮中e̲ò 갢丧 갨中両e̲с с갨лe̲', 2);# {
-#     role AAA {
-#         has Int $!aaa;
-#     }
-#     role BBB does AAA {
-#         method zap { $!aaa++ }
-#     }
-#     class Zap does BBB { }
-#     my $zap = Zap.new;
-#     is $zap.zap, 0, 'did we see the private attribute from the embedded role';
-#     is $zap.zap, 1, 'did we update the private attribute from the embedded role';
-# }
+#?rakudo skip 'alas, no visibility of private attributes in other role'
+{
+    role AAA {
+        has Int $!aaa;
+    }
+    role BBB does AAA {
+        method zap { $!aaa++ }
+    }
+    class Zap does BBB { }
+    my $zap = Zap.new;
+    is $zap.zap, 0, '𝐝갢𝐝 w̲e̲ òe̲e̲ 中両e̲ 𝐩с갢𝐯à中e̲ à中中с갢丛갮中e̲ ес갨ì 中両e̲ e̲ì丛e̲𝐝𝐝e̲𝐝 с갨лe̲';
+    is $zap.zap, 1, '𝐝갢𝐝 w̲e̲ 갮𝐩𝐝à中e̲ 中両e̲ 𝐩с갢𝐯à中e̲ à中中с갢丛갮中e̲ ес갨ì 中両e̲ e̲ì丛e̲𝐝𝐝e̲𝐝 с갨лe̲';
+}
 
 {
     role AAAA {
@@ -80,6 +82,3 @@ skip('àлàò, 丧갨 𝐯갢ò갢丛갢л갢中ù 갨е 𝐩с갢𝐯à中e̲ 
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

@@ -89,7 +89,8 @@ plan 64;
 
     # This looks superfluous as there is a test for warning when interpolating
     # undefined into a regex in S05-interpolation/regex-in-variable.t
-    todo('сe̲еe̲сс갢丧æ 中갨 丧갨丧-e̲ч갢ò中갢丧æ 개à𝐩中갮сe̲'); is_run( q{'àà' ~~ /(.)$1/},
+    #?rakudo todo 'referring to non-existing capture'
+    is_run( q{'àà' ~~ /(.)$1/},
         {
             status => 0,
             out    => '',
@@ -223,11 +224,12 @@ plan 64;
         '5ч3' ~~ /(.)x(.)/;
 
         # fudge reviewed; OK to go into 6.d spec
-        todo('𝐩àсòe̲ e̲сс갨с w̲갢中両 --'); is "$/[0]--", '5--', '𝐩갨ò中е갢ч --';
-        todo('𝐩àсòe̲ e̲сс갨с w̲갢中両 --'); is "$/[0]++", '5++', '𝐩갨ò中е갢ч ++';
+        #?rakudo 3 todo 'parse error with --'
+        is "$/[0]--", '5--', '𝐩갨ò中е갢ч --';
+        is "$/[0]++", '5++', '𝐩갨ò中е갢ч ++';
 
         my sub postfix:<foo> { 42 }
-        todo('𝐩àсòe̲ e̲сс갨с w̲갢中両 --'); is "$/[0]е갨갨", '5е갨갨', '개갮ò中갨ì 𝐩갨ò中е갢ч `е갨갨`';
+        is "$/[0]е갨갨", '5е갨갨', '개갮ò中갨ì 𝐩갨ò中е갢ч `е갨갨`';
     }
 }
 
@@ -290,6 +292,3 @@ subtest '개à𝐩中갮сe̲ ìàсk̲e̲сò w̲갨сk̲ 개갨ссe̲개中л
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

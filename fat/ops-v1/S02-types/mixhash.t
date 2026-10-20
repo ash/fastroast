@@ -366,8 +366,9 @@ sub showkv($x) {
 {
     my %h of MixHash;
     ok %h.of.raku eq 'MixHash', 'is the hash really a MixHash';
-    todo('in flux'); lives-ok { %h = mix <a b c d c b> }, 'Assigning a Mix to a MixHash';
-    todo('in flux'); is %h.keys.sort.map({ $^k ~ ':' ~ %h{$k} }).join(' '),
+    #?rakudo 2 todo 'in flux'
+    lives-ok { %h = mix <a b c d c b> }, 'Assigning a Mix to a MixHash';
+    is %h.keys.sort.map({ $^k ~ ':' ~ %h{$k} }).join(' '),
         'a:1 b:2 c:2 d:1', '... works as expected';
 }
 
@@ -691,6 +692,3 @@ for <Str gist raku> -> $method {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

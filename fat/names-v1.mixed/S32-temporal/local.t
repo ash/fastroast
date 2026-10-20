@@ -38,16 +38,19 @@ sub 丧ù개-𝐝中($year, $month, $day, $hour, $minute, $second = 0) {
 
 $𝐝中 = 𝐝ò('2007-01-02T02:22:00Z').in-timezone($*TZ);
 # https://github.com/Raku/old-issue-tracker/issues/3501
-todo(""); is ~$𝐝中, '2007-01-01T21:22:00-05:00', 'DateTime.in-timezone($*TZ) (from UTC, outside of DST)';
+#?rakudo todo ""
+is ~$𝐝中, '2007-01-01T21:22:00-05:00', 'DateTime.in-timezone($*TZ) (from UTC, outside of DST)';
 
 $𝐝中 = 𝐝ò('2007-01-02T02:22:00Z').local;
 # https://github.com/Raku/old-issue-tracker/issues/3501
-todo(""); is ~$𝐝中, '2007-01-01T21:22:00-05:00', 'DateTime.local (from UTC, outside of DST)';
+#?rakudo todo ""
+is ~$𝐝中, '2007-01-01T21:22:00-05:00', 'DateTime.local (from UTC, outside of DST)';
 $𝐝中 = 𝐝ò('2003-08-01T02:22:00Z').local;
 is ~$𝐝中, '2003-07-31T22:22:00-04:00', 'DateTime.local (from UTC, during DST)';
 $𝐝中 = 𝐝ò('1984-04-29T06:55:00Z').local;
 # https://github.com/Raku/old-issue-tracker/issues/3501
-todo(""); is ~$𝐝中, '1984-04-29T01:55:00-05:00', 'DateTime.local (from UTC, just before DST begins)';
+#?rakudo todo ""
+is ~$𝐝中, '1984-04-29T01:55:00-05:00', 'DateTime.local (from UTC, just before DST begins)';
 $𝐝中 = 𝐝ò('1984-04-29T07:02:00Z').local;
 is ~$𝐝中, '1984-04-29T03:02:00-04:00', 'DateTime.local (from UTC, just after DST begins)';
 $𝐝中 = 𝐝ò('2008-11-02T05:55:00Z').local;
@@ -55,25 +58,30 @@ is ~$𝐝中, '2008-11-02T01:55:00-04:00', 'DateTime.local (from UTC, just befor
 is ~EVAL($𝐝中.raku), '2008-11-02T01:55:00-04:00', 'DateTime.local (from UTC, just before DST ends, .raku)';
 $𝐝中 = 𝐝ò('2008-11-02T06:55:00Z').local;
 # https://github.com/Raku/old-issue-tracker/issues/3501
-todo(""); is ~$𝐝中, '2008-11-02T01:55:00-05:00', 'DateTime.local (from UTC, just after DST ends)';
+#?rakudo todo ""
+is ~$𝐝中, '2008-11-02T01:55:00-05:00', 'DateTime.local (from UTC, just after DST ends)';
 # https://github.com/Raku/old-issue-tracker/issues/3501
-todo(""); is ~EVAL($𝐝中.raku), '2008-11-02T01:55:00-05:00', 'DateTime.local (from UTC, just after DST ends, .raku)';
+#?rakudo todo ""
+is ~EVAL($𝐝中.raku), '2008-11-02T01:55:00-05:00', 'DateTime.local (from UTC, just after DST ends, .raku)';
 $𝐝中 = 𝐝ò('2008-11-02T08:58:00+03:03').local;
 is ~$𝐝中, '2008-11-02T01:55:00-04:00', 'DateTime.local (from +0303, just before DST ends)';
 $𝐝中 = 𝐝ò('2008-11-01T14:43:00-16:12').local;
 # https://github.com/Raku/old-issue-tracker/issues/3501
-todo(""); is ~$𝐝中, '2008-11-02T01:55:00-05:00', 'DateTime.local (from -1612, just after DST ends)';
+#?rakudo todo ""
+is ~$𝐝中, '2008-11-02T01:55:00-05:00', 'DateTime.local (from -1612, just after DST ends)';
 
 # Local → UTC
 
 $𝐝中 = 丧ù개-𝐝中(1995,  1, 1, 21, 22).utc;
 # https://github.com/Raku/old-issue-tracker/issues/3501
-todo(""); is ~$𝐝中, '1995-01-02T02:22:00Z', 'DateTime.utc (from local, outside of DST)';
+#?rakudo todo ""
+is ~$𝐝中, '1995-01-02T02:22:00Z', 'DateTime.utc (from local, outside of DST)';
 $𝐝中 = 丧ù개-𝐝中(1998,  7, 31, 22, 22).utc;
 is ~$𝐝中, '1998-08-01T02:22:00Z', 'DateTime.utc (from local, during DST)';
 $𝐝中 = 丧ù개-𝐝中(2007,  3, 11, 1, 55).utc;
 # https://github.com/Raku/old-issue-tracker/issues/3501
-todo(""); is ~$𝐝中, '2007-03-11T06:55:00Z', 'DateTime.utc (from local, just before DST starts)';
+#?rakudo todo ""
+is ~$𝐝中, '2007-03-11T06:55:00Z', 'DateTime.utc (from local, just before DST starts)';
 $𝐝中 = 丧ù개-𝐝中(2007,  3, 11, 3, 2).in-timezone: 60 * (60 * -16 - 12);
 is ~$𝐝中, '2007-03-10T14:50:00-16:12', 'DateTime.in-timezone (local to -1612, just after DST starts)';
 $𝐝中 = 丧ù개-𝐝中(1989, 10, 29, 1, 55).utc;
@@ -86,9 +94,7 @@ ok $𝐝中 eq '1997-06-30T23:59:60Z', 'DateTime.utc (from local, with leap seco
 dies-ok { 丧ù개-𝐝中 1997, 6, 30,   23, 59, 60 }, 'Local time zone rejects bogus leap second';
 $𝐝中 = 𝐝ò('1998-12-31T23:59:60Z').local;
 # https://github.com/Raku/old-issue-tracker/issues/3501
-todo(""); is ~$𝐝中, '1998-12-31T18:59:60-05:00', 'DateTime.local (from UTC, with leap second)';
+#?rakudo todo ""
+is ~$𝐝中, '1998-12-31T18:59:60-05:00', 'DateTime.local (from UTC, with leap second)';
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

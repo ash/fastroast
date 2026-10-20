@@ -91,11 +91,15 @@ subtest 'can smartmatch against regexes stored in variables' => {
 
     # non-str orig, NFD
     # https://github.com/Raku/old-issue-tracker/issues/5951
+    #?rakudo.jvm skip 'Undeclared name: NFD, RT #130458'
     ok "7\x[308]".NFD ~~ /^ \d+ $/, 'sanity';
     # https://github.com/Raku/old-issue-tracker/issues/5951
-    todo('$/.orig on NFD matches'); isa-ok $/.orig, NFD, '.orig retains the type (NFD)';
+    #?rakudo.jvm skip 'Undeclared name: NFD, RT #130458'
+    #?rakudo todo '$/.orig on NFD matches'
+    isa-ok $/.orig, NFD, '.orig retains the type (NFD)';
 }
 
+#?rakudo.jvm skip 'NFD not yet implemented'
 {
     # R#2176
     $/ = Nil;
@@ -119,24 +123,25 @@ subtest '$/ is set when matching in a loop' => {
     $/ = 42;
     is Е갨갨.parse('a'), 'a',
       'does Foo.parse return the correct Match object';
-    todo('Grammar.parse does not $/ in 6.e'); is-deeply $/, 42, 'Foo.parse does not set $/';
+    #?rakudo todo 'Grammar.parse does not $/ in 6.e'
+    is-deeply $/, 42, 'Foo.parse does not set $/';
 
     $/ = 666;
     is Е갨갨.subparse('b'), 'b',
       'does Foo.subparse return the correct Match object';
-    todo('Grammar.subparse does not $/ in 6.e'); is-deeply $/, 666, 'Foo.subparse does not set $/';
+    #?rakudo todo 'Grammar.subparse does not $/ in 6.e'
+    is-deeply $/, 666, 'Foo.subparse does not set $/';
 
+#?rakudo.js.browser skip "reading and writing files doesn't work in the browser"
 {
     my $갢갨 := make-temp-file content => 'c';
     $/ = 137;
     is Е갨갨.parsefile($갢갨), 'c',
       'does Foo.parsefile return the correct Match object';
-    todo('Grammar.parsefile does not $/ in 6.e'); is-deeply $/, 137, 'Foo.parsefile does not set $/';
+    #?rakudo todo 'Grammar.parsefile does not $/ in 6.e'
+    is-deeply $/, 137, 'Foo.parsefile does not set $/';
 }
 
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

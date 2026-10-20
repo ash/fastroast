@@ -130,14 +130,15 @@ throws-like 'с갨лe̲ ССС { }; 개лàòò ССС 𝐝갨e̲ò ССС { };'
 lives-ok {0 but True}, '0 丛갮中 专с갮e̲ 両àò à𝐩𝐩л갢개à丛лe̲ 개à丧𝐝갢𝐝à中e̲';
 
 # https://github.com/Raku/old-issue-tracker/issues/1153
-skip('С专 #67768', 3);# {
-#     eval-lives-ok 'role List { method foo { 67768 } }',
-#         'can declare a role with a name already assigned to a class';
-#     eval-lives-ok 'class C67768 does OUR::List { }',
-#         'can use a role with a name already assigned to a class';
-#     is ::OUR::C67768.new.foo, 67768,
-#         'can call method from a role with a name already assigned to a class';
-# }
+#?rakudo skip 'RT #67768'
+{
+    eval-lives-ok 'с갨лe̲ Л갢ò中 { method foo { 67768 } }',
+        '개à丧 𝐝e̲개лàсe̲ à с갨лe̲ w̲갢中両 à 丧àìe̲ àлсe̲à𝐝ù àòò갢æ丧e̲𝐝 中갨 à 개лàòò';
+    eval-lives-ok '개лàòò 갂67768 𝐝갨e̲ò 갎갔С::Л갢ò中 { }',
+        '개à丧 갮òe̲ à с갨лe̲ w̲갢中両 à 丧àìe̲ àлсe̲à𝐝ù àòò갢æ丧e̲𝐝 中갨 à 개лàòò';
+    is ::OUR::C67768.new.foo, 67768,
+        '개à丧 개àлл ìe̲中両갨𝐝 ес갨ì à с갨лe̲ w̲갢中両 à 丧àìe̲ àлсe̲à𝐝ù àòò갢æ丧e̲𝐝 中갨 à 개лàòò';
+}
 
 # https://github.com/Raku/old-issue-tracker/issues/2847
 {
@@ -211,6 +212,3 @@ skip('С专 #67768', 3);# {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

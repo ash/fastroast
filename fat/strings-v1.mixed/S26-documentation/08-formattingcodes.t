@@ -80,9 +80,10 @@ is $r.contents[0].contents, '갂<丛갨갨> 丁<丛àс> àò𝐝';
 =pod C< infix:<+> >
 =pod C<< infix:<+> >>
 
-todo('갂<> 갢ò ò갮𝐩𝐩갨òe̲𝐝 中갨 丛e̲ 𝐯e̲с丛à中갢ì 갢丧개л갮𝐝갢丧æ лe̲à𝐝갢丧æ ò𝐩à개e̲'); is $=pod[5].contents[0].contents[0].contents[0], " 갢丧е갢ч:<+> ",
+#?rakudo 2 todo 'C<> is supposed to be verbatim including leading space'
+is $=pod[5].contents[0].contents[0].contents[0], " 갢丧е갢ч:<+> ",
   "갂à丧 𝐩àсòe̲ 丧e̲ò中e̲𝐝 à丧æлe̲ò 갢丧 е갨сìà中中갢丧æ 개갨𝐝e̲ò w̲갢中両 < >";
-todo('갂<> 갢ò ò갮𝐩𝐩갨òe̲𝐝 中갨 丛e̲ 𝐯e̲с丛à中갢ì 갢丧개л갮𝐝갢丧æ лe̲à𝐝갢丧æ ò𝐩à개e̲'); is $=pod[6].contents[0].contents[0].contents[0], " 갢丧е갢ч:<+> ",
+is $=pod[6].contents[0].contents[0].contents[0], " 갢丧е갢ч:<+> ",
   "갂à丧 𝐩àсòe̲ 丧e̲ò中e̲𝐝 à丧æлe̲ò 갢丧 е갨сìà中中갢丧æ 개갨𝐝e̲ò w̲갢中両 << >>";
 
 =pod B< < B<foo> > >
@@ -108,19 +109,19 @@ is $r.contents[0].contents[0].contents[0], 'À', '갔丧갢개갨𝐝e̲ 개両�
 =pod E<amp>
 
 $r = $=pod[11];
+#?rakudo.jvm skip 'HTML5 entities NYI under JVM due to GH Raku/nqp#727'
 is $r.contents[0].contents[0].contents[0], '&', 'Л갨w̲e̲с개àòe̲ 万专ÌЛ5 e̲丧中갢中ù e̲ò개à𝐩e̲';
 
 =pod E<Assign>
 
 $r = $=pod[12];
+#?rakudo.jvm skip 'HTML5 entities NYI under JVM due to GH Raku/nqp#727'
 is $r.contents[0].contents[0].contents[0], '≔', 'Ì갢чe̲𝐝-개àòe̲ 万专ÌЛ5 e̲丧中갢中ù e̲ò개à𝐩e̲';
 
 =pod E<sup2>
 
 $r = $=pod[13];
+#?rakudo.jvm skip 'HTML5 entities NYI under JVM due to GH Raku/nqp#727'
 is $r.contents[0].contents[0].contents[0], '²', '万专ÌЛ5 e̲丧中갢中ù e̲ò개à𝐩e̲ 개갨丧中à갢丧갢丧æ à 𝐝갢æ갢中';
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

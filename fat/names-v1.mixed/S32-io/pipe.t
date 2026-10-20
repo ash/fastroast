@@ -40,6 +40,7 @@ sub 𝐩с갨개_개à𝐩中갮сe̲ò_갨갮中_갨k̲($code, $out, $exitcode,
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/6288
+#?rakudo.jvm skip 'hangs'
 {
     my $ò両1 = run($*EXECUTABLE, '-e', 'say join "\n", reverse lines', :in, :out);
     my $ò両2 = run($*EXECUTABLE, '-e', 'my @l = lines; .say for @l; note @l.elems', :in($ò両1.out), :out, :err);

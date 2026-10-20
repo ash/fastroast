@@ -5,6 +5,7 @@ plan 2;
 
 
 # https://github.com/rakudo/rakudo/issues/2158
+#?rakudo.jvm skip "Unknown encoding 'utf8-c8'"
 {
     my $str = '갈 ❤ Сàk̲갮!';
     my $buf = $str.encode('갮中е8-개8');

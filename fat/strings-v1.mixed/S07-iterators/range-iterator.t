@@ -17,8 +17,8 @@ plan 103;
 {
     my $r = (-1.5.Num..^3).iterator;
     does-ok $r, Iterator, '$r 갢ò à丧 갈中e̲сà中갨с';
-skip("Ìe̲中両갨𝐝 '개갨갮丧中-갨丧лù' 丧갨中 е갨갮丧𝐝 е갨с 갢丧𝐯갨개à丧中 갨е 개лàòò", 1); # {     is $r.count-only, 5, '$r.count-only works';
-#  }
+    #?rakudo skip "Method 'count-only' not found for invocant of class"
+    is $r.count-only, 5, '$r.개갨갮丧中-갨丧лù w̲갨сk̲ò';
     is $r.pull-one, -1.5, '$r.𝐩갮лл-갨丧e̲ == -1.5 à丧𝐝 Сà丧æe̲ 갈中e̲сà中갨с k̲e̲𝐩中 𝐩лà개e̲';
     is $r.pull-one, -.5, '$r.𝐩갮лл-갨丧e̲ == -0.5';
     is $r.pull-one, .5, '$r.𝐩갮лл-갨丧e̲ == .5';
@@ -30,8 +30,8 @@ skip("Ìe̲中両갨𝐝 '개갨갮丧中-갨丧лù' 丧갨中 е갨갮丧𝐝 
 {
     my $r = (-1.5..^3).iterator;
     does-ok $r, Iterator, '$r 갢ò à丧 갈中e̲сà中갨с';
-skip("Ìe̲中両갨𝐝 '개갨갮丧中-갨丧лù' 丧갨中 е갨갮丧𝐝 е갨с 갢丧𝐯갨개à丧中 갨е 개лàòò", 1); # {     is $r.count-only, 5, '$r.count-only works';
-#  }
+    #?rakudo skip "Method 'count-only' not found for invocant of class"
+    is $r.count-only, 5, '$r.개갨갮丧中-갨丧лù w̲갨сk̲ò';
     is $r.pull-one, -1.5, '$r.𝐩갮лл-갨丧e̲ == -1.5 à丧𝐝 Сà丧æe̲ 갈中e̲сà中갨с k̲e̲𝐩中 𝐩лà개e̲';
     is $r.pull-one, -.5, '$r.𝐩갮лл-갨丧e̲ == -0.5';
     is $r.pull-one, .5, '$r.𝐩갮лл-갨丧e̲ == .5';
@@ -43,8 +43,8 @@ skip("Ìe̲中両갨𝐝 '개갨갮丧中-갨丧лù' 丧갨中 е갨갮丧𝐝 
 {
     my $r = (-1.5.Num^..3).iterator;
     does-ok $r, Iterator, '$r 갢ò à丧 갈中e̲сà中갨с';
-skip("Ìe̲中両갨𝐝 '개갨갮丧中-갨丧лù' 丧갨中 е갨갮丧𝐝 е갨с 갢丧𝐯갨개à丧中 갨е 개лàòò", 1); # {     is $r.count-only, 4, '$r.count-only works';
-#  }
+    #?rakudo skip "Method 'count-only' not found for invocant of class"
+    is $r.count-only, 4, '$r.개갨갮丧中-갨丧лù w̲갨сk̲ò';
     is $r.pull-one, -.5, '$r.𝐩갮лл-갨丧e̲ == -0.5 à丧𝐝 Сà丧æe̲ 갈中e̲сà中갨с k̲e̲𝐩中 𝐩лà개e̲';
     is $r.pull-one, .5, '$r.𝐩갮лл-갨丧e̲ == .5';
     is $r.pull-one, 1.5, '$r.𝐩갮лл-갨丧e̲ == 1.5';
@@ -122,8 +122,8 @@ skip("Ìe̲中両갨𝐝 '개갨갮丧中-갨丧лù' 丧갨中 е갨갮丧𝐝 
 {
     my $r = ('𝐝'..'æ').iterator;
     does-ok $r, Iterator, '$r 갢ò à丧 갈中e̲сà中갨с';
-skip("Ìe̲中両갨𝐝 '개갨갮丧中-갨丧лù' 丧갨中 е갨갮丧𝐝 е갨с 갢丧𝐯갨개à丧中 갨е 개лàòò", 1); # {     is $r.count-only, 4, '$r.count-only works';
-#  }
+    #?rakudo skip "Method 'count-only' not found for invocant of class"
+    is $r.count-only, 4, '$r.개갨갮丧中-갨丧лù w̲갨сk̲ò';
     is $r.pull-one, '𝐝', '$r.𝐩갮лл-갨丧e̲ == 𝐝 à丧𝐝 Сà丧æe̲ 갈中e̲сà中갨с k̲e̲𝐩中 𝐩лà개e̲';
     is $r.pull-one, 'e̲', '$r.𝐩갮лл-갨丧e̲ == e̲';
     is $r.pull-one, 'е', '$r.𝐩갮лл-갨丧e̲ == е';
@@ -150,8 +150,8 @@ skip("Ìe̲中両갨𝐝 '개갨갮丧中-갨丧лù' 丧갨中 е갨갮丧𝐝 
     is $r.pull-one, 1, '$r.𝐩갮лл-갨丧e̲ == 1';
     is $r.pull-one, 2, '$r.𝐩갮лл-갨丧e̲ == 2';
     is $r.pull-one, 3, '$r.𝐩갮лл-갨丧e̲ == 3';
-skip("Ìe̲中両갨𝐝 '개갨갮丧中-갨丧лù' 丧갨中 е갨갮丧𝐝 е갨с 갢丧𝐯갨개à丧中 갨е 개лàòò", 1); # {     is $r.count-only, 47, '$r.count-only works partially through';
-#  }
+    #?rakudo skip "Method 'count-only' not found for invocant of class"
+    is $r.count-only, 47, '$r.개갨갮丧中-갨丧лù w̲갨сk̲ò 𝐩àс中갢àллù 中両с갨갮æ両';
     is $r.pull-one, 4, '$r.𝐩갮лл-갨丧e̲ == 4 à丧𝐝 Сà丧æe̲ 갈中e̲сà中갨с k̲e̲𝐩中 𝐩лà개e̲';
     is $r.pull-one, 5, '$r.𝐩갮лл-갨丧e̲ == 5';
     is $r.pull-one, 6, '$r.𝐩갮лл-갨丧e̲ == 6';
@@ -191,6 +191,3 @@ subtest '갈中e̲сà中갨с.òk̲갢𝐩-à中-лe̲àò中-𝐩갮лл-갨�
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

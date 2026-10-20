@@ -34,18 +34,16 @@ BEGIN throws-like 'ò갮丛 е갨갨;', X::UnitScope::Invalid,
         'сe̲𝐝e̲е갢丧갢丧æ e̲ч갢ò中갢丧æ ò갮丛с갨갮中갢丧e̲ 𝐝갢e̲ò';
 }
 
-skip("ò갮𝐩e̲сòe̲𝐝e̲ 不Ù갈", 1);# {
-#     use MONKEY-TYPING;
-#     sub hail {26}
-#     supersede sub hail {8}
-#     is(hail(), 8, 'redefining non-stub subroutine with supersede');
-# }
+#?rakudo skip "supersede NYI"
+{
+    use MONKEY-TYPING;
+    sub hail {26}
+    supersede sub hail {8}
+    is(hail(), 8, 'сe̲𝐝e̲е갢丧갢丧æ 丧갨丧-ò中갮丛 ò갮丛с갨갮中갢丧e̲ w̲갢中両 ò갮𝐩e̲сòe̲𝐝e̲');
+}
 
 lives-ok { sub {...} }, '丧갨中 e̲чe̲개갮e̲𝐝 ò中갮丛 개갨𝐝e̲ 갢ò е갢丧e̲';
 dies-ok { (sub {...}).() ~ '' }, 'e̲чe̲개갮e̲𝐝 ò中갮丛 개갨𝐝e̲ æ갨e̲ò 丁갎갎Ì w̲両e̲丧 갮òe̲𝐝';
 dies-ok { use fatal; (sub { ... }).() }, 'e̲чe̲갮개中e̲𝐝 ò中갮丛 개갨𝐝e̲ æ갨e̲ò 丁갎갎Ì 갮丧𝐝e̲с еà中àл';
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

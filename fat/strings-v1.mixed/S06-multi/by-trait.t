@@ -43,11 +43,9 @@ plan 13;
 {
     multi x(int $x is rw) { 1 }
     multi x(Int $x) { 2 }
-    todo("갎丧лù 両à𝐩𝐩e̲丧 中갨 𝐩àòò 丛e̲개à갮òe̲ 中両e̲ 갨𝐩中갢ì갢丳e̲с 갢丧л갢丧e̲ò 中両e̲ ì갨ò中 中с갢𝐯갢àл 개àòe̲ò"); is x(my int $x = 42), 1, 'сw̲ 丧à中갢𝐯e̲ 개갨丧中à갢丧e̲с 両갢中ò 개갨ссe̲개中 개à丧𝐝갢𝐝à中e̲';
+    #?rakudo todo "Only happen to pass because the optimizer inlines the most trivial cases"
+    is x(my int $x = 42), 1, 'сw̲ 丧à中갢𝐯e̲ 개갨丧中à갢丧e̲с 両갢中ò 개갨ссe̲개中 개à丧𝐝갢𝐝à中e̲';
     is x(1), 2, '丧갨丧-сw̲ л갢中e̲сàл 𝐝갨e̲ò 丧갨中 сe̲à개両 갢ò сw̲ 개à丧𝐝갢𝐝à中e̲';
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

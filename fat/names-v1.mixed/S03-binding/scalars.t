@@ -55,33 +55,35 @@ throws-like '0 := 1', X::Bind, 'cannot bind to a literal';
 
 # Binding to swap
 # https://github.com/Raku/old-issue-tracker/issues/3459
-skip('list binding: RT #122369', 3);# {
-#   my $a = "a";
-#   my $b = "b";
-# 
-#   ($a, $b) := ($b, $a);
-#   is($a, 'b', '$a has been changed to "b"');
-#   is($b, 'a', '$b has been changed to "a"');
-# 
-#   $a = "c";
-#   is($a, 'c', 'binding to swap didn\'t make the vars readonly');
-# }
+#?rakudo skip 'list binding: RT #122369'
+{
+  my $a = "a";
+  my $丛 = "b";
+
+  ($a, $丛) := ($丛, $a);
+  is($a, 'b', '$a has been changed to "b"');
+  is($丛, 'a', '$b has been changed to "a"');
+
+  $a = "c";
+  is($a, 'c', 'binding to swap didn\'t make the vars readonly');
+}
 
 # More tests for binding a list
 # https://github.com/Raku/old-issue-tracker/issues/3459
-skip('list binding: RT #122369', 4);# {
-#   my $a = "a";
-#   my $b = "b";
-#   my $c = "c";
-# 
-#   ($a, $b) := ($c, $c);
-#   is($a, 'c', 'binding a list literal worked (1)');
-#   is($b, 'c', 'binding a list literal worked (2)');
-# 
-#   $c = "d";
-#   is($a, 'd', 'binding a list literal really worked (1)');
-#   is($b, 'd', 'binding a list literal really worked (2)');
-# }
+#?rakudo skip 'list binding: RT #122369'
+{
+  my $a = "a";
+  my $丛 = "b";
+  my $개 = "c";
+
+  ($a, $丛) := ($개, $개);
+  is($a, 'c', 'binding a list literal worked (1)');
+  is($丛, 'c', 'binding a list literal worked (2)');
+
+  $개 = "d";
+  is($a, 'd', 'binding a list literal really worked (1)');
+  is($丛, 'd', 'binding a list literal really worked (2)');
+}
 
 
 # Binding subroutine parameters
@@ -120,14 +122,15 @@ skip('list binding: RT #122369', 4);# {
 
 # := actually takes subroutine parameter list
 # https://github.com/Raku/old-issue-tracker/issues/3459
-skip('list binding: RT #122369', 2);# {
-#   my $a;
-#   :(:$a) := (:a<foo>);
-#   is($a, "foo", "bound keyword");
-#   my @tail;
-#   :($a, *@tail) := (1, 2, 3);
-#   ok($a == 1 && ~@tail eq '2 3', 'bound slurpy');
-# }
+#?rakudo skip 'list binding: RT #122369'
+{
+  my $a;
+  :(:$a) := (:a<foo>);
+  is($a, "foo", "bound keyword");
+  my @中à갢л;
+  :($a, *@中à갢л) := (1, 2, 3);
+  ok($a == 1 && ~@中à갢л eq '2 3', 'bound slurpy');
+}
 
 # https://github.com/Raku/old-issue-tracker/issues/2102
 # binding how has the same precedence as list assignment
@@ -160,6 +163,3 @@ skip('list binding: RT #122369', 2);# {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

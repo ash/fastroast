@@ -37,16 +37,12 @@ subtest 'smartmatch on signatures with literals' => {
     }
     subtest 'Rat' => {
         plan 5;
-skip('crashes', 1); # {         is :(<1.2>)    ~~ :(½), False, ':D ~~ :D (false)';
-#  }
-skip('crashes', 1); # {         is :(½)        ~~ :(½), True,  ':D ~~ :D (true)';
-#  }
-skip('crashes', 1); # {         is :(Rat)      ~~ :(½), False, ':U ~~ :D';
-#  }
-skip('crashes', 1); # {         is :(<1.2>, ½) ~~ :(½, ½),     False, ':D x 2 ~~ :D x2 (false)';
-#  }
-skip('crashes', 1); # {         is :(<1.2>, ½) ~~ :(<1.2>, ½), True,  ':D x 2 ~~ :D x2 (true)';
-#  }
+        #?rakudo 5 skip 'crashes'
+        is :(<1.2>)    ~~ :(½), False, ':D ~~ :D (false)';
+        is :(½)        ~~ :(½), True,  ':D ~~ :D (true)';
+        is :(Rat)      ~~ :(½), False, ':U ~~ :D';
+        is :(<1.2>, ½) ~~ :(½, ½),     False, ':D x 2 ~~ :D x2 (false)';
+        is :(<1.2>, ½) ~~ :(<1.2>, ½), True,  ':D x 2 ~~ :D x2 (true)';
     }
     subtest 'Num' => {
         plan 5;
@@ -73,6 +69,3 @@ eval-lives-ok ｢:($:)｣, 'invocant marker is allowed in bare signature';
 is :(*%) ~~ :(), False, 'smartmatch with no slurpy on right side';
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

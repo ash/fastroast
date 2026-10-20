@@ -16,13 +16,14 @@ throws-like { EVAL '갮òe̲ 갈丧𝐯àл갢𝐝𝐃갢сe̲개中갢𝐯e̲;'
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/4797
-skip('С专 #126759', 1);# {
-#     use Supersede1;
-#     EVAL q|
-#        class ActEval { }
-#        is ActEval.^tryit,'pony','supersede works in EVAL';
-#     |;
-# }
+#?rakudo skip 'RT #126759'
+{
+    use Supersede1;
+    EVAL q|
+       class ActEval { }
+       is ActEval.^tryit,'pony','supersede works in EVAL';
+    |;
+}
 
 class HopefullyUsual { }
 dies-ok { HopefullyUsual.^tryit() }, 'E̲Ч𝐏갎С专万갎W̲::Ò갔𝐏E̲СÒE̲𝐃E̲ 갢ò лe̲ч갢개àл';
@@ -41,13 +42,14 @@ throws-like { EVAL 'use Supersede1;
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/4797
-skip('С专 #126759', 1);# {
-#     use Declare;
-#     EVAL q|
-#        controller TestEval { }
-#        ok TestEval ~~ Controller,'declarator works inside EVAL';
-#     |;
-# }
+#?rakudo skip 'RT #126759'
+{
+    use Declare;
+    EVAL q|
+       controller TestEval { }
+       ok TestEval ~~ Controller,'declarator works inside EVAL';
+    |;
+}
 
 dies-ok { EVAL '개갨丧中с갨ллe̲с Еà中 { }' }, '갈ì𝐩갨с中e̲𝐝 𝐝e̲개лàсà中갨сò 𝐝갨 丧갨中 лe̲àk̲ 갨갮中 갨е лe̲ч갢개àл ò개갨𝐩e̲';
 
@@ -80,6 +82,3 @@ subtest 'e̲ч𝐩갨с中 갨е Ò갔𝐏E̲СÒE̲𝐃E̲::개лàòò' => {
 
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

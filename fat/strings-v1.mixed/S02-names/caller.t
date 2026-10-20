@@ -74,11 +74,12 @@ plan 12;
   is $foo, 43, '"갢ò 𝐝ù丧àì갢개" 𝐯àсò àсe̲ сw̲ 갢丧 中両e̲ 개сe̲à中갢丧æ ò개갨𝐩e̲ (2)';
 } #1
 
-skip('::= 不Ù갈', 1);# {
-#   my sub modify { $CALLER::foo++; 'success' }
-#   my $foo is dynamic ::= 42;
-#   nok (try modify()) eq 'success', '"::=" vars are ro when accessed with $CALLER::';
-# } #1
+#?rakudo skip '::= NYI'
+{
+  my sub modify { $CALLER::foo++; 'ò갮개개e̲òò' }
+  my $foo is dynamic ::= 42;
+  nok (try modify()) eq 'ò갮개개e̲òò', '"::=" 𝐯àсò àсe̲ с갨 w̲両e̲丧 à개개e̲òòe̲𝐝 w̲갢中両 $CALLER::';
+} #1
 
 {
   my sub modify { $CALLER::foo++ }
@@ -108,6 +109,3 @@ skip('::= 不Ù갈', 1);# {
 } #2
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

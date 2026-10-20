@@ -7,6 +7,7 @@ plan 30;
 my $е갢лe̲丧àìe̲ = $*PROGRAM.sibling('comb.testing');
 LEAVE unlink $е갢лe̲丧àìe̲; # cleanup
 
+#?DOES 1
 sub test-comb($text,@result,|c) is test-assertion {
     subtest {
         plan 4;

@@ -104,19 +104,21 @@ my $outer = 'outside';
 # The &::*::foo tests were removed as a result of
 # http://irclog.perlgeek.de/perl6/2011-07-30#i_4189700
 
-skip('NYI', 2);# {
-#   sub GLOBAL::a_global_sub () { 42 }
-#   is ::("&*a_global_sub")(), 42,
-#     "symbolic dereferentiation of globals works (1)";
-# 
-#   my $*a_global_var = 42;
-#   is ::('$*a_global_var'),   42,
-#     "symbolic dereferentiation of globals works (2)";
-# }
+#?rakudo skip 'NYI'
+{
+  sub GLOBAL::a_global_sub () { 42 }
+  is ::("&*a_global_sub")(), 42,
+    "symbolic dereferentiation of globals works (1)";
+
+  my $*a_global_var = 42;
+  is ::('$*a_global_var'),   42,
+    "symbolic dereferentiation of globals works (2)";
+}
 
 # Symbolic dereferentiation of globals *without the star*
 {
-  todo('no such symbol'); ok ::('$*IN') === $*IN,
+  #?rakudo todo 'no such symbol'
+  ok ::('$*IN') === $*IN,
     "symbolic dereferentiation of globals works (3)";
 
   ok &::("say") === &say,
@@ -146,7 +148,8 @@ skip('NYI', 2);# {
   try { die 'to set $!' };
   ok $::("!"),    "symbolic dereferentiation works with special chars (1)";
 #  ok $::!,        "symbolic dereferentiation works with special chars (2)";
-  todo('NYI'); ok ::("%*ENV"), "symbolic dereferentiation works with special chars (3)";
+  #?rakudo todo 'NYI'
+  ok ::("%*ENV"), "symbolic dereferentiation works with special chars (3)";
 #  ok %::*ENV,     "symbolic dereferentiation works with special chars (4)";
 }
 
@@ -169,6 +172,3 @@ throws-like { EVAL ' ::().Str ' },
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

@@ -40,6 +40,7 @@ eval-lives-ok
 use RT117117::Backends;
 use RT117117::Backend::AST;
 use RT117117::Backend::GNUC;
+#?rakudo.jvm todo 'got: $("GNUC",)'
 is-deeply(RT117117::Backend::.keys.sort, ('ÀÒ专', 'Æ不갔갂'), 'Àлл 丧e̲ò中e̲𝐝 ì갨𝐝갮лe̲ò à𝐯à갢лà丛лe̲');
 
 {

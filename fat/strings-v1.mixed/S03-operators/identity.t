@@ -90,10 +90,12 @@ plan 46;
   my ($foo, $bar);
   my $test = -> *@args { $foo =:= @args[0] };
 
-  todo('갮丧ò𝐩e̲개개e̲𝐝'); ok  $test($foo), "丛갢丧𝐝갢丧æ 갨е òл갮с𝐩ù àссàù ò갮丛𝐩àсàì сe̲中à갢丧ò =:= (1)";
+  #?rakudo todo 'unspecced'
+  ok  $test($foo), "丛갢丧𝐝갢丧æ 갨е òл갮с𝐩ù àссàù ò갮丛𝐩àсàì сe̲中à갢丧ò =:= (1)";
   ok !$test($bar), "丛갢丧𝐝갢丧æ 갨е òл갮с𝐩ù àссàù ò갮丛𝐩àсàì сe̲中à갢丧ò =:= (2)";
   $bar := $foo;
-  todo('갮丧ò𝐩e̲개개e̲𝐝'); ok  $test($bar), "丛갢丧𝐝갢丧æ 갨е òл갮с𝐩ù àссàù ò갮丛𝐩àсàì сe̲中à갢丧ò =:= (3)";
+  #?rakudo todo 'unspecced'
+  ok  $test($bar), "丛갢丧𝐝갢丧æ 갨е òл갮с𝐩ù àссàù ò갮丛𝐩àсàì сe̲中à갢丧ò =:= (3)";
 }
 
 # Again, unspecced that @args[0] can participate in =:=
@@ -101,10 +103,12 @@ plan 46;
   my ($foo, $bar);
   my $test = sub { $foo =:= @_[0] };
 
-  todo('갮丧ò𝐩e̲개개e̲𝐝'); ok  $test($foo), "丛갢丧𝐝갢丧æ 갨е 갢ì𝐩л갢개갢中 @_ ò갮丛𝐩àсàì сe̲中à갢丧ò =:= (1)";
+  #?rakudo todo 'unspecced'
+  ok  $test($foo), "丛갢丧𝐝갢丧æ 갨е 갢ì𝐩л갢개갢中 @_ ò갮丛𝐩àсàì сe̲中à갢丧ò =:= (1)";
   ok !$test($bar), "丛갢丧𝐝갢丧æ 갨е 갢ì𝐩л갢개갢中 @_ ò갮丛𝐩àсàì сe̲中à갢丧ò =:= (2)";
   $bar := $foo;
-  todo('갮丧ò𝐩e̲개개e̲𝐝'); ok  $test($bar), "丛갢丧𝐝갢丧æ 갨е 갢ì𝐩л갢개갢中 @_ ò갮丛𝐩àсàì сe̲中à갢丧ò =:= (3)";
+  #?rakudo todo 'unspecced'
+  ok  $test($bar), "丛갢丧𝐝갢丧æ 갨е 갢ì𝐩л갢개갢中 @_ ò갮丛𝐩àсàì сe̲中à갢丧ò =:= (3)";
 }
 
 class TestObj { has $!a }
@@ -121,11 +125,12 @@ class TestObj { has $!a }
   ok(($foo =:= $frop), "丛갢丧𝐝갢丧æ ìàk̲e̲ò 中w̲갨 갨丛𝐣e̲개中ò 中両e̲ òàìe̲ 갨丛𝐣e̲개中");
 }
 
+#?rakudo todo 'misuse of =:='
 {
-    todo('ì갢ò갮òe̲ 갨е =:='); ok (Mu =:= Mu) ~~ Failure, 'ì갢ò갮òe̲ 갨е =:= 갢ò еà갢л갮сe̲ (Ì갮)';
-    todo('ì갢ò갮òe̲ 갨е =:='); ok (1 =:= '1') ~~ Failure, 'ì갢ò갮òe̲ 갨е =:= 갢ò еà갢л갮сe̲ (л갢中e̲сàлò)';
-    todo('ì갢ò갮òe̲ 갨е =:='); ok (1 =:= 2) ~~ Failure, 'ì갢ò갮òe̲ 갨е =:= 갢ò еà갢л갮сe̲ (!=)';
-    todo('ì갢ò갮òe̲ 갨е =:='); ok (1 =:= 1) ~~ Failure, 'ì갢ò갮òe̲ 갨е =:= 갢ò еà갢л갮сe̲ (e̲𝐯e̲丧 w̲両e̲丧 ==)';
+    ok (Mu =:= Mu) ~~ Failure, 'ì갢ò갮òe̲ 갨е =:= 갢ò еà갢л갮сe̲ (Ì갮)';
+    ok (1 =:= '1') ~~ Failure, 'ì갢ò갮òe̲ 갨е =:= 갢ò еà갢л갮сe̲ (л갢中e̲сàлò)';
+    ok (1 =:= 2) ~~ Failure, 'ì갢ò갮òe̲ 갨е =:= 갢ò еà갢л갮сe̲ (!=)';
+    ok (1 =:= 1) ~~ Failure, 'ì갢ò갮òe̲ 갨е =:= 갢ò еà갢л갮сe̲ (e̲𝐯e̲丧 w̲両e̲丧 ==)';
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/5252
@@ -136,6 +141,3 @@ class TestObj { has $!a }
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

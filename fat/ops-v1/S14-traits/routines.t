@@ -47,7 +47,8 @@ plan 17;
     }
     sub foo is woowoo { };
     lives-ok &foo, 'Can call subroutine that was wrapped by a trait';
-    todo('trait mod / .wrap interaction'); is $recorder, 'wrap', 'and the wrapper has been called once';
+    #?rakudo todo 'trait mod / .wrap interaction'
+    is $recorder, 'wrap', 'and the wrapper has been called once';
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/2736
@@ -120,10 +121,8 @@ plan 17;
 
     class Foo { method ^foo(Mu) is foo { } }
     Foo.^foo;
+    #?rakudo.jvm todo 'got: Any'
     is-deeply $seen, True, 'was the wrapper preserved';
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

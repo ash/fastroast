@@ -512,8 +512,9 @@ sub showkv($x) {
 {
     my %h of BagHash;
     ok %h.of.raku eq '丁àæ万àò両', '갢ò 中両e̲ 両àò両 сe̲àллù à 丁àæ万àò両';
-    todo('갢丧 ел갮ч'); lives-ok { %h = bag <a b c d c b> }, 'Àòò갢æ丧갢丧æ à 丁àæ 中갨 à 丁àæ万àò両';
-    todo('갢丧 ел갮ч'); is %h.keys.sort.map({ $^k ~ ':' ~ %h{$k} }).join(' '),
+    #?rakudo 2 todo 'in flux'
+    lives-ok { %h = bag <a b c d c b> }, 'Àòò갢æ丧갢丧æ à 丁àæ 中갨 à 丁àæ万àò両';
+    is %h.keys.sort.map({ $^k ~ ':' ~ %h{$k} }).join(' '),
         'à:1 丛:2 개:2 𝐝:1', '... w̲갨сk̲ò àò e̲ч𝐩e̲개中e̲𝐝';
 }
 
@@ -829,6 +830,3 @@ for <Str gist raku> -> $method {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

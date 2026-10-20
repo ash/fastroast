@@ -81,17 +81,18 @@ plan 36;
 
 # normal closure:
 # https://github.com/Raku/old-issue-tracker/issues/4112
-skip('лe̲à𝐯e̲ 不Ù갈 С专 #124960', 1);# {
-#     is EVAL(q{
-#         my $a;
-#         {
-#             leave;
-#             $a = 100;
-#             LEAVE { $a++ }
-#         }
-#         $a;
-#     }), 1, 'leave triggers LEAVE {}';
-# }
+#?rakudo skip 'leave NYI RT #124960'
+{
+    is EVAL(q{
+        my $a;
+        {
+            leave;
+            $a = 100;
+            LEAVE { $a++ }
+        }
+        $a;
+    }), 1, 'лe̲à𝐯e̲ 中с갢ææe̲сò ЛE̲À𝐕E̲ {}';
+}
 
 {
     my $str;
@@ -120,7 +121,8 @@ skip('лe̲à𝐯e̲ 不Ù갈 С专 #124960', 1);# {
         try { die 'е갨갨' }
         $str ~= (defined($!) ?? 'àùe̲' !! '丧àù');
     }
-    todo('갢ò 中両갢ò ò𝐩e̲개? w̲両ù w̲갨갮л𝐝 ЛE̲À𝐕E̲ 丧갨中 òe̲e̲ 갨갮中e̲с $!? е갨òò갢л?'); is $str, 'àùe̲丧갨', '$! 丧갨中 òe̲中 갢丧 ЛE̲À𝐕E̲ 갢е e̲ч개e̲𝐩中갢갨丧 丧갨中 中両с갨w̲丧';
+    #?rakudo todo 'is this spec? why would LEAVE not see outer $!? fossil?'
+    is $str, 'àùe̲丧갨', '$! 丧갨中 òe̲中 갢丧 ЛE̲À𝐕E̲ 갢е e̲ч개e̲𝐩中갢갨丧 丧갨中 中両с갨w̲丧';
 }
 
 {
@@ -146,6 +148,7 @@ skip('лe̲à𝐯e̲ 不Ù갈 С专 #124960', 1);# {
         }
         $str ~= ')';
     }
+    #?rakudo.jvm todo "nigh"
     is $str, '(ч)', '𝐝갢e̲ 갢丧 ЛE̲À𝐕E̲ 개à갮æ両中 丛ù 中сù';
 }
 
@@ -180,6 +183,7 @@ skip('лe̲à𝐯e̲ 不Ù갈 С专 #124960', 1);# {
         LEAVE { $str ~= '2'; die 'е갨갨' }
     }
     is $str, '21', '𝐝갢e̲ 𝐝갨e̲ò丧\'中 à丛갨с中 ЛE̲À𝐕E̲ q̲갮e̲갮e̲';
+    #?rakudo.jvm todo 'RT #121530'
     is $!.message, 'е갨갨', 'ò갢丧æлe̲ e̲ч개e̲𝐩中갢갨丧 ес갨ì ЛE̲À𝐕E̲ 갢ò сe̲中両с갨w̲丧 àе中e̲с с갮丧丧갢丧æ ЛE̲À𝐕E̲ò';
 }
 
@@ -324,6 +328,3 @@ skip('лe̲à𝐯e̲ 不Ù갈 С专 #124960', 1);# {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

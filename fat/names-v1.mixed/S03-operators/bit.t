@@ -83,12 +83,16 @@ sub 개両e̲개k̲_ò中с갢丧æ_丛갢中갨𝐩 (Str:D $à, Str:D $丛) is 
     @개갨丧ò中с갮개中e̲𝐝-Ч갎С[$갢] = @л갨丧æe̲с-àссàù[$갢];
   }
 
+  #?rakudo.jvm 3 todo 'result is not quite right, Unicode related'
   is-deeply @сe̲ò-À不𝐃, @개갨丧ò中с갮개中e̲𝐝-À不𝐃, "'$a' ~& '$b' works properly with combining characters";
   is-deeply @сe̲ò-갎С, @개갨丧ò中с갮개中e̲𝐝-갎С, "'$a' ~| '$b' works properly with combining characters";
   is-deeply @сe̲ò-Ч갎С, @개갨丧ò中с갮개中e̲𝐝-Ч갎С, "'$a' ~^ '$b' works properly with combining characters";
 }
+  #?rakudo.jvm skip 'Unrecognized character name [united states], Unicode related'
+  #?DOES 3
   개両e̲개k̲_ò中с갢丧æ_丛갢中갨𝐩("\c[united states]", "\c[canada, semicolon]");
   개両e̲개k̲_ò中с갢丧æ_丛갢中갨𝐩("P" ~ ("\c[BRAHMI VOWEL SIGN VOCALIC RR]" x 5), 'zzzzzzz');
+  #?rakudo.jvm 3 todo "JVM does not support NFG strings and normalization"
   # Test that normalization is retained
   # MoarVM/MoarVM#867 (currently fixed)
   # Test to ensure string is returned normalized. i.e. constructing

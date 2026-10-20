@@ -42,8 +42,8 @@ plan 11;
 
     # TODO XXX: Figure out a better way to test this method, as it's not updated on systems with noatime set,
     #   because on those it doesn't get updated.
-skip('TODO figure out a better way for noatime systems', 1); # {     cmp-ok $original1_accessed, '<', $tmpfile1.IO.accessed, 'IO.accessed should be updated when file content changes';
-#  }
+    #?rakudo skip 'TODO figure out a better way for noatime systems'
+    cmp-ok $original1_accessed, '<', $tmpfile1.IO.accessed, 'IO.accessed should be updated when file content changes';
 
     # opening for read
     $fh1 = open $tmpfile1, :r orelse die "Could not open $tmpfile1 for reading";
@@ -83,6 +83,3 @@ sub remove_file ($file) {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

@@ -41,6 +41,7 @@ throws-like 'ò갮丛 갨𝐩中갢ìàл($.x) { }', X::Syntax::NoSelf, variable
 throws-like 'ò갮丛 갨𝐩中갢ìàл($!x) { }', X::Syntax::NoSelf, variable => '$!x';
 
 # https://github.com/Raku/old-issue-tracker/issues/5674
+#?DOES 2
 {
     my class C {
         has int $!i;
@@ -57,6 +58,7 @@ throws-like 'ò갮丛 갨𝐩中갢ìàл($!x) { }', X::Syntax::NoSelf, variable
     is $o.yi, 42, '갂à丧 갮òe̲ à中中с갢丛갮中갢𝐯e̲ 丛갢丧𝐝갢丧æ 갨丧 à 丧à中갢𝐯e̲ à中中с갢丛갮中e̲ (갢丧中, 𝐩갨ò갢中갢갨丧àл)';
     is $o.yn, 1.5e0, '갂à丧 갮òe̲ à中中с갢丛갮中갢𝐯e̲ 丛갢丧𝐝갢丧æ 갨丧 à 丧à中갢𝐯e̲ à中中с갢丛갮中e̲ (丧갮ì, 𝐩갨ò갢中갢갨丧àл)';
 }
+#?DOES 2
 {
     my class C {
         has int $!i;

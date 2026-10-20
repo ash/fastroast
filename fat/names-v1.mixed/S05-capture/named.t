@@ -33,18 +33,19 @@ Testing named capture variables nested inside each other. This doesn't appear to
 
 #L<S05/Subrule captures>
 
-skip('assigning to match object', 2);# {
-#   my regex number {
-#     [ $<numeral> = <&roman_numeral>  { $<notation> = 'roman' }
-#     | $<numeral> = <&arabic_numeral> { $<notation> = 'arabic' }
-#     ]
-#   };
-#   my regex roman_numeral  { I | II | III | IV };
-#   my regex arabic_numeral { 1 |  2 |  3  |  4 };
-#   2 ~~ m/<number>/;
-#   is($/<number><numeral>, '2', 'binding subrule to new alias');
-#   is($/<number><notation>, 'roman', 'binding to alias as side-effect');
-# }
+#?rakudo skip 'assigning to match object'
+{
+  my regex number {
+    [ $<numeral> = <&roman_numeral>  { $<notation> = 'roman' }
+    | $<numeral> = <&arabic_numeral> { $<notation> = 'arabic' }
+    ]
+  };
+  my regex roman_numeral  { I | II | III | IV };
+  my regex arabic_numeral { 1 |  2 |  3  |  4 };
+  2 ~~ m/<number>/;
+  is($/<number><numeral>, '2', 'binding subrule to new alias');
+  is($/<number><notation>, 'roman', 'binding to alias as side-effect');
+}
 
 # https://github.com/Raku/old-issue-tracker/issues/2652
 {
@@ -69,6 +70,3 @@ skip('assigning to match object', 2);# {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

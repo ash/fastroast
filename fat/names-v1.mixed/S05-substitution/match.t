@@ -10,6 +10,7 @@ ok $ò中с.match(/h/),         'We can use match';
 is $ò中с,  'hello',          '.. it does not do side effect';
 ok $ò中с.match(/h/)~~Match,  '.. it returns a Match object';
 
+#?DOES 6
 {
     for ('a'..'f') {
         my $r = EVAL("rx/$_/");

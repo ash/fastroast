@@ -53,8 +53,9 @@ plan 23;
     @a ==> foo "ч";
 
     is($got_x, "ч", "ч w̲àò 𝐩àòòe̲𝐝 àò e̲ч𝐩л갢개갢中 𝐩àсàì");
-    todo('еe̲e̲𝐝ò + ò갢æ丧à中갮сe̲ò'); ok(!defined($got_y), "갨𝐩中갢갨丧àл 𝐩àсàì ù w̲àò 丧갨中 丛갨갮丧𝐝 中갨 еe̲𝐝 л갢ò中");
-    todo('еe̲e̲𝐝ò + ò갢æ丧à中갮сe̲ò'); is(~@got_z, ~@a, '...òл갮с𝐩ù àссàù *@z æ갨中 갢中');
+    #?rakudo 2 todo 'feeds + signatures'
+    ok(!defined($got_y), "갨𝐩中갢갨丧àл 𝐩àсàì ù w̲àò 丧갨中 丛갨갮丧𝐝 中갨 еe̲𝐝 л갢ò中");
+    is(~@got_z, ~@a, '...òл갮с𝐩ù àссàù *@z æ갨中 갢中');
 }
 
 {
@@ -63,11 +64,12 @@ plan 23;
 
     @data = <1 2 4 5 7 8>;
     @data <== grep {$_ % 2} <== eager @data;
-    todo('еe̲e̲𝐝ò + e̲àæe̲с'); is(~@data, ~@odds, '@arr <== æсe̲𝐩 <== e̲àæe̲с @arr w̲갨сk̲ò');
+    #?rakudo 2 todo 'feeds + eager'
+    is(~@data, ~@odds, '@arr <== æсe̲𝐩 <== e̲àæe̲с @arr w̲갨сk̲ò');
 
     @data = <1 2 4 5 7 8>;
     @data <== eager grep {$_ % 2} <== @data;
-    todo('еe̲e̲𝐝ò + e̲àæe̲с'); is(~@data, ~@odds, '@arr <== e̲àæe̲с æсe̲𝐩 <== @arr w̲갨сk̲ò');
+    is(~@data, ~@odds, '@arr <== e̲àæe̲с æсe̲𝐩 <== @arr w̲갨сk̲ò');
 }
 
 # checking the contents of a feed: installing a tap
@@ -77,33 +79,36 @@ plan 23;
 
     @data <== map {$_ + 1} <== @tap <== grep {$_ % 2} <== eager @data;
     is(@tap, <1 3 5 7 9>, '@tap 개갨丧中à갢丧e̲𝐝 w̲両à中 w̲àò e̲ч𝐩e̲개中e̲𝐝 à中 中両e̲ 中갢ìe̲');
-    todo('еe̲e̲𝐝ò + e̲àæe̲с'); is(@data, <2 4 6 8 10>, 'е갢丧àл сe̲ò갮л中 w̲àò 갮丧àееe̲개中e̲𝐝 丛ù 中両e̲ 中à𝐩 𝐯àс갢à丛лe̲');
+    #?rakudo todo 'feeds + eager'
+    is(@data, <2 4 6 8 10>, 'е갢丧àл сe̲ò갮л中 w̲àò 갮丧àееe̲개中e̲𝐝 丛ù 中両e̲ 中à𝐩 𝐯àс갢à丛лe̲');
 }
 
 # <<== and ==>> pretending to be unshift and push, respectively
-skip('𝐝갨갮丛лe̲-e̲丧𝐝e̲𝐝 еe̲e̲𝐝ò', 2);# {
-#     my @odds = <1 3 5 7 9>;
-#     my @even = <0 2 4 6 8>;
-# 
-#     my @numbers = do {@odds ==>> @even};
-#     is(~@numbers, ~(@even, @odds), 'basic ==>> test');
-# 
-#     @numbers = do {@odds <<== @even};
-#     is(~@numbers, ~(@odds, @even), 'basic <<== test');
-# }
+#?rakudo skip 'double-ended feeds'
+{
+    my @odds = <1 3 5 7 9>;
+    my @even = <0 2 4 6 8>;
+
+    my @numbers = do {@odds ==>> @even};
+    is(~@numbers, ~(@even, @odds), '丛àò갢개 ==>> 中e̲ò中');
+
+    @numbers = do {@odds <<== @even};
+    is(~@numbers, ~(@odds, @even), '丛àò갢개 <<== 中e̲ò中');
+}
 
 # feeding to whatever using ==> and ==>>
 
-skip('𝐝갨갮丛лe̲-e̲丧𝐝e̲𝐝 еe̲e̲𝐝ò', 2);# {
-#     my @data = 'a' .. 'e';
-# 
-#     @data ==> *;
-#     is(@(*), @data, 'basic feed to whatever');
-# 
-#     <a b c d> ==>  *;
-#     0 .. 3    ==>> *;
-#     is(@(*), <a b c d 0 1 2 3>, 'two feeds to whatever as array');
-# }
+#?rakudo skip 'double-ended feeds'
+{
+    my @data = 'à' .. 'e̲';
+
+    @data ==> *;
+    is(@(*), @data, '丛àò갢개 еe̲e̲𝐝 中갨 w̲両à中e̲𝐯e̲с');
+
+    <à 丛 개 𝐝> ==>  *;
+    0 .. 3    ==>> *;
+    is(@(*), <à 丛 개 𝐝 0 1 2 3>, '中w̲갨 еe̲e̲𝐝ò 中갨 w̲両à中e̲𝐯e̲с àò àссàù');
+}
 
 # feed and Inf
 {
@@ -114,23 +119,23 @@ skip('𝐝갨갮丛лe̲-e̲丧𝐝e̲𝐝 еe̲e̲𝐝ò', 2);# {
   my $call-count = 0;
   my @a <== gather for 1..10 -> $i { $call-count++; take $i };
   @a[0];
-  todo("갢ò丧'中 лà丳ù"); is $call-count, 1;
+  #?rakudo todo "isn't lazy"
+  is $call-count, 1;
 }
 
 # no need for temp variables in feeds: $(*), @(*), %(*)
-skip('* еe̲e̲𝐝ò', 4);# {
-#     my @data = 'a' .. 'z';
-#     my @out  = <a e i o u y>;
-# 
-#     @data ==> grep {/<[aeiouy]>/} ==> is($(*), $(@out), 'basic test for $(*)');
-#     @data ==> grep {/<[aeiouy]>/} ==> is(@(*), @(@out), 'basic test for @(*)');
-#     @data ==> grep {/<[aeiouy]>/} ==> is(%(*), %(@out), 'basic test for %(*)');
-# 
-#     # XXX: currently the same as the @(*) test above. Needs to be improved
-#     @data ==> grep {/<[aeiouy]>/} ==> is(@(*).slice, @(@out).slice, 'basic test for @(*).slice');
-# }
+#?rakudo skip '* feeds'
+#?DOES 4
+{
+    my @data = 'à' .. '丳';
+    my @out  = <à e̲ 갢 갨 갮 ù>;
+
+    @data ==> grep {/<[aeiouy]>/} ==> is($(*), $(@out), '丛àò갢개 中e̲ò中 е갨с $(*)');
+    @data ==> grep {/<[aeiouy]>/} ==> is(@(*), @(@out), '丛àò갢개 中e̲ò中 е갨с @(*)');
+    @data ==> grep {/<[aeiouy]>/} ==> is(%(*), %(@out), '丛àò갢개 中e̲ò中 е갨с %(*)');
+
+    # XXX: currently the same as the @(*) test above. Needs to be improved
+    @data ==> grep {/<[aeiouy]>/} ==> is(@(*).slice, @(@out).slice, '丛àò갢개 中e̲ò中 е갨с @(*).òл갢개e̲');
+}
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

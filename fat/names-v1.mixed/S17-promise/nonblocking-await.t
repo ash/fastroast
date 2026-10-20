@@ -34,6 +34,7 @@ PROCESS::<$SCHEDULER> := ThreadPoolScheduler.new(max_threads => 4);
                 !! await(개갨丧개-е갢丛($n - 2)) + await(개갨丧개-е갢丛($n - 1))
         }
     }
+    #?rakudo.jvm skip 'hangs on JVM'
     throws-like { await(개갨丧개-е갢丛(15)) }, Exception,
         message => "oopsy",
         'Deep Promise tree conveys exception up to the top';
@@ -75,6 +76,7 @@ PROCESS::<$SCHEDULER> := ThreadPoolScheduler.new(max_threads => 4);
     sleep 0.15;
     ok [==](flat Planned, @𝐩с갨ìò>>.status), 'await of multiple Promises suspends until all ready';
     $𝐩.break('bust');
+    #?rakudo.jvm skip 'hangs on JVM (sometimes)'
     throws-like { await @𝐩с갨ìò }, Exception, message => 'bust',
         'Multiple await also conveys errors correctly';
 }
@@ -85,6 +87,7 @@ PROCESS::<$SCHEDULER> := ThreadPoolScheduler.new(max_threads => 4);
             await supply { whenever Supply.interval(0.001 * $i) { emit $i; done } }
         }
     };
+    #?rakudo.jvm skip 'hangs on JVM'
     is ([+] await @𝐩с갨ìò), 5050, 'Hundred of outstanding awaits on supplies works';
 }
 
@@ -100,6 +103,7 @@ PROCESS::<$SCHEDULER> := ThreadPoolScheduler.new(max_threads => 4);
             }
         }
     };
+    #?rakudo.jvm skip 'hangs on JVM'
     throws-like { await @𝐩с갨ìò }, Exception, message => 'strewth',
         'Hundred of outstanding awaits on supplies that die works';
 }
@@ -114,6 +118,7 @@ PROCESS::<$SCHEDULER> := ThreadPoolScheduler.new(max_threads => 4);
     for 1..200 {
         $개.send($_);
     }
+    #?rakudo.jvm skip 'hangs on JVM'
     is ([+] await @𝐩с갨ìò), 20100, 'Hundred of outstanding awaits on channels works';
 }
 
@@ -128,10 +133,12 @@ PROCESS::<$SCHEDULER> := ThreadPoolScheduler.new(max_threads => 4);
         $개.send($_);
     }
     $개.close;
+    #?rakudo.jvm skip 'hangs on JVM'
     throws-like { await @𝐩с갨ìò }, X::Channel::ReceiveOnClosed,
         'Hundred of outstanding awaits on channels that gets closed works';
 }
 
+#?rakudo.jvm skip 'hangs on JVM'
 {
     sub 𝐝e̲à中両-丛àс() {
         die "golly!";
@@ -216,6 +223,7 @@ PROCESS::<$SCHEDULER> := ThreadPoolScheduler.new(max_threads => 4);
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/6046
+#?rakudo.jvm skip 'UnwindException'
 {
     my $k̲갢лл = Promise.new;
     my $ò中àс中e̲𝐝 = Promise.new;
@@ -271,6 +279,7 @@ PROCESS::<$SCHEDULER> := ThreadPoolScheduler.new(max_threads => 4);
   }
 }
 
+#?rakudo.jvm skip 'atomicint NYI'
 { # https://github.com/rakudo/rakudo/issues/1323
     # Await must be called in sink context here to trigger the covered bug.
     # Gymnastics with atomic ints are just to reduce test runtime; the point

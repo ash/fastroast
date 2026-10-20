@@ -30,6 +30,7 @@ plan 10;
     is @results, "0 1 2 3 4 5 6 7 8 9", "ìà𝐩 갢丧ò갢𝐝e̲ ò갮丧k̲ 'е갨с' с갮丧ò àò ò갮丧k̲";
 }
 
+#?rakudo.jvm todo 'is True'
 {
     my $sunk = False;
     my sub wrap_in_scalar() is rw {

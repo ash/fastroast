@@ -25,9 +25,10 @@ writes keeps the file's path in Roast (`S32-str/uc.t`).
 
 For each Roast file and each transform:
 
-1. **The seed** is the file fudged for Rakudo by Roast's own `fudge`, with its
-   `#?` directive lines dropped (an engine that honours them natively, as
-   Raku++ does, would apply them a second time).
+1. **The seed** is the file fudged for Rakudo by Roast's own `fudge`, invoked
+   as Rakudo's spectest invokes it (`--keep-exit-code --version=v6.d
+   rakudo.moar`), with its `#?` directive lines dropped (an engine that
+   honours them natively, as Raku++ does, would apply them a second time).
 2. **The transform** turns the seed into edit groups; all of them applied is
    the fattened file.
 3. **Both engines run the fattened file.** The same TAP verdict for every test,
@@ -123,8 +124,11 @@ findings/TRANSFORM.PALETTE/S32-str/uc.t/
 
 A campaign keeps the files of its findings only. The full trees for Roast
 `da425eb92` are in this repository, under [fat/](fat/), browsable chapter by
-chapter. `fatten` without a file writes them (it runs no engine), laid out as
-Roast is:
+chapter. They are not seeds: a tree's file is the Roast file as it is, `#?`
+directives included, with only the transform's edits applied (no transform
+touches a comment), so it is the same test suite with mangled characters and
+runs wherever and however Roast runs. `fatten` without a file writes them (it
+runs no engine), laid out as Roast is:
 
 ```sh
 rakupp bin/fastroast fatten --roast=/path/to/roast --out=out/fat
@@ -134,17 +138,17 @@ rakupp bin/fastroast fatten --roast=/path/to/roast --chapters=S05,S32-str \
 
 ```text
 out/fat/
-  coverage.tsv                 one line per Roast file: seeded or not, edit groups per spec
-  seed/S32-str/uc.t            the file fudged for Rakudo, its #? lines dropped
+  coverage.tsv                 one line per Roast file: tokenized or not, edit groups per spec
   strings-v1.mixed/S32-str/uc.t
   names-v1.mixed/S32-str/uc.t
   ops-v1/S32-str/uc.t          (a spec's tree holds the files it changed)
 ```
 
-`diff -r out/fat/seed out/fat/strings-v1.mixed` shows the fat and nothing
-else. A fattened file runs from the Roast checkout, as a campaign runs it:
-`cd /path/to/roast && RAKULIB=packages/Test-Helpers rakudo
-/path/to/out/fat/strings-v1.mixed/S32-str/uc.t`.
+`diff /path/to/roast/S32-str/uc.t out/fat/strings-v1.mixed/S32-str/uc.t`
+shows the fat and nothing else. Raku++ runs the trees as it runs Roast, with
+`tools/run-fatroast.raku`: each tree from an overlay of the Roast checkout,
+through its Roast harness, plain Roast beside it as the baseline, under one
+engine or several.
 
 Run the tests with `for t in t/*.rakutest; do rakupp $t; done`.
 `fixtures/engines/` holds two engine doubles with planted defects (one fails

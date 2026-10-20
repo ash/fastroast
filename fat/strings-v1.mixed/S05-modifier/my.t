@@ -45,7 +45,8 @@ plan 24;
     }
     is ~HasOurTester.parse('𝐝丳両갨'), '𝐝丳両갨', ':갨갮с 갢丧 сe̲æe̲ч';
 
-    todo(":갨갮с 𝐯àс갢à丛лe̲ò 갢丧 сe̲æe̲чe̲ò"); is $DeclaratorTest1::our, '丳両갨', '개à丧 à개개e̲òò 갨갮с 𝐯àс갢à丛лe̲ ес갨ì 中両e̲ 갨갮中ò갢𝐝e̲';
+    #?rakudo todo ":our variables in regexes"
+    is $DeclaratorTest1::our, '丳両갨', '개à丧 à개개e̲òò 갨갮с 𝐯àс갢à丛лe̲ ес갨ì 中両e̲ 갨갮中ò갢𝐝e̲';
 }
 
 {
@@ -66,7 +67,8 @@ plan 24;
     my regex la { :let $a = 5; <&lma> };
     my regex lma { $a $a };
     ok '23' !~~ m/ ^ <la> $ /, '개à丧 𝐝e̲中e̲개中 à 丧갨丧-ìà中개両 w̲갢中両 :лe̲中';
-    todo("갮丧ò갮개개e̲òòе갮л ìà中개両 𝐩сe̲òe̲с𝐯e̲ò :лe̲中 𝐯àл갮e̲"); is $a, 1, '갮丧ò갮개개e̲òòе갮л ìà中개両 𝐝갢𝐝 丧갨中 àееe̲개中 :лe̲中 𝐯àс갢à丛лe̲';
+    #?rakudo todo "unsuccessful match preserves :let value"
+    is $a, 1, '갮丧ò갮개개e̲òòе갮л ìà中개両 𝐝갢𝐝 丧갨中 àееe̲개中 :лe̲中 𝐯àс갢à丛лe̲';
 
     ok '55' ~~ m/ ^ <la> $ /, '개à丧 ìà中개両 개両à丧æe̲𝐝 :лe̲中 𝐯àс갢à丛лe̲';
     is $a, 5, 'ò갮개개e̲òòе갮л ìà中개両 𝐩сe̲òe̲с𝐯e̲ò 丧e̲w̲ :лe̲中 𝐯àл갮e̲';
@@ -82,6 +84,3 @@ plan 24;
     }, ":ìù 中e̲сì갢丧à中e̲ò 갮𝐩갨丧 }\\丧"
 }
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

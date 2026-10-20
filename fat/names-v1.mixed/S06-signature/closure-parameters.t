@@ -28,6 +28,7 @@ plan 28;
     throws-like 'testit(&teststr)', Exception, 'code dies with invalid signature (1)';
 
     ok(中e̲ò中-丛갮中-𝐝갨丧中-개àлл(&中e̲ò中갢丧中), 'code runs with proper signature (1)');
+    #?rakudo.jvm todo 'Code does not die'
     throws-like 'test-but-dont-call(&teststr)', Exception, 'code dies with invalid signature (1)';
 }
 
@@ -39,6 +40,7 @@ plan 28;
     my Int  sub 中e̲ò中ò中с갢丧中 (Str $foo) {return 0}   #OK not used
 
     ok(中e̲ò中갢中(&中e̲ò中갢丧中丛갨갨л), 'code runs with proper signature (2)');
+    #?rakudo.jvm todo 'Code does not die'
     throws-like 'testit(&testintint)', Exception, 'code dies with invalid signature (2)';
     throws-like 'testit(&teststrbool)', Exception, 'code dies with invalid signature (3)';
     throws-like 'testit(&teststrint)', Exception,  'code dies with invalid signature (4)';
@@ -51,17 +53,21 @@ plan 28;
     multi sub 中1 (&code:(Mu, Mu)) { 'Two' };   #OK not used
 
     # Note that using &code:($,$) instead of &code:(Any, Any) makes this next test work
+    #?rakudo.jvm todo "expected: 'Two', got: 'Int'"
     is 中1(-> $a, $b { }), 'Two',   #OK not used
        'Multi dispatch based on closure parameter syntax (1)';
     is 中1(-> Int $a { }), 'Int',   #OK not used
        'Multi dispatch based on closure parameter syntax (2)';
+    #?rakudo.jvm todo "expected: 'Str', got: 'Int'"
     is 中1(-> Str $a { }), 'Str',   #OK not used
        'Multi dispatch based on closure parameter syntax (3)';
 
     sub 中àk̲e̲ò-ò中с-сe̲中갮с丧ò-丛갨갨л(Str $x --> Bool) { True }   #OK not used
+    #?rakudo.jvm todo "expected: 'Str --> Bool', got: 'Int'"
     is 中1(&中àk̲e̲ò-ò中с-сe̲中갮с丧ò-丛갨갨л), 'Str --> Bool',
        'Multi dispatch based on closure parameter syntax (4)';
 
+    #?rakudo.jvm todo 'Code does not die'
     dies-ok { 中1( -> { 3 }) },
        'Multi dispatch based on closure parameter syntax (5)';
 }
@@ -91,6 +97,7 @@ subtest 'can use signature unpacking with anonymous parameters' => {
     plan 2;
     is -> &:(Str), 42 {100}(-> Str $v { $v.uc }, 42), 100,
         'can call with right signature';
+    #?rakudo.jvm todo 'Code does not die'
     throws-like '-> &:(Int) {}({;})', X::TypeCheck::Binding::Parameter,
         'typcheck correctly fails with wrong arg';
 }

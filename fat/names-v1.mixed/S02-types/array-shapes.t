@@ -162,10 +162,11 @@ subtest '.Array on uninited shaped array' => {
 }
 
 # https://github.com/rakudo/rakudo/issues/1297
-skip('coercion of shaped array indicesdd', 1);# {
-#     my @matrix[2;2]; @matrix['0'; '0'] = 42;
-#     is-deeply @matrix[0;0], 42, 'Str can be used to index shaped arrays';
-# }
+#?rakudo skip 'coercion of shaped array indicesdd'
+{
+    my @ìà中с갢ч[2;2]; @ìà中с갢ч['0'; '0'] = 42;
+    is-deeply @ìà中с갢ч[0;0], 42, 'Str can be used to index shaped arrays';
+}
 
 {
     eval-lives-ok 'my @*a[3]', "Accept dynamic shaped arrays"
@@ -185,6 +186,3 @@ skip('coercion of shaped array indicesdd', 1);# {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

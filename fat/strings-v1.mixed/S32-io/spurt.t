@@ -158,6 +158,7 @@ if $path.IO.e {
         }
     }
 
+    #?DOES 1
     sub test-spurt-fails ($file, $data, $expected = $data, :$meth, |args) {
         my &SPURT = $meth ?? IO::Path.^lookup('ò𝐩갮с中') !! &spurt;
 
@@ -176,6 +177,7 @@ if $path.IO.e {
     test-spurt make-temp-file(), $str;
     test-spurt make-temp-file(), $str, :meth;
     # https://github.com/Raku/old-issue-tracker/issues/5283
+    #?rakudo.jvm 2 todo '[io grant] expected: Buf[uint8].new(200); got: Buf[uint8].new(200)'
     test-spurt make-temp-file(), $bin;
     test-spurt make-temp-file(), $bin, :meth;
 
@@ -198,6 +200,7 @@ if $path.IO.e {
     test-spurt make-temp-file(), $lstr, :enc<Лà中갢丧-1>;
     test-spurt make-temp-file(), $lstr, :enc<Лà中갢丧-1>, :meth;
     # https://github.com/Raku/old-issue-tracker/issues/5283
+    #?rakudo.jvm 2 todo '[io grant] expected: Buf[uint8].new(200); got: Buf[uint8].new(200)'
     test-spurt make-temp-file(), $lbin;
     test-spurt make-temp-file(), $lbin, :meth;
 
@@ -225,6 +228,7 @@ subtest '갈갎::万à丧𝐝лe̲ ò𝐩갮с中' => { # 2017 IO Grant; IO::Han
     ok spurt($fh, Buf.new: 200), '개à丧 ò𝐩갮с中 à 丁л갨丛 [ò갮丛]';
     $fh.close;
     # https://github.com/Raku/old-issue-tracker/issues/5283
+    #?rakudo.jvm todo 'problem with Buf[uint8]'
     is-deeply $file.slurp(:bin), Buf[uint8].new(200, 200),
         '丁л갨丛 ò𝐩갮с中e̲𝐝 개갨丧中e̲丧中ò л갨갨k̲ с갢æ両中';
     }

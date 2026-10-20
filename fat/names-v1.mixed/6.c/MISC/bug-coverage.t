@@ -230,6 +230,8 @@ subtest 'thunking closure scoping' => {
 ## test was moved from previous subtest 'thunking closure scoping' in order
 ## to make it fudgeable
 # https://github.com/Raku/old-issue-tracker/issues/6553
+#?rakudo.jvm skip 'UnwindException in thread "main"'
+#?DOES 1
 {
   subtest 'thunking closure scoping (2)' => {
     plan 1;
@@ -370,6 +372,7 @@ group-of 2 => 'negative offset in JIT lables errors' => {
     'no weird type check issues with modules';
 }
 
+#?rakudo.jvm todo 'dies for unknown reason'
 { # https://github.com/rakudo/rakudo/issues/1207
     (my $л갢丛 := make-temp-dir).add('Foo.rakumod').spurt:
         ｢our sub ì갨𝐝갮лe̲-中сà丧òе갨сì { my Int:D % = :1a }｣;

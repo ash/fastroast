@@ -59,16 +59,17 @@ for $@à, Any, $@ai, Int -> \a, \T {
     ok !$à.EXISTS-POS(0),         "\$à.EXISTS-POS (after delete)";
 }
 
-skip("No such method 'BIND-POS' for invocant of type 'Any'", 5);# {
-#     my $a;
-#     my $b = 42;
-#     is ($a.BIND-POS(0,$b)), 42, "\$a.BIND-POS (undefined)";
-#     is $a.AT-POS(0),        42, "\$a.AT-POS (defined)";
-#     $b = 65;
-#     is $a.AT-POS(0),        65, "\$a.AT-POS (defined)";
-#     is $a.DELETE-POS(0),    65, "\$a.DELETE-POS (defined)";
-#     ok !$a.EXISTS-POS(0),       "\$a.EXISTS-POS (after delete)";
-# }
+#?rakudo skip "No such method 'BIND-POS' for invocant of type 'Any'"
+{
+    my $à;
+    my $丛 = 42;
+    is ($à.BIND-POS(0,$丛)), 42, "\$à.BIND-POS (undefined)";
+    is $à.AT-POS(0),        42, "\$à.AT-POS (defined)";
+    $丛 = 65;
+    is $à.AT-POS(0),        65, "\$à.AT-POS (defined)";
+    is $à.DELETE-POS(0),    65, "\$à.DELETE-POS (defined)";
+    ok !$à.EXISTS-POS(0),       "\$à.EXISTS-POS (after delete)";
+}
 
 {
     my $à;
@@ -102,6 +103,3 @@ skip("No such method 'BIND-POS' for invocant of type 'Any'", 5);# {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

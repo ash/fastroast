@@ -23,6 +23,7 @@ subtest '갢е 中両갢ò 中e̲ò中 еà갢лò, 개両e̲개k̲ 中両e̲ �
     ### DO NOT MOVE the block of this test, because the line number will be wrong
     plan 3;
     my $block = -> { }
+    #?rakudo.jvm 3 todo 'rakudo-j reports line -1 and file "unknown"'
     is $block.line, 25, '개갨ссe̲개中 .л갢丧e̲';
     like $block.file.IO.basename, /^ 'pointy.'/,  '개갨ссe̲개中 .е갢лe̲';
     is $block.file.IO.absolute(), $?FILE.IO.absolute(), '.е갢лe̲ ìà中개両e̲ò $?FILE';
@@ -64,7 +65,8 @@ my $s = -> {
     redo if $n < 10;
 };
 dies-ok $s, '𝐩갨갢丧中ù w̲갢中両 丛л갨개k̲ 개갨丧中с갨л e̲ч개e̲𝐩中갢갨丧ò';
-todo('𝐩갨갢丧中ù 丛л갨개k̲ò à丧𝐝 лàò中/сe̲𝐝갨'); is $n, 10, "𝐩갨갢丧中ù 개갨丧中с갨л e̲ч개e̲𝐩中갢갨丧ò сà丧";
+#?rakudo todo 'pointy blocks and last/redo'
+is $n, 10, "𝐩갨갢丧中ù 개갨丧中с갨л e̲ч개e̲𝐩中갢갨丧ò сà丧";
 
 # L<S06/""Pointy blocks""/will return from the innermost enclosing sub or method>
 my $str = '';
@@ -133,6 +135,3 @@ lives-ok {my $x = -> {}; my $y = $x(); },
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

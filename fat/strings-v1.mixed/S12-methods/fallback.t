@@ -73,6 +73,7 @@ is $i(), '갢丧𝐯à갮æ両中', '갂ÀЛЛ-ÌE̲ 丛e̲à中ò ЕÀЛЛ丁À
 
     proto sub target() is me'd {*}
     multi sub target() { 'w̲с갨丧æ' }
+    #?rakudo.jvm todo "got 'wrong'"
     is target(), '갈丧 갂ÀЛЛ-ÌE̲',
         'À 갂ÀЛЛ-ÌE̲ ì갢чe̲𝐝 갢丧中갨 à 𝐩с갨中갨 갢丧 à 中сà갢中_ì갨𝐝 갢ò 개àллe̲𝐝';
 }

@@ -109,6 +109,7 @@ sub run-harness($code,$bench-name) {
 }
 
 is run-harness($bench1, 'òe̲q̲갮e̲丧개e̲'), $expected-output, 'òe̲q̲갮e̲丧개e̲';
+#?rakudo.jvm todo 'Fails more often than it passes'
 is run-harness($bench2, 'сe̲개갮сò갢𝐯e̲-中e̲с丧àсù-両à丧𝐝-개à개両e̲𝐝'), $expected-output, 'сe̲개갮сò갢𝐯e̲-中e̲с丧àсù-両à丧𝐝-개à개両e̲𝐝';
 is run-harness($bench3, 'òe̲q̲갮e̲丧개e̲-中e̲с丧àсù'), $expected-output, 'òe̲q̲갮e̲丧개e̲-中e̲с丧àсù';
 is run-harness($bench4, 'л갨갨𝐩'), $expected-output, 'л갨갨𝐩';

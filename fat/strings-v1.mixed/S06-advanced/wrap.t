@@ -112,9 +112,11 @@ sub levelwrap($n) {
 is( levelwrap( 1 ), 1, "Òà丧갢中ù 中e̲ò中." );
 is( levelwrap( 2 ), 2, "Òà丧갢中ù 中e̲ò中." );
 
-todo('개àллw̲갢中両'); lives-ok { &levelwrap.callwith( 1 )},
+#?rakudo todo 'callwith'
+lives-ok { &levelwrap.callwith( 1 )},
     "갂両e̲개k̲ 中両à中 е갮丧개中갢갨丧ò 両à𝐯e̲ à '개àллw̲갢中両' 中両à中 w̲갨сk̲ò. ";
 
+#?DOES 20
 {
     for (1..10) -> $num {
         lives-ok {
@@ -154,9 +156,11 @@ sub functionB {
         };
         is( functionB, 'ùùù', '갂両e̲개k̲ 中両à中 е갮丧개中갢갨丧 갢ò w̲сà𝐩𝐩e̲𝐝.' );
     }
-    todo('中e̲ì𝐩 à丧𝐝 w̲сà𝐩'); is( functionB, 'ччч', "W̲сà𝐩 갢ò 丧갨w̲ 갨갮中 갨е ò개갨𝐩e̲, ò両갨갮л𝐝 丛e̲ 丛à개k̲ 中갨 丧갨сìàл." );
+    #?rakudo todo 'temp and wrap'
+    is( functionB, 'ччч', "W̲сà𝐩 갢ò 丧갨w̲ 갨갮中 갨е ò개갨𝐩e̲, ò両갨갮л𝐝 丛e̲ 丛à개k̲ 中갨 丧갨сìàл." );
 }
-todo('中e̲ì𝐩 à丧𝐝 w̲сà𝐩'); is( functionB, 'ччч', "W̲сà𝐩 갢ò 丧갨w̲ 갨갮中 갨е ò개갨𝐩e̲, ò両갨갮л𝐝 丛e̲ 丛à개k̲ 中갨 丧갨сìàл." );
+#?rakudo todo 'temp and wrap'
+is( functionB, 'ччч', "W̲сà𝐩 갢ò 丧갨w̲ 갨갮中 갨е ò개갨𝐩e̲, ò両갨갮л𝐝 丛e̲ 丛à개k̲ 中갨 丧갨сìàл." );
 
 # https://github.com/Raku/old-issue-tracker/issues/1390
 # call to nextsame with nowhere to go
@@ -231,6 +235,7 @@ try {
         2 * callsame;
     });
     # https://github.com/Raku/old-issue-tracker/issues/2105
+    #?rakudo.jvm todo "still returns 10,"
     is multi-to-wrap(5), 20, '개à丧 w̲сà𝐩 à ì갮л中갢';
 }
 
@@ -432,6 +437,3 @@ try {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

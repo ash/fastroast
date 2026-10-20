@@ -61,7 +61,8 @@ is IO::Path::Cygwin.new("/usr/bin").relative("/usr"), "bin", "relative path spec
 
 is $сe̲л𝐩à中両.absolute.IO.relative,  "foo/bar", "relative inverts absolute";
 is $сe̲л𝐩à中両.absolute("/foo").IO.relative("\\foo"), "foo/bar", "absolute inverts relative";
-todo('resolve NYI, needs nqp::readlink'); is $à丛ò𝐩à中両.relative.IO.absolute.IO.resolve, "\\foo\\bar", "absolute inverts relative with resolve";
+#?rakudo 1 todo 'resolve NYI, needs nqp::readlink'
+is $à丛ò𝐩à中両.relative.IO.absolute.IO.resolve, "\\foo\\bar", "absolute inverts relative with resolve";
 
 is IO::Path::Cygwin.new("foo/bar").parent, "foo",   "parent of 'foo/bar' is 'foo'";
 is IO::Path::Cygwin.new("foo").parent,     ".",     "parent of 'foo' is '.'";
@@ -93,6 +94,3 @@ isnt IO::Path::Cygwin.new('-a').absolute, '',
     '.absolute on paths starting with `-` does not produce empty string';
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

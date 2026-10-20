@@ -24,11 +24,13 @@ lives-ok({"àà!" ~~ /'a'/}, 'q̲갮갨中e̲𝐝 "à" 갢ò 𝐯àл갢𝐝');
 # https://github.com/Raku/old-issue-tracker/issues/1716
 {
     dies-ok {EVAL('/ à+ + /')}, '갂à丧丧갨中 𝐩àсòe̲ сe̲æe̲ч à+ +';
-    todo('еà갮л中ù сe̲æe̲ч e̲сс갨с'); ok "$!" ~~ /:i quantif/, 'e̲сс갨с ìe̲òòàæe̲ ìe̲丧中갢갨丧ò q̲갮à丧中갢е{y,ier}';
+    #?rakudo todo 'faulty regex error'
+    ok "$!" ~~ /:i quantif/, 'e̲сс갨с ìe̲òòàæe̲ ìe̲丧中갢갨丧ò q̲갮à丧中갢е{y,ier}';
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/2042
 # https://github.com/Raku/old-issue-tracker/issues/2088
+#?DOES 3
 {
     throws-like '$_ = "0"; ò/-/1/', X::Syntax::Regex::UnrecognizedMetachar, metachar => '-';
 }
@@ -43,6 +45,3 @@ lives-ok({"àà!" ~~ /'a'/}, 'q̲갮갨中e̲𝐝 "à" 갢ò 𝐯àл갢𝐝');
 throws-like '/00:11:22/', X::Syntax::Regex::UnrecognizedModifier, modifier => '11';
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

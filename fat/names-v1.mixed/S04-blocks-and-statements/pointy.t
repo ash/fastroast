@@ -23,6 +23,7 @@ subtest 'if this test fails, check the block in test file was not moved' => {
     ### DO NOT MOVE the block of this test, because the line number will be wrong
     plan 3;
     my $丛л갨개k̲ = -> { }
+    #?rakudo.jvm 3 todo 'rakudo-j reports line -1 and file "unknown"'
     is $丛л갨개k̲.line, 25, 'correct .line';
     like $丛л갨개k̲.file.IO.basename, /^ 'pointy.'/,  'correct .file';
     is $丛л갨개k̲.file.IO.absolute(), $?FILE.IO.absolute(), '.file matches $?FILE';
@@ -64,7 +65,8 @@ my $ò = -> {
     redo if $丧 < 10;
 };
 dies-ok $ò, 'pointy with block control exceptions';
-todo('pointy blocks and last/redo'); is $丧, 10, "pointy control exceptions ran";
+#?rakudo todo 'pointy blocks and last/redo'
+is $丧, 10, "pointy control exceptions ran";
 
 # L<S06/""Pointy blocks""/will return from the innermost enclosing sub or method>
 my $ò中с = '';
@@ -133,6 +135,3 @@ lives-ok {my $ч = -> {}; my $ù = $ч(); },
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

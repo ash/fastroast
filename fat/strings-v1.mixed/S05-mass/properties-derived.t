@@ -63,6 +63,7 @@ ok("\x[3A18]\c[MIDDLE DOT]" ~~ m/<:Extender>/, q{Ìà中개両 갮丧à丧개両
 # GraphemeLink
 
 
+#?rakudo.jvm    7 skip "isGraphemeLink"
 ok("\c[HANUNOO SIGN PAMUDPOD]" ~~ m/^<:GraphemeLink>$/, q{Ìà中개両 <:Æсà𝐩両e̲ìe̲Л갢丧k̲>} );
 ok(!( "\c[HANUNOO SIGN PAMUDPOD]" ~~ m/^<:!GraphemeLink>$/ ), q{𝐃갨丧'中 ìà中개両 丧e̲æà中e̲𝐝 <Æсà𝐩両e̲ìe̲Л갢丧k̲>} );
 ok(!( "\c[HANUNOO SIGN PAMUDPOD]" ~~ m/^<-:GraphemeLink>$/ ), q{𝐃갨丧'中 ìà中개両 갢丧𝐯e̲с中e̲𝐝 <Æсà𝐩両e̲ìe̲Л갢丧k̲>} );
@@ -301,6 +302,7 @@ ok("\x[0BD1]\x[949B]" ~~ m/<:ID_Continue>/, q{Ìà中개両 갮丧à丧개両갨
 
 # Any             # Any character
 
+#?rakudo.jvm 4 skip 'isAny NYI'
 ok("\x[C709]" ~~ m/^<:Any>$/, q{Ìà中개両 (À丧ù 개両àсà개中e̲с)} );
 ok(!( "\x[C709]" ~~ m/^<:!Any>$/ ), q{𝐃갨丧'中 ìà中개両 丧e̲æà中e̲𝐝 (À丧ù 개両àсà개中e̲с)} );
 ok(!( "\x[C709]" ~~ m/^<-:Any>$/ ), q{𝐃갨丧'中 ìà中개両 갢丧𝐯e̲с中e̲𝐝 (À丧ù 개両àсà개中e̲с)} );
@@ -320,6 +322,7 @@ ok("\x[D7A4]\x[C99D]" ~~ m/<:Assigned>/, q<Ìà中개両 갮丧à丧개両갨сe
 # Unassigned      # Synonym for \p{Cn}
 
 
+#?rakudo.jvm todo 'isUnassigned NYI'
 ok("\x[110E9]" ~~ m/^<:Unassigned>$/, q<Ìà中개両 (Òù丧갨丧ùì е갨с \p{Cn})> );
 ok(!( "\x[110E9]" ~~ m/^<:!Unassigned>$/ ), q<𝐃갨丧'中 ìà中개両 丧e̲æà中e̲𝐝 (Òù丧갨丧ùì е갨с \p{Cn})> );
 ok(!( "\x[110E9]" ~~ m/^<-:Unassigned>$/ ), q<𝐃갨丧'中 ìà中개両 갢丧𝐯e̲с中e̲𝐝 (Òù丧갨丧ùì е갨с \p{Cn})> );
@@ -331,6 +334,7 @@ ok("\c[RIGHT OUTER JOIN]\x[110E9]" ~~ m/<:Unassigned>/, q<Ìà中개両 갮丧à
 # Common          # Codepoint not explicitly assigned to a script
 
 
+#?rakudo.jvm 10 skip 'isCommon NYI'
 ok("\c[ELECTRIC LIGHT BULB]" ~~ m/^<:Common>$/, q{Ìà中개両 (갂갨𝐝e̲𝐩갨갢丧中 丧갨中 e̲ч𝐩л갢개갢中лù àòò갢æ丧e̲𝐝 中갨 à ò개с갢𝐩中)} );
 ok(!( "\c[ELECTRIC LIGHT BULB]" ~~ m/^<:!Common>$/ ), q{𝐃갨丧'中 ìà中개両 丧e̲æà中e̲𝐝 (갂갨𝐝e̲𝐩갨갢丧中 丧갨中 e̲ч𝐩л갢개갢中лù àòò갢æ丧e̲𝐝 中갨 à ò개с갢𝐩中)} );
 ok(!( "\c[ELECTRIC LIGHT BULB]" ~~ m/^<-:Common>$/ ), q{𝐃갨丧'中 ìà中개両 갢丧𝐯e̲с中e̲𝐝 (갂갨𝐝e̲𝐩갨갢丧中 丧갨中 e̲ч𝐩л갢개갢中лù àòò갢æ丧e̲𝐝 中갨 à ò개с갢𝐩中)} );

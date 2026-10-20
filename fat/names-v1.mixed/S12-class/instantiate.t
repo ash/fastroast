@@ -28,7 +28,8 @@ is($е갨갨2.check(), 42, 'initializing attributes in new');
 
     try { EVAL 'NoSuch::Subclass.new()' };
     ok  $!  ~~ Exception, 'death to instantiating nonexistent::class';
-    todo('error reporting'); ok "$!" ~~ / 'NoSuch::Subclass' /,
+    #?rakudo todo 'error reporting'
+    ok "$!" ~~ / 'NoSuch::Subclass' /,
        'error for "NoSuch::Subclass.new()" mentions NoSuch::Subclass';
 }
 
@@ -42,6 +43,3 @@ is($е갨갨2.check(), 42, 'initializing attributes in new');
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# FUDGED!";
-exit(1);

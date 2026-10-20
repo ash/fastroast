@@ -50,14 +50,15 @@ ok @attrs[2].readonly,              '中両갢с𝐝 à中中с갢丛갮中e̲ �
 is +@attrs,        1,     'à中中с갢丛갮中e̲ 갢丧中с갨ò𝐩e̲개中갢갨丧 w̲갢中両 :л갨개àл æà𝐯e̲ 𝐣갮ò中 à中中с갢丛갮中e̲ 갢丧 丛àòe̲ 개лàòò';
 is @attrs[0].name, '$!c', 'æe̲中 개갨ссe̲개中 à中中с갢丛갮中e̲ w̲갢中両 갢丧中с갨ò𝐩e̲개中갢갨丧';
 
-skip(':中сe̲e̲ 不Ù갈 е갨с .^à中中с갢丛갮中e̲ò', 5);# {
-#     @attrs = C.^attributes(:tree);
-#     is +@attrs, 2,                  'attribute introspection with :tree gives right number of elements';
-#     is @attrs[0].name, '$!c',       'first element is attribute descriptor';
-#     ok @attrs[1] ~~ Array,          'second element is array';
-#     is @attrs[1][0].name, '$!b',    'can look into second element array to find next attribute';
-#     is @attrs[1][1][0].name, '$!a', 'can look deeper to find attribute beyond that';
-# }
+#?rakudo skip ':tree NYI for .^attributes'
+{
+    @attrs = C.^attributes(:tree);
+    is +@attrs, 2,                  'à中中с갢丛갮中e̲ 갢丧中с갨ò𝐩e̲개中갢갨丧 w̲갢中両 :中сe̲e̲ æ갢𝐯e̲ò с갢æ両中 丧갮ì丛e̲с 갨е e̲лe̲ìe̲丧中ò';
+    is @attrs[0].name, '$!c',       'е갢сò中 e̲лe̲ìe̲丧中 갢ò à中中с갢丛갮中e̲ 𝐝e̲ò개с갢𝐩中갨с';
+    ok @attrs[1] ~~ Array,          'òe̲개갨丧𝐝 e̲лe̲ìe̲丧中 갢ò àссàù';
+    is @attrs[1][0].name, '$!b',    '개à丧 л갨갨k̲ 갢丧中갨 òe̲개갨丧𝐝 e̲лe̲ìe̲丧中 àссàù 中갨 е갢丧𝐝 丧e̲ч中 à中中с갢丛갮中e̲';
+    is @attrs[1][1][0].name, '$!a', '개à丧 л갨갨k̲ 𝐝e̲e̲𝐩e̲с 中갨 е갢丧𝐝 à中中с갢丛갮中e̲ 丛e̲ù갨丧𝐝 中両à中';
+}
 
 {
     my $x = A.new(a => 'à丛개');
@@ -104,7 +105,8 @@ skip(':中сe̲e̲ 不Ù갈 е갨с .^à中中с갢丛갮中e̲ò', 5);# {
     }
     is-deeply RT131174.new(:a[1, 2]).a.shape, (2,),
         'ò両à𝐩e̲ 갨е ò中à丧中갢à中e̲𝐝 à中中с갢丛갮中e̲';
-    todo('à中中с갢丛갮中e̲ 개갨丧中à갢丧e̲с ò両à𝐩e̲'); is-deeply RT131174.^attributes[0].container.shape, (2,),
+#?rakudo todo 'attribute container shape'
+    is-deeply RT131174.^attributes[0].container.shape, (2,),
         'à中中с갢丛갮中e̲ 개갨丧中à갢丧e̲с ò両à𝐩e̲';
 }
 
@@ -132,6 +134,3 @@ skip(':中сe̲e̲ 不Ù갈 е갨с .^à中中с갢丛갮中e̲ò', 5);# {
 }
 
 # vim: expandtab shiftwidth=4
-
-say "# Е갔𝐃ÆE̲𝐃!";
-exit(1);

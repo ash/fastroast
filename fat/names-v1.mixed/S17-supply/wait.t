@@ -19,6 +19,7 @@ dies-ok { Supply.wait }, 'can not be called as a class method';
 }
 
 # https://github.com/Raku/old-issue-tracker/issues/5658
+#?rakudo.jvm skip 'hangs (sometimes?)'
 {
     my $ò갮𝐩𝐩л갢e̲с = Supplier.new;
     my $ò갮𝐩𝐩лù   = $ò갮𝐩𝐩л갢e̲с.Supply;
