@@ -1,6 +1,6 @@
 # The fattened Roast
 
-Every file in Roast's `spectest.data`, as FastRoast rewrites it, at the
+Every file in Roast's `spectest.data`, as FatRoast rewrites it, at the
 file's own path in Roast: the very same test suite with mangled characters.
 A file here is the Roast file as it is, `#?` fudge directives included, with
 only one transform's edits applied; no transform touches a comment, so the
@@ -34,15 +34,15 @@ helpers and fixtures are where it expects them) through its Roast harness,
 with plain Roast beside it as the baseline.
 
 A fattened test may fail on every implementation: a sort over strings in the
-`mixed` palette, say, is no longer sorted. FastRoast's question is whether
+`mixed` palette, say, is no longer sorted. FatRoast's question is whether
 two implementations give the same verdicts, not whether either passes; see
 the [README](../README.md).
 
 ## Provenance
 
 - Roast `da425eb92` (2026-10-07).
-- FastRoast at the commit that carries this README, with
-  `rakupp bin/fastroast fatten --roast=/path/to/roast --out=fat`.
+- FatRoast at the commit that carries this README, with
+  `rakupp bin/fatroast fatten --roast=/path/to/roast --out=fat`.
 - Tokens from the highlighter of Raku++ 5.4.1-143-g333bb080.
 
 The command above regenerates the trees exactly; they are generated files,
@@ -51,5 +51,5 @@ and a change to a transform is a new version of it, not an edit here.
 ## License
 
 These files are derived from [Roast](https://github.com/Raku/roast) and,
-like it and like FastRoast, are under the [Artistic License 2.0](../LICENSE).
+like it and like FatRoast, are under the [Artistic License 2.0](../LICENSE).
 The tests and their expectations are Roast's authors' work.

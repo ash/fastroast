@@ -1,14 +1,14 @@
 use lib $?FILE.IO.parent.parent.add('lib').Str;
 use Test;
-use FastRoast::Campaign;
-use FastRoast::Transform;
+use FatRoast::Campaign;
+use FatRoast::Transform;
 
 plan 11;
 my $root = $?FILE.IO.parent.parent;
-%*ENV<FASTROAST_ENGINE> = $*EXECUTABLE.absolute.Str;
+%*ENV<FATROAST_ENGINE> = $*EXECUTABLE.absolute.Str;
 my $roast = $root.add('fixtures/roast-mini');
 my $engine = $*EXECUTABLE.absolute.Str;
-my $out = $*TMPDIR.add("fastroast-t3-$*PID");
+my $out = $*TMPDIR.add("fatroast-t3-$*PID");
 
 my @r = campaign(:transforms(["strings-v1:cyrillic"]), :files(["S32-str/fat.t"]), :$roast, :out($out.add('fat')),
     :oracle($engine), :candidate($root.add('fixtures/engines/cyrillic-flip.sh').absolute.Str), :jobs(1), :timeout(30));

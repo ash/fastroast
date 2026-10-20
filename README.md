@@ -1,4 +1,4 @@
-# FastRoast
+# FatRoast
 
 Roast with the fat added.
 
@@ -8,7 +8,7 @@ names and the Texas spelling of operators. That keeps every test about the
 one thing it checks, and Unicode has chapters of its own. Still, an
 implementation can pass a test and go wrong when the same feature meets
 other input: a string with a combining mark, an identifier in another
-script, `≤` instead of `<=`. FastRoast takes the Roast files as they are and
+script, `≤` instead of `<=`. FatRoast takes the Roast files as they are and
 **adds fat**: named, versioned transforms rewrite each file, both engines
 run the rewritten file, and their results are compared test by test. Every
 expectation it checks is one Roast's authors wrote.
@@ -16,7 +16,7 @@ expectation it checks is one Roast's authors wrote.
 It is a sibling of [Rakumap](https://github.com/ash/rakumap) (differential
 exploration from generated programs), [Rakugrid](https://github.com/ash/rakugrid)
 and [Rakuglaze](https://github.com/ash/rakuglaze). Rakumap starts from nothing
-and generates; FastRoast starts from the 1,425 files Roast's `spectest.data`
+and generates; FatRoast starts from the 1,425 files Roast's `spectest.data`
 lists, the tests Roast expects an implementation to pass, and mutates them.
 Everything it writes keeps the file's path in Roast (`S32-str/uc.t`), and the
 fattened files for one Roast revision are in this repository, under
@@ -24,14 +24,14 @@ fattened files for one Roast revision are in this repository, under
 
 ## Two ways to use it
 
-- **`fastroast run`** is a campaign. It fattens each file as it goes, runs
+- **`fatroast run`** is a campaign. It fattens each file as it goes, runs
   Rakudo (the oracle) and a candidate on it, compares their TAP test by test,
   and shrinks a divergence the fat caused to the few edits it needs.
-- **`fastroast fatten`** writes the fattened suite as trees laid out as Roast
+- **`fatroast fatten`** writes the fattened suite as trees laid out as Roast
   is, which [fat/](fat/) holds. Raku++'s `tools/run-fatroast.raku` runs those
   trees the way it runs Roast and compares the outcomes file by file.
 
-| | `fastroast run` | `fat/` + `run-fatroast.raku` |
+| | `fatroast run` | `fat/` + `run-fatroast.raku` |
 |---|---|---|
 | what runs | a seed: the file fudged for Rakudo, `#?` lines dropped | the Roast file as it is, `#?` directives kept |
 | compared | every test's verdict, and the exit status | each file's outcome |
@@ -114,28 +114,28 @@ run ascending), so a sort over fattened strings is still a sort, and the cased
 ones keep case, so `.uc` and `.lc` still pass where they passed. `mixed`
 keeps neither, which an oracle-relation transform allows: a test of sort
 order may now fail, on both engines alike. `mixed` is the default;
-`--palette=all` runs every palette, and `rakupp bin/fastroast palettes`
+`--palette=all` runs every palette, and `rakupp bin/fatroast palettes`
 prints them. A spec with a palette is a directory with a dot:
 `strings-v1:cjk` writes to `strings-v1.cjk/`.
 
 ## Running it
 
-FastRoast is written in Raku and runs under Raku++ (its tokens come from
+FatRoast is written in Raku and runs under Raku++ (its tokens come from
 Raku++'s highlighter). It needs a Roast checkout, Rakudo as the oracle, and
 `perl` for Roast's `fudge`. Use a Raku++ built after 2026-10-19: before
 then the highlighter read only ASCII names and misread a few quote forms
 (`qq:!c/…/`, `1&'a'`), which put edits in the wrong places.
 
 ```sh
-rakupp bin/fastroast transforms
-rakupp bin/fastroast palettes
-rakupp bin/fastroast coverage --roast=/path/to/roast
-rakupp bin/fastroast run --roast=/path/to/roast --transform=all --per=5 \
+rakupp bin/fatroast transforms
+rakupp bin/fatroast palettes
+rakupp bin/fatroast coverage --roast=/path/to/roast
+rakupp bin/fatroast run --roast=/path/to/roast --transform=all --per=5 \
     --oracle=rakudo --candidate=/path/to/rakupp --jobs=2
-rakupp bin/fastroast run --roast=/path/to/roast --transform=strings-v1 \
+rakupp bin/fatroast run --roast=/path/to/roast --transform=strings-v1 \
     --palette=cjk,marks --chapters=S05,S32-str --candidate=/path/to/rakupp
-rakupp bin/fastroast run --roast=/path/to/roast --transform=names-v1:hangul,ops-v1
-rakupp bin/fastroast fatten /path/to/roast/S32-str/uc.t --transform=strings-v1:astral
+rakupp bin/fatroast run --roast=/path/to/roast --transform=names-v1:hangul,ops-v1
+rakupp bin/fatroast fatten /path/to/roast/S32-str/uc.t --transform=strings-v1:astral
 ```
 
 Each file in flight runs one engine at a time: two runs per file and
@@ -167,8 +167,8 @@ runs wherever and however Roast runs. `fatten` without a file writes them (it
 runs no engine), laid out as Roast is:
 
 ```sh
-rakupp bin/fastroast fatten --roast=/path/to/roast --out=out/fat
-rakupp bin/fastroast fatten --roast=/path/to/roast --chapters=S05,S32-str \
+rakupp bin/fatroast fatten --roast=/path/to/roast --out=out/fat
+rakupp bin/fatroast fatten --roast=/path/to/roast --chapters=S05,S32-str \
     --transform=strings-v1 --palette=all --out=out/fat
 ```
 
@@ -213,7 +213,7 @@ build/rakupp tools/run-fatroast.raku --parts=roast,ops-v1 S03-operators
 build/rakupp tools/run-fatroast.raku --parts=strings-v1 S32-str
 ```
 
-It finds FastRoast at `$FASTROAST` (default `$HOME/fastroast`), Roast at
+It finds FatRoast at `$FATROAST` (default `$HOME/fatroast`), Roast at
 `$ROAST` (default `$HOME/roast`) and puts the overlays at `$FATROAST_OVERLAY`
 (default `$HOME/roast-fat`). It warns when the Roast checkout is not the
 revision fat/README.md names, since the overlay pairs the trees with that
@@ -233,7 +233,7 @@ PART.A-vs-B.diff           with two engines, the files whose outcome differs:
 A fattened test can fail on every engine (a sort over `mixed`-palette strings
 is no longer sorted), so a part's pass count says little alone; the `.lost`
 and `.diff` files are what to read. For test-by-test verdicts and a shrunk
-reproducer, use `fastroast run`.
+reproducer, use `fatroast run`.
 
 ### Tests
 
@@ -245,8 +245,8 @@ only on fattened files, one always), which is how the campaign test knows a
 ## Layout
 
 ```text
-bin/fastroast              the command: run, fatten, coverage, transforms, palettes
-lib/FastRoast/
+bin/fatroast               the command: run, fatten, coverage, transforms, palettes
+lib/FatRoast/
   Tokens.rakumod           the highlighter's spans as tokens; none for a file they do not reassemble
   Transform.rakumod        the palettes, the transforms, edit groups and render
   Roast.rakumod            spectest.data's files; a file's seed (fudged for Rakudo, #? lines dropped)

@@ -1,7 +1,7 @@
 use lib $?FILE.IO.parent.parent.add('lib').Str;
 use Test;
-use FastRoast::Tap;
-use FastRoast::Campaign;
+use FatRoast::Tap;
+use FatRoast::Campaign;
 
 plan 9;
 my %a = status => 'exit', exit => 0, stdout => "1..3\nok 1 - a\nnot ok 2 - b\n    ok 1 - # SKIP x\nok 3 - c # TODO y\n";

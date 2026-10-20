@@ -1,4 +1,4 @@
-unit module FastRoast::Tokens;
+unit module FatRoast::Tokens;
 
 # Tokens from Raku++'s own parse-aware highlighter (`rakupp --highlight
 # --html`): each span's class (`s` a string literal, `sr` a regex, `n` a

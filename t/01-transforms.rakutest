@@ -1,10 +1,10 @@
 use lib $?FILE.IO.parent.parent.add('lib').Str;
 use Test;
-use FastRoast::Tokens;
-use FastRoast::Transform;
+use FatRoast::Tokens;
+use FatRoast::Transform;
 
 plan 39;
-my $tmp = $*TMPDIR.add("fastroast-t1-$*PID"); $tmp.mkdir;
+my $tmp = $*TMPDIR.add("fatroast-t1-$*PID"); $tmp.mkdir;
 sub fat(Str $name, Str $src, :$palette = 'cyrillic') { render($src, transform($name, $src, tokens($src, $tmp), :$palette)) }
 
 # --- tokens ---------------------------------------------------------------

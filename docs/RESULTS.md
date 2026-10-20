@@ -25,7 +25,7 @@ with a short plan and with the failure count when tests failed; Raku++ exits
 
 ### Raku++ defects confirmed from these findings
 
-Each one is reproduced outside FastRoast against Rakudo:
+Each one is reproduced outside FatRoast against Rakudo:
 
 | defect | found by |
 |---|---|
@@ -36,13 +36,13 @@ Each one is reproduced outside FastRoast against Rakudo:
 | `/$é/` and `/@𝐯/` do not interpolate (non-ASCII variable in a regex) | `names-v1:mixed` |
 | `.trans(/ \s+ / => "_")` replaces at the wrong place after a combining mark | `strings-v1:mixed` |
 
-The highlighter FastRoast takes its tokens from had three defects of its own
+The highlighter FatRoast takes its tokens from had three defects of its own
 (ASCII-only names, `-`/`'` joining a name before a digit or a quote, `qq:!c`),
 fixed in Raku++ the same day.
 
 ### Coverage
 
-`fastroast fatten --roast=…` over all 1,425 files: 1,424 seed (one,
+`fatroast fatten --roast=…` over all 1,425 files: 1,424 seed (one,
 `S15-unicode-information/uniprop.t`, does not reassemble from the
 highlighter's tokens). `strings-v1:mixed` changes 1,413 of them (176,929 edit
 groups), `names-v1:mixed` 1,173 (8,956), `ops-v1` 445 (5,856).

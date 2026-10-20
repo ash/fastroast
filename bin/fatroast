@@ -1,27 +1,27 @@
 #!/usr/bin/env rakupp
-# FastRoast: Roast with the fat added. See README.md.
+# FatRoast: Roast with the fat added. See README.md.
 use lib $?FILE.IO.parent.parent.add('lib').Str;
-use FastRoast;
-use FastRoast::Roast;
-use FastRoast::Tokens;
-use FastRoast::Transform;
-use FastRoast::Campaign;
+use FatRoast;
+use FatRoast::Roast;
+use FatRoast::Tokens;
+use FatRoast::Transform;
+use FatRoast::Campaign;
 
 sub usage() {
     say qq:to/USAGE/;
-    FastRoast {VERSION} — Roast with the fat added
+    FatRoast {VERSION} — Roast with the fat added
 
     Usage:
-      fastroast run --roast=DIR [--transform=NAME[:PALETTE][,…]|all] [--palette=NAME[,NAME…]|all]
+      fatroast run --roast=DIR [--transform=NAME[:PALETTE][,…]|all] [--palette=NAME[,NAME…]|all]
                     [--chapters=S02,S32-str,…] [--files=REL,…] [--per=N] [--seed=N]
                     [--oracle=rakudo] [--candidate=rakupp] [--jobs=N] [--timeout=SEC]
                     [--out=DIR] [--shrink-budget=N] [--no-shrink]
-      fastroast fatten FILE [--transform=NAME[:PALETTE]]
-      fastroast fatten --roast=DIR [--transform=…] [--palette=…] [--chapters=…] [--jobs=N] [--out=DIR]
-      fastroast coverage --roast=DIR [--transform=…] [--palette=…] [--chapters=…] [--jobs=N] [--out=DIR]
-      fastroast transforms
-      fastroast palettes
-      fastroast version
+      fatroast fatten FILE [--transform=NAME[:PALETTE]]
+      fatroast fatten --roast=DIR [--transform=…] [--palette=…] [--chapters=…] [--jobs=N] [--out=DIR]
+      fatroast coverage --roast=DIR [--transform=…] [--palette=…] [--chapters=…] [--jobs=N] [--out=DIR]
+      fatroast transforms
+      fatroast palettes
+      fatroast version
 
     run writes report.md, results.tsv and findings/TRANSFORM/FILE/ under --out
     (default out/latest). --per=N takes N files per chapter, chosen by --seed.
@@ -79,7 +79,7 @@ sub MAIN(*@args) {
             my sub put(Str $dir, Str $rel, Str $text) {
                 my $f = $out.add($dir).add($rel); $f.parent.mkdir; $f.spurt($text)
             }
-            my $tmp = $*TMPDIR.add("fastroast-coverage-$*PID"); $tmp.mkdir;
+            my $tmp = $*TMPDIR.add("fatroast-coverage-$*PID"); $tmp.mkdir;
             my @rows = @files.race(:batch(1), :degree(int('jobs', 2))).map(-> $rel {
                 my $source = $roast.add($rel).slurp;
                 my @t = tokens($source, $tmp) // ();

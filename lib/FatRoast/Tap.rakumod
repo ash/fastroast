@@ -1,4 +1,4 @@
-unit module FastRoast::Tap;
+unit module FatRoast::Tap;
 
 # TAP as a comparable observation: one key per test line, `depth:number:verdict`
 # (`0:12:ok`, `4:3:not ok:SKIP`), the depth being the subtest indentation. The

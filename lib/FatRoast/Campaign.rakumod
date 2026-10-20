@@ -1,4 +1,4 @@
-unit module FastRoast::Campaign;
+unit module FatRoast::Campaign;
 
 # One campaign: a transform over a set of Roast files. For each file:
 #
@@ -17,11 +17,11 @@ unit module FastRoast::Campaign;
 #      whose own verdicts changed is recorded as `debt` on the finding: the
 #      promise, not the candidate, may be what broke.
 
-use FastRoast::Runner;
-use FastRoast::Roast;
-use FastRoast::Tokens;
-use FastRoast::Tap;
-use FastRoast::Transform;
+use FatRoast::Runner;
+use FatRoast::Roast;
+use FatRoast::Tokens;
+use FatRoast::Tap;
+use FatRoast::Transform;
 
 sub write-dir(IO::Path $d) { $d.mkdir unless $d.d; $d }
 
@@ -193,7 +193,7 @@ sub campaign(:@transforms!, :@files!, IO::Path:D :$roast!, IO::Path:D :$out!,
 
 sub write-report(IO::Path:D $out, @results, %c) {
     my @v = <agree fat base skip error>;
-    my $md = "# FastRoast\n\noracle {md-cell(%c<oracle-id>)}, candidate {md-cell(%c<candidate-id>)}\n\n";
+    my $md = "# FatRoast\n\noracle {md-cell(%c<oracle-id>)}, candidate {md-cell(%c<candidate-id>)}\n\n";
     for @results.map(*<transform>).unique.sort -> $t {
         my @r = @results.grep(*<transform> eq $t);
         $md ~= "## $t ({transform-info(parse-spec($t)[0])<about>})\n\n| chapter | files | " ~ @v.join(' | ') ~ " |\n|---|" ~ ('---|' x (@v + 1)) ~ "\n";

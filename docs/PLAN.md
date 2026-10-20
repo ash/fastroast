@@ -1,4 +1,4 @@
-# FastRoast plan
+# FatRoast plan
 
 ## Why
 
@@ -11,7 +11,7 @@ beside a user multi. Every one was a feature crossed with an input its tests
 had no reason to use. A specification test pins a feature down with one
 clear example, and asserts mostly by truth or string (95,408 `ok` and 29,025
 `is` against 7,544 `is-deeply`). Rakumap's matrix domains enumerate such
-products from scratch; FastRoast gets them from the tests that already exist,
+products from scratch; FatRoast gets them from the tests that already exist,
 keeping the expectations Roast's authors worked out.
 
 ## Invariants

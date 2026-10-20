@@ -1,4 +1,4 @@
-unit module FastRoast;
+unit module FatRoast;
 
 # Roast with the fat added: existing Roast tests, rewritten by named and
 # versioned transforms (non-Latin strings and names, Unicode operator

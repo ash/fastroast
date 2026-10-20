@@ -1,4 +1,4 @@
-unit module FastRoast::Roast;
+unit module FatRoast::Roast;
 
 # Roast files as seeds. The list is Roast's own `spectest.data`, every file it
 # names (Rakudo's `make spectest` leaves out the 60 marked `stress`). A seed

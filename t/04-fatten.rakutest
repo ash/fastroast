@@ -6,8 +6,8 @@ use Test;
 plan 8;
 my $root  = $?FILE.IO.parent.parent;
 my $roast = $root.add('fixtures/roast-mini');
-my $out   = $*TMPDIR.add("fastroast-t4-$*PID");
-my $p = run($*EXECUTABLE.absolute, $root.add('bin/fastroast').absolute, 'fatten', "--roast={$roast.absolute}",
+my $out   = $*TMPDIR.add("fatroast-t4-$*PID");
+my $p = run($*EXECUTABLE.absolute, $root.add('bin/fatroast').absolute, 'fatten', "--roast={$roast.absolute}",
             "--out={$out.absolute}", '--jobs=1', :out, :err);
 my $said = $p.out.slurp(:close); $p.err.slurp(:close);
 is $p.exitcode, 0, 'fatten writes the trees';
@@ -28,7 +28,7 @@ ok $out.add('strings-v1.mixed').add($rel).lines.grep(*.contains('my $word = "'))
     'a string literal outside a directive is fattened';
 ok $out.add('coverage.tsv').lines.grep(*.starts-with("$rel\ttokenized\t")), 'coverage.tsv calls the file tokenized';
 
-$p = run($*EXECUTABLE.absolute, $root.add('bin/fastroast').absolute, 'fatten', $roast.add($rel).absolute,
+$p = run($*EXECUTABLE.absolute, $root.add('bin/fatroast').absolute, 'fatten', $roast.add($rel).absolute,
          '--transform=ops-v1', :out, :err);
 my $one = $p.out.slurp(:close); $p.err.slurp(:close);
 ok $one.contains('1 ≤ 2') && $one.contains("#?rakudo.moar 2 skip"), 'fatten FILE prints the file fattened, its directives kept';

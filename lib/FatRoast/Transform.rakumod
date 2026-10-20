@@ -1,4 +1,4 @@
-unit module FastRoast::Transform;
+unit module FatRoast::Transform;
 
 # The fattening transforms. Each is named and versioned (a renamed or changed
 # rule is a new version, so findings stay reproducible), and turns a seed's
@@ -14,7 +14,7 @@ unit module FastRoast::Transform;
 #                  are exact aliases); an oracle that breaks the promise is
 #                  transformation debt, not a candidate finding
 
-use FastRoast::Tokens;
+use FatRoast::Tokens;
 
 class Edit is export { has Int $.from; has Int $.to; has Str $.text }
 class Group is export { has Str $.id; has Str $.label; has Edit @.edits }

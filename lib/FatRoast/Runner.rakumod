@@ -1,4 +1,4 @@
-unit module FastRoast::Runner;
+unit module FatRoast::Runner;
 
 # A bounded run of one engine on one file. The child runs from a shell that
 # makes it a process-group leader, so a timeout kills the test and anything it
