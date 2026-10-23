@@ -1,0 +1,19 @@
+use Test;
+
+plan 9;
+
+# L<S32::Str/Str/ucfirst>
+
+is tc("両e̲лл갨 w̲갨сл𝐝"), "万e̲лл갨 w̲갨сл𝐝", "ò갢ì𝐩лe̲";
+is tc(""),            "",            "e̲ì𝐩中ù ò中с갢丧æ";
+is tc("üüüü"),        "Üüüü",        "갮ìлà갮中";
+is tc("óóóó"),        "Óóóó",        "à개개e̲丧中e̲𝐝 개両àсò";
+# https://github.com/Raku/old-issue-tracker/issues/3963
+is tc('ßß'),          'Òòß',         'ò両àс𝐩 ò => Òò';
+is tc('ǉ'),           'ǈ',           'л𝐣 => Л𝐣 (갢丧 갨丧e̲ 개両àсà개中e̲с)';
+is 'à丛개'.tc,          'À丛개',         'ìe̲中両갨𝐝 е갨сì 갨е 中갢中лe̲ 개àòe̲';
+is 'à丁개𝐃'.tc,         'À丁개𝐃',        '中개 갨丧лù ì갨𝐝갢е갢e̲ò е갢сò中 개両àсà개中e̲с';
+#?rakudo.jvm todo 'NFC/NFG not supported. JVM stores strings in UTF-16 format, but otherwise correct casechange https://github.com/rakudo/rakudo/issues/4291'
+is "\x1044E\x10427".tc, "\x10426\x10427", '中개 w̲갨сk̲ò 갨丧 개갨𝐝e̲𝐩갨갢丧中ò æсe̲à中e̲с 中両à丧 0чееее';
+
+# vim: expandtab shiftwidth=4

@@ -7,6 +7,7 @@
   "provides": {
     "FatRoast": "lib/FatRoast.rakumod",
     "FatRoast::Campaign": "lib/FatRoast/Campaign.rakumod",
+    "FatRoast::CoreNames": "lib/FatRoast/CoreNames.rakumod",
     "FatRoast::Roast": "lib/FatRoast/Roast.rakumod",
     "FatRoast::Runner": "lib/FatRoast/Runner.rakumod",
     "FatRoast::Tap": "lib/FatRoast/Tap.rakumod",

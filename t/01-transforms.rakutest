@@ -3,7 +3,7 @@ use Test;
 use FatRoast::Tokens;
 use FatRoast::Transform;
 
-plan 39;
+plan 42;
 my $tmp = $*TMPDIR.add("fatroast-t1-$*PID"); $tmp.mkdir;
 sub fat(Str $name, Str $src, :$palette = 'cyrillic') { render($src, transform($name, $src, tokens($src, $tmp), :$palette)) }
 
@@ -97,3 +97,62 @@ dies-ok { parse-spec('strings-v1:klingon') }, 'an unknown palette dies';
 is-deeply expand-specs(<strings-v1 ops-v1 names-v1:marks>, <cjk astral>),
     <strings-v1:cjk strings-v1:astral ops-v1 names-v1:marks>, 'expand-specs gives every palette to the transforms that take one';
 is-deeply expand-specs(<names-v1 ops-v1>, ()), <names-v1:mixed ops-v1>, 'and mixed when none is named';
+
+# --- version 2 ------------------------------------------------------------
+# what the v1 rules broke on every engine, each case one v1 got wrong
+subtest 'strings-v2', {
+    my sub f(Str $src) { fat('strings-v2', $src) }
+    my $h = f(qq:to/END/);
+        my \$t = q:to/STOP/;
+          hi
+          STOP
+        say "a";
+        END
+    ok $h.contains('q:to/STOP/') && $h.contains("  hi\n  STOP\n"), "a heredoc's opener and its body keep their letters";
+    ok $h.contains('"а"'), 'and the strings after it are fattened';
+    is f(Q[say "a \xab \o17 \c65 \x[41]";]), Q[say "а \xab \o17 \c65 \x[41]";], "an escape's digits are kept, bracketed or not";
+    is f(Q[say "a $x.^name() @a[0] %h<k> &f() $<c> $0[1] $(1) b $x.uc";]),
+       Q[say "а $x.^name() @a[0] %h<k> &f() $<c> $0[1] $(1) б $x.фв";], 'what a "…" interpolates keeps its letters';
+    is f(Q[throws-like 'die "x"', X::AdHoc; is_run ｢say 1｣, {}; EVAL 'say ' ~ 'x';]),
+       Q[throws-like 'die "x"', X::AdHoc; is_run ｢say 1｣, {}; EVAL 'say ' ~ 'x';], 'code in a string is not data';
+    is f(Q[run 'echo', 'hi'; say qx/echo hi/; run $*EXECUTABLE, '-e', 'say 42';]),
+       Q[run 'echo', 'hi'; say qx/echo hi/; run $*EXECUTABLE, '-e', 'say 42';], 'nor is a command';
+    is f(Q[cmp-ok 1, 'eqv', 1, 'eqv';]), Q[cmp-ok 1, 'eqv', 1, 'дрх';], "nor cmp-ok's operator";
+    is f(Q[ok $x.can('foo'), 'foo'; $x."bar"();]), Q[ok $x.can('foo'), 'еоо'; $x."bar"();], "nor a method's name";
+    is f(Q[say 'a'..'z', 'a'...'c'; say 'ab'.trans('a..b' => 'x..y');]),
+       Q[say 'a'..'z', 'a'...'c'; say 'аб'.trans('a..b' => 'x..y');], 'nor a range';
+    is f(Q[say <a 0xff NaN+Inf\i 1e3>;]), Q[say <а 0xff NaN+Inf\i 1e3>;], 'a word that is a number keeps its letters';
+    is f(Q[sub prefix:<'p'> ($x) { 2 }; is('p'3, 2, 'x');]), Q[sub prefix:<'p'> ($x) { 2 }; is('p'3, 2, 'ч');], 'an operator spelled in quotes is not a string';
+    ok f(Q[say Q :s /a $x/, q :to 'E';]).contains(Q[q :to 'E']), 'adverbs may be spaced';
+    is f(Q[class Foo { has $.bar }; enum C <red>; is $x.^name, 'Str'; is ~True, 'True'; say 'Foo', 'bar', 'red', <Int a>, 'X::AdHoc', 'a';]),
+       Q[class Foo { has $.bar }; enum C <red>; is $x.^name, 'Str'; is ~True, 'True'; say 'Foo', 'bar', 'red', <Int а>, 'X::AdHoc', 'а';],
+       'a name the program knows keeps its letters, and so does an enum';
+}
+
+subtest 'names-v2', {
+    my sub f(Str $src) { fat('names-v2', $src) }
+    ok f(Q[sub infix:<mine>($a, $b) { $a }; say 1 mine 2;]).contains('sub infix:<mine>'), "an operator's category is not a name";
+    is f(Q[my $x = 1; say “'$x'”, „$x“, "$x-1", "\$x", '$x', Q:double/$x/;]),
+       Q[my $ч = 1; say “'$ч'”, „$ч“, "$ч-1", "\$x", '$x', Q:double/$ч/;], 'a variable is renamed in every string that interpolates';
+    is f(qq[my \$x = 1; print qq:to/E/;\n\$x\nE\n]), qq[my \$ч = 1; print qq:to/E/;\n\$ч\nE\n], "and in a qq heredoc's body";
+    is f(Q[my @arr = 1; throws-like 'say @arr', X::AdHoc; say @arr;]),
+       Q[my @arr = 1; throws-like 'say @arr', X::AdHoc; say @arr;], 'a name in a code string keeps its spelling';
+    ok f(Q[sub helper { 1 }; say "{helper()}", "&helper()"; helper;]).contains('sub helper'), "so does one in a string's block";
+    is f(Q[my $foo = 1; sub nt { $^foo }; constant &postfix:<`> = &prefix:<?>; my $b = 2; say Q :s /$b/;]),
+       Q[my $foo = 1; sub ну { $^foo }; constant &postfix:<`> = &prefix:<?>; my $б = 2; say Q :s /$б/;],
+       "a placeholder's variable and an operator's category keep their names";
+    ok f(Q[sub r { 1 }; sub infix:<r> { 2 }; say [r] 1, 2;]).contains('sub r {'), 'so does a sub that shares its name with an operator';
+}
+
+subtest 'ops-v2', {
+    my sub f(Str $src) { fat('ops-v2', $src) }
+    is f(Q[my $y = $a (|) $b; proto f(|) {*}; sub (|) { }; ok [(|)] @s;]),
+       Q[my $y = $a ∪ $b; proto f(|) {*}; sub (|) { }; ok [∪] @s;], 'a set operator follows a term';
+    is f(Q[$x +<= 1; ok 1 <= 2; ok [<=] 1, 2; %h<a b>=(1, 2); $x != 3;]),
+       Q[$x +<= 1; ok 1 ≤ 2; ok [≤] 1, 2; %h<a b>=(1, 2); $x ≠ 3;], 'a comparison is spaced';
+    is f(Q[is $PiClass::pi, pi; is <NaN+Inf\i>, -Inf; say tau => 1;]),
+       Q[is $PiClass::pi, π; is <NaN+Inf\i>, -Inf; say tau => 1;], 'a constant is a whole name';
+    is f(Q[multi sub infix:<->(Str $a, Str $b) { 1 }; say 'a' - 'b', 3 - 1, 2 * 3;]),
+       Q[multi sub infix:<->(Str $a, Str $b) { 1 }; say 'a' - 'b', 3 - 1, 2 × 3;], 'an operator the file declares keeps its spelling';
+    is f(Q[sub pi { 3 }; say pi, Inf;]), Q[sub pi { 3 }; say pi, ∞;], 'so does a constant';
+}

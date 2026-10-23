@@ -3,7 +3,7 @@ use Test;
 
 # fatten writes the trees run-fatroast runs: Roast's files as they are, `#?`
 # directives included, with only a transform's edits applied.
-plan 8;
+plan 11;
 my $root  = $?FILE.IO.parent.parent;
 my $roast = $root.add('fixtures/roast-mini');
 my $out   = $*TMPDIR.add("fatroast-t4-$*PID");
@@ -16,7 +16,7 @@ nok $out.add('seed').e, 'there is no seed tree: a tree starts from the Roast fil
 my $rel = 'S32-str/directives.t';
 my @source = $roast.add($rel).lines;
 sub directives(@lines) { @lines.grep(/^ \s* '#?' /).List }
-for <strings-v1.mixed names-v1.mixed ops-v1> -> $spec {
+for <strings-v1.mixed names-v1.mixed ops-v1 strings-v2.mixed names-v2.mixed ops-v2> -> $spec {
     my @fat = $out.add($spec).add($rel).lines;
     subtest "$spec keeps the directives", {
         ok @fat.elems == @source.elems, 'line for line';

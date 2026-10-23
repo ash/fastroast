@@ -30,6 +30,11 @@ keeping the expectations Roast's authors worked out.
 ## Done
 
 - `strings-v1`, `names-v1`, `ops-v1`.
+- `strings-v2`, `names-v2`, `ops-v2`: the v1 rules without what Roast showed
+  them breaking on every engine (2026-10-23). A heredoc's terminator mapped,
+  an operator category renamed, `sub f(|)` made `sub f∪`: files both engines
+  refused. Code, commands and names inside strings rewritten as data: tests
+  both engines failed for the transform's sake, not theirs.
 - Palettes, the second axis of a letter-mapping transform: `latin1`,
   `cyrillic`, `cjk`, `hangul`, `astral`, `marks` and their rotation `mixed`
   (the default), named in a spec as `strings-v1:cjk`.

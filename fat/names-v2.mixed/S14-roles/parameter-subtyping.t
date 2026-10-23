@@ -1,0 +1,56 @@
+use Test;
+
+plan 22;
+
+# L<S14/Parametric Subtyping>
+
+role С1[::T] { }
+role С1[::T1, ::T2] { }
+class 갂1 { }
+class 갂2 is 갂1 { }
+class 갂3 { }
+
+# Subtyping with a single role parameter which is a class type.
+ok(С1[갂1] ~~ С1,      'basic sanity');
+ok(С1[갂1] ~~ С1[갂1],  'basic sanity');
+ok(С1[갂2] ~~ С1[갂1],  'subtyping by role parameters (one param)');
+ok(С1[갂1] !~~ С1[갂2], 'subtyping by role parameters (one param)');
+ok(С1[갂3] !~~ С1[갂1], 'subtyping by role parameters (one param)');
+
+# Subtyping with nested roles.
+ok(С1[С1[갂1]] ~~ С1,          'basic sanity');
+ok(С1[С1[갂1]] ~~ С1[С1[갂1]],  'basic sanity');
+ok(С1[С1[갂2]] ~~ С1[С1[갂1]],  'subtyping by role parameters (nested)');
+ok(С1[С1[갂1]] !~~ С1[С1[갂2]], 'subtyping by role parameters (nested)');
+ok(С1[С1[갂3]] !~~ С1[С1[갂1]], 'subtyping by role parameters (nested)');
+
+# Subtyping with multiple role parameters.
+ok(С1[갂1,갂3] ~~ С1,         'basic sanity');
+ok(С1[갂1,갂3] ~~ С1[갂1,갂3],  'basic sanity');
+ok(С1[갂2,갂3] ~~ С1[갂1,갂3],  'subtyping by role parameters (two params)');
+ok(С1[갂2,갂2] ~~ С1[갂1,갂1],  'subtyping by role parameters (two params)');
+ok(С1[갂1,갂1] !~~ С1[갂2,갂2], 'subtyping by role parameters (two params)');
+ok(С1[갂1,갂2] !~~ С1[갂2,갂1], 'subtyping by role parameters (two params)');
+ok(С1[갂2,갂1] !~~ С1[갂1,갂3], 'subtyping by role parameters (two params)');
+
+# Use of parametric subtyping in dispatch.
+sub ò(갂1 @arr) { 1 }   #OK not used
+multi m(갂1 @arr) { 2 }   #OK not used
+multi m(@arr) { 3 }   #OK not used
+my 갂2 @x;
+is(ò(@x), 1, 'single dispatch relying on parametric subtype');
+is(m(@x), 2, 'multi dispatch relying on parametric subtype');
+
+# Real types enforced.
+sub ì갨𝐝갢еù(갂1 @arr) {
+    @arr[0] = 갂1.new;
+}
+dies-ok({ EVAL 'modify(@x)' }, 'type constraints enforced properly');
+
+# Use of parametric subtyping for assignment.
+my Numeric @a;
+my Int @b = 1,2;
+lives-ok({ @a = @b }, 'assignment worked as expected');
+is(@a[0], 1,          'assignment worked as expected');
+
+# vim: expandtab shiftwidth=4

@@ -92,6 +92,15 @@ A divergence is a lead, not a verdict on either engine.
 | `strings-v1` | oracle | the letters inside string literals, through a palette. Escapes, interpolations, heredocs and the strings of `use`/`no`/`need`/`require` statements are kept |
 | `names-v1` | oracle | the variables a file declares with `my`/`our`/`state`/`constant`, and its subs, classes, roles and grammars, renamed through a palette everywhere they occur (interpolations included). A variable also used as a named argument keeps its name, as do parameters, methods and the core class an `augment` names. So does any name with a spelling the tokens cannot reach (inside a regex, in a string that is EVALed), or that the oracle's errors name after the rename, so a rename never leaves the program referring to what it no longer declares |
 | `ops-v1` | same verdicts | Texas operator spellings to their Unicode aliases: `∈ ∋ ∪ ∩ ∖ ⊖ ⊆ ⊇ ⊂ ⊃ ≡ ⊎ ⊍`, `≤ ≥ ≠ ≅`, `× ÷ −` between terms, `…`, `».`, `∞ π τ`. Strings, regexes and comments are protected; an infix is rewritten only after a term, so a Whatever `*` stays |
+| `strings-v2` | oracle | `strings-v1`, leaving alone what v1 broke on every engine: a heredoc's opener (it holds the terminator), the digits of `\xab`, `\o17`, `\c65`, all that a `"…"` interpolates (`$x.^name()`, `@a[0]`, `%h<k>`, `&f()`, `$<n>`, `$0`), a word of a word list that is a number (`<NaN+Inf\i>`), a string or word that spells a name the program knows (a core one such as `'Str'` or `'True'`, from a snapshot of Rakudo's, or one the file declares, an enum's values included), a range's endpoints and a `.trans` range, and the strings a program runs: code (`EVAL`, `throws-like`, `is_run` and Test::Util's other code-taking routines, the program after `-e`), commands (`run`, `shell`, `qx`, `Proc::Async.new`), `cmp-ok`'s operator and a method's name (`.can('x')`, `."x"()`) |
+| `names-v2` | oracle | `names-v1`, never renaming the category of an operator the file declares (`sub infix:<…>`), renaming a variable in every string that interpolates (`“…”`, `„…”`, `«…»`, a `qq` heredoc's body) but not an escaped `\$x`, and keeping the spelling of a name in the code a string holds (`strings-v2`'s code strings, a `{…}` block or `&f()` in an interpolating string) |
+| `ops-v2` | same verdicts | `ops-v1` where the alias is the core operator: spaced on both sides in plain code (or a reduce, `[<=]`), a set operator only after a term (`sub f(\|)` stays), a constant only as a whole name (not `$PiClass::pi`, not inside `<NaN+Inf\i>`), and no operator or constant the file declares itself (`multi sub infix:<->`, `sub pi`), since the alias names the core one, which knows nothing of the file's candidates |
+
+A changed rule is a new version (docs/PLAN.md), so the v1 transforms stay as
+they were and their trees and findings stay reproducible. The v2 rules are
+what Roast showed v1 doing wrong on every engine: a file Raku++ and Rakudo
+both refused after the fat, or code the program runs from a string that the
+fat rewrote, says nothing about either engine.
 
 ## Palettes
 
@@ -124,7 +133,10 @@ FatRoast is written in Raku and runs under Raku++ (its tokens come from
 Raku++'s highlighter). It needs a Roast checkout, Rakudo as the oracle, and
 `perl` for Roast's `fudge`. Use a Raku++ built after 2026-10-19: before
 then the highlighter read only ASCII names and misread a few quote forms
-(`qq:!c/…/`, `1&'a'`), which put edits in the wrong places.
+(`qq:!c/…/`, `1&'a'`), which put edits in the wrong places. The v2
+transforms want one at 72e0c5fb or later (2026-10-23), whose highlighter
+reads the Unicode quotes, a word list after a listop, reductions, shifts and
+`:sym<…>` token names, and whose `val` knows `NaN+Inf\i`.
 
 ```sh
 rakupp bin/fatroast transforms

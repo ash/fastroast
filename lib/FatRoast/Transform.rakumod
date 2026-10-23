@@ -15,6 +15,7 @@ unit module FatRoast::Transform;
 #                  transformation debt, not a candidate finding
 
 use FatRoast::Tokens;
+use FatRoast::CoreNames;
 
 class Edit is export { has Int $.from; has Int $.to; has Str $.text }
 class Group is export { has Str $.id; has Str $.label; has Edit @.edits }
@@ -304,13 +305,476 @@ sub ops-v1(Str:D $source, @tokens, Str $? --> List:D) {
     @g.sort(*.edits[0].from).List
 }
 
+# --- version 2 -------------------------------------------------------------
+# strings-v2, names-v2 and ops-v2 keep the v1 rules and add what Roast showed
+# them breaking on every engine (2026-10-23: Raku++ and Rakudo 2026.09 refused
+# the same fattened files). A file the fat stops compiling, or code the
+# program runs from a string and the fat rewrote, says nothing about either
+# engine: the edit was the transform's defect, so v2 does not make it.
+
+# Routines whose first argument, a Str, is code: EVAL, Test's and Roast's
+# Test::Util (`throws-like 'isa(@arr, Array)', …`, `is_run ｢…｣, …`).
+my @CODE-ROUTINES = <EVAL eval EVALFILE throws-like eval-dies-ok eval-lives-ok
+    eval_dies_ok eval_lives_ok is_run get_out doesn't-hang warns-like
+    doesn't-warn no-fatal-throws-like throws-like-any run-with-tty>;
+# Routines whose every argument is a command or its arguments.
+my @COMMAND-ROUTINES = <run shell qx qqx>;
+# Meta-methods whose first argument names a method.
+my @NAME-METHODS = <can lookup find_method find_private_method add_method
+    add_multi_method add_private_method declares_method>;
+
+# The token before $i, skipping whitespace, comments and an opening paren
+# (-1 when there is none).
+sub token-before(@tokens, Int:D $i --> Int:D) {
+    my $j = $i - 1;
+    $j-- while $j >= 0 && (@tokens[$j].class.starts-with('c')
+        || @tokens[$j].class eq '' && @tokens[$j].text ~~ / ^ <[\s(]>* $ /);
+    $j
+}
+
+# The tokens of the arguments of the call that token $r names, each as its
+# index => the argument it is in (0 for the first): to the `)` of a call
+# with parens, and for a listop to the `;` or the bracket that ends its
+# statement.
+sub call-args(@tokens, Int:D $r --> List:D) {
+    my $base = +($r + 1 < @tokens.elems && @tokens[$r + 1].class eq '' && @tokens[$r + 1].text.starts-with('('));
+    my $depth = 0; my $arg = 0; my @out;
+    TOKEN: for $r + 1 ..^ @tokens.elems -> $k {
+        my $t = @tokens[$k];
+        if $t.class ne '' {
+            @out.push: $k => +$arg if $depth >= $base && !$t.class.starts-with('c');
+            next;
+        }
+        for $t.text.comb -> $c {
+            if $c eq '(' | '[' | '{' { $depth++ }
+            elsif $c eq ')' | ']' | '}' { last TOKEN if --$depth < $base }
+            elsif $c eq ';' && $depth <= $base { last TOKEN }
+            elsif $c eq ',' && $depth == $base { $arg++ }
+        }
+    }
+    @out.List
+}
+
+# For each token, whether it is a string the program runs or resolves rather
+# than data: code (the first argument of a CODE-ROUTINE and what is
+# concatenated to it, the invocant of `.EVAL`, the program after `-e`), a
+# command (any argument of a COMMAND-ROUTINE or of `Proc::Async.new`), the
+# name of an operator (`cmp-ok`'s second argument), of a method (`.can('x')`,
+# `."x"()`) or of a symbol looked up (`::('x')`).
+sub run-strings(@tokens, Str:D $source --> List:D) {
+    my @run = False xx @tokens.elems;
+    for @tokens.kv -> $i, $t {
+        next unless $t.class eq 'n' | 'nb' | 'k';
+        my $method = $t.from > 0 && $source.substr($t.from - 1, 1) eq '.' | '^';
+        if !$method && $t.text eq any(@COMMAND-ROUTINES)
+          || $t.text eq 'new' && $source.substr(0, $t.from).ends-with('Proc::Async.') {
+            @run[.key] = True for call-args(@tokens, $i);
+        }
+        elsif !$method && $t.text eq 'cmp-ok' {
+            @run[.key] = True for call-args(@tokens, $i).grep(*.value == 1);
+        }
+        elsif $method && $t.text eq any(@NAME-METHODS) {
+            @run[.key] = True for call-args(@tokens, $i).grep(*.value == 0);
+        }
+    }
+    for @tokens.kv -> $i, $t {
+        next unless $t.class eq 's';
+        my $p = token-before(@tokens, $i);
+        if $p >= 0 {
+            my $pt = @tokens[$p];
+            my $pp = token-before(@tokens, $p);
+            @run[$i] = True if $pt.class ne 's' && $pt.text eq any(@CODE-ROUTINES)
+                || $pt.text.ends-with('::(' | '::')
+                || $pt.class eq '' && $pp >= 0 && (
+                       $pt.text.trim eq '~' && @run[$pp]
+                    || $pt.text.trim eq ',' && @tokens[$pp].text eq "'-e'" | '"-e"');
+        }
+        @run[$i] = True if @tokens[$i + 1 .. $i + 2].grep(*.defined).map(*.text).join.starts-with('.EVAL');
+        @run[$i] = True if $t.from > 0 && $source.substr($t.from - 1, 1) eq '.' | '^'
+            && $source.substr($t.to, 1) eq '(';
+    }
+    @run.List
+}
+
+# --- strings-v2 ------------------------------------------------------------
+# strings-v1's letters, and v1's exceptions, and also left alone:
+#   - a heredoc's opener (`q:to/END/`): it holds the terminator, and mapped,
+#     the heredoc never ends (45 Roast files refused)
+#   - the hex, octal or decimal digits of `\xab`, `\o17`, `\c65` without
+#     brackets (v1 kept only the bracketed ones; 6 files)
+#   - everything a `"…"` interpolates: the postfixes after a variable
+#     (`$x.^name()`, `@a[0]`, `%h<k>`, `&f()`), `$<name>`, `$0`, `$(…)`
+#   - a shell command (`qx`, `:x`) and the strings of run-strings
+#   - a range's or sequence's endpoint (`'a'..'z'`) and a `.trans` range
+#     (`'a..z'`): mixed letters make them ranges over 20,000 codepoints
+#   - the name in a `:sym<…>`
+#   - a word of a word list that is a number: `<NaN+Inf\i>`, `<0xff>`, `<1e3>`
+#     are allomorphs, and with their letters mapped, strings
+#   - a "string" that spells an operator the file declares: in `sub
+#     prefix:<'foo1'> …; is('foo1'3, …)` the quotes are the operator's
+#   - a string, or a word of a word list, that spells a name the program
+#     knows: a core one (`'Str'`, `'True'`, `'X::AdHoc'`, FatRoast::CoreNames)
+#     or one the file declares (a type, a routine, an accessor, an enum's
+#     value). A test compares it with what code prints: mapped, `allo.^name
+#     eq 'Str'` turned S32-str/val.t's logic around. And the word list an
+#     `enum` declares its values with is code, not data
+my @QUOTES-V2 = "'", '"', '<', '«', '｢', '“', '‘', '„', '‚', '”', '’';
+sub fat-string-v2(Str:D $t, Str:D $palette = 'mixed', :&known = -> $ { False } --> Str:D) is export {
+    my %map := palette($palette);
+    return $t if $t.contains("\n") || $t.chars < 2;
+    my $m = $t ~~ / ^ ( Q | qqww | qqw | qqx | qq | qw | qx | ww | q )? ( [ \s* ':' '!'? \w+ [ '(' <-[)]>* ')' ]? ]* ) \s* /;
+    return $t if ~$m[1] ~~ / ':' [ to | heredoc | x | exec ] <!before \w> / || ($m[0] // '') eq 'qx' | 'qqx';
+    my $start = $m.to;
+    return $t if $start >= $t.chars - 1;
+    return $t if !$m[0].defined && $t.substr(0, 1) ne any(@QUOTES-V2);
+    my @c = $t.substr($start + 1, $t.chars - $start - 2).comb;
+    my $n = @c.elems;
+    my %number;
+    if $t.substr(0, 1) eq '<' | '«' || ($m[0] // '') eq any(<qw qqw ww qqww>) {
+        for @c.join.match(/ \S+ /, :g) -> $w {
+            next unless val(~$w) ~~ Numeric || known(~$w);
+            %number{$_} = True for $w.from ..^ $w.to;
+        }
+    }
+    elsif known(@c.join) { return $t }
+    my sub letter(Int $j) { $j < $n && (@c[$j] ~~ /<:L>/ || @c[$j] eq '_') }
+    my sub ident-end(Int $j is copy) {
+        $j++ while $j < $n && (@c[$j] ~~ /<:L + :N>/ || @c[$j] eq '_' || @c[$j] eq '-' | "'" && letter($j + 1));
+        $j
+    }
+    my sub balanced(Int $j is copy, Str $open, Str $close) {
+        my $d = 0;
+        repeat { $d++ if @c[$j] eq $open; $d-- if @c[$j] eq $close; $j++ } until $d == 0 || $j >= $n;
+        $j
+    }
+    my sub upto(Int $j, Str $close) { my $k = $j + 1; $k++ while $k < $n && @c[$k] ne $close; $k < $n ?? $k + 1 !! $j }
+    # the postfixes an interpolated variable takes: subscripts, a call, and a
+    # method call with its arguments (`$x.foo()`; `$x.foo` is text)
+    my sub postfixes(Int $j is copy) {
+        loop {
+            last if $j >= $n;
+            my $c = @c[$j];
+            if $c eq '[' { $j = balanced($j, '[', ']') }
+            elsif $c eq '{' { $j = balanced($j, '{', '}') }
+            elsif $c eq '(' { $j = balanced($j, '(', ')') }
+            elsif $c eq '<' | '«' { my $e = upto($j, $c eq '<' ?? '>' !! '»'); last if $e == $j; $j = $e }
+            elsif $c eq '.' {
+                my $k = $j + 1;
+                $k++ if $k < $n && @c[$k] eq any(<^ ? ! + * &>);
+                my $e = ident-end($k);
+                last unless letter($k) && $e < $n && @c[$e] eq '(';
+                $j = balanced($e, '(', ')');
+            }
+            else { last }
+        }
+        $j
+    }
+    my $out = ''; my $i = 0;
+    while $i < $n {
+        my $c = @c[$i];
+        if $c eq '\\' {
+            my $j = $i + 2;
+            my $e = $i + 1 < $n ?? @c[$i + 1] !! '';
+            if $e eq any(<x o c>) && $j < $n && @c[$j] eq '[' { $j = upto($j - 1, ']') max $j }
+            elsif $e eq 'x' { $j++ while $j < $n && @c[$j] ~~ /<[0..9a..fA..F]>/ }
+            elsif $e eq 'o' { $j++ while $j < $n && @c[$j] ~~ /<[0..7]>/ }
+            elsif $e eq 'c' { if $j < $n && @c[$j] ~~ /\d/ { $j++ while $j < $n && @c[$j] ~~ /\d/ } elsif $j < $n { $j++ } }
+            $j = $n if $j > $n;
+            $out ~= @c[$i ..^ $j].join; $i = $j; next;
+        }
+        if $c eq any(<$ @ % &>) && $i + 1 < $n {
+            my $d = @c[$i + 1];
+            my $j;
+            if letter($i + 1) { $j = ident-end($i + 1) }
+            elsif $d eq any(<! . * ? ^ :>) && letter($i + 2) { $j = ident-end($i + 2) }
+            elsif $c eq '$' && $d eq '<' | '/' { $j = $i + 1 + ($d eq '/') }
+            elsif $c eq '$' && $d ~~ /\d/ { $j = $i + 1; $j++ while $j < $n && @c[$j] ~~ /\d/ }
+            elsif $d eq '(' { $j = $i + 1 }
+            if $j.defined {
+                $j = postfixes($j);
+                $out ~= @c[$i ..^ $j].join; $i = $j; next;
+            }
+        }
+        if $c eq '{' {
+            my $j = balanced($i, '{', '}');
+            $out ~= @c[$i ..^ $j].join; $i = $j; next;
+        }
+        $out ~= %number{$i} ?? $c !! %map{$c} // $c; $i++;
+    }
+    $t.substr(0, $start + 1) ~ $out ~ $t.substr(*-1)
+}
+
+# The names a file declares, as a string may spell them: its types, its
+# routines and methods, its accessors and its enums' values.
+sub declared-names(Str:D $source --> Set:D) {
+    my @n;
+    @n.push: ~.[0] for $source.match(/ <|w> [ class | role | grammar | module | package | enum | subset | knowhow
+        | [ [ multi | proto | only ] \s+ ]? [ sub | method | submethod | token | rule | regex ] | multi | proto ]
+        \s+ ( <[\w:'-]>+ ) /, :g);
+    @n.push: ~.[0] for $source.match(/ <|w> has \s+ [ <[\w:]>+ \s+ ]? <[$@%&]> <[.!]> ( <[\w'-]>+ ) /, :g);
+    @n.append: (~.[0]).words for $source.match(/ <|w> enum \s+ [ <[\w:'-]>+ \s+ ]? [ '<' ( <-[>]>* ) '>' | '«' ( <-[»]>* ) '»' ] /, :g);
+    @n.grep(*.chars).Set
+}
+
+# A string beside a range or sequence operator is one of its endpoints.
+sub endpoint(@tokens, Int:D $i --> Bool:D) {
+    my $before = $i > 0 && @tokens[$i - 1].class eq '' ?? @tokens[$i - 1].text.trim-trailing !! '';
+    my $after = $i + 1 < @tokens.elems && @tokens[$i + 1].class eq '' ?? @tokens[$i + 1].text.trim-leading !! '';
+    so $before ~~ / '..' '.'? '^'? $ / || $after ~~ / ^ '^'? '..' /
+}
+
+sub strings-v2(Str:D $source, @tokens, Str:D $palette --> List:D) {
+    my @use = in-use-statement(@tokens);
+    my @run = run-strings(@tokens, $source);
+    # an operator spelled with quotes, `sub prefix:<'foo1'>`, reads as strings
+    my $ops = $source.match(/ <[\w-]>+ ':' [ '<' (<-[>]>+) '>' | '«' (<-[»]>+) '»' ] /, :g).map(~*[0]).grep(/ <['"]> /).Set;
+    my $declared = declared-names($source);
+    my &known = -> $w { core-name($w) || $w ∈ $declared };
+    my @g;
+    for @tokens.kv -> $i, $t {
+        next unless $t.class eq 's' && !@use[$i] && !@run[$i] && $t.text ∉ $ops;
+        my $lead = $t.text.substr(0, 1);
+        next if $lead eq any(<< < « >>) && $t.from > 0
+            && ($source.substr($t.from - 1, 1) eq ':' || $source.substr(0, $t.from).ends-with('sym'));
+        next if endpoint(@tokens, $i) || $t.text ~~ / <:L> '..' <:L> /;
+        next if $lead eq any(<< < « >>) && $source.substr(0, $t.from) ~~ / <|w> enum \s+ [ <[\w:'-]>+ \s+ ]? $ /;
+        my $f = fat-string-v2($t.text, $palette, :&known);
+        next if $f eq $t.text;
+        @g.push: Group.new(id => "string-{$t.from}",
+            label => "string at line {line-of($source, $t.from)}: {excerpt($t.text)}",
+            edits => [Edit.new(:from($t.from), :to($t.to), :text($f))]);
+    }
+    @g.List
+}
+
+# --- names-v2 --------------------------------------------------------------
+# names-v1's renames, and v1's exceptions, and also:
+#   - the category of an operator a file declares is not a sub's name:
+#     `sub infix:<+>` renamed `infix` (33 files: "Cannot add tokens of
+#     category")
+#   - a variable is renamed in every string that interpolates, not just
+#     `"…"` and `qq`: `“…”`, `„…”`, `«…»` and a `qq:to` heredoc's body; an
+#     escaped `\$x` is text; and `'$a' ~ '$b'` inside one ends `$a` at the
+#     quote (`$a'` stopped v1's match, so `$a` kept its spelling there)
+#   - a name in code a string holds keeps its spelling: the strings of
+#     run-strings (`throws-like 'isa(@arr, Array)', …`) and the `{…}` blocks
+#     and `&f()` calls in an interpolating string
+sub interpolates(Str:D $t --> Bool:D) {
+    so $t.substr(0, 1) eq any('"', '“', '„', '”', '«') || $t.starts-with('<<') || $t.starts-with('qq')
+      || $t ~~ / ^ <[qQ]> \w* [ \s* ':' '!'? \w+ ]* \s* ':' [ qq | double | s | scalar | a | array | h | hash | f | function | c | closure ] <!before \w> /
+}
+sub heredoc-opener(Str:D $t --> Bool:D) {
+    so $t ~~ / ^ <[qQ]> \w* [ \s* ':' '!'? \w+ ]* \s* ':' [ to | heredoc ] <!before \w> /
+}
+
+# For each string token, whether it interpolates: a heredoc's body, which
+# is its own token on the lines after the opener, as its opener does.
+sub interpolating(@tokens, Str:D $source --> List:D) {
+    my @bodies; my @i = False xx @tokens.elems;
+    for @tokens.kv -> $k, $t {
+        next unless $t.class eq 's';
+        if heredoc-opener($t.text) { @bodies.push: interpolates($t.text); next }
+        if @bodies && $t.text.contains("\n") && ($t.from == 0 || $source.substr($t.from - 1, 1) eq "\n") {
+            @i[$k] = @bodies.shift; next;
+        }
+        @i[$k] = interpolates($t.text);
+    }
+    @i.List
+}
+
+# The parts of an interpolating string that are code: its `{…}` blocks and
+# its `&f(…)` calls, as (offset, text).
+sub code-parts(Str:D $text --> List:D) {
+    my @p;
+    for $text.match(/ <!after '\\'> '{' /, :g) -> $m {
+        my $d = 0; my $j = $m.from;
+        repeat { $d++ if $text.substr($j, 1) eq '{'; $d-- if $text.substr($j, 1) eq '}'; $j++ } until $d == 0 || $j >= $text.chars;
+        @p.push: ($m.from, $text.substr($m.from, $j - $m.from));
+    }
+    @p.push: (.from, ~$_) for $text.match(/ <!after '\\'> '&' <&fat-ident> <?before '('> /, :g);
+    @p.List
+}
+
+sub incomplete-v2(@tokens, Str:D $source, %groups, @run, @interp --> List:D) {
+    my %at = %groups.map({ .key => .value.map(*.from).Set });
+    my %bad;
+    for @tokens.kv -> $i, $t {
+        next if $t.class.starts-with('c');
+        my @parts = $t.class ne 's' || @run[$i] ?? ((0, $t.text),) !! @interp[$i] ?? code-parts($t.text) !! ();
+        for @parts -> ($off, $text) {
+            for $text.match(/ (<[$@%&]>?) (<&fat-ident>) /, :g) -> $m {
+                my ($sigil, $word) = ~$m[0], ~$m[1];
+                my $from = $t.from + $off + $m.from;
+                my @keys = $sigil eq '&' ?? ("&$word", $word) !! $sigil ?? ("$sigil$word",) !! ($word, "&$word");
+                next if !$sigil && !bare-name($source, $from, $from + $m.chars);
+                for @keys -> $k {
+                    %bad{$k} = True if %at{$k} && !(%at{$k}{$from} || %at{$k}{$from - 1});
+                }
+            }
+        }
+    }
+    %bad.keys.List
+}
+
+sub names-v2(Str:D $source, @tokens, Str:D $palette --> List:D) {
+    my %vars;
+    # `constant &postfix:<`> = …` declares an operator: `postfix` is its category
+    for $source.match(/ <|w> [ my | our | state | constant ] \s+ [ '(' \s* ]? ( <[$@%&]> <&fat-ident> ) <!before ':' <-[:]>> /, :g) -> $m {
+        %vars{~$m[0]} = True;
+    }
+    for $source.match(/ <|w> [ my | our | state ] \s* '(' (<-[)]>+) ')' /, :g) -> $m {
+        %vars{~$_} = True for $m[0].match(/ <[$@%&]> <&fat-ident> /, :g);
+    }
+    my %named;
+    for %vars.keys -> $v {
+        my $bare = $v.substr(1);
+        %named{$v} = True if $source.contains(":$v") || $source ~~ / [ ':' $bare '(' | <|w> $bare \s* '=>' ] /;
+        # a placeholder `$^foo` or `$:foo` declares the `$foo` its block reads
+        %named{$v} = True if $source.contains($v.substr(0, 1) ~ '^' ~ $bare) || $source.contains($v.substr(0, 1) ~ ':' ~ $bare);
+    }
+    my %subs;
+    my $want = False; my $augment = False;
+    for @tokens -> $t {
+        next if $t.class eq '' && $t.text ~~ / ^ \s* $ /;
+        if $t.text eq any(<augment supersede>) { $augment = True; next }
+        if $t.class eq 'k' && $t.text eq any(<sub class role grammar>) { $want = !$augment; $augment = False; next }
+        # `sub infix:<+>` declares an operator: `infix` is its category
+        %subs{$t.text} = True if $want && $t.class eq 'n' && $t.text ~~ / ^ <&fat-ident> $ /
+            && $source.substr($t.to, 2) !~~ / ^ ':' <-[:]> /
+            && !$source.contains(any(":<{$t.text}>", ":«{$t.text}»"));   # `sub rightly` beside `infix:<rightly>`
+        $want = False; $augment = False;
+    }
+    my @run = run-strings(@tokens, $source);
+    my @interp = interpolating(@tokens, $source);
+    my %groups;
+    my sub add(Str $name, Int $from, Int $to, Str $text) {
+        %groups{$name} //= [];
+        %groups{$name}.push: Edit.new(:$from, :$to, :$text);
+    }
+    for @tokens.kv -> $i, $t {
+        if $t.class eq 'nv' && %vars{$t.text} && !%named{$t.text} {
+            add($t.text, $t.from, $t.to, $t.text.substr(0, 1) ~ fat-letters($t.text.substr(1), $palette));
+        }
+        elsif $t.class eq 'n' && %subs{$t.text} && bare-name($source, $t.from, $t.to) {
+            add($t.text, $t.from, $t.to, fat-letters($t.text, $palette));
+        }
+        elsif $t.class eq 's' && @interp[$i] {
+            for $t.text.match(/ <!after '\\'> <[$@%&]> <&fat-ident> <!before \w> /, :g) -> $m {
+                my $v = ~$m;
+                next unless %vars{$v} && !%named{$v};
+                add($v, $t.from + $m.from, $t.from + $m.to, $v.substr(0, 1) ~ fat-letters($v.substr(1), $palette));
+            }
+        }
+        elsif $t.class eq 'nv' && $t.text.starts-with('&') && %subs{$t.text.substr(1)} {
+            add($t.text.substr(1), $t.from, $t.to, '&' ~ fat-letters($t.text.substr(1), $palette));
+        }
+    }
+    %groups{$_}:delete for incomplete-v2(@tokens, $source, %groups, @run, @interp);
+    %groups.sort(*.key).map(-> $p {
+        Group.new(id => "name:{$p.key}", label => "{$p.key} ({$p.value.elems}×) -> {fat-letters($p.key, $palette)}", edits => $p.value.list)
+    }).List
+}
+
+# --- ops-v2 ----------------------------------------------------------------
+# ops-v1's aliases, rewritten only where they are the core operator:
+#   - an operator is plain text between tokens, spaced on both sides: `(|)`
+#     in `sub f(|)` is a signature, `<=` in `$x +<= 1` part of a shift's
+#     assignment, `>=` in `$<x>=[…]` or `%h<a b>=(…)` a subscript and an
+#     assignment. The reduce form `[<=]`, `[(|)]` is one too.
+#   - a set operator follows a term, as an arithmetic one does: `sub
+#     GENERATE-USAGE (|)` is no union
+#   - a constant is a whole name token: not the end of `$PiClass::pi`, nor
+#     inside an allomorph `<NaN+Inf\i>`
+#   - an operator the file declares for itself, as an infix (`multi sub
+#     infix:<->(Vector, Vector)`) or a constant (`sub pi`), keeps its ASCII
+#     spelling: the alias names the core one, which knows nothing of the
+#     file's candidates
+my @OPS-V2 =
+    set => '(elem)' => '∈', set => '(cont)' => '∋', set => '(|)' => '∪', set => '(&)' => '∩',
+    set => '(-)' => '∖', set => '(^)' => '⊖', set => '(<=)' => '⊆', set => '(>=)' => '⊇',
+    set => '(<)' => '⊂', set => '(>)' => '⊃', set => '(==)' => '≡', set => '(+)' => '⊎',
+    set => '(.)' => '⊍',
+    comparison => '<=' => '≤', comparison => '>=' => '≥', comparison => '!=' => '≠', comparison => '=~=' => '≅',
+    arithmetic => '*' => '×', arithmetic => '/' => '÷', arithmetic => '-' => '−',
+    sequence => '...' => '…', hyper => '>>.' => '».',
+    constants => 'Inf' => '∞', constants => 'pi' => 'π', constants => 'tau' => 'τ';
+
+sub ops-v2(Str:D $source, @tokens, Str $? --> List:D) {
+    my @owner = Int xx $source.chars;
+    for @tokens.kv -> $i, $t { @owner[$_] = $i for $t.from ..^ $t.to }
+    my sub after-term(Int $at --> Bool) {
+        my $p = $at - 1;
+        $p-- while $p >= 0 && $source.substr($p, 1) ~~ /\s/;
+        return False if $p < 0;
+        my $t = @tokens[@owner[$p] // return False];
+        so $t.class eq any(<mi mf nv s>) || ($t.class eq '' && $source.substr($p, 1) eq any(<) ] }>))
+    }
+    my sub spaced(Int $from, Int $to --> Bool) {
+        so $from > 0 && $to < $source.chars && $source.substr($from - 1, 1) ~~ /\s/ && $source.substr($to, 1) ~~ /\s/
+    }
+    my sub reduce(Int $from, Int $to --> Bool) {
+        so $from > 0 && $source.substr($from - 1, 1) eq '[' && $source.substr($to, 1) eq ']'
+    }
+    my sub declared(Str $op --> Bool) {
+        so $source.contains(any("infix:<$op>", "infix:«$op»", "infix:['$op']", "infix:[\"$op\"]", "infix:<<$op>>"))
+    }
+    my @g; my %taken;
+    for @OPS-V2 -> $rule {
+        my ($family, $ascii, $to) = $rule.key, $rule.value.key, $rule.value.value;
+        my @at;
+        if $family eq 'constants' {
+            next if $source ~~ / [ sub | constant | method | 'term:' <[<«]> | '\\' ] \s* $ascii <!before \w> /;
+            for @tokens -> $t {
+                next unless $t.class eq 'n' | 'nb' && $t.text eq $ascii;
+                next if $t.from > 0 && $source.substr($t.from - 1, 1) ~~ / <[\w$@%&'.:-]> /;
+                next if $source.substr($t.to) ~~ / ^ [ '(' | ':' | \s* '=>' ] /;
+                @at.push: $t.from;
+            }
+        }
+        else {
+            next if declared($ascii);
+            for @tokens -> $t {
+                next unless $t.class eq '';
+                for $t.text.indices($ascii) -> $off {
+                    my $from = $t.from + $off; my $end = $from + $ascii.chars;
+                    if $family eq 'hyper' {
+                        next unless $from > 0 && $source.substr($from - 1, 1) ~~ / <[\w)\]}]> /;
+                    }
+                    elsif $family eq 'set' | 'comparison' {
+                        next unless reduce($from, $end) || spaced($from, $end) && ($family eq 'comparison' || after-term($from));
+                    }
+                    else {
+                        next unless spaced($from, $end) && after-term($from);
+                    }
+                    @at.push: $from;
+                }
+            }
+        }
+        for @at -> $from {
+            my $end = $from + $ascii.chars;
+            next if ($from ..^ $end).first({ %taken{$_} }).defined;
+            %taken{$_} = True for $from ..^ $end;
+            @g.push: Group.new(id => "op-$from",
+                label => "$family at line {line-of($source, $from)}: $ascii -> $to",
+                edits => [Edit.new(:$from, :to($end), :text($to))]);
+        }
+    }
+    @g.sort(*.edits[0].from).List
+}
+
 my %TRANSFORMS =
     'strings-v1' => %( relation => 'oracle', code => &strings-v1, palette => True,
         about => 'letters in string literals -> another script (a palette)' ),
     'names-v1'   => %( relation => 'oracle', code => &names-v1, palette => True, renames => True,
         about => 'declared variables, subs, classes, roles and grammars renamed into another script (a palette)' ),
     'ops-v1'     => %( relation => 'same-verdicts', code => &ops-v1, palette => False,
-        about => 'Texas operator spellings -> their Unicode aliases (∈ ∪ ≤ ≠ × ÷ − … ». ∞ π)' );
+        about => 'Texas operator spellings -> their Unicode aliases (∈ ∪ ≤ ≠ × ÷ − … ». ∞ π)' ),
+    'strings-v2' => %( relation => 'oracle', code => &strings-v2, palette => True,
+        about => 'strings-v1, leaving heredoc openers, escapes\' digits, interpolations, code, commands and range endpoints alone' ),
+    'names-v2'   => %( relation => 'oracle', code => &names-v2, palette => True, renames => True,
+        about => 'names-v1, renaming no operator category and following every interpolating string and the code in strings' ),
+    'ops-v2'     => %( relation => 'same-verdicts', code => &ops-v2, palette => False,
+        about => 'ops-v1, only spaced operators after a term, whole constants, and none the file declares itself' );
 
 sub transform-names(--> List:D) is export { %TRANSFORMS.keys.sort.List }
 sub transform-info(Str:D $name --> Hash:D) is export {

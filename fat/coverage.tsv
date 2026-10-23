@@ -1,1426 +1,1426 @@
-file	state	names-v1:mixed	ops-v1	strings-v1:mixed
-6.c/APPENDICES/A03-older-specs/01-misc.t	tokenized	19	0	317
-6.c/APPENDICES/A04-experimental/01-misc.t	tokenized	9	2	110
-6.c/MISC/bug-coverage-stress.t	tokenized	10	0	40
-6.c/MISC/bug-coverage.t	tokenized	15	9	211
-6.c/MISC/misc-6.c.t	tokenized	1	0	8
-6.c/S02-names/SETTING-6c.t	tokenized	2	0	9
-6.c/S02-names/pseudo-6c.t	tokenized	33	2	217
-6.c/S02-types/subset-6c.t	tokenized	6	0	107
-6.c/S03-operators/set_precedes.t	tokenized	4	1	46
-6.c/S04-declarations/my-6c.t	tokenized	22	1	178
-6.c/S05-grammar/methods.t	tokenized	4	0	15
-6.c/S05-grammar/parse_and_parsefile-6c.t	tokenized	10	0	39
-6.c/S06-other/main-refactored.t	tokenized	14	4	85
-6.c/S12-class/mro-6c.t	tokenized	18	0	19
-6.c/S14-roles/attributes.t	tokenized	13	1	22
-6.c/S14-roles/mixin-6c.t	tokenized	27	2	74
-6.c/S14-roles/submethods.t	tokenized	6	0	9
-6.c/S32-io/file-tests.t	tokenized	3	0	459
-6.d/S02-literals/version.t	tokenized	0	0	32
-6.d/S05-capture/match-object.t	tokenized	1	0	9
-6.d/S09-multidim/indexing.t	tokenized	1	0	4
-6.d/S15-unicode-information/uniname.t	tokenized	0	0	4
-6.d/S32-num/atanh.t	tokenized	1	1	1
-6.d/S32-num/log.t	tokenized	0	0	2
-6.d/S32-num/sign.t	tokenized	0	0	0
-6.d/S32-num/sqrt.t	tokenized	0	0	2
-6.d/S32-str/sprintf-b.t	tokenized	2	4	342
-6.d/S32-str/sprintf-c.t	tokenized	2	2	37
-6.d/S32-str/sprintf-d.t	tokenized	2	8	2
-6.d/S32-str/sprintf-e.t	tokenized	2	7	345
-6.d/S32-str/sprintf-f.t	tokenized	2	7	9
-6.d/S32-str/sprintf-o.t	tokenized	2	3	5
-6.d/S32-str/sprintf-s.t	tokenized	5	2	71
-6.d/S32-str/sprintf-u.t	tokenized	2	2	4
-6.d/S32-str/sprintf-x.t	tokenized	2	4	342
-6.d/S32-str/sprintf.t	tokenized	6	17	344
-APPENDICES/A01-limits/misc.t	tokenized	10	0	15
-APPENDICES/A01-limits/overflow.t	tokenized	2	2	18
-APPENDICES/A02-some-day-maybe/concreteness.t	tokenized	0	0	1
-APPENDICES/A02-some-day-maybe/io-cathandle.t	tokenized	1	0	6
-APPENDICES/A02-some-day-maybe/misc.t	tokenized	4	1	21
-APPENDICES/A02-some-day-maybe/multi-no-match.t	tokenized	0	0	31
-MISC/bug-coverage-6.d.t	tokenized	1	0	1
-MISC/bug-coverage-stress.t	tokenized	3	0	3
-MISC/misc.t	tokenized	5	1	87
-S01-perl-5-integration/array.t	tokenized	4	0	22
-S01-perl-5-integration/basic.t	tokenized	13	0	33
-S01-perl-5-integration/class.t	tokenized	0	0	2
-S01-perl-5-integration/context.t	tokenized	0	0	44
-S01-perl-5-integration/eval_lex.t	tokenized	3	0	19
-S01-perl-5-integration/exception_handling.t	tokenized	2	0	8
-S01-perl-5-integration/hash.t	tokenized	6	0	16
-S01-perl-5-integration/import.t	tokenized	0	0	2
-S01-perl-5-integration/isms.t	tokenized	1	0	2
-S01-perl-5-integration/method.t	tokenized	8	1	31
-S01-perl-5-integration/return.t	tokenized	0	0	1
-S01-perl-5-integration/roundtrip.t	tokenized	6	0	18
-S01-perl-5-integration/strings.t	tokenized	0	0	22
-S01-perl-5-integration/subs.t	tokenized	1	0	7
-S02-lexical-conventions/bom.t	tokenized	0	0	1
-S02-lexical-conventions/comments.t	tokenized	2	1	25
-S02-lexical-conventions/finish-pod.t	tokenized	0	0	4
-S02-lexical-conventions/minimal-whitespace.t	tokenized	1	1	29
-S02-lexical-conventions/one-pass-parsing.t	tokenized	0	0	10
-S02-lexical-conventions/pod-in-multi-line-exprs.t	tokenized	3	0	5
-S02-lexical-conventions/sub-block-parsing.t	tokenized	6	0	30
-S02-lexical-conventions/unicode-whitespace.t	tokenized	1	0	126
-S02-lexical-conventions/unicode.t	tokenized	17	0	58
-S02-lexical-conventions/unspace.t	tokenized	7	0	172
-S02-lists/indexing.t	tokenized	0	0	0
-S02-lists/tree.t	tokenized	3	0	23
-S02-literals/adverbs.t	tokenized	1	0	50
-S02-literals/allomorphic.t	tokenized	30	0	284
-S02-literals/array-interpolation.t	tokenized	1	0	35
-S02-literals/autoref.t	tokenized	8	0	70
-S02-literals/char-by-name.t	tokenized	0	0	8
-S02-literals/char-by-number.t	tokenized	0	0	41
-S02-literals/fmt-interpolation.t	tokenized	1	0	25
-S02-literals/format.t	tokenized	9	0	27
-S02-literals/hash-interpolation.t	tokenized	5	0	34
-S02-literals/heredocs.t	tokenized	21	0	114
-S02-literals/hex_chars.t	tokenized	1	0	4
-S02-literals/listquote-whitespace.t	tokenized	7	0	10
-S02-literals/listquote.t	tokenized	9	0	54
-S02-literals/misc-interpolation.t	tokenized	10	0	110
-S02-literals/numeric.t	tokenized	0	13	103
-S02-literals/pair-boolean.t	tokenized	2	0	6
-S02-literals/pairs.t	tokenized	14	0	76
-S02-literals/pod.t	tokenized	1	0	13
-S02-literals/quoting-unicode.t	tokenized	9	0	108
-S02-literals/quoting.t	tokenized	36	1	405
-S02-literals/radix.t	tokenized	2	3	190
-S02-literals/string-interpolation.t	tokenized	14	0	28
-S02-literals/sub-calls.t	tokenized	0	2	38
-S02-literals/subscript.t	tokenized	3	0	5
-S02-literals/types.t	tokenized	0	0	14
-S02-literals/underscores.t	tokenized	0	0	23
-S02-literals/version.t	tokenized	0	0	38
-S02-magicals/78258.t	tokenized	0	0	0
-S02-magicals/DISTRO.t	tokenized	0	0	23
-S02-magicals/GROUP.t	tokenized	0	0	1
-S02-magicals/KERNEL.t	tokenized	1	0	41
-S02-magicals/PERL.t	tokenized	1	0	36
-S02-magicals/RAKU.t	tokenized	1	0	20
-S02-magicals/USER.t	tokenized	0	0	1
-S02-magicals/VM.t	tokenized	0	0	30
-S02-magicals/args.t	tokenized	0	0	17
-S02-magicals/block.t	tokenized	6	3	6
-S02-magicals/dollar-underscore.t	tokenized	7	1	27
-S02-magicals/dollar_bang.t	tokenized	3	0	21
-S02-magicals/env.t	tokenized	4	0	43
-S02-magicals/file_line.t	tokenized	0	0	2
-S02-magicals/pid.t	tokenized	0	1	2
-S02-magicals/progname.t	tokenized	0	0	3
-S02-magicals/sub.t	tokenized	12	10	21
-S02-magicals/subname.t	tokenized	3	0	7
-S02-names-vars/contextual.t	tokenized	7	0	56
-S02-names-vars/fmt.t	tokenized	6	0	49
-S02-names-vars/list_array_perl.t	tokenized	12	0	16
-S02-names-vars/names.t	tokenized	10	0	78
-S02-names-vars/perl.t	tokenized	20	2	53
-S02-names-vars/signature.t	tokenized	14	0	19
-S02-names-vars/variables-and-packages.t	tokenized	10	0	49
-S02-names-vars/varnames.t	tokenized	2	1	75
-S02-names/SETTING-6e.t	tokenized	3	0	7
-S02-names/bare-sigil.t	tokenized	4	0	14
-S02-names/caller.t	tokenized	16	0	16
-S02-names/dynamic-scope.t	tokenized	9	0	11
-S02-names/identifier.t	tokenized	15	0	51
-S02-names/indirect.t	tokenized	1	0	17
-S02-names/is_default.t	tokenized	23	0	287
-S02-names/is_dynamic.t	tokenized	8	0	38
-S02-names/name.t	tokenized	5	2	33
-S02-names/our.t	tokenized	1	0	15
-S02-names/pseudo-6d.t	tokenized	30	0	212
-S02-names/pseudo-6e.t	tokenized	56	5	317
-S02-names/strict.t	tokenized	1	0	19
-S02-names/symbolic-deref.t	tokenized	10	0	80
-S02-one-pass-parsing/less-than.t	tokenized	0	1	17
-S02-one-pass-parsing/misc.t	tokenized	0	0	2
-S02-packages/package-lookup.t	tokenized	4	0	8
-S02-types/WHICH.t	tokenized	11	1	31
-S02-types/anon_block.t	tokenized	17	1	46
-S02-types/array-shapes.t	tokenized	9	0	72
-S02-types/array.t	tokenized	34	1	188
-S02-types/array_extending.t	tokenized	8	0	32
-S02-types/array_ref.t	tokenized	13	0	58
-S02-types/assigning-refs.t	tokenized	6	0	30
-S02-types/autovivification.t	tokenized	7	0	92
-S02-types/bag-iterator.t	tokenized	1	1	9
-S02-types/bag.t	tokenized	24	8	427
-S02-types/baggy.t	tokenized	5	0	45
-S02-types/baghash.t	tokenized	20	11	572
-S02-types/bool.t	tokenized	7	0	75
-S02-types/built-in.t	tokenized	1	0	2
-S02-types/capture.t	tokenized	26	2	147
-S02-types/catch_type_cast_mismatch.t	tokenized	2	0	11
-S02-types/compact.t	tokenized	0	0	25
-S02-types/declare.t	tokenized	5	2	15
-S02-types/fatrat.t	tokenized	1	0	0
-S02-types/flattening.t	tokenized	20	0	66
-S02-types/generics.t	tokenized	7	0	21
-S02-types/hash.t	tokenized	34	0	244
-S02-types/hash_ref.t	tokenized	8	0	61
-S02-types/hyperwhatever.t	tokenized	0	0	9
-S02-types/infinity.t	tokenized	1	14	25
-S02-types/instants-and-durations.t	tokenized	5	5	21
-S02-types/int-uint.t	tokenized	7	1	54
-S02-types/is-type.t	tokenized	8	1	30
-S02-types/isDEPRECATED.t	tokenized	13	0	29
-S02-types/lazy-lists.t	tokenized	11	9	35
-S02-types/list.t	tokenized	13	0	122
-S02-types/lists.t	tokenized	9	0	46
-S02-types/mix-iterator.t	tokenized	1	1	8
-S02-types/mix.t	tokenized	23	6	394
-S02-types/mixed_multi_dimensional.t	tokenized	10	0	110
-S02-types/mixhash.t	tokenized	19	7	544
-S02-types/mu.t	tokenized	1	1	19
-S02-types/multi_dimensional_array.t	tokenized	7	0	82
-S02-types/nan.t	tokenized	4	7	29
-S02-types/native.t	tokenized	17	15	165
-S02-types/nested_arrays.t	tokenized	8	1	13
-S02-types/nested_pairs.t	tokenized	2	0	13
-S02-types/nil.t	tokenized	21	0	78
-S02-types/nominalizables.t	tokenized	4	2	26
-S02-types/num.t	tokenized	9	42	344
-S02-types/pair.t	tokenized	27	1	270
-S02-types/parsing-bool.t	tokenized	0	0	4
-S02-types/quanthash.t	tokenized	5	3	44
-S02-types/range-iterator.t	tokenized	1	1	25
-S02-types/range.t	tokenized	20	57	362
-S02-types/resolved-in-setting.t	tokenized	9	0	6
-S02-types/set-iterator.t	tokenized	1	1	11
-S02-types/set.t	tokenized	17	11	402
-S02-types/sethash.t	tokenized	15	14	551
-S02-types/sigils-and-types.t	tokenized	8	1	39
-S02-types/stash.t	tokenized	0	0	0
-S02-types/subscripts_and_context.t	tokenized	8	0	22
-S02-types/subset-6e.t	tokenized	6	0	130
-S02-types/type.t	tokenized	7	2	146
-S02-types/undefined-types.t	tokenized	2	0	61
-S02-types/unicode.t	tokenized	1	0	6
-S02-types/version-stress.t	tokenized	6	14	13
-S02-types/version.t	tokenized	5	0	17
-S02-types/whatever.t	tokenized	28	1	217
-S03-binding/arrays.t	tokenized	7	0	143
-S03-binding/attributes.t	tokenized	11	0	16
-S03-binding/closure.t	tokenized	0	0	11
-S03-binding/hashes.t	tokenized	6	0	160
-S03-binding/nested.t	tokenized	5	0	164
-S03-binding/ro.t	tokenized	5	0	20
-S03-binding/scalars.t	tokenized	10	0	58
-S03-buf/read-int.t	tokenized	15	34	87
-S03-buf/read-num.t	tokenized	1	6	20
-S03-buf/read-write-bits.t	tokenized	12	7	26
-S03-buf/write-int.t	tokenized	16	23	58
-S03-buf/write-num.t	tokenized	8	8	28
-S03-feeds/basic.t	tokenized	17	1	30
-S03-junctions/associative.t	tokenized	2	0	10
-S03-junctions/autothreading.t	tokenized	39	9	173
-S03-junctions/boolean-context.t	tokenized	9	11	59
-S03-junctions/misc.t	tokenized	19	5	323
-S03-metaops/cross.t	tokenized	12	2	150
-S03-metaops/eager-hyper.t	tokenized	2	0	8
-S03-metaops/hyper.t	tokenized	24	1	14
-S03-metaops/infix.t	tokenized	49	4	12
-S03-metaops/misc.t	tokenized	5	0	13
-S03-metaops/not.t	tokenized	0	2	119
-S03-metaops/reduce.t	tokenized	14	6	313
-S03-metaops/reverse.t	tokenized	10	7	92
-S03-metaops/zip.t	tokenized	3	1	104
-S03-operators/adverbial-modifiers.t	tokenized	17	0	112
-S03-operators/also.t	tokenized	2	0	14
-S03-operators/andthen.t	tokenized	5	0	22
-S03-operators/arith.t	tokenized	18	84	62
-S03-operators/assign-is-not-binding.t	tokenized	6	0	16
-S03-operators/assign.t	tokenized	39	4	413
-S03-operators/autoincrement-range.t	tokenized	1	0	279
-S03-operators/autoincrement.t	tokenized	11	7	72
-S03-operators/autovivification.t	tokenized	7	0	29
-S03-operators/basic-types.t	tokenized	17	1	23
-S03-operators/bit.t	tokenized	19	0	66
-S03-operators/boolean-bitwise.t	tokenized	0	0	46
-S03-operators/brainos.t	tokenized	0	0	22
-S03-operators/buf.t	tokenized	7	1	185
-S03-operators/chained-declarators.t	tokenized	8	0	5
-S03-operators/cmp.t	tokenized	4	10	120
-S03-operators/comparison-simple.t	tokenized	0	0	38
-S03-operators/comparison.t	tokenized	3	12	100
-S03-operators/composition.t	tokenized	7	3	41
-S03-operators/context-forcers.t	tokenized	9	0	132
-S03-operators/context.t	tokenized	6	0	56
-S03-operators/custom.t	tokenized	0	0	3
-S03-operators/div.t	tokenized	0	5	8
-S03-operators/equality.t	tokenized	2	4	68
-S03-operators/eqv.t	tokenized	6	0	98
-S03-operators/flip-flop.t	tokenized	9	0	125
-S03-operators/gcd.t	tokenized	1	0	15
-S03-operators/identity.t	tokenized	13	0	46
-S03-operators/increment.t	tokenized	15	0	55
-S03-operators/infixed-function.t	tokenized	0	0	10
-S03-operators/inplace.t	tokenized	14	0	155
-S03-operators/is-divisible-by.t	tokenized	0	0	16
-S03-operators/lcm.t	tokenized	0	0	15
-S03-operators/list-quote-junction.t	tokenized	2	0	13
-S03-operators/minmax.t	tokenized	2	3	75
-S03-operators/misc.t	tokenized	23	14	91
-S03-operators/names.t	tokenized	0	0	7
-S03-operators/nesting.t	tokenized	0	4	15
-S03-operators/not.t	tokenized	2	0	23
-S03-operators/notandthen.t	tokenized	5	0	10
-S03-operators/numeric-shift.t	tokenized	1	3	7
-S03-operators/orelse.t	tokenized	4	0	26
-S03-operators/overflow.t	tokenized	9	49	41
-S03-operators/precedence.t	tokenized	14	15	92
-S03-operators/range-basic.t	tokenized	2	22	138
-S03-operators/range-int.t	tokenized	0	32	59
-S03-operators/range.t	tokenized	13	9	250
-S03-operators/reduce-le1arg.t	tokenized	0	2	2
-S03-operators/relational.t	tokenized	3	52	281
-S03-operators/repeat.t	tokenized	17	3	125
-S03-operators/scalar-assign.t	tokenized	2	0	4
-S03-operators/set_addition.t	tokenized	7	41	240
-S03-operators/set_difference.t	tokenized	7	26	244
-S03-operators/set_elem.t	tokenized	12	9	56
-S03-operators/set_equality.t	tokenized	6	3	264
-S03-operators/set_intersection.t	tokenized	7	25	214
-S03-operators/set_multiply.t	tokenized	8	31	232
-S03-operators/set_proper_subset.t	tokenized	6	6	274
-S03-operators/set_subset.t	tokenized	6	6	271
-S03-operators/set_symmetric_difference.t	tokenized	7	37	301
-S03-operators/set_union.t	tokenized	7	34	197
-S03-operators/short-circuit.t	tokenized	18	3	174
-S03-operators/so.t	tokenized	3	0	16
-S03-operators/spaceship-and-containers.t	tokenized	2	2	14
-S03-operators/spaceship.t	tokenized	4	0	7
-S03-operators/subscript-adverbs.t	tokenized	2	0	146
-S03-operators/subscript-vs-lt.t	tokenized	0	0	4
-S03-operators/ternary.t	tokenized	8	3	41
-S03-operators/u2212-minus.t	tokenized	4	0	73
-S03-operators/value_equivalence.t	tokenized	6	0	71
-S03-sequence/arity-2-or-more.t	tokenized	2	3	20
-S03-sequence/arity0.t	tokenized	1	0	13
-S03-sequence/basic.t	tokenized	2	86	169
-S03-sequence/exhaustive.t	tokenized	8	3	128
-S03-sequence/limit-arity-2-or-more.t	tokenized	2	2	7
-S03-sequence/misc.t	tokenized	4	35	55
-S03-sequence/nonnumeric.t	tokenized	4	15	115
-S03-smartmatch/00-sanity.t	tokenized	5	2	28
-S03-smartmatch/any-any.t	tokenized	3	0	13
-S03-smartmatch/any-bool.t	tokenized	2	0	12
-S03-smartmatch/any-callable.t	tokenized	5	0	7
-S03-smartmatch/any-complex.t	tokenized	0	0	12
-S03-smartmatch/any-hash-pair.t	tokenized	0	0	12
-S03-smartmatch/any-method.t	tokenized	0	0	8
-S03-smartmatch/any-num.t	tokenized	0	0	34
-S03-smartmatch/any-pair.t	tokenized	1	0	18
-S03-smartmatch/any-str.t	tokenized	0	0	9
-S03-smartmatch/any-sub.t	tokenized	4	2	10
-S03-smartmatch/any-type.t	tokenized	5	0	29
-S03-smartmatch/array-array.t	tokenized	5	0	81
-S03-smartmatch/array-hash.t	tokenized	1	0	12
-S03-smartmatch/array-map.t	tokenized	1	0	12
-S03-smartmatch/capture-signature.t	tokenized	4	0	27
-S03-smartmatch/disorganized.t	tokenized	6	0	49
-S03-smartmatch/hash-hash.t	tokenized	6	0	39
-S03-smartmatch/range-range.t	tokenized	3	3	36
-S03-smartmatch/regex-hash.t	tokenized	1	0	6
-S03-smartmatch/scalar-hash.t	tokenized	1	0	7
-S03-smartmatch/signature-signature.t	tokenized	1	2	8
-S04-blocks-and-statements/let.t	tokenized	8	0	18
-S04-blocks-and-statements/pointy-rw.t	tokenized	3	0	10
-S04-blocks-and-statements/pointy.t	tokenized	13	0	42
-S04-blocks-and-statements/temp.t	tokenized	16	1	62
-S04-declarations/constant-6.d.t	tokenized	94	1	247
-S04-declarations/constant.t	tokenized	29	4	112
-S04-declarations/implicit-parameter.t	tokenized	3	0	33
-S04-declarations/multiple.t	tokenized	2	0	17
-S04-declarations/my-6e.t	tokenized	22	1	173
-S04-declarations/our.t	tokenized	17	1	35
-S04-declarations/smiley.t	tokenized	0	0	90
-S04-declarations/state.t	tokenized	36	0	47
-S04-declarations/will.t	tokenized	35	0	63
-S04-exception-handlers/catch.t	tokenized	14	0	71
-S04-exception-handlers/control.t	tokenized	6	2	25
-S04-exception-handlers/top-level.t	tokenized	1	0	1
-S04-exceptions/control_across_runloop.t	tokenized	2	0	1
-S04-exceptions/exceptions-alternatives.t	tokenized	6	0	37
-S04-exceptions/fail-6e.t	tokenized	2	0	6
-S04-exceptions/fail.t	tokenized	28	0	53
-S04-exceptions/pending.t	tokenized	6	0	22
-S04-phasers/ascending-order.t	tokenized	8	0	12
-S04-phasers/begin.t	tokenized	9	0	30
-S04-phasers/check.t	tokenized	3	0	17
-S04-phasers/descending-order.t	tokenized	7	0	12
-S04-phasers/end.t	tokenized	0	0	13
-S04-phasers/enter-leave.t	tokenized	16	1	71
-S04-phasers/first.t	tokenized	4	0	17
-S04-phasers/in-eval.t	tokenized	1	0	49
-S04-phasers/in-loop.t	tokenized	14	1	66
-S04-phasers/init.t	tokenized	7	0	35
-S04-phasers/interpolate.t	tokenized	1	0	9
-S04-phasers/keep-undo.t	tokenized	8	0	32
-S04-phasers/multiple.t	tokenized	1	0	12
-S04-phasers/next.t	tokenized	5	0	26
-S04-phasers/pre-post.t	tokenized	7	2	54
-S04-phasers/rvalue.t	tokenized	10	0	37
-S04-statement-modifiers/for.t	tokenized	13	3	55
-S04-statement-modifiers/given.t	tokenized	5	2	22
-S04-statement-modifiers/if.t	tokenized	11	0	24
-S04-statement-modifiers/unless.t	tokenized	6	1	18
-S04-statement-modifiers/until.t	tokenized	3	2	14
-S04-statement-modifiers/values_in_bool_context.t	tokenized	11	0	27
-S04-statement-modifiers/while.t	tokenized	3	0	14
-S04-statement-modifiers/with.t	tokenized	14	2	55
-S04-statement-modifiers/without.t	tokenized	5	0	15
-S04-statement-parsing/hash.t	tokenized	2	0	17
-S04-statements/do.t	tokenized	5	1	48
-S04-statements/for-scope.t	tokenized	5	0	10
-S04-statements/for.t	tokenized	61	6	153
-S04-statements/for_with_only_one_item.t	tokenized	5	0	21
-S04-statements/gather.t	tokenized	29	6	47
-S04-statements/given.t	tokenized	31	0	190
-S04-statements/if.t	tokenized	12	0	63
-S04-statements/label.t	tokenized	7	0	34
-S04-statements/last.t	tokenized	3	0	10
-S04-statements/lazy.t	tokenized	3	0	11
-S04-statements/leave.t	tokenized	6	0	23
-S04-statements/loop.t	tokenized	13	0	27
-S04-statements/map-and-sort-in-for.t	tokenized	2	1	4
-S04-statements/next.t	tokenized	6	0	24
-S04-statements/no-implicit-block.t	tokenized	3	1	12
-S04-statements/once.t	tokenized	5	0	30
-S04-statements/quietly.t	tokenized	0	0	12
-S04-statements/redo.t	tokenized	7	1	19
-S04-statements/repeat.t	tokenized	6	4	25
-S04-statements/return.t	tokenized	19	1	42
-S04-statements/sink.t	tokenized	9	1	18
-S04-statements/terminator.t	tokenized	2	0	29
-S04-statements/try.t	tokenized	15	0	69
-S04-statements/unless.t	tokenized	3	0	21
-S04-statements/until.t	tokenized	1	4	4
-S04-statements/when.t	tokenized	9	1	69
-S04-statements/while.t	tokenized	9	0	34
-S04-statements/with.t	tokenized	2	0	27
-S05-capture/alias.t	tokenized	1	0	74
-S05-capture/array-alias.t	tokenized	2	0	91
-S05-capture/caps.t	tokenized	2	0	111
-S05-capture/dot.t	tokenized	3	0	105
-S05-capture/match-object.t	tokenized	6	0	96
-S05-capture/named.t	tokenized	2	0	32
-S05-capture/subrule.t	tokenized	3	0	91
-S05-grammar/action-stubs.t	tokenized	11	0	58
-S05-grammar/example.t	tokenized	5	0	19
-S05-grammar/inheritance.t	tokenized	3	0	96
-S05-grammar/namespace-6e.t	tokenized	0	0	2
-S05-grammar/namespace.t	tokenized	2	0	7
-S05-grammar/parse_and_parsefile-6e.t	tokenized	13	0	51
-S05-grammar/polymorphism.t	tokenized	2	0	56
-S05-grammar/protoregex.t	tokenized	6	1	137
-S05-grammar/protos.t	tokenized	1	0	16
-S05-grammar/signatures.t	tokenized	1	0	6
-S05-grammar/ws.t	tokenized	1	0	21
-S05-interpolation/lexicals.t	tokenized	0	0	26
-S05-interpolation/regex-in-variable.t	tokenized	5	0	76
-S05-mass/charsets.t	tokenized	1	3	29
-S05-mass/named-chars.t	tokenized	0	0	574
-S05-mass/properties-block.t	tokenized	0	0	670
-S05-mass/properties-contributory.t	tokenized	0	0	41
-S05-mass/properties-derived.t	tokenized	0	0	217
-S05-mass/properties-general.t	tokenized	2	1	626
-S05-mass/properties-script.t	tokenized	0	0	360
-S05-mass/recursive.t	tokenized	0	0	27
-S05-mass/rx.t	tokenized	2	0	1646
-S05-mass/stdrules.t	tokenized	0	0	266
-S05-match/arrayhash.t	tokenized	2	0	14
-S05-match/basics.t	tokenized	1	0	4
-S05-match/blocks.t	tokenized	7	0	41
-S05-match/capturing-contexts.t	tokenized	12	0	152
-S05-match/make.t	tokenized	1	0	11
-S05-match/non-capturing.t	tokenized	1	0	11
-S05-match/positions.t	tokenized	1	0	20
-S05-match/raku.t	tokenized	4	0	16
-S05-metachars/closure.t	tokenized	0	0	25
-S05-metachars/line-anchors.t	tokenized	1	0	25
-S05-metachars/newline.t	tokenized	0	0	17
-S05-metachars/tilde.t	tokenized	0	0	51
-S05-metasyntax/angle-brackets.t	tokenized	6	0	214
-S05-metasyntax/assertions.t	tokenized	0	0	0
-S05-metasyntax/changed.t	tokenized	1	0	15
-S05-metasyntax/charset.t	tokenized	3	0	190
-S05-metasyntax/delimiters.t	tokenized	5	0	6
-S05-metasyntax/interpolating-closure.t	tokenized	0	0	18
-S05-metasyntax/litvar.t	tokenized	1	0	83
-S05-metasyntax/longest-alternative.t	tokenized	12	0	172
-S05-metasyntax/lookaround.t	tokenized	0	0	31
-S05-metasyntax/null.t	tokenized	0	0	6
-S05-metasyntax/proto-token-ltm.t	tokenized	1	0	49
-S05-metasyntax/regex.t	tokenized	12	3	173
-S05-metasyntax/repeat.t	tokenized	1	0	95
-S05-metasyntax/sequential-alternation.t	tokenized	1	0	25
-S05-metasyntax/single-quotes.t	tokenized	0	0	10
-S05-metasyntax/unicode-property-pair.t	tokenized	0	0	11
-S05-metasyntax/unknown.t	tokenized	0	0	17
-S05-modifier/continue.t	tokenized	2	0	29
-S05-modifier/counted-match.t	tokenized	3	2	60
-S05-modifier/counted.t	tokenized	0	0	140
-S05-modifier/exhaustive.t	tokenized	4	0	125
-S05-modifier/global.t	tokenized	2	0	22
-S05-modifier/ignorecase-and-ignoremark.t	tokenized	1	0	38
-S05-modifier/ignorecase.t	tokenized	6	0	103
-S05-modifier/ignoremark.t	tokenized	5	0	75
-S05-modifier/ii.t	tokenized	4	0	79
-S05-modifier/my.t	tokenized	1	0	39
-S05-modifier/overlapping.t	tokenized	5	0	32
-S05-modifier/pos.t	tokenized	4	0	50
-S05-modifier/ratchet.t	tokenized	0	0	10
-S05-modifier/repetition-exhaustive.t	tokenized	1	0	8
-S05-modifier/repetition.t	tokenized	0	0	27
-S05-modifier/samemark.t	tokenized	1	0	16
-S05-modifier/sigspace.t	tokenized	3	0	39
-S05-substitution/67222.t	tokenized	0	0	3
-S05-substitution/match.t	tokenized	2	0	34
-S05-substitution/subst.t	tokenized	0	0	353
-S05-syntactic-categories/new-symbols.t	tokenized	0	0	17
-S05-transliteration/79778.t	tokenized	0	0	3
-S05-transliteration/trans-TR-operator.t	tokenized	0	0	72
-S05-transliteration/trans-tr-lowercase-operator.t	tokenized	0	0	85
-S05-transliteration/trans.t	tokenized	7	3	273
-S05-transliteration/with-closure.t	tokenized	7	0	43
-S06-advanced/callframe.t	tokenized	10	1	24
-S06-advanced/callsame.t	tokenized	3	0	6
-S06-advanced/dispatching.t	tokenized	17	19	91
-S06-advanced/lexical-subs.t	tokenized	11	1	26
-S06-advanced/recurse.t	tokenized	15	24	13
-S06-advanced/return-prioritization.t	tokenized	0	0	0
-S06-advanced/return.t	tokenized	60	0	175
-S06-advanced/stub.t	tokenized	4	0	17
-S06-advanced/wrap.t	tokenized	29	4	143
-S06-currying/assuming-and-mmd.t	tokenized	0	0	25
-S06-currying/misc.t	tokenized	7	0	21
-S06-currying/named.t	tokenized	3	0	17
-S06-currying/positional.t	tokenized	6	0	55
-S06-currying/slurpy.t	tokenized	3	0	60
-S06-multi/by-trait.t	tokenized	6	1	13
-S06-multi/compile-time.t	tokenized	0	0	0
-S06-multi/lexical-multis.t	tokenized	0	0	22
-S06-multi/positional-vs-named.t	tokenized	5	0	94
-S06-multi/proto.t	tokenized	7	3	38
-S06-multi/redispatch.t	tokenized	2	2	29
-S06-multi/subsignature.t	tokenized	20	6	209
-S06-multi/syntax.t	tokenized	10	1	100
-S06-multi/type-based.t	tokenized	8	2	107
-S06-multi/unpackability.t	tokenized	8	3	34
-S06-multi/value-based.t	tokenized	2	0	42
-S06-operator-overloading/circumfix.t	tokenized	2	2	24
-S06-operator-overloading/imported-subs.t	tokenized	1	0	35
-S06-operator-overloading/infix.t	tokenized	8	2	85
-S06-operator-overloading/methods.t	tokenized	1	0	6
-S06-operator-overloading/prefix.t	tokenized	1	0	39
-S06-operator-overloading/semicolon.t	tokenized	3	0	3
-S06-operator-overloading/sub.t	tokenized	13	0	58
-S06-operator-overloading/term.t	tokenized	1	6	10
-S06-operator-overloading/workout.t	tokenized	6	25	80
-S06-other/anon-hashes-vs-blocks.t	tokenized	12	1	52
-S06-other/introspection.t	tokenized	5	0	26
-S06-other/main-eval.t	tokenized	0	0	3
-S06-other/main-semicolon.t	tokenized	1	0	21
-S06-other/main-usage.t	tokenized	3	2	160
-S06-other/main.t	tokenized	2	3	94
-S06-other/misc.t	tokenized	8	0	34
-S06-other/pairs-as-lvalues.t	tokenized	3	0	11
-S06-parameters/smiley.t	tokenized	1	0	57
-S06-routine-modifiers/lvalue-subroutines.t	tokenized	14	0	26
-S06-routine-modifiers/native-lvalue-subroutines.t	tokenized	12	0	34
-S06-routine-modifiers/proxy.t	tokenized	8	2	38
-S06-routine-modifiers/scoped-named-subs.t	tokenized	2	0	26
-S06-signature/arity.t	tokenized	19	2	57
-S06-signature/closure-over-parameters.t	tokenized	2	1	4
-S06-signature/closure-parameters.t	tokenized	19	2	52
-S06-signature/code.t	tokenized	7	1	12
-S06-signature/defaults.t	tokenized	8	3	19
-S06-signature/definite-return.t	tokenized	17	2	24
-S06-signature/errors.t	tokenized	3	0	32
-S06-signature/introspection.t	tokenized	19	26	99
-S06-signature/mixed-placeholders.t	tokenized	4	0	27
-S06-signature/multi-invocant.t	tokenized	10	0	28
-S06-signature/multidimensional.t	tokenized	7	0	22
-S06-signature/named-parameters.t	tokenized	41	0	181
-S06-signature/named-placeholders.t	tokenized	2	0	4
-S06-signature/named-renaming.t	tokenized	5	0	16
-S06-signature/optional.t	tokenized	17	0	76
-S06-signature/outside-subroutine.t	tokenized	3	0	62
-S06-signature/passing-arrays.t	tokenized	17	0	18
-S06-signature/passing-hashes.t	tokenized	4	0	7
-S06-signature/positional-placeholders.t	tokenized	9	0	21
-S06-signature/positional.t	tokenized	7	0	20
-S06-signature/scalar-type.t	tokenized	3	0	23
-S06-signature/shape.t	tokenized	8	0	39
-S06-signature/sigilless.t	tokenized	6	0	18
-S06-signature/slurpy-and-interpolation.t	tokenized	9	0	16
-S06-signature/slurpy-params.t	tokenized	28	1	109
-S06-signature/slurpy-placeholders.t	tokenized	5	0	13
-S06-signature/sub-ref.t	tokenized	8	0	19
-S06-signature/tree-node-parameters.t	tokenized	12	0	40
-S06-signature/type-capture.t	tokenized	16	0	40
-S06-signature/types.t	tokenized	3	9	92
-S06-signature/unpack-array.t	tokenized	9	4	17
-S06-signature/unpack-object.t	tokenized	2	0	12
-S06-signature/unspecified.t	tokenized	5	0	39
-S06-traits/as.t	tokenized	1	0	8
-S06-traits/is-assoc.t	tokenized	3	0	21
-S06-traits/is-copy.t	tokenized	18	0	41
-S06-traits/is-readonly.t	tokenized	1	0	1
-S06-traits/is-rw.t	tokenized	3	0	11
-S06-traits/misc.t	tokenized	14	0	33
-S06-traits/native-is-copy.t	tokenized	6	0	26
-S06-traits/native-is-rw.t	tokenized	3	0	89
-S06-traits/precedence.t	tokenized	3	12	19
-S06-traits/slurpy-is-rw.t	tokenized	3	0	7
-S07-hyperrace/basics.t	tokenized	18	7	54
-S07-hyperrace/for.t	tokenized	2	6	6
-S07-hyperrace/stress.t	tokenized	3	3	13
-S07-iterationbuffer/iterationbuffer.t	tokenized	2	0	46
-S07-iterators/range-iterator.t	tokenized	4	0	128
-S07-slip/slip.t	tokenized	3	0	25
-S09-autovivification/autoincrement.t	tokenized	3	0	11
-S09-autovivification/autovivification.t	tokenized	8	0	91
-S09-hashes/objecthash.t	tokenized	17	1	54
-S09-multidim/XX-POS-on-dimensioned.t	tokenized	1	0	85
-S09-multidim/XX-POS-on-undimensioned.t	tokenized	1	0	44
-S09-multidim/assign.t	tokenized	4	0	97
-S09-multidim/decl.t	tokenized	4	0	39
-S09-multidim/indexing.t	tokenized	1	0	43
-S09-multidim/methods.t	tokenized	5	4	120
-S09-multidim/subs.t	tokenized	2	0	61
-S09-subscript/multidim-assignment.t	tokenized	4	0	72
-S09-subscript/slice.t	tokenized	14	3	524
-S09-typed-arrays/arrays.t	tokenized	23	0	116
-S09-typed-arrays/hashes.t	tokenized	8	1	100
-S09-typed-arrays/native-decl.t	tokenized	2	0	19
-S09-typed-arrays/native-int.t	tokenized	20	3	223
-S09-typed-arrays/native-num.t	tokenized	14	4	209
-S09-typed-arrays/native-shape1-int.t	tokenized	12	1	115
-S09-typed-arrays/native-shape1-num.t	tokenized	11	1	115
-S09-typed-arrays/native-shape1-str.t	tokenized	11	0	242
-S09-typed-arrays/native-str.t	tokenized	12	0	453
-S09-typed-arrays/native.t	tokenized	6	1	84
-S10-packages/basic.t	tokenized	11	0	155
-S10-packages/export.t	tokenized	1	0	6
-S10-packages/joined-namespaces.t	tokenized	0	0	6
-S10-packages/nested-use.t	tokenized	2	0	13
-S10-packages/precompilation.t	tokenized	14	1	70
-S10-packages/require-and-use.t	tokenized	1	0	15
-S10-packages/scope.t	tokenized	6	0	38
-S10-packages/use-with-class.t	tokenized	3	0	24
-S11-compunit/compunit-dependencyspecification.t	tokenized	1	0	1
-S11-compunit/compunit-repository.t	tokenized	0	0	2
-S11-compunit/rt126904.t	tokenized	2	0	5
-S11-modules/export.t	tokenized	13	0	91
-S11-modules/gh2979.t	tokenized	0	0	16
-S11-modules/import-multi.t	tokenized	10	0	51
-S11-modules/import-tag.t	tokenized	0	0	20
-S11-modules/import.t	tokenized	10	0	45
-S11-modules/importing.t	tokenized	1	0	30
-S11-modules/lexical.t	tokenized	0	0	6
-S11-modules/module-file.t	tokenized	0	0	8
-S11-modules/module.t	tokenized	0	0	16
-S11-modules/need.t	tokenized	0	0	3
-S11-modules/nested.t	tokenized	2	0	22
-S11-modules/rakulib.t	tokenized	0	1	3
-S11-modules/require.t	tokenized	7	0	102
-S11-modules/runtime.t	tokenized	0	0	2
-S11-modules/versioning.t	tokenized	1	0	11
-S11-repository/cur-candidates.t	tokenized	22	0	77
-S11-repository/cur-current-distribution.t	tokenized	7	0	64
-S11-repository/curli-install.t	tokenized	4	0	31
-S12-attributes/augment-and-initialization.t	tokenized	2	0	10
-S12-attributes/class.t	tokenized	22	0	43
-S12-attributes/clone.t	tokenized	28	0	126
-S12-attributes/defaults.t	tokenized	9	0	51
-S12-attributes/delegation.t	tokenized	25	0	86
-S12-attributes/inheritance.t	tokenized	7	0	10
-S12-attributes/instance.t	tokenized	63	1	226
-S12-attributes/mutators.t	tokenized	4	0	14
-S12-attributes/native.t	tokenized	10	3	78
-S12-attributes/recursive.t	tokenized	7	0	23
-S12-attributes/smiley.t	tokenized	0	0	83
-S12-attributes/undeclared.t	tokenized	6	0	18
-S12-class/anonymous.t	tokenized	12	0	21
-S12-class/attributes-required.t	tokenized	8	0	22
-S12-class/attributes.t	tokenized	20	0	60
-S12-class/augment-supersede.t	tokenized	6	0	32
-S12-class/basic.t	tokenized	14	0	63
-S12-class/declaration-order.t	tokenized	0	0	4
-S12-class/extending-arrays.t	tokenized	8	1	20
-S12-class/inheritance-class-methods.t	tokenized	5	0	5
-S12-class/inheritance.t	tokenized	17	0	77
-S12-class/instantiate.t	tokenized	7	0	10
-S12-class/interface-consistency.t	tokenized	3	0	13
-S12-class/lexical.t	tokenized	6	0	27
-S12-class/literal.t	tokenized	2	0	3
-S12-class/magical-vars.t	tokenized	17	0	22
-S12-class/mro-6e.t	tokenized	12	0	24
-S12-class/namespaced.t	tokenized	5	0	25
-S12-class/open.t	tokenized	4	0	24
-S12-class/parent_attributes.t	tokenized	2	0	3
-S12-class/rw.t	tokenized	4	0	14
-S12-class/self-inheritance.t	tokenized	0	0	4
-S12-class/stubs.t	tokenized	1	0	19
-S12-class/type-object.t	tokenized	1	0	9
-S12-coercion/coercion-methods.t	tokenized	7	5	32
-S12-coercion/coercion-return.t	tokenized	8	1	34
-S12-coercion/coercion-types.t	tokenized	18	4	41
-S12-coercion/parameterized.t	tokenized	6	2	8
-S12-construction/BUILD.t	tokenized	20	0	48
-S12-construction/TWEAK.t	tokenized	6	1	7
-S12-construction/autopairs.t	tokenized	0	0	8
-S12-construction/construction.t	tokenized	18	0	37
-S12-construction/destruction.t	tokenized	10	1	13
-S12-construction/named-params-in-BUILD.t	tokenized	4	0	11
-S12-construction/new.t	tokenized	15	0	42
-S12-construction/roles-6e.t	tokenized	13	0	14
-S12-enums/anonymous.t	tokenized	3	0	15
-S12-enums/as-role.t	tokenized	5	0	9
-S12-enums/basic.t	tokenized	5	1	135
-S12-enums/misc.t	tokenized	4	0	47
-S12-enums/non-int.t	tokenized	0	0	16
-S12-enums/pseudo-functional.t	tokenized	3	1	20
-S12-enums/thorough.t	tokenized	3	0	54
-S12-introspection/WHAT.t	tokenized	6	0	47
-S12-introspection/attributes.t	tokenized	14	0	58
-S12-introspection/can.t	tokenized	10	0	70
-S12-introspection/definite.t	tokenized	3	0	9
-S12-introspection/meta-class.t	tokenized	3	0	47
-S12-introspection/methods.t	tokenized	14	2	89
-S12-introspection/parents.t	tokenized	6	0	60
-S12-introspection/roles.t	tokenized	10	0	21
-S12-introspection/walk.t	tokenized	20	1	108
-S12-meta/classhow.t	tokenized	11	0	13
-S12-meta/exporthow.t	tokenized	3	0	22
-S12-meta/grammarhow.t	tokenized	2	0	6
-S12-meta/primitives.t	tokenized	10	2	29
-S12-methods/accessors.t	tokenized	5	2	12
-S12-methods/attribute-params.t	tokenized	4	0	25
-S12-methods/calling_sets.t	tokenized	16	0	65
-S12-methods/calling_syntax.t	tokenized	4	0	24
-S12-methods/chaining.t	tokenized	7	0	17
-S12-methods/class-and-instance.t	tokenized	4	0	16
-S12-methods/default-trait.t	tokenized	4	4	12
-S12-methods/defer-call.t	tokenized	17	1	59
-S12-methods/defer-next.t	tokenized	19	1	53
-S12-methods/delegation.t	tokenized	8	0	19
-S12-methods/fallback.t	tokenized	10	0	43
-S12-methods/how.t	tokenized	1	0	4
-S12-methods/indirect_notation.t	tokenized	10	0	70
-S12-methods/instance.t	tokenized	24	0	73
-S12-methods/lastcall.t	tokenized	4	0	19
-S12-methods/lvalue.t	tokenized	4	0	20
-S12-methods/method-vs-sub.t	tokenized	5	0	12
-S12-methods/multi.t	tokenized	19	0	75
-S12-methods/parallel-dispatch.t	tokenized	6	11	44
-S12-methods/private.t	tokenized	11	0	31
-S12-methods/qualified.t	tokenized	21	0	66
-S12-methods/submethods.t	tokenized	25	1	29
-S12-methods/syntax.t	tokenized	2	1	30
-S12-methods/topic.t	tokenized	1	0	5
-S12-methods/trusts.t	tokenized	3	0	6
-S12-methods/typed-attributes.t	tokenized	5	0	9
-S12-methods/what.t	tokenized	11	0	52
-S12-subset/multi-dispatch.t	tokenized	3	0	19
-S12-subset/subtypes.t	tokenized	39	2	314
-S12-subset/type-subset.t	tokenized	0	0	56
-S12-traits/precomp.t	tokenized	0	0	2
-S13-overloading/metaoperators.t	tokenized	2	1	28
-S13-overloading/operators.t	tokenized	5	1	13
-S13-overloading/typecasting-long.t	tokenized	23	3	75
-S13-syntax/aliasing.t	tokenized	6	0	7
-S13-type-casting/methods.t	tokenized	5	0	23
-S14-roles/anonymous.t	tokenized	3	0	19
-S14-roles/attributes-6e.t	tokenized	5	0	7
-S14-roles/basic.t	tokenized	23	0	69
-S14-roles/bool.t	tokenized	1	0	9
-S14-roles/composition.t	tokenized	30	0	101
-S14-roles/conflicts.t	tokenized	7	0	20
-S14-roles/crony.t	tokenized	3	0	8
-S14-roles/instantiation.t	tokenized	9	0	22
-S14-roles/lexical.t	tokenized	6	0	18
-S14-roles/mixin-6e.t	tokenized	15	1	41
-S14-roles/namespaced.t	tokenized	1	0	23
-S14-roles/parameter-subtyping.t	tokenized	2	0	17
-S14-roles/parameterized-basic.t	tokenized	42	0	82
-S14-roles/parameterized-mixin.t	tokenized	8	1	37
-S14-roles/parameterized-type.t	tokenized	11	1	51
-S14-roles/rw.t	tokenized	8	0	17
-S14-roles/stubs.t	tokenized	5	0	32
-S14-roles/submethods-6e.t	tokenized	14	0	32
-S14-roles/typecheck.t	tokenized	6	0	11
-S14-roles/versioning.t	tokenized	2	1	55
-S14-traits/attributes.t	tokenized	6	0	14
-S14-traits/package.t	tokenized	5	0	11
-S14-traits/routines.t	tokenized	18	3	34
-S14-traits/variables.t	tokenized	8	0	11
-S15-literals/identifiers.t	tokenized	1	0	11
-S15-literals/numbers.t	tokenized	0	1	66
-S15-nfg/GraphemeBreakTest-0.t	tokenized	1	0	822
-S15-nfg/GraphemeBreakTest-1.t	tokenized	1	0	737
-S15-nfg/GraphemeBreakTest-2.t	tokenized	1	0	740
-S15-nfg/GraphemeBreakTest-3.t	tokenized	1	0	748
-S15-nfg/GraphemeBreakTest-4.t	tokenized	1	0	206
-S15-nfg/case-change.t	tokenized	5	0	54
-S15-nfg/cgj.t	tokenized	3	0	11
-S15-nfg/concat-stable.t	tokenized	21	1	24
-S15-nfg/concatenation.t	tokenized	7	0	27
-S15-nfg/crlf-encoding.t	tokenized	3	0	11
-S15-nfg/emoji-test.t	tokenized	0	0	3835
-S15-nfg/from-buf.t	tokenized	3	0	14
-S15-nfg/from-file.t	tokenized	4	0	9
-S15-nfg/grapheme-break.t	tokenized	0	0	1
-S15-nfg/long-uni.t	tokenized	3	1	6
-S15-nfg/many-combiners.t	tokenized	1	0	5
-S15-nfg/many-threads.t	tokenized	1	1	4
-S15-nfg/mass-equality.t	tokenized	0	0	500
-S15-nfg/mass-roundtrip-nfc.t	tokenized	0	0	500
-S15-nfg/mass-roundtrip-nfd.t	tokenized	0	0	88
-S15-nfg/mass-roundtrip-nfkc.t	tokenized	0	0	100
-S15-nfg/mass-roundtrip-nfkd.t	tokenized	0	0	100
-S15-nfg/regex.t	tokenized	1	0	13
-S15-normalization/nfc-0.t	tokenized	0	0	1511
-S15-normalization/nfc-1.t	tokenized	0	0	1880
-S15-normalization/nfc-10.t	tokenized	0	0	170
-S15-normalization/nfc-2.t	tokenized	0	0	2000
-S15-normalization/nfc-3.t	tokenized	0	0	2000
-S15-normalization/nfc-4.t	tokenized	0	0	2000
-S15-normalization/nfc-5.t	tokenized	0	0	2000
-S15-normalization/nfc-6.t	tokenized	0	0	2000
-S15-normalization/nfc-7.t	tokenized	0	0	1970
-S15-normalization/nfc-8.t	tokenized	0	0	1996
-S15-normalization/nfc-9.t	tokenized	0	0	1979
-S15-normalization/nfc-concat.t	tokenized	2	3012	3012
-S15-normalization/nfc-sanity.t	tokenized	0	0	488
-S15-normalization/nfd-0.t	tokenized	0	0	1558
-S15-normalization/nfd-1.t	tokenized	0	0	1880
-S15-normalization/nfd-10.t	tokenized	0	0	171
-S15-normalization/nfd-2.t	tokenized	0	0	2000
-S15-normalization/nfd-3.t	tokenized	0	0	2000
-S15-normalization/nfd-4.t	tokenized	0	0	2000
-S15-normalization/nfd-5.t	tokenized	0	0	2000
-S15-normalization/nfd-6.t	tokenized	0	0	2000
-S15-normalization/nfd-7.t	tokenized	0	0	1981
-S15-normalization/nfd-8.t	tokenized	0	0	1996
-S15-normalization/nfd-9.t	tokenized	0	0	1942
-S15-normalization/nfd-sanity.t	tokenized	0	0	402
-S15-normalization/nfkc-0.t	tokenized	0	0	1647
-S15-normalization/nfkc-1.t	tokenized	0	0	1990
-S15-normalization/nfkc-10.t	tokenized	0	0	170
-S15-normalization/nfkc-2.t	tokenized	0	0	2000
-S15-normalization/nfkc-3.t	tokenized	0	0	2000
-S15-normalization/nfkc-4.t	tokenized	0	0	2000
-S15-normalization/nfkc-5.t	tokenized	0	0	2000
-S15-normalization/nfkc-6.t	tokenized	0	0	2000
-S15-normalization/nfkc-7.t	tokenized	0	0	1980
-S15-normalization/nfkc-8.t	tokenized	0	0	1996
-S15-normalization/nfkc-9.t	tokenized	0	0	1979
-S15-normalization/nfkc-sanity.t	tokenized	0	0	433
-S15-normalization/nfkd-0.t	tokenized	0	0	1681
-S15-normalization/nfkd-1.t	tokenized	0	0	1990
-S15-normalization/nfkd-10.t	tokenized	0	0	171
-S15-normalization/nfkd-2.t	tokenized	0	0	2000
-S15-normalization/nfkd-3.t	tokenized	0	0	2000
-S15-normalization/nfkd-4.t	tokenized	0	0	2000
-S15-normalization/nfkd-5.t	tokenized	0	0	2000
-S15-normalization/nfkd-6.t	tokenized	0	0	2000
-S15-normalization/nfkd-7.t	tokenized	0	0	1991
-S15-normalization/nfkd-8.t	tokenized	0	0	1996
-S15-normalization/nfkd-9.t	tokenized	0	0	1942
-S15-normalization/nfkd-sanity.t	tokenized	0	0	408
-S15-string-types/NF-types.t	tokenized	2	0	10
-S15-string-types/NFK-types.t	tokenized	2	0	11
-S15-string-types/Str.t	tokenized	0	0	4
-S15-string-types/Uni.t	tokenized	1	0	19
-S15-unicode-information/unimatch-general.t	tokenized	0	0	608
-S15-unicode-information/uniname.t	tokenized	0	1	108
-S15-unicode-information/uniprop.t	tokens do not reassemble			
-S15-unicode-information/unival.t	tokenized	0	0	46
-S16-filehandles/argfiles.t	tokenized	7	0	61
-S16-filehandles/chmod.t	tokenized	6	0	23
-S16-filehandles/filestat.t	tokenized	17	1	17
-S16-filehandles/filetest.t	tokenized	9	0	148
-S16-filehandles/io.t	tokenized	44	2	163
-S16-filehandles/io_in_for_loops.t	tokenized	6	0	14
-S16-filehandles/io_in_while_loops.t	tokenized	5	1	9
-S16-filehandles/misc.t	tokenized	0	0	8
-S16-filehandles/mkdir_rmdir.t	tokenized	1	0	20
-S16-filehandles/mode.t	tokenized	4	0	12
-S16-filehandles/open.t	tokenized	1	0	19
-S16-filehandles/unlink.t	tokenized	3	0	5
-S16-io/bare-say.t	tokenized	0	0	33
-S16-io/basic-open.t	tokenized	5	0	17
-S16-io/bom.t	tokenized	6	0	17
-S16-io/comb.t	tokenized	2	0	42
-S16-io/cwd.t	tokenized	0	0	2
-S16-io/eof.t	tokenized	3	0	30
-S16-io/getc.t	tokenized	4	0	14
-S16-io/handles-between-threads.t	tokenized	7	0	23
-S16-io/home.t	tokenized	1	0	17
-S16-io/lines.t	tokenized	10	2	56
-S16-io/newline.t	tokenized	0	0	12
-S16-io/note.t	tokenized	3	0	13
-S16-io/print.t	tokenized	15	0	85
-S16-io/prompt.t	tokenized	3	0	30
-S16-io/put.t	tokenized	3	0	16
-S16-io/readchars.t	tokenized	2	0	11
-S16-io/say-and-ref.t	tokenized	0	0	7
-S16-io/say.t	tokenized	3	0	13
-S16-io/split.t	tokenized	5	0	29
-S16-io/supply.t	tokenized	2	0	9
-S16-io/tmpdir.t	tokenized	1	0	7
-S16-io/watch.t	tokenized	7	0	3
-S16-io/words.t	tokenized	5	0	83
-S16-unfiled/getpeername.t	tokenized	1	0	2
-S16-unfiled/rebindstdhandles.t	tokenized	4	0	8
-S17-channel/basic.t	tokenized	10	0	29
-S17-channel/stress.t	tokenized	7	2	4
-S17-channel/subscription-drain-in-react.t	tokenized	1	0	1
-S17-lowlevel/atomic-ops.t	tokenized	0	5	20
-S17-lowlevel/atomic.t	tokenized	0	5	26
-S17-lowlevel/cas-int.t	tokenized	2	5	9
-S17-lowlevel/cas-loop-int.t	tokenized	1	2	4
-S17-lowlevel/cas-loop.t	tokenized	5	1	8
-S17-lowlevel/cas.t	tokenized	9	3	15
-S17-lowlevel/lock.t	tokenized	22	2	30
-S17-lowlevel/semaphore.t	tokenized	4	0	2
-S17-lowlevel/thread-start-join-stress.t	tokenized	0	0	1
-S17-lowlevel/thread.t	tokenized	15	8	36
-S17-procasync/basic.t	tokenized	22	0	82
-S17-procasync/bind-handles.t	tokenized	13	0	63
-S17-procasync/encoding.t	tokenized	5	0	41
-S17-procasync/kill.t	tokenized	5	1	17
-S17-procasync/many-processes-no-close-stdin.t	tokenized	2	0	3
-S17-procasync/no-runaway-file-limit.t	tokenized	2	0	3
-S17-procasync/nonexistent.t	tokenized	4	0	8
-S17-procasync/print.t	tokenized	12	0	14
-S17-procasync/stress.t	tokenized	10	0	24
-S17-promise/allof.t	tokenized	11	1	13
-S17-promise/anyof.t	tokenized	5	0	11
-S17-promise/at.t	tokenized	5	1	6
-S17-promise/basic.t	tokenized	7	0	80
-S17-promise/in.t	tokenized	3	1	5
-S17-promise/lock-async-stress.t	tokenized	4	1	1
-S17-promise/lock-async-stress2.t	tokenized	4	1	1
-S17-promise/lock-async.t	tokenized	6	0	24
-S17-promise/nonblocking-await.t	tokenized	21	10	40
-S17-promise/single-assignment.t	tokenized	2	0	17
-S17-promise/start.t	tokenized	26	0	66
-S17-promise/stress.t	tokenized	1	0	1
-S17-promise/then.t	tokenized	9	0	75
-S17-scheduler/at.t	tokenized	3	6	45
-S17-scheduler/basic.t	tokenized	6	0	54
-S17-scheduler/every.t	tokenized	5	3	29
-S17-scheduler/in.t	tokenized	3	6	44
-S17-scheduler/times.t	tokenized	3	0	4
-S17-supply/Channel.t	tokenized	7	0	12
-S17-supply/Promise.t	tokenized	3	0	9
-S17-supply/Seq.t	tokenized	2	0	6
-S17-supply/act.t	tokenized	3	0	6
-S17-supply/basic.t	tokenized	14	0	45
-S17-supply/batch.t	tokenized	5	6	6
-S17-supply/categorize.t	tokenized	7	0	15
-S17-supply/classify.t	tokenized	7	0	11
-S17-supply/collate.t	tokenized	0	0	14
-S17-supply/comb.t	tokenized	2	2	29
-S17-supply/decode.t	tokenized	4	1	7
-S17-supply/delayed.t	tokenized	5	2	8
-S17-supply/do.t	tokenized	1	0	4
-S17-supply/elems.t	tokenized	1	1	3
-S17-supply/encode.t	tokenized	4	1	6
-S17-supply/first.t	tokenized	1	1	7
-S17-supply/flat.t	tokenized	6	0	9
-S17-supply/from-list.t	tokenized	1	0	10
-S17-supply/grab.t	tokenized	0	0	4
-S17-supply/grep.t	tokenized	0	0	14
-S17-supply/head.t	tokenized	5	1	12
-S17-supply/interval.t	tokenized	2	1	11
-S17-supply/lines.t	tokenized	6	0	34
-S17-supply/list.t	tokenized	2	0	6
-S17-supply/map.t	tokenized	0	0	5
-S17-supply/max.t	tokenized	0	0	17
-S17-supply/merge.t	tokenized	4	0	10
-S17-supply/migrate.t	tokenized	7	0	7
-S17-supply/min.t	tokenized	0	0	17
-S17-supply/minmax.t	tokenized	0	0	35
-S17-supply/on-demand.t	tokenized	0	0	2
-S17-supply/produce.t	tokenized	1	1	10
-S17-supply/reduce.t	tokenized	1	1	10
-S17-supply/repeated.t	tokenized	0	0	14
-S17-supply/return-in-tap.t	tokenized	4	0	3
-S17-supply/reverse.t	tokenized	0	0	3
-S17-supply/rotate.t	tokenized	0	0	7
-S17-supply/rotor.t	tokenized	0	0	15
-S17-supply/schedule-on.t	tokenized	2	0	4
-S17-supply/skip.t	tokenized	0	0	6
-S17-supply/sort.t	tokenized	0	0	14
-S17-supply/split.t	tokenized	3	3	41
-S17-supply/squish.t	tokenized	0	0	16
-S17-supply/stable.t	tokenized	3	0	5
-S17-supply/start.t	tokenized	8	0	8
-S17-supply/supplier-preserving.t	tokenized	6	1	5
-S17-supply/syntax-nonblocking-await.t	tokenized	6	0	11
-S17-supply/syntax.t	tokenized	47	4	167
-S17-supply/tail.t	tokenized	0	1	10
-S17-supply/throttle.t	tokenized	7	4	31
-S17-supply/unique.t	tokenized	1	0	27
-S17-supply/wait.t	tokenized	5	0	5
-S17-supply/words.t	tokenized	1	0	12
-S17-supply/zip-latest.t	tokenized	8	0	44
-S17-supply/zip.t	tokenized	4	0	25
-S19-command-line-options/02-dash-n.t	tokenized	2	0	15
-S19-command-line-options/03-dash-p.t	tokenized	0	0	14
-S19-command-line-options/04-negation.t	tokenized	0	0	10
-S19-command-line/arguments.t	tokenized	1	0	18
-S19-command-line/dash-e.t	tokenized	0	0	15
-S19-command-line/help.t	tokenized	0	0	2
-S19-command-line/repl.t	tokenized	1	0	3
-S22-package-format/local.t	tokenized	18	0	25
-S24-testing/0-compile.t	tokenized	1	0	0
-S24-testing/1-basic.t	tokenized	5	0	63
-S24-testing/10-is-approx.t	tokenized	2	7	40
-S24-testing/11-plan-skip-all-subtests.t	tokenized	0	0	15
-S24-testing/11-plan-skip-all.t	tokenized	0	0	2
-S24-testing/12-subtest-todo.t	tokenized	5	0	25
-S24-testing/13-cmp-ok.t	tokenized	0	0	6
-S24-testing/14-like-unlike.t	tokenized	0	0	6
-S24-testing/15-done-testing.t	tokenized	1	0	10
-S24-testing/2-force_todo.t	tokenized	0	0	13
-S24-testing/3-output.t	tokenized	1	1	6
-S24-testing/7-bail_out.t	tokenized	0	0	12
-S24-testing/8-die_on_fail.t	tokenized	2	0	17
-S24-testing/9-is_deeply.t	tokenized	0	0	22
-S24-testing/fails-like.t	tokenized	2	0	41
-S24-testing/line-numbers.t	tokenized	6	0	19
-S26-documentation/01-delimited.t	tokenized	1	0	47
-S26-documentation/02-paragraph.t	tokenized	1	0	40
-S26-documentation/03-abbreviated.t	tokenized	1	0	37
-S26-documentation/04-code.t	tokenized	1	0	30
-S26-documentation/04a-input-output.t	tokenized	7	0	8
-S26-documentation/05-comment.t	tokenized	2	0	6
-S26-documentation/06-lists.t	tokenized	1	0	11
-S26-documentation/07-tables.t	tokenized	2	0	28
-S26-documentation/07a-tables.t	tokenized	4	7	51
-S26-documentation/07b-tables.t	tokenized	4	0	8
-S26-documentation/07c-tables.t	tokenized	4	0	6
-S26-documentation/08-formattingcodes.t	tokenized	1	0	45
-S26-documentation/09-configuration.t	tokenized	3	0	154
-S26-documentation/10-doc-cli.t	tokenized	2	0	6
-S26-documentation/12-non-breaking-space.t	tokenized	19	0	25
-S26-documentation/14-defn.t	tokenized	3	0	30
-S26-documentation/15-numbered-alias.t	tokenized	4	0	7
-S26-documentation/block-leading-user-format.t	tokenized	5	0	9
-S26-documentation/block-leading.t	tokenized	38	0	65
-S26-documentation/block-trailing.t	tokenized	39	0	65
-S26-documentation/module-comment.t	tokenized	0	0	2
-S26-documentation/multiline-leading.t	tokenized	3	0	9
-S26-documentation/multiline-trailing.t	tokenized	1	0	3
-S26-documentation/wacky.t	tokenized	21	0	43
-S26-documentation/why-both.t	tokenized	33	0	99
-S26-documentation/why-leading.t	tokenized	39	0	68
-S26-documentation/why-trailing.t	tokenized	42	0	70
-S28-named-variables/cwd.t	tokenized	1	0	3
-S28-named-variables/init-instant.t	tokenized	1	1	4
-S28-named-variables/slangs.t	tokenized	0	0	3
-S29-any/are.t	tokenized	0	4	22
-S29-any/cmp.t	tokenized	0	0	12
-S29-any/deg-trans.t	tokenized	1	0	20
-S29-any/isa.t	tokenized	5	0	12
-S29-any/minpairs-maxpairs.t	tokenized	4	0	21
-S29-context/die.t	tokenized	6	3	28
-S29-context/eval.t	tokenized	5	0	48
-S29-context/evalfile.t	tokenized	4	0	11
-S29-context/exit-in-if.t	tokenized	0	0	1
-S29-context/exit.t	tokenized	0	0	6
-S29-context/sleep.t	tokenized	7	9	28
-S29-conversions/hash.t	tokenized	0	0	18
-S29-conversions/ord_and_chr.t	tokenized	4	0	96
-S29-os/system.t	tokenized	14	2	105
-S32-array/adverbs.t	tokenized	11	2	569
-S32-array/bool.t	tokenized	1	0	15
-S32-array/create.t	tokenized	3	0	28
-S32-array/delete-adverb-native.t	tokenized	9	0	138
-S32-array/delete-adverb.t	tokenized	13	0	223
-S32-array/delete.t	tokenized	7	0	86
-S32-array/elems.t	tokenized	2	0	17
-S32-array/end.t	tokenized	2	0	16
-S32-array/exists-adverb.t	tokenized	6	0	55
-S32-array/keys_values.t	tokenized	2	0	11
-S32-array/kv.t	tokenized	5	0	29
-S32-array/multislice-6e.t	tokenized	18	0	51
-S32-array/pairs.t	tokenized	2	2	22
-S32-array/perl.t	tokenized	3	0	13
-S32-array/pop.t	tokenized	5	1	64
-S32-array/push.t	tokenized	9	2	68
-S32-array/rotate.t	tokenized	1	0	66
-S32-array/shift.t	tokenized	2	1	39
-S32-array/splice.t	tokenized	22	4	111
-S32-array/unshift.t	tokenized	5	1	81
-S32-basics/pairup.t	tokenized	2	0	6
-S32-basics/warn.t	tokenized	3	0	22
-S32-basics/xxKEY.t	tokenized	8	0	200
-S32-basics/xxPOS-native.t	tokenized	3	1	19
-S32-basics/xxPOS.t	tokenized	8	0	46
-S32-container/buf.t	tokenized	2	0	75
-S32-container/cat.t	tokenized	0	0	16
-S32-container/roundrobin.t	tokenized	1	0	18
-S32-container/stringify.t	tokenized	0	0	24
-S32-container/zip.t	tokenized	4	0	23
-S32-encoding/decoder.t	tokenized	5	0	8
-S32-encoding/encoder.t	tokenized	1	0	12
-S32-encoding/registry.t	tokenized	4	0	38
-S32-exceptions/misc.t	tokenized	10	0	215
-S32-exceptions/misc2.t	tokenized	8	0	130
-S32-hash/adverbs.t	tokenized	10	2	591
-S32-hash/antipairs.t	tokenized	1	0	18
-S32-hash/delete-adverb.t	tokenized	17	0	218
-S32-hash/delete.t	tokenized	7	0	18
-S32-hash/exists-adverb.t	tokenized	8	0	90
-S32-hash/exists.t	tokenized	10	0	40
-S32-hash/hyperslice.t	tokenized	7	0	18
-S32-hash/invert.t	tokenized	1	0	18
-S32-hash/iterator.t	tokenized	1	1	18
-S32-hash/keys_values.t	tokenized	3	0	27
-S32-hash/kv.t	tokenized	12	0	58
-S32-hash/map.t	tokenized	11	0	43
-S32-hash/multislice-6e.t	tokenized	16	0	104
-S32-hash/pairs.t	tokenized	7	2	48
-S32-hash/perl.t	tokenized	4	0	38
-S32-hash/push.t	tokenized	10	0	26
-S32-hash/slice.t	tokenized	6	0	88
-S32-io/IO-Socket-Async-UDP.t	tokenized	6	0	8
-S32-io/IO-Socket-Async.t	tokenized	57	0	69
-S32-io/IO-Socket-INET-UNIX.t	tokenized	0	0	11
-S32-io/IO-Socket-INET.t	tokenized	9	2	71
-S32-io/chdir-process.t	tokenized	3	0	17
-S32-io/chdir.t	tokenized	8	0	144
-S32-io/child-secure.t	tokenized	4	0	28
-S32-io/copy.t	tokenized	12	0	61
-S32-io/dir.t	tokenized	5	2	28
-S32-io/indir.t	tokenized	8	0	148
-S32-io/io-cathandle.t	tokenized	40	0	367
-S32-io/io-handle.t	tokenized	9	1	175
-S32-io/io-path-cygwin.t	tokenized	6	0	117
-S32-io/io-path-extension.t	tokenized	2	0	220
-S32-io/io-path-subclasses.t	tokenized	3	0	5
-S32-io/io-path-symlink.t	tokenized	2	1	13
-S32-io/io-path-unix.t	tokenized	4	0	91
-S32-io/io-path-win.t	tokenized	6	0	117
-S32-io/io-path.t	tokenized	12	4	163
-S32-io/io-spec-cygwin.t	tokenized	12	0	240
-S32-io/io-spec-qnx.t	tokenized	3	0	33
-S32-io/io-spec-unix.t	tokenized	10	0	333
-S32-io/io-spec-win.t	tokenized	14	0	476
-S32-io/io-special.t	tokenized	1	0	23
-S32-io/lock.t	tokenized	6	1	59
-S32-io/mkdir_rmdir.t	tokenized	2	0	7
-S32-io/move.t	tokenized	11	0	43
-S32-io/native-descriptor.t	tokenized	1	4	5
-S32-io/note.t	tokenized	0	0	21
-S32-io/null-char.t	tokenized	2	0	9
-S32-io/open.t	tokenized	5	0	127
-S32-io/other-stress.t	tokenized	0	1	3
-S32-io/other.t	tokenized	0	0	1
-S32-io/out-buffering.t	tokenized	3	0	45
-S32-io/pipe.t	tokenized	15	0	56
-S32-io/rename.t	tokenized	10	0	38
-S32-io/seek.t	tokenized	1	0	40
-S32-io/signals.t	tokenized	0	0	5
-S32-io/slurp.t	tokenized	10	0	67
-S32-io/socket-accept-and-working-threads.t	tokenized	6	0	9
-S32-io/socket-fail-invalid-values.t	tokenized	5	0	4
-S32-io/socket-host-port-split.t	tokenized	6	0	3
-S32-io/socket-recv-vs-read.t	tokenized	5	2	34
-S32-io/spurt.t	tokenized	15	0	114
-S32-io/tell.t	tokenized	1	0	29
-S32-io/utf16.t	tokenized	23	0	33
-S32-list/are.t	tokenized	1	0	20
-S32-list/batch.t	tokenized	0	0	4
-S32-list/categorize-list.t	tokenized	26	0	677
-S32-list/categorize.t	tokenized	14	2	46
-S32-list/classify-list.t	tokenized	19	0	412
-S32-list/classify.t	tokenized	15	5	57
-S32-list/combinations.t	tokenized	2	1	55
-S32-list/create.t	tokenized	5	0	13
-S32-list/cross.t	tokenized	0	0	11
-S32-list/deepmap.t	tokenized	4	0	33
-S32-list/duckmap.t	tokenized	2	0	23
-S32-list/end.t	tokenized	1	0	19
-S32-list/first-end-k.t	tokenized	5	1	31
-S32-list/first-end-kv.t	tokenized	3	0	34
-S32-list/first-end-p.t	tokenized	5	1	35
-S32-list/first-end-v.t	tokenized	5	1	34
-S32-list/first-end.t	tokenized	5	1	35
-S32-list/first-k.t	tokenized	5	1	30
-S32-list/first-kv.t	tokenized	3	0	34
-S32-list/first-p.t	tokenized	5	1	35
-S32-list/first-v.t	tokenized	5	1	34
-S32-list/first.t	tokenized	7	1	115
-S32-list/flat.t	tokenized	4	1	26
-S32-list/grep-k.t	tokenized	5	0	44
-S32-list/grep-kv.t	tokenized	4	0	24
-S32-list/grep-p.t	tokenized	4	0	28
-S32-list/grep-v.t	tokenized	4	0	23
-S32-list/grep.t	tokenized	9	2	69
-S32-list/head.t	tokenized	5	2	68
-S32-list/iterator.t	tokenized	2	0	39
-S32-list/join.t	tokenized	29	0	144
-S32-list/map.t	tokenized	18	7	93
-S32-list/map_function_return_values.t	tokenized	2	0	5
-S32-list/minmax.t	tokenized	8	6	181
-S32-list/permutations.t	tokenized	1	0	14
-S32-list/pick.t	tokenized	12	18	77
-S32-list/produce.t	tokenized	2	0	9
-S32-list/reduce.t	tokenized	15	21	32
-S32-list/repeated.t	tokenized	6	0	86
-S32-list/reverse.t	tokenized	5	0	47
-S32-list/roll.t	tokenized	18	12	68
-S32-list/rotor.t	tokenized	4	1	73
-S32-list/seq.t	tokenized	24	0	115
-S32-list/skip.t	tokenized	10	2	81
-S32-list/sort.t	tokenized	6	4	173
-S32-list/squish.t	tokenized	8	1	119
-S32-list/tail.t	tokenized	6	3	84
-S32-list/toggle.t	tokenized	3	0	30
-S32-list/unique.t	tokenized	6	0	87
-S32-num/abs.t	tokenized	0	5	13
-S32-num/base.t	tokenized	1	2	77
-S32-num/complex.t	tokenized	6	33	167
-S32-num/cool-num.t	tokenized	19	3	69
-S32-num/exp.t	tokenized	3	7	34
-S32-num/expmod.t	tokenized	0	2	6
-S32-num/fatrat.t	tokenized	5	153	162
-S32-num/int.t	tokenized	9	3	171
-S32-num/is-prime.t	tokenized	5	0	51
-S32-num/log.t	tokenized	12	19	36
-S32-num/narrow.t	tokenized	0	4	17
-S32-num/negative-zero.t	tokenized	3	0	112
-S32-num/pi.t	tokenized	1	0	15
-S32-num/polar.t	tokenized	4	10	2
-S32-num/polymod.t	tokenized	0	0	11
-S32-num/power.t	tokenized	4	10	34
-S32-num/rand.t	tokenized	10	10	14
-S32-num/rat.t	tokenized	17	165	292
-S32-num/real-bridge.t	tokenized	13	57	149
-S32-num/roots.t	tokenized	11	3	62
-S32-num/rounders.t	tokenized	15	17	190
-S32-num/rshift_pos_amount.t	tokenized	4	0	2
-S32-num/sign.t	tokenized	0	2	34
-S32-num/sqrt.t	tokenized	0	6	18
-S32-num/stress.t	tokenized	4	1	6
-S32-num/stringify.t	tokenized	2	7	40
-S32-num/unpolar.t	tokenized	4	11	24
-S32-scalar/defined.t	tokenized	3	0	65
-S32-scalar/perl.t	tokenized	2	0	8
-S32-scalar/undef.t	tokenized	19	3	128
-S32-str/Collation.t	tokenized	2	0	34
-S32-str/CollationTest_NON_IGNORABLE-0.t	tokenized	1	0	2302
-S32-str/CollationTest_NON_IGNORABLE-1.t	tokenized	1	0	2303
-S32-str/CollationTest_NON_IGNORABLE-2.t	tokenized	1	0	2303
-S32-str/CollationTest_NON_IGNORABLE-3.t	tokenized	1	0	1435
-S32-str/append.t	tokenized	4	0	15
-S32-str/bool.t	tokenized	0	0	16
-S32-str/capitalize.t	tokenized	3	0	40
-S32-str/chomp.t	tokenized	4	0	90
-S32-str/chop.t	tokenized	1	0	57
-S32-str/comb.t	tokenized	5	1	208
-S32-str/contains.t	tokenized	1	0	38
-S32-str/encode.t	tokenized	1	0	94
-S32-str/ends-with.t	tokenized	1	0	32
-S32-str/fc.t	tokenized	0	0	34
-S32-str/flip.t	tokenized	1	0	29
-S32-str/format.t	tokenized	5	0	58
-S32-str/gb18030-encode-decode.t	tokenized	8	0	19
-S32-str/gb2312-encode-decode.t	tokenized	8	0	19
-S32-str/indent.t	tokenized	2	6	101
-S32-str/index.t	tokenized	5	0	165
-S32-str/indices.t	tokenized	1	0	123
-S32-str/lc.t	tokenized	1	0	39
-S32-str/length.t	tokenized	2	0	13
-S32-str/lines.t	tokenized	2	4	85
-S32-str/numeric.t	tokenized	6	3	117
-S32-str/ords.t	tokenized	4	0	16
-S32-str/parse-base.t	tokenized	5	1	36
-S32-str/pos.t	tokenized	1	0	4
-S32-str/rindex.t	tokenized	1	0	133
-S32-str/samecase.t	tokenized	0	0	22
-S32-str/samemark.t	tokenized	0	0	23
-S32-str/shiftjis-encode-decode.t	tokenized	4	0	40
-S32-str/space-chars.t	tokenized	6	0	4
-S32-str/split-simple.t	tokenized	3	0	72
-S32-str/split.t	tokenized	9	0	505
-S32-str/sprintf-a.t	tokenized	2	3	294
-S32-str/sprintf-b.t	tokenized	2	4	343
-S32-str/sprintf-c.t	tokenized	2	2	38
-S32-str/sprintf-d.t	tokenized	2	8	3
-S32-str/sprintf-e.t	tokenized	2	5	440
-S32-str/sprintf-f.t	tokenized	2	5	8
-S32-str/sprintf-o.t	tokenized	2	3	6
-S32-str/sprintf-s.t	tokenized	5	2	72
-S32-str/sprintf-u.t	tokenized	2	2	5
-S32-str/sprintf-x.t	tokenized	2	4	343
-S32-str/sprintf.t	tokenized	6	18	324
-S32-str/starts-with.t	tokenized	1	0	32
-S32-str/substr-eq.t	tokenized	1	0	40
-S32-str/substr-rw.t	tokenized	5	1	130
-S32-str/substr.t	tokenized	1	1	134
-S32-str/tc.t	tokenized	0	0	17
-S32-str/tclc.t	tokenized	0	0	17
-S32-str/trim.t	tokenized	3	0	94
-S32-str/uc.t	tokenized	4	0	31
-S32-str/uniparse.t	tokenized	1	1	23
-S32-str/utf8-c8.t	tokenized	18	0	163
-S32-str/val.t	tokenized	5	1	44
-S32-str/windows-1251-windows-1252-encode-decode.t	tokenized	8	0	4
-S32-str/words.t	tokenized	7	1	73
-S32-temporal/Date.t	tokenized	17	12	127
-S32-temporal/DateTime-Instant-Duration.t	tokenized	17	23	75
-S32-temporal/DateTime.t	tokenized	43	12	589
-S32-temporal/baum-gregorian-data.t	tokenized	25	11	16
-S32-temporal/calendar.t	tokenized	4	0	154
-S32-temporal/greg-jd-frac-seconds.t	tokenized	14	2	25
-S32-temporal/juliandate.t	tokenized	23	2	48
-S32-temporal/local.t	tokenized	3	5	60
-S32-trig/atan2.t	tokenized	8	13	89
-S32-trig/cos.t	tokenized	8	14	32
-S32-trig/cosec.t	tokenized	8	12	32
-S32-trig/cosech.t	tokenized	8	12	32
-S32-trig/cosh.t	tokenized	8	12	32
-S32-trig/cotan.t	tokenized	8	12	32
-S32-trig/cotanh.t	tokenized	8	12	32
-S32-trig/e.t	tokenized	1	0	6
-S32-trig/pi.t	tokenized	1	3	3
-S32-trig/sec.t	tokenized	8	12	32
-S32-trig/sech.t	tokenized	8	12	32
-S32-trig/simple.t	tokenized	2	0	12
-S32-trig/sin.t	tokenized	8	16	32
-S32-trig/sinh.t	tokenized	8	14	33
-S32-trig/tan.t	tokenized	8	12	32
-S32-trig/tanh.t	tokenized	8	12	32
-integration/99problems-01-to-10.t	tokenized	22	0	74
-integration/99problems-11-to-20.t	tokenized	27	3	79
-integration/99problems-21-to-30.t	tokenized	15	3	52
-integration/99problems-31-to-40.t	tokenized	18	5	29
-integration/99problems-41-to-50.t	tokenized	23	6	74
-integration/99problems-51-to-60.t	tokenized	15	9	45
-integration/99problems-61-to-70.t	tokenized	17	6	101
-integration/advent2009-day01.t	tokenized	0	0	3
-integration/advent2009-day02.t	tokenized	0	0	17
-integration/advent2009-day03.t	tokenized	1	0	23
-integration/advent2009-day04.t	tokenized	0	0	6
-integration/advent2009-day05.t	tokenized	6	2	17
-integration/advent2009-day06.t	tokenized	5	6	11
-integration/advent2009-day07.t	tokenized	10	1	22
-integration/advent2009-day08.t	tokenized	4	0	23
-integration/advent2009-day09.t	tokenized	14	0	31
-integration/advent2009-day10.t	tokenized	1	0	12
-integration/advent2009-day11.t	tokenized	5	0	17
-integration/advent2009-day12.t	tokenized	0	0	23
-integration/advent2009-day13.t	tokenized	5	0	19
-integration/advent2009-day14.t	tokenized	1	3	2
-integration/advent2009-day15.t	tokenized	3	1	4
-integration/advent2009-day16.t	tokenized	13	2	41
-integration/advent2009-day17.t	tokenized	13	9	2
-integration/advent2009-day18.t	tokenized	16	0	21
-integration/advent2009-day19.t	tokenized	3	0	21
-integration/advent2009-day20.t	tokenized	8	0	30
-integration/advent2009-day21.t	tokenized	7	1	11
-integration/advent2009-day22.t	tokenized	7	0	4
-integration/advent2009-day23.t	tokenized	23	11	25
-integration/advent2009-day24.t	tokenized	2	0	29
-integration/advent2010-day03.t	tokenized	7	2	32
-integration/advent2010-day04.t	tokenized	4	5	11
-integration/advent2010-day06.t	tokenized	7	1	13
-integration/advent2010-day07.t	tokenized	4	0	1
-integration/advent2010-day08.t	tokenized	4	0	26
-integration/advent2010-day10.t	tokenized	5	0	6
-integration/advent2010-day11.t	tokenized	10	0	3
-integration/advent2010-day12.t	tokenized	5	2	13
-integration/advent2010-day14.t	tokenized	11	0	23
-integration/advent2010-day16.t	tokenized	5	0	19
-integration/advent2010-day19.t	tokenized	1	0	7
-integration/advent2010-day21.t	tokenized	4	0	21
-integration/advent2010-day22.t	tokenized	2	0	6
-integration/advent2010-day23.t	tokenized	6	0	10
-integration/advent2011-day03.t	tokenized	4	0	5
-integration/advent2011-day04.t	tokenized	3	3	2
-integration/advent2011-day05.t	tokenized	0	0	0
-integration/advent2011-day07.t	tokenized	2	0	9
-integration/advent2011-day10.t	tokenized	3	0	14
-integration/advent2011-day11.t	tokenized	6	7	22
-integration/advent2011-day14.t	tokenized	2	1	8
-integration/advent2011-day15.t	tokenized	4	0	17
-integration/advent2011-day16.t	tokenized	6	0	12
-integration/advent2011-day20.t	tokenized	4	0	41
-integration/advent2011-day22.t	tokenized	1	4	2
-integration/advent2011-day23.t	tokenized	29	14	81
-integration/advent2011-day24.t	tokenized	5	0	21
-integration/advent2012-day02.t	tokenized	6	0	16
-integration/advent2012-day03.t	tokenized	4	1	6
-integration/advent2012-day04.t	tokenized	10	12	8
-integration/advent2012-day06.t	tokenized	1	0	7
-integration/advent2012-day09.t	tokenized	5	0	24
-integration/advent2012-day10.t	tokenized	10	0	53
-integration/advent2012-day12.t	tokenized	3	0	16
-integration/advent2012-day13.t	tokenized	27	17	61
-integration/advent2012-day14.t	tokenized	13	8	6
-integration/advent2012-day15.t	tokenized	13	0	20
-integration/advent2012-day16.t	tokenized	5	7	0
-integration/advent2012-day19.t	tokenized	5	6	10
-integration/advent2012-day20.t	tokenized	9	0	55
-integration/advent2012-day21.t	tokenized	17	3	28
-integration/advent2012-day22.t	tokenized	4	0	10
-integration/advent2012-day24.t	tokenized	12	2	6
-integration/advent2013-day02.t	tokenized	3	0	22
-integration/advent2013-day04.t	tokenized	5	0	17
-integration/advent2013-day06.t	tokenized	6	2	10
-integration/advent2013-day07.t	tokenized	1	1	14
-integration/advent2013-day08.t	tokenized	8	0	10
-integration/advent2013-day09.t	tokenized	11	0	40
-integration/advent2013-day10.t	tokenized	19	2	70
-integration/advent2013-day12.t	tokenized	3	0	52
-integration/advent2013-day14.t	tokenized	27	3	43
-integration/advent2013-day15.t	tokenized	8	9	32
-integration/advent2013-day18.t	tokenized	2	0	32
-integration/advent2013-day19.t	tokenized	9	1	15
-integration/advent2013-day20.t	tokenized	1	0	24
-integration/advent2013-day21.t	tokenized	10	0	60
-integration/advent2013-day22.t	tokenized	4	8	12
-integration/advent2013-day23.t	tokenized	5	0	13
-integration/advent2014-day05.t	tokenized	5	0	16
-integration/advent2014-day13.t	tokenized	4	0	28
-integration/advent2014-day16.t	tokenized	4	1	26
-integration/code-blocks-as-sub-args.t	tokenized	2	0	16
-integration/deep-recursion-initing-native-array.t	tokenized	2	7	1
-integration/diamond.t	tokenized	3	0	9
-integration/error-reporting.t	tokenized	7	9	68
-integration/eval-and-threads.t	tokenized	0	0	2
-integration/failure-and-callsame.t	tokenized	3	2	5
-integration/gather-with-loops.t	tokenized	4	0	21
-integration/lazy-bentley-generator.t	tokenized	7	3	1
-integration/lexical-array-in-inner-block.t	tokenized	3	0	1
-integration/lexicals-and-attributes.t	tokenized	4	0	8
-integration/man-or-boy.t	tokenized	3	1	2
-integration/method-calls-and-instantiation.t	tokenized	3	0	2
-integration/no-indirect-new.t	tokenized	0	0	4
-integration/packages.t	tokenized	2	0	5
-integration/pair-in-array.t	tokenized	4	0	10
-integration/passing-pair-class-to-sub.t	tokenized	5	0	2
-integration/precompiled.t	tokenized	0	0	17
-integration/real-strings.t	tokenized	3	0	68
-integration/role-composition-vs-attribute.t	tokenized	18	0	11
-integration/rule-in-class-Str.t	tokenized	1	0	15
-integration/say-crash.t	tokenized	2	0	7
-integration/sequence.t	tokenized	3	0	4
-integration/substr-after-match-in-gather-in-for.t	tokenized	1	0	3
-integration/topic_in_double_loop.t	tokenized	0	0	2
-integration/variables-in-do.t	tokenized	1	0	2
-integration/weird-errors.t	tokenized	9	4	63
+file	state	names-v1:mixed	names-v2:mixed	ops-v1	ops-v2	strings-v1:mixed	strings-v2:mixed
+6.c/APPENDICES/A03-older-specs/01-misc.t	tokenized	19	17	0	0	317	277
+6.c/APPENDICES/A04-experimental/01-misc.t	tokenized	9	9	2	2	110	109
+6.c/MISC/bug-coverage-stress.t	tokenized	10	5	0	0	40	23
+6.c/MISC/bug-coverage.t	tokenized	15	10	9	7	211	208
+6.c/MISC/misc-6.c.t	tokenized	1	0	0	0	8	8
+6.c/S02-names/SETTING-6c.t	tokenized	2	2	0	0	9	7
+6.c/S02-names/pseudo-6c.t	tokenized	33	33	2	2	217	190
+6.c/S02-types/subset-6c.t	tokenized	6	6	0	0	107	96
+6.c/S03-operators/set_precedes.t	tokenized	4	4	1	1	46	47
+6.c/S04-declarations/my-6c.t	tokenized	22	20	1	1	178	135
+6.c/S05-grammar/methods.t	tokenized	4	4	0	0	15	12
+6.c/S05-grammar/parse_and_parsefile-6c.t	tokenized	10	10	0	0	39	38
+6.c/S06-other/main-refactored.t	tokenized	14	14	4	4	85	85
+6.c/S12-class/mro-6c.t	tokenized	18	16	0	0	19	12
+6.c/S14-roles/attributes.t	tokenized	13	10	1	1	22	19
+6.c/S14-roles/mixin-6c.t	tokenized	27	27	2	2	74	67
+6.c/S14-roles/submethods.t	tokenized	6	6	0	0	9	9
+6.c/S32-io/file-tests.t	tokenized	3	3	0	0	459	459
+6.d/S02-literals/version.t	tokenized	0	0	0	0	32	32
+6.d/S05-capture/match-object.t	tokenized	1	1	0	0	9	9
+6.d/S09-multidim/indexing.t	tokenized	1	1	0	0	4	4
+6.d/S15-unicode-information/uniname.t	tokenized	0	0	0	0	4	4
+6.d/S32-num/atanh.t	tokenized	1	1	1	1	1	1
+6.d/S32-num/log.t	tokenized	0	0	0	0	2	2
+6.d/S32-num/sign.t	tokenized	0	0	0	0	0	0
+6.d/S32-num/sqrt.t	tokenized	0	0	0	0	2	2
+6.d/S32-str/sprintf-b.t	tokenized	2	2	4	4	342	342
+6.d/S32-str/sprintf-c.t	tokenized	2	2	2	2	37	37
+6.d/S32-str/sprintf-d.t	tokenized	2	2	8	8	2	8
+6.d/S32-str/sprintf-e.t	tokenized	2	2	7	7	345	345
+6.d/S32-str/sprintf-f.t	tokenized	2	2	7	7	9	9
+6.d/S32-str/sprintf-o.t	tokenized	2	2	3	3	5	5
+6.d/S32-str/sprintf-s.t	tokenized	5	5	2	2	71	71
+6.d/S32-str/sprintf-u.t	tokenized	2	2	2	2	4	4
+6.d/S32-str/sprintf-x.t	tokenized	2	2	4	4	342	342
+6.d/S32-str/sprintf.t	tokenized	6	6	17	17	344	364
+APPENDICES/A01-limits/misc.t	tokenized	10	10	0	0	15	14
+APPENDICES/A01-limits/overflow.t	tokenized	2	2	2	2	18	17
+APPENDICES/A02-some-day-maybe/concreteness.t	tokenized	0	0	0	0	1	1
+APPENDICES/A02-some-day-maybe/io-cathandle.t	tokenized	1	1	0	0	6	6
+APPENDICES/A02-some-day-maybe/misc.t	tokenized	4	4	1	0	21	20
+APPENDICES/A02-some-day-maybe/multi-no-match.t	tokenized	0	0	0	0	31	31
+MISC/bug-coverage-6.d.t	tokenized	1	0	0	0	1	1
+MISC/bug-coverage-stress.t	tokenized	3	0	0	0	3	1
+MISC/misc.t	tokenized	5	1	1	0	87	84
+S01-perl-5-integration/array.t	tokenized	4	4	0	0	22	19
+S01-perl-5-integration/basic.t	tokenized	13	13	0	0	33	27
+S01-perl-5-integration/class.t	tokenized	0	0	0	0	2	2
+S01-perl-5-integration/context.t	tokenized	0	0	0	0	44	43
+S01-perl-5-integration/eval_lex.t	tokenized	3	2	0	0	19	9
+S01-perl-5-integration/exception_handling.t	tokenized	2	2	0	0	8	7
+S01-perl-5-integration/hash.t	tokenized	6	6	0	0	16	15
+S01-perl-5-integration/import.t	tokenized	0	0	0	0	2	2
+S01-perl-5-integration/isms.t	tokenized	1	1	0	0	2	2
+S01-perl-5-integration/method.t	tokenized	8	8	1	1	31	23
+S01-perl-5-integration/return.t	tokenized	0	0	0	0	1	1
+S01-perl-5-integration/roundtrip.t	tokenized	6	6	0	0	18	15
+S01-perl-5-integration/strings.t	tokenized	0	0	0	0	22	16
+S01-perl-5-integration/subs.t	tokenized	1	1	0	0	7	5
+S02-lexical-conventions/bom.t	tokenized	0	0	0	0	1	1
+S02-lexical-conventions/comments.t	tokenized	2	1	1	1	25	16
+S02-lexical-conventions/finish-pod.t	tokenized	0	0	0	0	4	3
+S02-lexical-conventions/minimal-whitespace.t	tokenized	1	1	1	1	29	18
+S02-lexical-conventions/one-pass-parsing.t	tokenized	0	0	0	0	10	5
+S02-lexical-conventions/pod-in-multi-line-exprs.t	tokenized	3	3	0	0	5	5
+S02-lexical-conventions/sub-block-parsing.t	tokenized	6	6	0	0	30	29
+S02-lexical-conventions/unicode-whitespace.t	tokenized	1	1	0	0	126	126
+S02-lexical-conventions/unicode.t	tokenized	17	17	0	0	58	48
+S02-lexical-conventions/unspace.t	tokenized	7	6	0	0	172	147
+S02-lists/indexing.t	tokenized	0	0	0	0	0	4
+S02-lists/tree.t	tokenized	3	3	0	0	23	23
+S02-literals/adverbs.t	tokenized	1	1	0	0	50	47
+S02-literals/allomorphic.t	tokenized	30	30	0	0	284	206
+S02-literals/array-interpolation.t	tokenized	1	1	0	0	35	35
+S02-literals/autoref.t	tokenized	8	8	0	0	70	70
+S02-literals/char-by-name.t	tokenized	0	0	0	0	8	8
+S02-literals/char-by-number.t	tokenized	0	0	0	0	41	40
+S02-literals/fmt-interpolation.t	tokenized	1	1	0	0	25	25
+S02-literals/format.t	tokenized	9	9	0	0	27	27
+S02-literals/hash-interpolation.t	tokenized	5	4	0	0	34	30
+S02-literals/heredocs.t	tokenized	21	19	0	0	114	81
+S02-literals/hex_chars.t	tokenized	1	1	0	0	4	2
+S02-literals/listquote-whitespace.t	tokenized	7	7	0	0	10	9
+S02-literals/listquote.t	tokenized	9	9	0	0	54	50
+S02-literals/misc-interpolation.t	tokenized	10	8	0	0	110	104
+S02-literals/numeric.t	tokenized	0	0	13	12	103	107
+S02-literals/pair-boolean.t	tokenized	2	2	0	0	6	6
+S02-literals/pairs.t	tokenized	14	12	0	0	76	59
+S02-literals/pod.t	tokenized	1	1	0	0	13	13
+S02-literals/quoting-unicode.t	tokenized	9	9	0	0	108	61
+S02-literals/quoting.t	tokenized	36	34	1	0	405	362
+S02-literals/radix.t	tokenized	2	2	3	8	190	166
+S02-literals/string-interpolation.t	tokenized	14	8	0	0	28	28
+S02-literals/sub-calls.t	tokenized	0	0	2	2	38	22
+S02-literals/subscript.t	tokenized	3	3	0	0	5	4
+S02-literals/types.t	tokenized	0	0	0	0	14	7
+S02-literals/underscores.t	tokenized	0	0	0	0	23	19
+S02-literals/version.t	tokenized	0	0	0	0	38	38
+S02-magicals/78258.t	tokenized	0	0	0	0	0	0
+S02-magicals/DISTRO.t	tokenized	0	0	0	0	23	23
+S02-magicals/GROUP.t	tokenized	0	0	0	0	1	1
+S02-magicals/KERNEL.t	tokenized	1	1	0	0	41	39
+S02-magicals/PERL.t	tokenized	1	1	0	0	36	36
+S02-magicals/RAKU.t	tokenized	1	1	0	0	20	20
+S02-magicals/USER.t	tokenized	0	0	0	0	1	1
+S02-magicals/VM.t	tokenized	0	0	0	0	30	30
+S02-magicals/args.t	tokenized	0	0	0	0	17	14
+S02-magicals/block.t	tokenized	6	6	3	3	6	6
+S02-magicals/dollar-underscore.t	tokenized	7	7	1	1	27	26
+S02-magicals/dollar_bang.t	tokenized	3	3	0	0	21	18
+S02-magicals/env.t	tokenized	4	4	0	0	43	39
+S02-magicals/file_line.t	tokenized	0	0	0	0	2	2
+S02-magicals/pid.t	tokenized	0	0	1	1	2	1
+S02-magicals/progname.t	tokenized	0	0	0	0	3	3
+S02-magicals/sub.t	tokenized	12	11	10	10	21	20
+S02-magicals/subname.t	tokenized	3	3	0	0	7	6
+S02-names-vars/contextual.t	tokenized	7	7	0	0	56	53
+S02-names-vars/fmt.t	tokenized	6	6	0	0	49	47
+S02-names-vars/list_array_perl.t	tokenized	12	12	0	0	16	15
+S02-names-vars/names.t	tokenized	10	9	0	0	78	66
+S02-names-vars/perl.t	tokenized	20	20	2	2	53	51
+S02-names-vars/signature.t	tokenized	14	14	0	0	19	19
+S02-names-vars/variables-and-packages.t	tokenized	10	10	0	0	49	41
+S02-names-vars/varnames.t	tokenized	2	1	1	0	75	73
+S02-names/SETTING-6e.t	tokenized	3	4	0	0	7	6
+S02-names/bare-sigil.t	tokenized	4	4	0	0	14	14
+S02-names/caller.t	tokenized	16	16	0	0	16	16
+S02-names/dynamic-scope.t	tokenized	9	9	0	0	11	11
+S02-names/identifier.t	tokenized	15	15	0	0	51	31
+S02-names/indirect.t	tokenized	1	1	0	0	17	14
+S02-names/is_default.t	tokenized	23	21	0	0	287	262
+S02-names/is_dynamic.t	tokenized	8	8	0	0	38	28
+S02-names/name.t	tokenized	5	3	2	0	33	33
+S02-names/our.t	tokenized	1	1	0	0	15	11
+S02-names/pseudo-6d.t	tokenized	30	30	0	0	212	185
+S02-names/pseudo-6e.t	tokenized	56	56	5	4	317	284
+S02-names/strict.t	tokenized	1	1	0	0	19	18
+S02-names/symbolic-deref.t	tokenized	10	10	0	0	80	68
+S02-one-pass-parsing/less-than.t	tokenized	0	0	1	1	17	11
+S02-one-pass-parsing/misc.t	tokenized	0	0	0	0	2	1
+S02-packages/package-lookup.t	tokenized	4	4	0	0	8	8
+S02-types/WHICH.t	tokenized	11	11	1	1	31	29
+S02-types/anon_block.t	tokenized	17	17	1	0	46	45
+S02-types/array-shapes.t	tokenized	9	7	0	0	72	56
+S02-types/array.t	tokenized	34	33	1	1	188	180
+S02-types/array_extending.t	tokenized	8	8	0	0	32	32
+S02-types/array_ref.t	tokenized	13	13	0	0	58	58
+S02-types/assigning-refs.t	tokenized	6	6	0	0	30	30
+S02-types/autovivification.t	tokenized	7	7	0	0	92	92
+S02-types/bag-iterator.t	tokenized	1	1	1	1	9	7
+S02-types/bag.t	tokenized	24	24	8	8	427	457
+S02-types/baggy.t	tokenized	5	5	0	0	45	50
+S02-types/baghash.t	tokenized	20	22	11	14	572	651
+S02-types/bool.t	tokenized	7	7	0	0	75	65
+S02-types/built-in.t	tokenized	1	1	0	0	2	2
+S02-types/capture.t	tokenized	26	26	2	2	147	104
+S02-types/catch_type_cast_mismatch.t	tokenized	2	2	0	0	11	11
+S02-types/compact.t	tokenized	0	0	0	0	25	17
+S02-types/declare.t	tokenized	5	5	2	2	15	14
+S02-types/fatrat.t	tokenized	1	1	0	0	0	0
+S02-types/flattening.t	tokenized	20	20	0	0	66	66
+S02-types/generics.t	tokenized	7	7	0	0	21	21
+S02-types/hash.t	tokenized	34	34	0	0	244	211
+S02-types/hash_ref.t	tokenized	8	8	0	0	61	57
+S02-types/hyperwhatever.t	tokenized	0	0	0	0	9	9
+S02-types/infinity.t	tokenized	1	0	14	13	25	23
+S02-types/instants-and-durations.t	tokenized	5	5	5	5	21	20
+S02-types/int-uint.t	tokenized	7	8	1	1	54	37
+S02-types/is-type.t	tokenized	8	6	1	0	30	24
+S02-types/isDEPRECATED.t	tokenized	13	13	0	0	29	20
+S02-types/lazy-lists.t	tokenized	11	11	9	2	35	35
+S02-types/list.t	tokenized	13	12	0	0	122	123
+S02-types/lists.t	tokenized	9	9	0	0	46	38
+S02-types/mix-iterator.t	tokenized	1	1	1	1	8	6
+S02-types/mix.t	tokenized	23	23	6	6	394	424
+S02-types/mixed_multi_dimensional.t	tokenized	10	10	0	0	110	110
+S02-types/mixhash.t	tokenized	19	19	7	7	544	547
+S02-types/mu.t	tokenized	1	1	1	1	19	18
+S02-types/multi_dimensional_array.t	tokenized	7	7	0	0	82	82
+S02-types/nan.t	tokenized	4	4	7	7	29	28
+S02-types/native.t	tokenized	17	17	15	15	165	139
+S02-types/nested_arrays.t	tokenized	8	7	1	1	13	12
+S02-types/nested_pairs.t	tokenized	2	2	0	0	13	13
+S02-types/nil.t	tokenized	21	21	0	0	78	76
+S02-types/nominalizables.t	tokenized	4	4	2	2	26	24
+S02-types/num.t	tokenized	9	8	42	23	344	304
+S02-types/pair.t	tokenized	27	27	1	1	270	210
+S02-types/parsing-bool.t	tokenized	0	0	0	0	4	4
+S02-types/quanthash.t	tokenized	5	5	3	3	44	44
+S02-types/range-iterator.t	tokenized	1	1	1	1	25	17
+S02-types/range.t	tokenized	20	20	57	52	362	259
+S02-types/resolved-in-setting.t	tokenized	9	9	0	0	6	6
+S02-types/set-iterator.t	tokenized	1	1	1	1	11	5
+S02-types/set.t	tokenized	17	16	11	10	402	423
+S02-types/sethash.t	tokenized	15	15	14	14	551	552
+S02-types/sigils-and-types.t	tokenized	8	8	1	0	39	26
+S02-types/stash.t	tokenized	0	1	0	0	0	1
+S02-types/subscripts_and_context.t	tokenized	8	8	0	0	22	20
+S02-types/subset-6e.t	tokenized	6	6	0	0	130	115
+S02-types/type.t	tokenized	7	6	2	2	146	95
+S02-types/undefined-types.t	tokenized	2	2	0	0	61	61
+S02-types/unicode.t	tokenized	1	1	0	0	6	6
+S02-types/version-stress.t	tokenized	6	6	14	14	13	13
+S02-types/version.t	tokenized	5	5	0	0	17	13
+S02-types/whatever.t	tokenized	28	23	1	0	217	202
+S03-binding/arrays.t	tokenized	7	7	0	0	143	142
+S03-binding/attributes.t	tokenized	11	11	0	0	16	16
+S03-binding/closure.t	tokenized	0	0	0	0	11	11
+S03-binding/hashes.t	tokenized	6	6	0	0	160	160
+S03-binding/nested.t	tokenized	5	5	0	0	164	164
+S03-binding/ro.t	tokenized	5	4	0	0	20	18
+S03-binding/scalars.t	tokenized	10	10	0	0	58	55
+S03-buf/read-int.t	tokenized	15	15	34	34	87	87
+S03-buf/read-num.t	tokenized	1	1	6	6	20	20
+S03-buf/read-write-bits.t	tokenized	12	12	7	7	26	28
+S03-buf/write-int.t	tokenized	16	16	23	23	58	56
+S03-buf/write-num.t	tokenized	8	8	8	8	28	28
+S03-feeds/basic.t	tokenized	17	17	1	0	30	25
+S03-junctions/associative.t	tokenized	2	2	0	0	10	10
+S03-junctions/autothreading.t	tokenized	39	38	9	9	173	145
+S03-junctions/boolean-context.t	tokenized	9	8	11	11	59	59
+S03-junctions/misc.t	tokenized	19	18	5	5	323	317
+S03-metaops/cross.t	tokenized	12	12	2	0	150	140
+S03-metaops/eager-hyper.t	tokenized	2	2	0	0	8	8
+S03-metaops/hyper.t	tokenized	24	21	1	14	14	648
+S03-metaops/infix.t	tokenized	49	49	4	4	12	73
+S03-metaops/misc.t	tokenized	5	4	0	0	13	12
+S03-metaops/not.t	tokenized	0	0	2	2	119	116
+S03-metaops/reduce.t	tokenized	14	15	6	5	313	384
+S03-metaops/reverse.t	tokenized	10	9	7	7	92	87
+S03-metaops/zip.t	tokenized	3	3	1	1	104	99
+S03-operators/adverbial-modifiers.t	tokenized	17	14	0	0	112	114
+S03-operators/also.t	tokenized	2	2	0	0	14	14
+S03-operators/andthen.t	tokenized	5	5	0	0	22	21
+S03-operators/arith.t	tokenized	18	17	84	57	62	61
+S03-operators/assign-is-not-binding.t	tokenized	6	6	0	0	16	16
+S03-operators/assign.t	tokenized	39	38	4	0	413	392
+S03-operators/autoincrement-range.t	tokenized	1	1	0	0	279	279
+S03-operators/autoincrement.t	tokenized	11	11	7	9	72	71
+S03-operators/autovivification.t	tokenized	7	7	0	0	29	29
+S03-operators/basic-types.t	tokenized	17	16	1	0	23	23
+S03-operators/bit.t	tokenized	19	26	0	1	66	77
+S03-operators/boolean-bitwise.t	tokenized	0	0	0	0	46	46
+S03-operators/brainos.t	tokenized	0	0	0	0	22	15
+S03-operators/buf.t	tokenized	7	7	1	1	185	184
+S03-operators/chained-declarators.t	tokenized	8	8	0	0	5	5
+S03-operators/cmp.t	tokenized	4	4	10	10	120	120
+S03-operators/comparison-simple.t	tokenized	0	0	0	0	38	38
+S03-operators/comparison.t	tokenized	3	3	12	12	100	101
+S03-operators/composition.t	tokenized	7	7	3	3	41	47
+S03-operators/context-forcers.t	tokenized	9	9	0	0	132	128
+S03-operators/context.t	tokenized	6	4	0	0	56	55
+S03-operators/custom.t	tokenized	0	0	0	0	3	3
+S03-operators/div.t	tokenized	0	0	5	2	8	12
+S03-operators/equality.t	tokenized	2	2	4	0	68	68
+S03-operators/eqv.t	tokenized	6	6	0	0	98	98
+S03-operators/flip-flop.t	tokenized	9	9	0	0	125	126
+S03-operators/gcd.t	tokenized	1	1	0	0	15	15
+S03-operators/identity.t	tokenized	13	13	0	0	46	46
+S03-operators/increment.t	tokenized	15	14	0	0	55	49
+S03-operators/infixed-function.t	tokenized	0	0	0	0	10	10
+S03-operators/inplace.t	tokenized	14	14	0	0	155	133
+S03-operators/is-divisible-by.t	tokenized	0	0	0	0	16	16
+S03-operators/lcm.t	tokenized	0	0	0	0	15	15
+S03-operators/list-quote-junction.t	tokenized	2	2	0	0	13	15
+S03-operators/minmax.t	tokenized	2	2	3	3	75	63
+S03-operators/misc.t	tokenized	23	23	14	14	91	90
+S03-operators/names.t	tokenized	0	0	0	0	7	7
+S03-operators/nesting.t	tokenized	0	0	4	4	15	15
+S03-operators/not.t	tokenized	2	2	0	0	23	23
+S03-operators/notandthen.t	tokenized	5	5	0	0	10	10
+S03-operators/numeric-shift.t	tokenized	1	1	3	3	7	7
+S03-operators/orelse.t	tokenized	4	4	0	0	26	25
+S03-operators/overflow.t	tokenized	9	9	49	50	41	40
+S03-operators/precedence.t	tokenized	14	14	15	14	92	79
+S03-operators/range-basic.t	tokenized	2	2	22	22	138	106
+S03-operators/range-int.t	tokenized	0	0	32	16	59	59
+S03-operators/range.t	tokenized	13	13	9	9	250	192
+S03-operators/reduce-le1arg.t	tokenized	0	0	2	2	2	2
+S03-operators/relational.t	tokenized	3	3	52	52	281	281
+S03-operators/repeat.t	tokenized	17	17	3	3	125	116
+S03-operators/scalar-assign.t	tokenized	2	2	0	0	4	4
+S03-operators/set_addition.t	tokenized	7	7	41	37	240	239
+S03-operators/set_difference.t	tokenized	7	7	26	24	244	243
+S03-operators/set_elem.t	tokenized	12	12	9	8	56	53
+S03-operators/set_equality.t	tokenized	6	6	3	2	264	263
+S03-operators/set_intersection.t	tokenized	7	7	25	21	214	213
+S03-operators/set_multiply.t	tokenized	8	8	31	27	232	231
+S03-operators/set_proper_subset.t	tokenized	6	6	6	4	274	273
+S03-operators/set_subset.t	tokenized	6	6	6	4	271	270
+S03-operators/set_symmetric_difference.t	tokenized	7	7	37	39	301	300
+S03-operators/set_union.t	tokenized	7	7	34	30	197	196
+S03-operators/short-circuit.t	tokenized	18	18	3	3	174	153
+S03-operators/so.t	tokenized	3	3	0	0	16	16
+S03-operators/spaceship-and-containers.t	tokenized	2	2	2	2	14	14
+S03-operators/spaceship.t	tokenized	4	4	0	0	7	7
+S03-operators/subscript-adverbs.t	tokenized	2	2	0	0	146	146
+S03-operators/subscript-vs-lt.t	tokenized	0	0	0	0	4	4
+S03-operators/ternary.t	tokenized	8	6	3	3	41	34
+S03-operators/u2212-minus.t	tokenized	4	4	0	0	73	54
+S03-operators/value_equivalence.t	tokenized	6	6	0	0	71	71
+S03-sequence/arity-2-or-more.t	tokenized	2	2	3	16	20	20
+S03-sequence/arity0.t	tokenized	1	1	0	4	13	13
+S03-sequence/basic.t	tokenized	2	2	86	13	169	160
+S03-sequence/exhaustive.t	tokenized	8	10	3	1	128	192
+S03-sequence/limit-arity-2-or-more.t	tokenized	2	2	2	4	7	8
+S03-sequence/misc.t	tokenized	4	3	35	7	55	54
+S03-sequence/nonnumeric.t	tokenized	4	4	15	46	115	86
+S03-smartmatch/00-sanity.t	tokenized	5	5	2	2	28	28
+S03-smartmatch/any-any.t	tokenized	3	3	0	0	13	13
+S03-smartmatch/any-bool.t	tokenized	2	2	0	0	12	12
+S03-smartmatch/any-callable.t	tokenized	5	5	0	0	7	7
+S03-smartmatch/any-complex.t	tokenized	0	0	0	0	12	12
+S03-smartmatch/any-hash-pair.t	tokenized	0	0	0	0	12	12
+S03-smartmatch/any-method.t	tokenized	0	0	0	0	8	8
+S03-smartmatch/any-num.t	tokenized	0	0	0	0	34	33
+S03-smartmatch/any-pair.t	tokenized	1	1	0	0	18	18
+S03-smartmatch/any-str.t	tokenized	0	0	0	0	9	9
+S03-smartmatch/any-sub.t	tokenized	4	4	2	2	10	10
+S03-smartmatch/any-type.t	tokenized	5	5	0	0	29	29
+S03-smartmatch/array-array.t	tokenized	5	5	0	0	81	77
+S03-smartmatch/array-hash.t	tokenized	1	1	0	0	12	12
+S03-smartmatch/array-map.t	tokenized	1	1	0	0	12	12
+S03-smartmatch/capture-signature.t	tokenized	4	4	0	0	27	23
+S03-smartmatch/disorganized.t	tokenized	6	6	0	0	49	42
+S03-smartmatch/hash-hash.t	tokenized	6	6	0	0	39	39
+S03-smartmatch/range-range.t	tokenized	3	3	3	2	36	18
+S03-smartmatch/regex-hash.t	tokenized	1	1	0	0	6	6
+S03-smartmatch/scalar-hash.t	tokenized	1	1	0	0	7	7
+S03-smartmatch/signature-signature.t	tokenized	1	1	2	0	8	8
+S04-blocks-and-statements/let.t	tokenized	8	8	0	0	18	18
+S04-blocks-and-statements/pointy-rw.t	tokenized	3	3	0	0	10	10
+S04-blocks-and-statements/pointy.t	tokenized	13	12	0	0	42	38
+S04-blocks-and-statements/temp.t	tokenized	16	16	1	1	62	60
+S04-declarations/constant-6.d.t	tokenized	94	53	1	0	247	224
+S04-declarations/constant.t	tokenized	29	28	4	4	112	104
+S04-declarations/implicit-parameter.t	tokenized	3	3	0	0	33	31
+S04-declarations/multiple.t	tokenized	2	1	0	0	17	10
+S04-declarations/my-6e.t	tokenized	22	20	1	1	173	132
+S04-declarations/our.t	tokenized	17	14	1	0	35	34
+S04-declarations/smiley.t	tokenized	0	0	0	0	90	79
+S04-declarations/state.t	tokenized	36	35	0	0	47	47
+S04-declarations/will.t	tokenized	35	35	0	0	63	61
+S04-exception-handlers/catch.t	tokenized	14	14	0	0	71	66
+S04-exception-handlers/control.t	tokenized	6	6	2	2	25	23
+S04-exception-handlers/top-level.t	tokenized	1	1	0	0	1	1
+S04-exceptions/control_across_runloop.t	tokenized	2	2	0	0	1	1
+S04-exceptions/exceptions-alternatives.t	tokenized	6	6	0	0	37	10
+S04-exceptions/fail-6e.t	tokenized	2	2	0	0	6	6
+S04-exceptions/fail.t	tokenized	28	30	0	0	53	49
+S04-exceptions/pending.t	tokenized	6	6	0	0	22	22
+S04-phasers/ascending-order.t	tokenized	8	8	0	0	12	12
+S04-phasers/begin.t	tokenized	9	9	0	0	30	30
+S04-phasers/check.t	tokenized	3	3	0	0	17	17
+S04-phasers/descending-order.t	tokenized	7	7	0	0	12	12
+S04-phasers/end.t	tokenized	0	0	0	0	13	8
+S04-phasers/enter-leave.t	tokenized	16	16	1	1	71	62
+S04-phasers/first.t	tokenized	4	4	0	0	17	17
+S04-phasers/in-eval.t	tokenized	1	1	0	0	49	48
+S04-phasers/in-loop.t	tokenized	14	14	1	1	66	66
+S04-phasers/init.t	tokenized	7	7	0	0	35	36
+S04-phasers/interpolate.t	tokenized	1	1	0	0	9	9
+S04-phasers/keep-undo.t	tokenized	8	8	0	0	32	29
+S04-phasers/multiple.t	tokenized	1	1	0	0	12	12
+S04-phasers/next.t	tokenized	5	5	0	0	26	26
+S04-phasers/pre-post.t	tokenized	7	6	2	2	54	44
+S04-phasers/rvalue.t	tokenized	10	10	0	0	37	36
+S04-statement-modifiers/for.t	tokenized	13	13	3	3	55	53
+S04-statement-modifiers/given.t	tokenized	5	5	2	2	22	22
+S04-statement-modifiers/if.t	tokenized	11	10	0	0	24	24
+S04-statement-modifiers/unless.t	tokenized	6	6	1	1	18	18
+S04-statement-modifiers/until.t	tokenized	3	3	2	2	14	11
+S04-statement-modifiers/values_in_bool_context.t	tokenized	11	11	0	0	27	27
+S04-statement-modifiers/while.t	tokenized	3	3	0	0	14	9
+S04-statement-modifiers/with.t	tokenized	14	13	2	2	55	55
+S04-statement-modifiers/without.t	tokenized	5	5	0	0	15	15
+S04-statement-parsing/hash.t	tokenized	2	2	0	0	17	17
+S04-statements/do.t	tokenized	5	5	1	1	48	34
+S04-statements/for-scope.t	tokenized	5	5	0	0	10	10
+S04-statements/for.t	tokenized	61	59	6	5	153	143
+S04-statements/for_with_only_one_item.t	tokenized	5	5	0	0	21	22
+S04-statements/gather.t	tokenized	29	29	6	6	47	46
+S04-statements/given.t	tokenized	31	31	0	0	190	155
+S04-statements/if.t	tokenized	12	11	0	0	63	61
+S04-statements/label.t	tokenized	7	7	0	0	34	34
+S04-statements/last.t	tokenized	3	3	0	0	10	10
+S04-statements/lazy.t	tokenized	3	3	0	0	11	10
+S04-statements/leave.t	tokenized	6	6	0	0	23	21
+S04-statements/loop.t	tokenized	13	13	0	0	27	26
+S04-statements/map-and-sort-in-for.t	tokenized	2	2	1	1	4	4
+S04-statements/next.t	tokenized	6	6	0	0	24	24
+S04-statements/no-implicit-block.t	tokenized	3	3	1	1	12	12
+S04-statements/once.t	tokenized	5	5	0	0	30	32
+S04-statements/quietly.t	tokenized	0	0	0	0	12	9
+S04-statements/redo.t	tokenized	7	7	1	1	19	19
+S04-statements/repeat.t	tokenized	6	6	4	4	25	24
+S04-statements/return.t	tokenized	19	14	1	1	42	27
+S04-statements/sink.t	tokenized	9	8	1	1	18	15
+S04-statements/terminator.t	tokenized	2	1	0	0	29	20
+S04-statements/try.t	tokenized	15	15	0	0	69	56
+S04-statements/unless.t	tokenized	3	3	0	0	21	18
+S04-statements/until.t	tokenized	1	1	4	4	4	4
+S04-statements/when.t	tokenized	9	9	1	1	69	69
+S04-statements/while.t	tokenized	9	8	0	0	34	32
+S04-statements/with.t	tokenized	2	2	0	0	27	20
+S05-capture/alias.t	tokenized	1	1	0	0	74	72
+S05-capture/array-alias.t	tokenized	2	2	0	0	91	87
+S05-capture/caps.t	tokenized	2	2	0	0	111	111
+S05-capture/dot.t	tokenized	3	3	0	0	105	92
+S05-capture/match-object.t	tokenized	6	6	0	0	96	95
+S05-capture/named.t	tokenized	2	2	0	0	32	26
+S05-capture/subrule.t	tokenized	3	3	0	0	91	66
+S05-grammar/action-stubs.t	tokenized	11	11	0	0	58	47
+S05-grammar/example.t	tokenized	5	5	0	0	19	15
+S05-grammar/inheritance.t	tokenized	3	3	0	0	96	45
+S05-grammar/namespace-6e.t	tokenized	0	0	0	0	2	1
+S05-grammar/namespace.t	tokenized	2	2	0	0	7	6
+S05-grammar/parse_and_parsefile-6e.t	tokenized	13	13	0	0	51	48
+S05-grammar/polymorphism.t	tokenized	2	2	0	0	56	42
+S05-grammar/protoregex.t	tokenized	6	5	1	0	137	68
+S05-grammar/protos.t	tokenized	1	1	0	0	16	8
+S05-grammar/signatures.t	tokenized	1	1	0	0	6	6
+S05-grammar/ws.t	tokenized	1	1	0	0	21	18
+S05-interpolation/lexicals.t	tokenized	0	0	0	0	26	23
+S05-interpolation/regex-in-variable.t	tokenized	5	5	0	0	76	53
+S05-mass/charsets.t	tokenized	1	1	3	3	29	29
+S05-mass/named-chars.t	tokenized	0	0	0	0	574	574
+S05-mass/properties-block.t	tokenized	0	0	0	0	670	670
+S05-mass/properties-contributory.t	tokenized	0	0	0	0	41	41
+S05-mass/properties-derived.t	tokenized	0	0	0	0	217	217
+S05-mass/properties-general.t	tokenized	2	2	1	1	626	626
+S05-mass/properties-script.t	tokenized	0	0	0	0	360	360
+S05-mass/recursive.t	tokenized	0	0	0	0	27	27
+S05-mass/rx.t	tokenized	2	2	0	0	1646	1596
+S05-mass/stdrules.t	tokenized	0	0	0	0	266	265
+S05-match/arrayhash.t	tokenized	2	2	0	0	14	13
+S05-match/basics.t	tokenized	1	1	0	0	4	4
+S05-match/blocks.t	tokenized	7	7	0	0	41	41
+S05-match/capturing-contexts.t	tokenized	12	11	0	0	152	120
+S05-match/make.t	tokenized	1	1	0	0	11	11
+S05-match/non-capturing.t	tokenized	1	1	0	0	11	11
+S05-match/positions.t	tokenized	1	1	0	0	20	19
+S05-match/raku.t	tokenized	4	4	0	0	16	15
+S05-metachars/closure.t	tokenized	0	0	0	0	25	25
+S05-metachars/line-anchors.t	tokenized	1	1	0	0	25	25
+S05-metachars/newline.t	tokenized	0	0	0	0	17	17
+S05-metachars/tilde.t	tokenized	0	0	0	0	51	51
+S05-metasyntax/angle-brackets.t	tokenized	6	6	0	0	214	202
+S05-metasyntax/assertions.t	tokenized	0	0	0	0	0	0
+S05-metasyntax/changed.t	tokenized	1	0	0	0	15	14
+S05-metasyntax/charset.t	tokenized	3	3	0	0	190	156
+S05-metasyntax/delimiters.t	tokenized	5	5	0	0	6	3
+S05-metasyntax/interpolating-closure.t	tokenized	0	0	0	0	18	16
+S05-metasyntax/litvar.t	tokenized	1	1	0	0	83	81
+S05-metasyntax/longest-alternative.t	tokenized	12	12	0	0	172	125
+S05-metasyntax/lookaround.t	tokenized	0	0	0	0	31	31
+S05-metasyntax/null.t	tokenized	0	0	0	0	6	6
+S05-metasyntax/proto-token-ltm.t	tokenized	1	1	0	0	49	30
+S05-metasyntax/regex.t	tokenized	12	12	3	3	173	149
+S05-metasyntax/repeat.t	tokenized	1	1	0	0	95	92
+S05-metasyntax/sequential-alternation.t	tokenized	1	1	0	0	25	25
+S05-metasyntax/single-quotes.t	tokenized	0	0	0	0	10	10
+S05-metasyntax/unicode-property-pair.t	tokenized	0	0	0	0	11	11
+S05-metasyntax/unknown.t	tokenized	0	0	0	0	17	13
+S05-modifier/continue.t	tokenized	2	2	0	0	29	29
+S05-modifier/counted-match.t	tokenized	3	2	2	1	60	54
+S05-modifier/counted.t	tokenized	0	0	0	0	140	134
+S05-modifier/exhaustive.t	tokenized	4	4	0	0	125	95
+S05-modifier/global.t	tokenized	2	2	0	0	22	22
+S05-modifier/ignorecase-and-ignoremark.t	tokenized	1	1	0	0	38	38
+S05-modifier/ignorecase.t	tokenized	6	6	0	0	103	93
+S05-modifier/ignoremark.t	tokenized	5	5	0	0	75	77
+S05-modifier/ii.t	tokenized	4	4	0	0	79	79
+S05-modifier/my.t	tokenized	1	1	0	0	39	39
+S05-modifier/overlapping.t	tokenized	5	5	0	0	32	32
+S05-modifier/pos.t	tokenized	4	4	0	0	50	50
+S05-modifier/ratchet.t	tokenized	0	0	0	0	10	10
+S05-modifier/repetition-exhaustive.t	tokenized	1	1	0	0	8	8
+S05-modifier/repetition.t	tokenized	0	0	0	0	27	27
+S05-modifier/samemark.t	tokenized	1	1	0	0	16	16
+S05-modifier/sigspace.t	tokenized	3	3	0	0	39	37
+S05-substitution/67222.t	tokenized	0	0	0	0	3	3
+S05-substitution/match.t	tokenized	2	2	0	0	34	31
+S05-substitution/subst.t	tokenized	0	0	0	0	353	350
+S05-syntactic-categories/new-symbols.t	tokenized	0	0	0	0	17	12
+S05-transliteration/79778.t	tokenized	0	0	0	0	3	3
+S05-transliteration/trans-TR-operator.t	tokenized	0	0	0	0	72	72
+S05-transliteration/trans-tr-lowercase-operator.t	tokenized	0	0	0	0	85	85
+S05-transliteration/trans.t	tokenized	7	7	3	3	273	207
+S05-transliteration/with-closure.t	tokenized	7	7	0	0	43	41
+S06-advanced/callframe.t	tokenized	10	10	1	1	24	22
+S06-advanced/callsame.t	tokenized	3	2	0	0	6	3
+S06-advanced/dispatching.t	tokenized	17	17	19	6	91	84
+S06-advanced/lexical-subs.t	tokenized	11	9	1	1	26	21
+S06-advanced/recurse.t	tokenized	15	15	24	24	13	13
+S06-advanced/return-prioritization.t	tokenized	0	5	0	0	0	11
+S06-advanced/return.t	tokenized	60	59	0	0	175	143
+S06-advanced/stub.t	tokenized	4	3	0	0	17	13
+S06-advanced/wrap.t	tokenized	29	29	4	2	143	123
+S06-currying/assuming-and-mmd.t	tokenized	0	0	0	0	25	16
+S06-currying/misc.t	tokenized	7	6	0	0	21	19
+S06-currying/named.t	tokenized	3	3	0	0	17	17
+S06-currying/positional.t	tokenized	6	6	0	0	55	55
+S06-currying/slurpy.t	tokenized	3	3	0	0	60	60
+S06-multi/by-trait.t	tokenized	6	6	1	1	13	13
+S06-multi/compile-time.t	tokenized	0	0	0	0	0	0
+S06-multi/lexical-multis.t	tokenized	0	0	0	0	22	17
+S06-multi/positional-vs-named.t	tokenized	5	5	0	0	94	94
+S06-multi/proto.t	tokenized	7	6	3	3	38	34
+S06-multi/redispatch.t	tokenized	2	2	2	2	29	17
+S06-multi/subsignature.t	tokenized	20	18	6	6	209	179
+S06-multi/syntax.t	tokenized	10	10	1	1	100	85
+S06-multi/type-based.t	tokenized	8	18	2	2	107	120
+S06-multi/unpackability.t	tokenized	8	8	3	3	34	33
+S06-multi/value-based.t	tokenized	2	2	0	0	42	39
+S06-operator-overloading/circumfix.t	tokenized	2	1	2	2	24	19
+S06-operator-overloading/imported-subs.t	tokenized	1	2	0	0	35	22
+S06-operator-overloading/infix.t	tokenized	8	8	2	2	85	75
+S06-operator-overloading/methods.t	tokenized	1	0	0	0	6	6
+S06-operator-overloading/prefix.t	tokenized	1	0	0	0	39	38
+S06-operator-overloading/semicolon.t	tokenized	3	2	0	0	3	3
+S06-operator-overloading/sub.t	tokenized	13	10	0	0	58	47
+S06-operator-overloading/term.t	tokenized	1	1	6	6	10	10
+S06-operator-overloading/workout.t	tokenized	6	10	25	8	80	77
+S06-other/anon-hashes-vs-blocks.t	tokenized	12	12	1	1	52	52
+S06-other/introspection.t	tokenized	5	5	0	0	26	26
+S06-other/main-eval.t	tokenized	0	0	0	0	3	3
+S06-other/main-semicolon.t	tokenized	1	1	0	0	21	16
+S06-other/main-usage.t	tokenized	3	1	2	0	160	83
+S06-other/main.t	tokenized	2	1	3	0	94	67
+S06-other/misc.t	tokenized	8	6	0	0	34	24
+S06-other/pairs-as-lvalues.t	tokenized	3	3	0	0	11	10
+S06-parameters/smiley.t	tokenized	1	0	0	0	57	50
+S06-routine-modifiers/lvalue-subroutines.t	tokenized	14	14	0	0	26	26
+S06-routine-modifiers/native-lvalue-subroutines.t	tokenized	12	12	0	0	34	28
+S06-routine-modifiers/proxy.t	tokenized	8	7	2	2	38	37
+S06-routine-modifiers/scoped-named-subs.t	tokenized	2	2	0	0	26	19
+S06-signature/arity.t	tokenized	19	17	2	2	57	56
+S06-signature/closure-over-parameters.t	tokenized	2	2	1	1	4	4
+S06-signature/closure-parameters.t	tokenized	19	15	2	2	52	39
+S06-signature/code.t	tokenized	7	7	1	1	12	10
+S06-signature/defaults.t	tokenized	8	8	3	3	19	17
+S06-signature/definite-return.t	tokenized	17	16	2	3	24	24
+S06-signature/errors.t	tokenized	3	3	0	0	32	21
+S06-signature/introspection.t	tokenized	19	18	26	21	99	95
+S06-signature/mixed-placeholders.t	tokenized	4	4	0	0	27	21
+S06-signature/multi-invocant.t	tokenized	10	10	0	0	28	27
+S06-signature/multidimensional.t	tokenized	7	7	0	0	22	22
+S06-signature/named-parameters.t	tokenized	41	40	0	0	181	163
+S06-signature/named-placeholders.t	tokenized	2	2	0	0	4	4
+S06-signature/named-renaming.t	tokenized	5	5	0	0	16	12
+S06-signature/optional.t	tokenized	17	16	0	0	76	67
+S06-signature/outside-subroutine.t	tokenized	3	3	0	0	62	45
+S06-signature/passing-arrays.t	tokenized	17	17	0	0	18	16
+S06-signature/passing-hashes.t	tokenized	4	4	0	0	7	3
+S06-signature/positional-placeholders.t	tokenized	9	7	0	0	21	19
+S06-signature/positional.t	tokenized	7	6	0	0	20	13
+S06-signature/scalar-type.t	tokenized	3	3	0	0	23	23
+S06-signature/shape.t	tokenized	8	8	0	0	39	39
+S06-signature/sigilless.t	tokenized	6	6	0	0	18	16
+S06-signature/slurpy-and-interpolation.t	tokenized	9	9	0	0	16	16
+S06-signature/slurpy-params.t	tokenized	28	28	1	0	109	105
+S06-signature/slurpy-placeholders.t	tokenized	5	5	0	0	13	13
+S06-signature/sub-ref.t	tokenized	8	7	0	0	19	19
+S06-signature/tree-node-parameters.t	tokenized	12	12	0	0	40	36
+S06-signature/type-capture.t	tokenized	16	16	0	0	40	38
+S06-signature/types.t	tokenized	3	2	9	0	92	77
+S06-signature/unpack-array.t	tokenized	9	9	4	4	17	16
+S06-signature/unpack-object.t	tokenized	2	2	0	0	12	11
+S06-signature/unspecified.t	tokenized	5	4	0	0	39	34
+S06-traits/as.t	tokenized	1	1	0	0	8	7
+S06-traits/is-assoc.t	tokenized	3	0	0	0	21	20
+S06-traits/is-copy.t	tokenized	18	17	0	0	41	37
+S06-traits/is-readonly.t	tokenized	1	1	0	0	1	1
+S06-traits/is-rw.t	tokenized	3	3	0	0	11	9
+S06-traits/misc.t	tokenized	14	8	0	0	33	31
+S06-traits/native-is-copy.t	tokenized	6	6	0	0	26	20
+S06-traits/native-is-rw.t	tokenized	3	3	0	0	89	60
+S06-traits/precedence.t	tokenized	3	0	12	2	19	15
+S06-traits/slurpy-is-rw.t	tokenized	3	3	0	0	7	7
+S07-hyperrace/basics.t	tokenized	18	18	7	7	54	59
+S07-hyperrace/for.t	tokenized	2	2	6	6	6	6
+S07-hyperrace/stress.t	tokenized	3	3	3	3	13	13
+S07-iterationbuffer/iterationbuffer.t	tokenized	2	2	0	0	46	46
+S07-iterators/range-iterator.t	tokenized	4	4	0	0	128	125
+S07-slip/slip.t	tokenized	3	3	0	0	25	26
+S09-autovivification/autoincrement.t	tokenized	3	3	0	0	11	11
+S09-autovivification/autovivification.t	tokenized	8	8	0	0	91	91
+S09-hashes/objecthash.t	tokenized	17	15	1	1	54	52
+S09-multidim/XX-POS-on-dimensioned.t	tokenized	1	1	0	0	85	85
+S09-multidim/XX-POS-on-undimensioned.t	tokenized	1	1	0	0	44	44
+S09-multidim/assign.t	tokenized	4	4	0	0	97	97
+S09-multidim/decl.t	tokenized	4	4	0	0	39	39
+S09-multidim/indexing.t	tokenized	1	1	0	0	43	43
+S09-multidim/methods.t	tokenized	5	5	4	4	120	119
+S09-multidim/subs.t	tokenized	2	2	0	0	61	61
+S09-subscript/multidim-assignment.t	tokenized	4	4	0	0	72	72
+S09-subscript/slice.t	tokenized	14	14	3	3	524	492
+S09-typed-arrays/arrays.t	tokenized	23	21	0	0	116	109
+S09-typed-arrays/hashes.t	tokenized	8	8	1	0	100	100
+S09-typed-arrays/native-decl.t	tokenized	2	2	0	0	19	19
+S09-typed-arrays/native-int.t	tokenized	20	19	3	3	223	220
+S09-typed-arrays/native-num.t	tokenized	14	13	4	3	209	206
+S09-typed-arrays/native-shape1-int.t	tokenized	12	12	1	1	115	114
+S09-typed-arrays/native-shape1-num.t	tokenized	11	11	1	1	115	114
+S09-typed-arrays/native-shape1-str.t	tokenized	11	11	0	0	242	231
+S09-typed-arrays/native-str.t	tokenized	12	11	0	0	453	430
+S09-typed-arrays/native.t	tokenized	6	5	1	1	84	76
+S10-packages/basic.t	tokenized	11	11	0	0	155	106
+S10-packages/export.t	tokenized	1	1	0	0	6	6
+S10-packages/joined-namespaces.t	tokenized	0	0	0	0	6	3
+S10-packages/nested-use.t	tokenized	2	2	0	0	13	12
+S10-packages/precompilation.t	tokenized	14	14	1	1	70	49
+S10-packages/require-and-use.t	tokenized	1	1	0	0	15	14
+S10-packages/scope.t	tokenized	6	6	0	0	38	30
+S10-packages/use-with-class.t	tokenized	3	3	0	0	24	23
+S11-compunit/compunit-dependencyspecification.t	tokenized	1	1	0	0	1	1
+S11-compunit/compunit-repository.t	tokenized	0	0	0	0	2	0
+S11-compunit/rt126904.t	tokenized	2	2	0	0	5	2
+S11-modules/export.t	tokenized	13	13	0	0	91	91
+S11-modules/gh2979.t	tokenized	0	0	0	0	16	8
+S11-modules/import-multi.t	tokenized	10	8	0	0	51	45
+S11-modules/import-tag.t	tokenized	0	0	0	0	20	17
+S11-modules/import.t	tokenized	10	10	0	0	45	39
+S11-modules/importing.t	tokenized	1	1	0	0	30	26
+S11-modules/lexical.t	tokenized	0	0	0	0	6	4
+S11-modules/module-file.t	tokenized	0	0	0	0	8	4
+S11-modules/module.t	tokenized	0	0	0	0	16	8
+S11-modules/need.t	tokenized	0	0	0	0	3	2
+S11-modules/nested.t	tokenized	2	2	0	0	22	12
+S11-modules/rakulib.t	tokenized	0	0	1	1	3	2
+S11-modules/require.t	tokenized	7	7	0	0	102	87
+S11-modules/runtime.t	tokenized	0	0	0	0	2	1
+S11-modules/versioning.t	tokenized	1	1	0	0	11	11
+S11-repository/cur-candidates.t	tokenized	22	22	0	0	77	57
+S11-repository/cur-current-distribution.t	tokenized	7	7	0	0	64	8
+S11-repository/curli-install.t	tokenized	4	4	0	0	31	27
+S12-attributes/augment-and-initialization.t	tokenized	2	0	0	0	10	9
+S12-attributes/class.t	tokenized	22	19	0	0	43	39
+S12-attributes/clone.t	tokenized	28	28	0	0	126	107
+S12-attributes/defaults.t	tokenized	9	9	0	0	51	47
+S12-attributes/delegation.t	tokenized	25	25	0	0	86	82
+S12-attributes/inheritance.t	tokenized	7	6	0	0	10	9
+S12-attributes/instance.t	tokenized	63	63	1	1	226	176
+S12-attributes/mutators.t	tokenized	4	4	0	0	14	14
+S12-attributes/native.t	tokenized	10	10	3	3	78	77
+S12-attributes/recursive.t	tokenized	7	7	0	0	23	23
+S12-attributes/smiley.t	tokenized	0	0	0	0	83	67
+S12-attributes/undeclared.t	tokenized	6	6	0	0	18	11
+S12-class/anonymous.t	tokenized	12	12	0	0	21	20
+S12-class/attributes-required.t	tokenized	8	8	0	0	22	20
+S12-class/attributes.t	tokenized	20	18	0	0	60	53
+S12-class/augment-supersede.t	tokenized	6	3	0	0	32	24
+S12-class/basic.t	tokenized	14	13	0	0	63	48
+S12-class/declaration-order.t	tokenized	0	0	0	0	4	2
+S12-class/extending-arrays.t	tokenized	8	8	1	1	20	20
+S12-class/inheritance-class-methods.t	tokenized	5	5	0	0	5	5
+S12-class/inheritance.t	tokenized	17	17	0	0	77	66
+S12-class/instantiate.t	tokenized	7	7	0	0	10	7
+S12-class/interface-consistency.t	tokenized	3	3	0	0	13	12
+S12-class/lexical.t	tokenized	6	6	0	0	27	25
+S12-class/literal.t	tokenized	2	2	0	0	3	2
+S12-class/magical-vars.t	tokenized	17	17	0	0	22	19
+S12-class/mro-6e.t	tokenized	12	12	0	0	24	24
+S12-class/namespaced.t	tokenized	5	4	0	0	25	24
+S12-class/open.t	tokenized	4	4	0	0	24	22
+S12-class/parent_attributes.t	tokenized	2	2	0	0	3	3
+S12-class/rw.t	tokenized	4	4	0	0	14	14
+S12-class/self-inheritance.t	tokenized	0	0	0	0	4	2
+S12-class/stubs.t	tokenized	1	0	0	0	19	10
+S12-class/type-object.t	tokenized	1	1	0	0	9	7
+S12-coercion/coercion-methods.t	tokenized	7	7	5	5	32	31
+S12-coercion/coercion-return.t	tokenized	8	8	1	1	34	34
+S12-coercion/coercion-types.t	tokenized	18	18	4	4	41	35
+S12-coercion/parameterized.t	tokenized	6	6	2	2	8	8
+S12-construction/BUILD.t	tokenized	20	19	0	0	48	40
+S12-construction/TWEAK.t	tokenized	6	6	1	1	7	7
+S12-construction/autopairs.t	tokenized	0	0	0	0	8	4
+S12-construction/construction.t	tokenized	18	18	0	0	37	36
+S12-construction/destruction.t	tokenized	10	10	1	1	13	9
+S12-construction/named-params-in-BUILD.t	tokenized	4	4	0	0	11	11
+S12-construction/new.t	tokenized	15	15	0	0	42	40
+S12-construction/roles-6e.t	tokenized	13	13	0	0	14	8
+S12-enums/anonymous.t	tokenized	3	3	0	0	15	10
+S12-enums/as-role.t	tokenized	5	5	0	0	9	9
+S12-enums/basic.t	tokenized	5	5	1	1	135	115
+S12-enums/misc.t	tokenized	4	4	0	0	47	42
+S12-enums/non-int.t	tokenized	0	0	0	0	16	13
+S12-enums/pseudo-functional.t	tokenized	3	3	1	1	20	20
+S12-enums/thorough.t	tokenized	3	3	0	0	54	46
+S12-introspection/WHAT.t	tokenized	6	6	0	0	47	47
+S12-introspection/attributes.t	tokenized	14	14	0	0	58	57
+S12-introspection/can.t	tokenized	10	10	0	0	70	44
+S12-introspection/definite.t	tokenized	3	3	0	0	9	8
+S12-introspection/meta-class.t	tokenized	3	2	0	0	47	35
+S12-introspection/methods.t	tokenized	14	14	2	2	89	68
+S12-introspection/parents.t	tokenized	6	6	0	0	60	60
+S12-introspection/roles.t	tokenized	10	10	0	0	21	16
+S12-introspection/walk.t	tokenized	20	20	1	1	108	72
+S12-meta/classhow.t	tokenized	11	11	0	0	13	10
+S12-meta/exporthow.t	tokenized	3	2	0	0	22	17
+S12-meta/grammarhow.t	tokenized	2	2	0	0	6	4
+S12-meta/primitives.t	tokenized	10	10	2	1	29	28
+S12-methods/accessors.t	tokenized	5	5	2	2	12	12
+S12-methods/attribute-params.t	tokenized	4	3	0	0	25	18
+S12-methods/calling_sets.t	tokenized	16	16	0	0	65	60
+S12-methods/calling_syntax.t	tokenized	4	2	0	0	24	18
+S12-methods/chaining.t	tokenized	7	6	0	0	17	15
+S12-methods/class-and-instance.t	tokenized	4	4	0	0	16	16
+S12-methods/default-trait.t	tokenized	4	4	4	4	12	11
+S12-methods/defer-call.t	tokenized	17	17	1	1	59	53
+S12-methods/defer-next.t	tokenized	19	18	1	0	53	53
+S12-methods/delegation.t	tokenized	8	8	0	0	19	18
+S12-methods/fallback.t	tokenized	10	10	0	0	43	38
+S12-methods/how.t	tokenized	1	1	0	0	4	3
+S12-methods/indirect_notation.t	tokenized	10	7	0	0	70	53
+S12-methods/instance.t	tokenized	24	24	0	0	73	54
+S12-methods/lastcall.t	tokenized	4	4	0	0	19	19
+S12-methods/lvalue.t	tokenized	4	4	0	0	20	20
+S12-methods/method-vs-sub.t	tokenized	5	5	0	0	12	10
+S12-methods/multi.t	tokenized	19	19	0	0	75	66
+S12-methods/parallel-dispatch.t	tokenized	6	6	11	10	44	43
+S12-methods/private.t	tokenized	11	11	0	0	31	23
+S12-methods/qualified.t	tokenized	21	21	0	0	66	61
+S12-methods/submethods.t	tokenized	25	25	1	1	29	29
+S12-methods/syntax.t	tokenized	2	2	1	1	30	29
+S12-methods/topic.t	tokenized	1	1	0	0	5	2
+S12-methods/trusts.t	tokenized	3	2	0	0	6	4
+S12-methods/typed-attributes.t	tokenized	5	5	0	0	9	9
+S12-methods/what.t	tokenized	11	11	0	0	52	50
+S12-subset/multi-dispatch.t	tokenized	3	3	0	0	19	8
+S12-subset/subtypes.t	tokenized	39	39	2	2	314	276
+S12-subset/type-subset.t	tokenized	0	0	0	0	56	45
+S12-traits/precomp.t	tokenized	0	0	0	0	2	2
+S13-overloading/metaoperators.t	tokenized	2	1	1	1	28	56
+S13-overloading/operators.t	tokenized	5	4	1	1	13	12
+S13-overloading/typecasting-long.t	tokenized	23	23	3	3	75	70
+S13-syntax/aliasing.t	tokenized	6	4	0	0	7	5
+S13-type-casting/methods.t	tokenized	5	5	0	0	23	23
+S14-roles/anonymous.t	tokenized	3	3	0	0	19	19
+S14-roles/attributes-6e.t	tokenized	5	5	0	0	7	6
+S14-roles/basic.t	tokenized	23	22	0	0	69	56
+S14-roles/bool.t	tokenized	1	1	0	0	9	9
+S14-roles/composition.t	tokenized	30	30	0	0	101	74
+S14-roles/conflicts.t	tokenized	7	7	0	0	20	19
+S14-roles/crony.t	tokenized	3	3	0	0	8	8
+S14-roles/instantiation.t	tokenized	9	9	0	0	22	22
+S14-roles/lexical.t	tokenized	6	6	0	0	18	16
+S14-roles/mixin-6e.t	tokenized	15	15	1	1	41	37
+S14-roles/namespaced.t	tokenized	1	1	0	0	23	15
+S14-roles/parameter-subtyping.t	tokenized	2	6	0	0	17	22
+S14-roles/parameterized-basic.t	tokenized	42	38	0	0	82	74
+S14-roles/parameterized-mixin.t	tokenized	8	8	1	1	37	37
+S14-roles/parameterized-type.t	tokenized	11	12	1	1	51	48
+S14-roles/rw.t	tokenized	8	8	0	0	17	17
+S14-roles/stubs.t	tokenized	5	5	0	0	32	21
+S14-roles/submethods-6e.t	tokenized	14	14	0	0	32	32
+S14-roles/typecheck.t	tokenized	6	6	0	0	11	11
+S14-roles/versioning.t	tokenized	2	2	1	1	55	42
+S14-traits/attributes.t	tokenized	6	6	0	0	14	14
+S14-traits/package.t	tokenized	5	5	0	0	11	11
+S14-traits/routines.t	tokenized	18	17	3	1	34	33
+S14-traits/variables.t	tokenized	8	8	0	0	11	11
+S15-literals/identifiers.t	tokenized	1	1	0	0	11	7
+S15-literals/numbers.t	tokenized	0	0	1	1	66	49
+S15-nfg/GraphemeBreakTest-0.t	tokenized	1	1	0	0	822	822
+S15-nfg/GraphemeBreakTest-1.t	tokenized	1	1	0	0	737	737
+S15-nfg/GraphemeBreakTest-2.t	tokenized	1	1	0	0	740	740
+S15-nfg/GraphemeBreakTest-3.t	tokenized	1	1	0	0	748	748
+S15-nfg/GraphemeBreakTest-4.t	tokenized	1	1	0	0	206	206
+S15-nfg/case-change.t	tokenized	5	5	0	0	54	54
+S15-nfg/cgj.t	tokenized	3	3	0	0	11	11
+S15-nfg/concat-stable.t	tokenized	21	21	1	1	24	24
+S15-nfg/concatenation.t	tokenized	7	7	0	0	27	21
+S15-nfg/crlf-encoding.t	tokenized	3	3	0	0	11	12
+S15-nfg/emoji-test.t	tokenized	0	0	0	0	3835	3835
+S15-nfg/from-buf.t	tokenized	3	3	0	0	14	14
+S15-nfg/from-file.t	tokenized	4	4	0	0	9	9
+S15-nfg/grapheme-break.t	tokenized	0	0	0	0	1	1
+S15-nfg/long-uni.t	tokenized	3	3	1	1	6	6
+S15-nfg/many-combiners.t	tokenized	1	1	0	0	5	5
+S15-nfg/many-threads.t	tokenized	1	1	1	1	4	4
+S15-nfg/mass-equality.t	tokenized	0	0	0	0	500	500
+S15-nfg/mass-roundtrip-nfc.t	tokenized	0	0	0	0	500	500
+S15-nfg/mass-roundtrip-nfd.t	tokenized	0	0	0	0	88	88
+S15-nfg/mass-roundtrip-nfkc.t	tokenized	0	0	0	0	100	100
+S15-nfg/mass-roundtrip-nfkd.t	tokenized	0	0	0	0	100	100
+S15-nfg/regex.t	tokenized	1	1	0	0	13	13
+S15-normalization/nfc-0.t	tokenized	0	0	0	0	1511	1511
+S15-normalization/nfc-1.t	tokenized	0	0	0	0	1880	1880
+S15-normalization/nfc-10.t	tokenized	0	0	0	0	170	170
+S15-normalization/nfc-2.t	tokenized	0	0	0	0	2000	2000
+S15-normalization/nfc-3.t	tokenized	0	0	0	0	2000	2000
+S15-normalization/nfc-4.t	tokenized	0	0	0	0	2000	2000
+S15-normalization/nfc-5.t	tokenized	0	0	0	0	2000	2000
+S15-normalization/nfc-6.t	tokenized	0	0	0	0	2000	2000
+S15-normalization/nfc-7.t	tokenized	0	0	0	0	1970	1970
+S15-normalization/nfc-8.t	tokenized	0	0	0	0	1996	1996
+S15-normalization/nfc-9.t	tokenized	0	0	0	0	1979	1979
+S15-normalization/nfc-concat.t	tokenized	2	2	3012	3012	3012	3012
+S15-normalization/nfc-sanity.t	tokenized	0	0	0	0	488	488
+S15-normalization/nfd-0.t	tokenized	0	0	0	0	1558	1558
+S15-normalization/nfd-1.t	tokenized	0	0	0	0	1880	1880
+S15-normalization/nfd-10.t	tokenized	0	0	0	0	171	171
+S15-normalization/nfd-2.t	tokenized	0	0	0	0	2000	2000
+S15-normalization/nfd-3.t	tokenized	0	0	0	0	2000	2000
+S15-normalization/nfd-4.t	tokenized	0	0	0	0	2000	2000
+S15-normalization/nfd-5.t	tokenized	0	0	0	0	2000	2000
+S15-normalization/nfd-6.t	tokenized	0	0	0	0	2000	2000
+S15-normalization/nfd-7.t	tokenized	0	0	0	0	1981	1981
+S15-normalization/nfd-8.t	tokenized	0	0	0	0	1996	1996
+S15-normalization/nfd-9.t	tokenized	0	0	0	0	1942	1942
+S15-normalization/nfd-sanity.t	tokenized	0	0	0	0	402	402
+S15-normalization/nfkc-0.t	tokenized	0	0	0	0	1647	1647
+S15-normalization/nfkc-1.t	tokenized	0	0	0	0	1990	1990
+S15-normalization/nfkc-10.t	tokenized	0	0	0	0	170	170
+S15-normalization/nfkc-2.t	tokenized	0	0	0	0	2000	2000
+S15-normalization/nfkc-3.t	tokenized	0	0	0	0	2000	2000
+S15-normalization/nfkc-4.t	tokenized	0	0	0	0	2000	2000
+S15-normalization/nfkc-5.t	tokenized	0	0	0	0	2000	2000
+S15-normalization/nfkc-6.t	tokenized	0	0	0	0	2000	2000
+S15-normalization/nfkc-7.t	tokenized	0	0	0	0	1980	1980
+S15-normalization/nfkc-8.t	tokenized	0	0	0	0	1996	1996
+S15-normalization/nfkc-9.t	tokenized	0	0	0	0	1979	1979
+S15-normalization/nfkc-sanity.t	tokenized	0	0	0	0	433	433
+S15-normalization/nfkd-0.t	tokenized	0	0	0	0	1681	1681
+S15-normalization/nfkd-1.t	tokenized	0	0	0	0	1990	1990
+S15-normalization/nfkd-10.t	tokenized	0	0	0	0	171	171
+S15-normalization/nfkd-2.t	tokenized	0	0	0	0	2000	2000
+S15-normalization/nfkd-3.t	tokenized	0	0	0	0	2000	2000
+S15-normalization/nfkd-4.t	tokenized	0	0	0	0	2000	2000
+S15-normalization/nfkd-5.t	tokenized	0	0	0	0	2000	2000
+S15-normalization/nfkd-6.t	tokenized	0	0	0	0	2000	2000
+S15-normalization/nfkd-7.t	tokenized	0	0	0	0	1991	1991
+S15-normalization/nfkd-8.t	tokenized	0	0	0	0	1996	1996
+S15-normalization/nfkd-9.t	tokenized	0	0	0	0	1942	1942
+S15-normalization/nfkd-sanity.t	tokenized	0	0	0	0	408	408
+S15-string-types/NF-types.t	tokenized	2	2	0	0	10	10
+S15-string-types/NFK-types.t	tokenized	2	2	0	0	11	11
+S15-string-types/Str.t	tokenized	0	0	0	0	4	4
+S15-string-types/Uni.t	tokenized	1	1	0	0	19	19
+S15-unicode-information/unimatch-general.t	tokenized	0	0	0	0	608	445
+S15-unicode-information/uniname.t	tokenized	0	0	1	1	108	104
+S15-unicode-information/uniprop.t	tokens do not reassemble						
+S15-unicode-information/unival.t	tokenized	0	0	0	0	46	45
+S16-filehandles/argfiles.t	tokenized	7	7	0	0	61	59
+S16-filehandles/chmod.t	tokenized	6	6	0	0	23	23
+S16-filehandles/filestat.t	tokenized	17	17	1	1	17	17
+S16-filehandles/filetest.t	tokenized	9	9	0	0	148	148
+S16-filehandles/io.t	tokenized	44	44	2	2	163	163
+S16-filehandles/io_in_for_loops.t	tokenized	6	6	0	0	14	14
+S16-filehandles/io_in_while_loops.t	tokenized	5	5	1	1	9	8
+S16-filehandles/misc.t	tokenized	0	0	0	0	8	6
+S16-filehandles/mkdir_rmdir.t	tokenized	1	1	0	0	20	20
+S16-filehandles/mode.t	tokenized	4	4	0	0	12	12
+S16-filehandles/open.t	tokenized	1	1	0	0	19	19
+S16-filehandles/unlink.t	tokenized	3	3	0	0	5	5
+S16-io/bare-say.t	tokenized	0	0	0	0	33	17
+S16-io/basic-open.t	tokenized	5	5	0	0	17	17
+S16-io/bom.t	tokenized	6	6	0	0	17	17
+S16-io/comb.t	tokenized	2	2	0	0	42	37
+S16-io/cwd.t	tokenized	0	0	0	0	2	2
+S16-io/eof.t	tokenized	3	3	0	0	30	30
+S16-io/getc.t	tokenized	4	4	0	0	14	14
+S16-io/handles-between-threads.t	tokenized	7	7	0	0	23	22
+S16-io/home.t	tokenized	1	1	0	0	17	14
+S16-io/lines.t	tokenized	10	7	2	2	56	17
+S16-io/newline.t	tokenized	0	0	0	0	12	12
+S16-io/note.t	tokenized	3	3	0	0	13	13
+S16-io/print.t	tokenized	15	2	0	0	85	80
+S16-io/prompt.t	tokenized	3	3	0	0	30	30
+S16-io/put.t	tokenized	3	3	0	0	16	15
+S16-io/readchars.t	tokenized	2	2	0	0	11	11
+S16-io/say-and-ref.t	tokenized	0	0	0	0	7	4
+S16-io/say.t	tokenized	3	3	0	0	13	13
+S16-io/split.t	tokenized	5	5	0	0	29	29
+S16-io/supply.t	tokenized	2	2	0	0	9	9
+S16-io/tmpdir.t	tokenized	1	1	0	0	7	7
+S16-io/watch.t	tokenized	7	7	0	0	3	3
+S16-io/words.t	tokenized	5	5	0	0	83	77
+S16-unfiled/getpeername.t	tokenized	1	1	0	0	2	2
+S16-unfiled/rebindstdhandles.t	tokenized	4	4	0	0	8	8
+S17-channel/basic.t	tokenized	10	10	0	0	29	29
+S17-channel/stress.t	tokenized	7	7	2	2	4	4
+S17-channel/subscription-drain-in-react.t	tokenized	1	1	0	0	1	1
+S17-lowlevel/atomic-ops.t	tokenized	0	0	5	5	20	20
+S17-lowlevel/atomic.t	tokenized	0	0	5	5	26	26
+S17-lowlevel/cas-int.t	tokenized	2	2	5	5	9	9
+S17-lowlevel/cas-loop-int.t	tokenized	1	1	2	2	4	4
+S17-lowlevel/cas-loop.t	tokenized	5	5	1	1	8	8
+S17-lowlevel/cas.t	tokenized	9	9	3	3	15	15
+S17-lowlevel/lock.t	tokenized	22	22	2	2	30	26
+S17-lowlevel/semaphore.t	tokenized	4	4	0	0	2	2
+S17-lowlevel/thread-start-join-stress.t	tokenized	0	0	0	0	1	1
+S17-lowlevel/thread.t	tokenized	15	15	8	8	36	36
+S17-procasync/basic.t	tokenized	22	22	0	0	82	51
+S17-procasync/bind-handles.t	tokenized	13	13	0	0	63	31
+S17-procasync/encoding.t	tokenized	5	5	0	0	41	20
+S17-procasync/kill.t	tokenized	5	5	1	1	17	9
+S17-procasync/many-processes-no-close-stdin.t	tokenized	2	0	0	0	3	2
+S17-procasync/no-runaway-file-limit.t	tokenized	2	0	0	0	3	2
+S17-procasync/nonexistent.t	tokenized	4	4	0	0	8	7
+S17-procasync/print.t	tokenized	12	12	0	0	14	14
+S17-procasync/stress.t	tokenized	10	5	0	0	24	6
+S17-promise/allof.t	tokenized	11	11	1	1	13	13
+S17-promise/anyof.t	tokenized	5	5	0	0	11	11
+S17-promise/at.t	tokenized	5	5	1	1	6	5
+S17-promise/basic.t	tokenized	7	7	0	0	80	77
+S17-promise/in.t	tokenized	3	3	1	1	5	5
+S17-promise/lock-async-stress.t	tokenized	4	4	1	1	1	1
+S17-promise/lock-async-stress2.t	tokenized	4	4	1	1	1	1
+S17-promise/lock-async.t	tokenized	6	6	0	0	24	24
+S17-promise/nonblocking-await.t	tokenized	21	21	10	10	40	40
+S17-promise/single-assignment.t	tokenized	2	2	0	0	17	16
+S17-promise/start.t	tokenized	26	26	0	0	66	62
+S17-promise/stress.t	tokenized	1	1	0	0	1	1
+S17-promise/then.t	tokenized	9	9	0	0	75	75
+S17-scheduler/at.t	tokenized	3	3	6	6	45	41
+S17-scheduler/basic.t	tokenized	6	6	0	0	54	50
+S17-scheduler/every.t	tokenized	5	5	3	3	29	29
+S17-scheduler/in.t	tokenized	3	3	6	6	44	40
+S17-scheduler/times.t	tokenized	3	3	0	0	4	3
+S17-supply/Channel.t	tokenized	7	7	0	0	12	12
+S17-supply/Promise.t	tokenized	3	3	0	0	9	9
+S17-supply/Seq.t	tokenized	2	2	0	0	6	6
+S17-supply/act.t	tokenized	3	3	0	0	6	6
+S17-supply/basic.t	tokenized	14	14	0	0	45	44
+S17-supply/batch.t	tokenized	5	5	6	6	6	6
+S17-supply/categorize.t	tokenized	7	7	0	0	15	15
+S17-supply/classify.t	tokenized	7	7	0	0	11	11
+S17-supply/collate.t	tokenized	0	0	0	0	14	6
+S17-supply/comb.t	tokenized	2	2	2	2	29	29
+S17-supply/decode.t	tokenized	4	4	1	1	7	7
+S17-supply/delayed.t	tokenized	5	5	2	2	8	8
+S17-supply/do.t	tokenized	1	1	0	0	4	4
+S17-supply/elems.t	tokenized	1	1	1	1	3	3
+S17-supply/encode.t	tokenized	4	4	1	1	6	6
+S17-supply/first.t	tokenized	1	1	1	1	7	5
+S17-supply/flat.t	tokenized	6	6	0	0	9	9
+S17-supply/from-list.t	tokenized	1	1	0	0	10	10
+S17-supply/grab.t	tokenized	0	0	0	0	4	4
+S17-supply/grep.t	tokenized	0	0	0	0	14	8
+S17-supply/head.t	tokenized	5	5	1	1	12	12
+S17-supply/interval.t	tokenized	2	2	1	1	11	10
+S17-supply/lines.t	tokenized	6	6	0	0	34	34
+S17-supply/list.t	tokenized	2	2	0	0	6	6
+S17-supply/map.t	tokenized	0	0	0	0	5	5
+S17-supply/max.t	tokenized	0	0	0	0	17	9
+S17-supply/merge.t	tokenized	4	4	0	0	10	10
+S17-supply/migrate.t	tokenized	7	7	0	0	7	7
+S17-supply/min.t	tokenized	0	0	0	0	17	9
+S17-supply/minmax.t	tokenized	0	0	0	0	35	7
+S17-supply/on-demand.t	tokenized	0	0	0	0	2	2
+S17-supply/produce.t	tokenized	1	1	1	1	10	8
+S17-supply/reduce.t	tokenized	1	1	1	1	10	8
+S17-supply/repeated.t	tokenized	0	0	0	0	14	14
+S17-supply/return-in-tap.t	tokenized	4	4	0	0	3	3
+S17-supply/reverse.t	tokenized	0	0	0	0	3	3
+S17-supply/rotate.t	tokenized	0	0	0	0	7	7
+S17-supply/rotor.t	tokenized	0	0	0	0	15	15
+S17-supply/schedule-on.t	tokenized	2	2	0	0	4	4
+S17-supply/skip.t	tokenized	0	0	0	0	6	5
+S17-supply/sort.t	tokenized	0	0	0	0	14	6
+S17-supply/split.t	tokenized	3	3	3	3	41	40
+S17-supply/squish.t	tokenized	0	0	0	0	16	16
+S17-supply/stable.t	tokenized	3	3	0	0	5	5
+S17-supply/start.t	tokenized	8	8	0	0	8	8
+S17-supply/supplier-preserving.t	tokenized	6	6	1	1	5	5
+S17-supply/syntax-nonblocking-await.t	tokenized	6	6	0	0	11	11
+S17-supply/syntax.t	tokenized	47	47	4	4	167	165
+S17-supply/tail.t	tokenized	0	0	1	1	10	10
+S17-supply/throttle.t	tokenized	7	7	4	4	31	31
+S17-supply/unique.t	tokenized	1	1	0	0	27	27
+S17-supply/wait.t	tokenized	5	5	0	0	5	5
+S17-supply/words.t	tokenized	1	1	0	0	12	12
+S17-supply/zip-latest.t	tokenized	8	8	0	0	44	44
+S17-supply/zip.t	tokenized	4	4	0	0	25	19
+S19-command-line-options/02-dash-n.t	tokenized	2	2	0	0	15	13
+S19-command-line-options/03-dash-p.t	tokenized	0	0	0	0	14	12
+S19-command-line-options/04-negation.t	tokenized	0	0	0	0	10	9
+S19-command-line/arguments.t	tokenized	1	1	0	0	18	16
+S19-command-line/dash-e.t	tokenized	0	0	0	0	15	11
+S19-command-line/help.t	tokenized	0	0	0	0	2	2
+S19-command-line/repl.t	tokenized	1	1	0	0	3	3
+S22-package-format/local.t	tokenized	18	18	0	0	25	23
+S24-testing/0-compile.t	tokenized	1	1	0	0	0	0
+S24-testing/1-basic.t	tokenized	5	5	0	0	63	55
+S24-testing/10-is-approx.t	tokenized	2	2	7	7	40	36
+S24-testing/11-plan-skip-all-subtests.t	tokenized	0	0	0	0	15	10
+S24-testing/11-plan-skip-all.t	tokenized	0	0	0	0	2	2
+S24-testing/12-subtest-todo.t	tokenized	5	5	0	0	25	11
+S24-testing/13-cmp-ok.t	tokenized	0	0	0	0	6	2
+S24-testing/14-like-unlike.t	tokenized	0	0	0	0	6	6
+S24-testing/15-done-testing.t	tokenized	1	1	0	0	10	10
+S24-testing/2-force_todo.t	tokenized	0	0	0	0	13	12
+S24-testing/3-output.t	tokenized	1	1	1	1	6	4
+S24-testing/7-bail_out.t	tokenized	0	0	0	0	12	8
+S24-testing/8-die_on_fail.t	tokenized	2	2	0	0	17	17
+S24-testing/9-is_deeply.t	tokenized	0	0	0	0	22	22
+S24-testing/fails-like.t	tokenized	2	2	0	0	41	39
+S24-testing/line-numbers.t	tokenized	6	6	0	0	19	19
+S26-documentation/01-delimited.t	tokenized	1	1	0	0	47	46
+S26-documentation/02-paragraph.t	tokenized	1	1	0	0	40	40
+S26-documentation/03-abbreviated.t	tokenized	1	1	0	0	37	37
+S26-documentation/04-code.t	tokenized	1	1	0	0	30	30
+S26-documentation/04a-input-output.t	tokenized	7	7	0	0	8	2
+S26-documentation/05-comment.t	tokenized	2	2	0	0	6	6
+S26-documentation/06-lists.t	tokenized	1	1	0	0	11	11
+S26-documentation/07-tables.t	tokenized	2	2	0	0	28	28
+S26-documentation/07a-tables.t	tokenized	4	4	7	7	51	51
+S26-documentation/07b-tables.t	tokenized	4	4	0	0	8	4
+S26-documentation/07c-tables.t	tokenized	4	4	0	0	6	3
+S26-documentation/08-formattingcodes.t	tokenized	1	1	0	0	45	45
+S26-documentation/09-configuration.t	tokenized	3	3	0	0	154	148
+S26-documentation/10-doc-cli.t	tokenized	2	2	0	0	6	4
+S26-documentation/12-non-breaking-space.t	tokenized	19	19	0	0	25	23
+S26-documentation/14-defn.t	tokenized	3	3	0	0	30	17
+S26-documentation/15-numbered-alias.t	tokenized	4	4	0	0	7	7
+S26-documentation/block-leading-user-format.t	tokenized	5	5	0	0	9	7
+S26-documentation/block-leading.t	tokenized	38	38	0	0	65	53
+S26-documentation/block-trailing.t	tokenized	39	39	0	0	65	54
+S26-documentation/module-comment.t	tokenized	0	0	0	0	2	2
+S26-documentation/multiline-leading.t	tokenized	3	3	0	0	9	8
+S26-documentation/multiline-trailing.t	tokenized	1	1	0	0	3	2
+S26-documentation/wacky.t	tokenized	21	20	0	0	43	39
+S26-documentation/why-both.t	tokenized	33	33	0	0	99	84
+S26-documentation/why-leading.t	tokenized	39	39	0	0	68	51
+S26-documentation/why-trailing.t	tokenized	42	42	0	0	70	56
+S28-named-variables/cwd.t	tokenized	1	1	0	0	3	3
+S28-named-variables/init-instant.t	tokenized	1	1	1	1	4	4
+S28-named-variables/slangs.t	tokenized	0	0	0	0	3	3
+S29-any/are.t	tokenized	0	0	4	4	22	24
+S29-any/cmp.t	tokenized	0	0	0	0	12	12
+S29-any/deg-trans.t	tokenized	1	1	0	0	20	20
+S29-any/isa.t	tokenized	5	4	0	0	12	11
+S29-any/minpairs-maxpairs.t	tokenized	4	4	0	0	21	21
+S29-context/die.t	tokenized	6	6	3	3	28	25
+S29-context/eval.t	tokenized	5	5	0	0	48	40
+S29-context/evalfile.t	tokenized	4	4	0	0	11	11
+S29-context/exit-in-if.t	tokenized	0	0	0	0	1	1
+S29-context/exit.t	tokenized	0	0	0	0	6	3
+S29-context/sleep.t	tokenized	7	7	9	9	28	27
+S29-conversions/hash.t	tokenized	0	0	0	0	18	12
+S29-conversions/ord_and_chr.t	tokenized	4	4	0	0	96	95
+S29-os/system.t	tokenized	14	13	2	2	105	81
+S32-array/adverbs.t	tokenized	11	5	2	2	569	522
+S32-array/bool.t	tokenized	1	1	0	0	15	15
+S32-array/create.t	tokenized	3	3	0	0	28	26
+S32-array/delete-adverb-native.t	tokenized	9	9	0	0	138	138
+S32-array/delete-adverb.t	tokenized	13	13	0	0	223	223
+S32-array/delete.t	tokenized	7	7	0	0	86	86
+S32-array/elems.t	tokenized	2	1	0	0	17	15
+S32-array/end.t	tokenized	2	2	0	0	16	15
+S32-array/exists-adverb.t	tokenized	6	6	0	0	55	55
+S32-array/keys_values.t	tokenized	2	2	0	0	11	11
+S32-array/kv.t	tokenized	5	5	0	0	29	30
+S32-array/multislice-6e.t	tokenized	18	18	0	0	51	50
+S32-array/pairs.t	tokenized	2	2	2	2	22	22
+S32-array/perl.t	tokenized	3	3	0	0	13	13
+S32-array/pop.t	tokenized	5	3	1	1	64	57
+S32-array/push.t	tokenized	9	9	2	2	68	64
+S32-array/rotate.t	tokenized	1	1	0	0	66	68
+S32-array/shift.t	tokenized	2	2	1	1	39	35
+S32-array/splice.t	tokenized	22	22	4	4	111	111
+S32-array/unshift.t	tokenized	5	4	1	1	81	78
+S32-basics/pairup.t	tokenized	2	1	0	0	6	6
+S32-basics/warn.t	tokenized	3	3	0	0	22	14
+S32-basics/xxKEY.t	tokenized	8	8	0	0	200	188
+S32-basics/xxPOS-native.t	tokenized	3	3	1	1	19	19
+S32-basics/xxPOS.t	tokenized	8	8	0	0	46	46
+S32-container/buf.t	tokenized	2	2	0	0	75	73
+S32-container/cat.t	tokenized	0	0	0	0	16	16
+S32-container/roundrobin.t	tokenized	1	1	0	0	18	18
+S32-container/stringify.t	tokenized	0	0	0	0	24	20
+S32-container/zip.t	tokenized	4	4	0	0	23	17
+S32-encoding/decoder.t	tokenized	5	5	0	0	8	7
+S32-encoding/encoder.t	tokenized	1	1	0	0	12	12
+S32-encoding/registry.t	tokenized	4	4	0	0	38	38
+S32-exceptions/misc.t	tokenized	10	5	0	0	215	96
+S32-exceptions/misc2.t	tokenized	8	6	0	0	130	32
+S32-hash/adverbs.t	tokenized	10	6	2	2	591	479
+S32-hash/antipairs.t	tokenized	1	1	0	0	18	18
+S32-hash/delete-adverb.t	tokenized	17	17	0	0	218	216
+S32-hash/delete.t	tokenized	7	7	0	0	18	15
+S32-hash/exists-adverb.t	tokenized	8	8	0	0	90	78
+S32-hash/exists.t	tokenized	10	10	0	0	40	40
+S32-hash/hyperslice.t	tokenized	7	7	0	0	18	18
+S32-hash/invert.t	tokenized	1	1	0	0	18	18
+S32-hash/iterator.t	tokenized	1	1	1	1	18	10
+S32-hash/keys_values.t	tokenized	3	3	0	0	27	27
+S32-hash/kv.t	tokenized	12	12	0	0	58	58
+S32-hash/map.t	tokenized	11	11	0	0	43	35
+S32-hash/multislice-6e.t	tokenized	16	16	0	0	104	103
+S32-hash/pairs.t	tokenized	7	7	2	2	48	48
+S32-hash/perl.t	tokenized	4	4	0	0	38	37
+S32-hash/push.t	tokenized	10	10	0	0	26	24
+S32-hash/slice.t	tokenized	6	6	0	0	88	88
+S32-io/IO-Socket-Async-UDP.t	tokenized	6	6	0	0	8	8
+S32-io/IO-Socket-Async.t	tokenized	57	57	0	0	69	68
+S32-io/IO-Socket-INET-UNIX.t	tokenized	0	0	0	0	11	11
+S32-io/IO-Socket-INET.t	tokenized	9	7	2	2	71	58
+S32-io/chdir-process.t	tokenized	3	2	0	0	17	16
+S32-io/chdir.t	tokenized	8	8	0	0	144	135
+S32-io/child-secure.t	tokenized	4	4	0	0	28	28
+S32-io/copy.t	tokenized	12	12	0	0	61	61
+S32-io/dir.t	tokenized	5	5	2	2	28	26
+S32-io/indir.t	tokenized	8	8	0	0	148	138
+S32-io/io-cathandle.t	tokenized	40	39	0	0	367	365
+S32-io/io-handle.t	tokenized	9	8	1	1	175	171
+S32-io/io-path-cygwin.t	tokenized	6	6	0	0	117	117
+S32-io/io-path-extension.t	tokenized	2	1	0	0	220	218
+S32-io/io-path-subclasses.t	tokenized	3	3	0	0	5	5
+S32-io/io-path-symlink.t	tokenized	2	2	1	1	13	12
+S32-io/io-path-unix.t	tokenized	4	4	0	0	91	91
+S32-io/io-path-win.t	tokenized	6	6	0	0	117	117
+S32-io/io-path.t	tokenized	12	25	4	5	163	214
+S32-io/io-spec-cygwin.t	tokenized	12	12	0	0	240	240
+S32-io/io-spec-qnx.t	tokenized	3	3	0	0	33	33
+S32-io/io-spec-unix.t	tokenized	10	10	0	0	333	334
+S32-io/io-spec-win.t	tokenized	14	17	0	0	476	503
+S32-io/io-special.t	tokenized	1	1	0	0	23	24
+S32-io/lock.t	tokenized	6	6	1	1	59	55
+S32-io/mkdir_rmdir.t	tokenized	2	2	0	0	7	7
+S32-io/move.t	tokenized	11	11	0	0	43	43
+S32-io/native-descriptor.t	tokenized	1	1	4	4	5	5
+S32-io/note.t	tokenized	0	0	0	0	21	14
+S32-io/null-char.t	tokenized	2	2	0	0	9	9
+S32-io/open.t	tokenized	5	5	0	0	127	124
+S32-io/other-stress.t	tokenized	0	0	1	1	3	2
+S32-io/other.t	tokenized	0	0	0	0	1	1
+S32-io/out-buffering.t	tokenized	3	3	0	0	45	44
+S32-io/pipe.t	tokenized	15	15	0	0	56	40
+S32-io/rename.t	tokenized	10	10	0	0	38	38
+S32-io/seek.t	tokenized	1	1	0	0	40	28
+S32-io/signals.t	tokenized	0	0	0	0	5	5
+S32-io/slurp.t	tokenized	10	10	0	0	67	63
+S32-io/socket-accept-and-working-threads.t	tokenized	6	6	0	0	9	9
+S32-io/socket-fail-invalid-values.t	tokenized	5	5	0	0	4	4
+S32-io/socket-host-port-split.t	tokenized	6	6	0	0	3	3
+S32-io/socket-recv-vs-read.t	tokenized	5	5	2	2	34	34
+S32-io/spurt.t	tokenized	15	15	0	0	114	110
+S32-io/tell.t	tokenized	1	1	0	0	29	29
+S32-io/utf16.t	tokenized	23	23	0	0	33	34
+S32-list/are.t	tokenized	1	1	0	0	20	19
+S32-list/batch.t	tokenized	0	0	0	0	4	4
+S32-list/categorize-list.t	tokenized	26	26	0	0	677	682
+S32-list/categorize.t	tokenized	14	14	2	2	46	47
+S32-list/classify-list.t	tokenized	19	19	0	0	412	417
+S32-list/classify.t	tokenized	15	15	5	5	57	57
+S32-list/combinations.t	tokenized	2	2	1	1	55	54
+S32-list/create.t	tokenized	5	5	0	0	13	13
+S32-list/cross.t	tokenized	0	0	0	0	11	10
+S32-list/deepmap.t	tokenized	4	4	0	0	33	35
+S32-list/duckmap.t	tokenized	2	2	0	0	23	24
+S32-list/end.t	tokenized	1	1	0	0	19	18
+S32-list/first-end-k.t	tokenized	5	5	1	1	31	32
+S32-list/first-end-kv.t	tokenized	3	3	0	0	34	26
+S32-list/first-end-p.t	tokenized	5	5	1	1	35	36
+S32-list/first-end-v.t	tokenized	5	5	1	1	34	35
+S32-list/first-end.t	tokenized	5	5	1	1	35	36
+S32-list/first-k.t	tokenized	5	5	1	1	30	31
+S32-list/first-kv.t	tokenized	3	3	0	0	34	26
+S32-list/first-p.t	tokenized	5	5	1	1	35	36
+S32-list/first-v.t	tokenized	5	5	1	1	34	35
+S32-list/first.t	tokenized	7	7	1	1	115	122
+S32-list/flat.t	tokenized	4	4	1	1	26	26
+S32-list/grep-k.t	tokenized	5	5	0	0	44	44
+S32-list/grep-kv.t	tokenized	4	4	0	0	24	24
+S32-list/grep-p.t	tokenized	4	4	0	0	28	28
+S32-list/grep-v.t	tokenized	4	4	0	0	23	23
+S32-list/grep.t	tokenized	9	9	2	2	69	69
+S32-list/head.t	tokenized	5	5	2	2	68	69
+S32-list/iterator.t	tokenized	2	2	0	0	39	21
+S32-list/join.t	tokenized	29	29	0	0	144	144
+S32-list/map.t	tokenized	18	18	7	7	93	93
+S32-list/map_function_return_values.t	tokenized	2	2	0	0	5	5
+S32-list/minmax.t	tokenized	8	8	6	6	181	167
+S32-list/permutations.t	tokenized	1	1	0	0	14	15
+S32-list/pick.t	tokenized	12	12	18	17	77	76
+S32-list/produce.t	tokenized	2	2	0	0	9	9
+S32-list/reduce.t	tokenized	15	13	21	0	32	31
+S32-list/repeated.t	tokenized	6	6	0	0	86	85
+S32-list/reverse.t	tokenized	5	5	0	0	47	28
+S32-list/roll.t	tokenized	18	18	12	12	68	69
+S32-list/rotor.t	tokenized	4	2	1	0	73	13
+S32-list/seq.t	tokenized	24	24	0	1	115	114
+S32-list/skip.t	tokenized	10	10	2	2	81	81
+S32-list/sort.t	tokenized	6	6	4	4	173	159
+S32-list/squish.t	tokenized	8	8	1	0	119	121
+S32-list/tail.t	tokenized	6	6	3	3	84	87
+S32-list/toggle.t	tokenized	3	3	0	0	30	28
+S32-list/unique.t	tokenized	6	6	0	0	87	86
+S32-num/abs.t	tokenized	0	0	5	5	13	13
+S32-num/base.t	tokenized	1	1	2	2	77	81
+S32-num/complex.t	tokenized	6	6	33	36	167	150
+S32-num/cool-num.t	tokenized	19	19	3	3	69	67
+S32-num/exp.t	tokenized	3	3	7	7	34	34
+S32-num/expmod.t	tokenized	0	0	2	2	6	6
+S32-num/fatrat.t	tokenized	5	4	153	153	162	163
+S32-num/int.t	tokenized	9	9	3	3	171	161
+S32-num/is-prime.t	tokenized	5	5	0	0	51	32
+S32-num/log.t	tokenized	12	12	19	19	36	36
+S32-num/narrow.t	tokenized	0	0	4	4	17	17
+S32-num/negative-zero.t	tokenized	3	3	0	0	112	90
+S32-num/pi.t	tokenized	1	1	0	0	15	8
+S32-num/polar.t	tokenized	4	4	10	10	2	2
+S32-num/polymod.t	tokenized	0	0	0	0	11	11
+S32-num/power.t	tokenized	4	4	10	10	34	34
+S32-num/rand.t	tokenized	10	10	10	10	14	12
+S32-num/rat.t	tokenized	17	17	165	165	292	290
+S32-num/real-bridge.t	tokenized	13	13	57	57	149	149
+S32-num/roots.t	tokenized	11	11	3	3	62	55
+S32-num/rounders.t	tokenized	15	15	17	17	190	150
+S32-num/rshift_pos_amount.t	tokenized	4	4	0	0	2	2
+S32-num/sign.t	tokenized	0	0	2	2	34	34
+S32-num/sqrt.t	tokenized	0	0	6	6	18	18
+S32-num/stress.t	tokenized	4	4	1	1	6	6
+S32-num/stringify.t	tokenized	2	2	7	7	40	38
+S32-num/unpolar.t	tokenized	4	4	11	11	24	24
+S32-scalar/defined.t	tokenized	3	3	0	0	65	65
+S32-scalar/perl.t	tokenized	2	2	0	0	8	8
+S32-scalar/undef.t	tokenized	19	18	3	3	128	109
+S32-str/Collation.t	tokenized	2	2	0	0	34	36
+S32-str/CollationTest_NON_IGNORABLE-0.t	tokenized	1	1	0	0	2302	2302
+S32-str/CollationTest_NON_IGNORABLE-1.t	tokenized	1	1	0	0	2303	2303
+S32-str/CollationTest_NON_IGNORABLE-2.t	tokenized	1	1	0	0	2303	2303
+S32-str/CollationTest_NON_IGNORABLE-3.t	tokenized	1	1	0	0	1435	1435
+S32-str/append.t	tokenized	4	4	0	0	15	15
+S32-str/bool.t	tokenized	0	0	0	0	16	16
+S32-str/capitalize.t	tokenized	3	3	0	0	40	40
+S32-str/chomp.t	tokenized	4	4	0	0	90	90
+S32-str/chop.t	tokenized	1	1	0	0	57	53
+S32-str/comb.t	tokenized	5	5	1	1	208	202
+S32-str/contains.t	tokenized	1	1	0	0	38	38
+S32-str/encode.t	tokenized	1	1	0	0	94	85
+S32-str/ends-with.t	tokenized	1	1	0	0	32	32
+S32-str/fc.t	tokenized	0	0	0	0	34	34
+S32-str/flip.t	tokenized	1	1	0	0	29	29
+S32-str/format.t	tokenized	5	5	0	0	58	61
+S32-str/gb18030-encode-decode.t	tokenized	8	8	0	0	19	19
+S32-str/gb2312-encode-decode.t	tokenized	8	8	0	0	19	19
+S32-str/indent.t	tokenized	2	2	6	6	101	100
+S32-str/index.t	tokenized	5	5	0	0	165	165
+S32-str/indices.t	tokenized	1	1	0	0	123	113
+S32-str/lc.t	tokenized	1	1	0	0	39	37
+S32-str/length.t	tokenized	2	2	0	0	13	13
+S32-str/lines.t	tokenized	2	2	4	4	85	84
+S32-str/numeric.t	tokenized	6	6	3	3	117	106
+S32-str/ords.t	tokenized	4	4	0	0	16	16
+S32-str/parse-base.t	tokenized	5	5	1	1	36	32
+S32-str/pos.t	tokenized	1	0	0	0	4	3
+S32-str/rindex.t	tokenized	1	1	0	0	133	131
+S32-str/samecase.t	tokenized	0	0	0	0	22	21
+S32-str/samemark.t	tokenized	0	0	0	0	23	23
+S32-str/shiftjis-encode-decode.t	tokenized	4	4	0	0	40	40
+S32-str/space-chars.t	tokenized	6	6	0	0	4	4
+S32-str/split-simple.t	tokenized	3	3	0	0	72	71
+S32-str/split.t	tokenized	9	9	0	0	505	504
+S32-str/sprintf-a.t	tokenized	2	2	3	3	294	294
+S32-str/sprintf-b.t	tokenized	2	2	4	4	343	343
+S32-str/sprintf-c.t	tokenized	2	2	2	2	38	38
+S32-str/sprintf-d.t	tokenized	2	2	8	8	3	9
+S32-str/sprintf-e.t	tokenized	2	2	5	5	440	440
+S32-str/sprintf-f.t	tokenized	2	2	5	5	8	8
+S32-str/sprintf-o.t	tokenized	2	2	3	3	6	6
+S32-str/sprintf-s.t	tokenized	5	5	2	2	72	72
+S32-str/sprintf-u.t	tokenized	2	2	2	2	5	5
+S32-str/sprintf-x.t	tokenized	2	2	4	4	343	343
+S32-str/sprintf.t	tokenized	6	6	18	18	324	345
+S32-str/starts-with.t	tokenized	1	1	0	0	32	32
+S32-str/substr-eq.t	tokenized	1	1	0	0	40	40
+S32-str/substr-rw.t	tokenized	5	5	1	1	130	130
+S32-str/substr.t	tokenized	1	1	1	1	134	128
+S32-str/tc.t	tokenized	0	0	0	0	17	16
+S32-str/tclc.t	tokenized	0	0	0	0	17	17
+S32-str/trim.t	tokenized	3	3	0	0	94	94
+S32-str/uc.t	tokenized	4	4	0	0	31	32
+S32-str/uniparse.t	tokenized	1	1	1	1	23	21
+S32-str/utf8-c8.t	tokenized	18	18	0	0	163	162
+S32-str/val.t	tokenized	5	5	1	1	44	19
+S32-str/windows-1251-windows-1252-encode-decode.t	tokenized	8	8	0	0	4	4
+S32-str/words.t	tokenized	7	7	1	1	73	71
+S32-temporal/Date.t	tokenized	17	17	12	12	127	127
+S32-temporal/DateTime-Instant-Duration.t	tokenized	17	17	23	6	75	77
+S32-temporal/DateTime.t	tokenized	43	42	12	12	589	589
+S32-temporal/baum-gregorian-data.t	tokenized	25	25	11	11	16	16
+S32-temporal/calendar.t	tokenized	4	4	0	0	154	154
+S32-temporal/greg-jd-frac-seconds.t	tokenized	14	14	2	2	25	25
+S32-temporal/juliandate.t	tokenized	23	23	2	2	48	48
+S32-temporal/local.t	tokenized	3	3	5	5	60	60
+S32-trig/atan2.t	tokenized	8	8	13	13	89	89
+S32-trig/cos.t	tokenized	8	8	14	14	32	32
+S32-trig/cosec.t	tokenized	8	8	12	12	32	32
+S32-trig/cosech.t	tokenized	8	8	12	12	32	32
+S32-trig/cosh.t	tokenized	8	8	12	12	32	32
+S32-trig/cotan.t	tokenized	8	8	12	12	32	32
+S32-trig/cotanh.t	tokenized	8	8	12	12	32	32
+S32-trig/e.t	tokenized	1	1	0	0	6	5
+S32-trig/pi.t	tokenized	1	1	3	3	3	3
+S32-trig/sec.t	tokenized	8	8	12	12	32	32
+S32-trig/sech.t	tokenized	8	8	12	12	32	32
+S32-trig/simple.t	tokenized	2	2	0	0	12	12
+S32-trig/sin.t	tokenized	8	8	16	16	32	32
+S32-trig/sinh.t	tokenized	8	8	14	14	33	33
+S32-trig/tan.t	tokenized	8	8	12	12	32	32
+S32-trig/tanh.t	tokenized	8	8	12	12	32	32
+integration/99problems-01-to-10.t	tokenized	22	22	0	0	74	79
+integration/99problems-11-to-20.t	tokenized	27	27	3	3	79	78
+integration/99problems-21-to-30.t	tokenized	15	15	3	3	52	48
+integration/99problems-31-to-40.t	tokenized	18	18	5	5	29	29
+integration/99problems-41-to-50.t	tokenized	23	22	6	2	74	41
+integration/99problems-51-to-60.t	tokenized	15	15	9	9	45	45
+integration/99problems-61-to-70.t	tokenized	17	17	6	6	101	101
+integration/advent2009-day01.t	tokenized	0	0	0	0	3	3
+integration/advent2009-day02.t	tokenized	0	0	0	0	17	16
+integration/advent2009-day03.t	tokenized	1	1	0	0	23	23
+integration/advent2009-day04.t	tokenized	0	0	0	0	6	5
+integration/advent2009-day05.t	tokenized	6	7	2	2	17	17
+integration/advent2009-day06.t	tokenized	5	6	6	6	11	11
+integration/advent2009-day07.t	tokenized	10	10	1	1	22	22
+integration/advent2009-day08.t	tokenized	4	4	0	0	23	23
+integration/advent2009-day09.t	tokenized	14	14	0	0	31	30
+integration/advent2009-day10.t	tokenized	1	1	0	0	12	12
+integration/advent2009-day11.t	tokenized	5	5	0	0	17	16
+integration/advent2009-day12.t	tokenized	0	0	0	0	23	20
+integration/advent2009-day13.t	tokenized	5	5	0	0	19	19
+integration/advent2009-day14.t	tokenized	1	1	3	3	2	2
+integration/advent2009-day15.t	tokenized	3	3	1	1	4	5
+integration/advent2009-day16.t	tokenized	13	9	2	2	41	40
+integration/advent2009-day17.t	tokenized	13	12	9	9	2	2
+integration/advent2009-day18.t	tokenized	16	16	0	0	21	20
+integration/advent2009-day19.t	tokenized	3	3	0	0	21	21
+integration/advent2009-day20.t	tokenized	8	8	0	2	30	21
+integration/advent2009-day21.t	tokenized	7	7	1	1	11	8
+integration/advent2009-day22.t	tokenized	7	5	0	0	4	4
+integration/advent2009-day23.t	tokenized	23	23	11	10	25	25
+integration/advent2009-day24.t	tokenized	2	2	0	0	29	9
+integration/advent2010-day03.t	tokenized	7	7	2	2	32	30
+integration/advent2010-day04.t	tokenized	4	4	5	7	11	11
+integration/advent2010-day06.t	tokenized	7	7	1	1	13	13
+integration/advent2010-day07.t	tokenized	4	4	0	0	1	0
+integration/advent2010-day08.t	tokenized	4	4	0	0	26	27
+integration/advent2010-day10.t	tokenized	5	5	0	0	6	5
+integration/advent2010-day11.t	tokenized	10	10	0	1	3	3
+integration/advent2010-day12.t	tokenized	5	5	2	2	13	13
+integration/advent2010-day14.t	tokenized	11	11	0	0	23	23
+integration/advent2010-day16.t	tokenized	5	5	0	0	19	19
+integration/advent2010-day19.t	tokenized	1	1	0	0	7	6
+integration/advent2010-day21.t	tokenized	4	4	0	0	21	16
+integration/advent2010-day22.t	tokenized	2	2	0	0	6	6
+integration/advent2010-day23.t	tokenized	6	6	0	0	10	10
+integration/advent2011-day03.t	tokenized	4	4	0	0	5	5
+integration/advent2011-day04.t	tokenized	3	2	3	3	2	2
+integration/advent2011-day05.t	tokenized	0	0	0	0	0	0
+integration/advent2011-day07.t	tokenized	2	2	0	0	9	5
+integration/advent2011-day10.t	tokenized	3	3	0	0	14	11
+integration/advent2011-day11.t	tokenized	6	6	7	7	22	16
+integration/advent2011-day14.t	tokenized	2	2	1	1	8	6
+integration/advent2011-day15.t	tokenized	4	4	0	0	17	15
+integration/advent2011-day16.t	tokenized	6	6	0	0	12	12
+integration/advent2011-day20.t	tokenized	4	4	0	0	41	41
+integration/advent2011-day22.t	tokenized	1	0	4	2	2	2
+integration/advent2011-day23.t	tokenized	29	29	14	14	81	77
+integration/advent2011-day24.t	tokenized	5	5	0	0	21	19
+integration/advent2012-day02.t	tokenized	6	6	0	0	16	16
+integration/advent2012-day03.t	tokenized	4	7	1	2	6	10
+integration/advent2012-day04.t	tokenized	10	10	12	13	8	8
+integration/advent2012-day06.t	tokenized	1	1	0	0	7	5
+integration/advent2012-day09.t	tokenized	5	5	0	0	24	20
+integration/advent2012-day10.t	tokenized	10	9	0	0	53	46
+integration/advent2012-day12.t	tokenized	3	3	0	0	16	15
+integration/advent2012-day13.t	tokenized	27	27	17	0	61	63
+integration/advent2012-day14.t	tokenized	13	13	8	9	6	6
+integration/advent2012-day15.t	tokenized	13	13	0	0	20	20
+integration/advent2012-day16.t	tokenized	5	5	7	7	0	0
+integration/advent2012-day19.t	tokenized	5	3	6	4	10	10
+integration/advent2012-day20.t	tokenized	9	9	0	0	55	55
+integration/advent2012-day21.t	tokenized	17	17	3	4	28	18
+integration/advent2012-day22.t	tokenized	4	4	0	0	10	10
+integration/advent2012-day24.t	tokenized	12	12	2	2	6	5
+integration/advent2013-day02.t	tokenized	3	3	0	0	22	22
+integration/advent2013-day04.t	tokenized	5	5	0	0	17	10
+integration/advent2013-day06.t	tokenized	6	6	2	3	10	4
+integration/advent2013-day07.t	tokenized	1	0	1	1	14	18
+integration/advent2013-day08.t	tokenized	8	8	0	0	10	4
+integration/advent2013-day09.t	tokenized	11	11	0	0	40	39
+integration/advent2013-day10.t	tokenized	19	17	2	0	70	62
+integration/advent2013-day12.t	tokenized	3	3	0	0	52	52
+integration/advent2013-day14.t	tokenized	27	27	3	1	43	35
+integration/advent2013-day15.t	tokenized	8	8	9	9	32	26
+integration/advent2013-day18.t	tokenized	2	2	0	0	32	24
+integration/advent2013-day19.t	tokenized	9	9	1	1	15	15
+integration/advent2013-day20.t	tokenized	1	1	0	0	24	20
+integration/advent2013-day21.t	tokenized	10	10	0	0	60	55
+integration/advent2013-day22.t	tokenized	4	3	8	8	12	12
+integration/advent2013-day23.t	tokenized	5	5	0	0	13	9
+integration/advent2014-day05.t	tokenized	5	5	0	0	16	16
+integration/advent2014-day13.t	tokenized	4	2	0	0	28	28
+integration/advent2014-day16.t	tokenized	4	4	1	1	26	26
+integration/code-blocks-as-sub-args.t	tokenized	2	2	0	0	16	16
+integration/deep-recursion-initing-native-array.t	tokenized	2	2	7	7	1	1
+integration/diamond.t	tokenized	3	3	0	0	9	6
+integration/error-reporting.t	tokenized	7	6	9	10	68	51
+integration/eval-and-threads.t	tokenized	0	0	0	0	2	1
+integration/failure-and-callsame.t	tokenized	3	3	2	2	5	4
+integration/gather-with-loops.t	tokenized	4	4	0	0	21	21
+integration/lazy-bentley-generator.t	tokenized	7	7	3	3	1	1
+integration/lexical-array-in-inner-block.t	tokenized	3	3	0	0	1	1
+integration/lexicals-and-attributes.t	tokenized	4	4	0	0	8	8
+integration/man-or-boy.t	tokenized	3	3	1	1	2	2
+integration/method-calls-and-instantiation.t	tokenized	3	3	0	0	2	2
+integration/no-indirect-new.t	tokenized	0	0	0	0	4	2
+integration/packages.t	tokenized	2	2	0	0	5	5
+integration/pair-in-array.t	tokenized	4	4	0	0	10	10
+integration/passing-pair-class-to-sub.t	tokenized	5	5	0	0	2	2
+integration/precompiled.t	tokenized	0	0	0	0	17	16
+integration/real-strings.t	tokenized	3	3	0	0	68	69
+integration/role-composition-vs-attribute.t	tokenized	18	18	0	0	11	10
+integration/rule-in-class-Str.t	tokenized	1	1	0	0	15	15
+integration/say-crash.t	tokenized	2	2	0	0	7	7
+integration/sequence.t	tokenized	3	3	0	0	4	4
+integration/substr-after-match-in-gather-in-for.t	tokenized	1	1	0	0	3	3
+integration/topic_in_double_loop.t	tokenized	0	0	0	0	2	2
+integration/variables-in-do.t	tokenized	1	1	0	0	2	3
+integration/weird-errors.t	tokenized	9	6	4	4	63	45
